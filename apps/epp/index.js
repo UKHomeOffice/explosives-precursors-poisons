@@ -5,9 +5,9 @@ const caseworkerEmail = require('./behaviours/caseworker-email')(config.email);
 
 module.exports = {
     name: 'HOF Skeleton',
-    fields: 'apps/boilerplate/fields',
-    views: 'apps/boilerplate/views',
-    translations: 'apps/boilerplate/translations',
+    fields: 'apps/epp/fields',
+    views: 'apps/epp/views',
+    translations: 'apps/epp/translations',
     baseUrl: '/',
     steps: {
         '/start': {
