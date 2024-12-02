@@ -1,0 +1,16 @@
+{
+  "appName": "Boilerplate form",
+  "theme": "govUK",
+  "behaviours": [
+    "hof/components/clear-session"
+  ],
+  "translations": "./apps/boilerplate/translations",
+  "routes": [
+    "./apps/boilerplate"
+  ],
+  "session": {
+    "name": "boilerplate.hof.sid"
+  },
+  "getAccessibility": true,
+  "emailerFallback": true
+}

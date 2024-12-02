@@ -1,17 +1,24 @@
 ## What? 
+
+[HOF-113](https://collaboration.homeoffice.gov.uk/jira/browse/HOFF-113) - Creating a skeleton boilerplate repo for HOF devs to use to start a new project
+
 ## Why? 
+
+The moment HOF team doesn't have a simple starting repo when taking on a new project.
+
 ## How? 
+
+Creating a directory with a form that includes some basic steps, scaffolding for tests and pipeline. 
+
 ## Testing?
+
+Tested locally
+
 ## Screenshots (optional)
 ## Anything Else? (optional)
 ## Check list
 
-
-- [ ] I have reviewed my own pull request for linting issues (e.g. adding new lines)
+- [X] I have reviewed my own pull request
 - [ ] I have written tests (if relevant)
-- [ ] I have created a JIRA number for my branch
-- [ ] I have created a JIRA number for my commit
-- [ ] I have followed the chris beams method for my commit https://cbea.ms/git-commit/
-here is an [example commit](https://github.com/UKHomeOfficeForms/hof/commit/810959f391187c7c4af6db262bcd143b50093a6e)
-- [ ] Ensure drone builds are green especially tests
-- [ ] I will squash the commits before merging
+
+

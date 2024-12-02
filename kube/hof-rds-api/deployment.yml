@@ -1,0 +1,97 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  name: data-service-{{ .DRONE_SOURCE_BRANCH }}
+  {{ else }}
+  name: data-service
+  {{ end }}
+spec:
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  replicas: 1
+  {{ else }}
+  replicas: 2
+  {{ end }}
+  selector:
+    matchLabels:
+      {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+      name: data-service-{{ .DRONE_SOURCE_BRANCH }}
+      service: data-service-{{ .DRONE_SOURCE_BRANCH }}
+      {{ else }}
+      name: data-service
+      service: data-service
+      {{ end }}
+  template:
+    metadata:
+      labels:
+        {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+        name: data-service-{{ .DRONE_SOURCE_BRANCH }}
+        service: data-service-{{ .DRONE_SOURCE_BRANCH }}
+        {{ else }}
+        name: data-service
+        service: data-service
+        {{ end }}
+        build: "{{.DRONE_BUILD_NUMBER}}"
+        commit: "{{.DRONE_COMMIT_SHA}}"
+    spec:
+      containers:
+        - name: data-service
+          # release v2.0.1
+          image: quay.io/ukhomeofficedigital/hof-rds-api:966c644db0642b2a45b0e8c48ddb25cb41244ac2
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+                name: configmap-{{ .DRONE_SOURCE_BRANCH }}
+                {{ else }}
+                name: configmap
+                {{ end }}
+          env:
+            - name: SERVICE_NAME
+              value: "asc"
+            - name: LATEST_MIGRATION
+              value: "20230818160728_add_job_role_column_sa"
+            - name: HTTPS_PORT
+              value: "3443"
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  key: endpoint
+                  name: asc-rds
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: db_name
+                  name: asc-rds
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: asc-rds
+            - name: DB_PASS
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: asc-rds
+          resources:
+            requests:
+              memory: 20Mi
+              cpu: 20m
+            limits:
+              memory: 256Mi
+              cpu: 300m
+          securityContext:
+            runAsNonRoot: true
+          volumeMounts:
+            - mountPath: /certs
+              name: certs
+              readOnly: true
+      volumes:
+        - name: certs
+          secret:
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            secretName: branch-tls-external
+            {{ else }}
+            secretName: data-service-cert-cmio
+            {{ end }}
