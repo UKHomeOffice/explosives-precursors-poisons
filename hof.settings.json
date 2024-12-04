@@ -1,0 +1,16 @@
+{
+  "appName": "Explosive precursors and poisons",
+  "theme": "govUK",
+  "behaviours": [
+    "hof/components/clear-session"
+  ],
+  "translations": "./apps/epp/translations",
+  "routes": [
+    "./apps/epp"
+  ],
+  "session": {
+    "name": "epp.hof.sid"
+  },
+  "getAccessibility": true,
+  "emailerFallback": true
+}
