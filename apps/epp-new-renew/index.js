@@ -4,15 +4,11 @@ const summary = hof.components.summary;
 
 module.exports = {
   name: 'EPP form',
-  fields: 'apps/epp/fields',
-  views: 'apps/epp/views',
-  translations: 'apps/epp/translations',
+  fields: 'apps/epp-new-renew/fields',
+  views: 'apps/epp-new-renew/views',
+  translations: 'apps/epp-new-renew/translations',
   baseUrl: '/',
   steps: {
-    '/application-type': {
-      field:['application-type'],
-      next: '/your-name'
-    },
     '/your-name': {
       fields: ['your-name'],
       //add fork for other-names yes

@@ -6,7 +6,8 @@
   ],
   "translations": "./apps/epp/translations",
   "routes": [
-    "./apps/epp"
+    "./apps/epp-common",
+    "./apps/epp-new-renew"
   ],
   "session": {
     "name": "epp.hof.sid"

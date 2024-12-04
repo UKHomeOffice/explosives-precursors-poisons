@@ -1,7 +1,11 @@
 {
-  "start": {
-    "header": "Welcome to the HOF epp form",
-    "paragraph-1": "This form is contains the most simple steps, this static page, a name input step, and a confirmation step"
+  "your-name": {
+    "title":"Your name",
+    "header":"Your name"
+  },
+  "other-names": {
+    "title":"Other names",
+    "header":"Other names"
   },
   "confirm": {
     "header": "Check your answers",

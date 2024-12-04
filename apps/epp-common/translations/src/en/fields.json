@@ -1,0 +1,12 @@
+{
+  "application-type": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  }
+}
