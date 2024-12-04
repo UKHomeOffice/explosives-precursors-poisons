@@ -1,5 +1,15 @@
 {
   "name": {
     "label": "Full name"
+  },
+  "application-type": {
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }
