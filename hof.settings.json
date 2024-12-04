@@ -1,5 +1,5 @@
 {
-  "appName": "epp form",
+  "appName": "Explosive precursors and poisons",
   "theme": "govUK",
   "behaviours": [
     "hof/components/clear-session"

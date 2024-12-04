@@ -1,7 +1,7 @@
 {
-  "name": "hof-epp-form",
+  "name": "explosive-precursors-and-poisons",
   "version": "1.0.0",
-  "description": "Simple standard form made using HOF",
+  "description": "Explosive Precursors and Poisons form",
   "main": "index.js",
   "engines": {
     "node": ">=20.16.0 <21.0.0"
@@ -17,14 +17,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/UKHomeOffice/coa.git"
+    "url": "git@github.com:UKHomeOffice/explosives-precursors-poisons.git"
   },
   "author": "HOF",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/UKHomeOfficeForms/hof-skeleton/issues"
+    "url": "https://github.com/UKHomeOffice/explosives-precursors-poisons"
   },
-  "homepage": "https://github.com/UKHomeOfficeForms/hof-skeleton/",
+  "homepage": "https://github.com/UKHomeOffice/explosives-precursors-poisons",
   "mocha": {
     "reporter": "spec",
     "require": "test/setup.js",
@@ -35,8 +35,9 @@
     "accessible-autocomplete": "^2.0.4",
     "bl": "^6.0.12",
     "busboy": "^1.6.0",
-    "hof": "^20.5.6",
+    "hof": "^21.1.1",
     "jquery": "^3.6.3",
+    "jsdom": "^25.0.1",
     "lodash": "^4.17.21"
   },
   "devDependencies": {

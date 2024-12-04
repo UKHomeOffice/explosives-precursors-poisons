@@ -16,7 +16,7 @@ const app = hof(settings);
 
 app.use((req, res, next) => {
   res.locals.htmlLang = 'en';
-  res.locals.feedbackUrl = "https://www.gov.uk";
+  res.locals.feedbackUrl = 'https://www.gov.uk';
   if (req.is('multipart/form-data')) {
     try {
       const bb = busboy({
