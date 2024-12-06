@@ -88,25 +88,21 @@ spec:
             - name: AWS_SECRET_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-                  name: fmr-s3-branch
-                  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-                  name: fmr-s3-uat
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  name: epp-s3-notprod
                   {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-                  name: fmr-s3-stg
+                  name: epp-s3-stg
                   {{ else }}
-                  name: fmr-s3-prod
+                  name: epp-s3-prod
                   {{ end }}
                   key: secret_access_key
             - name: AWS_KMS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-                  name: fmr-s3-branch
-                  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-                  name: fmr-s3-uat
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  name: epp-s3-notprod
                   {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-                  name: fmr-s3-stg
+                  name: epp-s3-stg
                   {{ else }}
                   name: fmr-s3-prod
                   {{ end }}
@@ -114,14 +110,12 @@ spec:
             - name: AWS_BUCKET
               valueFrom:
                 secretKeyRef:
-                  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-                  name: fmr-s3-branch
-                  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-                  name: fmr-s3-uat
+                  {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
+                  name: epp-s3-notprod
                   {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
-                  name: fmr-s3-stg
+                  name: epp-s3-stg
                   {{ else }}
-                  name: fmr-s3-prod
+                  name: epp-s3-prod
                   {{ end }}
                   key: name
             - name: AWS_PASSWORD

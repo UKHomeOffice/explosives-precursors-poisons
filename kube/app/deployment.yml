@@ -95,11 +95,11 @@ spec:
             #     secretKeyRef:
             #       name: keycloak-user
             #       key: password
-            # - name: SESSION_SECRET
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: session-secret
-            #       key: session-secret
+            - name: SESSION_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: session-secret
+                  key: session-secret
             - name: FILE_VAULT_URL
             {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
               value: https://fv-{{ .APP_NAME }}.sas.homeoffice.gov.uk/file
