@@ -6,7 +6,6 @@
   ],
   "translations": "./apps/epp-new-renew/translations",
   "routes": [
-    "./apps/epp-common",
     "./apps/epp-new-renew"
   ],
   "session": {

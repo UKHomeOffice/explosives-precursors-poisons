@@ -1,4 +1,10 @@
 module.exports = {
+  'application-type': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    options: ['new', 'amend', 'renew', 'replace'],
+    validate: 'required'
+  },
   'new-renew-license-number':{
     mixin: 'input-text',
     className: ['govuk-input', 'govuk-!-width-two-thirds']
