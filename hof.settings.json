@@ -4,7 +4,7 @@
   "behaviours": [
     "hof/components/clear-session"
   ],
-  "translations": "./apps/epp/translations",
+  "translations": "./apps/epp-new-renew/translations",
   "routes": [
     "./apps/epp-common",
     "./apps/epp-new-renew"

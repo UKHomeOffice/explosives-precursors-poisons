@@ -1,6 +1,8 @@
 module.exports = {
   'application-type': {
     mixin: 'radio-group',
-    options: [{ value: 'yes' }, { value: 'no' }],
+    isPageHeading: true,
+    options: ['new', 'amend', 'renew', 'replace'],
+    validate: 'required'
   }
-}
+};

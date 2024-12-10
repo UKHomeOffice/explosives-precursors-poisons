@@ -1,3 +1,4 @@
+const nextStep = require('./behaviours/next-step')
 
 module.exports = {
   name: 'EPP form',
@@ -7,8 +8,8 @@ module.exports = {
   baseUrl: '/',
   steps: {
     '/application-type': {
-      field:['application-type'],
-      next: '/your-name'
+      behaviours: [nextStep],
+      fields: ['application-type']
     }
   }
-}
+};

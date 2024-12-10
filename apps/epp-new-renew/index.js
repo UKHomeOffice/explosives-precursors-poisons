@@ -1,6 +1,5 @@
 const hof = require('hof');
 const summary = hof.components.summary;
-// const config = require('../../config');
 
 module.exports = {
   name: 'EPP form',
@@ -9,6 +8,10 @@ module.exports = {
   translations: 'apps/epp-new-renew/translations',
   baseUrl: '/',
   steps: {
+    '/enter-license-number':{
+      fields: ['new-renew-license-number'],
+      next: '/your-name'
+    },
     '/your-name': {
       fields: ['your-name'],
       //add fork for other-names yes
@@ -40,7 +43,7 @@ module.exports = {
       fields: ['name'],
       next: '/contact-details'
     },
-    'previous-address': {
+    '/previous-address': {
       fields: ['name'],
       //add fork /previous-address-summary
       next: '/previous-address-summary'

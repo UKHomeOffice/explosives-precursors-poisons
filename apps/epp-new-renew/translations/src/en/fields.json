@@ -1,4 +1,7 @@
 {
+  "new-renew-license-number":{
+    "label": "For example, 95/W/000000/2014"
+  },
   "name": {
     "label": "Full name"
   }

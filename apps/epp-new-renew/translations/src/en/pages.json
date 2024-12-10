@@ -1,4 +1,8 @@
 {
+  "enter-license-number":{
+    "title":"Enter your licence number",
+    "header":"Enter your licence number"
+  },
   "your-name": {
     "title":"Your name",
     "header":"Your name"
