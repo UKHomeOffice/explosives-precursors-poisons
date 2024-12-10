@@ -1,57 +1,21 @@
 const hof = require('hof');
 const stepCounter = require('./behaviours/step-counter');
-const saveApplicationSelection = require('./behaviours/save-application-selection');
 const summary = hof.components.summary;
 
 module.exports = {
   name: 'EPP form',
-  fields: 'apps/epp-new-renew/fields',
-  views: 'apps/epp-new-renew/views',
-  translations: 'apps/epp-new-renew/translations',
+  fields: 'apps/epp-new/fields',
+  views: 'apps/epp-new/views',
+  translations: 'apps/epp-new/translations',
   baseUrl: '/',
   behaviours: [stepCounter],
   steps: {
-    '/application-type': {
-      behaviours: [saveApplicationSelection],
-      fields: ['application-type'],
-      forks: [
-        {
-          target: '/your-name',
-          condition: {
-            field: 'application-type',
-            value: 'new'
-          }
-        },
-        {
-          target: '/amend/start',
-          condition: {
-            field: 'application-type',
-            value: 'amend'
-          }
-        },
-        {
-          target: '/enter-license-number',
-          condition: {
-            field: 'application-type',
-            value: 'renew'
-          }
-        }
-      ],
-      next: '/replace/start'
-    },
-    '/amend/start': {},
-    '/replace/start': {},
-    '/enter-license-number': {
-      fields: ['new-renew-license-number'],
-      next: '/your-name',
-      locals: {
-        captionHeading: 'Section 0 of 20'
-      }
-    },
+    '/application-type': {},
     '/your-name': {
       fields: ['your-name'],
       //add fork for other-names yes
       next: '/your-details',
+      backLink: 'application-type',
       locals: {
         captionHeading: 'Section 1 of 20'
       }

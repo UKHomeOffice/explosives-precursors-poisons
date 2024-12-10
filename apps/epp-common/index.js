@@ -1,4 +1,5 @@
-const nextStep = require('./behaviours/next-step')
+const saveApplicationSelection = require('./behaviours/save-application-selection');
+
 
 module.exports = {
   name: 'EPP form',
@@ -8,8 +9,32 @@ module.exports = {
   baseUrl: '/',
   steps: {
     '/application-type': {
-      behaviours: [nextStep],
-      fields: ['application-type']
+      behaviours: [saveApplicationSelection],
+      fields: ['application-type'],
+      forks: [
+        {
+          target: '/your-name',
+          condition: {
+            field: 'application-type',
+            value: 'new'
+          }
+        },
+        {
+          target: '/amend/start',
+          condition: {
+            field: 'application-type',
+            value: 'amend'
+          }
+        },
+        {
+          target: '/enter-license-number',
+          condition: {
+            field: 'application-type',
+            value: 'renew'
+          }
+        }
+      ],
+      next: '/replace/start'
     }
   }
 };
