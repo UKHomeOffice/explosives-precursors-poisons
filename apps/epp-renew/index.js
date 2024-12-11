@@ -1,6 +1,5 @@
-const hof = require('hof');
 const stepCounter = require('./behaviours/step-counter');
-const summary = hof.components.summary;
+const homeRedirection = require('./behaviours/home-redirection');
 
 module.exports = {
   name: 'EPP form',
@@ -8,16 +7,15 @@ module.exports = {
   views: 'apps/epp-renew/views',
   translations: 'apps/epp-renew/translations',
   baseUrl: '/',
-  behaviours: [stepCounter],
+  behaviours: [stepCounter, homeRedirection],
   steps: {
-    '/application-type': {},
-    '/enter-license-number': {
+    '/new-and-renew/enter-license-number': {
       fields: ['new-renew-license-number'],
       backLink: 'application-type',
-      next: '/your-name',
+      next: '/new-and-renew/your-name',
       locals: {
         captionHeading: 'Section 0 of 20'
       }
-    },
+    }
   }
 };

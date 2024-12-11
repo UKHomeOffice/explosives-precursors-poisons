@@ -8,7 +8,9 @@
   "routes": [
     "./apps/epp-common",
     "./apps/epp-new",
-    "./apps/epp-renew"
+    "./apps/epp-renew",
+    "./apps/epp-amend",
+    "./apps/epp-replace"
   ],
   "session": {
     "name": "epp.hof.sid"

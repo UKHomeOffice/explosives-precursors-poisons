@@ -13,28 +13,28 @@ module.exports = {
       fields: ['application-type'],
       forks: [
         {
-          target: '/your-name',
+          target: '/new-and-renew/your-name',
           condition: {
             field: 'application-type',
             value: 'new'
           }
         },
         {
-          target: '/amend/start',
+          target: '/amend-license/start',
           condition: {
             field: 'application-type',
             value: 'amend'
           }
         },
         {
-          target: '/enter-license-number',
+          target: '/new-and-renew/enter-license-number',
           condition: {
             field: 'application-type',
             value: 'renew'
           }
         }
       ],
-      next: '/replace/start'
+      next: '/replace-license/start'
     }
   }
 };

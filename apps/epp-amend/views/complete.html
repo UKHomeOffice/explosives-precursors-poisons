@@ -1,0 +1,17 @@
+{{<partials-page}}
+    {{$page-content}}
+    <div class="govuk-panel govuk-panel--confirmation" role="alert">
+        <div class="govuk-panel__body">
+            <strong>{{#t}}pages.complete.header{{/t}}</strong>
+        </div>
+    </div>
+    {{#t}}pages.complete.content-copy-sent{{/t}} <strong>{{values.email-text}}</strong>
+    <hr>
+    <h2>{{#t}}pages.complete.content-whats-next{{/t}}</h2>
+    <p>{{#t}}pages.complete.content-respond-1{{/t}}</p>
+
+    <p><a class="govuk-link" href="https://eforms.homeoffice.gov.uk/outreach/Feedback.ofml?FormName=certificate_service/">{{#t}}pages.complete.content-feedback-link-text{{/t}}</a></p>
+
+    </div>
+    {{/page-content}}
+{{/partials-page}}
