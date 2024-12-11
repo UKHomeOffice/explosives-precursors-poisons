@@ -5,11 +5,11 @@ module.exports = {
   fields: 'apps/epp-replace/fields',
   views: 'apps/epp-replace/views',
   translations: 'apps/epp-replace/translations',
-  baseUrl: '/',
-  behaviours: [homeRedirection],
+  baseUrl: '/replace-license',
   steps: {
-    '/replace-license/start': {
-      backLink: 'application-type'
+    '/start': {
+      behaviours: [homeRedirection],
+      backLink: '/application-type'
     }
   }
 };

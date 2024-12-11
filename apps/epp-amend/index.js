@@ -5,11 +5,19 @@ module.exports = {
   fields: 'apps/epp-amend/fields',
   views: 'apps/epp-amend/views',
   translations: 'apps/epp-amend/translations',
-  baseUrl: '/',
-  behaviours: [homeRedirection],
+  baseUrl: '/amend-license',
   steps: {
-    '/amend-license/start': {
-      backLink: 'application-type'
+    '/start': {
+      behaviours: [homeRedirection],
+      backLink: '/application-type',
+      next: '/second-route'
+    },
+    '/second-route': {
+      backLink: 'start',
+      next: '/third-route'
+    },
+    '/third-route': {
+      backLink: 'second-route'
     }
   }
 };

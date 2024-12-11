@@ -1,5 +1,5 @@
 const hof = require('hof');
-const stepCounter = require('./behaviours/step-counter');
+const sectionCounter = require('./behaviours/section-counter');
 const checkBackLink = require('./behaviours/check-back-link');
 const homeRedirection = require('./behaviours/home-redirection');
 const summary = hof.components.summary;
@@ -9,306 +9,305 @@ module.exports = {
   fields: 'apps/epp-new/fields',
   views: 'apps/epp-new/views',
   translations: 'apps/epp-new/translations',
-  baseUrl: '/',
-  behaviours: [stepCounter],
+  baseUrl: '/new-and-renew',
+  behaviours: [sectionCounter],
   steps: {
-    '/application-type':{},
-    '/new-and-renew/your-name': {
+    '/your-name': {
       behaviours: [checkBackLink, homeRedirection],
       fields: [],
-      //add fork for other-names yes
-      next: '/new-and-renew/your-details',
-      backLink: 'application-type',
+      // add fork for other-names yes
+      next: '/your-details',
+      backLink: '/application-type',
       locals: {
         captionHeading: 'Section 1 of 20'
       }
     },
-    '/new-and-renew/other-names': {
+    '/other-names': {
       fields: [],
-      next: '/new-and-renew/other-names-summary',
+      next: '/other-names-summary',
       locals: {
         captionHeading: 'Section 1 of 20'
       }
     },
-    '/new-and-renew/other-names-summary': {
+    '/other-names-summary': {
       fields: [],
-      next: '/new-and-renew/your-details',
+      next: '/your-details',
       locals: {
         captionHeading: 'Section 1 of 20'
       }
     },
-    '/new-and-renew/your-details': {
+    '/your-details': {
       fields: [],
-      //add fork /other-nationalities
-      next: '/new-and-renew/home-address',
+      // add fork /other-nationalities
+      next: '/home-address',
       locals: {
         captionHeading: 'Section 2 of 20'
       }
     },
-    '/new-and-renew/other-nationalities': {
+    '/other-nationalities': {
       fields: [],
-      next: '/new-and-renew/home-address',
+      next: '/home-address',
       locals: {
         captionHeading: 'Section 2 of 20'
       }
     },
-    '/new-and-renew/home-address': {
+    '/home-address': {
       fields: [],
-      //add fork /previous-address
-      next: '/new-and-renew/upload-proof-address',
+      // add fork /previous-address
+      next: '/upload-proof-address',
       locals: {
         captionHeading: 'Section 3 of 20'
       }
     },
-    '/new-and-renew/previous-address': {
+    '/previous-address': {
       fields: [],
-      //add fork /previous-address-summary
-      next: '/new-and-renew/previous-address-summary',
+      // add fork /previous-address-summary
+      next: '/previous-address-summary',
       locals: {
         captionHeading: 'Section 3 of 20'
       }
     },
-    '/new-and-renew/previous-address-summary': {
+    '/previous-address-summary': {
       // should this be /previous-addresses ?
       fields: [],
-      next: '/new-and-renew/upload-proof-address',
+      next: '/upload-proof-address',
       locals: {
         captionHeading: 'Section 3 of 20'
       }
     },
-    '/new-and-renew/upload-proof-address': {
+    '/upload-proof-address': {
       fields: [],
-      next: '/new-and-renew/contact-details',
+      next: '/contact-details',
       locals: {
         captionHeading: 'Section 4 of 20'
       }
     },
-    '/new-and-renew/contact-details': {
+    '/contact-details': {
       fields: [],
-      next: '/new-and-renew/identity-details',
+      next: '/identity-details',
       locals: {
         captionHeading: 'Section 5 of 20'
       }
     },
-    '/new-and-renew/identity-details': {
+    '/identity-details': {
       fields: [],
       // 3 option for next path
-      next: '/new-and-renew/upload-british-passport',
+      next: '/upload-british-passport',
       locals: {
         captionHeading: 'Section 6 of 20'
       }
     },
-    '/new-and-renew/upload-british-passport': {
+    '/upload-british-passport': {
       fields: [],
-      next: '/new-and-renew/other-licences',
+      next: '/other-licences',
       locals: {
         captionHeading: 'Section 7 of 20'
       }
     },
-    '/new-and-renew/upload-passport': {
+    '/upload-passport': {
       fields: [],
-      next: '/new-and-renew/upload-certificate-conduct',
+      next: '/upload-certificate-conduct',
       locals: {
         captionHeading: 'Section 7 of 20'
       }
     },
-    '/new-and-renew/upload-driving-licence': {
+    '/upload-driving-licence': {
       fields: [],
-      next: '/new-and-renew/other-licences',
+      next: '/other-licences',
       locals: {
         captionHeading: 'Section 7 of 20'
       }
     },
-    '/new-and-renew/upload-certificate-conduct': {
+    '/upload-certificate-conduct': {
       fields: [],
-      next: '/new-and-renew/other-licences',
+      next: '/other-licences',
       locals: {
         captionHeading: 'Section 7 of 20'
       }
     },
-    '/new-and-renew/other-licences': {
+    '/other-licences': {
       fields: [],
-      //add fork /add-licence-refusal
-      next: '/new-and-renew/criminal-record',
+      // add fork /add-licence-refusal
+      next: '/criminal-record',
       locals: {
         captionHeading: 'Section 8 of 20'
       }
     },
-    '/new-and-renew/add-licence-refusal': {
+    '/add-licence-refusal': {
       fields: [],
-      next: '/new-and-renew/licence-history',
+      next: '/licence-history',
       locals: {
         captionHeading: 'Section 8 of 20'
       }
     },
-    '/new-and-renew/licence-history': {
+    '/licence-history': {
       fields: [],
-      next: '/new-and-renew/criminal-record',
+      next: '/criminal-record',
       locals: {
         captionHeading: 'Section 8 of 20'
       }
     },
-    '/new-and-renew/criminal-record': {
+    '/criminal-record': {
       fields: [],
-      //add fork for /add-offence
-      next: '/new-and-renew/add-offence',
+      // add fork for /add-offence
+      next: '/add-offence',
       locals: {
         captionHeading: 'Section 9 of 20'
       }
     },
-    '/new-and-renew/add-offence': {
+    '/add-offence': {
       fields: [],
-      next: '/new-and-renew/criminal-record-summary',
+      next: '/criminal-record-summary',
       locals: {
         captionHeading: 'Section 9 of 20'
       }
     },
-    '/new-and-renew/criminal-record-summary': {
+    '/criminal-record-summary': {
       fields: [],
-      next: '/new-and-renew/medical-declaration',
+      next: '/medical-declaration',
       locals: {
         captionHeading: 'Section 9 of 20'
       }
     },
-    '/new-and-renew/medical-declaration': {
+    '/medical-declaration': {
       fields: [],
-      next: '/new-and-renew/medical-history',
+      next: '/medical-history',
       locals: {
         captionHeading: 'Section 10 of 20'
       }
     },
-    '/new-and-renew/medical-history': {
+    '/medical-history': {
       fields: [],
-      //add fork for medical-form
-      next: '/new-and-renew/doctor-details',
+      // add fork for medical-form
+      next: '/doctor-details',
       locals: {
         captionHeading: 'Section 11 of 20'
       }
     },
-    '/new-and-renew/medical-form': {
+    '/medical-form': {
       fields: [],
-      next: '/new-and-renew/doctor-details',
+      next: '/doctor-details',
       locals: {
         captionHeading: 'Section 11 of 20'
       }
     },
-    '/new-and-renew/doctor-details': {
+    '/doctor-details': {
       fields: [],
-      next: '/new-and-renew/precursor-or-poison',
+      next: '/precursor-or-poison',
       locals: {
         captionHeading: 'Section 11 of 20'
       }
     },
-    '/new-and-renew/precursor-or-poison': {
+    '/precursor-or-poison': {
       fields: [],
-      next: '/new-and-renew/select-precursor',
+      next: '/select-precursor',
       locals: {
         captionHeading: 'Section 12 of 20'
       }
     },
-    '/new-and-renew/select-precursor': {
+    '/select-precursor': {
       fields: [],
-      next: '/new-and-renew/precursors-summary',
+      next: '/precursors-summary',
       locals: {
         captionHeading: 'Section 13 of 20'
       }
     },
-    '/new-and-renew/precursors-summary': {
+    '/precursors-summary': {
       fields: [],
-      next: '/new-and-renew/select-poison',
+      next: '/select-poison',
       locals: {
         captionHeading: 'Section 13 of 20'
       }
     },
-    '/new-and-renew/select-poison': {
+    '/select-poison': {
       fields: [],
-      next: '/new-and-renew/poison-details',
+      next: '/poison-details',
       locals: {
         captionHeading: 'Section 14 of 20'
       }
     },
-    '/new-and-renew/poison-details': {
+    '/poison-details': {
       fields: [],
-      next: '/new-and-renew/poison-summary',
+      next: '/poison-summary',
       locals: {
         captionHeading: 'Section 14 of 20'
       }
     },
-    '/new-and-renew/poison-summary': {
+    '/poison-summary': {
       fields: [],
-      next: '/new-and-renew/countersignatory-details',
+      next: '/countersignatory-details',
       locals: {
         captionHeading: 'Section 14 of 20'
       }
     },
-    '/new-and-renew/countersignatory-details': {
+    '/countersignatory-details': {
       fields: [],
-      next: '/new-and-renew/countersignatory-address',
+      next: '/countersignatory-address',
       locals: {
         captionHeading: 'Section 15 of 20'
       }
     },
-    '/new-and-renew/countersignatory-address': {
+    '/countersignatory-address': {
       fields: [],
-      next: '/new-and-renew/countersignatory-contact',
+      next: '/countersignatory-contact',
       locals: {
         captionHeading: 'Section 16 of 20'
       }
     },
-    '/new-and-renew/countersignatory-contact': {
+    '/countersignatory-contact': {
       fields: [],
-      next: '/new-and-renew/countersignatory-id',
+      next: '/countersignatory-id',
       locals: {
         captionHeading: 'Section 17 of 20'
       }
     },
-    '/new-and-renew/countersignatory-id': {
+    '/countersignatory-id': {
       fields: [],
-      //add logic to check if user is 18 to redirect to birth certificate
-      next: '/new-and-renew/confirm',
+      // add logic to check if user is 18 to redirect to birth certificate
+      next: '/confirm',
       locals: {
         captionHeading: 'Section 18 of 20'
       }
     },
-    '/new-and-renew/birth-certificate': {
+    '/birth-certificate': {
       fields: [],
-      next: '/new-and-renew/confirm',
+      next: '/confirm',
       locals: {
         captionHeading: 'Section 18 of 20'
       }
     },
-    '/new-and-renew/confirm': {
+    '/confirm': {
       behaviours: ['complete', summary],
-      next: '/new-and-renew/declaration',
+      next: '/declaration',
       locals: {
         captionHeading: 'Section 19 of 20'
       }
     },
-    '/new-and-renew/declaration': {
+    '/declaration': {
       fields: [],
-      //verify path name when payment component will be added to service
-      next: '/new-and-renew/continue-to-payment',
+      // verify path name when payment component will be added to service
+      next: '/continue-to-payment',
       locals: {
         captionHeading: 'Section 20 of 20'
       }
     },
-    '/new-and-renew/continue-to-payment': {
-      next: '/new-and-renew/application-submitted'
+    '/continue-to-payment': {
+      next: '/application-submitted'
     },
-    '/new-and-renew/payment-problem': {
+    '/payment-problem': {
       fields: [],
-      next: '/new-and-renew/continue-to-payment'
+      next: '/continue-to-payment'
     },
-    '/new-and-renew/payment-failed': {
+    '/payment-failed': {
       fields: [],
-      next: '/new-and-renew/continue-to-payment'
+      next: '/continue-to-payment'
     },
-    '/new-and-renew/payment-cancelled': {
+    '/payment-cancelled': {
       fields: ['name'],
-      next: '/new-and-renew/continue-to-payment'
+      next: '/continue-to-payment'
     },
-    '/new-and-renew/application-submitted': {},
-    '/new-and-renew/complete': {
+    '/application-submitted': {},
+    '/complete': {
       backLink: false
     }
   }
