@@ -298,3 +298,28 @@ pre.looped-records {
   word-wrap: break-word;
   word-break: break-all;
 }
+
+.govuk-radios__item .govuk-hint {
+  margin-top: 5px; 
+  padding-left: 0px;
+  margin-bottom: 0px;
+}
+
+.spinner-loader {
+  border: 5px solid #DEE0E2;
+  border-radius: 50%;
+  border-top-color: #005EA5;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
