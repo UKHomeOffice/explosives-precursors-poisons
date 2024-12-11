@@ -1,5 +1,6 @@
 const sectionCounter = require('./behaviours/section-counter');
-const homeRedirection = require('./behaviours/home-redirection');
+const validateAndRedirect = require('./behaviours/home-redirection');
+
 module.exports = {
   name: 'EPP form',
   fields: 'apps/epp-renew/fields',
@@ -9,7 +10,7 @@ module.exports = {
   behaviours: [sectionCounter],
   steps: {
     '/enter-license-number': {
-      behaviours: [homeRedirection],
+      behaviours: [validateAndRedirect],
       fields: ['new-renew-license-number'],
       backLink: '/application-type',
       next: '/your-name',

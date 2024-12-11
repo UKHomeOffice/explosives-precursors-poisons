@@ -1,7 +1,7 @@
 const hof = require('hof');
 const sectionCounter = require('./behaviours/section-counter');
 const checkBackLink = require('./behaviours/check-back-link');
-const homeRedirection = require('./behaviours/home-redirection');
+const validateAndRedirect = require('./behaviours/home-redirection');
 const summary = hof.components.summary;
 
 module.exports = {
@@ -13,7 +13,7 @@ module.exports = {
   behaviours: [sectionCounter],
   steps: {
     '/your-name': {
-      behaviours: [checkBackLink, homeRedirection],
+      behaviours: [checkBackLink, validateAndRedirect],
       fields: [],
       // add fork for other-names yes
       next: '/your-details',

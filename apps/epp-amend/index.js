@@ -1,4 +1,4 @@
-const homeRedirection = require('./behaviours/home-redirection');
+const validateAndRedirect = require('./behaviours/home-redirection');
 
 module.exports = {
   name: 'EPP form',
@@ -8,7 +8,7 @@ module.exports = {
   baseUrl: '/amend-license',
   steps: {
     '/start': {
-      behaviours: [homeRedirection],
+      behaviours: [validateAndRedirect],
       backLink: '/application-type',
       next: '/second-route'
     },
