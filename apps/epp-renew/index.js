@@ -10,8 +10,10 @@ module.exports = {
   baseUrl: '/',
   behaviours: [stepCounter],
   steps: {
+    '/application-type': {},
     '/enter-license-number': {
       fields: ['new-renew-license-number'],
+      backLink: 'application-type',
       next: '/your-name',
       locals: {
         captionHeading: 'Section 0 of 20'
