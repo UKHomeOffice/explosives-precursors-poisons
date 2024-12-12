@@ -1,5 +1,6 @@
 {
   "header": "Explosive precursors and poisons licensing",
   "phase": "beta",
-  "serviceName": "Apply for an explosives and precursor chemicals licence"
+  "serviceNameNew": "Apply for an explosives and precursor chemicals licence",
+  "serviceNameRenew": "TBC"
 }
