@@ -52,5 +52,9 @@ module.exports = {
       'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
       'application/xml'
     ]
+  },
+  sectionDetails: {
+    totalStepsNew: 20,
+    totalStepsRenew: 21
   }
 };

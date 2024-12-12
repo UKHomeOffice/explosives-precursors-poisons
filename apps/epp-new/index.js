@@ -19,21 +19,30 @@ module.exports = {
       next: '/your-details',
       backLink: '/application-type',
       locals: {
-        captionHeading: 'Section 1 of 20'
+        sectionNo: {
+          new: 1,
+          renew: 2
+        }
       }
     },
     '/other-names': {
       fields: [],
       next: '/other-names-summary',
       locals: {
-        captionHeading: 'Section 1 of 20'
+        sectionNo: {
+          new: 1,
+          renew: 2
+        }
       }
     },
     '/other-names-summary': {
       fields: [],
       next: '/your-details',
       locals: {
-        captionHeading: 'Section 1 of 20'
+        sectionNo: {
+          new: 1,
+          renew: 2
+        }
       }
     },
     '/your-details': {
@@ -41,14 +50,20 @@ module.exports = {
       // add fork /other-nationalities
       next: '/home-address',
       locals: {
-        captionHeading: 'Section 2 of 20'
+        sectionNo: {
+          new: 2,
+          renew: 3
+        }
       }
     },
     '/other-nationalities': {
       fields: [],
       next: '/home-address',
       locals: {
-        captionHeading: 'Section 2 of 20'
+        sectionNo: {
+          new: 2,
+          renew: 3
+        }
       }
     },
     '/home-address': {
@@ -56,7 +71,10 @@ module.exports = {
       // add fork /previous-address
       next: '/upload-proof-address',
       locals: {
-        captionHeading: 'Section 3 of 20'
+        sectionNo: {
+          new: 3,
+          renew: 4
+        }
       }
     },
     '/previous-address': {
@@ -64,7 +82,10 @@ module.exports = {
       // add fork /previous-address-summary
       next: '/previous-address-summary',
       locals: {
-        captionHeading: 'Section 3 of 20'
+        sectionNo: {
+          new: 3,
+          renew: 4
+        }
       }
     },
     '/previous-address-summary': {
@@ -72,21 +93,30 @@ module.exports = {
       fields: [],
       next: '/upload-proof-address',
       locals: {
-        captionHeading: 'Section 3 of 20'
+        sectionNo: {
+          new: 3,
+          renew: 4
+        }
       }
     },
     '/upload-proof-address': {
       fields: [],
       next: '/contact-details',
       locals: {
-        captionHeading: 'Section 4 of 20'
+        sectionNo: {
+          new: 4,
+          renew: 5
+        }
       }
     },
     '/contact-details': {
       fields: [],
       next: '/identity-details',
       locals: {
-        captionHeading: 'Section 5 of 20'
+        sectionNo: {
+          new: 5,
+          renew: 6
+        }
       }
     },
     '/identity-details': {
@@ -94,35 +124,50 @@ module.exports = {
       // 3 option for next path
       next: '/upload-british-passport',
       locals: {
-        captionHeading: 'Section 6 of 20'
+        sectionNo: {
+          new: 6,
+          renew: 7
+        }
       }
     },
     '/upload-british-passport': {
       fields: [],
       next: '/other-licences',
       locals: {
-        captionHeading: 'Section 7 of 20'
+        sectionNo: {
+          new: 7,
+          renew: 8
+        }
       }
     },
     '/upload-passport': {
       fields: [],
       next: '/upload-certificate-conduct',
       locals: {
-        captionHeading: 'Section 7 of 20'
+        sectionNo: {
+          new: 7,
+          renew: 8
+        }
       }
     },
     '/upload-driving-licence': {
       fields: [],
       next: '/other-licences',
       locals: {
-        captionHeading: 'Section 7 of 20'
+        sectionNo: {
+          new: 7,
+          renew: 8
+        }
       }
     },
     '/upload-certificate-conduct': {
       fields: [],
       next: '/other-licences',
       locals: {
-        captionHeading: 'Section 7 of 20'
+        sectionNo: {
+          new: 7,
+          renew: 8
+        }
       }
     },
     '/other-licences': {
@@ -130,21 +175,30 @@ module.exports = {
       // add fork /add-licence-refusal
       next: '/criminal-record',
       locals: {
-        captionHeading: 'Section 8 of 20'
+        sectionNo: {
+          new: 8,
+          renew: 9
+        }
       }
     },
     '/add-licence-refusal': {
       fields: [],
       next: '/licence-history',
       locals: {
-        captionHeading: 'Section 8 of 20'
+        sectionNo: {
+          new: 8,
+          renew: 9
+        }
       }
     },
     '/licence-history': {
       fields: [],
       next: '/criminal-record',
       locals: {
-        captionHeading: 'Section 8 of 20'
+        sectionNo: {
+          new: 8,
+          renew: 9
+        }
       }
     },
     '/criminal-record': {
@@ -152,28 +206,40 @@ module.exports = {
       // add fork for /add-offence
       next: '/add-offence',
       locals: {
-        captionHeading: 'Section 9 of 20'
+        sectionNo: {
+          new: 9,
+          renew: 10
+        }
       }
     },
     '/add-offence': {
       fields: [],
       next: '/criminal-record-summary',
       locals: {
-        captionHeading: 'Section 9 of 20'
+        sectionNo: {
+          new: 9,
+          renew: 10
+        }
       }
     },
     '/criminal-record-summary': {
       fields: [],
       next: '/medical-declaration',
       locals: {
-        captionHeading: 'Section 9 of 20'
+        sectionNo: {
+          new: 9,
+          renew: 10
+        }
       }
     },
     '/medical-declaration': {
       fields: [],
       next: '/medical-history',
       locals: {
-        captionHeading: 'Section 10 of 20'
+        sectionNo: {
+          new: 10,
+          renew: 11
+        }
       }
     },
     '/medical-history': {
@@ -181,84 +247,120 @@ module.exports = {
       // add fork for medical-form
       next: '/doctor-details',
       locals: {
-        captionHeading: 'Section 11 of 20'
+        sectionNo: {
+          new: 11,
+          renew: 12
+        }
       }
     },
     '/medical-form': {
       fields: [],
       next: '/doctor-details',
       locals: {
-        captionHeading: 'Section 11 of 20'
+        sectionNo: {
+          new: 11,
+          renew: 12
+        }
       }
     },
     '/doctor-details': {
       fields: [],
       next: '/precursor-or-poison',
       locals: {
-        captionHeading: 'Section 11 of 20'
+        sectionNo: {
+          new: 11,
+          renew: 12
+        }
       }
     },
     '/precursor-or-poison': {
       fields: [],
       next: '/select-precursor',
       locals: {
-        captionHeading: 'Section 12 of 20'
+        sectionNo: {
+          new: 12,
+          renew: 13
+        }
       }
     },
     '/select-precursor': {
       fields: [],
       next: '/precursors-summary',
       locals: {
-        captionHeading: 'Section 13 of 20'
+        sectionNo: {
+          new: 13,
+          renew: 14
+        }
       }
     },
     '/precursors-summary': {
       fields: [],
       next: '/select-poison',
       locals: {
-        captionHeading: 'Section 13 of 20'
+        sectionNo: {
+          new: 13,
+          renew: 14
+        }
       }
     },
     '/select-poison': {
       fields: [],
       next: '/poison-details',
       locals: {
-        captionHeading: 'Section 14 of 20'
+        sectionNo: {
+          new: 14,
+          renew: 15
+        }
       }
     },
     '/poison-details': {
       fields: [],
       next: '/poison-summary',
       locals: {
-        captionHeading: 'Section 14 of 20'
+        sectionNo: {
+          new: 14,
+          renew: 15
+        }
       }
     },
     '/poison-summary': {
       fields: [],
       next: '/countersignatory-details',
       locals: {
-        captionHeading: 'Section 14 of 20'
+        sectionNo: {
+          new: 14,
+          renew: 15
+        }
       }
     },
     '/countersignatory-details': {
       fields: [],
       next: '/countersignatory-address',
       locals: {
-        captionHeading: 'Section 15 of 20'
+        sectionNo: {
+          new: 15,
+          renew: 16
+        }
       }
     },
     '/countersignatory-address': {
       fields: [],
       next: '/countersignatory-contact',
       locals: {
-        captionHeading: 'Section 16 of 20'
+        sectionNo: {
+          new: 16,
+          renew: 17
+        }
       }
     },
     '/countersignatory-contact': {
       fields: [],
       next: '/countersignatory-id',
       locals: {
-        captionHeading: 'Section 17 of 20'
+        sectionNo: {
+          new: 17,
+          renew: 18
+        }
       }
     },
     '/countersignatory-id': {
@@ -266,21 +368,30 @@ module.exports = {
       // add logic to check if user is 18 to redirect to birth certificate
       next: '/confirm',
       locals: {
-        captionHeading: 'Section 18 of 20'
+        sectionNo: {
+          new: 18,
+          renew: 19
+        }
       }
     },
     '/birth-certificate': {
       fields: [],
       next: '/confirm',
       locals: {
-        captionHeading: 'Section 18 of 20'
+        sectionNo: {
+          new: 18,
+          renew: 19
+        }
       }
     },
     '/confirm': {
       behaviours: ['complete', summary],
       next: '/declaration',
       locals: {
-        captionHeading: 'Section 19 of 20'
+        sectionNo: {
+          new: 19,
+          renew: 20
+        }
       }
     },
     '/declaration': {
@@ -288,7 +399,10 @@ module.exports = {
       // verify path name when payment component will be added to service
       next: '/continue-to-payment',
       locals: {
-        captionHeading: 'Section 20 of 20'
+        sectionNo: {
+          new: 20,
+          renew: 21
+        }
       }
     },
     '/continue-to-payment': {
