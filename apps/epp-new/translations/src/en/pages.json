@@ -15,8 +15,13 @@
     "header": "Check your answers",
     "submit-warning": "Once you have submitted your application, you will not be able to adjust it. Please check it is correct.",
     "sections": {
-      "name": {
+      "sectionHeader": {
         "header": "Personal Details"
+      }
+    },
+    "fields":{
+      "new-renew-license-number": {
+        "label": "Licence number"
       }
     }
   },

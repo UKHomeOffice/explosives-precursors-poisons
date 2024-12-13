@@ -385,7 +385,8 @@ module.exports = {
       }
     },
     '/confirm': {
-      behaviours: ['complete', summary],
+      behaviours: [summary],
+      sections: require('./sections/summary-data-sections'),
       next: '/declaration',
       locals: {
         sectionNo: {
