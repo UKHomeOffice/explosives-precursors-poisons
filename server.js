@@ -16,7 +16,11 @@ const app = hof(settings);
 
 app.use((req, res, next) => {
   res.locals.htmlLang = 'en';
-  res.locals.feedbackUrl = config.survey.urls.root;
+
+  // TODO destructure *form*, *returnUrl* & *mac* to generate the complete URL
+  const { url } = config.feedback;
+
+  res.locals.feedbackUrl = url;
 
   if (req.is('multipart/form-data')) {
     try {

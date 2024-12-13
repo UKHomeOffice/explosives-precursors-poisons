@@ -12,10 +12,12 @@ module.exports = {
     notifyTemplate: process.env.NOTIFY_TEMPLATE,
     caseWorker: process.env.CASEWORKER_EMAIL
   },
-  survey: {
-    urls: {
-      root: 'https://www.hof-feedback.homeoffice.gov.uk'
-    }
+  // TODO: set return URL and mac in env variables
+  feedback: {
+    url: 'https://www.hof-feedback.homeoffice.gov.uk',
+    form: Buffer.from('EPP', 'utf8').toString('hex'),
+    returnUrl: Buffer.from('', 'utf8').toString('hex'),
+    mac: ''
   },
   hosts: {
     acceptanceTests: process.env.ACCEPTANCE_HOST_NAME || `http://localhost:${process.env.PORT || 8080}`
