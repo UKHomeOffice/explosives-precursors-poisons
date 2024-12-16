@@ -2,9 +2,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
   name: file-vault
-  {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV}}
   annotations:
     downscaler/uptime: {{ .NON_PROD_AVAILABILITY }}
   name: file-vault-{{ .DRONE_SOURCE_BRANCH }}
