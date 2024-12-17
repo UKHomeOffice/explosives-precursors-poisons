@@ -8,7 +8,7 @@ module.exports = {
   translations: 'apps/epp-amend/translations',
   baseUrl: '/amend-license',
   steps: {
-    '/start': {
+    '/section-one': {
       behaviours: [validateAndRedirect],
       backLink: '/application-type',
       fields: ['amend-licence-number'],
