@@ -76,22 +76,22 @@ spec:
             - name: FILE_VAULT_CLIENT_SECRET
               valueFrom:
                 secretKeyRef:
-                  name: file-vault-client
+                  name: keycloak-client
                   key: secret
             - name: FILE_VAULT_CLIENT_ID
               valueFrom:
                 secretKeyRef:
-                  name: file-vault-client
+                  name: keycloak-client
                   key: id
             - name: FILE_VAULT_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: file-vault-user
+                  name: keycloak-user
                   key: username
             - name: FILE_VAULT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: file-vault-user
+                  name: keycloak-user
                   key: password
             - name: FILE_VAULT_URL
             {{ if eq .KUBE_NAMESPACE .UAT_ENV }}
