@@ -1,4 +1,5 @@
 const validateAndRedirect = require('./behaviours/home-redirection');
+const SummaryPageBehaviour = require('hof').components.summary;
 
 module.exports = {
   name: 'EPP form',
@@ -10,86 +11,138 @@ module.exports = {
     '/start': {
       behaviours: [validateAndRedirect],
       backLink: '/application-type',
+      fields: ['amend-licence-number'],
       next: '/section-two'
     },
     '/section-two': {
-      backLink: '/section-one',
+      fields: [
+        'amend-name-title',
+        'amend-firstname',
+        'amend-middlename',
+        'amend-lastname'
+      ],
       next: '/section-three'
     },
     '/section-three': {
-      backLink: '/section-two',
+      fields: ['amend-date-of-birth'],
       next: '/section-four'
     },
     '/section-four': {
-      backLink: '/section-three',
+      fields: [
+        'amend-post-address-1',
+        'amend-post-address-2',
+        'amend-post-town-or-city',
+        'amend-post-county',
+        'amend-post-postcode',
+        'amend-post-country'
+      ],
       next: '/section-five'
     },
     '/section-five': {
-      backLink: '/section-four',
+      fields: [
+        'amend-phone-number',
+        'amend-email'
+      ],
       next: '/section-six'
     },
     '/section-six': {
-      backLink: '/section-five',
+      fields: ['amend-options'],
       next: '/section-seven'
     },
     '/section-seven': {
-      backLink: '/section-six',
+      fields: [
+        'amend-option-name-title',
+        'amend-option-firstname',
+        'amend-option-middlename',
+        'amend-option-lastname',
+        'amend-option-date-name-changed'
+      ],
       next: '/section-eight'
     },
     '/section-eight': {
-      backLink: '/section-seven',
+      fields: ['amend-document-type'],
       next: '/section-nine'
     },
     '/section-nine': {
-      backLink: '/section-eight',
       next: '/section-ten'
     },
     '/section-ten': {
-      backLink: '/section-nine',
+      fields: [
+        'amend-new-post-address-1',
+        'amend-new-post-address-2',
+        'amend-new-post-town-or-city',
+        'amend-new-post-county',
+        'amend-new-post-postcode',
+        'amend-new-post-country',
+        'amend-new-date-moved-to-address'
+      ],
       next: '/section-eleven'
     },
     '/section-eleven': {
-      backLink: '/section-ten',
       next: '/section-twelve'
     },
     '/section-twelve': {
-      backLink: '/section-eleven',
+      fields: [
+        'amend-reason-for-licence'
+      ],
       next: '/section-thirteen'
     },
     '/section-thirteen': {
-      backLink: '/section-twelve',
+      fields: [
+        'amend-explosive-precusor-type'
+      ],
       next: '/section-fourteen'
     },
     '/section-fourteen': {
-      backLink: '/section-thirteen',
+      fields: [
+        'amend-poison-type'
+      ],
       next: '/section-fifteen'
     },
     '/section-fifteen': {
-      backLink: '/section-fourteen',
+      fields: [
+        'amend-countersignatory-name-title',
+        'amend-countersignatory-firstname',
+        'amend-countersignatory-middlename',
+        'amend-countersignatory-lastname',
+        'amend-years-known-countersignatory',
+        'amend-how-you-know-countersignatory',
+        'amend-countersignatory-occupation'
+      ],
       next: '/section-sixteen'
     },
     '/section-sixteen': {
-      backLink: '/section-fifteen',
+      fields: [
+        'amend-countersignatory-address-1',
+        'amend-countersignatory-address-2',
+        'amend-countersignatory-town-or-city',
+        'amend-countersignatory-postcode'
+      ],
       next: '/section-seventeen'
     },
     '/section-seventeen': {
-      backLink: '/section-sixteen',
+      fields: [
+        'amend-countersignatory-phone',
+        'amend-countersignatory-email'
+      ],
       next: '/section-eighteen'
     },
     '/section-eighteen': {
-      backLink: '/section-seventeen',
-      next: '/section-nineteen'
+      fields: [
+        'amend-countersignatory-document-type'
+      ],
+      next: '/confirm'
     },
-    '/section-nineteen': {
-      backLink: '/section-eighteen',
-      next: '/section-twenty'
+    '/confirm': {
+      sections: require('./sections/summary-data-sections'),
+      behaviours: [SummaryPageBehaviour],
+      next: '/declaration'
     },
-    '/section-twenty': {
-      backLink: '/section-nineteen',
-      next: '/confirmation'
+    '/declaration': {
+      next: '/application-submitted'
     },
-    '/confirmation': {
-      
+    '/application-submitted': {
+      clearSession: true
     }
   }
 };
