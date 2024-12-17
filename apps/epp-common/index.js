@@ -20,7 +20,7 @@ module.exports = {
           }
         },
         {
-          target: '/amend-license/start',
+          target: '/amend-license/section-one',
           condition: {
             field: 'application-type',
             value: 'amend'
