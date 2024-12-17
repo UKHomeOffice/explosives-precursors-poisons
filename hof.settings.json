@@ -4,10 +4,13 @@
   "behaviours": [
     "hof/components/clear-session"
   ],
-  "translations": "./apps/epp/translations",
+  "translations": "./apps/epp-new-renew/translations",
   "routes": [
-    "./apps/epp",
-    "./apps/epp-amend"
+    "./apps/epp-common",
+    "./apps/epp-new",
+    "./apps/epp-renew",
+    "./apps/epp-amend",
+    "./apps/epp-replace"
   ],
   "session": {
     "name": "epp.hof.sid"

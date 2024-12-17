@@ -16,7 +16,12 @@ const app = hof(settings);
 
 app.use((req, res, next) => {
   res.locals.htmlLang = 'en';
-  res.locals.feedbackUrl = 'https://www.gov.uk';
+
+  // TODO destructure *form*, *returnUrl* & *mac* to generate the complete URL
+  const { url } = config.feedback;
+
+  res.locals.feedbackUrl = url;
+
   if (req.is('multipart/form-data')) {
     try {
       const bb = busboy({
@@ -31,32 +36,34 @@ app.use((req, res, next) => {
       });
 
       bb.on('file', (key, file, fileInfo) => {
-        file.pipe(bl((err, d) => {
-          if (err) {
-            logger.log('error', `Error processing file : ${err}`);
-            return;
-          }
-          if (!(d.length || fileInfo.filename)) {
-            logger.log('warn', 'Empty file received');
-            return;
-          }
+        file.pipe(
+          bl((err, d) => {
+            if (err) {
+              logger.log('error', `Error processing file : ${err}`);
+              return;
+            }
+            if (!(d.length || fileInfo.filename)) {
+              logger.log('warn', 'Empty file received');
+              return;
+            }
 
-          const fileData = {
-            data: file.truncated ? null : d,
-            name: fileInfo.filename || null,
-            encoding: fileInfo.encoding,
-            mimetype: fileInfo.mimeType,
-            truncated: file.truncated,
-            size: file.truncated ? null : Buffer.byteLength(d, 'binary')
-          };
+            const fileData = {
+              data: file.truncated ? null : d,
+              name: fileInfo.filename || null,
+              encoding: fileInfo.encoding,
+              mimetype: fileInfo.mimeType,
+              truncated: file.truncated,
+              size: file.truncated ? null : Buffer.byteLength(d, 'binary')
+            };
 
-          if (settings.multi) {
-            req.files[key] = req.files[key] || [];
-            req.files[key].push(fileData);
-          } else {
-            req.files[key] = fileData;
-          }
-        }));
+            if (settings.multi) {
+              req.files[key] = req.files[key] || [];
+              req.files[key].push(fileData);
+            } else {
+              req.files[key] = fileData;
+            }
+          })
+        );
       });
 
       let error;

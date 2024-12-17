@@ -1,11 +1,12 @@
-FROM node:lts-alpine@sha256:19eaf41f3b8c2ac2f609ac8103f9246a6a6d46716cdbe49103fdb116e55ff0cc
+FROM node:20.18.0-alpine3.20@sha256:d504f23acdda979406cf3bdbff0dff7933e5c4ec183dda404ed24286c6125e60
 
 USER root
 
-# Update packages as a result of Anchore security vulnerability checks
-RUN apk update && apk upgrade --no-cache
+# Update packages as a result of trivy security vulnerability checks
+RUN apk update && \
+    apk add --upgrade gnutls binutils nodejs npm apk-tools libjpeg-turbo libcurl libx11 libxml2
 
-# Setup nodejs group & nodejs user
+# setup nodejs group & nodejs user
 RUN addgroup --system nodejs --gid 998 && \
     adduser --system nodejs --uid 999 --home /app/ && \
     chown -R 999:998 /app/
@@ -16,7 +17,7 @@ WORKDIR /app
 
 COPY --chown=999:998 . /app
 
-RUN yarn install && \
+RUN yarn install --frozen-lockfile --production --ignore-optional && \
     yarn run postinstall
 
 HEALTHCHECK --interval=5m --timeout=3s \

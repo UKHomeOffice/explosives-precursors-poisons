@@ -1,5 +1,4 @@
 'use strict';
-/* eslint no-process-env: 0 */
 
 const env = process.env.NODE_ENV || 'production';
 
@@ -12,11 +11,12 @@ module.exports = {
     notifyTemplate: process.env.NOTIFY_TEMPLATE,
     caseWorker: process.env.CASEWORKER_EMAIL
   },
-  survey: {
-    urls: {
-      root: 'https://eforms.homeoffice.gov.uk/outreach/Feedback.ofml?FormName=coa/',
-      acq: 'https://eforms.homeoffice.gov.uk/outreach/Feedback.ofml?FormName=coa/'
-    }
+  // TODO: set return URL and mac in env variables
+  feedback: {
+    url: 'https://www.hof-feedback.homeoffice.gov.uk',
+    form: Buffer.from('EPP', 'utf8').toString('hex'),
+    returnUrl: Buffer.from('', 'utf8').toString('hex'),
+    mac: ''
   },
   hosts: {
     acceptanceTests: process.env.ACCEPTANCE_HOST_NAME || `http://localhost:${process.env.PORT || 8080}`
@@ -53,5 +53,9 @@ module.exports = {
       'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
       'application/xml'
     ]
+  },
+  sectionDetails: {
+    totalStepsNew: 20,
+    totalStepsRenew: 21
   }
 };

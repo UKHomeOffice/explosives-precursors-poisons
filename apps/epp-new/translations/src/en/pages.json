@@ -1,0 +1,35 @@
+{
+  "enter-license-number":{
+    "title":"Enter your licence number",
+    "header":"Enter your licence number"
+  },
+  "your-name": {
+    "title":"Your name",
+    "header":"Your name"
+  },
+  "other-names": {
+    "title":"Other names",
+    "header":"Other names"
+  },
+  "confirm": {
+    "header": "Check your answers",
+    "submit-warning": "Once you have submitted your application, you will not be able to adjust it. Please check it is correct.",
+    "sections": {
+      "sectionHeader": {
+        "header": "Personal Details"
+      }
+    },
+    "fields":{
+      "new-renew-license-number": {
+        "label": "Licence number"
+      }
+    }
+  },
+  "complete": {
+    "header": "You submission have been sent",
+    "content-copy-sent": "We have sent you a confirmation email",
+    "content-whats-next": "What happens next",
+    "content-respond-1": "This is a test paragraph",
+    "content-feedback-link-text": "What do you think of this service?"
+  }
+}
