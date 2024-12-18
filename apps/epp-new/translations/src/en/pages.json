@@ -11,6 +11,9 @@
     "title":"Other names",
     "header":"Other names"
   },
+  "other-nationalities": {
+    "header": "Other nationalities"
+  },
   "confirm": {
     "header": "Check your answers",
     "submit-warning": "Once you have submitted your application, you will not be able to adjust it. Please check it is correct.",

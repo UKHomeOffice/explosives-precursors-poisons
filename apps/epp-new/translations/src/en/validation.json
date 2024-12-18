@@ -1,1 +1,13 @@
-{}
+{
+  "new-renew-other-country-nationality": {
+    "required": "Select your other nationality"
+  },
+  "new-renew-from-date": {
+    "before": "Enter a real date",
+    "date": "Enter a real date"
+  },
+  "new-renew-to-date": {
+    "before": "Enter a real date",
+    "date": "Enter a real date"
+  }
+}
