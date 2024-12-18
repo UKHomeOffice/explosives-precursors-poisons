@@ -1,15 +1,15 @@
 {
-  "enter-license-number":{
-    "title":"Enter your licence number",
-    "header":"Enter your licence number"
+  "enter-license-number": {
+    "title": "Enter your licence number",
+    "header": "Enter your licence number"
   },
   "your-name": {
-    "title":"Your name",
-    "header":"Your name"
+    "title": "Your name",
+    "header": "Your name"
   },
   "other-names": {
-    "title":"Other names",
-    "header":"Other names"
+    "title": "Other names",
+    "header": "Other names"
   },
   "other-nationalities": {
     "header": "Other nationalities"
@@ -22,9 +22,12 @@
         "header": "Personal Details"
       }
     },
-    "fields":{
+    "fields": {
       "new-renew-license-number": {
         "label": "Licence number"
+      },
+      "new-renew-other-country-nationality": {
+        "label": "Other nationality"
       }
     }
   },
