@@ -1,8 +1,6 @@
 {
     "amend-licence-number": {
         "required": "Enter a licence number",
-        "incorrect-format-licence": "Enter a real licence number",
-        "minlength": "Enter a real licence number",
-        "maxlength": "Enter a real licence number"
+        "correct-licence": "Enter a real licence number"
     }
 }

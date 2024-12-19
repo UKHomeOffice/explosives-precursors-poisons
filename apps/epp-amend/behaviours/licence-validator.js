@@ -17,19 +17,19 @@ module.exports = superclass =>
            isNaN(thirdNumbericValues)) ||
             !isAlpha(alphaValues)
       ) {
-        const errorMessage = `${licenceNumber} licence number not in correct format`;
+        const errorMessage = `${licenceNumber} Not in correct format or invalid licence number`;
         req.log('error', errorMessage);
         return next({
           'amend-licence-number': new this.ValidationError(
             'amend-licence-number',
             {
-              type: 'incorrect-format-licence'
+              type: 'correct-licence'
             }
           )
         });
       }
-      req.log('info', 'licence number is in correct format');
-      
+      req.log('info', 'Valid licence number');
+
       return super.saveValues(req, res, next);
     }
   };
