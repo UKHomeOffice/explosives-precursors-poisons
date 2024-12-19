@@ -2,6 +2,9 @@
   "licence-number": {
     "header": "Enter your licence number"
   },
+  "amend-name-on-licence": {
+    "header": "What is your name on the licence?"
+  },
   "contact-details": {
     "header": "What are your contact details?"
   },
