@@ -20,7 +20,11 @@ module.exports = {
           }
         },
         {
+<<<<<<< HEAD
           target: '/amend/licence-number',
+=======
+          target: '/amend-license/amend-licence-number',
+>>>>>>> 20c28c3 (EPP 56 Enter Licence Number Page)
           condition: {
             field: 'application-type',
             value: 'amend'

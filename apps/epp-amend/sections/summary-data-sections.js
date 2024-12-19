@@ -1,14 +1,20 @@
 'use strict';
+<<<<<<< HEAD
 const config = require('../../../config');
 const dateFormatter = new Intl.DateTimeFormat(
   config.dateLocales,
   config.dateFormat
 );
 
+=======
+
+
+>>>>>>> 20c28c3 (EPP 56 Enter Licence Number Page)
 module.exports = {
   'amend-licence-number': {
     steps: [
       {
+<<<<<<< HEAD
         step: '/licence-number',
         field: 'amend-licence-number'
       }
@@ -54,5 +60,11 @@ module.exports = {
         parse: date => date && dateFormatter.format(new Date(date))
       }
     ]
+=======
+        steps: '/amend-licence-number',
+        field: 'amend-licence-number'
+      }
+    ]
+>>>>>>> 20c28c3 (EPP 56 Enter Licence Number Page)
   }
 };
