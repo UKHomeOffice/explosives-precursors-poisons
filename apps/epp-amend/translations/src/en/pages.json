@@ -7,6 +7,7 @@
   },
   "confirm": {
     "header": "Check your answers",
+    "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",
     "sections": {
       "amend-licence-number":{
         "header": "Licence details"
