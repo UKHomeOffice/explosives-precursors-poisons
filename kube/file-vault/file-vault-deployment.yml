@@ -2,7 +2,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+  name: file-vault
+  {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
   annotations:
     downscaler/uptime: {{ .NON_PROD_AVAILABILITY }}
   name: file-vault-{{ .DRONE_SOURCE_BRANCH }}
@@ -55,7 +57,11 @@ spec:
             - name: NODE_TLS_REJECT_UNAUTHORIZED
               value: "0"
             - name: FILE_VAULT_URL
-            {{ if eq .KUBE_NAMESPACE .UAT_ENV }}
+            {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+              value: https://fv-{{ .APP_NAME }}.sas.homeoffice.gov.uk
+            {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+              value: https://fv-{{ .APP_NAME }}.stg.sas.homeoffice.gov.uk
+            {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
               value: https://fv-{{ .APP_NAME }}.uat.sas-notprod.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
               value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.branch.sas-notprod.homeoffice.gov.uk
@@ -71,6 +77,10 @@ spec:
                 secretKeyRef:
                 {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
                   name: epp-notprod-s3
+                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+                  name: epp-s3-stg
+                  {{ else }}
+                  name: epp-s3-prod
                   {{ end }}
                   key: access_key_id
             - name: AWS_SECRET_ACCESS_KEY
@@ -78,6 +88,10 @@ spec:
                 secretKeyRef:
                 {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
                   name: epp-notprod-s3
+                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+                  name: epp-s3-stg
+                  {{ else }}
+                  name: epp-s3-prod
                   {{ end }}
                   key: secret_access_key
             - name: AWS_KMS_KEY_ID
@@ -85,6 +99,10 @@ spec:
                 secretKeyRef:
                 {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
                   name: epp-notprod-s3
+                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+                  name: epp-s3-stg
+                  {{ else }}
+                  name: epp-s3-prod
                   {{ end }}
                   key: kms_key_id
             - name: AWS_BUCKET
@@ -92,6 +110,10 @@ spec:
                 secretKeyRef:
                 {{ if or (eq .KUBE_NAMESPACE .BRANCH_ENV) (eq .KUBE_NAMESPACE .UAT_ENV) }}
                   name: epp-notprod-s3
+                  {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+                  name: epp-s3-stg
+                  {{ else }}
+                  name: epp-s3-prod
                   {{ end }}
                   key: bucket_name
             - name: AWS_PASSWORD
@@ -140,6 +162,10 @@ spec:
             - name: PROXY_UPSTREAM_URL
               value: "http://127.0.0.1:3000"
             - name: PROXY_REDIRECTION_URL
+            {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+              value: https://fv-{{ .APP_NAME }}.sas.homeoffice.gov.uk
+            {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+              value: https://fv-{{ .APP_NAME }}.stg.sas.homeoffice.gov.uk
             {{ if eq .KUBE_NAMESPACE .UAT_ENV }}
               value: https://fv-{{ .APP_NAME }}.uat.sas-notprod.homeoffice.gov.uk
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}

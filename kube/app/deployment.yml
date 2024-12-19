@@ -94,11 +94,22 @@ spec:
                   name: keycloak-user
                   key: password
             - name: FILE_VAULT_URL
-            {{ if eq .KUBE_NAMESPACE .UAT_ENV }}
+            {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+              value: https://fv-{{ .APP_NAME }}.sas.homeoffice.gov.uk/file
+            {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
+              value: https://fv-{{ .APP_NAME }}.stg.sas.homeoffice.gov.uk/file
+            {{ else if .KUBE_NAMESPACE .UAT_ENV }}
               value: https://fv-{{ .APP_NAME }}.uat.sas-notprod.homeoffice.gov.uk/file
             {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
               value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.branch.sas-notprod.homeoffice.gov.uk/file
             {{ end }}
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            - name: DEBUG
+              value: "*"
+            {{ end }}
+            # Preventing search engines from indexing all pages
+            - name: DISALLOW_INDEXING
+              value: "true"
           {{ if not (eq .KUBE_NAMESPACE .BRANCH_ENV) }}
           livenessProbe:
             httpGet:
