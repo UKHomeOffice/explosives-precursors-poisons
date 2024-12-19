@@ -7,25 +7,25 @@ module.exports = {
   fields: 'apps/epp-amend/fields',
   views: 'apps/epp-amend/views',
   translations: 'apps/epp-amend/translations',
-  baseUrl: '/amend-license',
+  baseUrl: '/amend',
   steps: {
-    '/amend-licence-number': {
+    '/licence-number': {
       behaviours: [validateAndRedirect, ValidateLicenceNumber],
       backLink: '/application-type',
       fields: ['amend-licence-number'],
-      next: '/amend-name-on-licence',
+      next: '/name-on-licence',
       locals: {captionHeading: 'Section 1 of 20'}
     },
-    '/amend-name-on-licence': {
+    '/name-on-licence': {
       fields: [
         'amend-name-title',
         'amend-firstname',
         'amend-middlename',
         'amend-lastname'
       ],
-      next: '/amend-date-of-birth'
+      next: '/date-of-birth'
     },
-    '/amend-date-of-birth': {
+    '/date-of-birth': {
       fields: ['amend-date-of-birth'],
       next: '/section-four',
       locals: {captionHeading: 'Section 3 of 20'}

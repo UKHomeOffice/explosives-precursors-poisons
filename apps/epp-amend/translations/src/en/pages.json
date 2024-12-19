@@ -2,6 +2,9 @@
   "amend-licence-number": {
     "header": "Enter your licence number"
   },
+  "amend-name-on-licence": {
+    "header": "What is your name on the licence?"
+  },
   "amend-date-of-birth": {
     "header": " What is your date of Birth?"
   },
