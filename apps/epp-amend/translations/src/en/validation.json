@@ -1,1 +1,6 @@
-{}
+{
+    "amend-licence-number": {
+        "required": "Enter a licence number",
+        "correct-licence": "Enter a real licence number"
+    }
+}

@@ -1,5 +1,21 @@
 {
-    "application-submitted": {
-        "confirmed": "Amendment submitted"
+  "amend-licence-number": {
+    "header": "Enter your licence number"
+  },
+  "application-submitted": {
+    "confirmed": "Amendment submitted"
+  },
+  "confirm": {
+    "header": "Check your answers",
+    "sections": {
+      "amend-licence-number":{
+        "header": "Licence details"
       }
+    },
+    "fields": {
+      "amend-licence-number": {
+        "label": "Licence number"
+      }
+    }
+  }
 }
