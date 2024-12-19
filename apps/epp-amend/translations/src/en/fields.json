@@ -1,3 +1,22 @@
 {
-
+  "amend-name-title": {
+    "label": "Title",
+    "options": {
+      "none_selected": {
+        "label": "Please select an option"
+      },
+      "select": {
+        "label": "Mr."
+      }
+    }
+  },
+  "amend-firstname": {
+    "label": "First name"
+  },
+  "amend-middlename": {
+    "label": "Middle names (optional)"
+  },
+  "amend-lastname": {
+    "label": "Last name"
+  }
 }

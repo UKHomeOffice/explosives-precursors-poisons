@@ -1,5 +1,9 @@
 {
-    "application-submitted": {
+  "amend-name-on-licence": {
+    "header": "What is your name on the licence?"
+  },
+  
+  "application-submitted": {
         "confirmed": "Amendment submitted"
       }
 }

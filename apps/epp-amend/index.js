@@ -12,9 +12,9 @@ module.exports = {
       behaviours: [validateAndRedirect],
       backLink: '/application-type',
       fields: ['amend-licence-number'],
-      next: '/section-two'
+      next: '/amend-name-on-licence'
     },
-    '/section-two': {
+    '/amend-name-on-licence': {
       fields: [
         'amend-name-title',
         'amend-firstname',
