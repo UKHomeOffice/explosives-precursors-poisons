@@ -32,8 +32,8 @@ module.exports = [
     value: 'Antarctica'
   },
   {
-    label: 'Antigua & Barbuda',
-    value: 'Antigua & Barbuda'
+    label: 'Antigua and Barbuda',
+    value: 'Antigua and Barbuda'
   },
   {
     label: 'Argentina',
@@ -104,8 +104,8 @@ module.exports = [
     value: 'Bolivia'
   },
   {
-    label: 'Bosnia & Herzegovina',
-    value: 'Bosnia & Herzegovina'
+    label: 'Bosnia and Herzegovina',
+    value: 'Bosnia and Herzegovina'
   },
   {
     label: 'Botswana',
@@ -372,8 +372,8 @@ module.exports = [
     value: 'Haiti'
   },
   {
-    label: 'Heard & McDonald Islands',
-    value: 'Heard & McDonald Islands'
+    label: 'Heard and McDonald Islands',
+    value: 'Heard and McDonald Islands'
   },
   {
     label: 'Honduras',
@@ -716,8 +716,8 @@ module.exports = [
     value: 'Saint Helena'
   },
   {
-    label: 'Saint Kitts & Nevis',
-    value: 'Saint Kitts & Nevis'
+    label: 'Saint Kitts and Nevis',
+    value: 'Saint Kitts and Nevis'
   },
   {
     label: 'Saint Lucia',
@@ -728,8 +728,8 @@ module.exports = [
     value: 'Saint Pierre and Miquelon'
   },
   {
-    label: 'Saint Vincent & the Grenadines',
-    value: 'Saint Vincent & the Grenadines'
+    label: 'Saint Vincent and the Grenadines',
+    value: 'Saint Vincent and the Grenadines'
   },
   {
     label: 'Samoa',
@@ -812,8 +812,8 @@ module.exports = [
     value: 'Suriname'
   },
   {
-    label: 'Svalbard & Jan Mayen Islands',
-    value: 'Svalbard & Jan Mayen Islands'
+    label: 'Svalbard and Jan Mayen Islands',
+    value: 'Svalbard and Jan Mayen Islands'
   },
   {
     label: 'Sweden',
@@ -860,8 +860,8 @@ module.exports = [
     value: 'Tonga'
   },
   {
-    label: 'Trinidad & Tobago',
-    value: 'Trinidad & Tobago'
+    label: 'Trinidad and Tobago',
+    value: 'Trinidad and Tobago'
   },
   {
     label: 'Tunisia',
@@ -876,8 +876,8 @@ module.exports = [
     value: 'Turkmenistan'
   },
   {
-    label: 'Turks & Caicos Islands',
-    value: 'Turks & Caicos Islands'
+    label: 'Turks and Caicos Islands',
+    value: 'Turks and Caicos Islands'
   },
   {
     label: 'Tuvalu',
@@ -940,8 +940,8 @@ module.exports = [
     value: 'United States Virgin Islands'
   },
   {
-    label: 'Wallis & Futuna Islands',
-    value: 'Wallis & Futuna Islands'
+    label: 'Wallis and Futuna Islands',
+    value: 'Wallis and Futuna Islands'
   },
   {
     label: 'Western Sahara',
