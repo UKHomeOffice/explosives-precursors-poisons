@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  'Licence details': {
+  'amend-licence-number': {
     steps: [
       {
         step: '/licence-number',
@@ -9,11 +9,23 @@ module.exports = {
       }
     ]
   },
-  'amend-name-on-licence': {
+  'applicant-name': {
     steps: [
       {
         step: '/amend-name-on-licence',
-        fields: ['amend-name-title', 'amend-firstname', 'amend-middlename', 'amend-lastname']
+        field: 'amend-name-title'
+      },
+      {
+        step: '/amend-name-on-licence',
+        field: 'amend-firstname'
+      },
+      {
+        step: '/amend-name-on-licence',
+        field: 'amend-middlename'
+      },
+      {
+        step: '/amend-name-on-licence',
+        field: 'amend-lastname'
       }
     ]
   },
