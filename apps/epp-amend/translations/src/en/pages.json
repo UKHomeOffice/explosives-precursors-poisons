@@ -18,6 +18,9 @@
       "amend-licence-number":{
         "header": "Licence details"
       },
+      "applicant-name": {
+        "header": "Applicant name"
+      },
       "amend-date-of-birth": {
         "header": "Applicant date of birth"
       }
@@ -25,6 +28,18 @@
     "fields": {
       "amend-licence-number": {
         "label": "Licence number"
+      },
+      "amend-name-title": { 
+      "label" : "Title"
+      },
+      "amend-name-firstname": { 
+        "label" : "First name"
+      },
+      "amend-name-middlename": { 
+        "label" : "Middle name(s)"
+      },
+      "amend-name-lastname": { 
+        "label" : "Surname"
       },
       "amend-date-of-birth": {
         "label": "Date of birth"
