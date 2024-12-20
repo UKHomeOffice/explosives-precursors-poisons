@@ -1,0 +1,12 @@
+{{<partials-page}}
+  {{$page-content}}
+  <div>
+    <p class="govuk-body">{{#t}}pages.confirm.paragraph{{/t}}</p>
+  </div>
+  <div>
+    {{#rows}}
+      {{> partials-summary-table}}
+    {{/rows}}
+  </div>
+  {{/page-content}}
+{{/partials-page}}
