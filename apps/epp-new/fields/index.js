@@ -23,6 +23,6 @@ module.exports = {
   'new-renew-to-date': dateComponent('new-renew-to-date', {
     mixin: 'input-date',
     legend: { className: 'bold' },
-    validate: ['date', { type: 'before', arguments: ['0', 'days'] }]
+    validate: ['date', 'before']
   })
 };
