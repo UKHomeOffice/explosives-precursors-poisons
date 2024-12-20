@@ -8,20 +8,20 @@ module.exports = {
   translations: 'apps/epp-amend/translations',
   baseUrl: '/amend-license',
   steps: {
-    '/section-one': {
+    '/amend-licence-number': {
       behaviours: [validateAndRedirect],
       backLink: '/application-type',
       fields: ['amend-licence-number'],
-      next: '/section-two'
+      next: '/amend-name-on-licence'
     },
-    '/section-two': {
+    '/amend-name-on-licence': {
       fields: [
         'amend-name-title',
         'amend-firstname',
         'amend-middlename',
         'amend-lastname'
       ],
-      next: '/section-three'
+      next: '/confirm'
     },
     '/section-three': {
       fields: ['amend-date-of-birth'],

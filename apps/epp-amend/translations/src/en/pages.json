@@ -1,5 +1,30 @@
 {
-    "application-submitted": {
-        "confirmed": "Amendment submitted"
+  "amend-name-on-licence": {
+    "header": "What is your name on the licence?"
+  },
+
+
+  "confirm": {
+    "header": "Check your answers",
+    "paragraph": "Review your answers below and amend if required before proceeding to declaration and payment.",
+    "sections": {
+      "Applicant name": {
+        "header": "Applicant name"
       }
+    }
+  },
+  "fields": {
+    "amend-name-title": { 
+      "label" : "Title"
+    },
+    "amend-name-firstname": { 
+      "label" : "First name"
+    },
+    "amend-name-middlename": { 
+      "label" : "Middle name(s)"
+    },
+    "amend-name-lastname": { 
+      "label" : "Surname"
+    }
+  }
 }
