@@ -58,9 +58,7 @@ module.exports = {
       }
     },
     '/other-nationalities': {
-      fields: [
-        'new-renew-other-country-nationality'
-      ],
+      fields: ['new-renew-other-country-nationality', 'new-renew-from-date'],
       next: '/home-address',
       locals: {
         sectionNo: {
