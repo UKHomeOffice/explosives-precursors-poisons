@@ -13,7 +13,7 @@ module.exports = {
           'fields.new-renew-other-country-nationality.options.none_selected'
       }
     ].concat(countries),
-    validate: 'required'
+    validate: ['required']
   },
   'new-renew-from-date': dateComponent('new-renew-from-date', {
     mixin: 'input-date',
