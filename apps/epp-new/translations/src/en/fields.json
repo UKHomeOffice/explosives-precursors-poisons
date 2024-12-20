@@ -1,5 +1,19 @@
 {
   "name": {
     "label": "Full name"
+  },
+  "new-renew-other-country-nationality": {
+    "label": "What is your other country of nationality?",
+    "options": {
+      "none_selected": "Select a country"
+    }
+  },
+  "new-renew-from-date": {
+    "legend": "From (optional)",
+    "hint": "For example, 30 09 1980"
+  },
+  "new-renew-to-date": {
+    "legend": "To (optional)",
+    "hint": "For example, 30 09 1980"
   }
 }
