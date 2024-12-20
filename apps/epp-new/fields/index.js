@@ -1,6 +1,5 @@
 const dateComponent = require('hof').components.date;
-//const countries = require('../../../utilities/constants/countries');
-const countries = require('hof').utils.countries();
+const countries = require('../../../utilities/constants/countries');
 
 module.exports = {
   'new-renew-other-country-nationality': {
