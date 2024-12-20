@@ -8,7 +8,7 @@ module.exports = {
   translations: 'apps/epp-amend/translations',
   baseUrl: '/amend-license',
   steps: {
-    '/section-one': {
+    '/amend-licence-number': {
       behaviours: [validateAndRedirect],
       backLink: '/application-type',
       fields: ['amend-licence-number'],
@@ -21,7 +21,8 @@ module.exports = {
         'amend-middlename',
         'amend-lastname'
       ],
-      next: '/section-three'
+      next: '/confirm',
+      locals: {captionHeading: 'Section 2 of 20'}
     },
     '/section-three': {
       fields: ['amend-date-of-birth'],
