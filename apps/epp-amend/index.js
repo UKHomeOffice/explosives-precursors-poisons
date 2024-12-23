@@ -16,18 +16,19 @@ module.exports = {
       next: '/section-two',
       locals: {captionHeading: 'Section 1 of 20'}
     },
-    '/section-two': {
+    '/amend-name-on-licence': {
       fields: [
         'amend-name-title',
         'amend-firstname',
         'amend-middlename',
         'amend-lastname'
       ],
-      next: '/section-three'
+      next: '/amend-date-of-birth'
     },
-    '/section-three': {
+    '/amend-date-of-birth': {
       fields: ['amend-date-of-birth'],
-      next: '/section-four'
+      next: '/confirm',
+      locals: {captionHeading: 'Section 3 of 20'}
     },
     '/section-four': {
       fields: [
