@@ -1,5 +1,8 @@
 {
     "application-submitted": {
-        "confirmed": "Amendment submitted"
+        "confirmed": "Replace application submitted"
+      },
+      "confirm": {
+        "header": "Check your answers"
       }
 }
