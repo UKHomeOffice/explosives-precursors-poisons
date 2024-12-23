@@ -1,3 +1,7 @@
 {
-
+  "amend-date-of-birth": {
+    "hint": " For example, 30 09 1969",
+    "label": "Date of birth"
+    
+  }
 }

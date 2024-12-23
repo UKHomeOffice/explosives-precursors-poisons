@@ -1,5 +1,23 @@
 {
-    "application-submitted": {
-        "confirmed": "Amendment submitted"
+  "amend-date-of-birth": {
+    "header": " What is your date of Birth?"
+  },
+  "application-submitted": {
+    "confirmed": "Amendment submitted"
+  },
+
+  "confirm": {
+    "header": "Check your answers",
+    "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",
+    "sections": {
+      "Applicant date of birth": {
+        "header": "Applicant date of birth"
       }
+    }
+  },
+  "fields": {
+    "amend-date-of-birth": {
+      "label": "Date of birth"
+    }
+  }
 }
