@@ -34,7 +34,7 @@ module.exports = {
           }
         }
       ],
-      next: '/replace-license/start'
+      next: '/replace-license/section-one'
     }
   }
 };
