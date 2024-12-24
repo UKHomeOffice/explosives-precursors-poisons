@@ -21,7 +21,7 @@ include_default_branch: &include_default_branch
 include_default_and_feature_branches: &include_default_and_feature_branches
   include:
     - master
-    - EPP-*
+    - feature/*
     
 steps:
   - name: clone_repos
