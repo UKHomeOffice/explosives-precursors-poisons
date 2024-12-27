@@ -1,5 +1,6 @@
 const validateAndRedirect = require('./behaviours/home-redirection');
 const SummaryPageBehaviour = require('hof').components.summary;
+const ValidateLicenceNumber = require('./behaviours/licence-validator');
 
 module.exports = {
   name: 'EPP form',
@@ -8,11 +9,12 @@ module.exports = {
   translations: 'apps/epp-amend/translations',
   baseUrl: '/amend-license',
   steps: {
-    '/section-one': {
-      behaviours: [validateAndRedirect],
+    '/amend-licence-number': {
+      behaviours: [validateAndRedirect, ValidateLicenceNumber],
       backLink: '/application-type',
       fields: ['amend-licence-number'],
-      next: '/section-two'
+      next: '/section-two',
+      locals: {captionHeading: 'Section 1 of 20'}
     },
     '/section-two': {
       fields: [
