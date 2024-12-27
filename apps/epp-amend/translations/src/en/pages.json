@@ -1,9 +1,9 @@
 {
-  "amend-licence-number": {
+  "licence-number": {
     "header": "Enter your licence number"
   },
-  "application-submitted": {
-    "confirmed": "Amendment submitted"
+  "contact-details": {
+    "header": "What are your contact details?"
   },
   "confirm": {
     "header": "Check your answers",
@@ -11,12 +11,24 @@
     "sections": {
       "amend-licence-number":{
         "header": "Licence details"
+      },
+      "amend-contact-details": {
+        "header": "Contact details"
       }
     },
     "fields": {
       "amend-licence-number": {
         "label": "Licence number"
+      },
+      "amend-phone-number": {
+        "label": "Contact phone number"
+      },
+      "amend-email": {
+        "label": "Email address"
       }
     }
+  },
+  "application-submitted": {
+    "confirmed": "Amendment submitted"
   }
 }

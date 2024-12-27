@@ -29,7 +29,7 @@ module.exports = superclass =>
         });
       }
       req.log('info', 'licence number is in correct format');
-      
+
       return super.saveValues(req, res, next);
     }
   };
