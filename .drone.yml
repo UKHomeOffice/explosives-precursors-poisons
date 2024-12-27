@@ -26,6 +26,10 @@ include_default_and_feature_branches: &include_default_and_feature_branches
     - master
     - feature/*
     
+trigger:
+  branch:
+    <<: *include_default_and_feature_branches
+
 steps:
   - name: clone_repos
     pull: if-not-exists
@@ -61,7 +65,7 @@ steps:
       - name: dockersock
         path: /root/.dockersock
     when:
-      event: [push, pull_request]
+      event: [pull_request]
     depends_on:
       - clone_repos
 
