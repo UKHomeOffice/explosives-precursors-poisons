@@ -8,7 +8,9 @@ module.exports = {
   views: 'apps/epp-amend/views',
   translations: 'apps/epp-amend/translations',
   baseUrl: '/amend',
+  baseUrl: '/amend',
   steps: {
+    '/licence-number': {
     '/licence-number': {
       behaviours: [validateAndRedirect, ValidateLicenceNumber],
       backLink: '/application-type',
@@ -27,19 +29,19 @@ module.exports = {
     },
     '/date-of-birth': {
       fields: ['amend-date-of-birth'],
-      next: '/section-four',
-      locals: {captionHeading: 'Section 3 of 20'}
+      next: '/home-address'
     },
-    '/section-four': {
+    '/home-address': {
       fields: [
-        'amend-post-address-1',
-        'amend-post-address-2',
-        'amend-post-town-or-city',
-        'amend-post-county',
-        'amend-post-postcode',
-        'amend-post-country'
+        'amend-address-1',
+        'amend-address-2',
+        'amend-town-or-city',
+        'amend-county',
+        'amend-postcode',
+        'amend-country'
       ],
-      next: '/contact-details'
+      next: '/section-five',
+      locals: {captionHeading: 'Section 4 of 20'}
     },
     '/contact-details': {
       fields: [

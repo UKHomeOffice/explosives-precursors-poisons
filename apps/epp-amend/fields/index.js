@@ -1,6 +1,7 @@
 const title = require('../../../utilities/constants/titles.js');
 const dateComponent = require('hof').components.date;
 
+const country = require('../../../utilities/constants/countries');
 module.exports = {
   'amend-licence-number': {
     mixin: 'input-text',
@@ -53,5 +54,44 @@ module.exports = {
     mixin: 'input-date',
     legend: { className: 'bold' },
     validate: ['required', 'date', 'before']
-  })
+  }),
+  'amend-address-1': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    validate: ['required',   { type: 'maxlength', arguments: [250]}]
+
+  },
+  'amend-address-2':{
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    validate: [{ type: 'maxlength', arguments: [250]}]
+  },
+  'amend-town-or-city': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    validate: ['required',{ type: 'maxlength', arguments: [250]}]
+  },
+  'amend-county': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'amend-postcode': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'amend-country': {
+    mixin: 'select',
+    validate: ['required'],
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-!-width-two-thirds'],
+    options: [{
+      value: '',
+      label: 'fields.amend-country.options.none_selected'
+    }].concat(country)
+  }
 };

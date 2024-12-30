@@ -11,11 +11,17 @@
   "date-of-birth": {
     "header": " What is your date of Birth?"
   },
+  "home-address": {
+    "header": "What is your home address?"
+  },
+  "application-submitted": {
+    "confirmed": "Amendment submitted"
+  },
   "confirm": {
     "header": "Check your answers",
     "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",
     "sections": {
-      "amend-licence-number":{
+      "amend-licence-number": {
         "header": "Licence details"
       },
       "applicant-name": {
@@ -23,6 +29,9 @@
       },
       "amend-date-of-birth": {
         "header": "Applicant date of birth"
+      },
+      "amend-address-on-licence": {
+        "header": "Address on licence"
       },
       "amend-contact-details": {
         "header": "Contact details"
@@ -47,15 +56,31 @@
       "amend-date-of-birth": {
         "label": "Date of birth"
       },
+      "amend-address-1": {
+        "label" : "Address line 1"
+      },
+      "amend-address-2": {
+        "label" : "Address line 2 (optional)"
+      },
+      "amend-town-or-city": {
+        "label" : "Town or city"
+      },
+      "amend-county": {
+        "label" :"County, state, province (optional)"
+      },
+      "amend-postcode": {
+        "label" : "Postcode (required for UK)"
+      },
+      "amend-country": {
+        "label" : "Country"
+      },
+
       "amend-phone-number": {
         "label": "Contact phone number"
       },
       "amend-email": {
         "label": "Email address"
       }
-    },
-  "application-submitted": {
-    "confirmed": "Amendment submitted"
+    }
   }
-}
 }
