@@ -15,7 +15,7 @@
       "amend-licence-number":{
         "header": "Licence details"
       },
-      "Applicant date of birth": {
+      "amend-date-of-birth": {
         "header": "Applicant date of birth"
       }
     },
@@ -23,9 +23,9 @@
       "amend-licence-number": {
         "label": "Licence number"
       },
-    "amend-date-of-birth": {
-      "label": "Date of birth"
+      "amend-date-of-birth": {
+        "label": "Date of birth"
+      }
     }
   }
-}
 }

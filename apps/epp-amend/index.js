@@ -13,7 +13,7 @@ module.exports = {
       behaviours: [validateAndRedirect, ValidateLicenceNumber],
       backLink: '/application-type',
       fields: ['amend-licence-number'],
-      next: '/section-two',
+      next: '/amend-name-on-licence',
       locals: {captionHeading: 'Section 1 of 20'}
     },
     '/amend-name-on-licence': {
@@ -27,7 +27,7 @@ module.exports = {
     },
     '/amend-date-of-birth': {
       fields: ['amend-date-of-birth'],
-      next: '/confirm',
+      next: '/section-four',
       locals: {captionHeading: 'Section 3 of 20'}
     },
     '/section-four': {
