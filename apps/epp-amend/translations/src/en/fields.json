@@ -1,5 +1,27 @@
 {
     "amend-licence-number": {
         "hint": "For example 95/W/000000/2024"
+    },
+    "amend-address-1": {
+        "label" : "Address line 1"
+    },
+    "amend-address-2": {
+        "label" : "Address line 2 (optional)"
+    },
+    "amend-town-or-city": {
+        "label" : "Town or city"
+    },
+    "amend-county": {
+        "label" :"County, state, province (optional)"
+    },
+    "amend-postcode": {
+        "label" : "Postcode (optional)"
+    },
+    "amend-country": {
+        "label" : "Country of address",
+        "hint": "Select a country from the list",
+        "options": {
+            "none_selected": "Select"
+        }
     }
 }

@@ -4,5 +4,22 @@
         "incorrect-format-licence": "Enter a real licence number",
         "minlength": "Enter a real licence number",
         "maxlength": "Enter a real licence number"
+    },
+    "amend-address-1": {
+        "required" : "Enter address line 1, typically the building and street",
+        "maxlength": "Address line 1 must be between 2 and 250 characters"
+    },
+    "amend-address-2": {
+        "maxlength": "Address line 2 must be between 2 and 250 characters"
+    },
+    "amend-town-or-city": {
+        "required" : "Enter town or city",
+         "maxlength": "Town or city must be between 2 and 250 characters"
+    },
+    "amend-postcode": {
+        "" : "Enter a real UK postcode"
+    },
+    "amend-country": {
+        "required" : "Select a country of address"
     }
 }
