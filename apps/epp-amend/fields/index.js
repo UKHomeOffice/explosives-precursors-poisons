@@ -82,7 +82,9 @@ module.exports = {
   'amend-postcode': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    validate: ['postcode'],
+    formatter:['ukPostcode']
   },
   'amend-country': {
     mixin: 'select',

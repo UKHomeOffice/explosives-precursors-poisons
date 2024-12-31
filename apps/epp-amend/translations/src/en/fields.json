@@ -42,7 +42,8 @@
         "label" :"County, state, province (optional)"
     },
     "amend-postcode": {
-        "label" : "Postcode (optional)"
+        "label" : "Postcode (optional)",
+        "hint" : "Postcode is optional if your address is outside the UK"
     },
     "amend-country": {
         "label" : "Country of address",
