@@ -1,20 +1,46 @@
 'use strict';
+const config = require('../../../config');
+const dateFormatter = new Intl.DateTimeFormat(
+  config.dateLocales,
+  config.dateFormat
+);
 
 module.exports = {
   'amend-licence-number': {
     steps: [
       {
-        step: '/amend-licence-number',
+        step: '/licence-number',
         field: 'amend-licence-number'
       }
     ]
   },
- 
+  'applicant-name': {
+    steps: [
+      {
+        step: '/name-on-licence',
+        field: 'amend-name-title'
+      },
+      {
+        step: '/name-on-licence',
+        field: 'amend-firstname'
+      },
+      {
+        step: '/name-on-licence',
+        field: 'amend-middlename'
+      },
+      {
+        step: '/name-on-licence',
+        field: 'amend-lastname'
+      }
+    ]
+  },
+
   'amend-date-of-birth': {
     steps: [
       {
-        step: '/amend-date-of-birth',
-        field: 'amend-date-of-birth'
+        step: '/date-of-birth',
+        field: 'amend-date-of-birth',
+        parse: date => date && dateFormatter.format(new Date(date))
       }
     ]
   }
