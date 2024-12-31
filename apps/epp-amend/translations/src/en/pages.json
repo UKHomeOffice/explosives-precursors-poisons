@@ -2,13 +2,13 @@
   "licence-number": {
     "header": "Enter your licence number"
   },
-  "amend-name-on-licence": {
+  "name-on-licence": {
     "header": "What is your name on the licence?"
   },
   "contact-details": {
     "header": "What are your contact details?"
   },
-  "amend-date-of-birth": {
+  "date-of-birth": {
     "header": " What is your date of Birth?"
   },
   "confirm": {
