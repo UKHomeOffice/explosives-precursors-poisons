@@ -2,6 +2,9 @@
   "amend-licence-number": {
     "header": "Enter your licence number"
   },
+  "amend-date-of-birth": {
+    "header": " What is your date of Birth?"
+  },
   "application-submitted": {
     "confirmed": "Amendment submitted"
   },
@@ -11,11 +14,17 @@
     "sections": {
       "amend-licence-number":{
         "header": "Licence details"
+      },
+      "amend-date-of-birth": {
+        "header": "Applicant date of birth"
       }
     },
     "fields": {
       "amend-licence-number": {
         "label": "Licence number"
+      },
+      "amend-date-of-birth": {
+        "label": "Date of birth"
       }
     }
   }

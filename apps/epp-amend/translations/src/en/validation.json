@@ -4,5 +4,10 @@
         "incorrect-format-licence": "Enter a real licence number",
         "minlength": "Enter a real licence number",
         "maxlength": "Enter a real licence number"
-    }
+    },
+    "amend-date-of-birth": {
+      "required": "Enter your date of birth",
+        "date": "Enter a real date",
+        "before": "Your date of birth must be in the past"
+      }
 }
