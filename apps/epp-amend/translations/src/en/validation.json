@@ -12,5 +12,10 @@
     "amend-email": {
         "required": "Enter a contact email address",
         "email": "Enter a real email address"
-    }
+    },
+    "amend-date-of-birth": {
+      "required": "Enter your date of birth",
+        "date": "Enter a real date",
+        "before": "Your date of birth must be in the past"
+      }
 }

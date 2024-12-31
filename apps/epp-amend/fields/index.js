@@ -1,5 +1,6 @@
-module.exports = {
+const dateComponent = require('hof').components.date;
 
+module.exports = {
   'amend-licence-number': {
     mixin: 'input-text',
     className: ['govuk-input', 'govuk-!-width-two-thirds'],
@@ -22,4 +23,9 @@ module.exports = {
     labelClassName: 'govuk-label--m',
     validate: ['required', 'email']
   }
+  'amend-date-of-birth': dateComponent('amend-date-of-birth', {
+    mixin: 'input-date',
+    legend: { className: 'bold' },
+    validate: ['required', 'date', 'before']
+  })
 };

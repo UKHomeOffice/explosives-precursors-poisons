@@ -1,5 +1,5 @@
 {
-    "amend-licence-number": {
+  "amend-licence-number": {
         "hint": "For example 95/W/000000/2024"
     },
     "amend-phone-number": {
@@ -9,6 +9,9 @@
     "amend-email": {
         "label": "Email address",
         "hint": "Where we will contact you about the outcome of your application"
-    }
-
+    },
+  "amend-date-of-birth": {
+    "hint": " For example, 30 09 1969",
+    "label": "Date of birth"
+  }
 }

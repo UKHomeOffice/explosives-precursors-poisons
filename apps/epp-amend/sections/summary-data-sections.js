@@ -1,11 +1,10 @@
 'use strict';
 
-
 module.exports = {
   'amend-licence-number': {
     steps: [
       {
-        steps: '/amend-licence-number',
+        step: '/licence-number',
         field: 'amend-licence-number'
       }
     ]
@@ -13,12 +12,20 @@ module.exports = {
   'amend-contact-details': {
     steps: [
       {
-        steps: '/amend-contact-details',
+        steps: '/contact-details',
         field: 'amend-phone-number'
       },
       {
-        steps: '/amend-contact-details',
+        steps: '/contact-details',
         field: 'amend-email'
+      }
+    ]
+  },
+  'amend-date-of-birth': {
+    steps: [
+      {
+        step: '/date-of-birth',
+        field: 'amend-date-of-birth'
       }
     ]
   }

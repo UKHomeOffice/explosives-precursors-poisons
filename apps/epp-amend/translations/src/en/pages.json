@@ -5,6 +5,9 @@
   "contact-details": {
     "header": "What are your contact details?"
   },
+  "amend-date-of-birth": {
+    "header": " What is your date of Birth?"
+  },
   "confirm": {
     "header": "Check your answers",
     "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",
@@ -14,6 +17,9 @@
       },
       "amend-contact-details": {
         "header": "Contact details"
+      },
+      "amend-date-of-birth": {
+        "header": "Applicant date of birth"
       }
     },
     "fields": {
@@ -25,9 +31,11 @@
       },
       "amend-email": {
         "label": "Email address"
+      },
+      "amend-date-of-birth": {
+        "label": "Date of birth"
       }
-    }
-  },
+    },
   "application-submitted": {
     "confirmed": "Amendment submitted"
   }
