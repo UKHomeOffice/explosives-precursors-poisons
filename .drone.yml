@@ -140,6 +140,7 @@ steps:
     depends_on:
       - clone_repos
       - image_to_ecr
+
   - name: deploy_to_uat
     pull: if-not-exists
     image: quay.io/ukhomeofficedigital/kd:v1.14.0
@@ -158,6 +159,7 @@ steps:
     depends_on:
       - clone_repos
       - image_to_ecr
+
   # Get pull request branch so correct PR UAT environment is torn down in the tear_down_branch step that follows
   - name: get_pr_branch
     pull: if-not-exists
@@ -175,6 +177,7 @@ steps:
     when:
       branch: master
       event: push
+
   # Tear down pull request UAT environment
   - name: tear_down_branch
     pull: if-not-exists
@@ -194,7 +197,8 @@ steps:
       event: push
     depends_on:
       - get_pr_branch
-   # Deploy to Staging environment
+
+  # Deploy to Staging environment
   - name: deploy_to_stg
     pull: if-not-exists
     image: quay.io/ukhomeofficedigital/kd:v1.14.0
@@ -211,6 +215,7 @@ steps:
     depends_on:
       - clone_repos
       - image_to_ecr
+
   ## Checks a build being promoted has passed, is on master which effectively means a healthy build on Staging
   - name: sanity_check_build_prod
     pull: if-not-exists
