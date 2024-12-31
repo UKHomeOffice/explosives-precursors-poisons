@@ -1,22 +1,11 @@
-const isAlpha = str => /^[a-zA-Z]*$/.test(str);
+const LicenceValiidator = require('../../../utilities/helpers/index');
 
 module.exports = superclass =>
-
   class extends superclass {
     saveValues(req, res, next) {
       const licenceNumber = req.form.values['amend-licence-number'];
-      const removeSpaceOrSperator = licenceNumber.replace(/[^\w\s]/gi, '');
 
-      const firstNumericValues = removeSpaceOrSperator.slice(0, 2);
-      const alphaValues = removeSpaceOrSperator.slice(2, 3);
-      const secondNumericValues = removeSpaceOrSperator.slice(3, 9);
-      const thirdNumbericValues = removeSpaceOrSperator.slice(9, 13);
-
-      if((isNaN(firstNumericValues) ||
-           isNaN(secondNumericValues) ||
-           isNaN(thirdNumbericValues)) ||
-            !isAlpha(alphaValues)
-      ) {
+      if(!LicenceValiidator.validLicenceNumber(licenceNumber)) {
         const errorMessage = `${licenceNumber} licence number not in correct format`;
         req.log('error', errorMessage);
         return next({

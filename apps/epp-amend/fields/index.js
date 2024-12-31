@@ -22,7 +22,7 @@ module.exports = {
     className: ['govuk-input'],
     labelClassName: 'govuk-label--m',
     validate: ['required', 'email']
-  }
+  },
   'amend-date-of-birth': dateComponent('amend-date-of-birth', {
     mixin: 'input-date',
     legend: { className: 'bold' },
