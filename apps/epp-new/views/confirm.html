@@ -1,0 +1,12 @@
+<title>{{#t}}pages.confirm.title{{/t}} - GOV.UK</title>
+{{<partials-page}}
+ {{$page-content}}
+  <div>
+    <p class="govuk-body">{{#t}}pages.confirm.submit-warning{{/t}}</p>
+  </div>
+    {{#rows}}
+      {{> partials-summary-table}}
+    {{/rows}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

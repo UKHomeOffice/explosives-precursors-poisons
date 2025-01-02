@@ -11,17 +11,31 @@
     "title":"Other names",
     "header":"Other names"
   },
+  "contact-details": {
+    "title":"What are your contact details?",
+    "header": "What are your contact details?"
+  },
   "confirm": {
     "header": "Check your answers",
-    "submit-warning": "Once you have submitted your application, you will not be able to adjust it. Please check it is correct.",
+    "title": "Check your answers – Apply for an explosives precursors and poisons licence",
+    "submit-warning": "Check your answer before paying and submitting.",
     "sections": {
       "sectionHeader": {
         "header": "Personal Details"
+      },
+      "new-renew-contact-details": {
+        "header": "Contact details"
       }
     },
     "fields":{
       "new-renew-license-number": {
         "label": "Licence number"
+      },
+      "new-renew-phone-number": {
+        "label": "Contact phone number"
+      },
+      "new-renew-email": {
+        "label": "Email address"
       }
     }
   },
