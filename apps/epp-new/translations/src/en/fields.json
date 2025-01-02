@@ -1,5 +1,29 @@
 {
-  "name": {
-    "label": "Full name"
+  "new-renew-title": {
+    "label": "Title",
+    "options": {
+        "none_selected": "Select"
+    }
+  },
+  "new-renew-first-name": {
+    "label": "First name"
+  },
+  "new-renew-middle-name": {
+    "label": "Middle names (optional)"
+  },
+  "new-renew-last-name": {
+    "label": "Last name"
+  },
+  "new-renew-other-names": {
+    "legend": "Have you ever used any other names?",
+    "hint": "For example, you changed your name through marriage or a civil partnership",
+    "options": {
+      "yes": {
+          "label": "Yes"
+      },
+      "no": {
+          "label": "No"
+      }
+  }
   }
 }

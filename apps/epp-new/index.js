@@ -14,8 +14,18 @@ module.exports = {
   steps: {
     '/your-name': {
       behaviours: [checkBackLink, validateAndRedirect],
-      fields: [],
+      fields: ['new-renew-title',
+        'new-renew-first-name',
+        'new-renew-middle-name',
+        'new-renew-last-name',
+        'new-renew-other-names'],
       // add fork for other-names yes
+      forks: [
+        {
+          target: '/other-names',
+          condition: req => req.sessionModel.get('new-renew-other-names') === 'yes'
+        }
+      ],
       next: '/your-details',
       backLink: '/application-type',
       locals: {

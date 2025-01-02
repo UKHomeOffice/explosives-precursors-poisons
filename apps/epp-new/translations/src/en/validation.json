@@ -1,1 +1,19 @@
-{}
+{
+    "new-renew-title": {
+        "required": "Select your title"
+    },
+    "new-renew-first-name": {
+        "required": "Enter your first name",
+        "maxlength": "First name must between 1 and 250 characters"
+    },
+    "new-renew-middle-name": {
+         "maxlength": "Middle names must be between 250 characters or less"
+    },
+    "new-renew-last-name": {
+        "required": "Enter your last name",
+        "maxlength": "Last name must be between 1 and 250 characters"
+    },
+    "new-renew-other-names": {
+        "required": "Select if you have ever used any other names"
+    }
+}
