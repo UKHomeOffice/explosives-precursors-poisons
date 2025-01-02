@@ -1,6 +1,7 @@
 const validateAndRedirect = require('./behaviours/home-redirection');
 const SummaryPageBehaviour = require('hof').components.summary;
 const ValidateLicenceNumber = require('./behaviours/licence-validator');
+const PostcodeValidation = require('./behaviours/postcode-validation');
 
 module.exports = {
   name: 'EPP form',
@@ -32,6 +33,7 @@ module.exports = {
       next: '/home-address'
     },
     '/home-address': {
+      behaviours: [PostcodeValidation],
       fields: [
         'amend-address-1',
         'amend-address-2',

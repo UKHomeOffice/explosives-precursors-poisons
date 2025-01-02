@@ -39,7 +39,9 @@
          "maxlength": "Town or city must be between 2 and 250 characters"
     },
     "amend-postcode": {
+        "required" : "Enter a UK postcode",
         "postcode" : "Enter a real UK postcode"
+
     },
     "amend-country": {
         "required" : "Select a country of address"
