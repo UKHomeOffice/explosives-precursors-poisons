@@ -20,7 +20,7 @@ module.exports = {
           }
         },
         {
-          target: '/amend-license/amend-licence-number',
+          target: '/amend/licence-number',
           condition: {
             field: 'application-type',
             value: 'amend'

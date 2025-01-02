@@ -7,9 +7,9 @@ module.exports = {
   fields: 'apps/epp-amend/fields',
   views: 'apps/epp-amend/views',
   translations: 'apps/epp-amend/translations',
-  baseUrl: '/amend-license',
+  baseUrl: '/amend',
   steps: {
-    '/amend-licence-number': {
+    '/licence-number': {
       behaviours: [validateAndRedirect, ValidateLicenceNumber],
       backLink: '/application-type',
       fields: ['amend-licence-number'],
@@ -39,13 +39,14 @@ module.exports = {
         'amend-post-postcode',
         'amend-post-country'
       ],
-      next: '/section-five'
+      next: '/contact-details'
     },
-    '/section-five': {
+    '/contact-details': {
       fields: [
         'amend-phone-number',
         'amend-email'
       ],
+      locals: {captionHeading: 'Section 5 of 20'},
       next: '/section-six'
     },
     '/section-six': {

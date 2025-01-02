@@ -11,6 +11,18 @@ module.exports = {
       { type: 'minlength', arguments: [13] }
     ]
   },
+  'amend-phone-number': {
+    mixin: 'input-text',
+    className: ['govuk-input'],
+    labelClassName: 'govuk-label--m',
+    validate: ['required', 'internationalPhoneNumber']
+  },
+  'amend-email': {
+    mixin: 'input-text',
+    className: ['govuk-input'],
+    labelClassName: 'govuk-label--m',
+    validate: ['required', 'email']
+  },
   'amend-date-of-birth': dateComponent('amend-date-of-birth', {
     mixin: 'input-date',
     legend: { className: 'bold' },

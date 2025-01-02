@@ -2,8 +2,16 @@
     "amend-licence-number": {
         "required": "Enter a licence number",
         "incorrect-format-licence": "Enter a real licence number",
-        "minlength": "Enter a real licence number",
-        "maxlength": "Enter a real licence number"
+        "minlength": "Licence number must be between 13 and 16 characters",
+        "maxlength": "Licence number must be between 13 and 16 characters"
+    },
+    "amend-phone-number": {
+        "required": "Enter your telephone number",
+        "internationalPhoneNumber": "Enter a real telephone number"
+    },
+    "amend-email": {
+        "required": "Enter a contact email address",
+        "email": "Enter a real email address"
     },
     "amend-date-of-birth": {
       "required": "Enter your date of birth",
