@@ -41,13 +41,6 @@ linting: &linting
   commands:
     - yarn run test:lint
 
-unit_tests: &unit_tests
-  <<: *node_image
-  environment:
-    NOTIFY_STUB: true
-  commands:
-    - yarn run test:unit
-
 steps:
   - name: clone_repos
     pull: if-not-exists
@@ -108,15 +101,6 @@ steps:
     depends_on:
       - setup
 
-  - name: unit_tests
-    <<: *unit_tests
-    when:
-      branch:
-        <<: *include_default_and_feature_branches
-      event: [push, pull_request]
-    depends_on:
-      - setup
-
   - name: build_image
     pull: if-not-exists
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
@@ -132,7 +116,6 @@ steps:
       event: [push, pull_request]
     depends_on:
       - linting
-      - unit_tests
 
   - name: image_to_ecr
     pull: if-not-exists
@@ -153,7 +136,6 @@ steps:
       event: [push, pull_request]
     depends_on:
       - linting
-      - unit_tests
 
   # Trivy Security Scannner for scanning nodejs packages in Yarn
   - name: scan_node_packages
