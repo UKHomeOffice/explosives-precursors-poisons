@@ -32,6 +32,14 @@ module.exports = {
       }
     ]
   },
+  'applicant-details': {
+    steps: [
+      {
+        step: '/licence-number',
+        field: 'new-renew-licence-number'
+      }
+    ]
+  },
   'new-renew-contact-details': {
     steps: [
       {
