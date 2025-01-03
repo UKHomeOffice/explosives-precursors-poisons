@@ -1,5 +1,14 @@
 {
   "name": {
     "label": "Full name"
+  },
+  "new-renew-phone-number": {
+    "label": "Contact phone number",
+    "hint": "For international numbers, include the country code"
+  },
+  "new-renew-email": {
+      "label": "Email address",
+      "hint": "Where we will contact you about the outcome of your application"
   }
+
 }

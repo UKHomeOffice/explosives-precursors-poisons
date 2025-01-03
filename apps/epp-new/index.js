@@ -110,7 +110,10 @@ module.exports = {
       }
     },
     '/contact-details': {
-      fields: [],
+      fields: [
+        'new-renew-phone-number',
+        'new-renew-email'
+      ],
       next: '/identity-details',
       locals: {
         sectionNo: {
