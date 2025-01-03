@@ -2,8 +2,7 @@
     "amend-licence-number": {
         "required": "Enter a licence number",
         "incorrect-format-licence": "Enter a real licence number",
-        "minlength": "Licence number must be between 13 and 16 characters",
-        "maxlength": "Licence number must be between 13 and 16 characters"
+        "licence-length-restriction": "Licence number must be between 13 and 16 characters"
     },
     "amend-phone-number": {
         "required": "Enter your telephone number",

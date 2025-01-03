@@ -4,7 +4,7 @@ const isAlpha = str => /^[a-zA-Z]*$/.test(str);
 module.exports = superclass =>
   class extends superclass {
     saveValues(req, res, next) {
-      const licenceNumber = req.form.values['amend-licence-number'];
+      const licenceNumber = req.form.values['new-renew-licence-number'];
       const removeSpaceOrSperator = licenceNumber.replace(/[^\w\s]/gi, '');
       const alphaValues = removeSpaceOrSperator.slice(2, 3);
 
@@ -12,8 +12,8 @@ module.exports = superclass =>
         const errorMessage = 'Licence number should not be greater than 16 or less than 13';
         req.log('error', errorMessage);
         return next({
-          'amend-licence-number': new this.ValidationError(
-            'amend-licence-number',
+          'new-renew-licence-number': new this.ValidationError(
+            'new-renew-licence-number',
             {
               type: 'licence-length-restriction'
             }
@@ -22,19 +22,19 @@ module.exports = superclass =>
       }
 
       if(!LicenceValiidator.validLicenceNumber(licenceNumber) ||
-      !isAlpha(alphaValues)) {
+       !isAlpha(alphaValues)) {
         const errorMessage = `${licenceNumber} licence number not in correct format`;
         req.log('error', errorMessage);
         return next({
-          'amend-licence-number': new this.ValidationError(
-            'amend-licence-number',
+          'new-renew-licence-number': new this.ValidationError(
+            'new-renew-licence-number',
             {
               type: 'incorrect-format-licence'
             }
           )
         });
       }
-      req.log('info', 'licence number is in correct format');
+      req.log('info', 'Renew licence number is in correct format');
       return super.saveValues(req, res, next);
     }
   };

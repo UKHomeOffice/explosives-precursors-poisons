@@ -1,12 +1,14 @@
 'use strict';
 
 module.exports = {
-  sectionHeader: [
-    {
-      step: '/enter-license-number',
-      field: 'new-renew-license-number'
-    }
-  ],
+  'applicant-details': {
+    steps: [
+      {
+        step: '/licence-number',
+        field: 'new-renew-licence-number'
+      }
+    ]
+  },
   'new-renew-contact-details': {
     steps: [
       {
