@@ -1,9 +1,13 @@
 <title>{{#t}}pages.confirm.title{{/t}} - GOV.UK</title>
 {{<partials-page}}
  {{$page-content}}
-  <div>
-    <p class="govuk-body">{{#t}}pages.confirm.submit-warning{{/t}}</p>
-  </div>
+ {{^isRenewRoute}}
+ <p class="govuk-body">{{#t}}pages.confirm.new-submit-warning{{/t}}</p>
+{{/isRenewRoute}}
+  {{#isRenewRoute}}
+    <p class="govuk-body">{{#t}}pages.confirm.renew-submit-warning{{/t}}</p>
+  {{/isRenewRoute}}
+    
     {{#rows}}
       {{> partials-summary-table}}
     {{/rows}}

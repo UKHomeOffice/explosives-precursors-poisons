@@ -18,17 +18,18 @@
   "confirm": {
     "header": "Check your answers",
     "title": "Check your answers – Apply for an explosives precursors and poisons licence",
-    "submit-warning": "Check your answer before paying and submitting.",
+    "new-submit-warning": "Check your answer before paying and submitting.",
+    "renew-submit-warning": "Check your answer before paying and submitting your renewal application.",
     "sections": {
-      "sectionHeader": {
-        "header": "Personal Details"
+      "applicant-details": {
+        "header": "Applicant Details"
       },
       "new-renew-contact-details": {
         "header": "Contact details"
       }
     },
     "fields":{
-      "new-renew-license-number": {
+      "new-renew-licence-number": {
         "label": "Licence number"
       },
       "new-renew-phone-number": {
