@@ -1,4 +1,5 @@
 const LicenceValiidator = require('../../../utilities/helpers/index');
+const isAlpha = str => /^[a-zA-Z]*$/.test(str);
 
 module.exports = superclass =>
   class extends superclass {
@@ -21,7 +22,7 @@ module.exports = superclass =>
       }
 
       if(!LicenceValiidator.validLicenceNumber(licenceNumber) ||
-      !LicenceValiidator.isAlpha(alphaValues)) {
+      !isAlpha(alphaValues)) {
         const errorMessage = `${licenceNumber} licence number not in correct format`;
         req.log('error', errorMessage);
         return next({
