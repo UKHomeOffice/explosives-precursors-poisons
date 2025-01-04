@@ -1,4 +1,5 @@
 const country = require('../../../utilities/constants/countries');
+
 module.exports = {
   'amend-licence-number': {
     mixin: 'input-text',
@@ -38,7 +39,7 @@ module.exports = {
     mixin: 'input-text',
     labelClassName: 'govuk-label--s',
     className: ['govuk-input', 'govuk-!-width-two-thirds'],
-    validate: ['postcode'],
+    validate: ['postcode'], 
     formatter:['ukPostcode']
   },
   'amend-country': {
@@ -50,6 +51,5 @@ module.exports = {
       value: '',
       label: 'fields.amend-country.options.none_selected'
     }].concat(country)
-
   }
-};
+}
