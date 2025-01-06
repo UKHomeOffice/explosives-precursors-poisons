@@ -63,7 +63,7 @@ module.exports = {
     validate: ['required',   { type: 'maxlength', arguments: [250]}]
 
   },
-  'amend-address-2':{
+  'amend-address-2': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--s',
     className: ['govuk-input', 'govuk-!-width-two-thirds'],
@@ -73,7 +73,7 @@ module.exports = {
     mixin: 'input-text',
     labelClassName: 'govuk-label--s',
     className: ['govuk-input', 'govuk-!-width-two-thirds'],
-    validate: ['required',{ type: 'maxlength', arguments: [250]}]
+    validate: ['required', { type: 'maxlength', arguments: [250]}]
   },
   'amend-county': {
     mixin: 'input-text',
@@ -84,8 +84,7 @@ module.exports = {
     mixin: 'input-text',
     labelClassName: 'govuk-label--s',
     className: ['govuk-input', 'govuk-!-width-two-thirds'],
-    validate: ['postcode'], 
-    formatter:['ukPostcode']
+    formatter: ['ukPostcode']
   },
   'amend-country': {
     mixin: 'select',
@@ -97,4 +96,4 @@ module.exports = {
       label: 'fields.amend-country.options.none_selected'
     }].concat(country)
   }
-}
+};

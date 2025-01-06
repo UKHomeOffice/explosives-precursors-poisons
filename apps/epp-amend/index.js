@@ -1,7 +1,7 @@
 const validateAndRedirect = require('./behaviours/home-redirection');
 const SummaryPageBehaviour = require('hof').components.summary;
 const ValidateLicenceNumber = require('./behaviours/licence-validator');
-const PostcodeValidation = require('./behaviours/postcode-validation');
+const PostcodeValidation = require('../../utilities/helpers//postcode-validation');
 
 module.exports = {
   name: 'EPP form',
@@ -9,15 +9,13 @@ module.exports = {
   views: 'apps/epp-amend/views',
   translations: 'apps/epp-amend/translations',
   baseUrl: '/amend',
-  baseUrl: '/amend',
   steps: {
-    '/licence-number': {
     '/licence-number': {
       behaviours: [validateAndRedirect, ValidateLicenceNumber],
       backLink: '/application-type',
       fields: ['amend-licence-number'],
       next: '/name-on-licence',
-      locals: {captionHeading: 'Section 1 of 20'}
+      locals: { captionHeading: 'Section 1 of 20' }
     },
     '/name-on-licence': {
       fields: [
@@ -26,11 +24,13 @@ module.exports = {
         'amend-middlename',
         'amend-lastname'
       ],
-      next: '/date-of-birth'
+      next: '/date-of-birth',
+      locals: { captionHeading: 'Section 2 of 20' }
     },
     '/date-of-birth': {
       fields: ['amend-date-of-birth'],
-      next: '/home-address'
+      next: '/home-address',
+      locals: { captionHeading: 'Section 3 of 20' }
     },
     '/home-address': {
       behaviours: [PostcodeValidation],
@@ -42,15 +42,15 @@ module.exports = {
         'amend-postcode',
         'amend-country'
       ],
-      next: '/section-five',
-      locals: {captionHeading: 'Section 4 of 20'}
+      next: '/contact-details',
+      locals: { captionHeading: 'Section 4 of 20' }
     },
     '/contact-details': {
       fields: [
         'amend-phone-number',
         'amend-email'
       ],
-      locals: {captionHeading: 'Section 5 of 20'},
+      locals: { captionHeading: 'Section 5 of 20' },
       next: '/section-six'
     },
     '/section-six': {

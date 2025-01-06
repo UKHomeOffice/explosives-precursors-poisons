@@ -24,7 +24,7 @@
       "amend-licence-number": {
         "header": "Licence details"
       },
-      "applicant-name": {
+      "amend-applicant-name": {
         "header": "Applicant name"
       },
       "amend-date-of-birth": {
@@ -74,7 +74,6 @@
       "amend-country": {
         "label" : "Country"
       },
-
       "amend-phone-number": {
         "label": "Contact phone number"
       },

@@ -41,12 +41,10 @@
     "amend-postcode": {
         "required" : "Enter a UK postcode",
         "postcode" : "Enter a real UK postcode"
-
     },
     "amend-country": {
         "required" : "Select a country of address"
     },
-
     "amend-phone-number": {
         "required": "Enter your telephone number",
         "internationalPhoneNumber": "Enter a real telephone number"

@@ -14,7 +14,7 @@ module.exports = {
       }
     ]
   },
-  'applicant-name': {
+  'amend-applicant-name': {
     steps: [
       {
         step: '/name-on-licence',
@@ -31,18 +31,6 @@ module.exports = {
       {
         step: '/name-on-licence',
         field: 'amend-lastname'
-      }
-    ]
-  },
-  'amend-contact-details': {
-    steps: [
-      {
-        steps: '/contact-details',
-        field: 'amend-phone-number'
-      },
-      {
-        steps: '/contact-details',
-        field: 'amend-email'
       }
     ]
   },
@@ -80,6 +68,18 @@ module.exports = {
       {
         step: '/home-address',
         field: 'amend-country'
+      }
+    ]
+  },
+  'amend-contact-details': {
+    steps: [
+      {
+        steps: '/contact-details',
+        field: 'amend-phone-number'
+      },
+      {
+        steps: '/contact-details',
+        field: 'amend-email'
       }
     ]
   }
