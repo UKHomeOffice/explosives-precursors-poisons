@@ -15,12 +15,12 @@ module.exports = {
   },
   'new-renew-first-name': {
     mixin: 'input-text',
-    validate: 'required',
+    validate: ['required', 'notUrl'],
     labelClassName: 'govuk-label--s',
     className: ['govuk-label', 'govuk-input', 'govuk-!-width-two-thirds']
   },
   'new-renew-middle-name': {
-    validate: [{ type: 'maxlength', arguments: [250] }],
+    validate: ['notUrl', { type: 'maxlength', arguments: [250] }],
     labelClassName: 'govuk-label--s',
     className: ['govuk-label', 'govuk-input', 'govuk-!-width-two-thirds']
   },

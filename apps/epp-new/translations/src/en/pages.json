@@ -13,10 +13,10 @@
   },
   "confirm": {
     "header": "Check your answers",
-    "submit-warning": "Once you have submitted your application, you will not be able to adjust it. Please check it is correct.",
+    "subheader": "Check your answers before paying and submitting your renewal application.",
     "sections": {
-      "sectionHeader": {
-        "header": "Personal Details"
+      "your-name": {
+        "header": "Applicant name"
       }
     },
     "fields":{

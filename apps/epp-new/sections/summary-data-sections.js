@@ -7,7 +7,7 @@ module.exports = {
       field: 'new-renew-license-number'
     }
   ],
-  '/your-name': {
+  'your-name': {
     steps: [
       {
         step: '/your-name',

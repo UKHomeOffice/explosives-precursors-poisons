@@ -19,7 +19,6 @@ module.exports = {
         'new-renew-middle-name',
         'new-renew-last-name',
         'new-renew-other-names'],
-      // add fork for other-names yes
       forks: [
         {
           target: '/other-names',
