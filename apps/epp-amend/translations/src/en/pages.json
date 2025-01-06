@@ -21,11 +21,11 @@
       "applicant-name": {
         "header": "Applicant name"
       },
-      "amend-contact-details": {
-        "header": "Contact details"
-      },
       "amend-date-of-birth": {
         "header": "Applicant date of birth"
+      },
+      "amend-contact-details": {
+        "header": "Contact details"
       }
     },
     "fields": {
@@ -44,14 +44,14 @@
       "amend-name-lastname": { 
         "label" : "Surname"
       },
+      "amend-date-of-birth": {
+        "label": "Date of birth"
+      },
       "amend-phone-number": {
         "label": "Contact phone number"
       },
       "amend-email": {
         "label": "Email address"
-      },
-      "amend-date-of-birth": {
-        "label": "Date of birth"
       }
     },
   "application-submitted": {

@@ -28,7 +28,7 @@ module.exports = {
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'amend-middlename': {
-    validate: [{ type: 'maxlength', arguments: [250] }],
+    validate: ['notUrl', { type: 'maxlength', arguments: [250] }],
     labelClassName: 'govuk-label--s',
     className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
