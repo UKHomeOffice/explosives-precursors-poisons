@@ -30,5 +30,17 @@ module.exports = {
         field: 'new-renew-other-names'
       }
     ]
+  },
+  'new-renew-contact-details': {
+    steps: [
+      {
+        step: '/contact-details',
+        field: 'new-renew-phone-number'
+      },
+      {
+        step: '/contact-details',
+        field: 'new-renew-email'
+      }
+    ]
   }
 };

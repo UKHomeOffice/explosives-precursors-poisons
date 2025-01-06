@@ -36,6 +36,17 @@ module.exports = {
     className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
       className: 'govuk-fieldset__legend govuk-fieldset__legend--s'
-    }
+    },
+  'new-renew-phone-number': {
+    mixin: 'input-text',
+    className: ['govuk-input'],
+    labelClassName: 'govuk-label--m',
+    validate: ['required', 'internationalPhoneNumber']
+  },
+  'new-renew-email': {
+    mixin: 'input-text',
+    className: ['govuk-input'],
+    labelClassName: 'govuk-label--m',
+    validate: ['required', 'email']
   }
 };

@@ -2,7 +2,7 @@
   "new-renew-title": {
     "label": "Title",
     "options": {
-        "none_selected": "Select"
+      "none_selected": "Select"
     }
   },
   "new-renew-first-name": {
@@ -19,11 +19,22 @@
     "hint": "For example, you changed your name through marriage or a civil partnership",
     "options": {
       "yes": {
-          "label": "Yes"
+        "label": "Yes"
       },
       "no": {
-          "label": "No"
+        "label": "No"
       }
-  }
+    }
+  },
+  "name": {
+    "label": "Full name"
+  },
+  "new-renew-phone-number": {
+    "label": "Contact phone number",
+    "hint": "For international numbers, include the country code"
+  },
+  "new-renew-email": {
+    "label": "Email address",
+    "hint": "Where we will contact you about the outcome of your application"
   }
 }

@@ -18,5 +18,13 @@
     },
     "new-renew-other-names": {
         "required": "Select if you have ever used any other names"
+    },
+    "new-renew-phone-number": {
+        "required": "Enter your telephone number",
+        "internationalPhoneNumber": "Enter a real telephone number"
+    },
+    "new-renew-email": {
+        "required": "Enter a contact email address",
+        "email": "Enter a real email address"
     }
 }
