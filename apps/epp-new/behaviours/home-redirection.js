@@ -8,14 +8,4 @@ module.exports = superclass =>
       }
       return super.getValues(req, res, next);
     }
-    
-    locals(req, res) {
-      const locals = super.locals(req, res);
-      const selectedApplicationType = req.form.values['application-type'];
-      
-      locals.isRenewRoute = ApplicationHelper.isApplicationType(selectedApplicationType, 'renew');
-
-      req.log('info', `Application type is RENEWAL: ${locals.isRenewRoute}`);
-      return locals;
-    }
   };

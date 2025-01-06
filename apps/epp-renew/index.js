@@ -1,6 +1,6 @@
 
 const validateAndRedirect = require('./behaviours/home-redirection');
-const ValidateLicenceNumber = require('./behaviours/licence-validator');
+const ValidateLicenceNumber = require('../epp-common/behaviours/licence-validator');
 
 module.exports = {
   name: 'EPP form',
