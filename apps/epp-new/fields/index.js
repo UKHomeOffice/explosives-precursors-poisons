@@ -5,7 +5,7 @@ module.exports = {
     mixin: 'select',
     validate: 'required',
     labelClassName: 'govuk-label--s',
-    className: ['govuk-label', 'govuk-select', ['govuk-input--width-2']],
+    className: ['govuk-select', 'govuk-input--width-2'],
     options: [
       {
         value: '',
@@ -17,36 +17,42 @@ module.exports = {
     mixin: 'input-text',
     validate: ['required', 'notUrl'],
     labelClassName: 'govuk-label--s',
-    className: ['govuk-label', 'govuk-input', 'govuk-!-width-two-thirds']
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'new-renew-middle-name': {
+    mixin: 'input-text',
     validate: ['notUrl', { type: 'maxlength', arguments: [250] }],
     labelClassName: 'govuk-label--s',
-    className: ['govuk-label', 'govuk-input', 'govuk-!-width-two-thirds']
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'new-renew-last-name': {
+    mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
     labelClassName: 'govuk-label--s',
-    className: ['govuk-label', 'govuk-input', 'govuk-!-width-two-thirds']
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
   },
   'new-renew-other-names': {
     mixin: 'radio-group',
-    options: ['yes', 'no'],
+    options: [
+      { value: 'yes', label: 'Yes' },
+      { value: 'no', label: 'No' }
+    ],
     validate: 'required',
     className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
       className: 'govuk-fieldset__legend govuk-fieldset__legend--s'
-    },
+    }
+  },
   'new-renew-phone-number': {
     mixin: 'input-text',
+    validate: ['required', 'internationalPhoneNumber'],
     className: ['govuk-input'],
-    labelClassName: 'govuk-label--m',
-    validate: ['required', 'internationalPhoneNumber']
+    labelClassName: 'govuk-label--m'
   },
   'new-renew-email': {
     mixin: 'input-text',
+    validate: ['required', 'email'],
     className: ['govuk-input'],
-    labelClassName: 'govuk-label--m',
-    validate: ['required', 'email']
+    labelClassName: 'govuk-label--m'
   }
 };

@@ -1,0 +1,50 @@
+{
+  "enter-license-number": {
+    "title": "Enter your licence number",
+    "header": "Enter your licence number"
+  },
+  "your-name": {
+    "title": "Your name",
+    "header": "Your name"
+  },
+  "other-names": {
+    "title": "Other names",
+    "header": "Other names"
+  },
+  "contact-details": {
+    "title": "What are your contact details?",
+    "header": "What are your contact details?"
+  },
+  "confirm": {
+    "header": "Check your answers",
+    "subheader": "Check your answers before paying and submitting your renewal application.",
+    "sections": {
+      "your-name": {
+        "header": "Applicant name"
+      },
+      "new-renew-contact-details": {
+        "header": "Contact details"
+      }
+    },
+    "title": "Check your answers – Apply for an explosives precursors and poisons licence",
+    "submit-warning": "Check your answers before paying and submitting.",
+    "fields": {
+      "new-renew-license-number": {
+        "label": "Licence number"
+      },
+      "new-renew-phone-number": {
+        "label": "Contact phone number"
+      },
+      "new-renew-email": {
+        "label": "Email address"
+      }
+    }
+  },
+  "complete": {
+    "header": "Your submission has been sent",
+    "content-copy-sent": "We have sent you a confirmation email",
+    "content-whats-next": "What happens next",
+    "content-respond-1": "This is a test paragraph",
+    "content-feedback-link-text": "What do you think of this service?"
+  }
+}
