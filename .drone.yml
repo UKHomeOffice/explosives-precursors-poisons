@@ -16,6 +16,7 @@ environment:
   HOF_CONFIG: hof-services-config/Explosives_Precursors_Poisons
   NON_PROD_AVAILABILITY: Mon-Fri 08:00-23:00 Europe/London
   READY_FOR_TEST_DELAY: 20s
+  NOTIFY_STUB: stub
 
 include_default_branch: &include_default_branch
   include:
@@ -29,6 +30,16 @@ include_default_and_feature_branches: &include_default_and_feature_branches
 trigger:
   branch:
     <<: *include_default_and_feature_branches
+
+
+node_image: &node_image
+  pull: if-not-exists
+  image: node:20.18.0-alpine3.20@sha256:d504f23acdda979406cf3bdbff0dff7933e5c4ec183dda404ed24286c6125e60
+
+linting: &linting
+  <<: *node_image
+  commands:
+    - yarn run test:lint
 
 steps:
   - name: clone_repos
@@ -69,6 +80,27 @@ steps:
     depends_on:
       - clone_repos
 
+  - name: setup
+    <<: *node_image
+    environment:
+      NOTIFY_STUB: true
+    commands:
+      - yarn install --frozen-lockfile
+      - yarn run postinstall
+    when:
+      branch:
+        <<: *include_default_and_feature_branches
+      event: [push, pull_request]
+
+  - name: linting
+    <<: *linting
+    when:
+      branch:
+        <<: *include_default_and_feature_branches
+      event: [push, pull_request]
+    depends_on:
+      - setup
+
   - name: build_image
     pull: if-not-exists
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
@@ -82,6 +114,8 @@ steps:
       branch:
         <<: *include_default_and_feature_branches
       event: [push, pull_request]
+    depends_on:
+      - linting
 
   - name: image_to_ecr
     pull: if-not-exists
@@ -100,6 +134,8 @@ steps:
       branch:
         <<: *include_default_and_feature_branches
       event: [push, pull_request]
+    depends_on:
+      - linting
 
   # Trivy Security Scannner for scanning nodejs packages in Yarn
   - name: scan_node_packages
