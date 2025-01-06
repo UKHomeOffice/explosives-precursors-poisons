@@ -51,5 +51,16 @@
   "amend-email": {
     "label": "Email address",
     "hint": "Where we will contact you about the outcome of your application"
+  },
+  "amend-type-options": {
+    "legend": "Do you need to amend your name on the licence?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }

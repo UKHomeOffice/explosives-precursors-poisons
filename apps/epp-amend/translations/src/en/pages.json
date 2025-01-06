@@ -8,7 +8,10 @@
   "contact-details": {
     "header": "What are your contact details?"
   },
-  "date-of-birth": {
+  "amend-details":{
+    "header": "Amend your licence"
+  },
+  "amend-date-of-birth": {
     "header": " What is your date of Birth?"
   },
   "home-address": {
@@ -35,14 +38,17 @@
       },
       "amend-contact-details": {
         "header": "Contact details"
+      },
+      "amend-type-options": {
+        "header": "Amend name"
       }
     },
     "fields": {
       "amend-licence-number": {
-        "label": "Licence number"
+        "label" : "Licence number"
       },
       "amend-name-title": { 
-      "label" : "Title"
+        "label" : "Title"
       },
       "amend-name-firstname": { 
         "label" : "First name"
