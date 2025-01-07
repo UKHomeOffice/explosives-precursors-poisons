@@ -54,5 +54,9 @@ module.exports = {
     validate: ['required', 'email'],
     className: ['govuk-input'],
     labelClassName: 'govuk-label--m'
+  },
+  'medical-declaration': {
+    mixin: 'checkbox',
+    validate: ['required']
   }
 };
