@@ -15,7 +15,7 @@ if [[ $1 == 'tear_down' ]]; then
   export DRONE_SOURCE_BRANCH=$(cat /root/.dockersock/branch_name.txt)
 
   $kd --delete -f kube/configmaps/configmap.yml
-  $kd --delete -f kube/redis -f kube/app
+  $kd --delete -f kube/redis -f kube/app -f kube/file-vault
   echo "Torn Down Branch - $APP_NAME-$DRONE_SOURCE_BRANCH.internal.branch.sas-notprod.homeoffice.gov.uk"
   exit 0
 fi
