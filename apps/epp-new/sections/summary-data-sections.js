@@ -42,5 +42,12 @@ module.exports = {
         field: 'new-renew-email'
       }
     ]
+  },
+  'medical-information': {
+    steps:
+    {
+      step: '/medical-declaration',
+      field: ['medical-declaration']
+    }
   }
 };
