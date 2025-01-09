@@ -69,7 +69,8 @@ module.exports = {
     '/other-nationalities': {
       behaviours: [filterCountries],
       fields: [
-        'new-renew-other-country-nationality'
+        'new-renew-other-country-nationality',
+        'amend-date-of-birth'
       ],
       next: '/home-address',
       locals: {

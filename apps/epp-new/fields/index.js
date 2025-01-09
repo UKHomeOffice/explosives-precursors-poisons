@@ -79,5 +79,10 @@ module.exports = {
     mixin: 'input-date',
     legend: { className: 'bold' },
     validate: ['date', 'before']
+  }),
+  'amend-date-of-birth': dateComponent('amend-date-of-birth', {
+    mixin: 'input-date',
+    legend: { className: 'bold' },
+    validate: ['required', 'date', 'before']
   })
 };
