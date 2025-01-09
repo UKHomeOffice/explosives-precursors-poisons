@@ -1,9 +1,9 @@
-<title>{{#t}}pages.confirm.title{{/t}} - GOV.UK</title>
 {{<partials-page}}
- {{$page-content}}
-  <div>
-    <p class="govuk-body">{{#t}}pages.confirm.submit-warning{{/t}}</p>
-  </div>
+  {{$page-content}}
+    <title>{{#t}}pages.confirm.title{{/t}} - GOV.UK</title>
+    <div>
+      <p class="govuk-body">{{#t}}pages.confirm.subheader{{/t}}</p>      
+    </div>
     {{#rows}}
       {{> partials-summary-table}}
     {{/rows}}

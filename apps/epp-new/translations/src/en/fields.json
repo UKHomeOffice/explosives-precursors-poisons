@@ -1,4 +1,31 @@
 {
+  "new-renew-title": {
+    "label": "Title",
+    "options": {
+      "none_selected": "Select"
+    }
+  },
+  "new-renew-first-name": {
+    "label": "First name"
+  },
+  "new-renew-middle-name": {
+    "label": "Middle names (optional)"
+  },
+  "new-renew-last-name": {
+    "label": "Last name"
+  },
+  "new-renew-other-names": {
+    "legend": "Have you ever used any other names?",
+    "hint": "For example, you changed your name through marriage or a civil partnership",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "name": {
     "label": "Full name"
   },
@@ -7,8 +34,7 @@
     "hint": "For international numbers, include the country code"
   },
   "new-renew-email": {
-      "label": "Email address",
-      "hint": "Where we will contact you about the outcome of your application"
+    "label": "Email address",
+    "hint": "Where we will contact you about the outcome of your application"
   }
-
 }
