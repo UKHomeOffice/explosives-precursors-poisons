@@ -1,6 +1,1 @@
-{
-  "new-renew-license-number": {
-    "required": "Enter a licence number",
-    "validLicenceNumber": "Enter a real licence number"
-  }
-}
+{}

@@ -1,9 +1,7 @@
-const { validLicenceNumber } = require('../../../utilities/helpers');
 
 module.exports = {
   'new-renew-license-number': {
     mixin: 'input-text',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
-    validate: ['required', validLicenceNumber]
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
   }
 };
