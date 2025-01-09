@@ -30,11 +30,11 @@
   "new-renew-other-country-nationality": {
     "required": "Select your other nationality"
   },
-  "new-renew-from-date": {
+  "new-renew-date-fr": {
     "before": "Date you became a national of this country must be in the past",
     "date": "Enter a real date"
   },
-  "new-renew-to-date": {
+  "new-renew-date-to": {
     "before": "Date you stopped being a national of this country must be in the past",
     "date": "Enter a real date"
   }

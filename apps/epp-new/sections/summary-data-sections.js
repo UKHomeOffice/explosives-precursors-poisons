@@ -22,12 +22,12 @@ module.exports = {
     },
     {
       step: '/other-nationalities',
-      field: 'new-renew-from-date',
+      field: 'new-renew-date-fr',
       parse: date => date && dateFormatter.format(new Date(date))
     },
     {
       step: '/other-nationalities',
-      field: 'new-renew-to-date',
+      field: 'new-renew-date-to',
       parse: date => date && dateFormatter.format(new Date(date))
     }
   ],

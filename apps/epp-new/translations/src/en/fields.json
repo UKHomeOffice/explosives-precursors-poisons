@@ -43,11 +43,11 @@
       "none_selected": "Select a country"
     }
   },
-  "new-renew-from-date": {
+  "new-renew-date-fr": {
     "legend": "From (optional)",
     "hint": "For example, 30 09 1980"
   },
-  "new-renew-to-date": {
+  "new-renew-date-to": {
     "legend": "To (optional)",
     "hint": "For example, 30 09 1980"
   }
