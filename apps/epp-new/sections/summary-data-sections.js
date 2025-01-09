@@ -1,13 +1,6 @@
 'use strict';
 
 module.exports = {
-  'applicant-details': {
-    steps: [
-      {
-        step: '/licence-number',
-        field: 'new-renew-licence-number'
-      }
-    ],
     'your-name': {
       steps: [
         {
