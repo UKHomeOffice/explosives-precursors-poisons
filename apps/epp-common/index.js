@@ -20,7 +20,7 @@ module.exports = {
           }
         },
         {
-          target: '/amend-license/section-one',
+          target: '/amend/licence-number',
           condition: {
             field: 'application-type',
             value: 'amend'
@@ -34,7 +34,7 @@ module.exports = {
           }
         }
       ],
-      next: '/replace-license/start'
+      next: '/replace-license/section-one'
     }
   }
 };

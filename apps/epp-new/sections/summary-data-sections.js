@@ -30,5 +30,41 @@ module.exports = {
       field: 'new-renew-to-date',
       parse: date => date && dateFormatter.format(new Date(date))
     }
-  ]
+  ],
+  'your-name': {
+    steps: [
+      {
+        step: '/your-name',
+        field: 'new-renew-title'
+      },
+      {
+        step: '/your-name',
+        field: 'new-renew-first-name'
+      },
+      {
+        step: '/your-name',
+        field: 'new-renew-middle-name'
+      },
+      {
+        step: '/your-name',
+        field: 'new-renew-last-name'
+      },
+      {
+        step: '/your-name',
+        field: 'new-renew-other-names'
+      }
+    ]
+  },
+  'new-renew-contact-details': {
+    steps: [
+      {
+        step: '/contact-details',
+        field: 'new-renew-phone-number'
+      },
+      {
+        step: '/contact-details',
+        field: 'new-renew-email'
+      }
+    ]
+  }
 };

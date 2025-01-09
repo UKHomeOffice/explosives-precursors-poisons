@@ -1,5 +1,5 @@
 {
-  "appName": "Explosive precursors and poisons",
+  "appName": "Explosives precursors and poisons",
   "theme": "govUK",
   "behaviours": [
     "hof/components/clear-session"

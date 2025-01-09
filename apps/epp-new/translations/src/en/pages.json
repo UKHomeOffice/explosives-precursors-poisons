@@ -1,38 +1,53 @@
 {
-  "enter-license-number": {
-    "title": "Enter your licence number",
-    "header": "Enter your licence number"
+  "enter-license-number":{
+    "title":"Enter your licence number",
+    "header":"Enter your licence number"
   },
   "your-name": {
-    "title": "Your name",
-    "header": "Your name"
+    "title":"Your name",
+    "header":"Your name"
   },
   "other-names": {
-    "title": "Other names",
-    "header": "Other names"
+    "title":"Other names",
+    "header":"Other names"
   },
   "other-nationalities": {
     "header": "Other nationalities"
   },
+  "contact-details": {
+    "title": "What are your contact details?",
+    "header": "What are your contact details?"
+  },
   "confirm": {
     "header": "Check your answers",
-    "submit-warning": "Once you have submitted your application, you will not be able to adjust it. Please check it is correct.",
+    "subheader": "Check your answers before paying and submitting your renewal application.",
     "sections": {
-      "sectionHeader": {
-        "header": "Personal Details"
+      "your-name": {
+        "header": "Applicant name"
+      },
+      "new-renew-contact-details": {
+        "header": "Contact details"
       }
     },
-    "fields": {
+    "title": "Check your answers – Apply for an explosives precursors and poisons licence",
+    "submit-warning": "Check your answers before paying and submitting.",
+    "fields":{
       "new-renew-license-number": {
         "label": "Licence number"
       },
       "new-renew-other-country-nationality": {
         "label": "Other nationality"
+      },
+      "new-renew-phone-number": {
+        "label": "Contact phone number"
+      },
+      "new-renew-email": {
+        "label": "Email address"
       }
     }
   },
   "complete": {
-    "header": "You submission have been sent",
+    "header": "Your submission has been sent",
     "content-copy-sent": "We have sent you a confirmation email",
     "content-whats-next": "What happens next",
     "content-respond-1": "This is a test paragraph",

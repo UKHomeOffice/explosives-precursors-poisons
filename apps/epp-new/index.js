@@ -15,8 +15,17 @@ module.exports = {
   steps: {
     '/your-name': {
       behaviours: [checkBackLink, validateAndRedirect],
-      fields: [],
-      // add fork for other-names yes
+      fields: ['new-renew-title',
+        'new-renew-first-name',
+        'new-renew-middle-name',
+        'new-renew-last-name',
+        'new-renew-other-names'],
+      forks: [
+        {
+          target: '/other-names',
+          condition: req => req.sessionModel.get('new-renew-other-names') === 'yes'
+        }
+      ],
       next: '/your-details',
       backLink: '/application-type',
       locals: {
@@ -116,7 +125,10 @@ module.exports = {
       }
     },
     '/contact-details': {
-      fields: [],
+      fields: [
+        'new-renew-phone-number',
+        'new-renew-email'
+      ],
       next: '/identity-details',
       locals: {
         sectionNo: {
