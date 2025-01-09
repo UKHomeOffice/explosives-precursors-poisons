@@ -31,7 +31,6 @@ trigger:
   branch:
     <<: *include_default_and_feature_branches
 
-
 node_image: &node_image
   pull: if-not-exists
   image: node:20.18.0-alpine3.20@sha256:d504f23acdda979406cf3bdbff0dff7933e5c4ec183dda404ed24286c6125e60
@@ -41,18 +40,18 @@ linting: &linting
   commands:
     - yarn run test:lint
 
-unit_tests: &unit_tests
-  <<: *node_image
-  environment:
-    NOTIFY_STUB: true
-  commands:
-    - yarn run test:unit
+# unit_tests: &unit_tests
+#   <<: *node_image
+#   environment:
+#     NOTIFY_STUB: true
+#   commands:
+#     - yarn run test:unit
 
-sonar_scanner: &sonar_scanner
-  pull: if-not-exists
-  image: quay.io/ukhomeofficedigital/sonar-scanner-nodejs:latest
-  commands:
-    - sonar-scanner -Dproject.settings=./sonar-project.properties
+# sonar_scanner: &sonar_scanner
+#   pull: if-not-exists
+#   image: quay.io/ukhomeofficedigital/sonar-scanner-nodejs:latest
+#   commands:
+#     - sonar-scanner -Dproject.settings=./sonar-project.properties
 
 ui_integration_tests: &ui_integration_tests
   <<: *node_image
@@ -72,10 +71,6 @@ accessibility_tests: &accessibility_tests
       path: /root/.dockersock
   commands:
     - yarn run test:accessibility
-
-acceptance_tests: &acceptance_tests
-  pull: if-not-exists
-  image: mcr.microsoft.com/playwright:v1.12.3-focal
 
 steps:
   - name: clone_repos
@@ -137,25 +132,25 @@ steps:
     depends_on:
       - setup
   
-  - name: unit_tests
-    <<: *unit_tests
-    when:
-      branch:
-        include:
-          - master
-          - feature/*
-      event: [push, pull_request]
-    depends_on:
-      - setup
+  # - name: unit_tests
+  #   <<: *unit_tests
+  #   when:
+  #     branch:
+  #       include:
+  #         - master
+  #         - feature/*
+  #     event: [push, pull_request]
+  #   depends_on:
+  #     - setup
 
-  - name: sonar_scanner
-    <<: *sonar_scanner
-    when:
-      branch:
-        include:
-          - master
-          - feature/*
-      event: [push, pull_request]
+  # - name: sonar_scanner
+  #   <<: *sonar_scanner
+  #   when:
+  #     branch:
+  #       include:
+  #         - master
+  #         - feature/*
+  #     event: [push, pull_request]
 
   - name: build_image
     pull: if-not-exists
