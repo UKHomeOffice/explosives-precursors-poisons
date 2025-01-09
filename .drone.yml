@@ -40,12 +40,16 @@ linting: &linting
   commands:
     - yarn run test:lint
 
+### Commenting these following steps until requirements confirmed by Devs
+
 # unit_tests: &unit_tests
 #   <<: *node_image
 #   environment:
 #     NOTIFY_STUB: true
 #   commands:
 #     - yarn run test:unit
+
+### Commenting these following steps until missing test folder is added by Devs fixes pipeline issue
 
 # sonar_scanner: &sonar_scanner
 #   pull: if-not-exists
