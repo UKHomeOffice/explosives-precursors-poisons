@@ -77,8 +77,7 @@ spec:
                   # temporarily using epp-notprod-s3 until ACP creates epp-s3-branch s3 bucket              
                   # name: epp-s3-branch
                   name: epp-notprod-s3
-                  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-                  # temporarily using epp-notprod-s3 until ACP creates epp-s3-uat s3 bucket   
+                  # temporarily using epp-notprod-s3 until ACP creates epp-s3-uat s3 bucket              
                   # name: epp-s3-uat
                   name: epp-notprod-s3
                   {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
@@ -93,9 +92,12 @@ spec:
               valueFrom:
                 secretKeyRef:
                   {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-                  name: epp-s3-branch
-                  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-                  name: epp-s3-uat
+                  # temporarily using epp-notprod-s3 until ACP creates epp-s3-branch s3 bucket              
+                  # name: epp-s3-branch
+                  name: epp-notprod-s3
+                  # temporarily using epp-notprod-s3 until ACP creates epp-s3-uat s3 bucket              
+                  # name: epp-s3-uat
+                  name: epp-notprod-s3
                   {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
                   name: epp-s3-stg
                   {{ else }}
@@ -106,9 +108,12 @@ spec:
               valueFrom:
                 secretKeyRef:
                   {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-                  name: epp-s3-branch
-                  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-                  name: epp-s3-uat
+                  # temporarily using epp-notprod-s3 until ACP creates epp-s3-branch s3 bucket              
+                  # name: epp-s3-branch
+                  name: epp-notprod-s3
+                  # temporarily using epp-notprod-s3 until ACP creates epp-s3-uat s3 bucket              
+                  # name: epp-s3-uat
+                  name: epp-notprod-s3
                   {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
                   name: epp-s3-stg
                   {{ else }}
@@ -119,9 +124,12 @@ spec:
               valueFrom:
                 secretKeyRef:
                   {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-                  name: epp-s3-branch
-                  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}
-                  name: epp-s3-uat
+                  # temporarily using epp-notprod-s3 until ACP creates epp-s3-branch s3 bucket              
+                  # name: epp-s3-branch
+                  name: epp-notprod-s3
+                  # temporarily using epp-notprod-s3 until ACP creates epp-s3-uat s3 bucket              
+                  # name: epp-s3-uat
+                  name: epp-notprod-s3
                   {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
                   name: epp-s3-stg
                   {{ else }}
