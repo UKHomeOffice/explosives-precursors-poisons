@@ -42,5 +42,18 @@ module.exports = {
         field: 'new-renew-email'
       }
     ]
+  },
+
+  'medical-information': {
+    steps: [
+      {
+        step: '/medical-history',
+        field: 'new-renew-has-seen-doctor'
+      },
+      {
+        step: '/medical-history',
+        field: 'new-renew-received-treatment'
+      }
+    ]
   }
 };

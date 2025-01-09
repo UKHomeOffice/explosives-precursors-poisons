@@ -15,6 +15,16 @@
     "title": "What are your contact details?",
     "header": "What are your contact details?"
   },
+  "medical-history": {
+    "header": "Your medical history",
+    "paragraph1": "You must tell us about any mental health problems you have received medical advice or treatment for.",
+    "paragraph2": "Mental health problems include:",
+    "listElement1": "suicidal thoughts or self-harm",
+    "listElement2": "depression",
+    "listElement3": "mania, bipolar disorder or psychotic illness",
+    "listElement4": "personality disorders",
+    "listElement5": "any other mental health conditions you consider relevant"
+  },
   "confirm": {
     "header": "Check your answers",
     "subheader": "Check your answers before paying and submitting your renewal application.",
@@ -24,6 +34,9 @@
       },
       "new-renew-contact-details": {
         "header": "Contact details"
+      },
+      "medical-information": {
+        "header": " Medical information"
       }
     },
     "title": "Check your answers – Apply for an explosives precursors and poisons licence",
@@ -37,6 +50,12 @@
       },
       "new-renew-email": {
         "label": "Email address"
+      },
+      "new-renew-has-seen-doctor":{
+        "label": "Seen a doctor for metal health-related problems?" 
+      },
+      "new-renew-received-treatment" : {
+        "label": "Have you ever had, or received treatment for, any drug or alcohol-related health problems?"
       }
     }
   },
