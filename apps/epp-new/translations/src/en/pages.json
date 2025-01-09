@@ -1,18 +1,18 @@
 {
-  "enter-license-number":{
-    "title":"Enter your licence number",
-    "header":"Enter your licence number"
+  "enter-license-number": {
+    "title": "Enter your licence number",
+    "header": "Enter your licence number"
   },
   "your-name": {
-    "title":"Your name",
-    "header":"Your name"
+    "title": "Your name",
+    "header": "Your name"
   },
   "other-names": {
-    "title":"Other names",
-    "header":"Other names"
+    "title": "Other names",
+    "header": "Other names"
   },
   "contact-details": {
-    "title":"What are your contact details?",
+    "title": "What are your contact details?",
     "header": "What are your contact details?"
   },
   "confirm": {
@@ -41,7 +41,7 @@
     }
   },
   "complete": {
-    "header": "You submission have been sent",
+    "header": "Your submission has been sent",
     "content-copy-sent": "We have sent you a confirmation email",
     "content-whats-next": "What happens next",
     "content-respond-1": "This is a test paragraph",
