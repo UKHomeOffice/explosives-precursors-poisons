@@ -1,4 +1,5 @@
 const titles = require('../../../utilities/constants/titles');
+const dateComponent = require('hof').components.date;
 
 module.exports = {
   'new-renew-title': {
@@ -54,5 +55,10 @@ module.exports = {
     validate: ['required', 'email'],
     className: ['govuk-input'],
     labelClassName: 'govuk-label--m'
-  }
+  },
+  'new-renew-date-from': dateComponent('new-renew-date-from', {
+    mixin: 'input-date',
+    legend: { className: 'bold' },
+    validate: ['date', 'before']
+  })
 };
