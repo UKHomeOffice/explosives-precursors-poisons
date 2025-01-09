@@ -80,7 +80,7 @@ module.exports = {
     legend: { className: 'bold' },
     validate: ['date', 'before']
   }),
-  'amend-date-of-birth': dateComponent('amend-date-of-birth', {
+  'new-renew-date-of-birth': dateComponent('new-renew-date-of-birth', {
     mixin: 'input-date',
     legend: { className: 'bold' },
     validate: ['required', 'date', 'before']
