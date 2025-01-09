@@ -2,6 +2,21 @@
   "amend-licence-number": {
         "hint": "For example 95/W/000000/2024"
     },
+  "amend-name-title": {
+    "label": "Title",
+    "options": {
+      "none_selected": "Select"
+    }
+  },
+  "amend-firstname": {
+    "label": "First name"
+  },
+  "amend-middlename": {
+    "label": "Middle names (optional)"
+  },
+  "amend-lastname": {
+    "label": "Last name"
+  },
     "amend-phone-number": {
         "label": "Contact phone number",
         "hint": "For international numbers, include the country code"
