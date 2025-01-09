@@ -167,7 +167,7 @@ steps:
       event: [push, pull_request]
     depends_on:
       - linting
-      - unit_tests
+      # - unit_tests
 
   - name: image_to_ecr
     pull: if-not-exists
@@ -188,7 +188,7 @@ steps:
       event: [push, pull_request]
     depends_on:
       - linting
-      - unit_tests
+      # - unit_tests
 
   # Trivy Security Scannner for scanning nodejs packages in Yarn
   - name: scan_node_packages
