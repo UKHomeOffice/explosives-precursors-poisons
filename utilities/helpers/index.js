@@ -8,14 +8,14 @@ const isApplicationType = (req, value, applicationType) => {
     req.log('info', `Application type is ${applicationType}: ${true}`);
     return true;
   }
-    req.log('info', `Application type is ${applicationType}: ${false}`);
+  req.log('info', `Application type is ${applicationType}: ${false}`);
   return false;
 };
 
 const isLicenceValid = req => {
   let licenceNumber = '';
   let fieldName = '';
-  
+
   const applicationType = req.sessionModel.get('applicationType');
   if(applicationType === 'renew') {
     licenceNumber = req.form.values['new-renew-licence-number'];
@@ -27,23 +27,23 @@ const isLicenceValid = req => {
   }
   const removeSpaceOrSperator = licenceNumber.replace(/[^\w\s]/gi, '');
   const alphaValues = removeSpaceOrSperator.slice(2, 3);
-  
+
   if(licenceNumber.length > 16 || licenceNumber.length < 13 ) {
     const errorMessage = 'Licence number should not be greater than 16 or less than 13';
     req.log('error', errorMessage);
-    
+
     return{
       isValid: false,
       errorType: 'licence-length-restriction',
       fieldName: `${fieldName}`
     };
   }
-  
+
   if(!validLicenceNumber(licenceNumber) ||
       !isAlpha(alphaValues)) {
     const errorMessage = `${licenceNumber} licence number not in correct format`;
     req.log('error', errorMessage);
-    
+
     return{
       isValid: false,
       errorType: 'incorrect-format-licence',
@@ -51,7 +51,7 @@ const isLicenceValid = req => {
     };
   }
   req.log('info', 'licence number is in correct format');
-  
+
   return {
     isValid: true,
     fieldName: fieldName
