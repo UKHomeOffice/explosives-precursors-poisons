@@ -70,19 +70,14 @@ module.exports = {
     ].concat(countries),
     validate: ['required']
   },
-  'new-renew-from-date': dateComponent('new-renew-from-date', {
+  'new-renew-date-fr': dateComponent('new-renew-date-fr', {
     mixin: 'input-date',
     legend: { className: 'bold' },
     validate: ['date', 'before']
   }),
-  'new-renew-to-date': dateComponent('new-renew-to-date', {
+  'new-renew-date-to': dateComponent('new-renew-date-to', {
     mixin: 'input-date',
     legend: { className: 'bold' },
     validate: ['date', 'before']
-  }),
-  'new-renew-date-of-birth': dateComponent('new-renew-date-of-birth', {
-    mixin: 'input-date',
-    legend: { className: 'bold' },
-    validate: ['required', 'date', 'before']
   })
 };
