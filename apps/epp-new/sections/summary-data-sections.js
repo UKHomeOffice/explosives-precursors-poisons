@@ -7,30 +7,6 @@ const dateFormatter = new Intl.DateTimeFormat(
 );
 
 module.exports = {
-  sectionHeader: [
-    {
-      step: '/enter-license-number',
-      field: 'new-renew-license-number'
-    },
-    {
-      step: '/your-details',
-      field: 'new-renew-country-nationality'
-    },
-    {
-      step: '/other-nationalities',
-      field: 'new-renew-other-country-nationality'
-    },
-    {
-      step: '/other-nationalities',
-      field: 'new-renew-date-fr',
-      parse: date => date && dateFormatter.format(new Date(date))
-    },
-    {
-      step: '/other-nationalities',
-      field: 'new-renew-date-to',
-      parse: date => date && dateFormatter.format(new Date(date))
-    }
-  ],
   'your-name': {
     steps: [
       {
@@ -52,6 +28,24 @@ module.exports = {
       {
         step: '/your-name',
         field: 'new-renew-other-names'
+      }
+    ]
+  },
+  'applicant-details': {
+    steps: [
+      {
+        step: '/other-nationalities',
+        field: 'new-renew-other-country-nationality'
+      },
+      {
+        step: '/other-nationalities',
+        field: 'new-renew-date-fr',
+        parse: date => date && dateFormatter.format(new Date(date))
+      },
+      {
+        step: '/other-nationalities',
+        field: 'new-renew-date-to',
+        parse: date => date && dateFormatter.format(new Date(date))
       }
     ]
   },

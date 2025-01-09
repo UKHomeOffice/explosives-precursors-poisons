@@ -25,6 +25,9 @@
       "your-name": {
         "header": "Applicant name"
       },
+      "applicant-details":{
+        "header": "Applicant details"
+      },
       "new-renew-contact-details": {
         "header": "Contact details"
       }
