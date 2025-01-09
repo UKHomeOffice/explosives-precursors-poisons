@@ -6,32 +6,7 @@ module.exports = {
     mixin: 'input-text',
     className: ['govuk-input', 'govuk-!-width-two-thirds'],
     labelClassName: 'visuallyhidden',
-    validate: ['required']
-  },
-  'amend-name-title': {
-    mixin: 'select',
-    validate: ['required'],
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input--width-2'],
-    options: [{
-      value: '',
-      label: 'fields.amend-name-title.options.none_selected'
-    }].concat(title)
-  },
-  'amend-firstname': {
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
-  },
-  'amend-middlename': {
-    validate: ['notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
-  },
-  'amend-lastname': {
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    validate: ['required', 'notUrl']
   },
   'amend-name-title': {
     mixin: 'select',

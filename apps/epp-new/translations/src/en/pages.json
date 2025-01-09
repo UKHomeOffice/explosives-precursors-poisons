@@ -21,8 +21,8 @@
     "new-submit-warning": "Check your answer before paying and submitting.",
     "renew-submit-warning": "Check your answer before paying and submitting your renewal application.",
     "sections": {
-      "applicant-details": {
-        "header": "Applicant Details"
+      "your-name": {
+        "header": "Applicant name"
       },
       "applicant-details": {
         "header": "Applicant Details"

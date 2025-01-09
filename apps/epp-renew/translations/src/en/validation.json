@@ -2,6 +2,7 @@
     "new-renew-licence-number": {
         "required": "Enter a licence number",
         "incorrect-format-licence": "Enter a real licence number",
-        "licence-length-restriction": "Licence number must be between 13 and 16 characters"
+        "licence-length-restriction": "Licence number must be between 13 and 16 characters",
+        "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer."
     }
 }
