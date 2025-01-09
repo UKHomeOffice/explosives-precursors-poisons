@@ -41,6 +41,42 @@ linting: &linting
   commands:
     - yarn run test:lint
 
+unit_tests: &unit_tests
+  <<: *node_image
+  environment:
+    NOTIFY_STUB: true
+  commands:
+    - yarn run test:unit
+
+sonar_scanner: &sonar_scanner
+  pull: if-not-exists
+  image: quay.io/ukhomeofficedigital/sonar-scanner-nodejs:latest
+  commands:
+    - sonar-scanner -Dproject.settings=./sonar-project.properties
+
+ui_integration_tests: &ui_integration_tests
+  <<: *node_image
+  environment:
+    NOTIFY_STUB: true
+  commands:
+    - yarn run test:ui-integration
+
+accessibility_tests: &accessibility_tests
+  pull: if-not-exists
+  image: buildkite/puppeteer:8.0.0@sha256:b6cebc17bfa8e7a7abfc3ab14d6f2ddbdf42b9e81b8ad786c6693385665998d5
+  environment:
+    NOTIFY_STUB: true
+    ENVIRONMENT: DRONE
+  volumes:
+    - name: dockersock
+      path: /root/.dockersock
+  commands:
+    - yarn run test:accessibility
+
+acceptance_tests: &acceptance_tests
+  pull: if-not-exists
+  image: mcr.microsoft.com/playwright:v1.12.3-focal
+
 steps:
   - name: clone_repos
     pull: if-not-exists
@@ -76,7 +112,7 @@ steps:
       - name: dockersock
         path: /root/.dockersock
     when:
-      event: [pull_request]
+      event: [pull_request, push]
     depends_on:
       - clone_repos
 
@@ -100,6 +136,26 @@ steps:
       event: [push, pull_request]
     depends_on:
       - setup
+  
+  - name: unit_tests
+    <<: *unit_tests
+    when:
+      branch:
+        include:
+          - master
+          - feature/*
+      event: [push, pull_request]
+    depends_on:
+      - setup
+
+  - name: sonar_scanner
+    <<: *sonar_scanner
+    when:
+      branch:
+        include:
+          - master
+          - feature/*
+      event: [push, pull_request]
 
   - name: build_image
     pull: if-not-exists
@@ -116,6 +172,7 @@ steps:
       event: [push, pull_request]
     depends_on:
       - linting
+      - unit_tests
 
   - name: image_to_ecr
     pull: if-not-exists
@@ -136,6 +193,7 @@ steps:
       event: [push, pull_request]
     depends_on:
       - linting
+      - unit_tests
 
   # Trivy Security Scannner for scanning nodejs packages in Yarn
   - name: scan_node_packages
@@ -176,6 +234,7 @@ steps:
     depends_on:
       - clone_repos
       - image_to_ecr
+
   - name: deploy_to_uat
     pull: if-not-exists
     image: quay.io/ukhomeofficedigital/kd:v1.14.0
@@ -194,6 +253,7 @@ steps:
     depends_on:
       - clone_repos
       - image_to_ecr
+
   # Get pull request branch so correct PR UAT environment is torn down in the tear_down_branch step that follows
   - name: get_pr_branch
     pull: if-not-exists
@@ -211,6 +271,7 @@ steps:
     when:
       branch: master
       event: push
+
   # Tear down pull request UAT environment
   - name: tear_down_branch
     pull: if-not-exists
@@ -230,7 +291,8 @@ steps:
       event: push
     depends_on:
       - get_pr_branch
-   # Deploy to Staging environment
+
+  # Deploy to Staging environment
   - name: deploy_to_stg
     pull: if-not-exists
     image: quay.io/ukhomeofficedigital/kd:v1.14.0
@@ -247,6 +309,7 @@ steps:
     depends_on:
       - clone_repos
       - image_to_ecr
+
   ## Checks a build being promoted has passed, is on master which effectively means a healthy build on Staging
   - name: sanity_check_build_prod
     pull: if-not-exists
