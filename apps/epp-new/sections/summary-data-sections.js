@@ -44,10 +44,14 @@ module.exports = {
     ]
   },
   'medical-information': {
-    steps:
-    {
-      step: '/medical-declaration',
-      field: ['medical-declaration']
-    }
+    steps: [
+      {
+        step: '/medical-declaration',
+        field: 'medical-declaration',
+        // TODO: can this be configured in translation?
+        parse: value =>
+          value ? 'I have read and agree to the medical declarations' : ''
+      }
+    ]
   }
 };
