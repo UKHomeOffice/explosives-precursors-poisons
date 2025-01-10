@@ -34,7 +34,10 @@
     "hint": "For international numbers, include the country code"
   },
   "new-renew-email": {
-    "label": "Email address",
-    "hint": "Where we will contact you about the outcome of your application"
-  }
+      "label": "Email address",
+      "hint": "Where we will contact you about the outcome of your application"
+  },
+  "medical-declaration": {
+        "label" : "I have read and agree to this medical declaration"
+    }
 }

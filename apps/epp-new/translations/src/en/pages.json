@@ -15,6 +15,14 @@
     "title": "What are your contact details?",
     "header": "What are your contact details?"
   },
+  "medical-declaration": {
+    "header": "Medical declaration",
+    "paragraph1" : "I give permission for the Home Office to contact my doctor (GP or equivalent) and/or specialist to obtain factual details about my medical history in relation to this application. ",
+    "paragraph2" : "I understand that:",
+    "listElement1": "my doctor may share personal data with the Home Office concerning my physical and mental health, to enable them to make a decision about my application, and I consent to this processing of my personal data.",
+    "listElement2": "the Home Office will tell my doctor the result of my application for an EPP licence and may also consult my doctor during the term of the licence."
+  },
+
   "confirm": {
     "header": "Check your answers",
     "subheader": "Check your answers before paying and submitting your renewal application.",
@@ -24,6 +32,9 @@
       },
       "new-renew-contact-details": {
         "header": "Contact details"
+      },
+      "medical-information":{
+        "header": "Medical information"
       }
     },
     "title": "Check your answers – Apply for an explosives precursors and poisons licence",
@@ -37,6 +48,9 @@
       },
       "new-renew-email": {
         "label": "Email address"
+      },
+      "medical-declaration": {
+        "label": "Medical declaration"
       }
     }
   },
