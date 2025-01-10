@@ -26,6 +26,29 @@
       }
     }
   },
+  "new-renew-other-name-title": {
+    "label": "Title",
+    "options": {
+      "none_selected": "Select"
+    }
+  },
+  "new-renew-other-name-first-name": {
+    "label": "First name"
+  },
+  "new-renew-other-name-middle-name": {
+    "label": "Middle names (optional)"
+  },
+  "new-renew-other-name-last-name": {
+    "label": "Last name"
+  },
+  "new-renew-other-name-start-date": {
+    "legend": "When did you start using this name?",
+    "hint": "For example, 30 09 1980"
+  },
+  "new-renew-other-name-stop-date": {
+    "legend": "When did you stop using this name? (Optional)",
+    "hint": "For example, 30 09 1980"
+  },
   "name": {
     "label": "Full name"
   },

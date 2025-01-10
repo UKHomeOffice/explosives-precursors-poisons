@@ -1,4 +1,6 @@
 const titles = require('../../../utilities/constants/titles');
+const dateComponent = require('hof').components.date;
+
 
 module.exports = {
   'new-renew-title': {
@@ -58,5 +60,52 @@ module.exports = {
   'medical-declaration': {
     mixin: 'checkbox',
     validate: ['required']
-  }
+  },
+  'new-renew-other-name-title': {
+    mixin: 'select',
+    validate: 'required',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-select', 'govuk-input--width-2'],
+    options: [
+      {
+        value: '',
+        label: 'fields.new-renew-title.options.none_selected'
+      }
+    ].concat(titles)
+  },
+  'new-renew-other-name-first-name': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl'],
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'new-renew-other-name-middle-name': {
+    mixin: 'input-text',
+    validate: ['notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'new-renew-other-name-last-name': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'new-renew-other-name-start-date': dateComponent('new-renew-other-name-start-date', {
+    mixin: 'input-date',
+    legend: { className: 'bold' },
+    validate: [
+      'required',
+      'date',
+      { type: 'before', arguments: ['0', 'days'] }
+    ]
+  }),
+  'new-renew-other-name-stop-date': dateComponent('new-renew-other-name-stop-date', {
+    mixin: 'input-date',
+    legend: { className: 'bold' },
+    validate: [
+      'date',
+      { type: 'before', arguments: ['0', 'days'] }
+    ]
+  })
 };

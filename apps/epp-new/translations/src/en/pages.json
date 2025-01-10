@@ -51,6 +51,9 @@
       },
       "medical-declaration": {
         "label": "Medical declaration"
+      },
+      "other-names": {
+        "label": "Other name"
       }
     }
   },

@@ -1,5 +1,11 @@
 'use strict';
 
+const config = require('../../../config');
+const dateFormatter = new Intl.DateTimeFormat(
+  config.dateLocales,
+  config.dateFormat
+);
+
 module.exports = {
   sectionHeader: [
     {
@@ -28,6 +34,40 @@ module.exports = {
       {
         step: '/your-name',
         field: 'new-renew-other-names'
+      },
+      {
+        step: '/other-names',
+        field: 'other-names',
+        parse: (value, req) => {
+          const otherNameDetails = [
+            req.sessionModel.get('new-renew-other-name-title'),
+            req.sessionModel.get('new-renew-other-name-first-name')
+          ];
+
+          const middleName = req.sessionModel.get('new-renew-other-name-middle-name');
+          if (middleName) {
+            otherNameDetails.push(middleName);
+          }
+
+          otherNameDetails.push(req.sessionModel.get('new-renew-other-name-last-name'));
+
+          const startDate = req.sessionModel.get('new-renew-other-name-start-date');
+          if (startDate) {
+            const formattedStartDate = dateFormatter.format(new Date(startDate));
+            otherNameDetails.push(formattedStartDate);
+          }
+
+          const stopDate = req.sessionModel.get('new-renew-other-name-stop-date');
+          if (stopDate) {
+            const formattedStopDate = dateFormatter.format(new Date(stopDate));
+            otherNameDetails.push(formattedStopDate);
+          }
+
+          const formattedOtherNameDetails = otherNameDetails.filter(Boolean).join('\n');
+          req.sessionModel.set('otherNameDetails', formattedOtherNameDetails);
+
+          return formattedOtherNameDetails;
+        }
       }
     ]
   },
