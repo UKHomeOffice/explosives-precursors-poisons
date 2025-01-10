@@ -1,0 +1,30 @@
+{{<partials-page}} {{$page-content}}
+
+{{#fields}}
+{{#renderField}}{{/renderField}}
+{{/fields}}
+
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">Why we ask for your sex</span>
+  </summary>
+  <div class="govuk-details__text">
+    <p>
+      We need to include this information in our internal database of licence holders. Your sex does not affect if you can get a licence.
+    </p>
+  </div>
+</details>
+
+<details class="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">Why we ask for your height</span>
+    </summary>
+    <div class="govuk-details__text">
+      <p>
+        We need to include this information in our internal database of licence holders. Your height does not affect if you can get a licence.
+      </p>
+    </div>
+  </details>
+{{#input-submit}}continue{{/input-submit}} 
+{{/page-content}} 
+{{/partials-page}}

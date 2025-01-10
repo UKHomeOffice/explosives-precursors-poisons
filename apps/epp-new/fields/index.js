@@ -1,4 +1,10 @@
+const dateComponent = require('hof').components.date;
 const titles = require('../../../utilities/constants/titles');
+const countries = require('../../../utilities/constants/countries');
+
+const containsDecimal = value => {
+  return value.includes('.');
+};
 
 module.exports = {
   'new-renew-title': {
@@ -58,5 +64,98 @@ module.exports = {
   'medical-declaration': {
     mixin: 'checkbox',
     validate: ['required']
+  },
+  'new-renew-dob': dateComponent('new-renew-dob', {
+    mixin: 'input-date',
+    legend: { className: 'bold' },
+    validate: ['required', 'date', 'before']
+  }),
+  'new-renew-birth-place': {
+    mixin: 'input-text',
+    labelClassName: 'bold',
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 }
+    ]
+  },
+  'new-renew-birth-country': {
+    mixin: 'select',
+    className: ['typeahead'],
+    labelClassName: 'bold',
+    options: [
+      {
+        value: '',
+        label:
+          'fields.new-renew-other-country-nationality.options.none_selected'
+      }
+    ].concat(countries),
+    validate: ['required']
+  },
+  'new-renew-country-nationality': {
+    mixin: 'select',
+    className: ['typeahead'],
+    labelClassName: 'bold',
+    options: [
+      {
+        value: '',
+        label:
+          'fields.new-renew-other-country-nationality.options.none_selected'
+      }
+    ].concat(countries),
+    validate: ['required']
+  },
+  'new-renew-more-nationalities': {
+    mixin: 'radio-group',
+    options: [
+      { value: 'yes', label: 'Yes' },
+      { value: 'no', label: 'No' }
+    ],
+    validate: 'required',
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-fieldset__legend govuk-fieldset__legend--s'
+    }
+  },
+  'new-renew-your-sex': {
+    mixin: 'radio-group',
+    options: [
+      { value: 'yes', label: 'Yes' },
+      { value: 'no', label: 'No' },
+      { value: 'x', label: 'X or other' }
+    ],
+    validate: 'required',
+    className: ['govuk-radios'],
+    legend: {
+      className: 'govuk-fieldset__legend govuk-fieldset__legend--s'
+    }
+  },
+  'new-renew-your-height': {
+    mixin: 'input-text',
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    labelClassName: 'bold',
+    validate: [
+      'required',
+      containsDecimal,
+      'numeric',
+      {
+        type: 'min',
+        arguments: 50
+      },
+      {
+        type: 'max',
+        arguments: 300
+      }
+    ], // TODO: add further validations
+    attributes: [{ prefix: 'cm' }]
+  },
+  'new-renew-occupation': {
+    mixin: 'input-text',
+    labelClassName: 'bold',
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 }
+    ]
   }
 };

@@ -22,6 +22,9 @@
     "listElement1": "my doctor may share personal data with the Home Office concerning my physical and mental health, to enable them to make a decision about my application, and I consent to this processing of my personal data.",
     "listElement2": "the Home Office will tell my doctor the result of my application for an EPP licence and may also consult my doctor during the term of the licence."
   },
+  "your-details":{
+    "header": "Your details"
+  },
 
   "confirm": {
     "header": "Check your answers",

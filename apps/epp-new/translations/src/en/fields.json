@@ -39,5 +39,34 @@
   },
   "medical-declaration": {
         "label" : "I have read and agree to this medical declaration"
-    }
+    },
+  "new-renew-dob":{
+    "legend": "Date of birth",
+    "hint": "For example, 30 09 1969"
+  },
+  "new-renew-birth-place":{
+    "label": "Place of birth",
+    "hint": "The village, town or city where you were born"
+  },
+  "new-renew-birth-country":{
+    "label": "Country of birth",
+    "hint": "Select a country from the list"
+  },
+  "new-renew-country-nationality":{
+    "label": "Country of nationality",
+    "hint": "For multiple nationalities, enter your main country of nationality first"
+  },
+  "new-renew-more-nationalities":{
+    "legend": "Do you have more than one nationality?"
+  },
+  "new-renew-your-sex":{
+    "legend": "What is your sex?",
+    "hint": "This is the sex that is on your passport or identity document"
+  },
+  "new-renew-your-height":{
+    "label": "What is your height in centimetres?"
+  },
+  "new-renew-occupation":{
+    "label": "Occupation"
+  }
 }
