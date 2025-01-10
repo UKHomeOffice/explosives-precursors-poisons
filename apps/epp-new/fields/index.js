@@ -55,29 +55,32 @@ module.exports = {
     className: ['govuk-input'],
     labelClassName: 'govuk-label--m'
   },
-
-  'new-renew-has-seen-doctor': {
-    mixin: 'radio-group',
-    options: [
-      {value: 'yes'},
-      {value: 'no'}
-    ],
-    validate: ['required'],
-    className: ['govuk-radios', 'govuk-radios--inline'],
-    legend: {
-      className: 'govuk-fieldset__legend'
-    }
+  'medical-declaration': {
+    mixin: 'checkbox',
+    validate: ['required']
   },
-  'new-renew-received-treatment': {
-    mixin: 'radio-group',
-    options: [
-      {value: 'yes'},
-      {value: 'no'}
-    ],
-    validate: ['required'],
-    className: ['govuk-radios', 'govuk-radios--inline'],
-    legend: {
-      className: 'govuk-fieldset__legend'
+    'new-renew-has-seen-doctor': {
+      mixin: 'radio-group',
+      options: [
+        {value: 'yes'},
+        {value: 'no'}
+      ],
+      validate: ['required'],
+      className: ['govuk-radios', 'govuk-radios--inline'],
+      legend: {
+        className: 'govuk-fieldset__legend'
+      }
+    },
+    'new-renew-received-treatment': {
+      mixin: 'radio-group',
+      options: [
+        {value: 'yes'},
+        {value: 'no'}
+      ],
+      validate: ['required'],
+      className: ['govuk-radios', 'govuk-radios--inline'],
+      legend: {
+        className: 'govuk-fieldset__legend'
+      }
     }
-  }
 };

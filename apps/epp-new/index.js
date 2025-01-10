@@ -245,7 +245,7 @@ module.exports = {
       }
     },
     '/medical-declaration': {
-      fields: [],
+      fields: ['medical-declaration'],
       next: '/medical-history',
       locals: {
         sectionNo: {

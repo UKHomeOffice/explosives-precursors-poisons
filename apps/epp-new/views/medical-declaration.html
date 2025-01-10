@@ -1,0 +1,16 @@
+{{<partials-page}}
+ {{$page-content}}
+  <div>
+    <p class="govuk-body">{{#t}}pages.medical-declaration.paragraph1{{/t}}</p>
+    <p class="govuk-body">{{#t}}pages.medical-declaration.paragraph2{{/t}}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{#t}}pages.medical-declaration.listElement1{{/t}}</li>
+        <li>{{#t}}pages.medical-declaration.listElement2{{/t}}</li>
+    </ul>
+  </div>
+  {{#fields}}
+    {{#renderField}}{{/renderField}}
+  {{/fields}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}

@@ -43,17 +43,27 @@ module.exports = {
       }
     ]
   },
-
   'medical-information': {
     steps: [
       {
-        step: '/medical-history',
-        field: 'new-renew-has-seen-doctor'
-      },
-      {
-        step: '/medical-history',
-        field: 'new-renew-received-treatment'
+        step: '/medical-declaration',
+        field: 'medical-declaration',
+        // TODO: can this be configured in translation?
+        parse: value =>
+          value ? 'I have read and agree to the medical declarations' : ''
       }
     ]
-  }
+  },
+    'medical-information': {
+      steps: [
+        {
+          step: '/medical-history',
+          field: 'new-renew-has-seen-doctor'
+        },
+        {
+          step: '/medical-history',
+          field: 'new-renew-received-treatment'
+        }
+      ]
+    }
 };
