@@ -59,28 +59,22 @@ module.exports = {
     mixin: 'checkbox',
     validate: ['required']
   },
-    'new-renew-has-seen-doctor': {
-      mixin: 'radio-group',
-      options: [
-        {value: 'yes'},
-        {value: 'no'}
-      ],
-      validate: ['required'],
-      className: ['govuk-radios', 'govuk-radios--inline'],
-      legend: {
-        className: 'govuk-fieldset__legend'
-      }
-    },
-    'new-renew-received-treatment': {
-      mixin: 'radio-group',
-      options: [
-        {value: 'yes'},
-        {value: 'no'}
-      ],
-      validate: ['required'],
-      className: ['govuk-radios', 'govuk-radios--inline'],
-      legend: {
-        className: 'govuk-fieldset__legend'
-      }
+  'new-renew-has-seen-doctor': {
+    mixin: 'radio-group',
+    options: [{ value: 'yes' }, { value: 'no' }],
+    validate: ['required'],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-fieldset__legend'
     }
+  },
+  'new-renew-received-treatment': {
+    mixin: 'radio-group',
+    options: [{ value: 'yes' }, { value: 'no' }],
+    validate: ['required'],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: 'govuk-fieldset__legend'
+    }
+  }
 };
