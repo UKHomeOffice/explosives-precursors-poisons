@@ -73,13 +73,10 @@ spec:
             - name: AWS_ACCESS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-                  # temporarily using epp-notprod-s3 until ACP creates epp-s3-branch s3 bucket              
-                  # name: epp-s3-branch
-                  name: epp-notprod-s3
-                  # temporarily using epp-notprod-s3 until ACP creates epp-s3-uat s3 bucket              
-                  # name: epp-s3-uat
-                  name: epp-notprod-s3
+                  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}            
+                  name: epp-s3-branch
+                  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}          
+                  name: epp-s3-uat
                   {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
                   name: epp-s3-stg
                   {{ else }}
@@ -91,13 +88,10 @@ spec:
                 secretKeyRef:
               valueFrom:
                 secretKeyRef:
-                  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-                  # temporarily using epp-notprod-s3 until ACP creates epp-s3-branch s3 bucket              
-                  # name: epp-s3-branch
-                  name: epp-notprod-s3
-                  # temporarily using epp-notprod-s3 until ACP creates epp-s3-uat s3 bucket              
-                  # name: epp-s3-uat
-                  name: epp-notprod-s3
+                  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}            
+                  name: epp-s3-branch
+                  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}          
+                  name: epp-s3-uat
                   {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
                   name: epp-s3-stg
                   {{ else }}
@@ -107,13 +101,10 @@ spec:
             - name: AWS_KMS_KEY_ID
               valueFrom:
                 secretKeyRef:
-                  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-                  # temporarily using epp-notprod-s3 until ACP creates epp-s3-branch s3 bucket              
-                  # name: epp-s3-branch
-                  name: epp-notprod-s3
-                  # temporarily using epp-notprod-s3 until ACP creates epp-s3-uat s3 bucket              
-                  # name: epp-s3-uat
-                  name: epp-notprod-s3
+                  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}            
+                  name: epp-s3-branch
+                  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}          
+                  name: epp-s3-uat
                   {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
                   name: epp-s3-stg
                   {{ else }}
@@ -123,13 +114,10 @@ spec:
             - name: AWS_BUCKET
               valueFrom:
                 secretKeyRef:
-                  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
-                  # temporarily using epp-notprod-s3 until ACP creates epp-s3-branch s3 bucket              
-                  # name: epp-s3-branch
-                  name: epp-notprod-s3
-                  # temporarily using epp-notprod-s3 until ACP creates epp-s3-uat s3 bucket              
-                  # name: epp-s3-uat
-                  name: epp-notprod-s3
+                  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}            
+                  name: epp-s3-branch
+                  {{ else if eq .KUBE_NAMESPACE .UAT_ENV }}          
+                  name: epp-s3-uat
                   {{ else if eq .KUBE_NAMESPACE .STG_ENV }}
                   name: epp-s3-stg
                   {{ else }}
