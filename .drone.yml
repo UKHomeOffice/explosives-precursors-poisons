@@ -40,15 +40,6 @@ linting: &linting
   commands:
     - yarn run test:lint
 
-### Commenting these following steps until requirements confirmed by Devs
-
-# unit_tests: &unit_tests
-#   <<: *node_image
-#   environment:
-#     NOTIFY_STUB: true
-#   commands:
-#     - yarn run test:unit
-
 ### Commenting these following steps until missing test folder is added by Devs fixes pipeline issue
 
 # sonar_scanner: &sonar_scanner
@@ -56,25 +47,6 @@ linting: &linting
 #   image: quay.io/ukhomeofficedigital/sonar-scanner-nodejs:latest
 #   commands:
 #     - sonar-scanner -Dproject.settings=./sonar-project.properties
-
-ui_integration_tests: &ui_integration_tests
-  <<: *node_image
-  environment:
-    NOTIFY_STUB: true
-  commands:
-    - yarn run test:ui-integration
-
-accessibility_tests: &accessibility_tests
-  pull: if-not-exists
-  image: buildkite/puppeteer:8.0.0@sha256:b6cebc17bfa8e7a7abfc3ab14d6f2ddbdf42b9e81b8ad786c6693385665998d5
-  environment:
-    NOTIFY_STUB: true
-    ENVIRONMENT: DRONE
-  volumes:
-    - name: dockersock
-      path: /root/.dockersock
-  commands:
-    - yarn run test:accessibility
 
 steps:
   - name: clone_repos
@@ -135,17 +107,6 @@ steps:
       event: [push, pull_request]
     depends_on:
       - setup
-  
-  # - name: unit_tests
-  #   <<: *unit_tests
-  #   when:
-  #     branch:
-  #       include:
-  #         - master
-  #         - feature/*
-  #     event: [push, pull_request]
-  #   depends_on:
-  #     - setup
 
   # - name: sonar_scanner
   #   <<: *sonar_scanner
@@ -171,7 +132,6 @@ steps:
       event: [push, pull_request]
     depends_on:
       - linting
-      # - unit_tests
 
   - name: image_to_ecr
     pull: if-not-exists
@@ -192,7 +152,6 @@ steps:
       event: [push, pull_request]
     depends_on:
       - linting
-      # - unit_tests
 
   # Trivy Security Scannner for scanning nodejs packages in Yarn
   - name: scan_node_packages
