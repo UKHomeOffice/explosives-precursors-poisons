@@ -7,12 +7,6 @@ const dateFormatter = new Intl.DateTimeFormat(
 );
 
 module.exports = {
-  sectionHeader: [
-    {
-      step: '/enter-license-number',
-      field: 'new-renew-license-number'
-    }
-  ],
   'your-name': {
     steps: [
       {
@@ -67,6 +61,14 @@ module.exports = {
 
           return formattedOtherNameDetails;
         }
+      }
+    ]
+  },
+  'applicant-details': {
+    steps: [
+      {
+        step: '/licence-number',
+        field: 'new-renew-licence-number'
       }
     ]
   },
