@@ -61,7 +61,7 @@
   },
   "new-renew-your-height": {
     "required": "Enter your height in centimetres",
-    "containsDecimal": "Height must not contain a decimal place, like '155.5cm'",
+    "isWithoutFullStop": "Height must not contain a decimal place, like '155.5cm'",
     "numeric": "Height must only contain numbers",
     "min": "Height must be between 50 and 300cm",
     "max": "Height must be between 50 and 300cm",

@@ -1,11 +1,8 @@
 const dateComponent = require('hof').components.date;
 const titles = require('../../../utilities/constants/titles');
 const countries = require('../../../utilities/constants/countries');
+const { isWithoutFullStop } = require('../../../utilities/helpers');
 
-// TODO: Move this to Utils and add tests
-const containsDecimal = value => {
-  return !value.includes('.');
-};
 
 module.exports = {
   'new-renew-title': {
@@ -157,7 +154,7 @@ module.exports = {
     validate: [
       'required',
       'notUrl',
-      containsDecimal,
+      isWithoutFullStop,
       'numeric',
       {
         type: 'min',

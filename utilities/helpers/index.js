@@ -58,8 +58,13 @@ const isLicenceValid = req => {
   };
 };
 
+const isWithoutFullStop = value => {
+  return !value.includes('.');
+};
 
 module.exports = {
   isLicenceValid,
-  isApplicationType
+  isApplicationType,
+  validLicenceNumber,
+  isWithoutFullStop
 };
