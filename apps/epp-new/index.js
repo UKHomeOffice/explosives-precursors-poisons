@@ -3,6 +3,7 @@ const sectionCounter = require('./behaviours/section-counter');
 const checkBackLink = require('./behaviours/check-back-link');
 const validateAndRedirect = require('./behaviours/home-redirection');
 const summary = hof.components.summary;
+const ConfirmationDisplay = require('./behaviours/confirmation-type');
 
 module.exports = {
   name: 'EPP form',
@@ -404,7 +405,7 @@ module.exports = {
       }
     },
     '/confirm': {
-      behaviours: [summary],
+      behaviours: [summary, ConfirmationDisplay],
       sections: require('./sections/summary-data-sections'),
       next: '/declaration',
       locals: {
