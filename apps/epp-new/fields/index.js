@@ -79,27 +79,27 @@ module.exports = {
       className: 'govuk-fieldset__legend'
     }
   },
-    'new-renew-other-country-nationality': {
-      mixin: 'select',
-      className: ['typeahead'],
-      labelClassName: 'bold',
-      options: [
-        {
-          value: '',
-          label:
-            'fields.new-renew-other-country-nationality.options.none_selected'
-        }
-      ].concat(countries),
-      validate: ['required']
-    },
-    'new-renew-date-fr': dateComponent('new-renew-date-fr', {
-      mixin: 'input-date',
-      legend: { className: 'bold' },
-      validate: ['date', 'before']
-    }),
-    'new-renew-date-to': dateComponent('new-renew-date-to', {
-      mixin: 'input-date',
-      legend: { className: 'bold' },
-      validate: ['date', 'before']
-    })
+  'new-renew-other-country-nationality': {
+    mixin: 'select',
+    className: ['typeahead'],
+    labelClassName: 'bold',
+    options: [
+      {
+        value: '',
+        label:
+          'fields.new-renew-other-country-nationality.options.none_selected'
+      }
+    ].concat(countries),
+    validate: ['required']
+  },
+  'new-renew-date-fr': dateComponent('new-renew-date-fr', {
+    mixin: 'input-date',
+    legend: { className: 'bold' },
+    validate: ['date', 'before']
+  }),
+  'new-renew-date-to': dateComponent('new-renew-date-to', {
+    mixin: 'input-date',
+    legend: { className: 'bold' },
+    validate: ['date', 'before']
+  })
 };
