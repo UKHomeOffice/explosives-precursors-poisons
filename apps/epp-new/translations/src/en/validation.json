@@ -29,5 +29,11 @@
     },
     "medical-declaration": {
         "required" : "Confirm you have read and agree to this medical declaration"
-    }
+    },
+  "new-renew-has-seen-doctor":{
+    "required": "Select if you have seen a doctor for any mental health-related problems"
+  },
+  "new-renew-received-treatment" : {
+    "required": "Select if you have ever had any drug or alcohol-related health problems?"
+  }
 }

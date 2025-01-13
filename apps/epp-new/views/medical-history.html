@@ -1,0 +1,19 @@
+{{<partials-page}}
+ {{$page-content}}
+  <div>
+    <p class="govuk-body">{{#t}}pages.medical-history.paragraph1{{/t}}</p>
+    <p class="govuk-body">{{#t}}pages.medical-history.paragraph2{{/t}}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{#t}}pages.medical-history.listElement1{{/t}}</li>
+        <li>{{#t}}pages.medical-history.listElement2{{/t}}</li>
+        <li>{{#t}}pages.medical-history.listElement3{{/t}}</li>
+        <li>{{#t}}pages.medical-history.listElement4{{/t}}</li>
+        <li>{{#t}}pages.medical-history.listElement5{{/t}}</li>
+    </ul>
+  </div>
+  {{#fields}}
+    {{#renderField}}{{/renderField}}
+  {{/fields}}
+    {{#input-submit}}continue{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}
