@@ -272,8 +272,15 @@ module.exports = {
       }
     },
     '/medical-history': {
-      fields: [],
-      // add fork for medical-form
+      fields: ['new-renew-has-seen-doctor', 'new-renew-received-treatment'],
+      forks: [{
+        target: '/medical-form',
+        continueOnEdit: true,
+        condition: {
+          field: 'new-renew-received-treatment',
+          value: 'yes'
+        }
+      }],
       next: '/doctor-details',
       locals: {
         sectionNo: {

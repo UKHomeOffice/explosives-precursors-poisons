@@ -66,100 +66,118 @@ module.exports = {
     mixin: 'checkbox',
     validate: ['required']
   },
-  'new-renew-dob': dateComponent('new-renew-dob', {
-    mixin: 'input-date',
-    legend: { className: 'bold' },
-    validate: ['required', 'date', 'before']
-  }),
-  'new-renew-birth-place': {
-    mixin: 'input-text',
-    labelClassName: 'bold',
-    validate: [
-      'required',
-      { type: 'minlength', arguments: 2 },
-      { type: 'maxlength', arguments: 250 },
-      'notUrl'
-    ]
-  },
-  'new-renew-birth-country': {
-    mixin: 'select',
-    className: ['typeahead'],
-    labelClassName: 'bold',
-    options: [
-      {
-        value: '',
-        label:
-          'fields.new-renew-other-country-nationality.options.none_selected'
-      }
-    ].concat(countries),
-    validate: ['required']
-  },
-  'new-renew-country-nationality': {
-    mixin: 'select',
-    className: ['typeahead'],
-    labelClassName: 'bold',
-    options: [
-      {
-        value: '',
-        label:
-          'fields.new-renew-other-country-nationality.options.none_selected'
-      }
-    ].concat(countries),
-    validate: ['required']
-  },
-  'new-renew-more-nationalities': {
+  'new-renew-has-seen-doctor': {
     mixin: 'radio-group',
-    options: [
-      { value: 'yes', label: 'Yes' },
-      { value: 'no', label: 'No' }
-    ],
-    validate: 'required',
+    options: [{ value: 'yes' }, { value: 'no' }],
+    validate: ['required'],
     className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
-      className: 'govuk-fieldset__legend govuk-fieldset__legend--s'
+      className: 'govuk-fieldset__legend'
     }
   },
-  'new-renew-your-sex': {
+  'new-renew-received-treatment': {
     mixin: 'radio-group',
-    options: [
-      { value: 'male', label: 'Male' },
-      { value: 'female', label: 'Female' },
-      { value: 'x', label: 'X or other' }
-    ],
-    validate: 'required',
-    className: ['govuk-radios'],
+    options: [{ value: 'yes' }, { value: 'no' }],
+    validate: ['required'],
+    className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
-      className: 'govuk-fieldset__legend govuk-fieldset__legend--s'
+      className: 'govuk-fieldset__legend'
     }
   },
-  'new-renew-your-height': {
-    mixin: 'input-text',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
-    labelClassName: 'bold',
-    validate: [
-      'required',
-      'notUrl',
-      containsDecimal,
-      'numeric',
-      {
-        type: 'min',
-        arguments: 50
-      },
-      {
-        type: 'max',
-        arguments: 300
+    'new-renew-dob': dateComponent('new-renew-dob', {
+      mixin: 'input-date',
+      legend: { className: 'bold' },
+      validate: ['required', 'date', 'before']
+    }),
+    'new-renew-birth-place': {
+      mixin: 'input-text',
+      labelClassName: 'bold',
+      validate: [
+        'required',
+        { type: 'minlength', arguments: 2 },
+        { type: 'maxlength', arguments: 250 },
+        'notUrl'
+      ]
+    },
+    'new-renew-birth-country': {
+      mixin: 'select',
+      className: ['typeahead'],
+      labelClassName: 'bold',
+      options: [
+        {
+          value: '',
+          label:
+            'fields.new-renew-other-country-nationality.options.none_selected'
+        }
+      ].concat(countries),
+      validate: ['required']
+    },
+    'new-renew-country-nationality': {
+      mixin: 'select',
+      className: ['typeahead'],
+      labelClassName: 'bold',
+      options: [
+        {
+          value: '',
+          label:
+            'fields.new-renew-other-country-nationality.options.none_selected'
+        }
+      ].concat(countries),
+      validate: ['required']
+    },
+    'new-renew-more-nationalities': {
+      mixin: 'radio-group',
+      options: [
+        { value: 'yes', label: 'Yes' },
+        { value: 'no', label: 'No' }
+      ],
+      validate: 'required',
+      className: ['govuk-radios', 'govuk-radios--inline'],
+      legend: {
+        className: 'govuk-fieldset__legend govuk-fieldset__legend--s'
       }
-    ],
-    attributes: [{ prefix: 'cm' }]
-  },
-  'new-renew-occupation': {
-    mixin: 'input-text',
-    labelClassName: 'bold',
-    validate: [
-      'required',
-      { type: 'minlength', arguments: 2 },
-      { type: 'maxlength', arguments: 250 },
-      'notUrl'
-    ]
-  }
+    },
+    'new-renew-your-sex': {
+      mixin: 'radio-group',
+      options: [
+        { value: 'male', label: 'Male' },
+        { value: 'female', label: 'Female' },
+        { value: 'x', label: 'X or other' }
+      ],
+      validate: 'required',
+      className: ['govuk-radios'],
+      legend: {
+        className: 'govuk-fieldset__legend govuk-fieldset__legend--s'
+      }
+    },
+    'new-renew-your-height': {
+      mixin: 'input-text',
+      className: ['govuk-input', 'govuk-!-width-two-thirds'],
+      labelClassName: 'bold',
+      validate: [
+        'required',
+        'notUrl',
+        containsDecimal,
+        'numeric',
+        {
+          type: 'min',
+          arguments: 50
+        },
+        {
+          type: 'max',
+          arguments: 300
+        }
+      ],
+      attributes: [{ prefix: 'cm' }]
+    },
+    'new-renew-occupation': {
+      mixin: 'input-text',
+      labelClassName: 'bold',
+      validate: [
+        'required',
+        { type: 'minlength', arguments: 2 },
+        { type: 'maxlength', arguments: 250 },
+        'notUrl'
+      ]
+    }
 };
