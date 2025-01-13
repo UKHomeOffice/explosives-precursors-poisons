@@ -192,11 +192,17 @@ module.exports = {
       forks: [
         {
           target: '/add-licence-refusal',
-          condition: req => req.sessionModel.get('new-renew-other-refused-licence') === 'yes'
+          condition: {
+            field: 'new-renew-other-refused-licence',
+            value: 'yes'
+          }
         },
         {
           target: '/criminal-record',
-          condition: req => req.sessionModel.get('new-renew-other-refused-licence') === 'no'
+          condition: {
+            field: 'new-renew-other-refused-licence',
+            value: 'no'
+          }
         }
       ],
       locals: {
