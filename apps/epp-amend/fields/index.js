@@ -56,25 +56,44 @@ module.exports = {
     mixin: 'input-text',
     labelClassName: 'govuk-label--s',
     className: ['govuk-input', 'govuk-!-width-two-thirds'],
-    validate: ['required',   { type: 'maxlength', arguments: [250]}]
-
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
   },
   'amend-address-2': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--s',
     className: ['govuk-input', 'govuk-!-width-two-thirds'],
-    validate: [{ type: 'maxlength', arguments: [250]}]
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
   },
   'amend-town-or-city': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--s',
     className: ['govuk-input', 'govuk-!-width-two-thirds'],
-    validate: ['required', { type: 'maxlength', arguments: [250]}]
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
   },
   'amend-county': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    validate: [
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
   },
   'amend-postcode': {
     mixin: 'input-text',
