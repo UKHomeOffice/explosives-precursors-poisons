@@ -33,7 +33,11 @@
     "listElement5": "any other mental health conditions you consider relevant"
   },
   "your-details":{
-    "header": "Your details"
+    "header": "Your details",
+    "your-sex-summary": "Why we ask for your sex",
+    "your-sex-description": "We need to include this information in our internal database of licence holders. Your sex does not affect if you can get a licence.",
+    "your-height-summary": "Why we ask for your height",
+    "your-height-description": "We need to include this information in our internal database of licence holders. Your height does not affect if you can get a licence."
   },
 
   "confirm": {
