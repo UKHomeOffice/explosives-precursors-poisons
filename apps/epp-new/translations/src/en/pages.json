@@ -22,6 +22,16 @@
     "listElement1": "my doctor may share personal data with the Home Office concerning my physical and mental health, to enable them to make a decision about my application, and I consent to this processing of my personal data.",
     "listElement2": "the Home Office will tell my doctor the result of my application for an EPP licence and may also consult my doctor during the term of the licence."
   },
+  "medical-history": {
+    "header": "Your medical history",
+    "paragraph1": "You must tell us about any mental health problems you have received medical advice or treatment for.",
+    "paragraph2": "Mental health problems include:",
+    "listElement1": "suicidal thoughts or self-harm",
+    "listElement2": "depression",
+    "listElement3": "mania, bipolar disorder or psychotic illness",
+    "listElement4": "personality disorders",
+    "listElement5": "any other mental health conditions you consider relevant"
+  },
 
   "confirm": {
     "header": "Check your answers",
@@ -54,6 +64,12 @@
       },
       "other-names": {
         "label": "Other name"
+      },
+      "new-renew-has-seen-doctor":{
+        "label": "Seen a doctor for metal health-related problems?"
+      },
+      "new-renew-received-treatment" : {
+        "label": "Have you ever had, or received treatment for, any drug or alcohol-related health problems?"
       }
     }
   },

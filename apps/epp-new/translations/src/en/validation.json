@@ -57,5 +57,11 @@
         "before": "Date you stopped using this name must be in the past",
         "maxlength": "Last name must be between 1 and 250 characters",
         "notUrl": "Your answer must not include a URL"
-    }
+    },
+    "new-renew-has-seen-doctor":{
+    "required": "Select if you have seen a doctor for any mental health-related problems"
+  },
+    "new-renew-received-treatment" : {
+    "required": "Select if you have ever had any drug or alcohol-related health problems?"
+  }
 }
