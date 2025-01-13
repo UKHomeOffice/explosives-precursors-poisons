@@ -68,7 +68,15 @@ module.exports = {
         'new-renew-your-height',
         'new-renew-occupation'
       ],
-      // add fork /other-nationalities
+      forks: [
+        {
+          target: '/other-nationalities',
+          condition: {
+            field: 'new-renew-more-nationalities',
+            value: 'yes'
+          }
+        }
+      ],
       next: '/home-address',
       locals: {
         sectionNo: {

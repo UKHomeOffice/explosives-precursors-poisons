@@ -2,8 +2,9 @@ const dateComponent = require('hof').components.date;
 const titles = require('../../../utilities/constants/titles');
 const countries = require('../../../utilities/constants/countries');
 
+// TODO: Move this to Utils and add tests
 const containsDecimal = value => {
-  return value.includes('.');
+  return !value.includes('.');
 };
 
 module.exports = {
@@ -76,7 +77,8 @@ module.exports = {
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
-      { type: 'maxlength', arguments: 250 }
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
     ]
   },
   'new-renew-birth-country': {
@@ -120,8 +122,8 @@ module.exports = {
   'new-renew-your-sex': {
     mixin: 'radio-group',
     options: [
-      { value: 'yes', label: 'Yes' },
-      { value: 'no', label: 'No' },
+      { value: 'male', label: 'Male' },
+      { value: 'female', label: 'Female' },
       { value: 'x', label: 'X or other' }
     ],
     validate: 'required',
@@ -136,6 +138,7 @@ module.exports = {
     labelClassName: 'bold',
     validate: [
       'required',
+      'notUrl',
       containsDecimal,
       'numeric',
       {
@@ -146,7 +149,7 @@ module.exports = {
         type: 'max',
         arguments: 300
       }
-    ], // TODO: add further validations
+    ],
     attributes: [{ prefix: 'cm' }]
   },
   'new-renew-occupation': {
@@ -155,7 +158,8 @@ module.exports = {
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
-      { type: 'maxlength', arguments: 250 }
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
     ]
   }
 };
