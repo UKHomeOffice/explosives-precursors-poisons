@@ -69,6 +69,14 @@ module.exports = {
         // TODO: can this be configured in translation?
         parse: value =>
           value ? 'I have read and agree to the medical declarations' : ''
+      },
+      {
+        step: '/medical-history',
+        field: 'new-renew-has-seen-doctor'
+      },
+      {
+        step: '/medical-history',
+        field: 'new-renew-received-treatment'
       }
     ]
   }
