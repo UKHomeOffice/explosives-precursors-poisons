@@ -1,5 +1,11 @@
 'use strict';
 
+const config = require('../../../config');
+const dateFormatter = new Intl.DateTimeFormat(
+  config.dateLocales,
+  config.dateFormat
+);
+
 module.exports = {
   'your-name': {
     steps: [
@@ -30,6 +36,39 @@ module.exports = {
       {
         step: '/licence-number',
         field: 'new-renew-licence-number'
+      },
+      {
+        step: '/your-details',
+        field: 'new-renew-dob',
+        parse: date => date && dateFormatter.format(new Date(date))
+      },
+      {
+        step: '/your-details',
+        field: 'new-renew-birth-place'
+      },
+      {
+        step: '/your-details',
+        field: 'new-renew-birth-country'
+      },
+      {
+        step: '/your-details',
+        field: 'new-renew-country-nationality'
+      },
+      {
+        step: '/your-details',
+        field: 'new-renew-more-nationalities'
+      },
+      {
+        step: '/your-details',
+        field: 'new-renew-your-sex'
+      },
+      {
+        step: '/your-details',
+        field: 'new-renew-your-height'
+      },
+      {
+        step: '/your-details',
+        field: 'new-renew-occupation'
       }
     ]
   },

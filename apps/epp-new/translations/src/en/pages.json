@@ -77,6 +77,15 @@
       },
       "new-renew-received-treatment" : {
         "label": "Have you ever had, or received treatment for, any drug or alcohol-related health problems?"
+      },
+      "new-renew-more-nationalities": {
+        "label": "More than one nationality?"
+      },
+      "new-renew-your-sex": {
+        "label": "Sex"
+      },
+      "new-renew-your-height": {
+        "label": "Height (in centimetres)"
       }
     }
   },
