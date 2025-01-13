@@ -40,7 +40,7 @@
   "medical-declaration": {
         "label" : "I have read and agree to this medical declaration"
     },
-  "new-renew-has-seen-doctor":{
+  "new-renew-has-seen-doctor": {
     "legend": "In the last 10 years, have you seen a doctor or received professional medical advice or treatment for any mental health-related problems?",
     "options": {
       "yes": {
@@ -51,7 +51,7 @@
       }
     }
   },
-  "new-renew-received-treatment" : {
+  "new-renew-received-treatment": {
     "legend": "Have you ever had, or received treatment for, any drug or alcohol-related health problems?",
     "options": {
       "yes": {
@@ -61,6 +61,38 @@
         "label": "No"
       }
     }
-
+  },
+  "new-renew-other-firearms-licence": {
+    "legend": "Do you have, or have you ever had, a firearms licence?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "new-renew-other-shotgun-licence": {
+    "legend": "Do you have, or have you ever had, a shotgun licence?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "new-renew-other-refused-licence": {
+    "legend": "Have you ever had a shotgun or firearms licence refused or revoked?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }

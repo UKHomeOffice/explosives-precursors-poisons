@@ -1,7 +1,11 @@
 {
-  "enter-license-number": {
+  "enter-licence-number": {
     "title": "Enter your licence number",
     "header": "Enter your licence number"
+  },
+  "other-licences": {
+    "title": "Other licences",
+    "header": "Other licences"
   },
   "your-name": {
     "title": "Your name",
