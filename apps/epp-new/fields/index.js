@@ -149,7 +149,7 @@ module.exports = {
   },
   'new-renew-your-height': {
     mixin: 'input-text',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    className: ['govuk-input', 'govuk-input--width-2'],
     labelClassName: 'bold',
     validate: [
       'required',
@@ -165,7 +165,7 @@ module.exports = {
         arguments: 300
       }
     ],
-    attributes: [{ prefix: 'cm' }]
+    attributes: [{ suffix: 'cm' }]
   },
   'new-renew-occupation': {
     mixin: 'input-text',
