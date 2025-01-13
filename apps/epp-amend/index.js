@@ -1,6 +1,6 @@
 const validateAndRedirect = require('./behaviours/home-redirection');
 const SummaryPageBehaviour = require('hof').components.summary;
-const ValidateLicenceNumber = require('./behaviours/licence-validator');
+const ValidateLicenceNumber = require('../epp-common/behaviours/licence-validator');
 const PostcodeValidation = require('../../utilities/helpers//postcode-validation');
 
 module.exports = {

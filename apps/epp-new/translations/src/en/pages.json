@@ -1,34 +1,59 @@
 {
-  "enter-license-number":{
-    "title":"Enter your licence number",
-    "header":"Enter your licence number"
+  "enter-license-number": {
+    "title": "Enter your licence number",
+    "header": "Enter your licence number"
   },
   "your-name": {
-    "title":"Your name",
-    "header":"Your name"
+    "title": "Your name",
+    "header": "Your name"
   },
   "other-names": {
-    "title":"Other names",
-    "header":"Other names"
+    "title": "Other names",
+    "header": "Other names"
   },
   "contact-details": {
-    "title":"What are your contact details?",
+    "title": "What are your contact details?",
     "header": "What are your contact details?"
   },
+  "medical-declaration": {
+    "header": "Medical declaration",
+    "paragraph1" : "I give permission for the Home Office to contact my doctor (GP or equivalent) and/or specialist to obtain factual details about my medical history in relation to this application. ",
+    "paragraph2" : "I understand that:",
+    "listElement1": "my doctor may share personal data with the Home Office concerning my physical and mental health, to enable them to make a decision about my application, and I consent to this processing of my personal data.",
+    "listElement2": "the Home Office will tell my doctor the result of my application for an EPP licence and may also consult my doctor during the term of the licence."
+  },
+  "medical-history": {
+    "header": "Your medical history",
+    "paragraph1": "You must tell us about any mental health problems you have received medical advice or treatment for.",
+    "paragraph2": "Mental health problems include:",
+    "listElement1": "suicidal thoughts or self-harm",
+    "listElement2": "depression",
+    "listElement3": "mania, bipolar disorder or psychotic illness",
+    "listElement4": "personality disorders",
+    "listElement5": "any other mental health conditions you consider relevant"
+  },
+
   "confirm": {
     "header": "Check your answers",
     "title": "Check your answers – Apply for an explosives precursors and poisons licence",
-    "submit-warning": "Check your answer before paying and submitting.",
+    "new-submit-warning": "Check your answer before paying and submitting.",
+    "renew-submit-warning": "Check your answer before paying and submitting your renewal application.",
     "sections": {
-      "sectionHeader": {
-        "header": "Personal Details"
+      "your-name": {
+        "header": "Applicant name"
+      },
+      "applicant-details": {
+        "header": "Applicant Details"
       },
       "new-renew-contact-details": {
         "header": "Contact details"
+      },
+      "medical-information":{
+        "header": "Medical information"
       }
     },
     "fields":{
-      "new-renew-license-number": {
+      "new-renew-licence-number": {
         "label": "Licence number"
       },
       "new-renew-phone-number": {
@@ -36,11 +61,20 @@
       },
       "new-renew-email": {
         "label": "Email address"
+      },
+      "medical-declaration": {
+        "label": "Medical declaration"
+      },
+      "new-renew-has-seen-doctor":{
+        "label": "Seen a doctor for metal health-related problems?"
+      },
+      "new-renew-received-treatment" : {
+        "label": "Have you ever had, or received treatment for, any drug or alcohol-related health problems?"
       }
     }
   },
   "complete": {
-    "header": "You submission have been sent",
+    "header": "Your submission has been sent",
     "content-copy-sent": "We have sent you a confirmation email",
     "content-whats-next": "What happens next",
     "content-respond-1": "This is a test paragraph",
