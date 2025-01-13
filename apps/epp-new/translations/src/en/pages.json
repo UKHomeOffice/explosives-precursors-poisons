@@ -38,10 +38,15 @@
 
   "confirm": {
     "header": "Check your answers",
-    "subheader": "Check your answers before paying and submitting your renewal application.",
+    "title": "Check your answers – Apply for an explosives precursors and poisons licence",
+    "new-submit-warning": "Check your answer before paying and submitting.",
+    "renew-submit-warning": "Check your answer before paying and submitting your renewal application.",
     "sections": {
       "your-name": {
         "header": "Applicant name"
+      },
+      "applicant-details": {
+        "header": "Applicant Details"
       },
       "new-renew-contact-details": {
         "header": "Contact details"
@@ -50,10 +55,8 @@
         "header": "Medical information"
       }
     },
-    "title": "Check your answers – Apply for an explosives precursors and poisons licence",
-    "submit-warning": "Check your answers before paying and submitting.",
-    "fields": {
-      "new-renew-license-number": {
+    "fields":{
+      "new-renew-licence-number": {
         "label": "Licence number"
       },
       "new-renew-phone-number": {

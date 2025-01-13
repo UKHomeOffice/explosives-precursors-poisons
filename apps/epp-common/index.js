@@ -27,7 +27,7 @@ module.exports = {
           }
         },
         {
-          target: '/new-and-renew/enter-license-number',
+          target: '/new-and-renew/licence-number',
           condition: {
             field: 'application-type',
             value: 'renew'
