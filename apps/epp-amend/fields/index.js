@@ -68,7 +68,6 @@ module.exports = {
     labelClassName: 'govuk-label--s',
     className: ['govuk-input', 'govuk-!-width-two-thirds'],
     validate: [
-      'required',
       { type: 'minlength', arguments: 2 },
       { type: 'maxlength', arguments: 250 },
       'notUrl'
