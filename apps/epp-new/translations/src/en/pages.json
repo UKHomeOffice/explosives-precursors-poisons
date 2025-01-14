@@ -69,12 +69,21 @@
       "medical-declaration": {
         "label": "Medical declaration"
       },
-      "new-renew-has-seen-doctor":{
+      "new-renew-has-seen-doctor": {
         "label": "Seen a doctor for metal health-related problems?"
       },
-      "new-renew-received-treatment" : {
+      "new-renew-received-treatment": {
         "label": "Have you ever had, or received treatment for, any drug or alcohol-related health problems?"
-      }
+      },
+      "new-renew-other-firearms-licence": {
+        "label": "Firearms licence?"
+      },
+        "new-renew-other-shotgun-licence": {
+          "label": "Shotgun licence?"
+        },
+        "new-renew-other-refused-licence": {
+          "label": "Ever had a licence refused or revoked?"
+        }
     }
   },
   "complete": {
