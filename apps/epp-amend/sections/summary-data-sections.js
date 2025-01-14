@@ -9,12 +9,12 @@ module.exports = {
   'amend-licence-number': {
     steps: [
       {
-        step: '/licence-number',
+        steps: '/licence-number',
         field: 'amend-licence-number'
       }
     ]
   },
-  'applicant-name': {
+  'amend-applicant-name': {
     steps: [
       {
         step: '/name-on-licence',
@@ -34,6 +34,43 @@ module.exports = {
       }
     ]
   },
+  'amend-date-of-birth': {
+    steps: [
+      {
+        step: '/date-of-birth',
+        field: 'amend-date-of-birth',
+        parse: date => date && dateFormatter.format(new Date(date))
+      }
+    ]
+  },
+  'amend-address-on-licence': {
+    steps: [
+      {
+        step: '/home-address',
+        field: 'amend-address-1'
+      },
+      {
+        step: '/home-address',
+        field: 'amend-address-2'
+      },
+      {
+        step: '/home-address',
+        field: 'amend-town-or-city'
+      },
+      {
+        step: '/home-address',
+        field: 'amend-county'
+      },
+      {
+        step: '/home-address',
+        field: 'amend-postcode'
+      },
+      {
+        step: '/home-address',
+        field: 'amend-country'
+      }
+    ]
+  },
   'amend-contact-details': {
     steps: [
       {
@@ -43,15 +80,6 @@ module.exports = {
       {
         steps: '/contact-details',
         field: 'amend-email'
-      }
-    ]
-  },
-  'amend-date-of-birth': {
-    steps: [
-      {
-        step: '/date-of-birth',
-        field: 'amend-date-of-birth',
-        parse: date => date && dateFormatter.format(new Date(date))
       }
     ]
   }

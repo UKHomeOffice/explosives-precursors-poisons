@@ -2,16 +2,8 @@
     "amend-licence-number": {
         "required": "Enter a licence number",
         "incorrect-format-licence": "Enter a real licence number",
-        "minlength": "Licence number must be between 13 and 16 characters",
-        "maxlength": "Licence number must be between 13 and 16 characters"
-    },
-    "amend-phone-number": {
-        "required": "Enter your telephone number",
-        "internationalPhoneNumber": "Enter a real telephone number"
-    },
-    "amend-email": {
-        "required": "Enter a contact email address",
-        "email": "Enter a real email address"
+        "licence-length-restriction": "Licence number must be between 13 and 16 characters",
+        "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer."
     },
     "amend-name-title" : {
         "required" : "Select your title"
@@ -34,5 +26,42 @@
       "required": "Enter your date of birth",
         "date": "Enter a real date",
         "before": "Your date of birth must be in the past"
-      }
+      },
+    "amend-address-1": {
+        "required" : "Enter address line 1, typically the building and street",
+        "minlength": "Address line 1 must be between 2 and 250 characters",
+        "maxlength": "Address line 1 must be between 2 and 250 characters",
+        "notUrl" : "Your answer must not include a URL"
+    },
+    "amend-address-2": {
+        "minlength": "Address line 2 must be between 2 and 250 characters",
+        "maxlength": "Address line 2 must be between 2 and 250 characters",
+        "notUrl" : "Your answer must not include a URL"
+    },
+    "amend-town-or-city": {
+        "required" : "Enter town or city",
+        "minlength": "Town or city must be between 2 and 250 characters",
+        "maxlength": "Town or city must be between 2 and 250 characters",
+        "notUrl" : "Your answer must not include a URL"
+    },
+    "amend-county":{
+        "minlength": "County, state or province must be between 2 and 250 characters",
+        "maxlength": "County, state or province must be between 2 and 250 characters",
+        "notUrl" : "Your answer must not include a URL"
+    },
+    "amend-postcode": {
+        "required" : "Enter a UK postcode",
+        "postcode" : "Enter a real UK postcode"
+    },
+    "amend-country": {
+        "required" : "Select a country of address"
+    },
+    "amend-phone-number": {
+        "required": "Enter your telephone number",
+        "internationalPhoneNumber": "Enter a real telephone number"
+    },
+    "amend-email": {
+        "required": "Enter a contact email address",
+        "email": "Enter a real email address"
+    }
 }

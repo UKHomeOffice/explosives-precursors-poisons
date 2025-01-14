@@ -1,6 +1,7 @@
 const validateAndRedirect = require('./behaviours/home-redirection');
 const SummaryPageBehaviour = require('hof').components.summary;
-const ValidateLicenceNumber = require('./behaviours/licence-validator');
+const ValidateLicenceNumber = require('../epp-common/behaviours/licence-validator');
+const PostcodeValidation = require('../../utilities/helpers//postcode-validation');
 
 module.exports = {
   name: 'EPP form',
@@ -14,7 +15,7 @@ module.exports = {
       backLink: '/application-type',
       fields: ['amend-licence-number'],
       next: '/name-on-licence',
-      locals: {captionHeading: 'Section 1 of 20'}
+      locals: { captionHeading: 'Section 1 of 20' }
     },
     '/name-on-licence': {
       fields: [
@@ -23,30 +24,33 @@ module.exports = {
         'amend-middlename',
         'amend-lastname'
       ],
-      next: '/date-of-birth'
+      next: '/date-of-birth',
+      locals: { captionHeading: 'Section 2 of 20' }
     },
     '/date-of-birth': {
       fields: ['amend-date-of-birth'],
-      next: '/section-four',
-      locals: {captionHeading: 'Section 3 of 20'}
+      next: '/home-address',
+      locals: { captionHeading: 'Section 3 of 20' }
     },
-    '/section-four': {
+    '/home-address': {
+      behaviours: [PostcodeValidation],
       fields: [
-        'amend-post-address-1',
-        'amend-post-address-2',
-        'amend-post-town-or-city',
-        'amend-post-county',
-        'amend-post-postcode',
-        'amend-post-country'
+        'amend-address-1',
+        'amend-address-2',
+        'amend-town-or-city',
+        'amend-county',
+        'amend-postcode',
+        'amend-country'
       ],
-      next: '/contact-details'
+      next: '/contact-details',
+      locals: { captionHeading: 'Section 4 of 20' }
     },
     '/contact-details': {
       fields: [
         'amend-phone-number',
         'amend-email'
       ],
-      locals: {captionHeading: 'Section 5 of 20'},
+      locals: { captionHeading: 'Section 5 of 20' },
       next: '/section-six'
     },
     '/section-six': {
