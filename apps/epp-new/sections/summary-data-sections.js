@@ -46,7 +46,7 @@ module.exports = {
       {
         step: '/other-license',
         field: 'new-renew-other-refused-licence'
-      },
+      }
     ]
   },
   'new-renew-contact-details': {
