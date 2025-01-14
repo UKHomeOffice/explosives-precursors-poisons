@@ -1,5 +1,5 @@
 {
-  "enter-license-number": {
+  "license-number": {
     "title": "Enter your licence number",
     "header": "Enter your licence number"
   },
@@ -46,7 +46,7 @@
         "header": "Applicant name"
       },
       "applicant-details": {
-        "header": "Applicant Details"
+        "header": "Applicant details"
       },
       "new-renew-contact-details": {
         "header": "Contact details"
