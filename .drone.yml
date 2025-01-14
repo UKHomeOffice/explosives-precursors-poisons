@@ -31,7 +31,6 @@ trigger:
   branch:
     <<: *include_default_and_feature_branches
 
-
 node_image: &node_image
   pull: if-not-exists
   image: node:20.18.0-alpine3.20@sha256:d504f23acdda979406cf3bdbff0dff7933e5c4ec183dda404ed24286c6125e60
@@ -40,6 +39,14 @@ linting: &linting
   <<: *node_image
   commands:
     - yarn run test:lint
+
+### Commenting these following steps until missing test folder is added by Devs fixes pipeline issue
+
+# sonar_scanner: &sonar_scanner
+#   pull: if-not-exists
+#   image: quay.io/ukhomeofficedigital/sonar-scanner-nodejs:latest
+#   commands:
+#     - sonar-scanner -Dproject.settings=./sonar-project.properties
 
 steps:
   - name: clone_repos
@@ -76,7 +83,7 @@ steps:
       - name: dockersock
         path: /root/.dockersock
     when:
-      event: [pull_request]
+      event: [pull_request, push]
     depends_on:
       - clone_repos
 
@@ -100,6 +107,15 @@ steps:
       event: [push, pull_request]
     depends_on:
       - setup
+
+  # - name: sonar_scanner
+  #   <<: *sonar_scanner
+  #   when:
+  #     branch:
+  #       include:
+  #         - master
+  #         - feature/*
+  #     event: [push, pull_request]
 
   - name: build_image
     pull: if-not-exists
@@ -176,6 +192,7 @@ steps:
     depends_on:
       - clone_repos
       - image_to_ecr
+
   - name: deploy_to_uat
     pull: if-not-exists
     image: quay.io/ukhomeofficedigital/kd:v1.14.0
@@ -194,6 +211,7 @@ steps:
     depends_on:
       - clone_repos
       - image_to_ecr
+
   # Get pull request branch so correct PR UAT environment is torn down in the tear_down_branch step that follows
   - name: get_pr_branch
     pull: if-not-exists
@@ -211,6 +229,7 @@ steps:
     when:
       branch: master
       event: push
+
   # Tear down pull request UAT environment
   - name: tear_down_branch
     pull: if-not-exists
@@ -230,7 +249,8 @@ steps:
       event: push
     depends_on:
       - get_pr_branch
-   # Deploy to Staging environment
+
+  # Deploy to Staging environment
   - name: deploy_to_stg
     pull: if-not-exists
     image: quay.io/ukhomeofficedigital/kd:v1.14.0
@@ -247,6 +267,7 @@ steps:
     depends_on:
       - clone_repos
       - image_to_ecr
+
   ## Checks a build being promoted has passed, is on master which effectively means a healthy build on Staging
   - name: sanity_check_build_prod
     pull: if-not-exists
@@ -334,6 +355,8 @@ steps:
     when:
       cron: security_scans
       event: cron
+    depends_on:
+      - cron_clone_repos
 
   - name: cron_trivy_scan_node_packages
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
@@ -348,6 +371,8 @@ steps:
     when:
       cron: security_scans
       event: cron
+    depends_on:
+      - cron_build_image   
 
   - name: cron_trivy_scan_image_os
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest

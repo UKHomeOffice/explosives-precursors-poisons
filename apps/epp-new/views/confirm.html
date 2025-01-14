@@ -4,6 +4,14 @@
     <div>
       <p class="govuk-body">{{#t}}pages.confirm.subheader{{/t}}</p>      
     </div>
+ {{$page-content}}
+ {{^isRenewRoute}}
+ <p class="govuk-body">{{#t}}pages.confirm.new-submit-warning{{/t}}</p>
+{{/isRenewRoute}}
+  {{#isRenewRoute}}
+    <p class="govuk-body">{{#t}}pages.confirm.renew-submit-warning{{/t}}</p>
+  {{/isRenewRoute}}
+    
     {{#rows}}
       {{> partials-summary-table}}
     {{/rows}}

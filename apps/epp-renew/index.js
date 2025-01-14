@@ -1,5 +1,6 @@
 
 const validateAndRedirect = require('./behaviours/home-redirection');
+const ValidateLicenceNumber = require('../epp-common/behaviours/licence-validator');
 
 module.exports = {
   name: 'EPP form',
@@ -8,9 +9,9 @@ module.exports = {
   translations: 'apps/epp-renew/translations',
   baseUrl: '/new-and-renew',
   steps: {
-    '/enter-license-number': {
-      behaviours: [validateAndRedirect],
-      fields: ['new-renew-license-number'],
+    '/licence-number': {
+      behaviours: [validateAndRedirect, ValidateLicenceNumber],
+      fields: ['new-renew-licence-number'],
       backLink: '/application-type',
       next: '/your-name',
       locals: {

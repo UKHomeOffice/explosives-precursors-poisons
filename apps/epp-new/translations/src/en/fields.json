@@ -36,5 +36,31 @@
   "new-renew-email": {
     "label": "Email address",
     "hint": "Where we will contact you about the outcome of your application"
+  },
+  "medical-declaration": {
+        "label" : "I have read and agree to this medical declaration"
+    },
+  "new-renew-has-seen-doctor":{
+    "legend": "In the last 10 years, have you seen a doctor or received professional medical advice or treatment for any mental health-related problems?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "new-renew-received-treatment" : {
+    "legend": "Have you ever had, or received treatment for, any drug or alcohol-related health problems?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+
   }
 }

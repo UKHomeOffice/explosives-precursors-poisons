@@ -31,6 +31,14 @@ module.exports = {
       }
     ]
   },
+  'applicant-details': {
+    steps: [
+      {
+        step: '/licence-number',
+        field: 'new-renew-licence-number'
+      }
+    ]
+  },
   'new-renew-contact-details': {
     steps: [
       {
@@ -40,6 +48,25 @@ module.exports = {
       {
         step: '/contact-details',
         field: 'new-renew-email'
+      }
+    ]
+  },
+  'medical-information': {
+    steps: [
+      {
+        step: '/medical-declaration',
+        field: 'medical-declaration',
+        // TODO: can this be configured in translation?
+        parse: value =>
+          value ? 'I have read and agree to the medical declarations' : ''
+      },
+      {
+        step: '/medical-history',
+        field: 'new-renew-has-seen-doctor'
+      },
+      {
+        step: '/medical-history',
+        field: 'new-renew-received-treatment'
       }
     ]
   }

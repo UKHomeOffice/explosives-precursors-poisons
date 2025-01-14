@@ -1,5 +1,10 @@
 {
   "application-type": {
     "required": "Select what type of application you need to make"
-  }
+  },
+  "amend-licence-number": {
+    "required": "Enter a licence number",
+    "incorrect-format-licence": "Enter a real licence number",
+    "licence-length-restriction": "Licence number must be between 13 and 16 characters"
+}
 }
