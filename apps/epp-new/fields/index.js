@@ -104,7 +104,7 @@ module.exports = {
       {
         value: '',
         label:
-          'fields.new-renew-other-country-nationality.options.none_selected'
+          'fields.new-renew-birth-country.options.none_selected'
       }
     ].concat(countries),
     validate: ['required']
@@ -117,7 +117,7 @@ module.exports = {
       {
         value: '',
         label:
-          'fields.new-renew-other-country-nationality.options.none_selected'
+          'fields.new-renew-country-nationality.options.none_selected'
       }
     ].concat(countries),
     validate: ['required']

@@ -73,11 +73,17 @@
   },
   "new-renew-birth-country":{
     "label": "Country of birth",
-    "hint": "Select a country from the list"
+    "hint": "Select a country from the list",
+    "options": {
+      "none_selected": "Select a country"
+    }
   },
   "new-renew-country-nationality":{
     "label": "Country of nationality",
-    "hint": "For multiple nationalities, enter your main country of nationality first"
+    "hint": "For multiple nationalities, enter your main country of nationality first",
+    "options": {
+      "none_selected": "Select a country"
+    }
   },
   "new-renew-more-nationalities":{
     "legend": "Do you have more than one nationality?",
