@@ -2,7 +2,7 @@ node_modules
 documentation
 public
 apps/**/translations/**/default.json
-LICENCE.md
+LICENSE.md
 README.md
 CONTRIBUTING.md
 npm-debug.log

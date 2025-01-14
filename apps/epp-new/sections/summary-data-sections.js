@@ -33,6 +33,22 @@ module.exports = {
       }
     ]
   },
+  'other-licences': {
+    steps: [
+      {
+        step: '/other-license',
+        field: 'new-renew-other-firearms-licence'
+      },
+      {
+        step: '/other-license',
+        field: 'new-renew-other-shotgun-licence'
+      },
+      {
+        step: '/other-license',
+        field: 'new-renew-other-refused-licence'
+      },
+    ]
+  },
   'new-renew-contact-details': {
     steps: [
       {
