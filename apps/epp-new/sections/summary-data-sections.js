@@ -37,20 +37,20 @@ module.exports = {
         step: '/licence-number',
         field: 'new-renew-licence-number'
       },
-        {
-          step: '/other-nationalities',
-          field: 'new-renew-other-country-nationality'
-        },
-        {
-          step: '/other-nationalities',
-          field: 'new-renew-date-fr',
-          parse: date => date && dateFormatter.format(new Date(date))
-        },
-        {
-          step: '/other-nationalities',
-          field: 'new-renew-date-to',
-          parse: date => date && dateFormatter.format(new Date(date))
-        }
+      {
+        step: '/other-nationalities',
+        field: 'new-renew-other-country-nationality'
+      },
+      {
+        step: '/other-nationalities',
+        field: 'new-renew-date-fr',
+        parse: date => date && dateFormatter.format(new Date(date))
+      },
+      {
+        step: '/other-nationalities',
+        field: 'new-renew-date-to',
+        parse: date => date && dateFormatter.format(new Date(date))
+      }
     ]
   },
   'new-renew-contact-details': {
