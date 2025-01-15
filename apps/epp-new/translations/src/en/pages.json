@@ -70,6 +70,10 @@
         "label": "Medical declaration"
       },
       "new-renew-has-seen-doctor": {
+      "other-names": {
+        "label": "Other name"
+      },
+      "new-renew-has-seen-doctor":{
         "label": "Seen a doctor for metal health-related problems?"
       },
       "new-renew-received-treatment": {
@@ -93,4 +97,5 @@
     "content-respond-1": "This is a test paragraph",
     "content-feedback-link-text": "What do you think of this service?"
   }
+}
 }
