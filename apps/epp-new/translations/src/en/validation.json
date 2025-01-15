@@ -30,10 +30,38 @@
     "medical-declaration": {
         "required" : "Confirm you have read and agree to this medical declaration"
     },
-  "new-renew-has-seen-doctor":{
+    "new-renew-other-name-start-date": {
+        "required": "Enter when you started using this name",
+        "date": "Enter a real date",
+        "before": "Date you started using this name must be in the past"
+    },
+    "new-renew-other-name-title": {
+        "required": "Select your title"
+    },
+    "new-renew-other-name-first-name": {
+        "required": "Enter your first name",
+        "maxlength": "First name must between 1 and 250 characters",
+        "notUrl": "Your answer must not include a URL"
+    },
+    "new-renew-other-name-middle-name": {
+         "maxlength": "Middle names must be between 250 characters or less",
+         "notUrl": "Your answer must not include a URL"
+    },
+    "new-renew-other-name-last-name": {
+        "required": "Enter your last name",
+        "maxlength": "Last name must be between 1 and 250 characters",
+        "notUrl": "Your answer must not include a URL"
+    },
+    "new-renew-other-name-stop-date": {
+        "date": "Enter a real date",
+        "before": "Date you stopped using this name must be in the past",
+        "maxlength": "Last name must be between 1 and 250 characters",
+        "notUrl": "Your answer must not include a URL"
+    },
+    "new-renew-has-seen-doctor":{
     "required": "Select if you have seen a doctor for any mental health-related problems"
   },
-  "new-renew-received-treatment" : {
+    "new-renew-received-treatment" : {
     "required": "Select if you have ever had any drug or alcohol-related health problems?"
   }
 }

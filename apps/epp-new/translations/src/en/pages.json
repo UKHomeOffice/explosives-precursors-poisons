@@ -65,6 +65,9 @@
       "medical-declaration": {
         "label": "Medical declaration"
       },
+      "other-names": {
+        "label": "Other name"
+      },
       "new-renew-has-seen-doctor":{
         "label": "Seen a doctor for metal health-related problems?"
       },

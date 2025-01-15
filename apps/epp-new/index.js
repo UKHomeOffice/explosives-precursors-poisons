@@ -36,7 +36,13 @@ module.exports = {
       }
     },
     '/other-names': {
-      fields: [],
+      fields: ['new-renew-other-name-title',
+        'new-renew-other-name-first-name',
+        'new-renew-other-name-middle-name',
+        'new-renew-other-name-last-name',
+        'new-renew-other-name-start-date',
+        'new-renew-other-name-stop-date'
+      ],
       next: '/other-names-summary',
       locals: {
         sectionNo: {
