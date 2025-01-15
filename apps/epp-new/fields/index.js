@@ -125,5 +125,32 @@ module.exports = {
     legend: {
       className: 'govuk-fieldset__legend'
     }
+  },
+  'new-renew-other-firearms-licence': {
+    mixin: 'radio-group',
+    options: [{ value: 'yes' }, { value: 'no' }],
+    validate: ['required'],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: ['govuk-fieldset__legend', 'bold']
+    }
+  },
+  'new-renew-other-shotgun-licence': {
+    mixin: 'radio-group',
+    options: [{ value: 'yes' }, { value: 'no' }],
+    validate: ['required'],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: ['govuk-fieldset__legend', 'bold']
+    }
+  },
+  'new-renew-other-refused-licence': {
+    mixin: 'radio-group',
+    options: [{ value: 'yes' }, { value: 'no' }],
+    validate: ['required'],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: ['govuk-fieldset__legend', 'bold']
+    }
   }
 };

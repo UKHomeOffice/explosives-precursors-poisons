@@ -190,9 +190,27 @@ module.exports = {
       }
     },
     '/other-licences': {
-      fields: [],
-      // add fork /add-licence-refusal
-      next: '/criminal-record',
+      fields: [
+        'new-renew-other-firearms-licence',
+        'new-renew-other-shotgun-licence',
+        'new-renew-other-refused-licence'
+      ],
+      forks: [
+        {
+          target: '/add-licence-refusal',
+          condition: {
+            field: 'new-renew-other-refused-licence',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/criminal-record',
+          condition: {
+            field: 'new-renew-other-refused-licence',
+            value: 'no'
+          }
+        }
+      ],
       locals: {
         sectionNo: {
           new: 8,

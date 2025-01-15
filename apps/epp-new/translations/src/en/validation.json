@@ -63,5 +63,14 @@
   },
     "new-renew-received-treatment" : {
     "required": "Select if you have ever had any drug or alcohol-related health problems?"
+  },
+  "new-renew-other-firearms-licence": {
+    "required": "Select if you have ever had a firearms licence"
+  },
+  "new-renew-other-shotgun-licence": {
+    "required": "Select if you have ever had a shotgun licence"
+  },
+  "new-renew-other-refused-licence": {
+    "required": "Select if you have ever had a shotgun or firearms licence refused or revoked"
   }
 }

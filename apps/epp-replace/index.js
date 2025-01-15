@@ -6,7 +6,7 @@ module.exports = {
   fields: 'apps/epp-replace/fields',
   views: 'apps/epp-replace/views',
   translations: 'apps/epp-replace/translations',
-  baseUrl: '/replace-license',
+  baseUrl: '/replace-licence',
   steps: {
     '/section-one': {
       behaviours: [validateAndRedirect],
