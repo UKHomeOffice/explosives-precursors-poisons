@@ -25,7 +25,7 @@ const isLicenceValid = req => {
     licenceNumber = req.form.values['amend-licence-number'];
     fieldName = 'amend-licence-number';
   }
-  const removeSpaceOrSperator = licenceNumber.replace(/[^\w\s]/gi, '');
+  const removeSpaceOrSperator = licenceNumber.replace(/[^a-zA-Z0-9]/g, '');
   const alphaValues = removeSpaceOrSperator.slice(2, 3);
 
   if(licenceNumber.length > 16 || licenceNumber.length < 13 ) {
@@ -61,5 +61,6 @@ const isLicenceValid = req => {
 
 module.exports = {
   isLicenceValid,
-  isApplicationType
+  isApplicationType,
+  validLicenceNumber
 };
