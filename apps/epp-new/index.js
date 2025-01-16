@@ -37,7 +37,13 @@ module.exports = {
       }
     },
     '/other-names': {
-      fields: [],
+      fields: ['new-renew-other-name-title',
+        'new-renew-other-name-first-name',
+        'new-renew-other-name-middle-name',
+        'new-renew-other-name-last-name',
+        'new-renew-other-name-start-date',
+        'new-renew-other-name-stop-date'
+      ],
       next: '/other-names-summary',
       locals: {
         sectionNo: {
@@ -190,9 +196,27 @@ module.exports = {
       }
     },
     '/other-licences': {
-      fields: [],
-      // add fork /add-licence-refusal
-      next: '/criminal-record',
+      fields: [
+        'new-renew-other-firearms-licence',
+        'new-renew-other-shotgun-licence',
+        'new-renew-other-refused-licence'
+      ],
+      forks: [
+        {
+          target: '/add-licence-refusal',
+          condition: {
+            field: 'new-renew-other-refused-licence',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/criminal-record',
+          condition: {
+            field: 'new-renew-other-refused-licence',
+            value: 'no'
+          }
+        }
+      ],
       locals: {
         sectionNo: {
           new: 8,
