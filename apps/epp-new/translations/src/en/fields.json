@@ -117,5 +117,19 @@
         "label": "No"
       }
     }
+  },
+  "new-renew-other-country-nationality": {
+    "label": "What is your other country of nationality?",
+    "options": {
+      "none_selected": "Select a country"
+    }
+  },
+  "new-renew-date-fr": {
+    "legend": "From (optional)",
+    "hint": "For example, 30 09 1980"
+  },
+  "new-renew-date-to": {
+    "legend": "To (optional)",
+    "hint": "For example, 30 09 1980"
   }
 }

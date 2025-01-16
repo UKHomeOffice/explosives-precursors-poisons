@@ -2,6 +2,7 @@ const hof = require('hof');
 const sectionCounter = require('./behaviours/section-counter');
 const checkBackLink = require('./behaviours/check-back-link');
 const validateAndRedirect = require('./behaviours/home-redirection');
+const filterCountries = require('./behaviours/filter-countries');
 const summary = hof.components.summary;
 const ConfirmationDisplay = require('./behaviours/confirmation-type');
 
@@ -62,9 +63,9 @@ module.exports = {
       }
     },
     '/your-details': {
-      fields: [],
+      fields: ['new-renew-country-nationality'],
       // add fork /other-nationalities
-      next: '/home-address',
+      next: '/other-nationalities',
       locals: {
         sectionNo: {
           new: 2,
@@ -73,7 +74,12 @@ module.exports = {
       }
     },
     '/other-nationalities': {
-      fields: [],
+      behaviours: [filterCountries],
+      fields: [
+        'new-renew-other-country-nationality',
+        'new-renew-date-fr',
+        'new-renew-date-to'
+      ],
       next: '/home-address',
       locals: {
         sectionNo: {

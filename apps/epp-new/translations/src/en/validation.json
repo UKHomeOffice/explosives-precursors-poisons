@@ -72,5 +72,16 @@
   },
   "new-renew-other-refused-licence": {
     "required": "Select if you have ever had a shotgun or firearms licence refused or revoked"
+  },
+  "new-renew-other-country-nationality": {
+    "required": "Select your other nationality"
+  },
+  "new-renew-date-fr": {
+    "before": "Date you became a national of this country must be in the past",
+    "date": "Enter a real date"
+  },
+  "new-renew-date-to": {
+    "before": "Date you stopped being a national of this country must be in the past",
+    "date": "Enter a real date"
   }
 }
