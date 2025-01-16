@@ -12,10 +12,18 @@ module.exports = {
     year: 'numeric'
   },
   env: env,
-  email: {
+  govukNotify: {
     notifyApiKey: process.env.NOTIFY_KEY,
-    notifyTemplate: process.env.NOTIFY_TEMPLATE,
-    caseWorker: process.env.CASEWORKER_EMAIL
+    caseworkerEmail: process.env.CASEWORKER_EMAIL,
+    newApplicationUserTemplateId: process.env.NEW_APPLICATION_USER_TEMPLATE_ID,
+    newApplicationBusinessTemplateId: process.env.NEW_APPLICATION_BUSINESS_TEMPLATE_ID,
+    renewApplicationUserTemplateId: process.env.RENEW_APPLICATION_USER_TEMPLATE_ID,
+    renewApplicationBusinessTemplateId: process.env.RENEW_APPLICATION_BUSINESS_TEMPLATE_ID,
+    amendApplicationUserTemplateId: process.env.AMEND_APPLICATION_USER_TEMPLATE_ID,
+    amendApplicationBusinessTemplateId: process.env.AMEND_APPLICATION_BUSINESS_TEMPLATE_ID,
+    replaceApplicationUserTemplateId: process.env.REPLACE_APPLICATION_USER_TEMPLATE_ID,
+    replaceDamagedApplicationUserTemplateId: process.env.REPLACE_DAMAGED_APPLICATION_USER_TEMPLATE_ID,
+    replaceApplicationBusinessTemplateId: process.env.REPLACE_APPLICATION_BUSINESS_TEMPLATE_ID
   },
   // TODO: set return URL and mac in env variables
   feedback: {
