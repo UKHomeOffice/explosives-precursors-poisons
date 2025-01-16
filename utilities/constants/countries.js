@@ -208,6 +208,10 @@ module.exports = [
     value: 'Costa Rica'
   },
   {
+    label: "Côte d'Ivoire",
+    value: "Côte d'Ivoire"
+  },
+  {
     label: 'Croatia',
     value: 'Croatia'
   },
@@ -794,6 +798,10 @@ module.exports = [
   {
     label: 'South Korea',
     value: 'South Korea'
+  },
+  {
+    label: 'South Sudan',
+    value: 'South Sudan'
   },
   {
     label: 'Spain',
