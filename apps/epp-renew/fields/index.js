@@ -1,3 +1,4 @@
+
 module.exports = {
   'new-renew-licence-number': {
     mixin: 'input-text',

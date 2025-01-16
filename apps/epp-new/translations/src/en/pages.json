@@ -15,6 +15,9 @@
     "title": "Other names",
     "header": "Other names"
   },
+  "other-nationalities": {
+    "header": "Other nationalities"
+  },
   "contact-details": {
     "title": "What are your contact details?",
     "header": "What are your contact details?"
@@ -54,7 +57,7 @@
         "header": "Applicant name"
       },
       "applicant-details": {
-        "header": "Applicant Details"
+        "header": "Applicant details"
       },
       "new-renew-contact-details": {
         "header": "Contact details"
@@ -66,6 +69,9 @@
     "fields":{
       "new-renew-licence-number": {
         "label": "Licence number"
+      },
+      "new-renew-other-country-nationality": {
+        "label": "Other nationality"
       },
       "new-renew-phone-number": {
         "label": "Contact phone number"

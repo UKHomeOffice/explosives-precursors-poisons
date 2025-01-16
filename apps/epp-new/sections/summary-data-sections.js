@@ -71,38 +71,52 @@ module.exports = {
         field: 'new-renew-licence-number'
       },
       {
-        step: '/your-details',
-        field: 'new-renew-dob',
+        step: '/other-nationalities',
+        field: 'new-renew-other-country-nationality'
+      },
+      {
+        step: '/other-nationalities',
+        field: 'new-renew-date-fr',
         parse: date => date && dateFormatter.format(new Date(date))
       },
       {
-        step: '/your-details',
-        field: 'new-renew-birth-place'
+        step: '/other-nationalities',
+        field: 'new-renew-date-to',
+        parse: date => date && dateFormatter.format(new Date(date))
       },
-      {
-        step: '/your-details',
-        field: 'new-renew-birth-country'
-      },
-      {
-        step: '/your-details',
-        field: 'new-renew-country-nationality'
-      },
-      {
-        step: '/your-details',
-        field: 'new-renew-more-nationalities'
-      },
-      {
-        step: '/your-details',
-        field: 'new-renew-your-sex'
-      },
-      {
-        step: '/your-details',
-        field: 'new-renew-your-height'
-      },
-      {
-        step: '/your-details',
-        field: 'new-renew-occupation'
-      }
+    {
+      step: '/your-details',
+      field: 'new-renew-dob',
+      parse: date => date && dateFormatter.format(new Date(date))
+    },
+    {
+      step: '/your-details',
+      field: 'new-renew-birth-place'
+    },
+    {
+      step: '/your-details',
+      field: 'new-renew-birth-country'
+    },
+    {
+      step: '/your-details',
+      field: 'new-renew-country-nationality'
+    },
+    {
+      step: '/your-details',
+      field: 'new-renew-more-nationalities'
+    },
+    {
+      step: '/your-details',
+      field: 'new-renew-your-sex'
+    },
+    {
+      step: '/your-details',
+      field: 'new-renew-your-height'
+    },
+    {
+      step: '/your-details',
+      field: 'new-renew-occupation'
+    }
     ]
   },
   'other-licences': {
