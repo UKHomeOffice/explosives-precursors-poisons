@@ -131,5 +131,16 @@
   "new-renew-date-to": {
     "legend": "To (optional)",
     "hint": "For example, 30 09 1980"
+  },
+  "new-renew-have-criminal-record": {
+    "legend": "Do you have a criminal record?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }

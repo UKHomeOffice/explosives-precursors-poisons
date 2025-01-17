@@ -83,5 +83,8 @@
   "new-renew-date-to": {
     "before": "Date you stopped being a national of this country must be in the past",
     "date": "Enter a real date"
+  },
+  "new-renew-have-criminal-record": {
+    "required": "Select if you have a criminal record or any type of formal warning"
   }
 }

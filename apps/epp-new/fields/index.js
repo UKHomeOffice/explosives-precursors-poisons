@@ -178,5 +178,17 @@ module.exports = {
     mixin: 'input-date',
     legend: { className: 'bold' },
     validate: ['date', 'before']
-  })
+  }),
+  'new-renew-have-criminal-record': {
+    mixin: 'radio-group',
+    options: [
+      { value: 'yes', label: 'Yes' },
+      { value: 'no', label: 'No' }
+    ],
+    validate: ['required'],
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    legend: {
+      className: ['govuk-fieldset__legend, bold']
+    }
+  }
 };
