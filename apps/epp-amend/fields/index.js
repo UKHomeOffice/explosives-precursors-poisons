@@ -1,4 +1,4 @@
-const title = require('../../../utilities/constants/titles.js');
+const titles = require('../../../utilities/constants/titles.js');
 const dateComponent = require('hof').components.date;
 const helpers = require('../../../utilities/helpers/index.js');
 const country = require('../../../utilities/constants/countries');
@@ -18,7 +18,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.amend-name-title.options.none_selected'
-    }].concat(title)
+    }].concat(titles)
   },
   'amend-firstname': {
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
@@ -152,5 +152,98 @@ module.exports = {
       field: 'amend-applicant-Id-type',
       value: 'Uk-driving-licence'
     }
-  }
+  },
+  'amend-new-name-title': {
+    mixin: 'select',
+    validate: ['required'],
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input--width-2'],
+    options: [{
+      value: '',
+      label: 'fields.amend-new-name-title.options.none_selected'
+    }].concat(titles)
+  },
+  'amend-new-firstname': {
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'amend-new-middlename': {
+    validate: ['notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'amend-new-lastname': {
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'amend-new-date-name-changed': dateComponent('amend-new-date-name-changed', {
+    mixin: 'input-date',
+    legend: { className: 'bold' },
+    validate: ['required', 'date', 'before']
+  }),
+  'amend-new-address-1': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-input govuk-!-width-full'],
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'amend-new-address-2': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-input govuk-!-width-full'],
+    validate: [
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'amend-new-town-or-city': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-input govuk-!-width-full'],
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'amend-new-county': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-input govuk-!-width-full'],
+    validate: [
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'amend-new-postcode': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-input--width-10'],
+    formatter: ['ukPostcode']
+  },
+  'amend-new-country': {
+    mixin: 'select',
+    validate: ['required'],
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input govuk-!-width-full'],
+    options: [{
+      value: '',
+      label: 'fields.amend-new-country.options.none_selected'
+    }].concat(country)
+  },
+  'amend-new-date-moved-to-address': dateComponent('amend-new-date-moved-to-address', {
+    mixin: 'input-date',
+    legend: { className: 'bold' },
+    validate: ['required', 'date', 'before']
+  })
 };

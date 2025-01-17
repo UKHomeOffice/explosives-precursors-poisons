@@ -3,6 +3,7 @@ const SummaryPageBehaviour = require('hof').components.summary;
 const ValidateLicenceNumber = require('../epp-common/behaviours/licence-validator');
 const PostcodeValidation = require('../../utilities/helpers//postcode-validation');
 const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
+const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator');
 
 module.exports = {
   name: 'EPP form',
@@ -77,13 +78,15 @@ module.exports = {
     },
     '/new-name': {
       fields: [
-        'amend-option-name-title',
-        'amend-option-firstname',
-        'amend-option-middlename',
-        'amend-option-lastname',
-        'amend-option-date-name-changed'
+        'amend-new-name-title',
+        'amend-new-firstname',
+        'amend-new-middlename',
+        'amend-new-lastname',
+        'amend-new-date-name-changed'
       ],
-      next: '/identity-details'
+      next: '/identity-details',
+      locals: { captionHeading: 'Section 7 of 20' },
+      behaviours: [AfterDateOfBirth]
     },
     '/identity-details': {
       fields: [
@@ -119,18 +122,24 @@ module.exports = {
       locals: { captionHeading: 'Section 9 of 20' }
     },
     '/change-home-address': {
+
+      next: '/new-address'
+    },
+    '/new-address': {
       fields: [
-        'amend-new-post-address-1',
-        'amend-new-post-address-2',
-        'amend-new-post-town-or-city',
-        'amend-new-post-county',
-        'amend-new-post-postcode',
-        'amend-new-post-country',
+        'amend-new-address-1',
+        'amend-new-address-2',
+        'amend-new-town-or-city',
+        'amend-new-county',
+        'amend-new-postcode',
+        'amend-new-country',
         'amend-new-date-moved-to-address'
       ],
-      next: '/section-eleven'
+      behaviours: [AfterDateOfBirth],
+      next: '/upload-proof-address',
+      locals: { captionHeading: 'Section 11 of 20' }
     },
-    '/section-eleven': {
+    '/upload-proof-address': {
       next: '/section-twelve'
     },
     '/section-twelve': {

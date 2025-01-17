@@ -88,5 +88,62 @@
         "isValidUkDrivingLicenceNumber": "Enter a real UK driving licence number",
         "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer",
         "minlength": "Driving licence number must be 16 characters"
-      }
+      }, 
+    "amend-new-name-title": {
+        "required" : "Select the title of your new name"
+    },
+    "amend-new-firstname": {
+        "required": "Enter the first name you want on your amended licence",
+        "maxlength": "First name must between 1 and 250 characters",
+        "notUrl": "Your answer must not include a URL"
+    },
+    "amend-new-lastname": {
+        "required": "Enter the last name you want on your amended licence",
+        "maxlength": "Last name must between 1 and 250 characters",
+        "notUrl": "Your answer must not include a URL"
+    },
+    "amend-new-middlename": {
+        "maxlength": "Middle name must between 1 and 250 characters",
+        "notUrl": "Your answer must not include a URL"
+    },
+    "amend-new-date-name-changed": {
+        "required": "Enter the date you changed your name",
+        "date": "Enter a real date",
+        "before": "Date you changed your name must be in the past",
+        "after": "Date you changed your name must be after {{diff}}, your date of birth"
+    },
+    "amend-new-address-1": {
+     "required": "Enter address line 1, typically the building and street",
+     "maxlength": "Address line 1 must be between 2 and 250 characters",
+     "minlength": "Address line 2 must be between 2 and 250 characters",
+     "notUrl" : "Your answer must not include a URL"
+    },
+    "amend-new-address-2": {
+      "maxlength": "Address line 1 must be between 2 and 250 characters",
+      "minlength": "Address line 2 must be between 2 and 250 characters",
+      "notUrl" : "Your answer must not include a URL"
+    },
+    "amend-new-town-or-city": {
+      "required": "Enter town or city",
+      "maxlength": "Town or city must be between 2 and 250 characters",
+      "minlength": "Address line 2 must be between 2 and 250 characters",
+      "notUrl" : "Your answer must not include a URL"
+    },
+    "amend-new-county": {
+      "maxlength": "County, state or province must be between 2 and 250 characters",
+      "minlength": "Address line 2 must be between 2 and 250 characters",
+      "notUrl" : "Your answer must not include a URL"
+    },
+    "amend-new-postcode": {
+      "postcode" : "Enter a real UK postcode"
+    },
+    "amend-new-country": {
+      "required": "Select a country of address"
+    },
+    "amend-new-date-moved-to-address": {
+        "required": "Enter the move date to this address",
+        "date": "Enter a real date",
+        "before": "Date you moved to this address must be in the past",
+        "after": "Date you moved to this address must be after {{diff}}, your date of birth"
+    }
 }

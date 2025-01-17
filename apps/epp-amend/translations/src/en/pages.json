@@ -17,6 +17,12 @@
   "home-address": {
     "header": "What is your home address?"
   },
+  "new-name": {
+    "header": "What is your new name?"
+  },
+  "new-address": {
+    "header": "What is your new address?"
+  },
   "application-submitted": {
     "confirmed": "Amendment submitted"
   },
@@ -44,6 +50,9 @@
       },
       "amend-new-name-details": {
         "header": "New name"
+      },
+      "amend-new-home-address": {
+        "header": "New address"
       }
     },
     "fields": {
@@ -89,6 +98,12 @@
       "amend-email": {
         "label": "Email address"
       },
+      "amend-new-middlename": {
+        "label": "Middle name(s)"
+      },
+      "amend-new-lastname": { 
+        "label" : "Surname"
+      },
       "amend-applicant-Id-type": {
         "label": "Identification document"
       },
@@ -100,6 +115,9 @@
       },
       "amend-Uk-driving-licence-number": {
         "label": "Driving Licence"
+      },
+      "amend-new-country": {
+        "label": "Country"
       }
     }
   }

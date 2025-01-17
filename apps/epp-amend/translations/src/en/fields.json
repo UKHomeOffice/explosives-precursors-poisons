@@ -63,6 +63,25 @@
       }
     }
   },
+  "amend-new-name-title": {
+    "label": "Title",
+    "options": {
+      "none_selected": "Select"
+    }
+  },
+  "amend-new-firstname": {
+    "label": "First name"
+  },
+  "amend-new-middlename": {
+    "label": "Middle names (optional)"
+  },
+  "amend-new-lastname": {
+    "label": "Last name"
+  },
+  "amend-new-date-name-changed": {
+    "legend": "What date did you change your name?",
+    "hint": "For example, 30 09 2014"
+  },
   "amend-applicant-Id-type": {
     "legend": "Which identity document do you want to use?",
     "hint": "If your licence is granted, you will need to show this document when buying the substances",
@@ -90,5 +109,31 @@
   "amend-Uk-driving-licence-number": {
     "label": "What is your driving licence number?",
     "hint" : "On section 5 of your licence, for example MORGA657054SM9IJ"    
+  },
+  "amend-new-address-1": {
+    "label": "Address line 1"
+  },
+  "amend-new-address-2": {
+    "label": "Address line 2 (optional)"
+  },
+  "amend-new-town-or-city": {
+    "label": "Town or city"
+  },
+  "amend-new-county": {
+    "label": "County, state, province (optional)"
+  },
+  "amend-new-postcode": {
+    "label": "Postcode (optional)",
+    "hint": "Postcode is optional if your address is outside the UK"
+  },
+  "amend-new-country": {
+    "label": "Country of address",
+    "options": {
+      "none_selected": "Select"
+    }
+  },
+  "amend-new-date-moved-to-address": {
+      "legend": "What date did you change your address?",
+      "hint": " For example, 30 09 1969"
   }
 }

@@ -94,6 +94,27 @@ module.exports = {
   'amend-new-name-details': {
     steps: [
       {
+        step: '/new-name',
+        field: 'amend-new-name-title'
+      },
+      {
+        step: '/new-name',
+        field: 'amend-new-firstname'
+      },
+      {
+        step: '/new-name',
+        field: 'amend-new-middlename'
+      },
+      {
+        step: '/new-name',
+        field: 'amend-new-lastname'
+      },
+      {
+        step: '/new-name',
+        field: 'amend-new-date-name-changed',
+        parse: date => date && dateFormatter.format(new Date(date))
+      },
+      {
         step: '/identity-details',
         field: 'amend-applicant-Id-type'
       },
@@ -108,6 +129,39 @@ module.exports = {
       {
         step: '/identity-details',
         field: 'amend-Uk-driving-licence-number'
+      }
+    ]
+  },
+  'amend-new-home-address': {
+    steps: [
+      {
+        step: '/new-address',
+        field: 'amend-new-address-1'
+      },
+      {
+        step: '/new-address',
+        field: 'amend-new-address-2'
+      },
+      {
+        step: '/new-address',
+        field: 'amend-new-town-or-city'
+      },
+      {
+        step: '/new-address',
+        field: 'amend-new-county'
+      },
+      {
+        step: '/new-address',
+        field: 'amend-new-postcode'
+      },
+      {
+        step: '/new-address',
+        field: 'amend-new-country'
+      },
+      {
+        step: '/new-address',
+        field: 'amend-new-date-moved-to-address',
+        parse: date => date && dateFormatter.format(new Date(date))
       }
     ]
   }
