@@ -122,28 +122,50 @@ module.exports = {
       locals: { captionHeading: 'Section 9 of 20' }
     },
     '/change-home-address': {
+      fields: ['amend-home-address-options'],
+      forks: [
+        {
+          target: '/new-address',
+          condition: {
+            field: 'amend-home-address-options',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/change-substances',
+          condition: {
+            field: 'amend-home-address-options',
+            value: 'no'
+          }
+        }
+      ],
+      locals: { captionHeading: 'Section 10 of 20' },
+      next: '/new-address'
+    },
+    '/new-address': {
       fields: [
-        'amend-new-post-address-1',
-        'amend-new-post-address-2',
-        'amend-new-post-town-or-city',
-        'amend-new-post-county',
-        'amend-new-post-postcode',
-        'amend-new-post-country',
+        'amend-new-address-1',
+        'amend-new-address-2',
+        'amend-new-town-or-city',
+        'amend-new-county',
+        'amend-new-postcode',
+        'amend-new-country',
         'amend-new-date-moved-to-address'
       ],
       behaviours: [AfterDateOfBirth, PostcodeValidation],
       next: '/upload-proof-address',
       locals: { captionHeading: 'Section 11 of 20' }
     },
-    '/section-eleven': {
+    '/upload-proof-address': {
       next: '/section-twelve'
     },
     '/section-twelve': {
       fields: ['amend-reason-for-licence'],
-      next: '/section-thirteen'
+      next: '/change-substances'
     },
-    '/section-thirteen': {
+    '/change-substances': {
       fields: ['amend-explosive-precusor-type'],
+      locals: { captionHeading: 'Section 13 of 20' },
       next: '/section-fourteen'
     },
     '/section-fourteen': {

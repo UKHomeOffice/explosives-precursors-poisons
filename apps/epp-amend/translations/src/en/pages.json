@@ -20,6 +20,14 @@
   "new-name": {
     "header": "What is your new name?"
   },
+  "change-home-address": {
+    "header": "Change in home address",
+    "p1": "You must change your address if you have moved home since your current licence was issued.",
+    "p2": "Storage or usage address can be amended later under the substances section."
+  },
+  "new-address": {
+    "header": "What is your new address?"
+  },
   "application-submitted": {
     "confirmed": "Amendment submitted"
   },
@@ -47,6 +55,12 @@
       },
       "amend-new-name-details": {
         "header": "New name"
+      },
+      "amend-home-address-options": {
+        "header": "Amend address"
+      },
+      "amend-new-home-address": {
+        "header": "New address"
       }
     },
     "fields": {
@@ -109,6 +123,9 @@
       },
       "amend-Uk-driving-licence-number": {
         "label": "Driving Licence"
+      },
+      "amend-new-country": {
+        "label": "Country"
       }
     }
   }
