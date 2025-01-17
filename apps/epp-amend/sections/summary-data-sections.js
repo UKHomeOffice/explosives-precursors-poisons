@@ -94,6 +94,29 @@ module.exports = {
   'amend-new-name-details': {
     steps: [
       {
+        step: '/new-name',
+        field: 'amend-new-name-title'
+      },
+      {
+        step: '/new-name',
+        field: 'amend-new-firstname'
+      },
+      {
+        step: '/new-name',
+        field: 'amend-new-middlename',
+        parse: (list, req) => req.sessionModel.get('steps').includes('/new-name') ?
+          req.sessionModel.get('amend-new-middlename') :
+          null
+      },
+      {
+        step: '/new-name',
+        field: 'amend-new-lastname'
+      },
+      {
+        step: '/new-name',
+        field: 'amend-new-date-name-changed'
+      },
+      {
         step: '/identity-details',
         field: 'amend-applicant-Id-type'
       },
