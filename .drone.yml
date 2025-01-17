@@ -151,7 +151,7 @@ steps:
         <<: *include_default_and_feature_branches
       event: [push, pull_request]
     depends_on:
-      - linting
+      - build_image
 
   # Trivy Security Scannner for scanning nodejs packages in Yarn
   - name: scan_node_packages
@@ -173,7 +173,7 @@ steps:
     when:
       event: [push, pull_request]
     depends_on:
-      - build_image
+      - image_to_ecr
 
   - name: deploy_to_branch
     pull: if-not-exists
@@ -265,8 +265,7 @@ steps:
       branch: master
       event: push
     depends_on:
-      - clone_repos
-      - image_to_ecr
+      - deploy_to_uat
 
   ## Checks a build being promoted has passed, is on master which effectively means a healthy build on Staging
   - name: sanity_check_build_prod
