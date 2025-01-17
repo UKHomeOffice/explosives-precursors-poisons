@@ -17,6 +17,9 @@
   "home-address": {
     "header": "What is your home address?"
   },
+  "new-name": {
+    "header": "What is your new name?"
+  },
   "application-submitted": {
     "confirmed": "Amendment submitted"
   },
@@ -88,6 +91,12 @@
       },
       "amend-email": {
         "label": "Email address"
+      },
+      "amend-new-middlename": {
+        "label": "Middle name(s)"
+      },
+      "amend-new-lastname": { 
+        "label" : "Surname"
       },
       "amend-applicant-Id-type": {
         "label": "Identification document"

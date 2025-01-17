@@ -94,6 +94,27 @@ module.exports = {
   'amend-new-name-details': {
     steps: [
       {
+        step: '/new-name',
+        field: 'amend-new-name-title'
+      },
+      {
+        step: '/new-name',
+        field: 'amend-new-firstname'
+      },
+      {
+        step: '/new-name',
+        field: 'amend-new-middlename'
+      },
+      {
+        step: '/new-name',
+        field: 'amend-new-lastname'
+      },
+      {
+        step: '/new-name',
+        field: 'amend-new-date-name-changed',
+        parse: date => date && dateFormatter.format(new Date(date))
+      },
+      {
         step: '/identity-details',
         field: 'amend-applicant-Id-type'
       },

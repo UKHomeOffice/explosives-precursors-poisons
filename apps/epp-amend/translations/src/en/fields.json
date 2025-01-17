@@ -63,6 +63,25 @@
       }
     }
   },
+  "amend-new-name-title": {
+    "label": "Title",
+    "options": {
+      "none_selected": "Select"
+    }
+  },
+  "amend-new-firstname": {
+    "label": "First name"
+  },
+  "amend-new-middlename": {
+    "label": "Middle names (optional)"
+  },
+  "amend-new-lastname": {
+    "label": "Last name"
+  },
+  "amend-new-date-name-changed": {
+    "legend": "What date did you change your name?",
+    "hint": "For example, 30 09 2014"
+  },
   "amend-applicant-Id-type": {
     "legend": "Which identity document do you want to use?",
     "hint": "If your licence is granted, you will need to show this document when buying the substances",

@@ -3,6 +3,7 @@ const SummaryPageBehaviour = require('hof').components.summary;
 const ValidateLicenceNumber = require('../epp-common/behaviours/licence-validator');
 const PostcodeValidation = require('../../utilities/helpers//postcode-validation');
 const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
+const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator');
 
 module.exports = {
   name: 'EPP form',
@@ -77,13 +78,15 @@ module.exports = {
     },
     '/new-name': {
       fields: [
-        'amend-option-name-title',
-        'amend-option-firstname',
-        'amend-option-middlename',
-        'amend-option-lastname',
-        'amend-option-date-name-changed'
+        'amend-new-name-title',
+        'amend-new-firstname',
+        'amend-new-middlename',
+        'amend-new-lastname',
+        'amend-new-date-name-changed'
       ],
-      next: '/identity-details'
+      next: '/identity-details',
+      locals: { captionHeading: 'Section 7 of 20' },
+      behaviours: [AfterDateOfBirth]
     },
     '/identity-details': {
       fields: [
