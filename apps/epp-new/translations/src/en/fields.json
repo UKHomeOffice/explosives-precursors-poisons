@@ -57,12 +57,12 @@
     "hint": "For international numbers, include the country code"
   },
   "new-renew-email": {
-      "label": "Email address",
-      "hint": "Where we will contact you about the outcome of your application"
+    "label": "Email address",
+    "hint": "Where we will contact you about the outcome of your application"
   },
   "medical-declaration": {
-        "label" : "I have read and agree to this medical declaration"
-    },
+    "label": "I have read and agree to this medical declaration"
+  },
   "new-renew-has-seen-doctor": {
     "legend": "In the last 10 years, have you seen a doctor or received professional medical advice or treatment for any mental health-related problems?",
     "options": {
@@ -132,29 +132,29 @@
     "legend": "To (optional)",
     "hint": "For example, 30 09 1980"
   },
-  "new-renew-dob":{
+  "new-renew-dob": {
     "legend": "Date of birth",
     "hint": "For example, 30 09 1969"
   },
-  "new-renew-birth-place":{
+  "new-renew-birth-place": {
     "label": "Place of birth",
     "hint": "The village, town or city where you were born"
   },
-  "new-renew-birth-country":{
+  "new-renew-birth-country": {
     "label": "Country of birth",
     "hint": "Select a country from the list",
     "options": {
       "none_selected": "Select a country"
     }
   },
-  "new-renew-country-nationality":{
+  "new-renew-country-nationality": {
     "label": "Country of nationality",
     "hint": "For multiple nationalities, enter your main country of nationality first",
     "options": {
       "none_selected": "Select a country"
     }
   },
-  "new-renew-more-nationalities":{
+  "new-renew-more-nationalities": {
     "legend": "Do you have more than one nationality?",
     "options": {
       "yes": {
@@ -165,7 +165,7 @@
       }
     }
   },
-  "new-renew-your-sex":{
+  "new-renew-your-sex": {
     "legend": "What is your sex?",
     "hint": "This is the sex that is on your passport or identity document",
     "options": {
@@ -180,10 +180,10 @@
       }
     }
   },
-  "new-renew-your-height":{
+  "new-renew-your-height": {
     "label": "What is your height in centimetres?"
   },
-  "new-renew-occupation":{
+  "new-renew-occupation": {
     "label": "Occupation"
   },
   "new-renew-have-criminal-record": {
@@ -219,5 +219,9 @@
     "options": {
       "none_selected": "Select"
     }
+  },
+  "new-renew-home-address-moveto-date": {
+    "legend": "When did you move to this address?",
+    "hint": "For example, 30 10 2014"
   }
 }

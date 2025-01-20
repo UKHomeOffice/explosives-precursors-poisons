@@ -7,12 +7,13 @@ module.exports = superclass =>
         'amend-postcode': 'amend-country',
         'new-renew-home-address-postcode': 'new-renew-home-address-country'
       };
+      const selectedCountryField = postCodeCountriesMap[key];
       if (postCodeCountriesMap[key]) {
-        const country = req.form.values[postCodeCountriesMap[key]];
+        const country = req.form.values[selectedCountryField];
 
         const postcode =
           req.form.values[
-            getKeyByValue(postCodeCountriesMap, postCodeCountriesMap[key])
+            getKeyByValue(postCodeCountriesMap, selectedCountryField)
           ];
 
         const validationErrorFunc = type =>

@@ -1,3 +1,4 @@
+const moment = require('moment');
 const hof = require('hof');
 const sectionCounter = require('./behaviours/section-counter');
 const checkBackLink = require('./behaviours/check-back-link');
@@ -121,7 +122,18 @@ module.exports = {
         'new-renew-home-address-country',
         'new-renew-home-address-moveto-date'
       ],
-      next: '/upload-proof-address',
+      forks: [
+        {
+          target: '/upload-proof-address',
+          condition: req => {
+            const moveToDate =
+              req.form.values['new-renew-home-address-moveto-date'];
+            const date = moment(moveToDate, 'YYYY-MM-DD');
+            return date?.isValid() && moment().diff(date, 'years') >= 5;
+          }
+        }
+      ],
+      next: '/previous-addresses',
       locals: {
         sectionNo: {
           new: 3,
@@ -131,8 +143,7 @@ module.exports = {
     },
     '/previous-address': {
       fields: [],
-      // add fork /previous-address-summary
-      next: '/previous-address-summary',
+      next: '/previous-addresses',
       locals: {
         sectionNo: {
           new: 3,
@@ -140,8 +151,7 @@ module.exports = {
         }
       }
     },
-    '/previous-address-summary': {
-      // should this be /previous-addresses ?
+    '/previous-addresses': {
       fields: [],
       next: '/upload-proof-address',
       locals: {

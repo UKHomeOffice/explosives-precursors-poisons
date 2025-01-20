@@ -75,6 +75,9 @@
       "applicant-details": {
         "header": "Applicant details"
       },
+      "current-address-details": {
+        "header": "Current address details"
+      },
       "new-renew-contact-details": {
         "header": "Contact details"
       },
@@ -127,6 +130,12 @@
       },
       "new-renew-your-height": {
         "label": "Height (in centimetres)"
+      },
+      "new-renew-home-address-country": {
+        "label": "Country"
+      },
+      "new-renew-home-address-moveto-date": {
+        "label": "Moved date"
       }
     },
     "complete": {
