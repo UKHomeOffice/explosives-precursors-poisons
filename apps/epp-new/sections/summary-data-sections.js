@@ -151,6 +151,14 @@ module.exports = {
       }
     ]
   },
+  'criminal-record': {
+    steps: [
+      {
+        step: '/criminal-record',
+        field: 'new-renew-have-criminal-record'
+      }
+    ]
+  },
   'new-renew-contact-details': {
     steps: [
       {

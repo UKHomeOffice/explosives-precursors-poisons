@@ -25,6 +25,19 @@
     "title": "What are your contact details?",
     "header": "What are your contact details?"
   },
+  "criminal-record": {
+    "title": "Criminal records, warnings and cautions",
+    "header": "Criminal records, warnings and cautions",
+    "paragraph1": "You must declare all convictions, even spent ones under the Rehabilitation of Offenders Act 1974.",
+    "paragraph2": "You do not need to tell us about motoring offences that were dealt with by way of fixed penalty.",
+    "paragraph3": "We will review the information you provide to be satisfied that you are not a danger to yourself or to public safety. Applications are considered individually and not all convictions will stop you getting a licence.",
+    "paragraph4": "Tell us about any:",
+    "listElement1": "criminal convictions",
+    "listElement2": "motoring offences",
+    "listElement3": "formal warnings",
+    "listElement4": "cautions",
+    "listElement5": "binding overs"
+  },
   "medical-declaration": {
     "header": "Medical declaration",
     "paragraph1": "I give permission for the Home Office to contact my doctor (GP or equivalent) and/or specialist to obtain factual details about my medical history in relation to this application. ",
@@ -67,6 +80,9 @@
       },
       "medical-information": {
         "header": "Medical information"
+      },
+      "criminal-record": {
+        "header": "Criminal records"
       }
     },
     "fields": {
