@@ -274,16 +274,16 @@ module.exports = {
       'notUrl'
     ]
   },
-'new-renew-have-criminal-record': {
+  'new-renew-have-criminal-record': {
     mixin: 'radio-group',
     options: [
-        { value: 'yes', label: 'Yes' },
-        { value: 'no', label: 'No' }
+      { value: 'yes', label: 'Yes' },
+      { value: 'no', label: 'No' }
     ],
     validate: ['required'],
     className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
-        className: ['govuk-fieldset__legend, bold']
+      className: ['govuk-fieldset__legend, bold']
     }
-}
+  }
 };
