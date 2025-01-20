@@ -161,6 +161,7 @@ steps:
         memory: 1024Mi
     environment:
       IMAGE_NAME: sas/epp:${DRONE_COMMIT_SHA}
+      SERVICE_URL: https://acp-trivy-helm.acp-trivy.svc.cluster.local:443      
       SEVERITY: MEDIUM,HIGH,CRITICAL  --dependency-tree --format table
       FAIL_ON_DETECTION: false
       IGNORE_UNFIXED: false
@@ -365,7 +366,7 @@ steps:
     pull: always
     environment:
         IMAGE_NAME: sas/epp:${DRONE_COMMIT_SHA}
-        SERVICE_URL: https://acp-trivy.acp-trivy.svc.cluster.local:443
+        SERVICE_URL: https://acp-trivy-helm.acp-trivy.svc.cluster.local:443
         SEVERITY: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL --dependency-tree
         FAIL_ON_DETECTION: true
         IGNORE_UNFIXED: false
@@ -384,6 +385,7 @@ steps:
     pull: always
     environment:
         IMAGE_NAME: node:20.18.0-alpine3.20@sha256:d504f23acdda979406cf3bdbff0dff7933e5c4ec183dda404ed24286c6125e60
+        SERVICE_URL: https://acp-trivy-helm.acp-trivy.svc.cluster.local:443
         SEVERITY: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL --dependency-tree
         FAIL_ON_DETECTION: false
         IGNORE_UNFIXED: false
