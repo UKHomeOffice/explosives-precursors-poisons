@@ -5,6 +5,7 @@ const validateAndRedirect = require('./behaviours/home-redirection');
 const filterCountries = require('./behaviours/filter-countries');
 const summary = hof.components.summary;
 const ConfirmationDisplay = require('./behaviours/confirmation-type');
+const PostcodeValidation = require('../../utilities/helpers/postcode-validation');
 
 module.exports = {
   name: 'EPP form',
@@ -40,7 +41,8 @@ module.exports = {
       }
     },
     '/other-names': {
-      fields: ['new-renew-other-name-title',
+      fields: [
+        'new-renew-other-name-title',
         'new-renew-other-name-first-name',
         'new-renew-other-name-middle-name',
         'new-renew-other-name-last-name',
@@ -109,8 +111,16 @@ module.exports = {
       }
     },
     '/home-address': {
-      fields: [],
-      // add fork /previous-address
+      behaviours: [PostcodeValidation],
+      fields: [
+        'new-renew-home-address-line1',
+        'new-renew-home-address-line2',
+        'new-renew-home-address-town',
+        'new-renew-home-address-county',
+        'new-renew-home-address-postcode',
+        'new-renew-home-address-country',
+        'new-renew-home-address-moveto-date'
+      ],
       next: '/upload-proof-address',
       locals: {
         sectionNo: {
@@ -304,14 +314,16 @@ module.exports = {
     },
     '/medical-history': {
       fields: ['new-renew-has-seen-doctor', 'new-renew-received-treatment'],
-      forks: [{
-        target: '/medical-form',
-        continueOnEdit: true,
-        condition: {
-          field: 'new-renew-received-treatment',
-          value: 'yes'
+      forks: [
+        {
+          target: '/medical-form',
+          continueOnEdit: true,
+          condition: {
+            field: 'new-renew-received-treatment',
+            value: 'yes'
+          }
         }
-      }],
+      ],
       next: '/doctor-details',
       locals: {
         sectionNo: {

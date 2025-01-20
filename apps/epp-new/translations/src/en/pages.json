@@ -18,6 +18,9 @@
   "other-nationalities": {
     "header": "Other nationalities"
   },
+  "home-address": {
+    "header": "What is your home address?"
+  },
   "contact-details": {
     "title": "What are your contact details?",
     "header": "What are your contact details?"

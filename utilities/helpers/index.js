@@ -4,7 +4,7 @@ const validLicenceNumber = value =>
 const isAlpha = str => /^[a-zA-Z]*$/.test(str);
 
 const isApplicationType = (req, value, applicationType) => {
-  if(value === applicationType) {
+  if (value === applicationType) {
     req.log('info', `Application type is ${applicationType}: ${true}`);
     return true;
   }
@@ -17,34 +17,34 @@ const isLicenceValid = req => {
   let fieldName = '';
 
   const applicationType = req.sessionModel.get('applicationType');
-  if(applicationType === 'renew') {
+  if (applicationType === 'renew') {
     licenceNumber = req.form.values['new-renew-licence-number'];
     fieldName = 'new-renew-licence-number';
   }
-  if(applicationType === 'amend') {
+  if (applicationType === 'amend') {
     licenceNumber = req.form.values['amend-licence-number'];
     fieldName = 'amend-licence-number';
   }
   const removeSpaceOrSperator = licenceNumber.replace(/[^a-zA-Z0-9]/g, '');
   const alphaValues = removeSpaceOrSperator.slice(2, 3);
 
-  if(licenceNumber.length > 16 || licenceNumber.length < 13 ) {
-    const errorMessage = 'Licence number should not be greater than 16 or less than 13';
+  if (licenceNumber.length > 16 || licenceNumber.length < 13) {
+    const errorMessage =
+      'Licence number should not be greater than 16 or less than 13';
     req.log('error', errorMessage);
 
-    return{
+    return {
       isValid: false,
       errorType: 'licence-length-restriction',
       fieldName: `${fieldName}`
     };
   }
 
-  if(!validLicenceNumber(licenceNumber) ||
-      !isAlpha(alphaValues)) {
+  if (!validLicenceNumber(licenceNumber) || !isAlpha(alphaValues)) {
     const errorMessage = `${licenceNumber} licence number not in correct format`;
     req.log('error', errorMessage);
 
-    return{
+    return {
       isValid: false,
       errorType: 'incorrect-format-licence',
       fieldName: `${fieldName}`
@@ -62,9 +62,14 @@ const isWithoutFullStop = value => {
   return !value.includes('.');
 };
 
+const getKeyByValue = (obj, value) => {
+  return Object.keys(obj).find(key => obj[key] === value);
+};
+
 module.exports = {
   isLicenceValid,
   isApplicationType,
   validLicenceNumber,
-  isWithoutFullStop
+  isWithoutFullStop,
+  getKeyByValue
 };

@@ -1,6 +1,7 @@
 const {
   validLicenceNumber,
-  isWithoutFullStop
+  isWithoutFullStop,
+  getKeyByValue
 } = require('../../../utilities/helpers');
 
 describe('EPP utilities tests', () => {
@@ -40,5 +41,27 @@ describe('EPP utilities tests', () => {
   it('.isWithoutFullStop - should return true for string without a full stop', () => {
     const input = ['1225', 'UNIT_TEST', 'HELLOWORLD', 'A', '', '0000'];
     input.forEach(item => expect(isWithoutFullStop(item)).to.be.true);
+  });
+
+  it('.getKeyByValue - should return key name for the given value', () => {
+    const obj = {
+      key1: 'value1',
+      key2: 'value2',
+      key3: 'value3'
+    };
+
+    for (const [key, value] of Object.entries(obj)) {
+      expect(getKeyByValue(obj, value)).to.equal(key);
+    }
+  });
+
+  it('.getKeyByValue - should return undefined when key is not found', () => {
+    const obj = {
+      key1: 'value1',
+      key2: 'value2',
+      key3: 'value3'
+    };
+    expect(getKeyByValue(obj, 'value4')).to.be.undefined;
+    expect(getKeyByValue({}, 'value1')).to.be.undefined;
   });
 });

@@ -185,5 +185,28 @@
   },
   "new-renew-occupation":{
     "label": "Occupation"
+  },
+  "new-renew-home-address-line1": {
+    "label": "Address line 1"
+  },
+  "new-renew-home-address-line2": {
+    "label": "Address line 2 (optional)"
+  },
+  "new-renew-home-address-town": {
+    "label": "Town or city"
+  },
+  "new-renew-home-address-county": {
+    "label": "County, state, province (optional)"
+  },
+  "new-renew-home-address-postcode": {
+    "label": "Postcode (optional)",
+    "hint": "Postcode is optional if your address is outside the UK"
+  },
+  "new-renew-home-address-country": {
+    "label": "Country of address",
+    "hint": "Select a country from the list",
+    "options": {
+      "none_selected": "Select"
+    }
   }
 }
