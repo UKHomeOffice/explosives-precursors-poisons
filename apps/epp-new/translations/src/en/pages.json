@@ -37,8 +37,8 @@
   },
   "medical-declaration": {
     "header": "Medical declaration",
-    "paragraph1" : "I give permission for the Home Office to contact my doctor (GP or equivalent) and/or specialist to obtain factual details about my medical history in relation to this application. ",
-    "paragraph2" : "I understand that:",
+    "paragraph1": "I give permission for the Home Office to contact my doctor (GP or equivalent) and/or specialist to obtain factual details about my medical history in relation to this application. ",
+    "paragraph2": "I understand that:",
     "listElement1": "my doctor may share personal data with the Home Office concerning my physical and mental health, to enable them to make a decision about my application, and I consent to this processing of my personal data.",
     "listElement2": "the Home Office will tell my doctor the result of my application for an EPP licence and may also consult my doctor during the term of the licence."
   },
@@ -52,6 +52,14 @@
     "listElement4": "personality disorders",
     "listElement5": "any other mental health conditions you consider relevant"
   },
+  "your-details": {
+    "header": "Your details",
+    "your-sex-summary": "Why we ask for your sex",
+    "your-sex-description": "We need to include this information in our internal database of licence holders. Your sex does not affect if you can get a licence.",
+    "your-height-summary": "Why we ask for your height",
+    "your-height-description": "We need to include this information in our internal database of licence holders. Your height does not affect if you can get a licence."
+  },
+
   "confirm": {
     "header": "Check your answers",
     "title": "Check your answers – Apply for an explosives precursors and poisons licence",
@@ -67,14 +75,14 @@
       "new-renew-contact-details": {
         "header": "Contact details"
       },
-      "medical-information":{
+      "medical-information": {
         "header": "Medical information"
       },
       "criminal-record": {
         "header": "Criminal records"
       }
     },
-    "fields":{
+    "fields": {
       "new-renew-licence-number": {
         "label": "Licence number"
       },
@@ -90,11 +98,10 @@
       "medical-declaration": {
         "label": "Medical declaration"
       },
-      "new-renew-has-seen-doctor": {
       "other-names": {
         "label": "Other name"
       },
-      "new-renew-has-seen-doctor":{
+      "new-renew-has-seen-doctor": {
         "label": "Seen a doctor for metal health-related problems?"
       },
       "new-renew-received-treatment": {
@@ -103,20 +110,28 @@
       "new-renew-other-firearms-licence": {
         "label": "Firearms licence?"
       },
-        "new-renew-other-shotgun-licence": {
-          "label": "Shotgun licence?"
-        },
-        "new-renew-other-refused-licence": {
-          "label": "Ever had a licence refused or revoked?"
-        }
+      "new-renew-other-shotgun-licence": {
+        "label": "Shotgun licence?"
+      },
+      "new-renew-other-refused-licence": {
+        "label": "Ever had a licence refused or revoked?"
+      },
+      "new-renew-more-nationalities": {
+        "label": "More than one nationality?"
+      },
+      "new-renew-your-sex": {
+        "label": "Sex"
+      },
+      "new-renew-your-height": {
+        "label": "Height (in centimetres)"
+      }
+    },
+    "complete": {
+      "header": "Your submission has been sent",
+      "content-copy-sent": "We have sent you a confirmation email",
+      "content-whats-next": "What happens next",
+      "content-respond-1": "This is a test paragraph",
+      "content-feedback-link-text": "What do you think of this service?"
     }
-  },
-  "complete": {
-    "header": "Your submission has been sent",
-    "content-copy-sent": "We have sent you a confirmation email",
-    "content-whats-next": "What happens next",
-    "content-respond-1": "This is a test paragraph",
-    "content-feedback-link-text": "What do you think of this service?"
   }
-}
 }

@@ -132,6 +132,60 @@
     "legend": "To (optional)",
     "hint": "For example, 30 09 1980"
   },
+  "new-renew-dob":{
+    "legend": "Date of birth",
+    "hint": "For example, 30 09 1969"
+  },
+  "new-renew-birth-place":{
+    "label": "Place of birth",
+    "hint": "The village, town or city where you were born"
+  },
+  "new-renew-birth-country":{
+    "label": "Country of birth",
+    "hint": "Select a country from the list",
+    "options": {
+      "none_selected": "Select a country"
+    }
+  },
+  "new-renew-country-nationality":{
+    "label": "Country of nationality",
+    "hint": "For multiple nationalities, enter your main country of nationality first",
+    "options": {
+      "none_selected": "Select a country"
+    }
+  },
+  "new-renew-more-nationalities":{
+    "legend": "Do you have more than one nationality?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "new-renew-your-sex":{
+    "legend": "What is your sex?",
+    "hint": "This is the sex that is on your passport or identity document",
+    "options": {
+      "male": {
+        "label": "Male"
+      },
+      "female": {
+        "label": "Female"
+      },
+      "x": {
+        "label": "X or other"
+      }
+    }
+  },
+  "new-renew-your-height":{
+    "label": "What is your height in centimetres?"
+  },
+  "new-renew-occupation":{
+    "label": "Occupation"
+  },
   "new-renew-have-criminal-record": {
     "legend": "Do you have a criminal record?",
     "options": {

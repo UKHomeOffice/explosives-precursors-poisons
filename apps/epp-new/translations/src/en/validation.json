@@ -84,6 +84,43 @@
     "before": "Date you stopped being a national of this country must be in the past",
     "date": "Enter a real date"
   },
+  "new-renew-dob": {
+    "required": "Enter your date of birth",
+    "date": "Enter a real date",
+    "before": "Your date of birth cannot be in the future"
+  },
+  "new-renew-birth-place": {
+    "required": "Enter your place of birth",
+    "minlength": "Place of birth must be between 2 and 250 characters",
+    "maxlength": "Place of birth must be between 2 and 250 characters",
+    "notUrl": "Your answer must not include a URL"
+  },
+  "new-renew-birth-country": {
+    "required": "Enter your country of birth"
+  },
+  "new-renew-country-nationality": {
+    "required": "Enter a country of nationality"
+  },
+  "new-renew-more-nationalities": {
+    "required": "Select if you have more than one nationality"
+  },
+  "new-renew-your-sex": {
+    "required": "Select your sex"
+  },
+  "new-renew-your-height": {
+    "required": "Enter your height in centimetres",
+    "isWithoutFullStop": "Height must not contain a decimal place, like '155.5cm'",
+    "numeric": "Height must only contain numbers",
+    "min": "Height must be between 50 and 300cm",
+    "max": "Height must be between 50 and 300cm",
+    "notUrl": "Your answer must not include a URL"
+  },
+  "new-renew-occupation": {
+    "required": "Enter your occupation",
+    "minlength": "Occupation must be between 2 and 250 characters",
+    "maxlength": "Occupation must be between 2 and 250 characters",
+    "notUrl": "Your answer must not include a URL"
+  },
   "new-renew-have-criminal-record": {
     "required": "Select if you have a criminal record or any type of formal warning"
   }
