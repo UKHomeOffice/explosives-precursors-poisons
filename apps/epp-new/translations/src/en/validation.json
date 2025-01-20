@@ -120,5 +120,8 @@
     "minlength": "Occupation must be between 2 and 250 characters",
     "maxlength": "Occupation must be between 2 and 250 characters",
     "notUrl": "Your answer must not include a URL"
+  },
+  "new-renew-have-criminal-record": {
+    "required": "Select if you have a criminal record or any type of formal warning"
   }
 }

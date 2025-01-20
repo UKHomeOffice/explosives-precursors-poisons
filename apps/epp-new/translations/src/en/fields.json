@@ -185,5 +185,16 @@
   },
   "new-renew-occupation":{
     "label": "Occupation"
+  },
+  "new-renew-have-criminal-record": {
+    "legend": "Do you have a criminal record?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }

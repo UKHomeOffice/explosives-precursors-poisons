@@ -262,9 +262,23 @@ module.exports = {
       }
     },
     '/criminal-record': {
-      fields: [],
-      // add fork for /add-offence
-      next: '/add-offence',
+      fields: ['new-renew-have-criminal-record'],
+      forks: [
+        {
+          target: '/add-offence',
+          condition: {
+            field: 'new-renew-have-criminal-record',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/medical-declaration',
+          condition: {
+            field: 'new-renew-have-criminal-record',
+            value: 'no'
+          }
+        }
+      ],
       locals: {
         sectionNo: {
           new: 9,
