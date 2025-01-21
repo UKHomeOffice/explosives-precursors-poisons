@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 const validLicenceNumber = value =>
   value.match(/^\d{2}[\/,\-| ]?\w[\/,\-| ]?\d{6}[\/,\-| ]?\d{4}$/);
 
@@ -66,10 +68,19 @@ const getKeyByValue = (obj, value) => {
   return Object.keys(obj).find(key => obj[key] === value);
 };
 
+const isDateOlderOrEqualTo = (dateStr, yearsThreshold) => {
+  const formattedDate = moment(dateStr, 'YYYY-MM-DD');
+  return (
+    formattedDate?.isValid() &&
+    moment().diff(formattedDate, 'years') >= yearsThreshold
+  );
+};
+
 module.exports = {
   isLicenceValid,
   isApplicationType,
   validLicenceNumber,
   isWithoutFullStop,
-  getKeyByValue
+  getKeyByValue,
+  isDateOlderOrEqualTo
 };

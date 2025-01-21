@@ -1,4 +1,3 @@
-const moment = require('moment');
 const hof = require('hof');
 const sectionCounter = require('./behaviours/section-counter');
 const checkBackLink = require('./behaviours/check-back-link');
@@ -7,6 +6,7 @@ const filterCountries = require('./behaviours/filter-countries');
 const summary = hof.components.summary;
 const ConfirmationDisplay = require('./behaviours/confirmation-type');
 const PostcodeValidation = require('../../utilities/helpers/postcode-validation');
+const { isDateOlderOrEqualTo } = require('../../utilities/helpers');
 
 module.exports = {
   name: 'EPP form',
@@ -128,8 +128,7 @@ module.exports = {
           condition: req => {
             const moveToDate =
               req.form.values['new-renew-home-address-moveto-date'];
-            const date = moment(moveToDate, 'YYYY-MM-DD');
-            return date?.isValid() && moment().diff(date, 'years') >= 5;
+            return moveToDate && isDateOlderOrEqualTo(moveToDate, 5);
           }
         }
       ],

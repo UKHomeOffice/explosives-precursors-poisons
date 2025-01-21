@@ -1,7 +1,9 @@
+const moment = require('moment');
 const {
   validLicenceNumber,
   isWithoutFullStop,
-  getKeyByValue
+  getKeyByValue,
+  isDateOlderOrEqualTo
 } = require('../../../utilities/helpers');
 
 describe('EPP utilities tests', () => {
@@ -63,5 +65,32 @@ describe('EPP utilities tests', () => {
     };
     expect(getKeyByValue(obj, 'value4')).to.be.undefined;
     expect(getKeyByValue({}, 'value1')).to.be.undefined;
+  });
+
+  it('.isDateOlderOrEqualTo - should return false for dates less than 5 years', () => {
+    const dates = [
+      moment().format('YYYY-MM-DD'),
+      moment().subtract('1', 'years').format('YYYY-MM-DD'),
+      moment().subtract('2', 'years').format('YYYY-MM-DD'),
+      moment().subtract('3', 'years').format('YYYY-MM-DD'),
+      moment().subtract('4', 'years').format('YYYY-MM-DD'),
+      'INVALID_DATE',
+      ''
+    ];
+    for (const date of dates) {
+      expect(isDateOlderOrEqualTo(`${date}`, 5)).to.be.false;
+    }
+  });
+
+  it('.isDateOlderOrEqualTo - should return true for dates older than or equal to 5 years', () => {
+    const dates = [
+      moment().subtract('5', 'years').format('YYYY-MM-DD'),
+      moment().subtract('6', 'years').format('YYYY-MM-DD'),
+      moment().subtract('7', 'years').format('YYYY-MM-DD'),
+      moment().subtract('80', 'years').format('YYYY-MM-DD')
+    ];
+    for (const date of dates) {
+      expect(isDateOlderOrEqualTo(`${date}`, 5)).to.be.true;
+    }
   });
 });
