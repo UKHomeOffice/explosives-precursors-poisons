@@ -1,4 +1,7 @@
-const { validLicenceNumber } = require('../../../utilities/helpers');
+const {
+  validLicenceNumber,
+  isWithoutFullStop
+} = require('../../../utilities/helpers');
 
 describe('EPP utilities tests', () => {
   it('.validLicenceNumber - should match for valid formats', () => {
@@ -27,5 +30,15 @@ describe('EPP utilities tests', () => {
     licenceNumbers.forEach(licenceNumber =>
       expect(validLicenceNumber(licenceNumber)).to.equal(null)
     );
+  });
+
+  it('.isWithoutFullStop - should return false for string with a full stop', () => {
+    const input = ['122.5', '.', '0.67', '52.2.5', '..', '00.00'];
+    input.forEach(item => expect(isWithoutFullStop(item)).to.be.false);
+  });
+
+  it('.isWithoutFullStop - should return true for string without a full stop', () => {
+    const input = ['1225', 'UNIT_TEST', 'HELLOWORLD', 'A', '', '0000'];
+    input.forEach(item => expect(isWithoutFullStop(item)).to.be.true);
   });
 });

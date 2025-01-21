@@ -35,28 +35,44 @@ module.exports = {
         parse: (value, req) => {
           const otherNameDetails = [];
 
-          const firstName = req.sessionModel.get('new-renew-other-name-first-name');
-          const middleName = req.sessionModel.get('new-renew-other-name-middle-name');
-          const lastName = req.sessionModel.get('new-renew-other-name-last-name');
-          const fullName = [firstName, middleName, lastName].filter(Boolean).join(' ');
-          otherNameDetails.push(req.sessionModel.get('new-renew-other-name-title'), fullName);
+          const firstName = req.sessionModel.get(
+            'new-renew-other-name-first-name'
+          );
+          const middleName = req.sessionModel.get(
+            'new-renew-other-name-middle-name'
+          );
+          const lastName = req.sessionModel.get(
+            'new-renew-other-name-last-name'
+          );
+          const fullName = [firstName, middleName, lastName]
+            .filter(Boolean)
+            .join(' ');
+          otherNameDetails.push(
+            req.sessionModel.get('new-renew-other-name-title'),
+            fullName
+          );
 
-
-          const startDate = req.sessionModel.get('new-renew-other-name-start-date');
+          const startDate = req.sessionModel.get(
+            'new-renew-other-name-start-date'
+          );
           if (startDate) {
-            const formattedStartDate = dateFormatter.format(new Date(startDate));
+            const formattedStartDate = dateFormatter.format(
+              new Date(startDate)
+            );
             otherNameDetails.push(formattedStartDate);
           }
 
-
-          const stopDate = req.sessionModel.get('new-renew-other-name-stop-date');
+          const stopDate = req.sessionModel.get(
+            'new-renew-other-name-stop-date'
+          );
           if (stopDate) {
             const formattedStopDate = dateFormatter.format(new Date(stopDate));
             otherNameDetails.push(formattedStopDate);
           }
 
-
-          const formattedOtherNameDetails = otherNameDetails.filter(Boolean).join('\n');
+          const formattedOtherNameDetails = otherNameDetails
+            .filter(Boolean)
+            .join('\n');
           req.sessionModel.set('otherNameDetails', formattedOtherNameDetails);
 
           return formattedOtherNameDetails;
@@ -69,6 +85,39 @@ module.exports = {
       {
         step: '/licence-number',
         field: 'new-renew-licence-number'
+      },
+      {
+        step: '/your-details',
+        field: 'new-renew-dob',
+        parse: date => date && dateFormatter.format(new Date(date))
+      },
+      {
+        step: '/your-details',
+        field: 'new-renew-birth-place'
+      },
+      {
+        step: '/your-details',
+        field: 'new-renew-birth-country'
+      },
+      {
+        step: '/your-details',
+        field: 'new-renew-country-nationality'
+      },
+      {
+        step: '/your-details',
+        field: 'new-renew-more-nationalities'
+      },
+      {
+        step: '/your-details',
+        field: 'new-renew-your-sex'
+      },
+      {
+        step: '/your-details',
+        field: 'new-renew-your-height'
+      },
+      {
+        step: '/your-details',
+        field: 'new-renew-occupation'
       },
       {
         step: '/other-nationalities',
@@ -99,6 +148,14 @@ module.exports = {
       {
         step: '/other-license',
         field: 'new-renew-other-refused-licence'
+      }
+    ]
+  },
+  'criminal-record': {
+    steps: [
+      {
+        step: '/criminal-record',
+        field: 'new-renew-have-criminal-record'
       }
     ]
   },

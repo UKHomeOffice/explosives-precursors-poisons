@@ -16,15 +16,18 @@ module.exports = {
   steps: {
     '/your-name': {
       behaviours: [checkBackLink, validateAndRedirect],
-      fields: ['new-renew-title',
+      fields: [
+        'new-renew-title',
         'new-renew-first-name',
         'new-renew-middle-name',
         'new-renew-last-name',
-        'new-renew-other-names'],
+        'new-renew-other-names'
+      ],
       forks: [
         {
           target: '/other-names',
-          condition: req => req.sessionModel.get('new-renew-other-names') === 'yes'
+          condition: req =>
+            req.sessionModel.get('new-renew-other-names') === 'yes'
         }
       ],
       next: '/your-details',
@@ -63,9 +66,26 @@ module.exports = {
       }
     },
     '/your-details': {
-      fields: ['new-renew-country-nationality'],
-      // add fork /other-nationalities
-      next: '/other-nationalities',
+      fields: [
+        'new-renew-dob',
+        'new-renew-birth-place',
+        'new-renew-birth-country',
+        'new-renew-country-nationality',
+        'new-renew-more-nationalities',
+        'new-renew-your-sex',
+        'new-renew-your-height',
+        'new-renew-occupation'
+      ],
+      forks: [
+        {
+          target: '/other-nationalities',
+          condition: {
+            field: 'new-renew-more-nationalities',
+            value: 'yes'
+          }
+        }
+      ],
+      next: '/home-address',
       locals: {
         sectionNo: {
           new: 2,
@@ -132,10 +152,7 @@ module.exports = {
       }
     },
     '/contact-details': {
-      fields: [
-        'new-renew-phone-number',
-        'new-renew-email'
-      ],
+      fields: ['new-renew-phone-number', 'new-renew-email'],
       next: '/identity-details',
       locals: {
         sectionNo: {
@@ -245,9 +262,23 @@ module.exports = {
       }
     },
     '/criminal-record': {
-      fields: [],
-      // add fork for /add-offence
-      next: '/add-offence',
+      fields: ['new-renew-have-criminal-record'],
+      forks: [
+        {
+          target: '/add-offence',
+          condition: {
+            field: 'new-renew-have-criminal-record',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/medical-declaration',
+          condition: {
+            field: 'new-renew-have-criminal-record',
+            value: 'no'
+          }
+        }
+      ],
       locals: {
         sectionNo: {
           new: 9,

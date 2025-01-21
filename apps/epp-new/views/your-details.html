@@ -1,0 +1,30 @@
+{{<partials-page}} {{$page-content}}
+
+{{#renderField}}new-renew-dob{{/renderField}}
+{{#input-text}}new-renew-birth-place{{/input-text}}
+{{#select}}new-renew-birth-country{{/select}}
+{{#select}}new-renew-country-nationality{{/select}}
+{{#radio-group}}new-renew-more-nationalities{{/radio-group}}
+{{#radio-group}}new-renew-your-sex{{/radio-group}}
+<details class="govuk-details" data-module="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">{{#t}}pages.your-details.your-sex-summary{{/t}}</span>
+  </summary>
+  <div class="govuk-details__text">
+    <p>{{#t}}pages.your-details.your-sex-description{{/t}}</p>
+  </div>
+</details>
+{{#input-text}}new-renew-your-height{{/input-text}}
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">{{#t}}pages.your-details.your-height-summary{{/t}}</span>
+  </summary>
+  <div class="govuk-details__text">
+    <p>{{#t}}pages.your-details.your-height-description{{/t}}</p>
+  </div>
+</details>
+{{#input-text}}new-renew-occupation{{/input-text}}
+
+{{#input-submit}}continue{{/input-submit}} 
+{{/page-content}} 
+{{/partials-page}}
