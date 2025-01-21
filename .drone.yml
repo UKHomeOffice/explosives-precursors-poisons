@@ -111,10 +111,8 @@ steps:
   # - name: sonar_scanner
   #   <<: *sonar_scanner
   #   when:
-  #     branch:
-  #       include:
-  #         - master
-  #         - feature/*
+  #    branch:
+  #      <<: *include_default_and_feature_branches
   #     event: [push, pull_request]
 
   - name: build_image
@@ -163,6 +161,7 @@ steps:
         memory: 1024Mi
     environment:
       IMAGE_NAME: sas/epp:${DRONE_COMMIT_SHA}
+      SERVICE_URL: https://acp-trivy-helm.acp-trivy.svc.cluster.local:443      
       SEVERITY: MEDIUM,HIGH,CRITICAL  --dependency-tree --format table
       FAIL_ON_DETECTION: false
       IGNORE_UNFIXED: false
@@ -205,8 +204,8 @@ steps:
       - sh bin/deploy.sh $${UAT_ENV}
     when:
       branch:
-        include:
-          - master
+      branch:
+        <<: *include_default_branch
       event: push
     depends_on:
       - clone_repos
@@ -227,7 +226,8 @@ steps:
     commands:
       - drone build info $GIT_REPO $DRONE_BUILD_NUMBER --format {{.Message}} | grep -o '[^ ]\+$' -m1 | sed 's|UKHomeOffice/||g' | tr '[:upper:]' '[:lower:]' | tr '/' '-' > /root/.dockersock/branch_name.txt
     when:
-      branch: master
+      branch:
+        <<: *include_default_branch
       event: push
 
   # Tear down pull request UAT environment
@@ -245,10 +245,12 @@ steps:
     commands:
       - bin/deploy.sh tear_down
     when:
-      branch: master
+      branch:
+        <<: *include_default_branch
       event: push
     depends_on:
       - get_pr_branch
+      - deploy_to_uat
 
   # Deploy to Staging environment
   - name: deploy_to_stg
@@ -262,7 +264,8 @@ steps:
     commands:
       - bin/deploy.sh $${STG_ENV}
     when:
-      branch: master
+      branch:
+        <<: *include_default_branch
       event: push
     depends_on:
       - clone_repos
@@ -363,7 +366,26 @@ steps:
     pull: always
     environment:
         IMAGE_NAME: sas/epp:${DRONE_COMMIT_SHA}
-        SERVICE_URL: https://acp-trivy.acp-trivy.svc.cluster.local:443
+        SERVICE_URL: https://acp-trivy-helm.acp-trivy.svc.cluster.local:443
+        SEVERITY: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL --dependency-tree
+        FAIL_ON_DETECTION: true
+        IGNORE_UNFIXED: false
+        ALLOW_CVE_LIST_FILE: hof-services-config/infrastructure/trivy/.trivyignore.yaml
+    when:
+      cron: security_scans
+      event: cron
+      status:
+        - success
+        - failure
+    depends_on:
+      - cron_build_image
+
+  - name: cron_trivy_scan_image_os
+    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
+    pull: always
+    environment:
+        IMAGE_NAME: node:20.18.0-alpine3.20@sha256:d504f23acdda979406cf3bdbff0dff7933e5c4ec183dda404ed24286c6125e60
+        SERVICE_URL: https://acp-trivy-helm.acp-trivy.svc.cluster.local:443
         SEVERITY: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL --dependency-tree
         FAIL_ON_DETECTION: false
         IGNORE_UNFIXED: false
@@ -372,20 +394,7 @@ steps:
       cron: security_scans
       event: cron
     depends_on:
-      - cron_build_image   
-
-  - name: cron_trivy_scan_image_os
-    image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/trivy/client:latest
-    pull: always
-    environment:
-        IMAGE_NAME: node:20.18.0-alpine3.20@sha256:d504f23acdda979406cf3bdbff0dff7933e5c4ec183dda404ed24286c6125e60
-        SEVERITY: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL --dependency-tree
-        FAIL_ON_DETECTION: false
-        IGNORE_UNFIXED: false
-        ALLOW_CVE_LIST_FILE: hof-services-config/infrastructure/trivy/.trivyignore.yaml
-    when:
-      cron: security_scans
-      event: cron
+      - cron_clone_repos
 
   # Slack notification upon a CRON job fail
   - name: cron_notify_slack_tear_down_pr_envs
@@ -407,7 +416,10 @@ steps:
     when:
       cron: tear_down_pr_envs
       event: cron
-      status: failure
+      status:
+        - failure
+    depends_on:
+      - cron_tear_down
   
   - name: cron_notify_slack_security_scans
     pull: if-not-exists
@@ -428,7 +440,11 @@ steps:
     when:
       cron: security_scans
       event: cron
-      status: failure
+      status:
+        - failure
+    depends_on:
+      - cron_trivy_scan_image_os
+      - cron_trivy_scan_node_packages
 
 services:
   - name: docker
