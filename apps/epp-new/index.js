@@ -5,6 +5,7 @@ const validateAndRedirect = require('./behaviours/home-redirection');
 const filterCountries = require('./behaviours/filter-countries');
 const summary = hof.components.summary;
 const ConfirmationDisplay = require('./behaviours/confirmation-type');
+const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
 
 module.exports = {
   name: 'EPP form',
@@ -15,7 +16,7 @@ module.exports = {
   behaviours: [sectionCounter],
   steps: {
     '/your-name': {
-      behaviours: [checkBackLink, validateAndRedirect],
+      behaviours: [checkBackLink, RemoveEditMode, validateAndRedirect],
       fields: [
         'new-renew-title',
         'new-renew-first-name',
@@ -40,7 +41,8 @@ module.exports = {
       }
     },
     '/other-names': {
-      fields: ['new-renew-other-name-title',
+      fields: [
+        'new-renew-other-name-title',
         'new-renew-other-name-first-name',
         'new-renew-other-name-middle-name',
         'new-renew-other-name-last-name',
@@ -318,14 +320,16 @@ module.exports = {
     },
     '/medical-history': {
       fields: ['new-renew-has-seen-doctor', 'new-renew-received-treatment'],
-      forks: [{
-        target: '/medical-form',
-        continueOnEdit: true,
-        condition: {
-          field: 'new-renew-received-treatment',
-          value: 'yes'
+      forks: [
+        {
+          target: '/medical-form',
+          continueOnEdit: true,
+          condition: {
+            field: 'new-renew-received-treatment',
+            value: 'yes'
+          }
         }
-      }],
+      ],
       next: '/doctor-details',
       locals: {
         sectionNo: {

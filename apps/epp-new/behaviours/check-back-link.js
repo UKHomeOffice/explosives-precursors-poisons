@@ -3,6 +3,8 @@ module.exports = superclass =>
     locals(req, res) {
       const locals = super.locals(req, res);
       const isRenewJourney = req.sessionModel.get('isRenewJourney');
+
+      // TODO: Handle Edit scenario
       if (locals?.route === 'your-name' && isRenewJourney) {
         locals.backLink = '/new-and-renew/licence-number';
       }
