@@ -40,14 +40,18 @@ linting: &linting
   commands:
     - yarn run test:lint
 
-### Commenting these following steps until missing test folder is added by Devs fixes pipeline issue
+unit_tests: &unit_tests
+  <<: *node_image
+  environment:
+    NOTIFY_STUB: true
+  commands:
+    - yarn run test:unit
 
-# sonar_scanner: &sonar_scanner
-#   pull: if-not-exists
-#   image: quay.io/ukhomeofficedigital/sonar-scanner-nodejs:latest
-#   commands:
-#     - sonar-scanner -Dproject.settings=./sonar-project.properties
-
+sonar_scanner: &sonar_scanner
+  pull: if-not-exists
+  image: quay.io/ukhomeofficedigital/sonar-scanner-nodejs:latest
+  commands:
+    - sonar-scanner -Dproject.settings=./sonar-project.properties
 steps:
   - name: clone_repos
     pull: if-not-exists
@@ -108,12 +112,21 @@ steps:
     depends_on:
       - setup
 
-  # - name: sonar_scanner
-  #   <<: *sonar_scanner
-  #   when:
-  #    branch:
-  #      <<: *include_default_and_feature_branches
-  #     event: [push, pull_request]
+  - name: unit_tests
+    <<: *unit_tests
+    when:
+      branch:
+        <<: *include_default_and_feature_branches
+      event: [push, pull_request]
+    depends_on:
+      - setup
+
+  - name: sonar_scanner
+    <<: *sonar_scanner
+    when:
+      branch:
+        <<: *include_default_and_feature_branches
+      event: [push, pull_request]
 
   - name: build_image
     pull: if-not-exists
