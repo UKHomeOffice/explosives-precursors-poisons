@@ -4,7 +4,7 @@ const Model = require('hof').model;
 describe('save-application-selection behaviour tests', () => {
   let behaviour;
   let Behaviour;
-  let superGetValuesStub;
+  let superSaveValuesStub;
   let req;
   let res;
   let next;
@@ -17,11 +17,11 @@ describe('save-application-selection behaviour tests', () => {
       redirect: sinon.spy()
     };
     next = sinon.stub();
-    superGetValuesStub = sinon.stub();
+    superSaveValuesStub = sinon.stub();
 
     req.sessionModel = new Model({});
 
-    Base.prototype.saveValues = superGetValuesStub;
+    Base.prototype.saveValues = superSaveValuesStub;
     Behaviour = SaveApplicationSelection;
     Behaviour = Behaviour(Base);
     behaviour = new Behaviour();
@@ -33,7 +33,7 @@ describe('save-application-selection behaviour tests', () => {
 
   it('should call super.saveValues', () => {
     behaviour.saveValues(req, res, next);
-    superGetValuesStub.should.be.calledOnce;
+    superSaveValuesStub.should.be.calledOnce;
   });
 
   it('Application type changed - clear the session data but keep the csrf-secret', () => {
@@ -56,7 +56,7 @@ describe('save-application-selection behaviour tests', () => {
     expect(
       req.sessionModel.options.session['hof-wizard-EPP form']
     ).to.deep.equal(expectedPartialSessionData);
-    superGetValuesStub.should.be.calledOnce;
+    superSaveValuesStub.should.be.calledOnce;
   });
 
   it('Application type not changed - should not clear the session', () => {
@@ -81,6 +81,6 @@ describe('save-application-selection behaviour tests', () => {
     expect(
       req.sessionModel.options.session['hof-wizard-EPP form']
     ).to.deep.equal(expectedCompleteSessionData);
-    superGetValuesStub.should.be.calledOnce;
+    superSaveValuesStub.should.be.calledOnce;
   });
 });
