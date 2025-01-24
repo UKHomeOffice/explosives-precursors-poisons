@@ -64,7 +64,7 @@
         "required": "Enter a contact email address",
         "email": "Enter a real email address"
     },
-    "amend-type-options": {
+    "amend-name-options": {
         "required": "Select which details you need to amend on your licence"
     }
 }

@@ -47,11 +47,12 @@ module.exports = {
     labelClassName: 'govuk-label--m',
     validate: ['required', 'email']
   },
-  'amend-type-options': {
+  'amend-name-options': {
     mixin: 'radio-group',
     legend: {
       className: 'govuk-label--m'
     },
+    className: ['amend-name-display'],
     options: ['yes', 'no'],
     validate: 'required'
   },

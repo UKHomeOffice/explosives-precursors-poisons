@@ -54,19 +54,19 @@ module.exports = {
       next: '/amend-details'
     },
     '/amend-details': {
-      fields: ['amend-type-options'],
+      fields: ['amend-name-options'],
       forks: [
         {
           target: '/new-name',
           condition: {
-            field: 'amend-type-options',
+            field: 'amend-name-options',
             value: 'yes'
           }
         },
         {
           target: '/change-home-address',
           condition: {
-            field: 'amend-type-options',
+            field: 'amend-name-options',
             value: 'no'
           }
         }

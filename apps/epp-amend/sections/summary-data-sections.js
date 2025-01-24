@@ -83,11 +83,11 @@ module.exports = {
       }
     ]
   },
-  'amend-type-options': {
+  'amend-name-options': {
     steps: [
       {
         steps: '/amend-details',
-        field: 'amend-type-options'
+        field: 'amend-name-options'
       }
     ]
   }
