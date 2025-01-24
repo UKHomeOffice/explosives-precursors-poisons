@@ -41,7 +41,8 @@ module.exports = {
       }
     },
     '/other-names': {
-      fields: ['new-renew-other-name-title',
+      fields: [
+        'new-renew-other-name-title',
         'new-renew-other-name-first-name',
         'new-renew-other-name-middle-name',
         'new-renew-other-name-last-name',
@@ -319,14 +320,16 @@ module.exports = {
     },
     '/medical-history': {
       fields: ['new-renew-has-seen-doctor', 'new-renew-received-treatment'],
-      forks: [{
+      forks: [
+        {
           target: '/medical-form',
           continueOnEdit: true,
           condition: {
             field: 'new-renew-received-treatment',
             value: 'yes'
           }
-      }],
+        }
+      ],
       next: '/doctor-details',
       locals: {
         sectionNo: {
