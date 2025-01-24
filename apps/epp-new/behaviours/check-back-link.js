@@ -3,8 +3,12 @@ module.exports = superclass =>
     locals(req, res) {
       const locals = super.locals(req, res);
       const isRenewJourney = req.sessionModel.get('isRenewJourney');
+
       if (locals?.route === 'your-name' && isRenewJourney) {
-        locals.backLink = '/new-and-renew/licence-number';
+        const isEditMode = locals.backLink?.endsWith('/edit');
+        locals.backLink = isEditMode
+          ? '/new-and-renew/licence-number/edit'
+          : '/new-and-renew/licence-number';
       }
       return locals;
     }
