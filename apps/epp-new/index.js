@@ -173,7 +173,7 @@ module.exports = {
       }
     },
     '/upload-british-passport': {
-      fields: [],
+      fields: ['file-upload'],
       next: '/other-licences',
       locals: {
         sectionNo: {
@@ -319,12 +319,12 @@ module.exports = {
     '/medical-history': {
       fields: ['new-renew-has-seen-doctor', 'new-renew-received-treatment'],
       forks: [{
-        target: '/medical-form',
-        continueOnEdit: true,
-        condition: {
-          field: 'new-renew-received-treatment',
-          value: 'yes'
-        }
+          target: '/medical-form',
+          continueOnEdit: true,
+          condition: {
+            field: 'new-renew-received-treatment',
+            value: 'yes'
+          }
       }],
       next: '/doctor-details',
       locals: {
