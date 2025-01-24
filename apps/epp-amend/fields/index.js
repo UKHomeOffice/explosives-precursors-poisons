@@ -52,7 +52,7 @@ module.exports = {
     legend: {
       className: 'govuk-label--m'
     },
-    className: ['amend-name-display'],
+    className: ['govuk-radios', 'govuk-radios--inline'],
     options: ['yes', 'no'],
     validate: 'required'
   },
