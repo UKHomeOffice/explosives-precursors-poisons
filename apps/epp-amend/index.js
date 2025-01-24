@@ -2,6 +2,7 @@ const validateAndRedirect = require('./behaviours/home-redirection');
 const SummaryPageBehaviour = require('hof').components.summary;
 const ValidateLicenceNumber = require('../epp-common/behaviours/licence-validator');
 const PostcodeValidation = require('../../utilities/helpers//postcode-validation');
+const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
 
 module.exports = {
   name: 'EPP form',
@@ -11,7 +12,7 @@ module.exports = {
   baseUrl: '/amend',
   steps: {
     '/licence-number': {
-      behaviours: [validateAndRedirect, ValidateLicenceNumber],
+      behaviours: [validateAndRedirect, RemoveEditMode, ValidateLicenceNumber],
       backLink: '/application-type',
       fields: ['amend-licence-number'],
       next: '/name-on-licence',
@@ -107,21 +108,15 @@ module.exports = {
       next: '/section-twelve'
     },
     '/section-twelve': {
-      fields: [
-        'amend-reason-for-licence'
-      ],
+      fields: ['amend-reason-for-licence'],
       next: '/section-thirteen'
     },
     '/section-thirteen': {
-      fields: [
-        'amend-explosive-precusor-type'
-      ],
+      fields: ['amend-explosive-precusor-type'],
       next: '/section-fourteen'
     },
     '/section-fourteen': {
-      fields: [
-        'amend-poison-type'
-      ],
+      fields: ['amend-poison-type'],
       next: '/section-fifteen'
     },
     '/section-fifteen': {
@@ -146,16 +141,11 @@ module.exports = {
       next: '/section-seventeen'
     },
     '/section-seventeen': {
-      fields: [
-        'amend-countersignatory-phone',
-        'amend-countersignatory-email'
-      ],
+      fields: ['amend-countersignatory-phone', 'amend-countersignatory-email'],
       next: '/section-eighteen'
     },
     '/section-eighteen': {
-      fields: [
-        'amend-countersignatory-document-type'
-      ],
+      fields: ['amend-countersignatory-document-type'],
       next: '/confirm'
     },
     '/confirm': {
