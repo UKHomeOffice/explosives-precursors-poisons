@@ -82,5 +82,13 @@ module.exports = {
         field: 'amend-email'
       }
     ]
+  },
+  'amend-name-options': {
+    steps: [
+      {
+        steps: '/amend-details',
+        field: 'amend-name-options'
+      }
+    ]
   }
 };

@@ -1,5 +1,6 @@
 const validateAndRedirect = require('./behaviours/home-redirection');
 const SummaryPageBehaviour = require('hof').components.summary;
+const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
 
 module.exports = {
   name: 'EPP form',
@@ -9,7 +10,7 @@ module.exports = {
   baseUrl: '/replace-licence',
   steps: {
     '/section-one': {
-      behaviours: [validateAndRedirect],
+      behaviours: [validateAndRedirect, RemoveEditMode],
       backLink: '/application-type',
       fields: ['replace-licence'],
       next: '/section-two'
@@ -54,10 +55,7 @@ module.exports = {
       next: '/section-seven'
     },
     '/section-seven': {
-      fields: [
-        'replace-phone-number',
-        'replace-email'
-      ],
+      fields: ['replace-phone-number', 'replace-email'],
       next: '/section-eight'
     },
     '/section-eight': {
@@ -65,9 +63,7 @@ module.exports = {
       next: '/section-nine'
     },
     '/section-nine': {
-      fields: [
-        'replace-replace-type'
-      ],
+      fields: ['replace-replace-type'],
       next: '/section-ten'
     },
     '/section-ten': {
@@ -103,15 +99,11 @@ module.exports = {
       next: '/section-fifteen'
     },
     '/section-fifteen': {
-      fields: [
-        'replace-reason-for-licence'
-      ],
+      fields: ['replace-reason-for-licence'],
       next: '/section-sixteen'
     },
     '/section-sixteen': {
-      fields: [
-        'replace-explosive-precusor-type'
-      ],
+      fields: ['replace-explosive-precusor-type'],
       // fields: [
       //   'replace-countersignatory-address-1',
       //   'replace-countersignatory-address-2',
@@ -121,24 +113,18 @@ module.exports = {
       next: '/section-sixteen-type'
     },
     '/section-sixteen-type': {
-      fields: [
-        'replace-explosive-precusor-details'
-      ],
+      fields: ['replace-explosive-precusor-details'],
       next: '/section-sixteen-summary'
     },
     '/section-sixteen-summary': {
       next: '/section-seventeen'
     },
     '/section-seventeen': {
-      fields: [
-        'replace-poison-type'
-      ],
+      fields: ['replace-poison-type'],
       next: '/section-eighteen'
     },
     '/section-seventeen-poison': {
-      fields: [
-        'replace-poison-details'
-      ],
+      fields: ['replace-poison-details'],
       next: '/section-seventeen-summary'
     },
     '/section-seventeen-summary': {
@@ -173,9 +159,7 @@ module.exports = {
       next: '/section-twenty-one'
     },
     '/section-twenty-one': {
-      fields: [
-        'replace-countersignatory-document-type'
-      ],
+      fields: ['replace-countersignatory-document-type'],
       next: '/confirm'
     },
     '/confirm': {

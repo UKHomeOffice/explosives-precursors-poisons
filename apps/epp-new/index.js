@@ -5,6 +5,7 @@ const validateAndRedirect = require('./behaviours/home-redirection');
 const filterCountries = require('./behaviours/filter-countries');
 const summary = hof.components.summary;
 const ConfirmationDisplay = require('./behaviours/confirmation-type');
+const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
 const PostcodeValidation = require('../../utilities/helpers/postcode-validation');
 const { isDateOlderOrEqualTo } = require('../../utilities/helpers');
 
@@ -17,7 +18,7 @@ module.exports = {
   behaviours: [sectionCounter],
   steps: {
     '/your-name': {
-      behaviours: [checkBackLink, validateAndRedirect],
+      behaviours: [checkBackLink, RemoveEditMode, validateAndRedirect],
       fields: [
         'new-renew-title',
         'new-renew-first-name',

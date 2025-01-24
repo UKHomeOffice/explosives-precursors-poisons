@@ -2,6 +2,7 @@ const validateAndRedirect = require('./behaviours/home-redirection');
 const SummaryPageBehaviour = require('hof').components.summary;
 const ValidateLicenceNumber = require('../epp-common/behaviours/licence-validator');
 const PostcodeValidation = require('../../utilities/helpers//postcode-validation');
+const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
 
 module.exports = {
   name: 'EPP form',
@@ -11,7 +12,7 @@ module.exports = {
   baseUrl: '/amend',
   steps: {
     '/licence-number': {
-      behaviours: [validateAndRedirect, ValidateLicenceNumber],
+      behaviours: [validateAndRedirect, RemoveEditMode, ValidateLicenceNumber],
       backLink: '/application-type',
       fields: ['amend-licence-number'],
       next: '/name-on-licence',
@@ -50,14 +51,31 @@ module.exports = {
         'amend-phone-number',
         'amend-email'
       ],
-      locals: { captionHeading: 'Section 5 of 20' },
-      next: '/section-six'
+      locals: {captionHeading: 'Section 5 of 20'},
+      next: '/amend-details'
     },
-    '/section-six': {
-      fields: ['amend-options'],
-      next: '/section-seven'
+    '/amend-details': {
+      fields: ['amend-name-options'],
+      forks: [
+        {
+          target: '/new-name',
+          condition: {
+            field: 'amend-name-options',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/change-home-address',
+          condition: {
+            field: 'amend-name-options',
+            value: 'no'
+          }
+        }
+      ],
+      locals: {captionHeading: 'Section 6 of 20'},
+      next: '/new-name'
     },
-    '/section-seven': {
+    '/new-name': {
       fields: [
         'amend-option-name-title',
         'amend-option-firstname',
@@ -72,9 +90,9 @@ module.exports = {
       next: '/section-nine'
     },
     '/section-nine': {
-      next: '/section-ten'
+      next: '/change-home-address'
     },
-    '/section-ten': {
+    '/change-home-address': {
       fields: [
         'amend-new-post-address-1',
         'amend-new-post-address-2',
@@ -90,21 +108,15 @@ module.exports = {
       next: '/section-twelve'
     },
     '/section-twelve': {
-      fields: [
-        'amend-reason-for-licence'
-      ],
+      fields: ['amend-reason-for-licence'],
       next: '/section-thirteen'
     },
     '/section-thirteen': {
-      fields: [
-        'amend-explosive-precusor-type'
-      ],
+      fields: ['amend-explosive-precusor-type'],
       next: '/section-fourteen'
     },
     '/section-fourteen': {
-      fields: [
-        'amend-poison-type'
-      ],
+      fields: ['amend-poison-type'],
       next: '/section-fifteen'
     },
     '/section-fifteen': {
@@ -129,16 +141,11 @@ module.exports = {
       next: '/section-seventeen'
     },
     '/section-seventeen': {
-      fields: [
-        'amend-countersignatory-phone',
-        'amend-countersignatory-email'
-      ],
+      fields: ['amend-countersignatory-phone', 'amend-countersignatory-email'],
       next: '/section-eighteen'
     },
     '/section-eighteen': {
-      fields: [
-        'amend-countersignatory-document-type'
-      ],
+      fields: ['amend-countersignatory-document-type'],
       next: '/confirm'
     },
     '/confirm': {
