@@ -47,15 +47,35 @@ module.exports = {
       locals: { captionHeading: 'Section 4 of 20' }
     },
     '/contact-details': {
-      fields: ['amend-phone-number', 'amend-email'],
-      locals: { captionHeading: 'Section 5 of 20' },
-      next: '/section-six'
+      fields: [
+        'amend-phone-number',
+        'amend-email'
+      ],
+      locals: {captionHeading: 'Section 5 of 20'},
+      next: '/amend-details'
     },
-    '/section-six': {
-      fields: ['amend-options'],
-      next: '/section-seven'
+    '/amend-details': {
+      fields: ['amend-name-options'],
+      forks: [
+        {
+          target: '/new-name',
+          condition: {
+            field: 'amend-name-options',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/change-home-address',
+          condition: {
+            field: 'amend-name-options',
+            value: 'no'
+          }
+        }
+      ],
+      locals: {captionHeading: 'Section 6 of 20'},
+      next: '/new-name'
     },
-    '/section-seven': {
+    '/new-name': {
       fields: [
         'amend-option-name-title',
         'amend-option-firstname',
@@ -70,9 +90,9 @@ module.exports = {
       next: '/section-nine'
     },
     '/section-nine': {
-      next: '/section-ten'
+      next: '/change-home-address'
     },
-    '/section-ten': {
+    '/change-home-address': {
       fields: [
         'amend-new-post-address-1',
         'amend-new-post-address-2',

@@ -47,6 +47,15 @@ module.exports = {
     labelClassName: 'govuk-label--m',
     validate: ['required', 'email']
   },
+  'amend-name-options': {
+    mixin: 'radio-group',
+    legend: {
+      className: 'govuk-label--m'
+    },
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    options: ['yes', 'no'],
+    validate: 'required'
+  },
   'amend-date-of-birth': dateComponent('amend-date-of-birth', {
     mixin: 'input-date',
     legend: { className: 'bold' },
