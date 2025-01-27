@@ -83,14 +83,40 @@ module.exports = {
         'amend-option-lastname',
         'amend-option-date-name-changed'
       ],
-      next: '/section-eight'
+      next: '/identity-details'
     },
-    '/section-eight': {
-      fields: ['amend-document-type'],
-      next: '/section-nine'
+    '/identity-details': {
+      fields: [
+        'amend-applicant-Id-type',
+        'amend-UK-passport-number',
+        'amend-EU-passport-number',
+        'amend-Uk-driving-licence-number'
+      ],
+      forks: [
+        {target: '/upload-british-passport',
+          condition: req =>
+            req.sessionModel.get('amend-applicant-Id-type') === 'british-passport'
+        },
+        {target: '/upload-passport',
+          condition: req =>
+            req.sessionModel.get('amend-applicant-Id-type') === 'EU-passport'
+        }
+      ],
+
+      locals: { captionHeading: 'Section 8 of 20' },
+      next: '/upload-driving-licence'
     },
-    '/section-nine': {
-      next: '/change-home-address'
+    '/upload-british-passport': {
+      next: '/change-home-address',
+      locals: { captionHeading: 'Section 9 of 20' }
+    },
+    '/upload-passport': {
+      next: '/change-home-address',
+      locals: { captionHeading: 'Section 9 of 20' }
+    },
+    '/upload-driving-licence': {
+      next: '/change-home-address',
+      locals: { captionHeading: 'Section 9 of 20' }
     },
     '/change-home-address': {
       fields: [

@@ -90,5 +90,25 @@ module.exports = {
         field: 'amend-name-options'
       }
     ]
+  },
+  'amend-new-name-details': {
+    steps: [
+      {
+        step: '/identity-details',
+        field: 'amend-applicant-Id-type'
+      },
+      {
+        step: '/identity-details',
+        field: 'amend-UK-passport-number'
+      },
+      {
+        step: '/identity-details',
+        field: 'amend-EU-passport-number'
+      },
+      {
+        step: '/identity-details',
+        field: 'amend-Uk-driving-licence-number'
+      }
+    ]
   }
 };
