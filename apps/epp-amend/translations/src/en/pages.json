@@ -41,6 +41,9 @@
       },
       "amend-name-options": {
         "header": "Amend name"
+      },
+      "amend-new-name-details": {
+        "header": "New name"
       }
     },
     "fields": {
@@ -85,6 +88,18 @@
       },
       "amend-email": {
         "label": "Email address"
+      },
+      "amend-applicant-Id-type": {
+        "label": "Identification document"
+      },
+      "amend-UK-passport-number": {
+        "label": "British passport number"
+      },
+      "amend-EU-passport-number": {
+        "label": "Passport number"
+      },
+      "amend-Uk-driving-licence-number": {
+        "label": "Driving Licence"
       }
     }
   }

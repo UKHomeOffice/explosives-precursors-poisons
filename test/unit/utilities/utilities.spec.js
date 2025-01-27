@@ -3,7 +3,8 @@ const {
   validLicenceNumber,
   isWithoutFullStop,
   getKeyByValue,
-  isDateOlderOrEqualTo
+  isDateOlderOrEqualTo,
+  isValidUkDrivingLicenceNumber
 } = require('../../../utilities/helpers');
 
 describe('EPP utilities tests', () => {
@@ -93,4 +94,25 @@ describe('EPP utilities tests', () => {
       expect(isDateOlderOrEqualTo(`${date}`, 5)).to.be.true;
     }
   });
+
+it('isValidUkDrivingLicenceNumber- should match uk driving licence number if format is correct', () => {
+    const input = [
+        'FARME100165AB5EW',
+        'FAR99700165AB5EW',
+        'MERED811165AB5EW',
+        'SMITH816305DF5EW',
+        'Smith816305DF5Ew'
+    ];
+    input.forEach(item => expect(isValidUkDrivingLicenceNumber(item)).to.not.equal(null));
+});
+
+it('isValidUkDrivingLicenceNumber- should return null for invalid format', () => {
+    const input = [
+        'FARMETHER65AB5EW',
+        'MERED811165AB588',
+        'STR4M382940AZ9AZ',
+        '1VEET382940AZ9AZ'
+    ];
+    input.forEach(item => expect(isValidUkDrivingLicenceNumber(item)).to.equal(null));
+});
 });
