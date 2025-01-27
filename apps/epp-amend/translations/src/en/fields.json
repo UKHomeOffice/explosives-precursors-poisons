@@ -108,7 +108,7 @@
   },
   "amend-Uk-driving-licence-number": {
     "label": "What is your driving licence number?",
-    "hint" : "On section 5 of your licence, for example MORGA657054SM9IJ"    
+    "hint" : "On section 5 of your licence, for example MORGA657054SM9IJ"
   },
   "amend-new-address-1": {
     "label": "Address line 1"
@@ -135,5 +135,9 @@
   "amend-new-date-moved-to-address": {
       "legend": "What date did you change your address?",
       "hint": " For example, 30 09 1969"
+  },
+  "file-upload":{
+    "label": "Upload a file",
+    "hint": "Your file must be JPEG, PDF or PNG and be 25MB or less"
   }
 }

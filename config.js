@@ -48,24 +48,25 @@ module.exports = {
   },
   upload: {
     maxFileSizeInBytes: 25 * 1000 * 1000, // 25MB in bytes
+    maxFileSize: '25mb',
     hostname: process.env.FILE_VAULT_URL,
     allowedMimeTypes: [
       'image/png',
       'image/jpg',
       'image/jpeg',
-      'application/pdf',
-      'text/plain',
-      'text/html',
-      'application/vnd',
-      'message/rfc822',
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-      'application/vnd.ms-powerpoint',
-      'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-      'application/rtf',
-      'text/csv',
-      'application/vnd.ms-excel',
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-      'application/xml'
+      'application/pdf'
+      // 'text/plain',
+      // 'text/html',
+      // 'application/vnd',
+      // 'message/rfc822',
+      // 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      // 'application/vnd.ms-powerpoint',
+      // 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+      // 'application/rtf',
+      // 'text/csv',
+      // 'application/vnd.ms-excel',
+      // 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      // 'application/xml'
     ]
   },
   sectionDetails: {

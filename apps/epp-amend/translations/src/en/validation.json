@@ -146,5 +146,11 @@
         "date": "Enter a real date",
         "before": "Date you moved to this address must be in the past",
         "after": "Date you moved to this address must be after {{diff}}, your date of birth"
+      },
+      "file-upload": {
+        "required": "Select a file to upload",
+        "maxFileSizeInBytes": "maxFileSizeInBytes",
+        "maxFileSize": "The selected file must 25MB or smaller",
+        "fileType": "The selected file must be a JPG, PDF or PNG"
     }
-}
+    }

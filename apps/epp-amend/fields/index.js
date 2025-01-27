@@ -245,5 +245,9 @@ module.exports = {
     mixin: 'input-date',
     legend: { className: 'bold' },
     validate: ['required', 'date', 'before']
-  })
+  }),
+  'file-upload': {
+    mixin: 'input-file',
+    labelClassName: 'govuk-label--m'
+  },
 };
