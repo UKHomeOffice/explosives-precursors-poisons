@@ -77,7 +77,7 @@ const isDateOlderOrEqualTo = (dateStr, yearsThreshold) => {
 };
 
 const isValidUkDrivingLicenceNumber = value =>
-    value.match(/^[A-Z9]{5}\d{6}[A-Z9]{2}\d[A-Z]{2}$/i);
+  value.match(/^[A-Z9]{5}\d{6}[A-Z9]{2}\d[A-Z]{2}$/i);
 
 
 module.exports = {

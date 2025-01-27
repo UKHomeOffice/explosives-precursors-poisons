@@ -95,24 +95,28 @@ describe('EPP utilities tests', () => {
     }
   });
 
-it('isValidUkDrivingLicenceNumber- should match uk driving licence number if format is correct', () => {
+  it('isValidUkDrivingLicenceNumber- should match uk driving licence number if format is correct', () => {
     const input = [
-        'FARME100165AB5EW',
-        'FAR99700165AB5EW',
-        'MERED811165AB5EW',
-        'SMITH816305DF5EW',
-        'Smith816305DF5Ew'
+      'FARME100165AB5EW',
+      'FAR99700165AB5EW',
+      'MERED811165AB5EW',
+      'SMITH816305DF5EW',
+      'Smith816305DF5Ew'
     ];
-    input.forEach(item => expect(isValidUkDrivingLicenceNumber(item)).to.not.equal(null));
-});
+    input.forEach(item =>
+      expect(isValidUkDrivingLicenceNumber(item)).to.not.equal(null)
+    );
+  });
 
-it('isValidUkDrivingLicenceNumber- should return null for invalid format', () => {
+  it('isValidUkDrivingLicenceNumber- should return null for invalid format', () => {
     const input = [
-        'FARMETHER65AB5EW',
-        'MERED811165AB588',
-        'STR4M382940AZ9AZ',
-        '1VEET382940AZ9AZ'
+      'FARMETHER65AB5EW',
+      'MERED811165AB588',
+      'STR4M382940AZ9AZ',
+      '1VEET382940AZ9AZ'
     ];
-    input.forEach(item => expect(isValidUkDrivingLicenceNumber(item)).to.equal(null));
-});
+    input.forEach(item =>
+      expect(isValidUkDrivingLicenceNumber(item)).to.equal(null)
+    );
+  });
 });
