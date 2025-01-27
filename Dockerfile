@@ -1,4 +1,7 @@
-FROM node:20.18.0-alpine3.20@sha256:d504f23acdda979406cf3bdbff0dff7933e5c4ec183dda404ed24286c6125e60
+ARG BASE_IMAGE
+
+FROM ${BASE_IMAGE}
+#FROM node:20.18.0-alpine3.20@sha256:d504f23acdda979406cf3bdbff0dff7933e5c4ec183dda404ed24286c6125e60
 
 USER root
 
