@@ -419,7 +419,15 @@ module.exports = {
       }
     },
     '/countersignatory-details': {
-      fields: [],
+      fields: [
+        'new-renew-countersignatory-title',
+        'new-renew-countersignatory-firstname',
+        'new-renew-countersignatory-middlename',
+        'new-renew-countersignatory-lastname',
+        'new-renew-countersignatory-years',
+        'new-renew-countersignatory-howyouknow',
+        'new-renew-countersignatory-occupation'
+      ],
       next: '/countersignatory-address',
       locals: {
         sectionNo: {

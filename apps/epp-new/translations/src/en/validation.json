@@ -123,5 +123,36 @@
   },
   "new-renew-have-criminal-record": {
     "required": "Select if you have a criminal record or any type of formal warning"
+  },
+  "new-renew-countersignatory-title": {
+    "required": "Select your countersignatory's title"
+  },
+  "new-renew-countersignatory-firstname": {
+    "required": "Enter your countersignatory's first name",
+    "maxlength": "Countersignatory's first name must between 1 and 250 characters",
+    "notUrl": "Your answer must not include a URL"
+  },
+  "new-renew-countersignatory-middlename": {
+    "maxlength": "Countersignatory's middle names must be between 1 and 250 characters",
+    "notUrl": "Your answer must not include a URL"
+  },
+  "new-renew-countersignatory-lastname": {
+    "required": "Enter your countersignatory's last name",
+    "maxlength": "Countersignatory's last name must be between 1 and 250 characters",
+    "notUrl": "Your answer must not include a URL"
+  },
+  "new-renew-countersignatory-years": {
+    "required": "Select how many years you have known your countersignatory"
+
+  },
+  "new-renew-countersignatory-howyouknow": {
+    "required": "Enter how you know your countersignatory",
+    "maxlength": "How you know your countersignatory must be 250 characters or less",
+    "notUrl": "Your answer must not include a URL"
+  },
+  "new-renew-countersignatory-occupation": {
+    "required": "Enter your countersignatory's occupation",
+    "maxlength": "Countersignatory's occupation must be 250 characters or less",
+    "notUrl": "Your answer must not include a URL"
   }
 }

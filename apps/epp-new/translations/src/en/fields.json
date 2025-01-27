@@ -196,5 +196,33 @@
         "label": "No"
       }
     }
+  },
+  "new-renew-countersignatory-title":{
+    "label": "Title",
+    "options": {
+      "none_selected": "Select"
+    }
+  },
+  "new-renew-countersignatory-firstname":{
+    "label": "First name"
+  },
+  "new-renew-countersignatory-middlename":{
+    "label": "Middle names (optional)"
+  },
+  "new-renew-countersignatory-lastname":{
+    "label": "Last name"
+  },
+  "new-renew-countersignatory-years": {
+    "label": "How many years have you known your countersignatory?",
+    "hint": "They must have known you for at least 2 years",
+    "options": {
+      "none_selected": "Select"
+    }
+  },
+  "new-renew-countersignatory-howyouknow":{
+    "label": "How do you know your countersignatory?"
+  },
+  "new-renew-countersignatory-occupation":{
+    "label": "What is your countersignatory’s occupation?"
   }
 }

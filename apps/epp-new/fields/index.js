@@ -2,6 +2,7 @@ const dateComponent = require('hof').components.date;
 const titles = require('../../../utilities/constants/titles');
 const countries = require('../../../utilities/constants/countries');
 const { isWithoutFullStop } = require('../../../utilities/helpers');
+const countersignatoryYears = require('../../../utilities/constants/countersignatory-years');
 
 module.exports = {
   'new-renew-title': {
@@ -285,5 +286,59 @@ module.exports = {
     legend: {
       className: ['govuk-fieldset__legend, bold']
     }
+  },
+  'new-renew-countersignatory-title': {
+    mixin: 'select',
+    validate: 'required',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-select', 'govuk-input--width-2'],
+    options: [
+      {
+        value: '',
+        label: 'fields.new-renew-countersignatory-title.options.none_selected'
+      }
+    ].concat(titles)
+  },
+  'new-renew-countersignatory-firstname': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl'],
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'new-renew-countersignatory-middlename': {
+    mixin: 'input-text',
+    validate: ['notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'new-renew-countersignatory-lastname': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'new-renew-countersignatory-years': {
+    mixin: 'select',
+    validate: 'required',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-select', 'govuk-input--width-2'],
+    options: [
+      {
+        value: '',
+        label: 'fields.new-renew-countersignatory-years.options.none_selected'
+      }
+    ].concat(countersignatoryYears)
+  },
+  'new-renew-countersignatory-howyouknow': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl'],
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'new-renew-countersignatory-occupation': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl'],
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
   }
 };

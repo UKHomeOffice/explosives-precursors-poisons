@@ -59,7 +59,10 @@
     "your-height-summary": "Why we ask for your height",
     "your-height-description": "We need to include this information in our internal database of licence holders. Your height does not affect if you can get a licence."
   },
-
+  "countersignatory-details": {
+    "header": "Countersignatory details",
+    "description": "Your countersignatory must not be a parent or relative, unless you are under 18. If you are under 18, your countersignatory must be your parent or legal guardian."
+  },
   "confirm": {
     "header": "Check your answers",
     "title": "Check your answers – Apply for an explosives precursors and poisons licence",
