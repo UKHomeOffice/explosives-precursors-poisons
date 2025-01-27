@@ -152,5 +152,9 @@ module.exports = {
       field: 'amend-applicant-Id-type',
       value: 'Uk-driving-licence'
     }
+  },
+  'file-upload': {
+    mixin: 'input-file',
+    labelClassName: 'govuk-label--m'
   }
 };

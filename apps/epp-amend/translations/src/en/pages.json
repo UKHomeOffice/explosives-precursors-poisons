@@ -17,6 +17,12 @@
   "home-address": {
     "header": "What is your home address?"
   },
+  "upload-british-passport" : {
+    "header": "Upload British passport",
+    "paragraph1": "Attach an image of your British passport as proof of your identity. the image must be",
+    "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
+    "link-text" : "signed by your countersignatory (opens in a new tab)."
+  },
   "application-submitted": {
     "confirmed": "Amendment submitted"
   },
@@ -48,40 +54,40 @@
     },
     "fields": {
       "amend-licence-number": {
-        "label" : "Licence number"
+        "label": "Licence number"
       },
       "amend-name-title": { 
-        "label" : "Title"
+        "label": "Title"
       },
       "amend-name-firstname": { 
-        "label" : "First name"
+        "label": "First name"
       },
       "amend-name-middlename": { 
-        "label" : "Middle name(s)"
+        "label": "Middle name(s)"
       },
       "amend-name-lastname": { 
-        "label" : "Surname"
+        "label": "Surname"
       },
       "amend-date-of-birth": {
         "label": "Date of birth"
       },
       "amend-address-1": {
-        "label" : "Address line 1"
+        "label": "Address line 1"
       },
       "amend-address-2": {
-        "label" : "Address line 2 (optional)"
+        "label": "Address line 2 (optional)"
       },
       "amend-town-or-city": {
-        "label" : "Town or city"
+        "label": "Town or city"
       },
       "amend-county": {
-        "label" :"County, state, province (optional)"
+        "label": "County, state, province (optional)"
       },
       "amend-postcode": {
-        "label" : "Postcode (required for UK)"
+        "label": "Postcode (required for UK)"
       },
       "amend-country": {
-        "label" : "Country"
+        "label": "Country"
       },
       "amend-phone-number": {
         "label": "Contact phone number"
@@ -100,6 +106,9 @@
       },
       "amend-Uk-driving-licence-number": {
         "label": "Driving Licence"
+      },
+      "upload-british-passport" : {
+        "label": "British passport attachment"
       }
     }
   }

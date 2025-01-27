@@ -1,0 +1,37 @@
+{{<partials-page}}
+{{$encoding}}enctype="multipart/form-data"{{/encoding}}
+  {{$page-content}}
+  <p>{{#t}}pages.upload-british-passport.paragraph1{{/t}}
+  <a class="govuk-link" href="{{#t}}pages.upload-british-passport.link{{/t}}" rel="noreferrer noopener" target="_blank">{{#t}}pages.upload-british-passport.link-text{{/t}}</a>
+  </p>
+
+  {{#fields}}
+    {{#renderField}}{{/renderField}}
+  {{/fields}}
+  <br>
+  <button class="govuk-button govuk-button--secondary" name="upload-file" value="upload-file">
+    {{#t}}buttons.upload-file{{/t}}
+  </button>
+    {{^values.amend-file-upload}}
+    <h2 class="govuk-heading-m">No files uploaded</h2>
+    {{/values.amend-file-upload}}
+
+    {{#values.amend-file-upload.length}}
+    <br>
+    <h2 class="govuk-heading-m">File uploaded</h2>
+    <table class="table-address-loop">
+      <tbody>
+      {{#values.amend-file-upload}}
+      <tr class="amend-file-upload-summary">
+        <td>{{name}}</td>
+        <td><a href="?delete={{id}}" class="govuk-link float-button">{{#t}}buttons.remove-image{{/t}}</a></td>
+      </tr>
+      {{/values.amend-file-upload}}
+      </tbody>
+    </table>
+    {{/values.amend-file-upload.length}}
+
+    <br>
+  {{#input-submit}}continue{{/input-submit}} 
+  {{/page-content}}
+{{/partials-page}}
