@@ -118,5 +118,9 @@ module.exports = {
       value: '',
       label: 'fields.amend-country.options.none_selected'
     }].concat(country)
+  },
+  'amend-file-upload': {
+    mixin: 'input-file',
+    labelClassName: 'govuk-label--m',
   }
 };

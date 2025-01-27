@@ -87,10 +87,22 @@ module.exports = {
     },
     '/section-eight': {
       fields: ['amend-document-type'],
-      next: '/section-nine'
+      next: '/upload-british-passport'
     },
-    '/section-nine': {
-      next: '/change-home-address'
+    '/upload-british-passport': {
+      //add behaviour to save and remove file 
+      fields:['amend-file-upload'],
+      continueOnEdit:true,
+      next: '/change-home-address',
+      locals: { captionHeading: 'Section 9 of 20' }
+    },
+    '/upload-passport': {
+      next: '/change-home-address',
+      locals: { captionHeading: 'Section 9 of 20' }
+    },
+    '/upload-driving-licence': {
+      next: '/change-home-address',
+      locals: { captionHeading: 'Section 9 of 20' }
     },
     '/change-home-address': {
       fields: [

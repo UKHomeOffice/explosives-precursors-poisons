@@ -17,6 +17,12 @@
   "home-address": {
     "header": "What is your home address?"
   },
+  "upload-british-passport" : {
+    "header": "Upload British passport",
+    "paragraph1": "Attach an image of your British passport as proof of your identity. the image must be",
+    "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
+    "link-text" : "signed by your countersignatory (opens in a new tab)."
+  },
   "application-submitted": {
     "confirmed": "Amendment submitted"
   },
@@ -41,6 +47,9 @@
       },
       "amend-name-options": {
         "header": "Amend name"
+      },
+      "amend-new-name-details": {
+        "header": "New name"
       }
     },
     "fields": {
@@ -85,6 +94,9 @@
       },
       "amend-email": {
         "label": "Email address"
+      },
+      "upload-british-passport" : {
+        "label": "British passport attachment"
       }
     }
   }
