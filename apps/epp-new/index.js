@@ -175,7 +175,7 @@ module.exports = {
       }
     },
     '/upload-british-passport': {
-      fields: [],
+      fields: ['file-upload'],
       next: '/other-licences',
       locals: {
         sectionNo: {
