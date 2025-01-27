@@ -1,6 +1,7 @@
 const {
   validLicenceNumber,
-  isWithoutFullStop
+  isWithoutFullStop,
+  isValidUkDrivingLicenceNumber
 } = require('../../../utilities/helpers');
 
 describe('EPP utilities tests', () => {
@@ -40,5 +41,26 @@ describe('EPP utilities tests', () => {
   it('.isWithoutFullStop - should return true for string without a full stop', () => {
     const input = ['1225', 'UNIT_TEST', 'HELLOWORLD', 'A', '', '0000'];
     input.forEach(item => expect(isWithoutFullStop(item)).to.be.true);
+  });
+
+  it('isValidUkDrivingLicenceNumber- should match uk driving licence number if format is correct', () => {
+    const input = [
+      'FARME100165AB5EW',
+      'FAR99700165AB5EW',
+      'MERED811165AB5EW',
+      'SMITH816305DF5EW',
+      'Smith816305DF5Ew'
+    ];
+    input.forEach(item => expect(isValidUkDrivingLicenceNumber(item)).to.not.equal(null));
+  });
+
+  it('isValidUkDrivingLicenceNumber- should return null for invalid format', () => {
+    const input = [
+      'FARMETHER65AB5EW',
+      'MERED811165AB588',
+      'STR4M382940AZ9AZ',
+      '1VEET382940AZ9AZ'
+    ];
+    input.forEach(item => expect(isValidUkDrivingLicenceNumber(item)).to.equal(null));
   });
 });
