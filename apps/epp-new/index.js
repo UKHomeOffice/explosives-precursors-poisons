@@ -437,7 +437,12 @@ module.exports = {
       }
     },
     '/countersignatory-address': {
-      fields: [],
+      fields: [
+        'new-renew-countersignatory-address-1',
+        'new-renew-countersignatory-address-2',
+        'new-renew-countersignatory-town-or-city',
+        'new-renew-countersignatory-postcode'
+      ],
       next: '/countersignatory-contact',
       locals: {
         sectionNo: {
@@ -447,7 +452,10 @@ module.exports = {
       }
     },
     '/countersignatory-contact': {
-      fields: [],
+      fields: [
+        'new-renew-countersignatory-phone-number',
+        'new-renew-countersignatory-email'
+      ],
       next: '/countersignatory-id',
       locals: {
         sectionNo: {

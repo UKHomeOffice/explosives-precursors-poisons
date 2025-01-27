@@ -189,5 +189,63 @@ module.exports = {
         field: 'new-renew-received-treatment'
       }
     ]
+  },
+  'countersignatory-details': {
+    steps: [
+      {
+        step: '/countersignatory-details',
+        field: 'new-renew-countersignatory-title'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'new-renew-countersignatory-firstname'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'new-renew-countersignatory-middlename',
+        parse: value => value || 'Not provided'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'new-renew-countersignatory-lastname'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'new-renew-countersignatory-years'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'new-renew-countersignatory-howyouknow'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'new-renew-countersignatory-occupation'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'new-renew-countersignatory-address-1'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'new-renew-countersignatory-address-2',
+        parse: value => value || 'Not provided'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'new-renew-countersignatory-town-or-city'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'new-renew-countersignatory-postcode'
+      },
+      {
+        step: '/countersignatory-contact',
+        field: 'new-renew-countersignatory-phone-number'
+      },
+      {
+        step: '/countersignatory-contact',
+        field: 'new-renew-countersignatory-email'
+      }
+    ]
   }
 };

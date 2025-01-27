@@ -224,5 +224,24 @@
   },
   "new-renew-countersignatory-occupation":{
     "label": "What is your countersignatory’s occupation?"
+  },
+  "new-renew-countersignatory-address-1": {
+    "label": "Address line 1"
+  },
+  "new-renew-countersignatory-address-2": {
+    "label": "Address line 2 (optional)"
+  },
+  "new-renew-countersignatory-town-or-city": {
+    "label": "Town or city"
+  },
+  "new-renew-countersignatory-postcode": {
+    "label": "Postcode"
+  },
+  "new-renew-countersignatory-phone-number": {
+    "label": "Contact phone number",
+    "hint": "For international numbers, include the country code"
+  },
+  "new-renew-countersignatory-email": {
+    "label": "Email address"
   }
 }
