@@ -95,7 +95,7 @@ module.exports = {
       forks: [
         {target: '/upload-british-passport',
           condition: req =>
-            req.sessionModel.get('amend-applicant-Id-type') === 'british-passport'
+            req.sessionModel.get('amend-applicant-Id-type') === 'UK-passport'
         },
         {target: '/upload-passport',
           condition: req =>
