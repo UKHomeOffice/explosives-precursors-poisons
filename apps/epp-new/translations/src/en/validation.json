@@ -178,7 +178,7 @@
   },
   "new-renew-countersignatory-phone-number": {
     "required": "Enter your countersignatory's telephone number",
-    "internationalPhoneNumber": "Enter a real telephone number",
+    "validInternationalPhoneNumber": "Enter a real telephone number",
     "notUrl" : "Your answer must not include a URL"
   },
   "new-renew-countersignatory-email": {

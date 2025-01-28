@@ -1,7 +1,7 @@
 const dateComponent = require('hof').components.date;
 const titles = require('../../../utilities/constants/titles');
 const countries = require('../../../utilities/constants/countries');
-const { isWithoutFullStop } = require('../../../utilities/helpers');
+const { isWithoutFullStop, validInternationalPhoneNumber } = require('../../../utilities/helpers');
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years');
 
 module.exports = {
@@ -382,7 +382,7 @@ module.exports = {
   },
   'new-renew-countersignatory-phone-number': {
     mixin: 'input-text',
-    validate: ['required', 'notUrl', 'internationalPhoneNumber'],
+    validate: ['required', 'notUrl', validInternationalPhoneNumber],
     className: ['govuk-input', 'govuk-!-width-one-half'],
     labelClassName: 'govuk-label--m'
   },
