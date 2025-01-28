@@ -1,7 +1,9 @@
 const {
   validLicenceNumber,
   isWithoutFullStop,
-  isValidUkDrivingLicenceNumber
+  isValidUkDrivingLicenceNumber,
+  validInternationalPhoneNumber,
+  removeWhiteSpace
 } = require('../../../utilities/helpers');
 
 describe('EPP utilities tests', () => {
@@ -51,7 +53,9 @@ describe('EPP utilities tests', () => {
       'SMITH816305DF5EW',
       'Smith816305DF5Ew'
     ];
-    input.forEach(item => expect(isValidUkDrivingLicenceNumber(item)).to.not.equal(null));
+    input.forEach(item =>
+      expect(isValidUkDrivingLicenceNumber(item)).to.not.equal(null)
+    );
   });
 
   it('isValidUkDrivingLicenceNumber- should return null for invalid format', () => {
@@ -61,6 +65,46 @@ describe('EPP utilities tests', () => {
       'STR4M382940AZ9AZ',
       '1VEET382940AZ9AZ'
     ];
-    input.forEach(item => expect(isValidUkDrivingLicenceNumber(item)).to.equal(null));
+    input.forEach(item =>
+      expect(isValidUkDrivingLicenceNumber(item)).to.equal(null)
+    );
+  });
+
+  it('.validInternationalPhoneNumber - should return false for invalid formats', () => {
+    const phoneNumbers = [
+      '123',
+      'abc',
+      'abc123',
+      '123+456',
+      '(0)+12345678',
+      '0123456789123456',
+      '0109758351',
+      'HelloWorld07777777777'
+    ];
+    phoneNumbers.forEach(
+      phoneNumber =>
+        expect(validInternationalPhoneNumber(phoneNumber)).to.be.false
+    );
+  });
+
+  it('.validInternationalPhoneNumber - should return true for valid formats', () => {
+    const phoneNumbers = [
+      '02079460000',
+      '07900000000',
+      '+442079460000',
+      '+447900000000',
+      '020 7946 0000',
+      '+44020 79460000',
+      '07 7 77 77 77 77'
+    ];
+    phoneNumbers.forEach(
+      phoneNumber =>
+        expect(validInternationalPhoneNumber(phoneNumber)).to.be.true
+    );
+  });
+
+  it('.removeWhiteSpace - should remove the whitespace', () => {
+    expect(removeWhiteSpace('Hello World')).to.equal('HelloWorld');
+    expect(removeWhiteSpace('1 2 3 4 5 ')).to.equal('12345');
   });
 });
