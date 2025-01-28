@@ -177,12 +177,12 @@
     "postcode" : "Enter a real UK postcode"
   },
   "new-renew-countersignatory-phone-number": {
-    "required": "Enter your telephone number",
+    "required": "Enter your countersignatory's telephone number",
     "internationalPhoneNumber": "Enter a real telephone number",
     "notUrl" : "Your answer must not include a URL"
   },
   "new-renew-countersignatory-email": {
-    "required": "Enter a contact email address",
+    "required": "Enter your countersignatory's email address",
     "email": "Enter a real email address"
   }
 }
