@@ -287,61 +287,7 @@ module.exports = {
       className: ['govuk-fieldset__legend, bold']
     }
   },
-  'new-renew-countersignatory-title': {
-    mixin: 'select',
-    validate: 'required',
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-select', 'govuk-input--width-2'],
-    options: [
-      {
-        value: '',
-        label: 'fields.new-renew-countersignatory-title.options.none_selected'
-      }
-    ].concat(titles)
-  },
-  'new-renew-countersignatory-firstname': {
-    mixin: 'input-text',
-    validate: ['required', 'notUrl'],
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
-  },
-  'new-renew-countersignatory-middlename': {
-    mixin: 'input-text',
-    validate: ['notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
-  },
-  'new-renew-countersignatory-lastname': {
-    mixin: 'input-text',
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
-  },
-  'new-renew-countersignatory-years': {
-    mixin: 'select',
-    validate: 'required',
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-select', 'govuk-input--width-2'],
-    options: [
-      {
-        value: '',
-        label: 'fields.new-renew-countersignatory-years.options.none_selected'
-      }
-    ].concat(countersignatoryYears)
-  },
-  'new-renew-countersignatory-howyouknow': {
-    mixin: 'input-text',
-    validate: ['required', 'notUrl'],
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
-  },
-  'new-renew-countersignatory-occupation': {
-    mixin: 'input-text',
-    validate: ['required', 'notUrl'],
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
-  },
-  'new-renew-countersignatory-address-1': {
+  'new-renew-home-address-line1': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--s',
     className: ['govuk-input', 'govuk-!-width-two-thirds'],
@@ -352,7 +298,7 @@ module.exports = {
       'notUrl'
     ]
   },
-  'new-renew-countersignatory-address-2': {
+  'new-renew-home-address-line2': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--s',
     className: ['govuk-input', 'govuk-!-width-two-thirds'],
@@ -362,7 +308,7 @@ module.exports = {
       'notUrl'
     ]
   },
-  'new-renew-countersignatory-town-or-city': {
+  'new-renew-home-address-town': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--s',
     className: ['govuk-input', 'govuk-!-width-two-thirds'],
@@ -373,23 +319,145 @@ module.exports = {
       'notUrl'
     ]
   },
-  'new-renew-countersignatory-postcode': {
+  'new-renew-home-address-county': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--s',
     className: ['govuk-input', 'govuk-!-width-two-thirds'],
-    validate: ['required', 'postcode'],
+    validate: [
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'new-renew-home-address-postcode': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
     formatter: ['ukPostcode']
   },
-  'new-renew-countersignatory-phone-number': {
-    mixin: 'input-text',
-    validate: ['required', 'notUrl', validInternationalPhoneNumber],
-    className: ['govuk-input', 'govuk-!-width-one-half'],
-    labelClassName: 'govuk-label--m'
+  'new-renew-home-address-country': {
+    mixin: 'select',
+    validate: ['required'],
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-!-width-two-thirds'],
+    options: [
+      {
+        value: '',
+        label: 'fields.new-renew-home-address-country.options.none_selected'
+      }
+    ].concat(countries)
   },
-  'new-renew-countersignatory-email': {
-    mixin: 'input-text',
-    validate: ['required', 'email'],
-    className: ['govuk-input'],
-    labelClassName: 'govuk-label--m'
-  }
+  'new-renew-home-address-moveto-date': dateComponent(
+    'new-renew-home-address-moveto-date',
+    {
+      mixin: 'input-date',
+      legend: { className: 'bold' },
+      validate: ['required', 'date', 'before']
+    }
+  ),
+    'new-renew-countersignatory-title': {
+        mixin: 'select',
+        validate: 'required',
+        labelClassName: 'govuk-label--s',
+        className: ['govuk-select', 'govuk-input--width-2'],
+        options: [
+            {
+                value: '',
+                label: 'fields.new-renew-countersignatory-title.options.none_selected'
+            }
+        ].concat(titles)
+    },
+    'new-renew-countersignatory-firstname': {
+        mixin: 'input-text',
+        validate: ['required', 'notUrl'],
+        labelClassName: 'govuk-label--s',
+        className: ['govuk-input', 'govuk-!-width-two-thirds']
+    },
+    'new-renew-countersignatory-middlename': {
+        mixin: 'input-text',
+        validate: ['notUrl', { type: 'maxlength', arguments: [250] }],
+        labelClassName: 'govuk-label--s',
+        className: ['govuk-input', 'govuk-!-width-two-thirds']
+    },
+    'new-renew-countersignatory-lastname': {
+        mixin: 'input-text',
+        validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
+        labelClassName: 'govuk-label--s',
+        className: ['govuk-input', 'govuk-!-width-two-thirds']
+    },
+    'new-renew-countersignatory-years': {
+        mixin: 'select',
+        validate: 'required',
+        labelClassName: 'govuk-label--s',
+        className: ['govuk-select', 'govuk-input--width-2'],
+        options: [
+            {
+                value: '',
+                label: 'fields.new-renew-countersignatory-years.options.none_selected'
+            }
+        ].concat(countersignatoryYears)
+    },
+    'new-renew-countersignatory-howyouknow': {
+        mixin: 'input-text',
+        validate: ['required', 'notUrl'],
+        labelClassName: 'govuk-label--s',
+        className: ['govuk-input', 'govuk-!-width-two-thirds']
+    },
+    'new-renew-countersignatory-occupation': {
+        mixin: 'input-text',
+        validate: ['required', 'notUrl'],
+        labelClassName: 'govuk-label--s',
+        className: ['govuk-input', 'govuk-!-width-two-thirds']
+    },
+    'new-renew-countersignatory-address-1': {
+        mixin: 'input-text',
+        labelClassName: 'govuk-label--s',
+        className: ['govuk-input', 'govuk-!-width-two-thirds'],
+        validate: [
+            'required',
+            { type: 'minlength', arguments: 2 },
+            { type: 'maxlength', arguments: 250 },
+            'notUrl'
+        ]
+    },
+    'new-renew-countersignatory-address-2': {
+        mixin: 'input-text',
+        labelClassName: 'govuk-label--s',
+        className: ['govuk-input', 'govuk-!-width-two-thirds'],
+        validate: [
+            { type: 'minlength', arguments: 2 },
+            { type: 'maxlength', arguments: 250 },
+            'notUrl'
+        ]
+    },
+    'new-renew-countersignatory-town-or-city': {
+        mixin: 'input-text',
+        labelClassName: 'govuk-label--s',
+        className: ['govuk-input', 'govuk-!-width-two-thirds'],
+        validate: [
+            'required',
+            { type: 'minlength', arguments: 2 },
+            { type: 'maxlength', arguments: 250 },
+            'notUrl'
+        ]
+    },
+    'new-renew-countersignatory-postcode': {
+        mixin: 'input-text',
+        labelClassName: 'govuk-label--s',
+        className: ['govuk-input', 'govuk-!-width-two-thirds'],
+        validate: ['required', 'postcode'],
+        formatter: ['ukPostcode']
+    },
+    'new-renew-countersignatory-phone-number': {
+        mixin: 'input-text',
+        validate: ['required', 'notUrl', validInternationalPhoneNumber],
+        className: ['govuk-input', 'govuk-!-width-one-half'],
+        labelClassName: 'govuk-label--m'
+    },
+    'new-renew-countersignatory-email': {
+        mixin: 'input-text',
+        validate: ['required', 'email'],
+        className: ['govuk-input'],
+        labelClassName: 'govuk-label--m'
+    }
 };

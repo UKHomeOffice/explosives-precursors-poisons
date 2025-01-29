@@ -1,9 +1,12 @@
+const moment = require('moment');
 const {
   validLicenceNumber,
   isWithoutFullStop,
+  getKeyByValue,
+  isDateOlderOrEqualTo,
   isValidUkDrivingLicenceNumber,
-  validInternationalPhoneNumber,
-  removeWhiteSpace
+    validInternationalPhoneNumber,
+    removeWhiteSpace
 } = require('../../../utilities/helpers');
 
 describe('EPP utilities tests', () => {
@@ -45,6 +48,55 @@ describe('EPP utilities tests', () => {
     input.forEach(item => expect(isWithoutFullStop(item)).to.be.true);
   });
 
+  it('.getKeyByValue - should return key name for the given value', () => {
+    const obj = {
+      key1: 'value1',
+      key2: 'value2',
+      key3: 'value3'
+    };
+
+    for (const [key, value] of Object.entries(obj)) {
+      expect(getKeyByValue(obj, value)).to.equal(key);
+    }
+  });
+
+  it('.getKeyByValue - should return undefined when key is not found', () => {
+    const obj = {
+      key1: 'value1',
+      key2: 'value2',
+      key3: 'value3'
+    };
+    expect(getKeyByValue(obj, 'value4')).to.be.undefined;
+    expect(getKeyByValue({}, 'value1')).to.be.undefined;
+  });
+
+  it('.isDateOlderOrEqualTo - should return false for dates less than 5 years', () => {
+    const dates = [
+      moment().format('YYYY-MM-DD'),
+      moment().subtract('1', 'years').format('YYYY-MM-DD'),
+      moment().subtract('2', 'years').format('YYYY-MM-DD'),
+      moment().subtract('3', 'years').format('YYYY-MM-DD'),
+      moment().subtract('4', 'years').format('YYYY-MM-DD'),
+      'INVALID_DATE',
+      ''
+    ];
+    for (const date of dates) {
+      expect(isDateOlderOrEqualTo(`${date}`, 5)).to.be.false;
+    }
+  });
+
+  it('.isDateOlderOrEqualTo - should return true for dates older than or equal to 5 years', () => {
+    const dates = [
+      moment().subtract('5', 'years').format('YYYY-MM-DD'),
+      moment().subtract('6', 'years').format('YYYY-MM-DD'),
+      moment().subtract('7', 'years').format('YYYY-MM-DD'),
+      moment().subtract('80', 'years').format('YYYY-MM-DD')
+    ];
+    for (const date of dates) {
+      expect(isDateOlderOrEqualTo(`${date}`, 5)).to.be.true;
+    }
+  });
+
   it('isValidUkDrivingLicenceNumber- should match uk driving licence number if format is correct', () => {
     const input = [
       'FARME100165AB5EW',
@@ -69,42 +121,41 @@ describe('EPP utilities tests', () => {
       expect(isValidUkDrivingLicenceNumber(item)).to.equal(null)
     );
   });
+    it('.validInternationalPhoneNumber - should return false for invalid formats', () => {
+        const phoneNumbers = [
+            '123',
+            'abc',
+            'abc123',
+            '123+456',
+            '(0)+12345678',
+            '0123456789123456',
+            '0109758351',
+            'HelloWorld07777777777'
+        ];
+        phoneNumbers.forEach(
+            phoneNumber =>
+                expect(validInternationalPhoneNumber(phoneNumber)).to.be.false
+        );
+    });
 
-  it('.validInternationalPhoneNumber - should return false for invalid formats', () => {
-    const phoneNumbers = [
-      '123',
-      'abc',
-      'abc123',
-      '123+456',
-      '(0)+12345678',
-      '0123456789123456',
-      '0109758351',
-      'HelloWorld07777777777'
-    ];
-    phoneNumbers.forEach(
-      phoneNumber =>
-        expect(validInternationalPhoneNumber(phoneNumber)).to.be.false
-    );
-  });
+    it('.validInternationalPhoneNumber - should return true for valid formats', () => {
+        const phoneNumbers = [
+            '02079460000',
+            '07900000000',
+            '+442079460000',
+            '+447900000000',
+            '020 7946 0000',
+            '+44020 79460000',
+            '07 7 77 77 77 77'
+        ];
+        phoneNumbers.forEach(
+            phoneNumber =>
+                expect(validInternationalPhoneNumber(phoneNumber)).to.be.true
+        );
+    });
 
-  it('.validInternationalPhoneNumber - should return true for valid formats', () => {
-    const phoneNumbers = [
-      '02079460000',
-      '07900000000',
-      '+442079460000',
-      '+447900000000',
-      '020 7946 0000',
-      '+44020 79460000',
-      '07 7 77 77 77 77'
-    ];
-    phoneNumbers.forEach(
-      phoneNumber =>
-        expect(validInternationalPhoneNumber(phoneNumber)).to.be.true
-    );
-  });
-
-  it('.removeWhiteSpace - should remove the whitespace', () => {
-    expect(removeWhiteSpace('Hello World')).to.equal('HelloWorld');
-    expect(removeWhiteSpace('1 2 3 4 5 ')).to.equal('12345');
-  });
+    it('.removeWhiteSpace - should remove the whitespace', () => {
+        expect(removeWhiteSpace('Hello World')).to.equal('HelloWorld');
+        expect(removeWhiteSpace('1 2 3 4 5 ')).to.equal('12345');
+    });
 });

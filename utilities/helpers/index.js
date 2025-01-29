@@ -1,5 +1,5 @@
+const moment = require('moment');
 const validators = require('hof/controller/validation/validators');
-
 const removeWhiteSpace = value => value?.replace(/\s+/g, '');
 
 const validLicenceNumber = value =>
@@ -66,24 +66,37 @@ const isWithoutFullStop = value => {
   return !value.includes('.');
 };
 
+const getKeyByValue = (obj, value) => {
+  return Object.keys(obj).find(key => obj[key] === value);
+};
+
+const isDateOlderOrEqualTo = (dateStr, yearsThreshold) => {
+  const formattedDate = moment(dateStr, 'YYYY-MM-DD');
+  return (
+    formattedDate?.isValid() &&
+    moment().diff(formattedDate, 'years') >= yearsThreshold
+  );
+};
+
 const isValidUkDrivingLicenceNumber = value =>
   value.match(/^[A-Z9]{5}\d{6}[A-Z9]{2}\d[A-Z]{2}$/i);
 
 const validInternationalPhoneNumber = value => {
-  const phoneNumberWithoutSpace = removeWhiteSpace(value);
-  const isValidPhoneNumber = validators.regex(
-    phoneNumberWithoutSpace,
-    /^\(?\+?[\d()-]{8,16}$/
-  );
-  return isValidPhoneNumber && validators.internationalPhoneNumber(value);
+    const phoneNumberWithoutSpace = removeWhiteSpace(value);
+    const isValidPhoneNumber = validators.regex(
+        phoneNumberWithoutSpace,
+        /^\(?\+?[\d()-]{8,16}$/
+    );
+    return isValidPhoneNumber && validators.internationalPhoneNumber(value);
 };
-
 module.exports = {
   isLicenceValid,
   isApplicationType,
   validLicenceNumber,
   isWithoutFullStop,
+  getKeyByValue,
+  isDateOlderOrEqualTo,
   isValidUkDrivingLicenceNumber,
-  validInternationalPhoneNumber,
-  removeWhiteSpace
+    validInternationalPhoneNumber,
+   removeWhiteSpace
 };

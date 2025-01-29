@@ -124,6 +124,40 @@
   "new-renew-have-criminal-record": {
     "required": "Select if you have a criminal record or any type of formal warning"
   },
+  "new-renew-home-address-line1": {
+    "required": "Enter address line 1, typically the building and street",
+    "minlength": "Address line 1 must be between 2 and 250 characters",
+    "maxlength": "Address line 1 must be between 2 and 250 characters",
+    "notUrl": "Your answer must not include a URL"
+  },
+  "new-renew-home-address-line2": {
+    "minlength": "Address line 2 must be between 2 and 250 characters",
+    "maxlength": "Address line 2 must be between 2 and 250 characters",
+    "notUrl": "Your answer must not include a URL"
+  },
+  "new-renew-home-address-town": {
+    "required": "Enter town or city",
+    "minlength": "Town or city must be between 2 and 250 characters",
+    "maxlength": "Town or city must be between 2 and 250 characters",
+    "notUrl": "Your answer must not include a URL"
+  },
+  "new-renew-home-address-county": {
+    "minlength": "County, state or province must be between 2 and 250 characters",
+    "maxlength": "County, state or province must be between 2 and 250 characters",
+    "notUrl": "Your answer must not include a URL"
+  },
+  "new-renew-home-address-postcode": {
+    "required": "Enter a UK postcode",
+    "postcode": "Enter a real UK postcode"
+  },
+  "new-renew-home-address-country": {
+    "required": "Select a country of address"
+  },
+  "new-renew-home-address-moveto-date": {
+    "required": "Enter a date you moved to this address",
+    "date": "Enter a real date",
+    "before": "Date you moved to this address must be in the past"
+  },
   "new-renew-countersignatory-title": {
     "required": "Select your countersignatory's title"
   },

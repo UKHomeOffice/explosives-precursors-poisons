@@ -6,6 +6,8 @@ const filterCountries = require('./behaviours/filter-countries');
 const summary = hof.components.summary;
 const ConfirmationDisplay = require('./behaviours/confirmation-type');
 const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
+const PostcodeValidation = require('../../utilities/helpers/postcode-validation');
+const { isDateOlderOrEqualTo } = require('../../utilities/helpers');
 
 module.exports = {
   name: 'EPP form',
@@ -111,9 +113,27 @@ module.exports = {
       }
     },
     '/home-address': {
-      fields: [],
-      // add fork /previous-address
-      next: '/upload-proof-address',
+      behaviours: [PostcodeValidation],
+      fields: [
+        'new-renew-home-address-line1',
+        'new-renew-home-address-line2',
+        'new-renew-home-address-town',
+        'new-renew-home-address-county',
+        'new-renew-home-address-postcode',
+        'new-renew-home-address-country',
+        'new-renew-home-address-moveto-date'
+      ],
+      forks: [
+        {
+          target: '/upload-proof-address',
+          condition: req => {
+            const moveToDate =
+              req.form.values['new-renew-home-address-moveto-date'];
+            return moveToDate && isDateOlderOrEqualTo(moveToDate, 5);
+          }
+        }
+      ],
+      next: '/previous-addresses',
       locals: {
         sectionNo: {
           new: 3,
@@ -123,8 +143,7 @@ module.exports = {
     },
     '/previous-address': {
       fields: [],
-      // add fork /previous-address-summary
-      next: '/previous-address-summary',
+      next: '/previous-addresses',
       locals: {
         sectionNo: {
           new: 3,
@@ -132,8 +151,7 @@ module.exports = {
         }
       }
     },
-    '/previous-address-summary': {
-      // should this be /previous-addresses ?
+    '/previous-addresses': {
       fields: [],
       next: '/upload-proof-address',
       locals: {
