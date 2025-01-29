@@ -82,12 +82,12 @@ const isValidUkDrivingLicenceNumber = value =>
   value.match(/^[A-Z9]{5}\d{6}[A-Z9]{2}\d[A-Z]{2}$/i);
 
 const validInternationalPhoneNumber = value => {
-    const phoneNumberWithoutSpace = removeWhiteSpace(value);
-    const isValidPhoneNumber = validators.regex(
-        phoneNumberWithoutSpace,
-        /^\(?\+?[\d()-]{8,16}$/
-    );
-    return isValidPhoneNumber && validators.internationalPhoneNumber(value);
+  const phoneNumberWithoutSpace = removeWhiteSpace(value);
+  const isValidPhoneNumber = validators.regex(
+    phoneNumberWithoutSpace,
+    /^\(?\+?[\d()-]{8,16}$/
+  );
+  return isValidPhoneNumber && validators.internationalPhoneNumber(value);
 };
 module.exports = {
   isLicenceValid,
@@ -97,6 +97,6 @@ module.exports = {
   getKeyByValue,
   isDateOlderOrEqualTo,
   isValidUkDrivingLicenceNumber,
-    validInternationalPhoneNumber,
-   removeWhiteSpace
+  validInternationalPhoneNumber,
+  removeWhiteSpace
 };
