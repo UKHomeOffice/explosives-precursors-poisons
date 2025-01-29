@@ -285,5 +285,73 @@ module.exports = {
     legend: {
       className: ['govuk-fieldset__legend, bold']
     }
-  }
+  },
+  'new-renew-home-address-line1': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'new-renew-home-address-line2': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    validate: [
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'new-renew-home-address-town': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'new-renew-home-address-county': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    validate: [
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'new-renew-home-address-postcode': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    formatter: ['ukPostcode']
+  },
+  'new-renew-home-address-country': {
+    mixin: 'select',
+    validate: ['required'],
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-!-width-two-thirds'],
+    options: [
+      {
+        value: '',
+        label: 'fields.new-renew-home-address-country.options.none_selected'
+      }
+    ].concat(countries)
+  },
+  'new-renew-home-address-moveto-date': dateComponent(
+    'new-renew-home-address-moveto-date',
+    {
+      mixin: 'input-date',
+      legend: { className: 'bold' },
+      validate: ['required', 'date', 'before']
+    }
+  )
 };
