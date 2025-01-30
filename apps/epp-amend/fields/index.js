@@ -1,6 +1,6 @@
 const title = require('../../../utilities/constants/titles.js');
 const dateComponent = require('hof').components.date;
-
+const helpers = require('../../../utilities/helpers/index.js');
 const country = require('../../../utilities/constants/countries');
 
 module.exports = {
@@ -46,6 +46,15 @@ module.exports = {
     className: ['govuk-input'],
     labelClassName: 'govuk-label--m',
     validate: ['required', 'email']
+  },
+  'amend-name-options': {
+    mixin: 'radio-group',
+    legend: {
+      className: 'govuk-label--m'
+    },
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    options: ['yes', 'no'],
+    validate: 'required'
   },
   'amend-date-of-birth': dateComponent('amend-date-of-birth', {
     mixin: 'input-date',
@@ -109,5 +118,39 @@ module.exports = {
       value: '',
       label: 'fields.amend-country.options.none_selected'
     }].concat(country)
+  },
+  'amend-applicant-Id-type': {
+    isPageHeading: true,
+    mixin: 'radio-group',
+    validate: ['required'],
+    options: [
+      {value: 'UK-passport', toggle: 'amend-UK-passport-number', child: 'input-text'},
+      {value: 'EU-passport', toggle: 'amend-EU-passport-number', child: 'input-text'},
+      {value: 'Uk-driving-licence', toggle: 'amend-Uk-driving-licence-number', child: 'input-text'}
+    ]
+  },
+  'amend-UK-passport-number': {
+    validate: ['required', { type: 'maxlength', arguments: 9 }, 'alphanum', 'notUrl'],
+    className: ['govuk-input', 'govuk-!-width-one-thirds'],
+    dependent: {
+      field: 'amend-applicant-Id-type',
+      value: 'UK-passport'
+    }
+  },
+  'amend-EU-passport-number': {
+    validate: ['required', { type: 'maxlength', arguments: 9 }, 'alphanum', 'notUrl'],
+    className: ['govuk-input', 'govuk-!-width-one-thirds'],
+    dependent: {
+      field: 'amend-applicant-Id-type',
+      value: 'EU-passport'
+    }
+  },
+  'amend-Uk-driving-licence-number': {
+    validate: ['required', 'notUrl', { type: 'minlength', arguments: 16 }, helpers.isValidUkDrivingLicenceNumber],
+    className: ['govuk-input', 'govuk-!-width-one-thirds'],
+    dependent: {
+      field: 'amend-applicant-Id-type',
+      value: 'Uk-driving-licence'
+    }
   }
 };

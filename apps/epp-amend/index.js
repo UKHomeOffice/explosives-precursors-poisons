@@ -47,15 +47,35 @@ module.exports = {
       locals: { captionHeading: 'Section 4 of 20' }
     },
     '/contact-details': {
-      fields: ['amend-phone-number', 'amend-email'],
-      locals: { captionHeading: 'Section 5 of 20' },
-      next: '/section-six'
+      fields: [
+        'amend-phone-number',
+        'amend-email'
+      ],
+      locals: {captionHeading: 'Section 5 of 20'},
+      next: '/amend-details'
     },
-    '/section-six': {
-      fields: ['amend-options'],
-      next: '/section-seven'
+    '/amend-details': {
+      fields: ['amend-name-options'],
+      forks: [
+        {
+          target: '/new-name',
+          condition: {
+            field: 'amend-name-options',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/change-home-address',
+          condition: {
+            field: 'amend-name-options',
+            value: 'no'
+          }
+        }
+      ],
+      locals: {captionHeading: 'Section 6 of 20'},
+      next: '/new-name'
     },
-    '/section-seven': {
+    '/new-name': {
       fields: [
         'amend-option-name-title',
         'amend-option-firstname',
@@ -63,16 +83,42 @@ module.exports = {
         'amend-option-lastname',
         'amend-option-date-name-changed'
       ],
-      next: '/section-eight'
+      next: '/identity-details'
     },
-    '/section-eight': {
-      fields: ['amend-document-type'],
-      next: '/section-nine'
+    '/identity-details': {
+      fields: [
+        'amend-applicant-Id-type',
+        'amend-UK-passport-number',
+        'amend-EU-passport-number',
+        'amend-Uk-driving-licence-number'
+      ],
+      forks: [
+        {target: '/upload-british-passport',
+          condition: req =>
+            req.sessionModel.get('amend-applicant-Id-type') === 'UK-passport'
+        },
+        {target: '/upload-passport',
+          condition: req =>
+            req.sessionModel.get('amend-applicant-Id-type') === 'EU-passport'
+        }
+      ],
+
+      locals: { captionHeading: 'Section 8 of 20' },
+      next: '/upload-driving-licence'
     },
-    '/section-nine': {
-      next: '/section-ten'
+    '/upload-british-passport': {
+      next: '/change-home-address',
+      locals: { captionHeading: 'Section 9 of 20' }
     },
-    '/section-ten': {
+    '/upload-passport': {
+      next: '/change-home-address',
+      locals: { captionHeading: 'Section 9 of 20' }
+    },
+    '/upload-driving-licence': {
+      next: '/change-home-address',
+      locals: { captionHeading: 'Section 9 of 20' }
+    },
+    '/change-home-address': {
       fields: [
         'amend-new-post-address-1',
         'amend-new-post-address-2',

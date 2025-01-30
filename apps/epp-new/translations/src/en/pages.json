@@ -18,6 +18,9 @@
   "other-nationalities": {
     "header": "Other nationalities"
   },
+  "home-address": {
+    "header": "What is your home address?"
+  },
   "contact-details": {
     "title": "What are your contact details?",
     "header": "What are your contact details?"
@@ -81,6 +84,9 @@
       "applicant-details": {
         "header": "Applicant details"
       },
+      "current-address-details": {
+        "header": "Current address details"
+      },
       "new-renew-contact-details": {
         "header": "Contact details"
       },
@@ -133,6 +139,12 @@
       },
       "new-renew-your-height": {
         "label": "Height (in centimetres)"
+      },
+      "new-renew-home-address-country": {
+        "label": "Country"
+      },
+      "new-renew-home-address-moveto-date": {
+        "label": "Moved date"
       }
     },
     "complete": {
