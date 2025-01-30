@@ -107,8 +107,14 @@
       "amend-Uk-driving-licence-number": {
         "label": "Driving Licence"
       },
-      "upload-british-passport" : {
+      "upload-british-passport": {
         "label": "British passport attachment"
+      },
+      "upload-passport": {
+        "label": "Passport attachment "
+      },
+      "upload-driving-licence": {
+        "label": "Uk driving licence attachment"
       }
     }
   }
