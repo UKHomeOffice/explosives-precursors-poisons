@@ -108,7 +108,7 @@ module.exports = {
       next: '/upload-driving-licence'
     },
     '/upload-british-passport': {
-      behaviours: [SaveUploadedFile('documentName', 'file-upload')],
+      behaviours: [SaveUploadedFile('identity-british-passport', 'file-upload')],
       // add behaviour to save and remove file
       fields: ['file-upload'],
       continueOnEdit: true,

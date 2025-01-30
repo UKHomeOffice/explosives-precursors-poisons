@@ -5,6 +5,8 @@ const config = require('../../../config');
 const Model = require('../models/file-upload');
 const fileSizeNum = size => size.match(/\d+/g)[0];
 
+const sanitiseFilename = filename => filename?.replace(/^(.{2}).*(.{2}\.[^.]+)$/, '$1**REDACTED**$2');
+
 module.exports = (documentName, fieldName) => superclass => class extends superclass {
   process(req) {
     if (req.files && req.files[fieldName]) {
@@ -13,7 +15,7 @@ module.exports = (documentName, fieldName) => superclass => class extends superc
       // req.form.values and not on req.files
 
       req.form.values[fieldName] = req.files[fieldName].name;
-      req.log('info', `Processing image: ${req.form.values[fieldName]}`);
+      req.log('info', `Processing field ${fieldName} with value: ${sanitiseFilename(req.files[fieldName].name)}`);
     }
     super.process.apply(this, arguments);
   }
@@ -63,8 +65,11 @@ module.exports = (documentName, fieldName) => superclass => class extends superc
   saveValues(req, res, next) {
     if (req.body['upload-file']) {
       if (req.files && req.files[fieldName]) {
-        req.log('info', `Reference: ${req.sessionModel.get('reference')}, Saving image: ${req.files[fieldName].name}`);
+        req.log('info',
+          `Saving document: ${sanitiseFilename(req.files[fieldName].name)} in ${documentName} category`
+        );
         const image = _.pick(req.files[fieldName], ['name', 'data', 'mimetype']);
+
         const model = new Model(image);
         return model.save()
           .then(() => {
