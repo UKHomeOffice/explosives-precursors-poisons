@@ -125,8 +125,14 @@
       "amend-new-country": {
         "label": "Country"
       },
-      "upload-british-passport" : {
+      "upload-british-passport": {
         "label": "British passport attachment"
+      },
+      "upload-passport": {
+        "label": "Passport attachment "
+      },
+      "upload-driving-licence": {
+        "label": "Uk driving licence attachment"
       }
     }
   }

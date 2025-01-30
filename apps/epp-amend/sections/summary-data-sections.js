@@ -129,6 +129,24 @@ module.exports = {
       {
         step: '/identity-details',
         field: 'amend-Uk-driving-licence-number'
+      },
+      {
+        step: '/upload-british-passport',
+        field: 'file-upload',
+        parse: (documentName, req) => {
+          if (!req.sessionModel.get('steps').includes('/upload-british-passport')) {
+            return null;
+          }
+          return documentName.length > 0 ? documentName.map(file => file.name) : 'No';
+        }
+      },
+      {
+        step: '/upload-passport',
+        field: 'file-upload'
+      },
+      {
+        step: '/upload-driving-licence',
+        field: 'file-upload'
       }
     ]
   },

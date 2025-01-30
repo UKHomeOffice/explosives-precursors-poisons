@@ -8,28 +8,31 @@
   {{#fields}}
     {{#renderField}}{{/renderField}}
   {{/fields}}
-  <br>
   <button class="govuk-button govuk-button--secondary" name="upload-file" value="upload-file">
     {{#t}}buttons.upload-file{{/t}}
   </button>
-    {{^values.amend-file-upload}}
+    {{^values.identity-british-passport}}
     <h2 class="govuk-heading-m">No files uploaded</h2>
-    {{/values.amend-file-upload}}
+    {{/values.identity-british-passport}}
 
-    {{#values.amend-file-upload.length}}
+    {{#values.identity-british-passport.length}}
     <br>
     <h2 class="govuk-heading-m">File uploaded</h2>
     <table class="table-address-loop">
       <tbody>
-      {{#values.amend-file-upload}}
-      <tr class="amend-file-upload-summary">
+        <tr>
+          <th></th>
+          <th></th>
+        </tr>
+      {{#values.identity-british-passport}}
+      <tr>
         <td>{{name}}</td>
         <td><a href="?delete={{id}}" class="govuk-link float-button">{{#t}}buttons.remove-image{{/t}}</a></td>
       </tr>
-      {{/values.amend-file-upload}}
+      {{/values.identity-british-passport}}
       </tbody>
     </table>
-    {{/values.amend-file-upload.length}}
+    {{/values.identity-british-passport.length}}
 
     <br>
   {{#input-submit}}continue{{/input-submit}} 

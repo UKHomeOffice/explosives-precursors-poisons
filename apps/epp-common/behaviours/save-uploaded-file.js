@@ -74,10 +74,10 @@ module.exports = (documentName, fieldName) => superclass => class extends superc
         return model.save()
           .then(() => {
             if (req.files && req.files[fieldName]) { req.sessionModel.set(documentName, [model.toJSON()]); }
-
-            // if (req.form.options.route === '/upload-photo') {
-            //   res.redirect('/asc/upload-photo');
-            // }
+            // add some logic to reuse and not hardcoded
+            if (req.form.options.route === '/upload-british-passport') {
+              return res.redirect('/amend/upload-british-passport');
+            }
             return super.saveValues(req, res, next);
           })
           .catch(next);
