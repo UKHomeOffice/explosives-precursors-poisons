@@ -373,20 +373,17 @@ module.exports = {
   'new-renew-countersignatory-firstname': {
     mixin: 'input-text',
     validate: ['required', 'notUrl'],
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    labelClassName: 'govuk-label--s'
   },
   'new-renew-countersignatory-middlename': {
     mixin: 'input-text',
     validate: ['notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    labelClassName: 'govuk-label--s'
   },
   'new-renew-countersignatory-lastname': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    labelClassName: 'govuk-label--s'
   },
   'new-renew-countersignatory-years': {
     mixin: 'select',
@@ -402,20 +399,17 @@ module.exports = {
   },
   'new-renew-countersignatory-howyouknow': {
     mixin: 'input-text',
-    validate: ['required', 'notUrl'],
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--s'
   },
   'new-renew-countersignatory-occupation': {
     mixin: 'input-text',
-    validate: ['required', 'notUrl'],
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--s'
   },
   'new-renew-countersignatory-address-1': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
@@ -426,7 +420,6 @@ module.exports = {
   'new-renew-countersignatory-address-2': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
     validate: [
       { type: 'minlength', arguments: 2 },
       { type: 'maxlength', arguments: 250 },
@@ -436,7 +429,6 @@ module.exports = {
   'new-renew-countersignatory-town-or-city': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
@@ -447,7 +439,7 @@ module.exports = {
   'new-renew-countersignatory-postcode': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    className: ['govuk-input', 'govuk-input--width-10'],
     validate: ['required', 'postcode'],
     formatter: ['ukPostcode']
   },
