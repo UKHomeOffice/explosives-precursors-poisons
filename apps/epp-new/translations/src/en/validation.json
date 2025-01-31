@@ -157,5 +157,11 @@
     "required": "Enter a date you moved to this address",
     "date": "Enter a real date",
     "before": "Date you moved to this address must be in the past"
+  },
+  "file-upload": {
+    "required": "Select a file to upload",
+    "unsaved": "Your file could not be uploaded – try again",
+    "maxFileSize": "Your file must be smaller than 25MB",
+    "fileType": "Your file must be a JPG, JPEG, PNG or PDF"
   }
 }
