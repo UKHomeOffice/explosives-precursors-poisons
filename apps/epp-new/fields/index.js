@@ -372,7 +372,7 @@ module.exports = {
   },
   'new-renew-countersignatory-firstname': {
     mixin: 'input-text',
-    validate: ['required', 'notUrl'],
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
     labelClassName: 'govuk-label--s'
   },
   'new-renew-countersignatory-middlename': {
