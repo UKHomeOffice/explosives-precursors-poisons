@@ -14,12 +14,14 @@ module.exports = superclass => class extends superclass {
     const locals = super.locals(req, res);
     locals.items = locals.items.map(item => {
       item.fields = item.fields.map(field => {
-        // Process a value to parse and reformat it before render
         if (dateFields.includes(field.field)) {
-          if (field.value !== undefined) {
+          if (field.value) {
             field.parsed = moment(field.value).format('DD MMMM YYYY');
+          } else {
+            field.parsed = 'Not provided';
           }
         }
+        field.field += '.summary-heading';
         return field;
       });
       return item;
