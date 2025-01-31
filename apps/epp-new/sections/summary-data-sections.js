@@ -135,39 +135,6 @@ module.exports = {
       }
     ]
   },
-  'current-address-details': {
-    steps: [
-      {
-        step: '/home-address',
-        field: 'new-renew-home-address-line1'
-      },
-      {
-        step: '/home-address',
-        field: 'new-renew-home-address-line2'
-      },
-      {
-        step: '/home-address',
-        field: 'new-renew-home-address-town'
-      },
-      {
-        step: '/home-address',
-        field: 'new-renew-home-address-county'
-      },
-      {
-        step: '/home-address',
-        field: 'new-renew-home-address-postcode'
-      },
-      {
-        step: '/home-address',
-        field: 'new-renew-home-address-country'
-      },
-      {
-        step: '/home-address',
-        field: 'new-renew-home-address-moveto-date',
-        parse: date => date && dateFormatter.format(new Date(date))
-      }
-    ]
-  },
   'other-licences': {
     steps: [
       {

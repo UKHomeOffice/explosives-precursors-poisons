@@ -8,6 +8,9 @@ const ConfirmationDisplay = require('./behaviours/confirmation-type');
 const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
 const PostcodeValidation = require('../../utilities/helpers/postcode-validation');
 const { isDateOlderOrEqualTo } = require('../../utilities/helpers');
+const AggregateSaveUpdate = require('./behaviours/aggregator-save-update');
+const parseOtherNameSummary = require('./behaviours/parse-other-name-summary');
+
 
 module.exports = {
   name: 'EPP form',
@@ -15,6 +18,7 @@ module.exports = {
   views: 'apps/epp-new/views',
   translations: 'apps/epp-new/translations',
   baseUrl: '/new-and-renew',
+  params: '/:action?/:id?/:edit?',
   behaviours: [sectionCounter],
   steps: {
     '/your-name': {
@@ -60,9 +64,21 @@ module.exports = {
       }
     },
     '/other-names-summary': {
-      fields: [],
+      behaviours: [AggregateSaveUpdate, parseOtherNameSummary],
+      aggregateTo: 'other-names',
+      aggregateFrom: [
+        'new-renew-other-name-title',
+        'new-renew-other-name-first-name',
+        'new-renew-other-name-middle-name',
+        'new-renew-other-name-last-name',
+        'new-renew-other-name-start-date',
+        'new-renew-other-name-stop-date'
+      ],
+      titleField: ['new-renew-other-name-first-name', 'new-renew-other-name-last-name'],
+      addStep: 'other-names',
       next: '/your-details',
       locals: {
+        fullWidthPage: true,
         sectionNo: {
           new: 1,
           renew: 2

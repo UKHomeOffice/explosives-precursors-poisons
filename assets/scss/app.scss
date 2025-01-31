@@ -337,3 +337,10 @@ pre.looped-records {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.table-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
