@@ -8,8 +8,8 @@
 </p>
 
 <div class="govuk-form-group" id="hofFileUpload">
-    <label class="govuk-label bold" for="file-upload">
-        {{#t}}pages.upload-british-passport.upload-file{{/t}}
+    <label class="govuk-label" for="file-upload">
+        <h2>{{#t}}pages.upload-british-passport.upload-file{{/t}}</h2>
         <span class="govuk-hint">{{#t}}pages.upload-british-passport.file-format{{/t}}</span>
     </label>
     <p id="file-upload-error-maxFileSize" class="govuk-error-message govuk-!-display-none">
@@ -19,6 +19,12 @@
         <span id="validation-error" class="govuk-visually-hidden">{{#t}}journey.error{{/t}}:</span> {{#t}}validation.file-upload.fileType{{/t}}
     </p>
     <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" value="new-renew-british-passport">
+
+    <div id="upload-page-loading-spinner" class="spinner-container">
+        <div class="spinner-loader"></div>
+        <span class="spinner-message">Uploading your document...</span>
+      </div>
+
 </div>
 
 {{^values.new-renew-british-passport}}
