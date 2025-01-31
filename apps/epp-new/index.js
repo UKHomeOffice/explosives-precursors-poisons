@@ -76,6 +76,7 @@ module.exports = {
       ],
       titleField: ['new-renew-other-name-first-name', 'new-renew-other-name-last-name'],
       addStep: 'other-names',
+      addAnotherLinkText: 'previous name',
       next: '/your-details',
       locals: {
         fullWidthPage: true,
