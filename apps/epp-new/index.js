@@ -8,9 +8,9 @@ const ConfirmationDisplay = require('./behaviours/confirmation-type');
 const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
 const PostcodeValidation = require('../../utilities/helpers/postcode-validation');
 const { isDateOlderOrEqualTo } = require('../../utilities/helpers');
-const AggregateSaveUpdate = require('./behaviours/aggregator-save-update');
-const parseOtherNameSummary = require('./behaviours/parse-other-name-summary');
-const ResetSectionSummary = require('./behaviours/reset-section-summary');
+const AggregateSaveUpdate = require('../epp-common/behaviours/aggregator-save-update');
+const parseOtherNameSummary = require('../epp-common/behaviours/parse-other-name-summary');
+const ResetSectionSummary = require('../epp-common/behaviours/reset-section-summary');
 
 
 module.exports = {

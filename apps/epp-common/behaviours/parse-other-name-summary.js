@@ -10,6 +10,7 @@ module.exports = superclass => class extends superclass {
   *
   */
   locals(req, res) {
+    // Update dateFields with every new date field that needs to be formatted
     const dateFields = ['new-renew-other-name-start-date', 'new-renew-other-name-stop-date'];
     const locals = super.locals(req, res);
     locals.items = locals.items.map(item => {

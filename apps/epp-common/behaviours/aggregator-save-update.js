@@ -65,7 +65,7 @@ module.exports = superclass => class extends superclass {
         changeField: aggregateFromElement.changeField
       });
 
-      this.setAggregateArray(req, items); // should this be (req, fields) ?
+      this.setAggregateArray(req, items);
       req.sessionModel.unset(aggregateFromField);
     });
 
