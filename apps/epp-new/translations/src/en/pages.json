@@ -143,6 +143,9 @@
       },
       "new-renew-home-address-moveto-date": {
         "label": "Moved date"
+      },
+      "othernames": {
+        "label": "Other names"
       }
     },
     "complete": {

@@ -27,7 +27,7 @@ module.exports = {
         checkBackLink,
         RemoveEditMode,
         validateAndRedirect,
-        ResetSectionSummary('other-names', 'new-renew-other-names')
+        ResetSectionSummary('othernames', 'new-renew-other-names')
       ],
       fields: [
         'new-renew-title',
@@ -39,6 +39,7 @@ module.exports = {
       forks: [
         {
           target: '/other-names',
+          continueOnEdit: false,
           condition: req =>
             req.sessionModel.get('new-renew-other-names') === 'yes'
         }
@@ -71,7 +72,7 @@ module.exports = {
     },
     '/other-names-summary': {
       behaviours: [AggregateSaveUpdate, parseOtherNameSummary],
-      aggregateTo: 'other-names',
+      aggregateTo: 'othernames',
       aggregateFrom: [
         'new-renew-other-name-title',
         'new-renew-other-name-first-name',
@@ -83,6 +84,7 @@ module.exports = {
       titleField: ['new-renew-other-name-first-name', 'new-renew-other-name-last-name'],
       addStep: 'other-names',
       addAnotherLinkText: 'previous name',
+      continueOnEdit: false,
       next: '/your-details',
       locals: {
         fullWidthPage: true,
