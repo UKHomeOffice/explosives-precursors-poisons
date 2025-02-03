@@ -223,5 +223,52 @@
   "new-renew-home-address-moveto-date": {
     "legend": "When did you move to this address?",
     "hint": "For example, 30 10 2014"
+  },
+  "new-renew-countersignatory-title":{
+    "label": "Title",
+    "options": {
+      "none_selected": "Select"
+    }
+  },
+  "new-renew-countersignatory-firstname":{
+    "label": "First name"
+  },
+  "new-renew-countersignatory-middlename":{
+    "label": "Middle names (optional)"
+  },
+  "new-renew-countersignatory-lastname":{
+    "label": "Last name"
+  },
+  "new-renew-countersignatory-years": {
+    "label": "How many years have you known your countersignatory?",
+    "hint": "They must have known you for at least 2 years",
+    "options": {
+      "none_selected": "Select"
+    }
+  },
+  "new-renew-countersignatory-howyouknow":{
+    "label": "How do you know your countersignatory?"
+  },
+  "new-renew-countersignatory-occupation":{
+    "label": "What is your countersignatory’s occupation?"
+  },
+  "new-renew-countersignatory-address-1": {
+    "label": "Address line 1"
+  },
+  "new-renew-countersignatory-address-2": {
+    "label": "Address line 2 (optional)"
+  },
+  "new-renew-countersignatory-town-or-city": {
+    "label": "Town or city"
+  },
+  "new-renew-countersignatory-postcode": {
+    "label": "Postcode"
+  },
+  "new-renew-countersignatory-phone-number": {
+    "label": "Contact phone number",
+    "hint": "For international numbers, include the country code"
+  },
+  "new-renew-countersignatory-email": {
+    "label": "Email address"
   }
 }
