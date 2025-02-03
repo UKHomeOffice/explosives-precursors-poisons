@@ -1,10 +1,21 @@
 'use strict';
 
+const moment = require('moment');
+
 const config = require('../../../config');
 const dateFormatter = new Intl.DateTimeFormat(
   config.dateLocales,
   config.dateFormat
 );
+
+const dateParser = value => {
+  if(value && moment(value, 'DD MMMM YYYY').isValid()) {
+    return dateFormatter.format(
+      new Date(value)
+    );
+  }
+  return value;
+};
 
 module.exports = {
   'your-name': {
@@ -76,6 +87,22 @@ module.exports = {
           req.sessionModel.set('otherNameDetails', formattedOtherNameDetails);
 
           return formattedOtherNameDetails;
+        }
+      },
+      {
+        step: '/other-names-summary',
+        field: 'othernames',
+        changeLink: '/new-and-renew/other-names-summary',
+        parse: (list, req) => {
+          if (req.sessionModel.get('new-renew-other-names') === 'no' ||
+           !req.sessionModel.get('steps').includes('/other-names-summary')) {
+            return null;
+          }
+          return req.sessionModel.get('othernames')?.aggregatedValues.length > 0 ?
+            req.sessionModel.get('othernames').aggregatedValues.map(a => a.fields.map(field => {
+              field.parsed = dateParser(field.parsed);
+              return field.parsed;
+            }).join('\n')).join('\n \n') : null;
         }
       }
     ]
