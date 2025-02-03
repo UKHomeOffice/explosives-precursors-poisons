@@ -11,6 +11,8 @@ const { isDateOlderOrEqualTo } = require('../../utilities/helpers');
 const AggregateSaveUpdate = require('../epp-common/behaviours/aggregator-save-update');
 const parseOtherNameSummary = require('../epp-common/behaviours/parse-other-name-summary');
 const ResetSectionSummary = require('../epp-common/behaviours/reset-section-summary');
+const EditRouteStart = require('../epp-common/behaviours/edit-route-start');
+const EditRouteReturn = require('../epp-common/behaviours/edit-route-return');
 
 
 module.exports = {
@@ -71,7 +73,7 @@ module.exports = {
       }
     },
     '/other-names-summary': {
-      behaviours: [AggregateSaveUpdate, parseOtherNameSummary],
+      behaviours: [AggregateSaveUpdate, parseOtherNameSummary, EditRouteReturn],
       aggregateTo: 'othernames',
       aggregateFrom: [
         'new-renew-other-name-title',
@@ -513,7 +515,7 @@ module.exports = {
       }
     },
     '/confirm': {
-      behaviours: [summary, ConfirmationDisplay],
+      behaviours: [summary, ConfirmationDisplay, EditRouteStart],
       sections: require('./sections/summary-data-sections'),
       next: '/declaration',
       locals: {
