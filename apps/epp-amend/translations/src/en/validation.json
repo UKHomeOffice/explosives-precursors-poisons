@@ -135,6 +135,7 @@
       "notUrl" : "Your answer must not include a URL"
     },
     "amend-new-postcode": {
+      "required" : "Enter a UK postcode",
       "postcode" : "Enter a real UK postcode"
     },
     "amend-new-country": {

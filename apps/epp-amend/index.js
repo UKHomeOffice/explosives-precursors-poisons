@@ -135,7 +135,7 @@ module.exports = {
         'amend-new-country',
         'amend-new-date-moved-to-address'
       ],
-      behaviours: [AfterDateOfBirth],
+      behaviours: [AfterDateOfBirth, PostcodeValidation],
       next: '/upload-proof-address',
       locals: { captionHeading: 'Section 11 of 20' }
     },
