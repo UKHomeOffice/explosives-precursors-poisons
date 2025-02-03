@@ -112,6 +112,41 @@
         "before": "Date you changed your name must be in the past",
         "after": "Date you changed your name must be after {{diff}}, your date of birth"
     },
+    "amend-new-address-1": {
+     "required": "Enter address line 1, typically the building and street",
+     "maxlength": "Address line 1 must be between 2 and 250 characters",
+     "minlength": "Address line 2 must be between 2 and 250 characters",
+     "notUrl" : "Your answer must not include a URL"
+    },
+    "amend-new-address-2": {
+      "maxlength": "Address line 1 must be between 2 and 250 characters",
+      "minlength": "Address line 2 must be between 2 and 250 characters",
+      "notUrl" : "Your answer must not include a URL"
+    },
+    "amend-new-town-or-city": {
+      "required": "Enter town or city",
+      "maxlength": "Town or city must be between 2 and 250 characters",
+      "minlength": "Address line 2 must be between 2 and 250 characters",
+      "notUrl" : "Your answer must not include a URL"
+    },
+    "amend-new-county": {
+      "maxlength": "County, state or province must be between 2 and 250 characters",
+      "minlength": "Address line 2 must be between 2 and 250 characters",
+      "notUrl" : "Your answer must not include a URL"
+    },
+    "amend-new-postcode": {
+      "required" : "Enter a UK postcode",
+      "postcode" : "Enter a real UK postcode"
+    },
+    "amend-new-country": {
+      "required": "Select a country of address"
+    },
+    "amend-new-date-moved-to-address": {
+        "required": "Enter the move date to this address",
+        "date": "Enter a real date",
+        "before": "Date you moved to this address must be in the past",
+        "after": "Date you moved to this address must be after {{diff}}, your date of birth"
+    },
     "amend-precursor-selection": {
       "required" : "Select an explosive precursor"
     }

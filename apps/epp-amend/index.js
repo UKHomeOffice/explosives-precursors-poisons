@@ -121,7 +121,7 @@ module.exports = {
       next: '/change-home-address',
       locals: { captionHeading: 'Section 9 of 20' }
     },
-    '/change-home-address': {
+     '/change-home-address': {
       fields: [
         'amend-new-post-address-1',
         'amend-new-post-address-2',
@@ -132,9 +132,23 @@ module.exports = {
         'amend-new-date-moved-to-address'
       ],
       locals: { captionHeading: 'Section 10 of 20' },
-      next: '/section-eleven'
+      next: '/new-address'
     },
-    '/section-eleven': {
+    '/new-address': {
+      fields: [
+        'amend-new-address-1',
+        'amend-new-address-2',
+        'amend-new-town-or-city',
+        'amend-new-county',
+        'amend-new-postcode',
+        'amend-new-country',
+        'amend-new-date-moved-to-address'
+      ],
+      behaviours: [AfterDateOfBirth, PostcodeValidation],
+      next: '/upload-proof-address',
+      locals: { captionHeading: 'Section 11 of 20' }
+    },
+    '/upload-proof-address': {
       next: '/section-twelve'
     },
     '/section-twelve': {

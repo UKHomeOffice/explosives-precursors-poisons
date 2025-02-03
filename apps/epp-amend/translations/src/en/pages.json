@@ -20,11 +20,14 @@
   "new-name": {
     "header": "What is your new name?"
   },
+  "new-address": {
+    "header": "What is your new address?"
+  },
   "select-precursor": {
     "header": "Explosives precursors",
     "p1": "Tell us which explosives precursors you want to import acquire use or possess.",
     "p2": "If you need multiple explosives precursors, you can add each one separately." 
-  },
+  }
   "application-submitted": {
     "confirmed": "Amendment submitted"
   },
@@ -52,6 +55,9 @@
       },
       "amend-new-name-details": {
         "header": "New name"
+      },
+      "amend-new-home-address": {
+        "header": "New address"
       },
       "amend-explosives-precursor": {
         "header": "Explosives precursors"
@@ -117,6 +123,9 @@
       },
       "amend-Uk-driving-licence-number": {
         "label": "Driving Licence"
+      },
+      "amend-new-country": {
+        "label": "Country"
       },
       "amend-precursor-selection": {
         "label": "Explosives precursor"

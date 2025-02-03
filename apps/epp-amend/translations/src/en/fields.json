@@ -110,6 +110,32 @@
     "label": "What is your driving licence number?",
     "hint" : "On section 5 of your licence, for example MORGA657054SM9IJ"    
   },
+  "amend-new-address-1": {
+    "label": "Address line 1"
+  },
+  "amend-new-address-2": {
+    "label": "Address line 2 (optional)"
+  },
+  "amend-new-town-or-city": {
+    "label": "Town or city"
+  },
+  "amend-new-county": {
+    "label": "County, state, province (optional)"
+  },
+  "amend-new-postcode": {
+    "label": "Postcode (optional)",
+    "hint": "Postcode is optional if your address is outside the UK"
+  },
+  "amend-new-country": {
+    "label": "Country of address",
+    "options": {
+      "none_selected": "Select"
+    }
+  },
+  "amend-new-date-moved-to-address": {
+      "legend": "What date did you change your address?",
+      "hint": " For example, 30 09 1969"
+  },
   "amend-precursor-selection": {
     "hint": "Select an explosives precursor",
     "options":{

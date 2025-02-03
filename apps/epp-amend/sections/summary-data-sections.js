@@ -132,6 +132,39 @@ module.exports = {
       }
     ]
   },
+  'amend-new-home-address': {
+    steps: [
+      {
+        step: '/new-address',
+        field: 'amend-new-address-1'
+      },
+      {
+        step: '/new-address',
+        field: 'amend-new-address-2'
+      },
+      {
+        step: '/new-address',
+        field: 'amend-new-town-or-city'
+      },
+      {
+        step: '/new-address',
+        field: 'amend-new-county'
+      },
+      {
+        step: '/new-address',
+        field: 'amend-new-postcode'
+      },
+      {
+        step: '/new-address',
+        field: 'amend-new-country'
+      },
+      {
+        step: '/new-address',
+        field: 'amend-new-date-moved-to-address',
+        parse: date => date && dateFormatter.format(new Date(date))
+      }
+    ]
+  },
   'amend-explosives-precursor': {
     steps: [
       {

@@ -184,6 +184,69 @@ module.exports = {
     legend: { className: 'bold' },
     validate: ['required', 'date', 'before']
   }),
+  'amend-new-address-1': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-input govuk-!-width-full'],
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'amend-new-address-2': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-input govuk-!-width-full'],
+    validate: [
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'amend-new-town-or-city': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-input govuk-!-width-full'],
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'amend-new-county': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-input govuk-!-width-full'],
+    validate: [
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'amend-new-postcode': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-input--width-10'],
+    formatter: ['ukPostcode']
+  },
+  'amend-new-country': {
+    mixin: 'select',
+    validate: ['required'],
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input govuk-!-width-full'],
+    options: [{
+      value: '',
+      label: 'fields.amend-new-country.options.none_selected'
+    }].concat(country)
+  },
+  'amend-new-date-moved-to-address': dateComponent('amend-new-date-moved-to-address', {
+    mixin: 'input-date',
+    legend: { className: 'bold' },
+    validate: ['required', 'date', 'before']
+  }),
   'amend-precursor-selection': {
     mixin: 'select',
     validate: ['required'],
