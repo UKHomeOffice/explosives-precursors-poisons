@@ -1,4 +1,4 @@
-const title = require('../../../utilities/constants/titles.js');
+const titles = require('../../../utilities/constants/titles.js');
 const dateComponent = require('hof').components.date;
 const helpers = require('../../../utilities/helpers/index.js');
 const country = require('../../../utilities/constants/countries');
@@ -18,7 +18,7 @@ module.exports = {
     options: [{
       value: '',
       label: 'fields.amend-name-title.options.none_selected'
-    }].concat(title)
+    }].concat(titles)
   },
   'amend-firstname': {
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
@@ -152,5 +152,35 @@ module.exports = {
       field: 'amend-applicant-Id-type',
       value: 'Uk-driving-licence'
     }
-  }
+  },
+  'amend-new-name-title': {
+    mixin: 'select',
+    validate: ['required'],
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input--width-2'],
+    options: [{
+      value: '',
+      label: 'fields.amend-new-name-title.options.none_selected'
+    }].concat(titles)
+  },
+  'amend-new-firstname': {
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'amend-new-middlename': {
+    validate: ['notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'amend-new-lastname': {
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds']
+  },
+  'amend-new-date-name-changed': dateComponent('amend-new-date-name-changed', {
+    mixin: 'input-date',
+    legend: { className: 'bold' },
+    validate: ['required', 'date', 'before']
+  })
 };
