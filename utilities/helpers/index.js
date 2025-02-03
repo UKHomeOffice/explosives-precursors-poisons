@@ -1,4 +1,6 @@
 const moment = require('moment');
+const validators = require('hof/controller/validation/validators');
+const removeWhiteSpace = value => value?.replace(/\s+/g, '');
 
 const validLicenceNumber = value =>
   value.match(/^\d{2}[\/,\-| ]?\w[\/,\-| ]?\d{6}[\/,\-| ]?\d{4}$/);
@@ -79,7 +81,14 @@ const isDateOlderOrEqualTo = (dateStr, yearsThreshold) => {
 const isValidUkDrivingLicenceNumber = value =>
   value.match(/^[A-Z9]{5}\d{6}[A-Z9]{2}\d[A-Z]{2}$/i);
 
-
+const validInternationalPhoneNumber = value => {
+  const phoneNumberWithoutSpace = removeWhiteSpace(value);
+  const isValidPhoneNumber = validators.regex(
+    phoneNumberWithoutSpace,
+    /^\(?\+?[\d()-]{8,16}$/
+  );
+  return isValidPhoneNumber && validators.internationalPhoneNumber(value);
+};
 module.exports = {
   isLicenceValid,
   isApplicationType,
@@ -87,5 +96,7 @@ module.exports = {
   isWithoutFullStop,
   getKeyByValue,
   isDateOlderOrEqualTo,
-  isValidUkDrivingLicenceNumber
+  isValidUkDrivingLicenceNumber,
+  validInternationalPhoneNumber,
+  removeWhiteSpace
 };

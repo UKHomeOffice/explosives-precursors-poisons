@@ -444,7 +444,15 @@ module.exports = {
       }
     },
     '/countersignatory-details': {
-      fields: [],
+      fields: [
+        'new-renew-countersignatory-title',
+        'new-renew-countersignatory-firstname',
+        'new-renew-countersignatory-middlename',
+        'new-renew-countersignatory-lastname',
+        'new-renew-countersignatory-years',
+        'new-renew-countersignatory-howyouknow',
+        'new-renew-countersignatory-occupation'
+      ],
       next: '/countersignatory-address',
       locals: {
         sectionNo: {
@@ -454,7 +462,12 @@ module.exports = {
       }
     },
     '/countersignatory-address': {
-      fields: [],
+      fields: [
+        'new-renew-countersignatory-address-1',
+        'new-renew-countersignatory-address-2',
+        'new-renew-countersignatory-town-or-city',
+        'new-renew-countersignatory-postcode'
+      ],
       next: '/countersignatory-contact',
       locals: {
         sectionNo: {
@@ -464,7 +477,10 @@ module.exports = {
       }
     },
     '/countersignatory-contact': {
-      fields: [],
+      fields: [
+        'new-renew-countersignatory-phone-number',
+        'new-renew-countersignatory-email'
+      ],
       next: '/countersignatory-id',
       locals: {
         sectionNo: {

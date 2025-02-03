@@ -72,6 +72,16 @@
     "you-have-uploaded": "You have uploaded",
     "files": "file(s)"
   },
+  "countersignatory-details": {
+    "header": "Countersignatory details",
+    "description": "Your countersignatory must not be a parent or relative, unless you are under 18. If you are under 18, your countersignatory must be your parent or legal guardian."
+  },
+  "countersignatory-address": {
+    "header": "Countersignatory address"
+  },
+  "countersignatory-contact":{
+    "header": "Countersignatory's contact details"
+  },
   "confirm": {
     "header": "Check your answers",
     "title": "Check your answers – Apply for an explosives precursors and poisons licence",
@@ -145,6 +155,24 @@
       },
       "new-renew-home-address-moveto-date": {
         "label": "Moved date"
+      },
+      "new-renew-countersignatory-middlename": {
+        "label": "Middle names"
+      },
+      "new-renew-countersignatory-years":{
+        "label": "How many years have you known countersignatory?"
+      },
+      "new-renew-countersignatory-howyouknow":{
+        "label": "How do you know countersignatory?"
+      },
+      "new-renew-countersignatory-occupation":{
+        "label": "Countersignatory’s occupation"
+      },
+      "new-renew-countersignatory-address-2": {
+        "label": "Address line 2"
+      },
+      "new-renew-countersignatory-phone-number": {
+        "label": "Phone number"
       }
     },
     "complete": {
