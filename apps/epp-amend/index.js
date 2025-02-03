@@ -121,16 +121,7 @@ module.exports = {
       next: '/change-home-address',
       locals: { captionHeading: 'Section 9 of 20' }
     },
-     '/change-home-address': {
-      fields: [
-        'amend-new-post-address-1',
-        'amend-new-post-address-2',
-        'amend-new-post-town-or-city',
-        'amend-new-post-county',
-        'amend-new-post-postcode',
-        'amend-new-post-country',
-        'amend-new-date-moved-to-address'
-      ],
+    '/change-home-address': {
       locals: { captionHeading: 'Section 10 of 20' },
       next: '/new-address'
     },
