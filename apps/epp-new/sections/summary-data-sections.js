@@ -58,7 +58,7 @@ module.exports = {
                 field.parsed = dateParser(field.parsed);
               }
               return field.parsed;
-            }).join('\n')).join('\n \n') : null;
+            }).filter(Boolean).join('\n')).join('\n \n') : null;
         }
       }
     ]
