@@ -51,7 +51,12 @@ module.exports = {
           }
           return req.sessionModel.get('othernames')?.aggregatedValues.length > 0 ?
             req.sessionModel.get('othernames').aggregatedValues.map(a => a.fields.map(field => {
-              field.parsed = dateParser(field.parsed);
+              if (
+                field.field === 'new-renew-other-name-start-date' ||
+                field.field === 'new-renew-other-name-stop-date'
+              ) {
+                field.parsed = dateParser(field.parsed);
+              }
               return field.parsed;
             }).join('\n')).join('\n \n') : null;
         }
