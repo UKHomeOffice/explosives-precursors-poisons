@@ -41,55 +41,6 @@ module.exports = {
         field: 'new-renew-other-names'
       },
       {
-        step: '/other-names',
-        field: 'other-names',
-        parse: (value, req) => {
-          const otherNameDetails = [];
-
-          const firstName = req.sessionModel.get(
-            'new-renew-other-name-first-name'
-          );
-          const middleName = req.sessionModel.get(
-            'new-renew-other-name-middle-name'
-          );
-          const lastName = req.sessionModel.get(
-            'new-renew-other-name-last-name'
-          );
-          const fullName = [firstName, middleName, lastName]
-            .filter(Boolean)
-            .join(' ');
-          otherNameDetails.push(
-            req.sessionModel.get('new-renew-other-name-title'),
-            fullName
-          );
-
-          const startDate = req.sessionModel.get(
-            'new-renew-other-name-start-date'
-          );
-          if (startDate) {
-            const formattedStartDate = dateFormatter.format(
-              new Date(startDate)
-            );
-            otherNameDetails.push(formattedStartDate);
-          }
-
-          const stopDate = req.sessionModel.get(
-            'new-renew-other-name-stop-date'
-          );
-          if (stopDate) {
-            const formattedStopDate = dateFormatter.format(new Date(stopDate));
-            otherNameDetails.push(formattedStopDate);
-          }
-
-          const formattedOtherNameDetails = otherNameDetails
-            .filter(Boolean)
-            .join('\n');
-          req.sessionModel.set('otherNameDetails', formattedOtherNameDetails);
-
-          return formattedOtherNameDetails;
-        }
-      },
-      {
         step: '/other-names-summary',
         field: 'othernames',
         changeLink: '/new-and-renew/other-names-summary',
