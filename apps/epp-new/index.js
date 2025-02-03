@@ -10,6 +10,7 @@ const PostcodeValidation = require('../../utilities/helpers/postcode-validation'
 const { isDateOlderOrEqualTo } = require('../../utilities/helpers');
 const AggregateSaveUpdate = require('./behaviours/aggregator-save-update');
 const parseOtherNameSummary = require('./behaviours/parse-other-name-summary');
+const ResetSectionSummary = require('./behaviours/reset-section-summary');
 
 
 module.exports = {
@@ -22,7 +23,12 @@ module.exports = {
   behaviours: [sectionCounter],
   steps: {
     '/your-name': {
-      behaviours: [checkBackLink, RemoveEditMode, validateAndRedirect],
+      behaviours: [
+        checkBackLink,
+        RemoveEditMode,
+        validateAndRedirect,
+        ResetSectionSummary('other-names', 'new-renew-other-names')
+      ],
       fields: [
         'new-renew-title',
         'new-renew-first-name',
