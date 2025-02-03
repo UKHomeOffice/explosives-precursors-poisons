@@ -131,5 +131,13 @@ module.exports = {
         field: 'amend-Uk-driving-licence-number'
       }
     ]
+  },
+  'amend-explosives-precursor': {
+    steps: [
+      {
+        steps: '/select-precursor',
+        field: 'amend-precursor-selection'
+      }
+    ]
   }
 };
