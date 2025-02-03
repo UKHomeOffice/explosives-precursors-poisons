@@ -1,7 +1,11 @@
 const dateComponent = require('hof').components.date;
 const titles = require('../../../utilities/constants/titles');
 const countries = require('../../../utilities/constants/countries');
-const { isWithoutFullStop } = require('../../../utilities/helpers');
+const {
+  isWithoutFullStop,
+  validInternationalPhoneNumber
+} = require('../../../utilities/helpers');
+const countersignatoryYears = require('../../../utilities/constants/countersignatory-years');
 
 module.exports = {
   'new-renew-title': {
@@ -353,5 +357,102 @@ module.exports = {
       legend: { className: 'bold' },
       validate: ['required', 'date', 'before']
     }
-  )
+  ),
+  'new-renew-countersignatory-title': {
+    mixin: 'select',
+    validate: 'required',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-select', 'govuk-input--width-2'],
+    options: [
+      {
+        value: '',
+        label: 'fields.new-renew-countersignatory-title.options.none_selected'
+      }
+    ].concat(titles)
+  },
+  'new-renew-countersignatory-firstname': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--s'
+  },
+  'new-renew-countersignatory-middlename': {
+    mixin: 'input-text',
+    validate: ['notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--s'
+  },
+  'new-renew-countersignatory-lastname': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--s'
+  },
+  'new-renew-countersignatory-years': {
+    mixin: 'select',
+    validate: 'required',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-select', 'govuk-input--width-2'],
+    options: [
+      {
+        value: '',
+        label: 'fields.new-renew-countersignatory-years.options.none_selected'
+      }
+    ].concat(countersignatoryYears)
+  },
+  'new-renew-countersignatory-howyouknow': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--s'
+  },
+  'new-renew-countersignatory-occupation': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--s'
+  },
+  'new-renew-countersignatory-address-1': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'new-renew-countersignatory-address-2': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    validate: [
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'new-renew-countersignatory-town-or-city': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'new-renew-countersignatory-postcode': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-input--width-10'],
+    validate: ['required', 'postcode'],
+    formatter: ['ukPostcode']
+  },
+  'new-renew-countersignatory-phone-number': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', validInternationalPhoneNumber],
+    className: ['govuk-input', 'govuk-!-width-one-half'],
+    labelClassName: 'govuk-label--m'
+  },
+  'new-renew-countersignatory-email': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    className: ['govuk-input'],
+    labelClassName: 'govuk-label--m'
+  }
 };
