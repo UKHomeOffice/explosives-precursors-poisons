@@ -41,7 +41,7 @@ module.exports = {
       forks: [
         {
           target: '/other-names',
-          continueOnEdit: false,
+          continueOnEdit: true,
           condition: req =>
             req.sessionModel.get('new-renew-other-names') === 'yes'
         }
