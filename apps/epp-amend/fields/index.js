@@ -249,5 +249,5 @@ module.exports = {
   'file-upload': {
     mixin: 'input-file',
     labelClassName: 'govuk-label--m'
-  },
+  }
 };

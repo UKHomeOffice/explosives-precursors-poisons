@@ -14,48 +14,57 @@ module.exports = class UploadModel extends Model {
   }
 
   async save() {
+    const attributes = {
+      url: config.upload.hostname
+    };
+
+    const formData = new FormData();
+    formData.append('document', this.get('data'), {
+      filename: this.get('name'),
+      contentType: this.get('mimetype')
+    });
+    const reqConf = url.parse(this.url(attributes));
+    reqConf.data = formData;
+    reqConf.method = 'POST';
+    reqConf.headers = {
+      ...formData.getHeaders()
+    };
+
     try {
-      const attributes = {
-        url: config.upload.hostname
-      };
-      const reqConf = url.parse(this.url(attributes));
-      const formData = new FormData();
-      formData.append('document', this.get('data'), {
-        filename: this.get('name'),
-        contentType: this.get('mimetype')
-      });
-      reqConf.data = formData;
-      reqConf.method = 'POST';
-      reqConf.headers = {
-        ...formData.getHeaders()
-      };
+      const response = await this.request(reqConf);
 
-      const result = await this.request(reqConf);
-
-      if(result?.url){
-        this.set({ url: result.url.replace('/file/', '/file/generate-link/').split('?')[0] });
-        logger.info(`Successfully saved data`);
-        return this.unset('data');
+      if (!response || typeof response !== 'object' || Object.keys(response).length === 0) {
+        const errorMsg = `Received empty or invalid response from file-vault ${response}`;
+        logger.error(errorMsg)
+        throw new Error(errorMsg);
       }
-      else{
-        const errorMsg = `No url in response: ${result}`;
+      if (!response.url) {
+        const errorMsg = `Did not receive a URL from file-vault ${response}`;
         logger.error(errorMsg);
-        throw new Error(result);
+        throw new Error(errorMsg);
       }
-
-    } catch (err) {
-      logger.error('Error in save method: ', err);
-      throw err;
+      this.set({ url: response.url.replace('/file/', '/file/generate-link/').split('?')[0] });
+      logger.info(`Successfully saved data`);
+      return this.unset('data');
+    } catch (error) {
+      logger.error(`File upload failed in save method: ${error.message},
+          error: ${JSON.stringify(error)}`);
+      throw new Error(`File upload failed: ${error.message}`);
     }
-  }
+  };
 
   async auth() {
+    const requiredProperties = ['clientId', 'secret', 'username', 'password'];
     try {
-      if (!config.keycloak.token) {
-        logger.error('keycloak token url is not defined');
-        return Promise.resolve({
-          bearer: 'abc123'
-        });
+      for (const property of requiredProperties) {
+        if (!config.keycloak.token) {
+          const errorMsg = `Keycloak ${property} is not defined`;
+          logger.error(errorMsg);
+          throw new Error(errorMsg)
+          return Promise.resolve({
+            bearer: 'abc123'
+          });
+        }
       }
       const tokenReq = {
         url: config.keycloak.token,
@@ -69,13 +78,21 @@ module.exports = class UploadModel extends Model {
         },
         method: 'POST'
       };
-
       const response = await this._request(tokenReq);
+      if (!response.data || !response.data.access_token) {
+        const errorMsg = 'No access token in response';
+        logger.error(errorMsg);
+        throw new Error(errorMsg);
+      }
+      logger.info('Successfully retrieved access token')
       return { bearer: response.data.access_token };
     } catch (err) {
+      const errorMsg = `Error occurred in auth method: ${err.message}, 
+        Cause: ${err.response.status} ${err.response.statusText}, Data: ${JSON.stringify(err.response.data)}`;
+      logger.error(errorMsg);
       const body = err.response.data
       logger.error(`Error in auth method: ${body.error} - ${body.error_description}`);
       throw err || new Error(`${body.error} - ${body.error_description}`);
-    };
+    }
   }
 };

@@ -1,16 +1,27 @@
 {{<partials-page}}
-{{$encoding}}enctype="multipart/form-data"{{/encoding}}
+{{$encoding}}enctype="multipart/form-data" name="file-upload-form"{{/encoding}}
   {{$page-content}}
   <p>{{#t}}pages.upload-british-passport.paragraph1{{/t}}
   <a class="govuk-link" href="{{#t}}pages.upload-british-passport.link{{/t}}" rel="noreferrer noopener" target="_blank">{{#t}}pages.upload-british-passport.link-text{{/t}}</a>
   </p>
 
-  {{#fields}}
-    {{#renderField}}{{/renderField}}
-  {{/fields}}
-  <button class="govuk-button govuk-button--secondary" name="upload-file" value="upload-file">
-    {{#t}}buttons.upload-file{{/t}}
-  </button>
+    <div class="govuk-form-group govuk-!-margin-top-6" id="file-upload-group">
+      <label class="govuk-label govuk-label--m" for="file-upload-group">
+          {{#t}}fields.file-upload.label{{/t}}
+      </label>
+      <p id="file-upload-error-maxFileSize" class="govuk-error-message govuk-!-display-none">
+        <span id="validation-error" class="govuk-visually-hidden">{{#t}}journey.error{{/t}}:</span> {{#t}}validation.file-upload.maxFileSize{{/t}}
+      </p>
+      <p id="file-upload-error-fileType" class="govuk-error-message govuk-!-display-none">
+        <span id="validation-error" class="govuk-visually-hidden">{{#t}}journey.error{{/t}}:</span> {{#t}}validation.file-upload.fileType{{/t}}
+      </p>
+      <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" value="company-registration-certificate">
+      <div id="upload-page-loading-spinner" class="spinner-container">
+        <div class="spinner-loader"></div>
+        <span class="spinner-message">{{#t}}epp-common.journey.uploading{{/t}}</span>
+      </div>
+    </div>
+  
     {{^values.identity-british-passport}}
     <h2 class="govuk-heading-m">No files uploaded</h2>
     {{/values.identity-british-passport}}

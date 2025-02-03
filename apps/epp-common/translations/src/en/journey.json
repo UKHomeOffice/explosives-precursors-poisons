@@ -1,5 +1,7 @@
 {
   "header": "Explosives precursors and poisons licensing",
   "phase": "beta",
-  "serviceName": "Explosives precursors and poisons licensing"
+  "serviceName": "Explosives precursors and poisons licensing",
+  "error": "Error",
+  "uploading": "Uploading your file..."
 }
