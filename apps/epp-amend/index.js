@@ -155,7 +155,7 @@ module.exports = {
       next: '/select-precursor'
     },
     '/select-precursor': {
-      fields: ['amend-precursor-selection'],
+      fields: [],
       locals: { captionHeading: 'Section 15 of 20' },
       next: '/section-sixteen'
     },
