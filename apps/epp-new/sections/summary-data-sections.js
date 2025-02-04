@@ -201,6 +201,22 @@ module.exports = {
       {
         step: '/contact-details',
         field: 'new-renew-email'
+      },
+      {
+        step: '/upload-british-passport',
+        field: 'new-renew-british-passport',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel
+              .get('steps')
+              .includes('/upload-british-passport') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file.name);
+          }
+
+          return null;
+        }
       }
     ]
   },
