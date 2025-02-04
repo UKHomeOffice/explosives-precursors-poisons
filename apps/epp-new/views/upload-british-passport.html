@@ -2,8 +2,11 @@
 {{$page-content}}
 <p class="govuk-body">{{#t}}pages.upload-british-passport.p1{{/t}} 
     <a 
-    href="https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned" 
-    target="_blank">{{#t}}pages.upload-british-passport.link{{/t}}
+        class="govuk-link" 
+        href="{{#t}}pages.upload-british-passport.link{{/t}}" 
+        target="_blank" 
+        rel="noreferrer noopener">
+    {{#t}}pages.upload-british-passport.link-text{{/t}}
     </a>
 </p>
 
@@ -22,7 +25,7 @@
 
     <div id="upload-page-loading-spinner" class="spinner-container">
         <div class="spinner-loader"></div>
-        <span class="spinner-message">Uploading your document...</span>
+        <span class="spinner-message">{{#t}}validation.file-upload.uploading-document{{/t}}</span>
       </div>
 
 </div>
