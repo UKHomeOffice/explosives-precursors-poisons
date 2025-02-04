@@ -89,6 +89,11 @@ const validInternationalPhoneNumber = value => {
   );
   return isValidPhoneNumber && validators.internationalPhoneNumber(value);
 };
+
+const DEFAULT_AGGREGATOR_LIMIT = 100;
+
+const TEXT_NOT_PROVIDED = 'Not provided';
+
 module.exports = {
   isLicenceValid,
   isApplicationType,
@@ -98,5 +103,7 @@ module.exports = {
   isDateOlderOrEqualTo,
   isValidUkDrivingLicenceNumber,
   validInternationalPhoneNumber,
-  removeWhiteSpace
+  removeWhiteSpace,
+  DEFAULT_AGGREGATOR_LIMIT,
+  TEXT_NOT_PROVIDED
 };

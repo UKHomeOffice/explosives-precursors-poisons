@@ -1,3 +1,4 @@
+const { DEFAULT_AGGREGATOR_LIMIT } = require('../../../utilities/helpers');
 module.exports = superclass => class extends superclass {
   constructor(options) {
     if (!options.aggregateTo) {
@@ -45,7 +46,7 @@ module.exports = superclass => class extends superclass {
     const items = this.getAggregateArray(req);
     const fields = [];
     const itemTitle = [];
-    const aggregateLimit = req.form.options.aggregateLimit || undefined;
+    const aggregateLimit = req.form.options.aggregateLimit || DEFAULT_AGGREGATOR_LIMIT;
 
     req.form.options.aggregateFrom.forEach(aggregateFromElement => {
       const aggregateFromField = aggregateFromElement.field || aggregateFromElement;
