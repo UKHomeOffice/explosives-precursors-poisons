@@ -2,7 +2,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
+  name: {{ .APP_NAME }}
+  {{ else if eq .KUBE_NAMESPACE .BRANCH_ENV }}
   annotations:
     downscaler/uptime: {{ .NON_PROD_AVAILABILITY }}
   name: {{ .APP_NAME }}-{{ .DRONE_SOURCE_BRANCH }}
@@ -12,10 +14,10 @@ metadata:
   name: {{ .APP_NAME }}
   {{ end }}
 spec:
-  {{ if eq .KUBE_NAMESPACE .BRANCH_ENV}}
-  replicas: 1
-  {{ else }}
+  {{ if eq .KUBE_NAMESPACE .PROD_ENV }}
   replicas: 2
+  {{ else }}
+  replicas: 1
   {{ end }}
   selector:
     matchLabels:
@@ -73,31 +75,31 @@ spec:
                   key: notify-key
             - name: USE_MOCKS
               value: "false"
+            - name: KEYCLOAK_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-client
+                  key: secret
+            - name: KEYCLOAK_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-client
+                  key: id
+            - name: KEYCLOAK_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-user
+                  key: username
+            - name: KEYCLOAK_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-user
+                  key: password
             - name: SESSION_SECRET
               valueFrom:
                 secretKeyRef:
                   name: session-secret
                   key: session-secret
-            - name: FILE_VAULT_CLIENT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: keycloak-client
-                  key: secret
-            - name: FILE_VAULT_CLIENT_ID
-              valueFrom:
-                secretKeyRef:
-                  name: keycloak-client
-                  key: id
-            - name: FILE_VAULT_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: keycloak-user
-                  key: username
-            - name: FILE_VAULT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: keycloak-user
-                  key: password
             - name: FILE_VAULT_URL
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
               value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.branch.sas-notprod.homeoffice.gov.uk/file
@@ -108,6 +110,13 @@ spec:
             {{ else if eq .KUBE_NAMESPACE .PROD_ENV }}
               value: https://fv-{{ .APP_NAME }}.sas.homeoffice.gov.uk/file
             {{ end }}
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+            - name: DEBUG
+              value: "*"
+            {{ end }}
+            # Preventing search engines from indexing all pages
+            - name: DISALLOW_INDEXING
+              value: "true"
           {{ if not (eq .KUBE_NAMESPACE .BRANCH_ENV) }}
           livenessProbe:
             httpGet:
