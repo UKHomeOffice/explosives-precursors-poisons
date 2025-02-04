@@ -11,6 +11,9 @@ module.exports = superclass =>
       if(key === 'amend-new-date-name-changed' &&
          Object.keys(amendChangedDateResult).length !== 0) {
         return new this.ValidationError(key, amendChangedDateResult);
+      } else if(key === 'amend-new-date-moved-to-address' &&
+              Object.keys(amendChangedDateResult).length !== 0) {
+        return new this.ValidationError(key, amendChangedDateResult);
       }
 
       req.log('info', 'No validation error');

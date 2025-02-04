@@ -59,5 +59,10 @@ module.exports = {
   sectionDetails: {
     totalStepsNew: 20,
     totalStepsRenew: 21
+  },
+  postCodeCountriesMap: {
+    'amend-postcode': 'amend-country',
+    'new-renew-home-address-postcode': 'new-renew-home-address-country',
+    'amend-new-postcode': 'amend-new-country'
   }
 };
