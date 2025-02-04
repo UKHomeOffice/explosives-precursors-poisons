@@ -87,7 +87,7 @@ module.exports = {
       addStep: 'other-names',
       addAnotherLinkText: 'previous name',
       continueOnEdit: false,
-      next: '/confirm',
+      next: '/your-details',
       locals: {
         fullWidthPage: true,
         sectionNo: {
