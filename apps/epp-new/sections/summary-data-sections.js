@@ -201,7 +201,11 @@ module.exports = {
       {
         step: '/contact-details',
         field: 'new-renew-email'
-      },
+      }
+    ]
+  },
+  'new-renew-proof-of-identity': {
+    steps: [
       {
         step: '/upload-british-passport',
         field: 'new-renew-british-passport',

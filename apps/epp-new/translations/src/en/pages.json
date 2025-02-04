@@ -105,6 +105,9 @@
       },
       "criminal-record": {
         "header": "Criminal records"
+      },
+      "new-renew-proof-of-identity": {
+        "header": "Proof of identity"
       }
     },
     "fields": {
@@ -173,6 +176,9 @@
       },
       "new-renew-countersignatory-phone-number": {
         "label": "Phone number"
+      },
+      "new-renew-british-passport": {
+        "label": "Image of passport"
       }
     },
     "complete": {
