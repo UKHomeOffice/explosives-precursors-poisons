@@ -161,8 +161,8 @@
   "file-upload": {
     "required": "Select a file to upload",
     "unsaved": "Your file could not be uploaded – try again",
-    "maxFileSize": "Your file must be smaller than 25MB",
-    "fileType": "Your file must be a JPG, JPEG, PNG or PDF"
+    "maxFileSize": "The selected file must be 25MB or smaller",
+    "fileType": "The selected file must be a JPG, PDF or PNG"
   },
   "new-renew-countersignatory-title": {
     "required": "Select your countersignatory's title"
