@@ -256,14 +256,14 @@ module.exports = {
     legend: { className: 'bold' },
     validate: ['required', 'date', 'before']
   }),
-  'amend-precursor-selection': {
+  'amend-test-list': {
     mixin: 'select',
     validate: ['required'],
     labelClassName: ['govuk-label--s', 'visuallyhidden'],
     className: ['govuk-input--width-2'],
     options: [{
       value: '',
-      label: 'fields.amend-precursor-selection.options.none_selected'
+      label: 'Select'
     }].concat(precursorList)
   }
 };

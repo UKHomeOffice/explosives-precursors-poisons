@@ -173,7 +173,7 @@ module.exports = {
       next: '/select-precursor'
     },
     '/select-precursor': {
-      fields: [],
+      fields: ['amend-test-list'],
       locals: { captionHeading: 'Section 15 of 20' },
       next: '/section-sixteen'
     },
