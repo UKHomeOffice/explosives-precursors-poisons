@@ -132,6 +132,14 @@ module.exports = {
       }
     ]
   },
+  'amend-home-address-options': {
+    steps: [
+      {
+        step: '/change-home-address',
+        field: 'amend-home-address-options'
+      }
+    ]
+  },
   'amend-new-home-address': {
     steps: [
       {

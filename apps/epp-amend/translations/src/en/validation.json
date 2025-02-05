@@ -112,6 +112,9 @@
         "before": "Date you changed your name must be in the past",
         "after": "Date you changed your name must be after {{diff}}, your date of birth"
     },
+    "amend-home-address-options": {
+      "required": "Select if you need to amend your home address on the licence"
+    },
     "amend-new-address-1": {
      "required": "Enter address line 1, typically the building and street",
      "maxlength": "Address line 1 must be between 2 and 250 characters",
