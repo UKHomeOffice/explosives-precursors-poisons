@@ -27,7 +27,6 @@ module.exports = (documentName, fieldName) => superclass =>
       const validationErrorFunc = (type, args) =>
         new this.ValidationError(key, { type: type, arguments: [args] });
 
-      // To check required type, when trying to do continue without upload
       if (req.body.requireFileUpload && documentsByCategory.length === 0) {
         return validationErrorFunc('required');
       } else if (fileToBeValidated) {
