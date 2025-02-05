@@ -3,9 +3,11 @@ const titles = require('../../../utilities/constants/titles');
 const countries = require('../../../utilities/constants/countries');
 const {
   isWithoutFullStop,
-  validInternationalPhoneNumber
+  validInternationalPhoneNumber,
+  isValidUkDrivingLicenceNumber
 } = require('../../../utilities/helpers');
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years');
+
 
 module.exports = {
   'new-renew-title': {
@@ -61,6 +63,40 @@ module.exports = {
     validate: ['required', 'email'],
     className: ['govuk-input'],
     labelClassName: 'govuk-label--m'
+  },
+  'new-renew-applicant-Id-type': {
+    isPageHeading: true,
+    mixin: 'radio-group',
+    validate: ['required'],
+    options: [
+      { value: 'UK-passport', toggle: 'new-renew-UK-passport-number', child: 'input-text' },
+      { value: 'EU-passport', toggle: 'new-renew-EU-passport-number', child: 'input-text' },
+      { value: 'Uk-driving-licence', toggle: 'new-renew-Uk-driving-licence-number', child: 'input-text' }
+    ]
+  },
+  'new-renew-UK-passport-number': {
+    validate: ['required', { type: 'maxlength', arguments: 9 }, 'alphanum', 'notUrl'],
+    className: ['govuk-input', 'govuk-!-width-one-thirds'],
+    dependent: {
+      field: 'new-renew-applicant-Id-type',
+      value: 'UK-passport'
+    }
+  },
+  'new-renew-EU-passport-number': {
+    validate: ['required', { type: 'maxlength', arguments: 9 }, 'alphanum', 'notUrl'],
+    className: ['govuk-input', 'govuk-!-width-one-thirds'],
+    dependent: {
+      field: 'new-renew-applicant-Id-type',
+      value: 'EU-passport'
+    }
+  },
+  'new-renew-Uk-driving-licence-number': {
+    validate: ['required', 'notUrl', { type: 'minlength', arguments: 16 }, isValidUkDrivingLicenceNumber],
+    className: ['govuk-input', 'govuk-!-width-one-thirds'],
+    dependent: {
+      field: 'new-renew-applicant-Id-type',
+      value: 'Uk-driving-licence'
+    }
   },
   'medical-declaration': {
     mixin: 'checkbox',

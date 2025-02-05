@@ -90,6 +90,9 @@
       "new-renew-contact-details": {
         "header": "Contact details"
       },
+      "proof-of-identity":{
+        "header": "Proof of identity"
+      },
       "medical-information": {
         "header": "Medical information"
       },
@@ -163,6 +166,18 @@
       },
       "new-renew-countersignatory-phone-number": {
         "label": "Phone number"
+      },
+      "new-renew-applicant-Id-type": {
+        "label": "Identification document"
+      },
+      "new-renew-UK-passport-number": {
+        "label": "British passport number"
+      },
+      "new-renew-EU-passport-number": {
+        "label": "Passport number"
+      },
+      "new-renew-Uk-driving-licence-number": {
+        "label": "Driving Licence"
       }
     },
     "complete": {
