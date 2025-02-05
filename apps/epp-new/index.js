@@ -162,6 +162,7 @@ module.exports = {
       }
     },
     '/upload-proof-address': {
+      // new-renew-proof-address
       fields: [],
       next: '/contact-details',
       locals: {
