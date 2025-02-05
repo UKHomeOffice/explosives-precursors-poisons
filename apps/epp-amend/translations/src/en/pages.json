@@ -135,7 +135,7 @@
       "amend-new-country": {
         "label": "Country"
       },
-      "amend-precursor-selection": {
+      "amend-explprec-selection": {
         "label": "Explosives precursor"
       }
     }

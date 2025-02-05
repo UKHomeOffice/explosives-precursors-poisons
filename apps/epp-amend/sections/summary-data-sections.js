@@ -177,7 +177,7 @@ module.exports = {
     steps: [
       {
         steps: '/select-precursor',
-        field: 'amend-precursor-selection'
+        field: 'amend-explprec-selection'
       }
     ]
   }
