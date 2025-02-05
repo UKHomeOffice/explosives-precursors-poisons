@@ -256,7 +256,7 @@ module.exports = {
     legend: { className: 'bold' },
     validate: ['required', 'date', 'before']
   }),
-  'amend-explprec-list': {
+  'amend-precursor-list': {
     mixin: 'select',
     validate: ['required'],
     labelClassName: ['govuk-label--s', 'visuallyhidden'],

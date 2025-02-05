@@ -150,7 +150,7 @@
         "before": "Date you moved to this address must be in the past",
         "after": "Date you moved to this address must be after {{diff}}, your date of birth"
     },
-    "amend-explprec-list": {
+    "amend-precursor-list": {
       "required" : "Select an explosive precursor"
     }
 }
