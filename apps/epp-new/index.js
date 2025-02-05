@@ -185,15 +185,32 @@ module.exports = {
       }
     },
     '/identity-details': {
-      fields: [],
-      // 3 option for next path
-      next: '/upload-british-passport',
+      fields: [
+        'new-renew-applicant-Id-type',
+        'new-renew-UK-passport-number',
+        'new-renew-EU-passport-number',
+        'new-renew-Uk-driving-licence-number'
+      ],
+      forks: [
+        {
+          target: '/upload-british-passport',
+          condition: req =>
+            req.sessionModel.get('new-renew-applicant-Id-type') === 'UK-passport'
+        },
+        {
+          target: '/upload-passport',
+          condition: req =>
+            req.sessionModel.get('new-renew-applicant-Id-type') === 'EU-passport'
+        }
+      ],
+
       locals: {
         sectionNo: {
           new: 6,
           renew: 7
         }
-      }
+      },
+      next: '/upload-driving-licence'
     },
     '/upload-british-passport': {
       behaviours: [

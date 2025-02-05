@@ -27,6 +27,28 @@
         "required": "Enter a contact email address",
         "email": "Enter a real email address"
     },
+    "new-renew-applicant-Id-type": {
+      "required": "Select which identity document you want to use"
+    },
+    "new-renew-UK-passport-number": {
+      "required": "Enter your passport number",
+      "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer",
+      "maxlength": "Passport number must be 9 characters or less",
+      "alphanum": "Passport number must only include numbers and letters a-z"
+      
+    },
+    "new-renew-EU-passport-number": {
+      "required": "Enter your passport number",
+      "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer", 
+      "maxlength": "Passport number must be 9 characters or less",
+      "alphanum": " Passport number must only include numbers and letters a-z"
+    },
+    "new-renew-Uk-driving-licence-number": {
+      "required": "Enter your driving licence number",
+      "isValidUkDrivingLicenceNumber": "Enter a real UK driving licence number",
+      "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer",
+      "minlength": "Driving licence number must be 16 characters"
+    }, 
     "medical-declaration": {
         "required" : "Confirm you have read and agree to this medical declaration"
     },

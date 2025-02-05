@@ -204,24 +204,40 @@ module.exports = {
       }
     ]
   },
-  'new-renew-proof-of-identity': {
+  'proof-of-identity': {
     steps: [
       {
+        step: '/identity-details',
+        field: 'new-renew-applicant-Id-type'
+      },
+      {
+        step: '/identity-details',
+        field: 'new-renew-UK-passport-number'
+      },
+      {
+        step: '/identity-details',
+        field: 'new-renew-EU-passport-number'
+      },
+      {
+        step: '/identity-details',
+        field: 'new-renew-Uk-driving-licence-number'
+      },
+    {
         step: '/upload-british-passport',
         field: 'new-renew-british-passport',
         parse: (documents, req) => {
-          if (
-            req.sessionModel
-              .get('steps')
-              .includes('/upload-british-passport') &&
-            documents?.length > 0
-          ) {
-            return documents.map(file => file.name);
-          }
+            if (
+                req.sessionModel
+                    .get('steps')
+                    .includes('/upload-british-passport') &&
+                documents?.length > 0
+            ) {
+                return documents.map(file => file.name);
+            }
 
-          return null;
+            return null;
         }
-      }
+    }
     ]
   },
   'medical-information': {
