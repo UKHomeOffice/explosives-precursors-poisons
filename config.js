@@ -54,7 +54,14 @@ module.exports = {
       'image/jpg',
       'image/jpeg',
       'application/pdf'
-    ]
+    ],
+    documentCategories: {
+      'new-renew-british-passport': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxNewRenewBritishPassport'
+      }
+    }
   },
   sectionDetails: {
     totalStepsNew: 20,

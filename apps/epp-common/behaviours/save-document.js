@@ -39,17 +39,34 @@ module.exports = (documentName, fieldName) => superclass =>
         const invalidMimetype =
           !config.upload.allowedMimeTypes.includes(mimetype);
 
+        const numberOfDocsUploaded = documentsByCategory.length;
+        const documentCategoryConfig =
+          config.upload.documentCategories[documentName] || {};
+
         if (invalidSize) {
           return validationErrorFunc('maxFileSize');
         }
         if (invalidMimetype) {
           return validationErrorFunc('fileType');
         }
+
+        if (
+          documentCategoryConfig.allowMultipleUploads &&
+          numberOfDocsUploaded >= documentCategoryConfig.limit
+        ) {
+          return validationErrorFunc(
+            documentCategoryConfig.limitValidationError,
+            [documentCategoryConfig.limit]
+          );
+        }
       }
       return super.validateField(key, req);
     }
 
     async saveValues(req, res, next) {
+      const existingUploadedDocuments =
+        req.sessionModel.get(documentName) || [];
+
       if (req.files[fieldName]) {
         req.log(
           'info',
@@ -66,7 +83,18 @@ module.exports = (documentName, fieldName) => superclass =>
 
         try {
           await model.save();
-          req.sessionModel.set(documentName, [model.toJSON()]);
+          const documentCategoryConfig =
+            config.upload.documentCategories[documentName] || {};
+
+          if (documentCategoryConfig.allowMultipleUploads) {
+            req.sessionModel.set(documentName, [
+              ...existingUploadedDocuments,
+              model.toJSON()
+            ]);
+          } else {
+            req.sessionModel.set(documentName, [model.toJSON()]);
+          }
+
           return res.redirect(`${req.baseUrl}${req.path}`);
         } catch (error) {
           return next(new Error(`Failed to save document: ${error}`));
