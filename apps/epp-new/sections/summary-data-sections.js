@@ -204,6 +204,26 @@ module.exports = {
       }
     ]
   },
+  'proof-of-identity': {
+    steps: [
+      {
+        step: '/identity-details',
+        field: 'new-renew-applicant-Id-type'
+      },
+      {
+        step: '/identity-details',
+        field: 'new-renew-UK-passport-number'
+      },
+      {
+        step: '/identity-details',
+        field: 'new-renew-EU-passport-number'
+      },
+      {
+        step: '/identity-details',
+        field: 'new-renew-Uk-driving-licence-number'
+      }
+    ]
+  },
   'medical-information': {
     steps: [
       {
