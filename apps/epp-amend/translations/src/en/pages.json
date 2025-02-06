@@ -130,6 +130,18 @@
       },
       "amend-new-country": {
         "label": "Country"
+      },
+      "amend-countersignatory-middlename": {
+        "label": "Middle names"
+      },
+      "amend-countersignatory-years":{
+        "label": "How many years have you known countersignatory?"
+      },
+      "amend-countersignatory-howyouknow":{
+        "label": "How do you know countersignatory?"
+      },
+      "amend-countersignatory-occupation":{
+        "label": "Countersignatory’s occupation"
       }
     }
   }
