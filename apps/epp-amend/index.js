@@ -170,21 +170,22 @@ module.exports = {
     },
     '/section-fourteen': {
       fields: ['amend-poison-type'],
-      next: '/section-fifteen'
+      next: '/countersignatory-details'
     },
-    '/section-fifteen': {
+    '/countersignatory-details': {
       fields: [
-        'amend-countersignatory-name-title',
+        'amend-countersignatory-title',
         'amend-countersignatory-firstname',
         'amend-countersignatory-middlename',
         'amend-countersignatory-lastname',
-        'amend-years-known-countersignatory',
-        'amend-how-you-know-countersignatory',
+        'amend-countersignatory-years',
+        'amend-countersignatory-howyouknow',
         'amend-countersignatory-occupation'
       ],
-      next: '/section-sixteen'
+      locals: { captionHeading: 'Section 18 of 23' },
+      next: '/countersignatory-address'
     },
-    '/section-sixteen': {
+    '/countersignatory-address': {
       fields: [
         'amend-countersignatory-address-1',
         'amend-countersignatory-address-2',

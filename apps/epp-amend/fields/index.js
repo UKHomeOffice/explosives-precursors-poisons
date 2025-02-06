@@ -3,6 +3,8 @@ const dateComponent = require('hof').components.date;
 const helpers = require('../../../utilities/helpers/index.js');
 const country = require('../../../utilities/constants/countries');
 
+const countersignatoryYears = require('../../../utilities/constants/countersignatory-years.js');
+
 module.exports = {
   'amend-licence-number': {
     mixin: 'input-text',
@@ -254,5 +256,54 @@ module.exports = {
     mixin: 'input-date',
     legend: { className: 'bold' },
     validate: ['required', 'date', 'before']
-  })
+  }),
+  'amend-countersignatory-title': {
+    mixin: 'select',
+    validate: 'required',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-select', 'govuk-input--width-2'],
+    options: [
+      {
+        value: '',
+        label: 'fields.amend-countersignatory-title.options.none_selected'
+      }
+    ].concat(titles)
+  },
+  'amend-countersignatory-firstname': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--s'
+  },
+  'amend-countersignatory-middlename': {
+    mixin: 'input-text',
+    validate: ['notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--s'
+  },
+  'amend-countersignatory-lastname': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--s'
+  },
+  'amend-countersignatory-years': {
+    mixin: 'select',
+    validate: 'required',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-select', 'govuk-input--width-2'],
+    options: [
+      {
+        value: '',
+        label: 'fields.amend-countersignatory-years.options.none_selected'
+      }
+    ].concat(countersignatoryYears)
+  },
+  'amend-countersignatory-howyouknow': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--s'
+  },
+  'amend-countersignatory-occupation': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--s'
+  }
 };
