@@ -2,6 +2,8 @@ const moment = require('moment');
 const validators = require('hof/controller/validation/validators');
 const removeWhiteSpace = value => value?.replace(/\s+/g, '');
 
+const config = require('../../config');
+
 const validLicenceNumber = value =>
   value.match(/^\d{2}[\/,\-| ]?\w[\/,\-| ]?\d{6}[\/,\-| ]?\d{4}$/);
 
@@ -94,6 +96,15 @@ const DEFAULT_AGGREGATOR_LIMIT = 100;
 
 const TEXT_NOT_PROVIDED = 'Not provided';
 
+const DATE_FORMAT_YYYY_MM_DD = 'YYYY-MM-DD';
+
+const getFormattedDate = date => {
+  if (date && moment(date, DATE_FORMAT_YYYY_MM_DD, true)?.isValid()) {
+    return moment(date).format(config.PRETTY_DATE_FORMAT);
+  }
+  return '';
+};
+
 module.exports = {
   isLicenceValid,
   isApplicationType,
@@ -105,5 +116,7 @@ module.exports = {
   validInternationalPhoneNumber,
   removeWhiteSpace,
   DEFAULT_AGGREGATOR_LIMIT,
-  TEXT_NOT_PROVIDED
+  TEXT_NOT_PROVIDED,
+  DATE_FORMAT_YYYY_MM_DD,
+  getFormattedDate
 };

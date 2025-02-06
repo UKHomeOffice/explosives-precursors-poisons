@@ -1,4 +1,7 @@
-const moment = require('moment');
+const {
+  getFormattedDate,
+  TEXT_NOT_PROVIDED
+} = require('../../../utilities/helpers');
 module.exports = superclass =>
   class extends superclass {
     /**
@@ -21,12 +24,12 @@ module.exports = superclass =>
         item.fields = item.fields.map(field => {
           if (dateFields.includes(field.field)) {
             if (field.value) {
-              field.parsed = moment(field.value).format('DD MMMM YYYY');
+              field.parsed = getFormattedDate(field.value);
             }
           }
 
           if (!field.value) {
-            field.parsed = 'Not provided';
+            field.parsed = TEXT_NOT_PROVIDED;
           }
           field.field += '.summary-heading';
           return field;

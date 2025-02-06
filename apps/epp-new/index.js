@@ -9,7 +9,7 @@ const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
 const PostcodeValidation = require('../../utilities/helpers/postcode-validation');
 const { isDateOlderOrEqualTo } = require('../../utilities/helpers');
 const AggregateSaveUpdate = require('../epp-common/behaviours/aggregator-save-update');
-const parseOtherNameSummary = require('../epp-common/behaviours/parse-other-name-summary');
+const ParseSummaryFields = require('../epp-common/behaviours/parse-summary-fields');
 const ResetSectionSummary = require('../epp-common/behaviours/reset-section-summary');
 const EditRouteStart = require('../epp-common/behaviours/edit-route-start');
 const EditRouteReturn = require('../epp-common/behaviours/edit-route-return');
@@ -73,7 +73,7 @@ module.exports = {
       }
     },
     '/other-names-summary': {
-      behaviours: [AggregateSaveUpdate, parseOtherNameSummary, EditRouteReturn],
+      behaviours: [AggregateSaveUpdate, ParseSummaryFields, EditRouteReturn],
       aggregateTo: 'othernames',
       aggregateFrom: [
         'new-renew-other-name-title',
