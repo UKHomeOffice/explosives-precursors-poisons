@@ -1,7 +1,7 @@
 'use strict';
 
 const config = require('../../../config');
-const { getFormattedDate } = require("../../../utilities/helpers");
+const { getFormattedDate } = require('../../../utilities/helpers');
 const dateFormatter = new Intl.DateTimeFormat(
   config.dateLocales,
   config.dateFormat
