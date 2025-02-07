@@ -62,6 +62,18 @@
     "your-height-summary": "Why we ask for your height",
     "your-height-description": "We need to include this information in our internal database of licence holders. Your height does not affect if you can get a licence."
   },
+  "upload-british-passport": {
+    "header": "Upload British passport",
+    "p1": "Attach an image of your British passport as proof of your identity. The image must be",
+    "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
+    "link-text": "signed by your countersignatory (opens in a new tab)",
+    "upload-file": "Upload a file",
+    "file-format": "Your file must be JPEG, PDF or PNG, and be 25MB or less",
+    "no-file-uploaded": "No files uploaded",
+    "you-have-uploaded": "You have uploaded",
+    "files": "file(s)",
+    "uploading-document": "Uploading your document..."
+  },
   "countersignatory-details": {
     "header": "Countersignatory details",
     "description": "Your countersignatory must not be a parent or relative, unless you are under 18. If you are under 18, your countersignatory must be your parent or legal guardian."
@@ -190,6 +202,9 @@
       },
       "new-renew-Uk-driving-licence-number": {
         "label": "Driving Licence"
+      },
+      "new-renew-british-passport": {
+        "label": "Image of passport"
       },
       "new-renew-passport": {
         "label": "Image of passport"

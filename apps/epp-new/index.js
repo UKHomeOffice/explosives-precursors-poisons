@@ -9,6 +9,9 @@ const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
 const PostcodeValidation = require('../../utilities/helpers/postcode-validation');
 const { isDateOlderOrEqualTo } = require('../../utilities/helpers');
 
+const SaveDocument = require('../epp-common/behaviours/save-document');
+const RemoveDocument = require('../epp-common/behaviours/remove-document');
+
 module.exports = {
   name: 'EPP form',
   fields: 'apps/epp-new/fields',
@@ -210,7 +213,11 @@ module.exports = {
       next: '/upload-driving-licence'
     },
     '/upload-british-passport': {
-      fields: [],
+      behaviours: [
+        SaveDocument('new-renew-british-passport', 'file-upload'),
+        RemoveDocument('new-renew-british-passport')
+      ],
+      fields: ['file-upload'],
       next: '/other-licences',
       locals: {
         sectionNo: {
