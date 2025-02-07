@@ -45,8 +45,7 @@ module.exports = {
         field: 'othernames',
         changeLink: '/new-and-renew/other-names-summary',
         parse: (list, req) => {
-          if (req.sessionModel.get('new-renew-other-names') === 'no' ||
-           !req.sessionModel.get('steps').includes('/other-names-summary')) {
+          if (req.sessionModel.get('new-renew-other-names') === 'no') {
             return null;
           }
           return req.sessionModel.get('othernames')?.aggregatedValues.length > 0 ?
