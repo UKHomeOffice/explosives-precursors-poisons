@@ -1,21 +1,11 @@
 'use strict';
 
-const moment = require('moment');
-
 const config = require('../../../config');
+const { getFormattedDate } = require("../../../utilities/helpers");
 const dateFormatter = new Intl.DateTimeFormat(
   config.dateLocales,
   config.dateFormat
 );
-
-const dateParser = value => {
-  if(value && moment(value, 'DD MMMM YYYY').isValid()) {
-    return dateFormatter.format(
-      new Date(value)
-    );
-  }
-  return value;
-};
 
 module.exports = {
   'your-name': {
@@ -54,7 +44,7 @@ module.exports = {
                 field.field === 'new-renew-other-name-start-date' ||
                 field.field === 'new-renew-other-name-stop-date'
               ) {
-                field.parsed = dateParser(field.parsed);
+                field.parsed = getFormattedDate(field.parsed);
               }
               return field.parsed;
             }).filter(Boolean).join('\n')).join('\n \n') : null;
