@@ -17,7 +17,7 @@
     <p id="file-upload-error-fileType" class="govuk-error-message govuk-!-display-none">
         <span id="validation-error" class="govuk-visually-hidden">{{#t}}journey.error{{/t}}:</span> {{#t}}validation.file-upload.fileType{{/t}}
     </p>
-    <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" value="new-renew-passport">
+    <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" value="new-renew-eu-passport">
 
     <div id="upload-page-loading-spinner" class="spinner-container">
         <div class="spinner-loader"></div>
@@ -26,15 +26,15 @@
 
 </div>
 
-{{^values.new-renew-passport}}
+{{^values.new-renew-eu-passport}}
 <h2 class="govuk-heading-m">{{#t}}pages.upload-passport.no-file-uploaded{{/t}}</h2>
-{{/values.new-renew-passport}}
+{{/values.new-renew-eu-passport}}
 
-{{#values.new-renew-passport.length}}
-<h2 class="govuk-heading-m">{{#t}}pages.upload-passport.you-have-uploaded{{/t}} {{values.new-renew-passport.length}} {{#t}}pages.upload-passport.files{{/t}}</h2>
+{{#values.new-renew-eu-passport.length}}
+<h2 class="govuk-heading-m">{{#t}}pages.upload-passport.you-have-uploaded{{/t}} {{values.new-renew-eu-passport.length}} {{#t}}pages.upload-passport.files{{/t}}</h2>
 
 <div id="uploaded-documents" class="govuk-width-container">
-    {{#values.new-renew-passport}}
+    {{#values.new-renew-eu-passport}}
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-three-quarters">
             {{name}}
@@ -44,13 +44,13 @@
         </div>
     </div>
     <div class="file-upload-hrline"></div>
-    {{/values.new-renew-passport}}
+    {{/values.new-renew-eu-passport}}
 </div>
 
-{{/values.new-renew-passport.length}}
+{{/values.new-renew-eu-passport.length}}
 
 
-<button class="govuk-button" name="requireFileUpload" value="new-renew-passport">
+<button class="govuk-button" name="requireFileUpload" value="new-renew-eu-passport">
     {{#t}}buttons.continue{{/t}}
 </button>
 

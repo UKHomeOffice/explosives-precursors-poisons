@@ -223,7 +223,7 @@ module.exports = {
       },
       {
         step: '/upload-passport',
-        field: 'new-renew-passport',
+        field: 'new-renew-eu-passport',
         parse: (documents, req) => {
           if (
             req.sessionModel.get('steps').includes('/upload-passport') &&

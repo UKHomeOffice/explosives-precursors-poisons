@@ -255,8 +255,8 @@ module.exports = {
     },
     '/upload-passport': {
       behaviours: [
-        SaveDocument('new-renew-passport', 'file-upload'),
-        RemoveDocument('new-renew-passport')
+        SaveDocument('new-renew-eu-passport', 'file-upload'),
+        RemoveDocument('new-renew-eu-passport')
       ],
       fields: ['file-upload'],
       next: '/upload-certificate-conduct',
