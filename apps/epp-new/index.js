@@ -227,8 +227,11 @@ module.exports = {
       }
     },
     '/upload-passport': {
-      // TODO: Add behaviour and field once EPP-48 is merged
-      fields: [],
+      behaviours: [
+        SaveDocument('new-renew-passport', 'file-upload'),
+        RemoveDocument('new-renew-passport')
+      ],
+      fields: ['file-upload'],
       next: '/upload-certificate-conduct',
       locals: {
         sectionNo: {
