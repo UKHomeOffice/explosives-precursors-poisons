@@ -30,24 +30,30 @@
     "label": "Title",
     "options": {
       "none_selected": "Select"
-    }
+    },
+    "summary-heading": "Title"
   },
   "new-renew-other-name-first-name": {
-    "label": "First name"
+    "label": "First name",
+    "summary-heading": "First name"
   },
   "new-renew-other-name-middle-name": {
-    "label": "Middle names (optional)"
+    "label": "Middle names (optional)",
+    "summary-heading": "Middle names (optional)"
   },
   "new-renew-other-name-last-name": {
-    "label": "Last name"
+    "label": "Last name",
+    "summary-heading": "Last name"
   },
   "new-renew-other-name-start-date": {
     "legend": "When did you start using this name?",
-    "hint": "For example, 30 09 1980"
+    "hint": "For example, 30 09 1980",
+    "summary-heading": "Started using name"
   },
   "new-renew-other-name-stop-date": {
     "legend": "When did you stop using this name? (Optional)",
-    "hint": "For example, 30 09 1980"
+    "hint": "For example, 30 09 1980",
+    "summary-heading": "Stopped using name (Optional)"
   },
   "name": {
     "label": "Full name"
