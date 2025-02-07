@@ -66,6 +66,34 @@
     "label": "Email address",
     "hint": "Where we will contact you about the outcome of your application"
   },
+  "new-renew-applicant-Id-type": {
+    "legend": "Which identity document do you want to use?",
+    "hint": "If your licence is granted, you will need to show this document when buying the substances",
+    "options": {
+      "UK-passport": {
+        "label": "British passport"
+      },
+      "EU-passport": {
+        "label": "Passport from the EU, Switzerland, Norway, Iceland or Liechtenstein"
+      },
+      "Uk-driving-licence": {
+        "label": "UK driving licence",
+        "hint": "Must be a photocard licence."
+      }
+    }
+  },
+  "new-renew-UK-passport-number": {
+    "label": "What is your passport number?",
+    "hint" : "For example, 120897A"    
+  },
+  "new-renew-EU-passport-number": {
+    "label": "What is your passport number?",
+    "hint" : "For example, 120897A"  
+  },
+  "new-renew-Uk-driving-licence-number": {
+    "label": "What is your driving licence number?",
+    "hint" : "On section 5 of your licence, for example MORGA657054SM9IJ"    
+  },
   "medical-declaration": {
     "label": "I have read and agree to this medical declaration"
   },

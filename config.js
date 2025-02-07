@@ -53,20 +53,15 @@ module.exports = {
       'image/png',
       'image/jpg',
       'image/jpeg',
-      'application/pdf',
-      'text/plain',
-      'text/html',
-      'application/vnd',
-      'message/rfc822',
-      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-      'application/vnd.ms-powerpoint',
-      'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-      'application/rtf',
-      'text/csv',
-      'application/vnd.ms-excel',
-      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-      'application/xml'
-    ]
+      'application/pdf'
+    ],
+    documentCategories: {
+      'new-renew-british-passport': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxNewRenewBritishPassport'
+      }
+    }
   },
   sectionDetails: {
     totalStepsNew: 20,

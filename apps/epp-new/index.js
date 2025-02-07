@@ -15,6 +15,9 @@ const EditRouteStart = require('../epp-common/behaviours/edit-route-start');
 const EditRouteReturn = require('../epp-common/behaviours/edit-route-return');
 
 
+const SaveDocument = require('../epp-common/behaviours/save-document');
+const RemoveDocument = require('../epp-common/behaviours/remove-document');
+
 module.exports = {
   name: 'EPP form',
   fields: 'apps/epp-new/fields',
@@ -209,18 +212,39 @@ module.exports = {
       }
     },
     '/identity-details': {
-      fields: [],
-      // 3 option for next path
-      next: '/upload-british-passport',
+      fields: [
+        'new-renew-applicant-Id-type',
+        'new-renew-UK-passport-number',
+        'new-renew-EU-passport-number',
+        'new-renew-Uk-driving-licence-number'
+      ],
+      forks: [
+        {
+          target: '/upload-british-passport',
+          condition: req =>
+            req.sessionModel.get('new-renew-applicant-Id-type') === 'UK-passport'
+        },
+        {
+          target: '/upload-passport',
+          condition: req =>
+            req.sessionModel.get('new-renew-applicant-Id-type') === 'EU-passport'
+        }
+      ],
+
       locals: {
         sectionNo: {
           new: 6,
           renew: 7
         }
-      }
+      },
+      next: '/upload-driving-licence'
     },
     '/upload-british-passport': {
-      fields: [],
+      behaviours: [
+        SaveDocument('new-renew-british-passport', 'file-upload'),
+        RemoveDocument('new-renew-british-passport')
+      ],
+      fields: ['file-upload'],
       next: '/other-licences',
       locals: {
         sectionNo: {
