@@ -21,6 +21,9 @@
   "home-address": {
     "header": "What is your home address?"
   },
+  "previous-address": {
+    "header": "Previous address"
+  },
   "contact-details": {
     "title": "What are your contact details?",
     "header": "What are your contact details?"
@@ -159,6 +162,12 @@
         "label": "Country"
       },
       "new-renew-home-address-moveto-date": {
+        "label": "Moved date"
+      },
+      "new-renew-previous-home-address-country": {
+        "label": "Country"
+      },
+      "new-renew-previous-home-address-moveto-date": {
         "label": "Moved date"
       },
       "new-renew-countersignatory-middlename": {

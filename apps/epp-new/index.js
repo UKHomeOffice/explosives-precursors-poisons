@@ -129,6 +129,7 @@ module.exports = {
       forks: [
         {
           target: '/upload-proof-address',
+
           condition: req => {
             const moveToDate =
               req.form.values['new-renew-home-address-moveto-date'];
@@ -145,7 +146,16 @@ module.exports = {
       }
     },
     '/previous-address': {
-      fields: [],
+      behaviours: [PostcodeValidation],
+      fields: [
+        'new-renew-previous-home-address-line1',
+        'new-renew-previous-home-address-line2',
+        'new-renew-previous-home-address-town',
+        'new-renew-previous-home-address-county',
+        'new-renew-previous-home-address-postcode',
+        'new-renew-previous-home-address-country',
+        'new-renew-previous-home-address-moveto-date'
+      ],
       next: '/previous-addresses',
       locals: {
         sectionNo: {
