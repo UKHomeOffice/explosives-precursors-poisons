@@ -358,3 +358,12 @@ pre.looped-records {
   margin-bottom: 10px;
   padding: 0;
 }
+
+.loop-summary-table {
+  .table-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+}

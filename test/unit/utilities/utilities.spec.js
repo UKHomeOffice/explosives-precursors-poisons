@@ -6,7 +6,8 @@ const {
   isDateOlderOrEqualTo,
   isValidUkDrivingLicenceNumber,
   validInternationalPhoneNumber,
-  removeWhiteSpace
+  removeWhiteSpace,
+  getFormattedDate
 } = require('../../../utilities/helpers');
 
 describe('EPP utilities tests', () => {
@@ -157,5 +158,24 @@ describe('EPP utilities tests', () => {
   it('.removeWhiteSpace - should remove the whitespace', () => {
     expect(removeWhiteSpace('Hello World')).to.equal('HelloWorld');
     expect(removeWhiteSpace('1 2 3 4 5 ')).to.equal('12345');
+  });
+
+  it('.getFormattedDate - should return the formatted date for valid dates', () => {
+    expect(getFormattedDate('2000-01-01')).to.equal('01 January 2000');
+    expect(getFormattedDate('2000-01-28')).to.equal('28 January 2000');
+  });
+
+  it('.getFormattedDate - should return empty string for non date inputs', () => {
+    const invalidDates = [
+      '2000-13-01',
+      'Hello-World',
+      null,
+      undefined,
+      '12345',
+      ''
+    ];
+    for (const invalidDate of invalidDates) {
+      expect(getFormattedDate(invalidDate)).to.equal('');
+    }
   });
 });

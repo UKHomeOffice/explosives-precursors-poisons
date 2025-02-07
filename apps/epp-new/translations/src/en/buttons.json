@@ -1,4 +1,6 @@
 {
 "start": "initial button",
-"remove": "Remove"
+"delete": "Delete",
+"remove": "Remove",
+"edit": "Change"
 }
