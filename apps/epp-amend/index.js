@@ -170,18 +170,11 @@ module.exports = {
     },
     '/section-fourteen': {
       fields: ['amend-poison-type'],
-      next: '/section-fifteen'
+      next: '/select-precursor'
     },
-    '/section-fifteen': {
-      fields: [
-        'amend-countersignatory-name-title',
-        'amend-countersignatory-firstname',
-        'amend-countersignatory-middlename',
-        'amend-countersignatory-lastname',
-        'amend-years-known-countersignatory',
-        'amend-how-you-know-countersignatory',
-        'amend-countersignatory-occupation'
-      ],
+    '/select-precursor': {
+      fields: ['amend-precursor-field'],
+      locals: { captionHeading: 'Section 15 of 20' },
       next: '/section-sixteen'
     },
     '/section-sixteen': {
