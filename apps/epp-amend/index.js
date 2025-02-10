@@ -48,11 +48,8 @@ module.exports = {
       locals: { captionHeading: 'Section 4 of 20' }
     },
     '/contact-details': {
-      fields: [
-        'amend-phone-number',
-        'amend-email'
-      ],
-      locals: {captionHeading: 'Section 5 of 20'},
+      fields: ['amend-phone-number', 'amend-email'],
+      locals: { captionHeading: 'Section 5 of 20' },
       next: '/amend-details'
     },
     '/amend-details': {
@@ -73,7 +70,7 @@ module.exports = {
           }
         }
       ],
-      locals: {captionHeading: 'Section 6 of 20'},
+      locals: { captionHeading: 'Section 6 of 20' },
       next: '/new-name'
     },
     '/new-name': {
@@ -96,11 +93,13 @@ module.exports = {
         'amend-Uk-driving-licence-number'
       ],
       forks: [
-        {target: '/upload-british-passport',
+        {
+          target: '/upload-british-passport',
           condition: req =>
             req.sessionModel.get('amend-applicant-Id-type') === 'UK-passport'
         },
-        {target: '/upload-passport',
+        {
+          target: '/upload-passport',
           condition: req =>
             req.sessionModel.get('amend-applicant-Id-type') === 'EU-passport'
         }
@@ -177,19 +176,19 @@ module.exports = {
       locals: { captionHeading: 'Section 15 of 20' },
       next: '/section-sixteen'
     },
-      '/countersignatory-details': {
-          fields: [
-              'amend-countersignatory-title',
-              'amend-countersignatory-firstname',
-              'amend-countersignatory-middlename',
-              'amend-countersignatory-lastname',
-              'amend-countersignatory-years',
-              'amend-countersignatory-howyouknow',
-              'amend-countersignatory-occupation'
-          ],
-          locals: { captionHeading: 'Section 18 of 23' },
-          next: '/countersignatory-address'
-      },
+    '/countersignatory-details': {
+      fields: [
+        'amend-countersignatory-title',
+        'amend-countersignatory-firstname',
+        'amend-countersignatory-middlename',
+        'amend-countersignatory-lastname',
+        'amend-countersignatory-years',
+        'amend-countersignatory-howyouknow',
+        'amend-countersignatory-occupation'
+      ],
+      locals: { captionHeading: 'Section 18 of 23' },
+      next: '/countersignatory-address'
+    },
     '/countersignatory-address': {
       fields: [
         'amend-countersignatory-address-1',

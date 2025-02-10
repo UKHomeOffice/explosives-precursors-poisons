@@ -181,37 +181,37 @@ module.exports = {
       }
     ]
   },
-    'countersignatory-details': {
-        steps: [
-            {
-                step: '/countersignatory-details',
-                field: 'amend-countersignatory-title'
-            },
-            {
-                step: '/countersignatory-details',
-                field: 'amend-countersignatory-firstname'
-            },
-            {
-                step: '/countersignatory-details',
-                field: 'amend-countersignatory-middlename',
-                parse: value => value || 'Not provided'
-            },
-            {
-                step: '/countersignatory-details',
-                field: 'amend-countersignatory-lastname'
-            },
-            {
-                step: '/countersignatory-details',
-                field: 'amend-countersignatory-years'
-            },
-            {
-                step: '/countersignatory-details',
-                field: 'amend-countersignatory-howyouknow'
-            },
-            {
-                step: '/countersignatory-details',
-                field: 'amend-countersignatory-occupation'
-            }
-        ]
-    }
+  'countersignatory-details': {
+    steps: [
+      {
+        step: '/countersignatory-details',
+        field: 'amend-countersignatory-title'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'amend-countersignatory-firstname'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'amend-countersignatory-middlename',
+        parse: value => value || 'Not provided'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'amend-countersignatory-lastname'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'amend-countersignatory-years'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'amend-countersignatory-howyouknow'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'amend-countersignatory-occupation'
+      }
+    ]
+  }
 };
