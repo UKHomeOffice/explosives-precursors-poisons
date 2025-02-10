@@ -172,5 +172,13 @@ module.exports = {
         parse: date => date && dateFormatter.format(new Date(date))
       }
     ]
+  },
+  'amend-explosives-precursor': {
+    steps: [
+      {
+        steps: '/select-precursor',
+        field: 'amend-precursor-field'
+      }
+    ]
   }
 };

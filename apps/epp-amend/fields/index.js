@@ -1,4 +1,5 @@
 const titles = require('../../../utilities/constants/titles.js');
+const precursorList = require('../../../utilities/constants/explosive-precursors.js');
 const dateComponent = require('hof').components.date;
 const helpers = require('../../../utilities/helpers/index.js');
 const country = require('../../../utilities/constants/countries');
@@ -254,5 +255,15 @@ module.exports = {
     mixin: 'input-date',
     legend: { className: 'bold' },
     validate: ['required', 'date', 'before']
-  })
+  }),
+  'amend-precursor-field': {
+    mixin: 'select',
+    validate: ['required'],
+    labelClassName: ['govuk-label--s', 'visuallyhidden'],
+    className: ['govuk-input--width-2'],
+    options: [{
+      value: '',
+      label: 'fields.amend-precursor-field.options.none_selected'
+    }].concat(precursorList)
+  }
 };
