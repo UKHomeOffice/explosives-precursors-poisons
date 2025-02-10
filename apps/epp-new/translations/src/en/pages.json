@@ -74,8 +74,7 @@
     "upload-file": "Upload a file",
     "file-format": "Your file must be JPEG, PDF or PNG, and be 25MB or less",
     "no-file-uploaded": "No files uploaded",
-    "you-have-uploaded": "You have uploaded",
-    "files": "file(s)",
+    "files-uploaded": "Files uploaded",
     "uploading-document": "Uploading your document..."
   },
   "countersignatory-details": {
@@ -105,8 +104,7 @@
     "upload-file": "Upload a file",
     "file-format": "Your file must be JPEG, PDF or PNG, and be 25MB or less",
     "no-file-uploaded": "No files uploaded",
-    "you-have-uploaded": "You have uploaded",
-    "files": "file(s)",
+    "files-uploaded": "Files uploaded",
     "uploading-document": "Uploading your document..."
   },
   "confirm": {
