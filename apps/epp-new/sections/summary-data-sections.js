@@ -204,7 +204,7 @@ module.exports = {
               .includes('/upload-british-passport') &&
             documents?.length > 0
           ) {
-            return documents.map(file => file.name);
+            return documents.map(file => file?.name)?.join('\n\n');
           }
 
           return null;
