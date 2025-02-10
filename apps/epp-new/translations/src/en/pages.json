@@ -224,6 +224,9 @@
       },
       "new-renew-british-passport": {
         "label": "Image of passport"
+      },
+      "new-renew-proof-address": {
+        "label": "Proof of address attachments"
       }
     },
     "complete": {

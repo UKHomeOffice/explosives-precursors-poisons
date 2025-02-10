@@ -148,6 +148,22 @@ module.exports = {
         step: '/home-address',
         field: 'new-renew-home-address-moveto-date',
         parse: date => date && dateFormatter.format(new Date(date))
+      },
+      {
+        step: '/upload-proof-address',
+        field: 'new-renew-proof-address',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel
+              .get('steps')
+              .includes('/upload-proof-address') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file?.name);
+          }
+
+          return null;
+        }
       }
     ]
   },
