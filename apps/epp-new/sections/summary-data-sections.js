@@ -1,10 +1,21 @@
 'use strict';
 
+const moment = require('moment');
+
 const config = require('../../../config');
 const dateFormatter = new Intl.DateTimeFormat(
   config.dateLocales,
   config.dateFormat
 );
+
+const dateParser = value => {
+  if(value && moment(value, 'DD MMMM YYYY').isValid()) {
+    return dateFormatter.format(
+      new Date(value)
+    );
+  }
+  return value;
+};
 
 module.exports = {
   'your-name': {
@@ -30,52 +41,24 @@ module.exports = {
         field: 'new-renew-other-names'
       },
       {
-        step: '/other-names',
-        field: 'other-names',
-        parse: (value, req) => {
-          const otherNameDetails = [];
-
-          const firstName = req.sessionModel.get(
-            'new-renew-other-name-first-name'
-          );
-          const middleName = req.sessionModel.get(
-            'new-renew-other-name-middle-name'
-          );
-          const lastName = req.sessionModel.get(
-            'new-renew-other-name-last-name'
-          );
-          const fullName = [firstName, middleName, lastName]
-            .filter(Boolean)
-            .join(' ');
-          otherNameDetails.push(
-            req.sessionModel.get('new-renew-other-name-title'),
-            fullName
-          );
-
-          const startDate = req.sessionModel.get(
-            'new-renew-other-name-start-date'
-          );
-          if (startDate) {
-            const formattedStartDate = dateFormatter.format(
-              new Date(startDate)
-            );
-            otherNameDetails.push(formattedStartDate);
+        step: '/other-names-summary',
+        field: 'othernames',
+        changeLink: '/new-and-renew/other-names-summary',
+        parse: (list, req) => {
+          if (req.sessionModel.get('new-renew-other-names') === 'no' ||
+           !req.sessionModel.get('steps').includes('/other-names-summary')) {
+            return null;
           }
-
-          const stopDate = req.sessionModel.get(
-            'new-renew-other-name-stop-date'
-          );
-          if (stopDate) {
-            const formattedStopDate = dateFormatter.format(new Date(stopDate));
-            otherNameDetails.push(formattedStopDate);
-          }
-
-          const formattedOtherNameDetails = otherNameDetails
-            .filter(Boolean)
-            .join('\n');
-          req.sessionModel.set('otherNameDetails', formattedOtherNameDetails);
-
-          return formattedOtherNameDetails;
+          return req.sessionModel.get('othernames')?.aggregatedValues.length > 0 ?
+            req.sessionModel.get('othernames').aggregatedValues.map(a => a.fields.map(field => {
+              if (
+                field.field === 'new-renew-other-name-start-date' ||
+                field.field === 'new-renew-other-name-stop-date'
+              ) {
+                field.parsed = dateParser(field.parsed);
+              }
+              return field.parsed;
+            }).filter(Boolean).join('\n')).join('\n \n') : null;
         }
       }
     ]
@@ -221,6 +204,22 @@ module.exports = {
       {
         step: '/identity-details',
         field: 'new-renew-Uk-driving-licence-number'
+      },
+      {
+        step: '/upload-british-passport',
+        field: 'new-renew-british-passport',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel
+              .get('steps')
+              .includes('/upload-british-passport') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file.name);
+          }
+
+          return null;
+        }
       }
     ]
   },

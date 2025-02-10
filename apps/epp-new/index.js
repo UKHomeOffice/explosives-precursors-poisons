@@ -8,6 +8,15 @@ const ConfirmationDisplay = require('./behaviours/confirmation-type');
 const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
 const PostcodeValidation = require('../../utilities/helpers/postcode-validation');
 const { isDateOlderOrEqualTo } = require('../../utilities/helpers');
+const AggregateSaveUpdate = require('../epp-common/behaviours/aggregator-save-update');
+const ParseSummaryFields = require('../epp-common/behaviours/parse-summary-fields');
+const ResetSectionSummary = require('../epp-common/behaviours/reset-section-summary');
+const EditRouteStart = require('../epp-common/behaviours/edit-route-start');
+const EditRouteReturn = require('../epp-common/behaviours/edit-route-return');
+
+
+const SaveDocument = require('../epp-common/behaviours/save-document');
+const RemoveDocument = require('../epp-common/behaviours/remove-document');
 
 module.exports = {
   name: 'EPP form',
@@ -15,10 +24,16 @@ module.exports = {
   views: 'apps/epp-new/views',
   translations: 'apps/epp-new/translations',
   baseUrl: '/new-and-renew',
+  params: '/:action?/:id?/:edit?',
   behaviours: [sectionCounter],
   steps: {
     '/your-name': {
-      behaviours: [checkBackLink, RemoveEditMode, validateAndRedirect],
+      behaviours: [
+        checkBackLink,
+        RemoveEditMode,
+        validateAndRedirect,
+        ResetSectionSummary('othernames', 'new-renew-other-names')
+      ],
       fields: [
         'new-renew-title',
         'new-renew-first-name',
@@ -29,6 +44,7 @@ module.exports = {
       forks: [
         {
           target: '/other-names',
+          continueOnEdit: true,
           condition: req =>
             req.sessionModel.get('new-renew-other-names') === 'yes'
         }
@@ -60,9 +76,23 @@ module.exports = {
       }
     },
     '/other-names-summary': {
-      fields: [],
+      behaviours: [AggregateSaveUpdate, ParseSummaryFields, EditRouteReturn],
+      aggregateTo: 'othernames',
+      aggregateFrom: [
+        'new-renew-other-name-title',
+        'new-renew-other-name-first-name',
+        'new-renew-other-name-middle-name',
+        'new-renew-other-name-last-name',
+        'new-renew-other-name-start-date',
+        'new-renew-other-name-stop-date'
+      ],
+      titleField: ['new-renew-other-name-first-name', 'new-renew-other-name-last-name'],
+      addStep: 'other-names',
+      addAnotherLinkText: 'previous name',
+      continueOnEdit: false,
       next: '/your-details',
       locals: {
+        fullWidthPage: true,
         sectionNo: {
           new: 1,
           renew: 2
@@ -210,7 +240,11 @@ module.exports = {
       next: '/upload-driving-licence'
     },
     '/upload-british-passport': {
-      fields: [],
+      behaviours: [
+        SaveDocument('new-renew-british-passport', 'file-upload'),
+        RemoveDocument('new-renew-british-passport')
+      ],
+      fields: ['file-upload'],
       next: '/other-licences',
       locals: {
         sectionNo: {
@@ -521,7 +555,7 @@ module.exports = {
       }
     },
     '/confirm': {
-      behaviours: [summary, ConfirmationDisplay],
+      behaviours: [summary, ConfirmationDisplay, EditRouteStart],
       sections: require('./sections/summary-data-sections'),
       next: '/declaration',
       locals: {

@@ -172,19 +172,24 @@ module.exports = {
       fields: ['amend-poison-type'],
       next: '/countersignatory-details'
     },
-    '/countersignatory-details': {
-      fields: [
-        'amend-countersignatory-title',
-        'amend-countersignatory-firstname',
-        'amend-countersignatory-middlename',
-        'amend-countersignatory-lastname',
-        'amend-countersignatory-years',
-        'amend-countersignatory-howyouknow',
-        'amend-countersignatory-occupation'
-      ],
-      locals: { captionHeading: 'Section 18 of 23' },
-      next: '/countersignatory-address'
+    '/select-precursor': {
+      fields: ['amend-precursor-field'],
+      locals: { captionHeading: 'Section 15 of 20' },
+      next: '/section-sixteen'
     },
+      '/countersignatory-details': {
+          fields: [
+              'amend-countersignatory-title',
+              'amend-countersignatory-firstname',
+              'amend-countersignatory-middlename',
+              'amend-countersignatory-lastname',
+              'amend-countersignatory-years',
+              'amend-countersignatory-howyouknow',
+              'amend-countersignatory-occupation'
+          ],
+          locals: { captionHeading: 'Section 18 of 23' },
+          next: '/countersignatory-address'
+      },
     '/countersignatory-address': {
       fields: [
         'amend-countersignatory-address-1',

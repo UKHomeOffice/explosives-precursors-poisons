@@ -147,6 +147,12 @@
       "legend": "What date did you change your address?",
       "hint": " For example, 30 09 1969"
   },
+  "amend-precursor-field": {
+    "hint": "Select an explosives precursor",
+    "options":{
+      "none_selected": "Select"
+    }
+  },
   "amend-countersignatory-title":{
     "label": "Title",
     "options": {
