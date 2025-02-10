@@ -159,7 +159,7 @@ module.exports = {
               .includes('/upload-proof-address') &&
             documents?.length > 0
           ) {
-            return documents.map(file => file?.name);
+            return documents.map(file => file?.name)?.join('\n\n');
           }
 
           return null;
