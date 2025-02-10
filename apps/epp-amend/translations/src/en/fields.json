@@ -180,5 +180,24 @@
   },
   "amend-countersignatory-occupation":{
     "label": "What is your countersignatory’s occupation?"
+  },
+  "amend-countersignatory-address-1": {
+    "label": "Address line 1"
+  },
+  "amend-countersignatory-address-2": {
+    "label": "Address line 2 (optional)"
+  },
+  "amend-countersignatory-town-or-city": {
+    "label": "Town or city"
+  },
+  "amend-countersignatory-postcode": {
+    "label": "Postcode"
+  },
+  "amend-countersignatory-phone-number": {
+    "label": "Contact phone number",
+    "hint": "For international numbers, include the country code"
+  },
+  "amend-countersignatory-email": {
+    "label": "Email address"
   }
 }

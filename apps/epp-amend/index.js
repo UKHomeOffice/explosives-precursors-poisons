@@ -196,10 +196,15 @@ module.exports = {
         'amend-countersignatory-town-or-city',
         'amend-countersignatory-postcode'
       ],
-      next: '/section-seventeen'
+      locals: { captionHeading: 'Section 19 of 23' },
+      next: '/countersignatory-contact'
     },
-    '/section-seventeen': {
-      fields: ['amend-countersignatory-phone', 'amend-countersignatory-email'],
+    '/countersignatory-contact': {
+      fields: [
+        'amend-countersignatory-phone-number',
+        'amend-countersignatory-email'
+      ],
+      locals: { captionHeading: 'Section 20 of 23' },
       next: '/section-eighteen'
     },
     '/section-eighteen': {

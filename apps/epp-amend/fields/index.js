@@ -356,5 +356,53 @@ module.exports = {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
     labelClassName: 'govuk-label--s'
+  },
+  'amend-countersignatory-address-1': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'amend-countersignatory-address-2': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    validate: [
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'amend-countersignatory-town-or-city': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'amend-countersignatory-postcode': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-input--width-10'],
+    validate: ['required', 'postcode'],
+    formatter: ['ukPostcode']
+  },
+  'amend-countersignatory-phone-number': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', helpers.validInternationalPhoneNumber],
+    className: ['govuk-input', 'govuk-!-width-one-half'],
+    labelClassName: 'govuk-label--m'
+  },
+  'amend-countersignatory-email': {
+    mixin: 'input-text',
+    validate: ['required', 'email'],
+    className: ['govuk-input'],
+    labelClassName: 'govuk-label--m'
   }
 };

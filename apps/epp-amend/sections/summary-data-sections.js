@@ -211,6 +211,31 @@ module.exports = {
       {
         step: '/countersignatory-details',
         field: 'amend-countersignatory-occupation'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'amend-countersignatory-address-1'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'amend-countersignatory-address-2',
+        parse: value => value || 'Not provided'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'amend-countersignatory-town-or-city'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'amend-countersignatory-postcode'
+      },
+      {
+        step: '/countersignatory-contact',
+        field: 'amend-countersignatory-phone-number'
+      },
+      {
+        step: '/countersignatory-contact',
+        field: 'amend-countersignatory-email'
       }
     ]
   }
