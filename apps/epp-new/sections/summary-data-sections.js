@@ -218,7 +218,7 @@ module.exports = {
             req.sessionModel.get('steps').includes('/upload-passport') &&
             documents?.length > 0
           ) {
-            return documents.map(file => file.name);
+            return documents.map(file => file?.name)?.join('\n\n');
           }
 
           return null;
