@@ -4,7 +4,8 @@ const ValidateLicenceNumber = require('../epp-common/behaviours/licence-validato
 const PostcodeValidation = require('../../utilities/helpers//postcode-validation');
 const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
 const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator');
-
+const SaveDocument = require('../epp-common/behaviours/save-document');
+const RemoveDocument = require('../epp-common/behaviours/remove-document');
 module.exports = {
   name: 'EPP form',
   fields: 'apps/epp-amend/fields',
@@ -109,6 +110,9 @@ module.exports = {
       next: '/upload-driving-licence'
     },
     '/upload-british-passport': {
+      behaviours: [SaveDocument('amend-british-passport', 'file-upload'), RemoveDocument('amend-british-passport')],
+      fields: ['file-upload'],
+      continueOnEdit: true,
       next: '/change-home-address',
       locals: { captionHeading: 'Section 9 of 20' }
     },

@@ -28,6 +28,17 @@
   "new-address": {
     "header": "What is your new address?"
   },
+  "upload-british-passport" : {
+    "header": "Upload British passport",
+    "label": "Upload a file",
+    "hint": "Your file must be JPEG, PDF or PNG and be 25MB or less",
+    "paragraph1": "Attach an image of your British passport as proof of your identity. the image must be",
+    "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
+    "link-text" : "signed by your countersignatory (opens in a new tab).",
+    "uploading-document": "Document uploading",
+    "not-uploaded": "No files uploaded", 
+    "uploaded": "File uploaded" 
+  },
   "select-precursor": {
     "header": "Explosives precursors",
     "p1": "Tell us which explosives precursors you want to import acquire use or possess.",
@@ -141,6 +152,9 @@
       },
       "amend-Uk-driving-licence-number": {
         "label": "Driving Licence"
+      },
+      "amend-british-passport" : {
+        "label": "British passport attachment"
       },
       "amend-new-country": {
         "label": "Country"
