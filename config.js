@@ -66,11 +66,11 @@ module.exports = {
         limit: 1,
         limitValidationError: 'maxAmendBritishPassport'
       },
-    'new-renew-proof-address': {
+      'new-renew-proof-address': {
         allowMultipleUploads: true,
         limit: 2,
         limitValidationError: 'maxNewRenewProofAddress'
-        }
+      }
     }
   },
   sectionDetails: {
