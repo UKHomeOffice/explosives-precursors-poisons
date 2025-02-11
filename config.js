@@ -66,11 +66,11 @@ module.exports = {
         limit: 1,
         limitValidationError: 'maxAmendBritishPassport'
       },
-    'new-renew-eu-passport': {
+      'new-renew-eu-passport': {
         allowMultipleUploads: false,
         limit: 1,
         limitValidationError: 'maxNewRenewEuPassport'
-    }
+      }
     }
   },
   sectionDetails: {
