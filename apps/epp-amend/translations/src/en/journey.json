@@ -1,5 +1,6 @@
 {
   "header": "Explosives precursors and poisons licensing",
   "phase": "beta",
-  "serviceName": "Amend an explosives and precursor chemicals licence"
+  "serviceName": "Amend an explosives and precursor chemicals licence",
+  "error": "Error"
 }

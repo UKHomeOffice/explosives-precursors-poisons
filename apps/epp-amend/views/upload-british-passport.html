@@ -1,6 +1,21 @@
 {{<partials-page}}
 {{$encoding}}enctype="multipart/form-data" name="file-upload-form" {{/encoding}}
 {{$page-content}}
+<div id="error-summary" class="govuk-error-summary govuk-!-display-none" data-module="govuk-error-summary">
+  <div role="alert">
+    <h2 class="govuk-error-summary__title">
+      There is a problem
+    </h2>
+    <div class="govuk-error-summary__body" >
+      <ul class="govuk-list govuk-error-summary__list">
+        <li>
+          <a id="file-upload-error-summary-maxFileSize"class="govuk-!-display-none" href="#file-upload-error-maxFileSize">{{#t}}validation.file-upload.maxFileSize{{/t}}</a>
+          <a id="file-upload-error-summary-fileType"class="govuk-!-display-none" href="#file-upload-error-fileType">{{#t}}validation.file-upload.fileType{{/t}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
 <p>{{#t}}pages.upload-british-passport.paragraph1{{/t}}
    <a class="govuk-link" href="{{#t}}pages.upload-british-passport.link{{/t}}" rel="noreferrer noopener" target="_blank">{{#t}}pages.upload-british-passport.link-text{{/t}}</a>
 </p>

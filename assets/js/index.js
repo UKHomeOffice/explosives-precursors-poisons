@@ -49,6 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (fileUploadComponent) {
           fileUploadComponent.classList.add('govuk-form-group--error');
           document.getElementById(`file-upload-error-${errorType}`).classList.remove('govuk-!-display-none');
+          document.getElementById(`file-upload-error-summary-${errorType}`).classList.remove('govuk-!-display-none');
+          document.getElementById('error-summary').classList.remove('govuk-!-display-none');
         }
         break;
       case 'uploading':
