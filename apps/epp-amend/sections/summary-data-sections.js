@@ -129,7 +129,24 @@ module.exports = {
       {
         step: '/identity-details',
         field: 'amend-Uk-driving-licence-number'
+      },
+      {
+        step: '/upload-british-passport',
+        field: 'amend-british-passport',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel
+              .get('steps')
+              .includes('/upload-british-passport') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file.name);
+          }
+
+          return null;
+        }
       }
+
     ]
   },
   'amend-home-address-options': {

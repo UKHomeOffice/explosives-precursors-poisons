@@ -371,14 +371,14 @@ module.exports = {
   'new-renew-home-address-postcode': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    className: ['govuk-input', 'govuk-input--width-10'],
     formatter: ['ukPostcode']
   },
   'new-renew-home-address-country': {
     mixin: 'select',
     validate: ['required'],
     labelClassName: 'govuk-label--s',
-    className: ['govuk-!-width-two-thirds'],
+    className: ['typeahead'],
     options: [
       {
         value: '',
@@ -388,6 +388,70 @@ module.exports = {
   },
   'new-renew-home-address-moveto-date': dateComponent(
     'new-renew-home-address-moveto-date',
+    {
+      mixin: 'input-date',
+      legend: { className: 'bold' },
+      validate: ['required', 'date', 'before']
+    }
+  ),
+  'new-renew-previous-home-address-line1': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'new-renew-previous-home-address-line2': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    validate: [
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'new-renew-previous-home-address-town': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'new-renew-previous-home-address-county': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    validate: [
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'new-renew-previous-home-address-postcode': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-input--width-10'],
+    formatter: ['ukPostcode']
+  },
+  'new-renew-previous-home-address-country': {
+    mixin: 'select',
+    validate: ['required'],
+    labelClassName: 'govuk-label--s',
+    className: ['typeahead'],
+    options: [
+      {
+        value: '',
+        label: 'fields.new-renew-previous-home-address-country.options.none_selected'
+      }
+    ].concat(countries)
+  },
+  'new-renew-previous-home-address-moveto-date': dateComponent(
+    'new-renew-previous-home-address-moveto-date',
     {
       mixin: 'input-date',
       legend: { className: 'bold' },
