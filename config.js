@@ -71,21 +71,26 @@ module.exports = {
         limit: 1,
         limitValidationError: 'maxNewRenewEuPassport'
       },
+      'amend-eu-passport': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxAmendPassport'
+      },
       'new-renew-proof-address': {
         allowMultipleUploads: true,
         limit: 2,
         limitValidationError: 'maxNewRenewProofAddress'
       }
+    },
+    sectionDetails: {
+      totalStepsNew: 20,
+      totalStepsRenew: 21
+    },
+    postCodeCountriesMap: {
+      'amend-postcode': 'amend-country',
+      'new-renew-home-address-postcode': 'new-renew-home-address-country',
+      'new-renew-previous-home-address-postcode': 'new-renew-previous-home-address-country',
+      'amend-new-postcode': 'amend-new-country'
     }
-  },
-  sectionDetails: {
-    totalStepsNew: 20,
-    totalStepsRenew: 21
-  },
-  postCodeCountriesMap: {
-    'amend-postcode': 'amend-country',
-    'new-renew-home-address-postcode': 'new-renew-home-address-country',
-    'new-renew-previous-home-address-postcode': 'new-renew-previous-home-address-country',
-    'amend-new-postcode': 'amend-new-country'
   }
 };
