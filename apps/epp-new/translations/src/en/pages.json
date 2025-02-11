@@ -25,6 +25,9 @@
   "previous-address": {
     "header": "Previous address"
   },
+  "previous-addresses": {
+    "header": "Address history"
+  },
   "contact-details": {
     "title": "What are your contact details?",
     "header": "What are your contact details?"

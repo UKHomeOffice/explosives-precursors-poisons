@@ -173,7 +173,8 @@ module.exports = {
       }
     },
     '/previous-address': {
-      behaviours: [PostcodeValidation],
+      behaviours: [PostcodeValidation,
+        ResetSectionSummary('previous-address', 'new-renew-previous-home-address-line1')],
       fields: [
         'new-renew-previous-home-address-line1',
         'new-renew-previous-home-address-line2',
@@ -185,6 +186,7 @@ module.exports = {
       ],
       next: '/previous-addresses',
       locals: {
+        fullWidthPage: true,
         sectionNo: {
           new: 3,
           renew: 4
@@ -192,8 +194,20 @@ module.exports = {
       }
     },
     '/previous-addresses': {
-      fields: [],
+      behaviours: [AggregateSaveUpdate, PostcodeValidation],
+      aggregateTo: 'previousaddresses',
+      aggregateFrom: [
+        'new-renew-previous-home-address-line1',
+        'new-renew-previous-home-address-line2',
+        'new-renew-previous-home-address-town',
+        'new-renew-previous-home-address-county',
+        'new-renew-previous-home-address-postcode',
+        'new-renew-previous-home-address-country',
+        'new-renew-previous-home-address-moveto-date'
+      ],
+      titleField: 'new-renew-previous-home-address-line1',
       next: '/upload-proof-address',
+      addAnotherLinkText: 'previous address',
       locals: {
         sectionNo: {
           new: 3,
