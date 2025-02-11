@@ -61,11 +61,16 @@ module.exports = {
         limit: 1,
         limitValidationError: 'maxNewRenewBritishPassport'
       },
-      'new-renew-eu-passport': {
+      'amend-british-passport': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxAmendBritishPassport'
+      },
+    'new-renew-eu-passport': {
         allowMultipleUploads: false,
         limit: 1,
         limitValidationError: 'maxNewRenewEuPassport'
-      }
+    }
     }
   },
   sectionDetails: {
@@ -75,6 +80,7 @@ module.exports = {
   postCodeCountriesMap: {
     'amend-postcode': 'amend-country',
     'new-renew-home-address-postcode': 'new-renew-home-address-country',
+    'new-renew-previous-home-address-postcode': 'new-renew-previous-home-address-country',
     'amend-new-postcode': 'amend-new-country'
   }
 };
