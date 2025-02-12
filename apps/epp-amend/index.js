@@ -174,12 +174,27 @@ module.exports = {
     },
     '/explosives-precursors': {
       fields: ['amend-regulated-explosives-precursors'],
-      next: '/select-precursor',
+      forks: [
+        {
+          target: '/select-precursor',
+          continueOnEdit: true,
+          condition: {
+            field: 'amend-regulated-explosives-precursors',
+            value: 'yes'
+          }
+        }
+      ],
+      next: '/poisons',
       locals: { captionHeading: 'Section 14 of 23' }
     },
     '/select-precursor': {
       fields: ['amend-precursor-field'],
       locals: { captionHeading: 'Section 15 of 20' },
+      next: '/section-sixteen'
+    },
+    '/poisons': {
+      fields: [],
+      locals: { captionHeading: 'Section 16 of 23' },
       next: '/section-sixteen'
     },
     '/section-sixteen': {
