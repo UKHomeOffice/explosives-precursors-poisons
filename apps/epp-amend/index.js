@@ -170,11 +170,12 @@ module.exports = {
     '/change-substances': {
       fields: ['amend-explosive-precusor-type'],
       locals: { captionHeading: 'Section 13 of 20' },
-      next: '/section-fourteen'
+      next: '/explosives-precursors'
     },
-    '/section-fourteen': {
-      fields: ['amend-poison-type'],
-      next: '/select-precursor'
+    '/explosives-precursors': {
+      fields: ['amend-regulated-explosives-precursors'],
+      next: '/select-precursor',
+      locals: { captionHeading: 'Section 14 of 23' }
     },
     '/select-precursor': {
       fields: ['amend-precursor-field'],

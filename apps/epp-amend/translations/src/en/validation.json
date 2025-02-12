@@ -158,5 +158,8 @@
     },
     "amend-precursor-field": {
       "required" : "Select an explosive precursor"
+    },
+    "amend-regulated-explosives-precursors": {
+      "required": "Select if your licence needs to cover explosives precursors"
     }
 }

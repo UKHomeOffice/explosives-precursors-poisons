@@ -1,0 +1,16 @@
+{{<partials-page}}
+  {{$page-content}}
+   <div>
+    <p class="govuk-body">{{#t}}pages.explosives-precursors.p1{{/t}}
+        <a class="govuk-link" href="{{#t}}pages.explosives-precursors.link{{/t}}" rel="noreferrer noopener" target="_blank">{{#t}}pages.explosives-precursors.link-text{{/t}}</a>.
+    </p>
+    <p class="govuk-body">You do not need a licence for reportable explosives precursors.</p>
+   </div>
+  {{#fields}}
+    {{#renderField}}{{/renderField}}
+  {{/fields}}
+
+  {{#input-submit}}continue{{/input-submit}} 
+  
+  {{/page-content}}
+  {{/partials-page}}

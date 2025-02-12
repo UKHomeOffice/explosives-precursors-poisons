@@ -265,5 +265,14 @@ module.exports = {
       value: '',
       label: 'fields.amend-precursor-field.options.none_selected'
     }].concat(precursorList)
+  },
+  'amend-regulated-explosives-precursors': {
+    mixin: 'radio-group',
+    legend: {
+      className: 'govuk-label--m'
+    },
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    options: ['yes', 'no'],
+    validate: 'required'
   }
 };
