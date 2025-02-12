@@ -222,10 +222,10 @@
         "label": "Driving Licence"
       },
       "new-renew-british-passport": {
-        "label": "Image of passport"
+        "label": "British passport attachment"
       },
       "new-renew-eu-passport": {
-        "label": "Image of passport"
+        "label": "Passport attachment"
       }
     },
     "complete": {
