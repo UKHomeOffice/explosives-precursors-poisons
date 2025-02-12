@@ -65,6 +65,11 @@ module.exports = {
         allowMultipleUploads: false,
         limit: 1,
         limitValidationError: 'maxAmendBritishPassport'
+      },
+      'new-renew-upload-driving-licence': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxNewRenewDrivingLicence'
       }
     }
   },

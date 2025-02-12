@@ -274,7 +274,11 @@ module.exports = {
       }
     },
     '/upload-driving-licence': {
-      fields: [],
+      behaviours: [
+        SaveDocument('new-renew-upload-driving-licence', 'file-upload'),
+        RemoveDocument('new-renew-upload-driving-licence')
+      ],
+      fields: ['file-upload'],
       next: '/other-licences',
       locals: {
         sectionNo: {

@@ -194,6 +194,22 @@ module.exports = {
         field: 'new-renew-applicant-Id-type'
       },
       {
+        step: '/upload-driving-licence',
+        field: 'new-renew-upload-driving-licence',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel
+              .get('steps')
+              .includes('/upload-upload-driving-licence') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file.name);
+          }
+
+          return null;
+        }
+      },
+      {
         step: '/identity-details',
         field: 'new-renew-UK-passport-number'
       },
