@@ -77,7 +77,8 @@
     "upload-file": "Upload a file",
     "file-format": "Your file must be JPEG, PDF or PNG, and be 25MB or less",
     "no-file-uploaded": "No files uploaded",
-    "files-uploaded": "Files uploaded",
+    "you-have-uploaded": "You have uploaded",
+    "files": "file(s)",
     "uploading-document": "Uploading your document..."
   },
   "countersignatory-details": {
@@ -93,13 +94,12 @@
   "upload-driving-licence": {
     "header": "Upload UK driving licence",
     "p1": "Attach an image of your driving licence photocard as proof of your identity. The image must be",
-    "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned ",
+    "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
     "link-text": "signed by your countersignatory (opens in a new tab)",
     "upload-file": "Upload a file",
     "file-format": "Your file must be JPEG, PDF or PNG, and be 25MB or less",
     "no-file-uploaded": "No files uploaded",
-    "you-have-uploaded": "You have uploaded",
-    "files": "file(s)",
+    "files-uploaded": "Files uploaded",
     "uploading-document": "Uploading your document..."
   },
   "confirm": {
@@ -219,10 +219,13 @@
         "label": "Passport number"
       },
       "new-renew-Uk-driving-licence-number": {
-        "label": "UK driving licence"
+        "label": "Driving Licence"
       },
       "new-renew-british-passport": {
         "label": "Image of passport"
+      },
+      "new-renew-upload-driving-licence": {
+        "label": "UK driving licence attachment"
       }
     },
     "complete": {
