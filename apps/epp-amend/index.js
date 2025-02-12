@@ -122,6 +122,8 @@ module.exports = {
       locals: { captionHeading: 'Section 9 of 20' }
     },
     '/upload-driving-licence': {
+      behaviours: [SaveDocument('amend-uk-driving-licence', 'file-upload'), RemoveDocument('amend-uk-driving-licence')],
+      fields: ['file-upload'],
       next: '/change-home-address',
       locals: { captionHeading: 'Section 9 of 20' }
     },
