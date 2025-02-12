@@ -65,6 +65,11 @@ module.exports = {
         allowMultipleUploads: false,
         limit: 1,
         limitValidationError: 'maxAmendBritishPassport'
+      },
+      'amend-eu-passport': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxAmendPassport'
       }
     }
   },
