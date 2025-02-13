@@ -268,7 +268,11 @@ module.exports = {
       }
     },
     '/upload-passport': {
-      fields: [],
+      behaviours: [
+        SaveDocument('new-renew-eu-passport', 'file-upload'),
+        RemoveDocument('new-renew-eu-passport')
+      ],
+      fields: ['file-upload'],
       next: '/upload-certificate-conduct',
       locals: {
         sectionNo: {
