@@ -6,6 +6,9 @@ const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
 const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator');
 const SaveDocument = require('../epp-common/behaviours/save-document');
 const RemoveDocument = require('../epp-common/behaviours/remove-document');
+
+const RenderPrecursorDetails = require('./behaviours/render-precursors-details-page');
+
 module.exports = {
   name: 'EPP form',
   fields: 'apps/epp-amend/fields',
@@ -179,15 +182,18 @@ module.exports = {
     '/select-precursor': {
       fields: ['amend-precursor-field'],
       locals: { captionHeading: 'Section 15 of 20' },
-      next: '/section-sixteen'
+      next: '/precursor-details'
     },
-    '/section-sixteen': {
+    '/precursor-details': {
+      behaviours: [RenderPrecursorDetails],
       fields: [
-        'amend-countersignatory-address-1',
-        'amend-countersignatory-address-2',
-        'amend-countersignatory-town-or-city',
-        'amend-countersignatory-postcode'
+        'amend-why-need-precursor',
+        'amend-how-much-precursor',
+        'amend-what-concentration-precursor',
+        'amend-where-to-store-precursor',
+        'amend-where-to-use-precursor'
       ],
+      locals: { captionHeading: 'Section 15 of 23' },
       next: '/section-seventeen'
     },
     '/section-seventeen': {

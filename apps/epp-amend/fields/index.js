@@ -265,5 +265,78 @@ module.exports = {
       value: '',
       label: 'fields.amend-precursor-field.options.none_selected'
     }].concat(precursorList)
+  },
+  'amend-why-need-precursor': {
+    mixin: 'textarea',
+    validate: ['notUrl'],
+    attributes: [{ attribute: 'rows', value: 5 }],
+    labelClassName: 'govuk-label--s'
+  },
+  'amend-how-much-precursor': {
+    mixin: 'input-text',
+    className: ['govuk-input', 'govuk-input--width-10'],
+    labelClassName: 'govuk-label--s',
+    validate: ['notUrl']
+  },
+  'amend-what-concentration-precursor': {
+    mixin: 'input-text',
+    className: ['govuk-input', 'govuk-input--width-5'],
+    labelClassName: 'govuk-label--s',
+    validate: ['notUrl'],
+    attributes: [{ suffix: '%' }]
+  },
+  'amend-where-to-store-precursor': {
+    mixin: 'checkbox-group',
+    legend: {
+      className: 'govuk-label--s'
+    },
+    options: [
+      {
+        value: 'amend-store-precursors-home-address'
+      },
+      {
+        value: 'amend-store-precursors-other-address',
+        toggle: 'store-precursors-other-address',
+        child: 'textarea'
+      }
+    ]
+  },
+  'store-precursors-other-address': {
+    mixin: 'textarea',
+    validate: [
+      'required',
+      'notUrl'
+    ],
+    dependent: {
+      field: 'amend-where-to-store-precursor',
+      value: 'amend-store-precursors-other-address'
+    }
+  },
+  'amend-where-to-use-precursor': {
+    mixin: 'checkbox-group',
+    legend: {
+      className: 'govuk-label--s'
+    },
+    options: [
+      {
+        value: 'amend-use-precursors-home-address'
+      },
+      {
+        value: 'amend-use-precursors-other-address',
+        toggle: 'precursors-use-other-address',
+        child: 'textarea'
+      }
+    ]
+  },
+  'use-precursors-other-address': {
+    mixin: 'textarea',
+    validate: [
+      'required',
+      'notUrl'
+    ],
+    dependent: {
+      field: 'amend-where-to-use-precursor',
+      value: 'amend-use-precursors-other-address'
+    }
   }
 };

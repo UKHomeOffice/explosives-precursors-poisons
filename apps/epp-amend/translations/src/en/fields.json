@@ -153,5 +153,50 @@
     "options":{
       "none_selected": "Select"
     }
+  },
+  "amend-why-need-precursor":{
+    "label": "{{values.whyNeedPrecursorLabel}}",
+    "hint": "Detailed answers mean we can process your application faster"
+  },
+  "amend-how-much-precursor":{
+    "label": "How much do you wish to acquire at any one time?",
+    "hint": "Enter the amount and the unit. For example, 10 litres"
+  },
+  "amend-what-concentration-precursor":{
+    "label": "What concentration % w/w do you need?"
+  },
+  "amend-where-to-store-precursor": {
+    "legend": "{{values.whereToStorePrecursorLegend}}",
+    "hint": "This must be in the UK",
+    "options": {
+      "amend-store-precursors-home-address": {
+        "label": "Home address",
+        "hint": "Display Home address here"
+      },
+      "amend-store-precursors-other-address": {
+        "label": "Other address"
+      }
+    }
+  },
+  "store-precursors-other-address": {
+    "label": "{{values.storePrecursorOtherAddressLabel}}",
+    "hint": "Enter a UK address"
+  },
+  "amend-where-to-use-precursor": {
+    "legend": "{{values.whereToUsePrecursorLegend}}",
+    "hint": "This must be in the UK",
+    "options": {
+      "amend-use-precursors-home-address": {
+        "label": "Home address",
+        "hint": "Display Home address here"
+      },
+      "amend-use-precursors-other-address": {
+        "label": "Other address"
+      }
+    }
+  },
+  "precursors-use-other-address": {
+    "label": "{{values.usePrecursorOtherAddressLabel}}",
+    "hint": "Enter a UK address"
   }
 }

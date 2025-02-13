@@ -47,6 +47,9 @@
   "application-submitted": {
     "confirmed": "Amendment submitted"
   },
+  "precursor-details":{
+    "header": "{{values.amend-precursor-field}}"
+  },
   "confirm": {
     "header": "Check your answers",
     "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",

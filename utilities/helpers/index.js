@@ -1,5 +1,7 @@
 const moment = require('moment');
 const validators = require('hof/controller/validation/validators');
+
+const explosivePrecursorsList = require('../constants/explosive-precursors');
 const removeWhiteSpace = value => value?.replace(/\s+/g, '');
 
 const config = require('../../config');
@@ -105,6 +107,24 @@ const getFormattedDate = date => {
   return '';
 };
 
+const getPrecursorsShortLabel = input => {
+  if (!input) return input;
+
+  const resultStr = input.trim();
+
+  for (const { label, shortLabel: replacement } of explosivePrecursorsList) {
+    if (resultStr === label) {
+      return replacement;
+    }
+
+    if (resultStr.includes(label)) {
+      const newLabel = resultStr.replace(label, replacement);
+      return newLabel;
+    }
+  }
+  return resultStr;
+};
+
 module.exports = {
   isLicenceValid,
   isApplicationType,
@@ -118,5 +138,6 @@ module.exports = {
   DEFAULT_AGGREGATOR_LIMIT,
   TEXT_NOT_PROVIDED,
   DATE_FORMAT_YYYY_MM_DD,
-  getFormattedDate
+  getFormattedDate,
+  getPrecursorsShortLabel
 };
