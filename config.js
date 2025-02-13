@@ -75,6 +75,11 @@ module.exports = {
         allowMultipleUploads: true,
         limit: 2,
         limitValidationError: 'maxNewRenewProofAddress'
+      },
+      'amend-proof-address': {
+        allowMultipleUploads: true,
+        limit: 2,
+        limitValidationError: 'maxAmendProofAddress'
       }
     }
   },
