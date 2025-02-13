@@ -202,7 +202,11 @@ module.exports = {
       }
     },
     '/upload-proof-address': {
-      fields: [],
+      behaviours: [
+        SaveDocument('new-renew-proof-address', 'file-upload'),
+        RemoveDocument('new-renew-proof-address')
+      ],
+      fields: ['file-upload'],
       next: '/contact-details',
       locals: {
         sectionNo: {
