@@ -202,7 +202,11 @@ module.exports = {
       }
     },
     '/upload-proof-address': {
-      fields: [],
+      behaviours: [
+        SaveDocument('new-renew-proof-address', 'file-upload'),
+        RemoveDocument('new-renew-proof-address')
+      ],
+      fields: ['file-upload'],
       next: '/contact-details',
       locals: {
         sectionNo: {
@@ -264,7 +268,11 @@ module.exports = {
       }
     },
     '/upload-passport': {
-      fields: [],
+      behaviours: [
+        SaveDocument('new-renew-eu-passport', 'file-upload'),
+        RemoveDocument('new-renew-eu-passport')
+      ],
+      fields: ['file-upload'],
       next: '/upload-certificate-conduct',
       locals: {
         sectionNo: {

@@ -60,6 +60,21 @@ module.exports = {
         allowMultipleUploads: false,
         limit: 1,
         limitValidationError: 'maxNewRenewBritishPassport'
+      },
+      'amend-british-passport': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxAmendBritishPassport'
+      },
+      'new-renew-eu-passport': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxNewRenewEuPassport'
+      },
+      'new-renew-proof-address': {
+        allowMultipleUploads: true,
+        limit: 2,
+        limitValidationError: 'maxNewRenewProofAddress'
       }
     }
   },
