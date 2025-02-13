@@ -158,5 +158,18 @@
     },
     "amend-precursor-field": {
       "required" : "Select an explosive precursor"
+    },
+    "amend-why-need-precursor": {
+      "required": "Explain why you need this explosive precursor",
+      "textAreaDefaultLength": "Reason why you need this explosive precursor must be less than 2,000 characters",
+      "notUrl" : "Your answer must not include a URL"
+    },
+    "amend-how-much-precursor": {
+      "required": "Enter how much of the explosive precursor you wish to acquire at any one time",
+      "maxlength": "Quantity of the explosive precursor you wish to acquire must be 250 characters or less",
+      "notUrl" : "Your answer must not include a URL"
+    },
+    "amend-where-to-store-precursor": {
+      "required": "Select where you will store the explosive precursor"
     }
 }

@@ -1,8 +1,13 @@
+const dateComponent = require('hof').components.date;
+const validators = require('hof/controller/validation/validators');
 const titles = require('../../../utilities/constants/titles.js');
 const precursorList = require('../../../utilities/constants/explosive-precursors.js');
-const dateComponent = require('hof').components.date;
 const helpers = require('../../../utilities/helpers/index.js');
 const country = require('../../../utilities/constants/countries');
+
+function textAreaDefaultLength(value) {
+  return validators.maxlength(value, 2000);
+}
 
 module.exports = {
   'amend-licence-number': {
@@ -268,25 +273,27 @@ module.exports = {
   },
   'amend-why-need-precursor': {
     mixin: 'textarea',
-    validate: ['notUrl'],
+    validate: ['required', 'notUrl', textAreaDefaultLength],
     attributes: [{ attribute: 'rows', value: 5 }],
     labelClassName: 'govuk-label--s'
   },
   'amend-how-much-precursor': {
     mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
     className: ['govuk-input', 'govuk-input--width-10'],
-    labelClassName: 'govuk-label--s',
-    validate: ['notUrl']
+    labelClassName: 'govuk-label--s'
   },
   'amend-what-concentration-precursor': {
     mixin: 'input-text',
+    // TODO: revisit validation
+    validate: ['required', 'notUrl'],
     className: ['govuk-input', 'govuk-input--width-5'],
     labelClassName: 'govuk-label--s',
-    validate: ['notUrl'],
     attributes: [{ suffix: '%' }]
   },
   'amend-where-to-store-precursor': {
     mixin: 'checkbox-group',
+    validate: ['required'],
     legend: {
       className: 'govuk-label--s'
     },
