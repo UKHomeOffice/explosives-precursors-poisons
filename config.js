@@ -71,6 +71,11 @@ module.exports = {
         limit: 1,
         limitValidationError: 'maxNewRenewEuPassport'
       },
+      'new-renew-proof-address': {
+        allowMultipleUploads: true,
+        limit: 2,
+        limitValidationError: 'maxNewRenewProofAddress'
+      },
       'new-renew-upload-driving-licence': {
         allowMultipleUploads: false,
         limit: 1,
