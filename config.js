@@ -76,6 +76,11 @@ module.exports = {
         limit: 1,
         limitValidationError: 'maxAmendPassport'
       },
+      'amend-uk-driving-licence': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxAmendDrivingLicence'
+      },
       'new-renew-proof-address': {
         allowMultipleUploads: true,
         limit: 2,
