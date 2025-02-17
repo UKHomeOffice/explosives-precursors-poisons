@@ -7,7 +7,8 @@ const {
   isValidUkDrivingLicenceNumber,
   validInternationalPhoneNumber,
   removeWhiteSpace,
-  getFormattedDate
+  getFormattedDate,
+  isEditMode
 } = require('../../../utilities/helpers');
 
 describe('EPP utilities tests', () => {
@@ -176,6 +177,36 @@ describe('EPP utilities tests', () => {
     ];
     for (const invalidDate of invalidDates) {
       expect(getFormattedDate(invalidDate)).to.equal('');
+    }
+  });
+
+  it('.isEditMode - should return true when in edit mode', () => {
+    const urls = [
+      'http://localhost:8080/amend/date-of-birth/edit#amend-date-of-birth',
+      'http://localhost:8080/new-and-renew/date-of-birth/edit#amend-date-of-birth',
+      'https:/domain/replace/date-of-birth/edit#amend-date-of-birth',
+      'protocol:/domain/url/edit'
+    ];
+
+    for (const url of urls) {
+      const { pathname, search } = new URL(url);
+      const originalUrl = pathname + search;
+      expect(isEditMode({ originalUrl })).to.be.true;
+    }
+  });
+
+  it('.isEditMode - should return false when not in edit mode', () => {
+    const urls = [
+      'http://localhost:8080/amend/date-of-birth',
+      'http://localhost:8080/new-and-renew/edit-address#amend-date-of-birth',
+      'https:/domain/replace/date-of-birth/edit-first-name#amend-date-of-birth',
+      'protocol:/domain/url/test'
+    ];
+
+    for (const url of urls) {
+      const { pathname, search } = new URL(url);
+      const originalUrl = pathname + search;
+      expect(isEditMode({ originalUrl })).to.be.false;
     }
   });
 });
