@@ -148,6 +148,17 @@
       "legend": "What date did you change your address?",
       "hint": " For example, 30 09 1969"
   },
+  "amend-change-substances-options":{
+    "legend": "Do you need to amend the substances on your licence?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "amend-precursor-field": {
     "hint": "Select an explosives precursor",
     "options":{
