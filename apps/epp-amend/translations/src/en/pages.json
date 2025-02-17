@@ -28,11 +28,33 @@
   "new-address": {
     "header": "What is your new address?"
   },
-  "upload-british-passport" : {
+  "upload-british-passport": {
     "header": "Upload British passport",
     "label": "Upload a file",
     "hint": "Your file must be JPEG, PDF or PNG and be 25MB or less",
     "paragraph1": "Attach an image of your British passport as proof of your identity. the image must be",
+    "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
+    "link-text" : "signed by your countersignatory (opens in a new tab).",
+    "uploading-document": "Document uploading",
+    "not-uploaded": "No files uploaded", 
+    "uploaded": "File uploaded" 
+  },
+  "upload-passport": {
+    "header": "Upload passport",
+    "label": "Upload a file",
+    "hint": "Your file must be JPG, JPEG, PDF or PNG and be 25MB or less",
+    "paragraph1": "Attach an image of your passport from the EU, Switzerland, Norway, Iceland or Liechtenstein as proof of your identity. The image must be ",
+    "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
+    "link-text" : "signed by your countersignatory (opens in a new tab).",
+    "uploading-document": "Document uploading",
+    "not-uploaded": "No files uploaded", 
+    "uploaded": "File uploaded" 
+  },
+  "upload-driving-licence": {
+    "header": "Upload UK driving licence",
+    "label": "Upload a file",
+    "hint": "Your file must be JPG, JPEG, PDF or PNG and be 25MB or less",
+    "paragraph1": "Attach an image of your driving licence photocard as proof of your identity. The image must be",
     "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
     "link-text" : "signed by your countersignatory (opens in a new tab).",
     "uploading-document": "Document uploading",
@@ -144,10 +166,16 @@
         "label": "Passport number"
       },
       "amend-Uk-driving-licence-number": {
-        "label": "Driving Licence"
+        "label": "UK driving licence number"
       },
       "amend-british-passport" : {
         "label": "British passport attachment"
+      },
+      "amend-eu-passport" : {
+        "label": "Passport attachment"
+      },
+      "amend-uk-driving-licence" : {
+        "label": "UK driving licence attachment"
       },
       "amend-new-country": {
         "label": "Country"
