@@ -9,9 +9,9 @@ const RemoveDocument = require('../epp-common/behaviours/remove-document');
 const DobEditRedirect = require('../epp-common/behaviours/dob-edit-redirect');
 const RenderPrecursorDetails = require('../epp-common/behaviours/render-precursors-detail');
 const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
+const CheckAndRedirect = require('../epp-common/behaviours/check-answer-redirect');
 const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
 const DobUnder18Redirect = require('../epp-common/behaviours/dob-under18-redirect');
-
 const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redundant-documents');
 
 module.exports = {
@@ -70,7 +70,10 @@ module.exports = {
       locals: { captionHeading: 'Section 4 of 23' }
     },
     '/contact-details': {
-      fields: ['amend-phone-number', 'amend-email'],
+      fields: [
+        'amend-phone-number',
+        'amend-email'
+      ],
       locals: { captionHeading: 'Section 5 of 23' },
       next: '/amend-details'
     },
@@ -228,9 +231,19 @@ module.exports = {
       locals: { captionHeading: 'Section 12 of 23' }
     },
     '/change-substances': {
-      fields: ['amend-explosive-precusor-type'],
-      locals: { captionHeading: 'Section 13 of 23' },
-      next: '/explosives-precursors'
+      behaviours: [
+        CheckAndRedirect('amend-change-substances-options',
+          ['amend-change-substances-options', 'amend-name-options', 'amend-home-address-options']
+        )
+      ],
+      fields: ['amend-change-substances-options'],
+      continueOnEdit: true,
+      next: '/explosives-precursors',
+      locals: { captionHeading: 'Section 13 of 23' }
+
+    },
+    '/no-details-amend': {
+      locals: { captionHeading: 'Section 13 of 23' }
     },
     '/explosives-precursors': {
       fields: ['amend-regulated-explosives-precursors'],

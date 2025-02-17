@@ -96,6 +96,13 @@
     "not-uploaded": "No files uploaded", 
     "uploaded": "File uploaded" 
   },
+  "change-substances": {
+    "header": "Change in substances",
+    "paragraph1": "You must amend the substances on your licence if you:",
+    "li1": "need to add or remove substances you can acquire, possess or use",
+    "li2": "need to change the concentration or volume of substances that your licence covers",
+    "li3": "have changed your storage or usage address since your current licence was issued"
+  },
   "select-precursor": {
     "header": "Explosives precursors",
     "p1": "Tell us which explosives precursors you want to import acquire use or possess.",
@@ -183,6 +190,9 @@
       "amend-licence-for-explosives-precursors": {
         "header": "Licence for explosives precursors"
       },
+      "amend-change-substances": {
+        "header": "Amend substances"
+      },
       "amend-explosives-precursor": {
         "header": "Explosives precursors"
       },
@@ -269,8 +279,8 @@
       "amend-new-country": {
         "label": "Country"
       },
-      "amend-proof-address":{
-         "label": "Proof of address attachment"
+      "amend-home-address-options": {
+        "label": "Do you need to amend the substances on your licence?"
       },
       "amend-precursor-field": {
         "label": "Explosives precursor"

@@ -264,6 +264,14 @@ module.exports = {
       }
     ]
   },
+  'amend-change-substances': {
+    steps: [
+      {
+        step: '/change-home-address',
+        field: 'amend-change-substances-options'
+      }
+    ]
+  },
   'amend-explosives-precursor': {
     steps: [
       {
