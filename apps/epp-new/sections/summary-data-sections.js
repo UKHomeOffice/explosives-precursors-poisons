@@ -1,21 +1,11 @@
 'use strict';
 
-const moment = require('moment');
-
 const config = require('../../../config');
+const { getFormattedDate } = require('../../../utilities/helpers');
 const dateFormatter = new Intl.DateTimeFormat(
   config.dateLocales,
   config.dateFormat
 );
-
-const dateParser = value => {
-  if(value && moment(value, 'DD MMMM YYYY').isValid()) {
-    return dateFormatter.format(
-      new Date(value)
-    );
-  }
-  return value;
-};
 
 module.exports = {
   'your-name': {
@@ -45,8 +35,7 @@ module.exports = {
         field: 'othernames',
         changeLink: '/new-and-renew/other-names-summary',
         parse: (list, req) => {
-          if (req.sessionModel.get('new-renew-other-names') === 'no' ||
-           !req.sessionModel.get('steps').includes('/other-names-summary')) {
+          if (req.sessionModel.get('new-renew-other-names') === 'no') {
             return null;
           }
           return req.sessionModel.get('othernames')?.aggregatedValues.length > 0 ?
@@ -55,7 +44,7 @@ module.exports = {
                 field.field === 'new-renew-other-name-start-date' ||
                 field.field === 'new-renew-other-name-stop-date'
               ) {
-                field.parsed = dateParser(field.parsed);
+                field.parsed = getFormattedDate(field.parsed);
               }
               return field.parsed;
             }).filter(Boolean).join('\n')).join('\n \n') : null;
@@ -148,6 +137,22 @@ module.exports = {
         step: '/home-address',
         field: 'new-renew-home-address-moveto-date',
         parse: date => date && dateFormatter.format(new Date(date))
+      },
+      {
+        step: '/upload-proof-address',
+        field: 'new-renew-proof-address',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel
+              .get('steps')
+              .includes('/upload-proof-address') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file?.name)?.join('\n\n');
+          }
+
+          return null;
+        }
       }
     ]
   },
@@ -213,6 +218,34 @@ module.exports = {
             req.sessionModel
               .get('steps')
               .includes('/upload-british-passport') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file?.name)?.join('\n\n');
+          }
+
+          return null;
+        }
+      },
+      {
+        step: '/upload-passport',
+        field: 'new-renew-eu-passport',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel.get('steps').includes('/upload-passport') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file?.name)?.join('\n\n');
+          }
+
+          return null;
+        }
+      },
+      {
+        step: '/upload-driving-licence',
+        field: 'new-renew-upload-driving-licence',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel.get('steps').includes('/upload-driving-licence') &&
             documents?.length > 0
           ) {
             return documents.map(file => file.name);
