@@ -108,7 +108,9 @@ const getFormattedDate = date => {
 };
 
 const getPrecursorsShortLabel = input => {
-  if (!input) return input;
+  if (!input || typeof input !== 'string') {
+    return input;
+  }
 
   const resultStr = input.trim();
 

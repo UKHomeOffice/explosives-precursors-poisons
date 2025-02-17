@@ -7,8 +7,11 @@ const {
   isValidUkDrivingLicenceNumber,
   validInternationalPhoneNumber,
   removeWhiteSpace,
-  getFormattedDate
+  getFormattedDate,
+  getPrecursorsShortLabel
 } = require('../../../utilities/helpers');
+
+const explosivePrecursorsList = require('../../../utilities/constants/explosive-precursors');
 
 describe('EPP utilities tests', () => {
   it('.validLicenceNumber - should match for valid formats', () => {
@@ -176,6 +179,64 @@ describe('EPP utilities tests', () => {
     ];
     for (const invalidDate of invalidDates) {
       expect(getFormattedDate(invalidDate)).to.equal('');
+    }
+  });
+
+  it('.getPrecursorsShortLabel - should return the shortLabel for the given precursors label', () => {
+    for (const explosivePrecursors of explosivePrecursorsList) {
+      expect(getPrecursorsShortLabel(explosivePrecursors.label)).to.be.equal(
+        explosivePrecursors.shortLabel
+      );
+    }
+  });
+
+  it('.getPrecursorsShortLabel - should return a partial replaced value with shortLabel', () => {
+    for (const explosivePrecursors of explosivePrecursorsList) {
+      expect(
+        getPrecursorsShortLabel(`Why do you need ${explosivePrecursors.label}`)
+      ).to.be.equal(`Why do you need ${explosivePrecursors.shortLabel}`);
+
+      expect(
+        getPrecursorsShortLabel(
+          `Where will you store the ${explosivePrecursors.label}`
+        )
+      ).to.be.equal(
+        `Where will you store the ${explosivePrecursors.shortLabel}`
+      );
+
+      expect(
+        getPrecursorsShortLabel(
+          `Where will you use the ${explosivePrecursors.label}`
+        )
+      ).to.be.equal(`Where will you use the ${explosivePrecursors.shortLabel}`);
+
+      expect(
+        getPrecursorsShortLabel(
+          `Storage address for the ${explosivePrecursors.label}`
+        )
+      ).to.be.equal(
+        `Storage address for the ${explosivePrecursors.shortLabel}`
+      );
+
+      expect(
+        getPrecursorsShortLabel(
+          `Usage address for the ${explosivePrecursors.label}`
+        )
+      ).to.be.equal(`Usage address for the ${explosivePrecursors.shortLabel}`);
+    }
+  });
+
+  it('.getPrecursorsShortLabel - should return original result for falsy or non string inputs', () => {
+    const inputs = [null, undefined, '', 1, true, {}];
+    for (const input of inputs) {
+      expect(getPrecursorsShortLabel(input)).to.be.equal(input);
+    }
+  });
+
+  it('.getPrecursorsShortLabel - should return original result for out of unknown strings', () => {
+    const inputs = ['Hello World', 'Unit test', 'random-text'];
+    for (const input of inputs) {
+      expect(getPrecursorsShortLabel(input)).to.be.equal(input);
     }
   });
 });
