@@ -131,6 +131,9 @@ module.exports = {
       locals: { captionHeading: 'Section 9 of 23' }
     },
     '/upload-certificate-conduct': {
+      behaviours: [SaveDocument('amend-certificate-conduct', 'file-upload'),
+        RemoveDocument('amend-certificate-conduct')],
+      fields: ['file-upload'],
       next: '/change-home-address',
       locals: { captionHeading: 'Section 9 of 23' }
     },
