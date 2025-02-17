@@ -173,5 +173,24 @@
     },
     "amend-where-to-store-precursor": {
       "required": "Select where you will store the explosive precursor"
+    },
+    "amend-what-concentration-precursor": {
+      "required": "Enter what concentration % w/w you need",
+      "isValidConcentrationValue" : "Concentration % w/w must only include numbers or special characters",
+      "maxlength": "Concentration % w/w must be 250 characters or less",
+      "notUrl" : "Your answer must not include a URL"
+    },
+    "amend-where-to-use-precursor": {
+      "required": "Select where you will use the explosive precursor"
+    },
+    "store-precursors-other-address": {
+      "required": "Enter the address where you will store the explosive precursor",
+      "textAreaDefaultLength": "Storage address must be 2,000 characters or less",
+       "notUrl" : "Your answer must not include a URL"
+    },
+    "precursors-use-other-address": {
+      "required": "Enter the address where you will use the explosive precursor",
+      "textAreaDefaultLength": "Usage address must be 2,000 characters or less",
+       "notUrl" : "Your answer must not include a URL"
     }
 }

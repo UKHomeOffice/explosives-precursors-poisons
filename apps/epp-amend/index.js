@@ -200,7 +200,9 @@ module.exports = {
         'amend-how-much-precursor',
         'amend-what-concentration-precursor',
         'amend-where-to-store-precursor',
-        'amend-where-to-use-precursor'
+        'amend-where-to-use-precursor',
+        'store-precursors-other-address',
+        'precursors-use-other-address'
       ],
       locals: { captionHeading: 'Section 15 of 23' },
       next: '/section-seventeen'

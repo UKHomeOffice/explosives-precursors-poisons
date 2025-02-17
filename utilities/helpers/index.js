@@ -112,13 +112,13 @@ const getPrecursorsShortLabel = input => {
 
   const resultStr = input.trim();
 
-  for (const { label, shortLabel: replacement } of explosivePrecursorsList) {
+  for (const { label, shortLabel } of explosivePrecursorsList) {
     if (resultStr === label) {
-      return replacement;
+      return shortLabel;
     }
 
     if (resultStr.includes(label)) {
-      const newLabel = resultStr.replace(label, replacement);
+      const newLabel = resultStr.replace(label, shortLabel);
       return newLabel;
     }
   }

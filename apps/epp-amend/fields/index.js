@@ -9,6 +9,8 @@ function textAreaDefaultLength(value) {
   return validators.maxlength(value, 2000);
 }
 
+const isValidConcentrationValue = value => value.match(/^\d+(\.\d+)?%?$/);
+
 module.exports = {
   'amend-licence-number': {
     mixin: 'input-text',
@@ -285,8 +287,7 @@ module.exports = {
   },
   'amend-what-concentration-precursor': {
     mixin: 'input-text',
-    // TODO: revisit validation
-    validate: ['required', 'notUrl'],
+    validate: ['required', isValidConcentrationValue, { type: 'maxlength', arguments: 250 }, 'notUrl'],
     className: ['govuk-input', 'govuk-input--width-5'],
     labelClassName: 'govuk-label--s',
     attributes: [{ suffix: '%' }]
@@ -312,6 +313,7 @@ module.exports = {
     mixin: 'textarea',
     validate: [
       'required',
+      textAreaDefaultLength,
       'notUrl'
     ],
     dependent: {
@@ -321,6 +323,7 @@ module.exports = {
   },
   'amend-where-to-use-precursor': {
     mixin: 'checkbox-group',
+    validate: ['required'],
     legend: {
       className: 'govuk-label--s'
     },
@@ -335,10 +338,11 @@ module.exports = {
       }
     ]
   },
-  'use-precursors-other-address': {
+  'precursors-use-other-address': {
     mixin: 'textarea',
     validate: [
       'required',
+      textAreaDefaultLength,
       'notUrl'
     ],
     dependent: {
