@@ -85,6 +85,11 @@ module.exports = {
         allowMultipleUploads: true,
         limit: 2,
         limitValidationError: 'maxNewRenewProofAddress'
+      },
+      'new-renew-upload-driving-licence': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxNewRenewDrivingLicence'
       }
     }
   },
