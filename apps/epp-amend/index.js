@@ -18,7 +18,7 @@ module.exports = {
       backLink: '/application-type',
       fields: ['amend-licence-number'],
       next: '/name-on-licence',
-      locals: { captionHeading: 'Section 1 of 20' }
+      locals: { captionHeading: 'Section 1 of 23' }
     },
     '/name-on-licence': {
       fields: [
@@ -28,12 +28,12 @@ module.exports = {
         'amend-lastname'
       ],
       next: '/date-of-birth',
-      locals: { captionHeading: 'Section 2 of 20' }
+      locals: { captionHeading: 'Section 2 of 23' }
     },
     '/date-of-birth': {
       fields: ['amend-date-of-birth'],
       next: '/home-address',
-      locals: { captionHeading: 'Section 3 of 20' }
+      locals: { captionHeading: 'Section 3 of 23' }
     },
     '/home-address': {
       behaviours: [PostcodeValidation],
@@ -46,14 +46,14 @@ module.exports = {
         'amend-country'
       ],
       next: '/contact-details',
-      locals: { captionHeading: 'Section 4 of 20' }
+      locals: { captionHeading: 'Section 4 of 23' }
     },
     '/contact-details': {
       fields: [
         'amend-phone-number',
         'amend-email'
       ],
-      locals: {captionHeading: 'Section 5 of 20'},
+      locals: {captionHeading: 'Section 5 of 23'},
       next: '/amend-details'
     },
     '/amend-details': {
@@ -74,7 +74,7 @@ module.exports = {
           }
         }
       ],
-      locals: {captionHeading: 'Section 6 of 20'},
+      locals: {captionHeading: 'Section 6 of 23'},
       next: '/new-name'
     },
     '/new-name': {
@@ -86,7 +86,7 @@ module.exports = {
         'amend-new-date-name-changed'
       ],
       next: '/identity-details',
-      locals: { captionHeading: 'Section 7 of 20' },
+      locals: { captionHeading: 'Section 7 of 23' },
       behaviours: [AfterDateOfBirth]
     },
     '/identity-details': {
@@ -107,7 +107,7 @@ module.exports = {
         }
       ],
 
-      locals: { captionHeading: 'Section 8 of 20' },
+      locals: { captionHeading: 'Section 8 of 23' },
       next: '/upload-driving-licence'
     },
     '/upload-british-passport': {
@@ -115,15 +115,24 @@ module.exports = {
       fields: ['file-upload'],
       continueOnEdit: true,
       next: '/change-home-address',
-      locals: { captionHeading: 'Section 9 of 20' }
+      locals: { captionHeading: 'Section 9 of 23' }
     },
     '/upload-passport': {
-      next: '/change-home-address',
-      locals: { captionHeading: 'Section 9 of 20' }
+      behaviours: [SaveDocument('amend-eu-passport', 'file-upload'), RemoveDocument('amend-eu-passport')],
+      fields: ['file-upload'],
+      continueOnEdit: true,
+      next: '/upload-certificate-conduct',
+      locals: { captionHeading: 'Section 9 of 23' }
     },
     '/upload-driving-licence': {
+      behaviours: [SaveDocument('amend-uk-driving-licence', 'file-upload'), RemoveDocument('amend-uk-driving-licence')],
+      fields: ['file-upload'],
       next: '/change-home-address',
-      locals: { captionHeading: 'Section 9 of 20' }
+      locals: { captionHeading: 'Section 9 of 23' }
+    },
+    '/upload-certificate-conduct': {
+      next: '/change-home-address',
+      locals: { captionHeading: 'Section 9 of 23' }
     },
     '/change-home-address': {
       fields: ['amend-home-address-options'],
@@ -143,7 +152,7 @@ module.exports = {
           }
         }
       ],
-      locals: { captionHeading: 'Section 10 of 20' },
+      locals: { captionHeading: 'Section 10 of 23' },
       next: '/new-address'
     },
     '/new-address': {
@@ -158,7 +167,7 @@ module.exports = {
       ],
       behaviours: [AfterDateOfBirth, PostcodeValidation],
       next: '/upload-proof-address',
-      locals: { captionHeading: 'Section 11 of 20' }
+      locals: { captionHeading: 'Section 11 of 23' }
     },
     '/upload-proof-address': {
       next: '/section-twelve'
@@ -169,8 +178,8 @@ module.exports = {
     },
     '/change-substances': {
       fields: ['amend-explosive-precusor-type'],
-      locals: { captionHeading: 'Section 13 of 20' },
-      next: '/explosives-precursors'
+      locals: { captionHeading: 'Section 13 of 23' },
+        next: '/explosives-precursors'
     },
     '/explosives-precursors': {
       fields: ['amend-regulated-explosives-precursors'],
@@ -189,7 +198,7 @@ module.exports = {
     },
     '/select-precursor': {
       fields: ['amend-precursor-field'],
-      locals: { captionHeading: 'Section 15 of 20' },
+      locals: { captionHeading: 'Section 15 of 23' },
       next: '/section-sixteen'
     },
     '/poisons': {

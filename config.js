@@ -65,6 +65,31 @@ module.exports = {
         allowMultipleUploads: false,
         limit: 1,
         limitValidationError: 'maxAmendBritishPassport'
+      },
+      'new-renew-eu-passport': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxNewRenewEuPassport'
+      },
+      'amend-eu-passport': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxAmendPassport'
+      },
+      'amend-uk-driving-licence': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxAmendDrivingLicence'
+      },
+      'new-renew-proof-address': {
+        allowMultipleUploads: true,
+        limit: 2,
+        limitValidationError: 'maxNewRenewProofAddress'
+      },
+      'new-renew-upload-driving-licence': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxNewRenewDrivingLicence'
       }
     }
   },

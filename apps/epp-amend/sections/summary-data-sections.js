@@ -145,8 +145,39 @@ module.exports = {
 
           return null;
         }
-      }
+      },
+      {
+        step: '/upload-passport',
+        field: 'amend-eu-passport',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel
+              .get('steps')
+              .includes('/upload-passport') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file.name);
+          }
 
+          return null;
+        }
+      },
+      {
+        step: '/upload-driving-licence',
+        field: 'amend-uk-driving-licence',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel
+              .get('steps')
+              .includes('/upload-driving-licence') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file.name);
+          }
+
+          return null;
+        }
+      }
     ]
   },
   'amend-home-address-options': {
