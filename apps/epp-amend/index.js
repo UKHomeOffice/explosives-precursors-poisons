@@ -177,11 +177,31 @@ module.exports = {
       next: '/change-substances'
     },
     '/change-substances': {
-      fields: ['amend-explosive-precusor-type'],
+      fields: ['amend-change-substances-options'],
+      forks: [
+        {
+          target: '/countersignatory-details',
+          condition: req =>
+            req.sessionModel.get('amend-change-substances-options') === 'no'
+          && req.sessionModel.get('amend-name-options') === 'yes'
+          || req.sessionModel.get('amend-home-address-options') === 'yes'
+        },
+        {
+          target: '/no-details-amend',
+          condition: req =>
+            req.sessionModel.get('amend-change-substances-options') === 'no'
+          && req.sessionModel.get('amend-name-options') === 'no'
+          && req.sessionModel.get('amend-home-address-options') === 'no'
+        }
+      ],
+      continueOnEdit: true,
       locals: { captionHeading: 'Section 13 of 23' },
-      next: '/section-fourteen'
+      next: '/explosives-precursors'
     },
-    '/section-fourteen': {
+    '/no-details-amend': {
+      locals: { captionHeading: 'Section 13 of 23'}
+    },
+    '/explosives-precursors': {
       fields: ['amend-poison-type'],
       next: '/select-precursor'
     },
