@@ -207,6 +207,11 @@ module.exports = {
       locals: { captionHeading: 'Section 15 of 23' },
       next: '/section-seventeen'
     },
+    '/precursors-summary': {
+      fields: [],
+      next: 'section-seventeen',
+      locals: { captionHeading: 'Section 15 of 23' }
+    },
     '/section-seventeen': {
       fields: ['amend-countersignatory-phone', 'amend-countersignatory-email'],
       next: '/section-eighteen'
