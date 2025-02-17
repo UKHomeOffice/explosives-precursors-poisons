@@ -233,7 +233,7 @@ describe('EPP utilities tests', () => {
     }
   });
 
-  it('.getPrecursorsShortLabel - should return original result for out of unknown strings', () => {
+  it('.getPrecursorsShortLabel - should return original result for unknown strings', () => {
     const inputs = ['Hello World', 'Unit test', 'random-text'];
     for (const input of inputs) {
       expect(getPrecursorsShortLabel(input)).to.be.equal(input);
