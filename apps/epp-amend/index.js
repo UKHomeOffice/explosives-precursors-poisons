@@ -216,11 +216,11 @@ module.exports = {
       locals: { captionHeading: 'Section 18 of 23' },
       next: '/countersignatory-address'
     },
-  '/poisons': {
+    '/poisons': {
       fields: [],
       locals: { captionHeading: 'Section 16 of 23' },
       next: '/section-sixteen'
-  },
+    },
     '/countersignatory-address': {
       fields: [
         'amend-countersignatory-address-1',

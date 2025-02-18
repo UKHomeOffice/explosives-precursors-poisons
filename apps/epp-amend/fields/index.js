@@ -308,15 +308,15 @@ module.exports = {
       }
     ].concat(precursorList)
   },
-    'amend-regulated-explosives-precursors': {
-        mixin: 'radio-group',
-        legend: {
-            className: 'govuk-label--m'
-        },
-        className: ['govuk-radios', 'govuk-radios--inline'],
-        options: ['yes', 'no'],
-        validate: 'required'
+  'amend-regulated-explosives-precursors': {
+    mixin: 'radio-group',
+    legend: {
+      className: 'govuk-label--m'
     },
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    options: ['yes', 'no'],
+    validate: 'required'
+  },
   'amend-countersignatory-title': {
     mixin: 'select',
     validate: 'required',
