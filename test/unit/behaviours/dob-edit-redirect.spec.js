@@ -28,6 +28,7 @@ describe('Tests for dob edit redirect behaviour', () => {
     });
 
     it('Edit Journey - Age is less than 18 years - should redirect to the given redirect URL - ', () => {
+      const date = moment().subtract('17', 'years').format('YYYY-MM-DD');
       req = {
         sessionModel: {
           set: sinon.spy()
@@ -35,15 +36,15 @@ describe('Tests for dob edit redirect behaviour', () => {
         originalUrl: 'http://domain/path/edit',
         form: {
           values: {
-            'test-field-name': moment()
-              .subtract('17', 'years')
-              .format('YYYY-MM-DD')
+            'test-field-name': date
           }
         }
       };
       instance.saveValues(req, res, next);
       expect(res.redirect.calledOnce).to.be.true;
       expect(res.redirect.calledWith('/redirect-url')).to.be.true;
+      expect(req.sessionModel.set.calledOnce).to.be.true;
+      expect(req.sessionModel.set.calledWith('test-field-name', date));
     });
 
     it('Non Edit Journey - Age is less than 18 years - should not redirect to the given redirect URL ', () => {
@@ -62,6 +63,7 @@ describe('Tests for dob edit redirect behaviour', () => {
       };
       instance.saveValues(req, res, next);
       expect(res.redirect.calledOnce).to.be.false;
+      expect(req.sessionModel.set.calledOnce).to.be.false;
     });
 
     it('Edit Journey - Age is more than 18 years - should not redirect to the given redirect URL', () => {
@@ -80,6 +82,7 @@ describe('Tests for dob edit redirect behaviour', () => {
       };
       instance.saveValues(req, res, next);
       expect(res.redirect.calledOnce).to.be.false;
+      expect(req.sessionModel.set.calledOnce).to.be.false;
     });
 
     afterEach(() => {
