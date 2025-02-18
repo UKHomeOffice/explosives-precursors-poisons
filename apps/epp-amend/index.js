@@ -9,6 +9,8 @@ const RemoveDocument = require('../epp-common/behaviours/remove-document');
 
 const RenderPrecursorDetails = require('./behaviours/render-precursors-details-page');
 
+const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
+
 module.exports = {
   name: 'EPP form',
   fields: 'apps/epp-amend/fields',
@@ -39,7 +41,17 @@ module.exports = {
       locals: { captionHeading: 'Section 3 of 23' }
     },
     '/home-address': {
-      behaviours: [PostcodeValidation],
+      behaviours: [
+        PostcodeValidation,
+        SaveHomeAddress([
+          'amend-address-1',
+          'amend-address-2',
+          'amend-town-or-city',
+          'amend-county',
+          'amend-postcode',
+          'amend-country'
+        ])
+      ],
       fields: [
         'amend-address-1',
         'amend-address-2',

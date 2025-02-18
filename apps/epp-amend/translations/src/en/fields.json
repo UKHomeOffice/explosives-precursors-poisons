@@ -170,8 +170,8 @@
     "hint": "This must be in the UK",
     "options": {
       "amend-store-precursors-home-address": {
-        "label": "Home address",
-        "hint": "Display Home address here"
+        "label": "{{values.homeAddressInline}}",
+        "hint": "TBD"
       },
       "amend-store-precursors-other-address": {
         "label": "Other address"
@@ -187,8 +187,8 @@
     "hint": "This must be in the UK",
     "options": {
       "amend-use-precursors-home-address": {
-        "label": "Home address",
-        "hint": "Display Home address here"
+        "label": "{{values.homeAddressInline}}",
+        "hint": "TBD"
       },
       "amend-use-precursors-other-address": {
         "label": "Other address"
