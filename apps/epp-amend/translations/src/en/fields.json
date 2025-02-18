@@ -154,6 +154,53 @@
       "none_selected": "Select"
     }
   },
+  "amend-countersignatory-title":{
+    "label": "Title",
+    "options": {
+      "none_selected": "Select"
+    }
+  },
+  "amend-countersignatory-firstname":{
+    "label": "First name"
+  },
+  "amend-countersignatory-middlename":{
+    "label": "Middle names (optional)"
+  },
+  "amend-countersignatory-lastname":{
+    "label": "Last name"
+  },
+  "amend-countersignatory-years": {
+    "label": "How many years have you known your countersignatory?",
+    "hint": "They must have known you for at least 2 years",
+    "options": {
+      "none_selected": "Select"
+    }
+  },
+  "amend-countersignatory-howyouknow":{
+    "label": "How do you know your countersignatory?"
+  },
+  "amend-countersignatory-occupation":{
+    "label": "What is your countersignatory’s occupation?"
+  },
+  "amend-countersignatory-address-1": {
+    "label": "Address line 1"
+  },
+  "amend-countersignatory-address-2": {
+    "label": "Address line 2 (optional)"
+  },
+  "amend-countersignatory-town-or-city": {
+    "label": "Town or city"
+  },
+  "amend-countersignatory-postcode": {
+    "label": "Postcode"
+  },
+  "amend-countersignatory-phone-number": {
+    "label": "Contact phone number",
+    "hint": "For international numbers, include the country code"
+  },
+  "amend-countersignatory-email": {
+    "label": "Email address"
+  },
   "amend-regulated-explosives-precursors": {
     "legend": "Do you need to amend the explosives precursors on your licence?",
     "options": {

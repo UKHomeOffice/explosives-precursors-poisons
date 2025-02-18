@@ -64,7 +64,7 @@
   "select-precursor": {
     "header": "Explosives precursors",
     "p1": "Tell us which explosives precursors you want to import acquire use or possess.",
-    "p2": "If you need multiple explosives precursors, you can add each one separately." 
+    "p2": "If you need multiple explosives precursors, you can add each one separately."
   },
   "explosives-precursors": {
     "header": "Regulated explosives precursors",
@@ -75,6 +75,16 @@
   },
   "application-submitted": {
     "confirmed": "Amendment submitted"
+  },
+  "countersignatory-details": {
+    "header": "Countersignatory details",
+    "description": "Your countersignatory must not be a parent or relative, unless you are under 18. If you are under 18, your countersignatory must be your parent or legal guardian."
+  },
+  "countersignatory-address": {
+    "header": "Countersignatory address"
+  },
+  "countersignatory-contact":{
+    "header": "Countersignatory's contact details"
   },
   "confirm": {
     "header": "Check your answers",
@@ -192,6 +202,24 @@
       },
       "amend-regulated-explosives-precursors": {
         "label": "Does your licence need to cover explosives precursors?"
+      },
+      "amend-countersignatory-middlename": {
+        "label": "Middle names"
+      },
+      "amend-countersignatory-years":{
+        "label": "How many years have you known countersignatory?"
+      },
+      "amend-countersignatory-howyouknow":{
+        "label": "How do you know countersignatory?"
+      },
+      "amend-countersignatory-occupation":{
+        "label": "Countersignatory’s occupation"
+      },
+      "amend-countersignatory-address-2": {
+        "label": "Address line 2"
+      },
+      "amend-countersignatory-phone-number": {
+        "label": "Phone number"
       }
     }
   }

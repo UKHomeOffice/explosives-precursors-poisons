@@ -97,11 +97,13 @@ module.exports = {
         'amend-Uk-driving-licence-number'
       ],
       forks: [
-        {target: '/upload-british-passport',
+        {
+          target: '/upload-british-passport',
           condition: req =>
             req.sessionModel.get('amend-applicant-Id-type') === 'UK-passport'
         },
-        {target: '/upload-passport',
+        {
+          target: '/upload-passport',
           condition: req =>
             req.sessionModel.get('amend-applicant-Id-type') === 'EU-passport'
         }
@@ -201,22 +203,40 @@ module.exports = {
       locals: { captionHeading: 'Section 15 of 23' },
       next: '/section-sixteen'
     },
-    '/poisons': {
+    '/countersignatory-details': {
+      fields: [
+        'amend-countersignatory-title',
+        'amend-countersignatory-firstname',
+        'amend-countersignatory-middlename',
+        'amend-countersignatory-lastname',
+        'amend-countersignatory-years',
+        'amend-countersignatory-howyouknow',
+        'amend-countersignatory-occupation'
+      ],
+      locals: { captionHeading: 'Section 18 of 23' },
+      next: '/countersignatory-address'
+    },
+  '/poisons': {
       fields: [],
       locals: { captionHeading: 'Section 16 of 23' },
       next: '/section-sixteen'
-    },
-    '/section-sixteen': {
+  },
+    '/countersignatory-address': {
       fields: [
         'amend-countersignatory-address-1',
         'amend-countersignatory-address-2',
         'amend-countersignatory-town-or-city',
         'amend-countersignatory-postcode'
       ],
-      next: '/section-seventeen'
+      locals: { captionHeading: 'Section 19 of 23' },
+      next: '/countersignatory-contact'
     },
-    '/section-seventeen': {
-      fields: ['amend-countersignatory-phone', 'amend-countersignatory-email'],
+    '/countersignatory-contact': {
+      fields: [
+        'amend-countersignatory-phone-number',
+        'amend-countersignatory-email'
+      ],
+      locals: { captionHeading: 'Section 20 of 23' },
       next: '/section-eighteen'
     },
     '/section-eighteen': {
