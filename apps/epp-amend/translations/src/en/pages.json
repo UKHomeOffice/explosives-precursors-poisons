@@ -5,6 +5,9 @@
   "name-on-licence": {
     "header": "What is your name on the licence?"
   },
+  "date-of-birth": {
+    "header": "What is your date of birth?"
+  },
   "contact-details": {
     "header": "What are your contact details?"
   },
