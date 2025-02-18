@@ -1,7 +1,7 @@
 const moment = require('moment');
 const Behaviour = require('../../../apps/epp-common/behaviours/dob-edit-redirect');
 
-describe.only('Tests for dob edit redirect behaviour', () => {
+describe('Tests for dob edit redirect behaviour', () => {
   class Base {
     constructor() {}
     saveValues() {}
