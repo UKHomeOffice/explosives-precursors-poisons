@@ -1,4 +1,8 @@
 const { getPrecursorsShortLabel } = require('../../../utilities/helpers');
+
+/**
+ * @param {string} fieldName - The field name used on the select precursor page
+ */
 module.exports = fieldName => superclass =>
   class extends superclass {
     getValues(req, res, next) {
