@@ -7,7 +7,7 @@ const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator'
 const SaveDocument = require('../epp-common/behaviours/save-document');
 const RemoveDocument = require('../epp-common/behaviours/remove-document');
 
-const RenderPrecursorDetails = require('./behaviours/render-precursors-details-page');
+const RenderPrecursorDetails = require('./behaviours/render-precursors-detail');
 
 const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
 
