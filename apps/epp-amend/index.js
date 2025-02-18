@@ -206,7 +206,7 @@ module.exports = {
     },
     '/section-fourteen': {
       fields: ['amend-poison-type'],
-      next: '/countersignatory-details'
+      next: '/select-precursor'
     },
     '/select-precursor': {
       fields: ['amend-precursor-field'],

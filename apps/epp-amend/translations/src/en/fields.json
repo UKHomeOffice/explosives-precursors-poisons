@@ -217,8 +217,7 @@
     "hint": "This must be in the UK",
     "options": {
       "amend-store-precursors-home-address": {
-        "label": "{{values.homeAddressInline}}",
-        "hint": "TBD"
+        "label": "{{values.homeAddressInline}}"
       },
       "amend-store-precursors-other-address": {
         "label": "Other address"
@@ -234,8 +233,7 @@
     "hint": "This must be in the UK",
     "options": {
       "amend-use-precursors-home-address": {
-        "label": "{{values.homeAddressInline}}",
-        "hint": "TBD"
+        "label": "{{values.homeAddressInline}}"
       },
       "amend-use-precursors-other-address": {
         "label": "Other address"
