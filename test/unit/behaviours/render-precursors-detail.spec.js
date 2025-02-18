@@ -1,49 +1,44 @@
-const RenderPrecursorsDetail = require('../../../apps/epp-amend/behaviours/render-precursors-detail');
-const Model = require('hof').model;
+const RenderPrecursorsDetail = require('../../../apps/epp-common/behaviours/render-precursors-detail');
 
-describe.only('render-precursors-detail behaviour tests', () => {
-  let behaviour;
-  let Behaviour;
-  let superGetValuesStub;
+describe('Tests for render precursors detail behaviour', () => {
+  class Base {
+    constructor() {}
+    getValues() {}
+  }
+
   let req;
   let res;
-  let next;
-
-  class Base {}
+  let instance;
+  const next = 'unit-test';
 
   beforeEach(() => {
     req = reqres.req();
-    res = {
-      redirect: sinon.spy()
-    };
-    next = sinon.stub();
-    superGetValuesStub = sinon.stub();
-
-    req.sessionModel = new Model({});
-
-    Base.prototype.getValues = superGetValuesStub;
-    Behaviour = RenderPrecursorsDetail;
-    Behaviour = Behaviour(Base);
-    behaviour = new Behaviour();
+    res = reqres.res();
   });
+  describe('getValues tests', () => {
+    beforeEach(() => {
+      sinon.stub(Base.prototype, 'getValues').returns(req, res, next);
+      instance = new (RenderPrecursorsDetail('test-field-name')(Base))();
+    });
 
-  it('should be an instance', () => {
-    expect(behaviour).to.be.an.instanceOf(Base);
-  });
+    it('init - getValues', () => {
+      instance.getValues(req, res, next);
+      expect(Base.prototype.getValues).to.have.been.called;
+    });
 
-  it('should call super.getValues', () => {
-    behaviour.getValues(req, res, next);
-    superGetValuesStub.should.be.calledOnce;
-  });
+    it('Should set the items in session', () => {
+      req = {
+        sessionModel: {
+          set: sinon.spy(),
+          get: () => 'precursor-value'
+        }
+      };
+      instance.getValues(req, res, next);
+      expect(req.sessionModel.set.callCount).to.equal(5);
+    });
 
-  it('Should set the items in session', () => {
-    req = {
-      sessionModel: {
-        set: sinon.spy(),
-        get: () => 'precursor-value'
-      }
-    };
-    behaviour.getValues(req, res, next);
-    expect(req.sessionModel.set.callCount).to.equal(5);
+    afterEach(() => {
+      Base.prototype.getValues.restore();
+    });
   });
 });

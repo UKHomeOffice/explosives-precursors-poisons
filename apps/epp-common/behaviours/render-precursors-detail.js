@@ -1,8 +1,8 @@
 const { getPrecursorsShortLabel } = require('../../../utilities/helpers');
-module.exports = superclass =>
+module.exports = fieldName => superclass =>
   class extends superclass {
     getValues(req, res, next) {
-      const selectedPrecursor = req.sessionModel.get('amend-precursor-field');
+      const selectedPrecursor = req.sessionModel.get(fieldName);
       const whyNeedPrecursorLabel = getPrecursorsShortLabel(
         `Why do you need ${selectedPrecursor}`
       );
