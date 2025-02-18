@@ -228,5 +228,63 @@ module.exports = {
         field: 'amend-precursor-field'
       }
     ]
+  },
+  'countersignatory-details': {
+    steps: [
+      {
+        step: '/countersignatory-details',
+        field: 'amend-countersignatory-title'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'amend-countersignatory-firstname'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'amend-countersignatory-middlename',
+        parse: value => value || 'Not provided'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'amend-countersignatory-lastname'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'amend-countersignatory-years'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'amend-countersignatory-howyouknow'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'amend-countersignatory-occupation'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'amend-countersignatory-address-1'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'amend-countersignatory-address-2',
+        parse: value => value || 'Not provided'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'amend-countersignatory-town-or-city'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'amend-countersignatory-postcode'
+      },
+      {
+        step: '/countersignatory-contact',
+        field: 'amend-countersignatory-phone-number'
+      },
+      {
+        step: '/countersignatory-contact',
+        field: 'amend-countersignatory-email'
+      }
+    ]
   }
 };

@@ -112,11 +112,13 @@ module.exports = {
         'amend-Uk-driving-licence-number'
       ],
       forks: [
-        {target: '/upload-british-passport',
+        {
+          target: '/upload-british-passport',
           condition: req =>
             req.sessionModel.get('amend-applicant-Id-type') === 'UK-passport'
         },
-        {target: '/upload-passport',
+        {
+          target: '/upload-passport',
           condition: req =>
             req.sessionModel.get('amend-applicant-Id-type') === 'EU-passport'
         }
@@ -198,34 +200,61 @@ module.exports = {
     },
     '/section-fourteen': {
       fields: ['amend-poison-type'],
-      next: '/select-precursor'
+      next: '/countersignatory-details'
     },
     '/select-precursor': {
       fields: ['amend-precursor-field'],
       locals: { captionHeading: 'Section 15 of 23' },
       next: '/precursor-details'
     },
-    '/precursor-details': {
-      behaviours: [RenderPrecursorDetails],
+      '/precursor-details': {
+          behaviours: [RenderPrecursorDetails],
+          fields: [
+              'amend-why-need-precursor',
+              'amend-how-much-precursor',
+              'amend-what-concentration-precursor',
+              'amend-where-to-store-precursor',
+              'amend-where-to-use-precursor',
+              'store-precursors-other-address',
+              'precursors-use-other-address'
+          ],
+          locals: { captionHeading: 'Section 15 of 23' },
+          next: '/section-seventeen'
+      },
+      '/precursors-summary': {
+          fields: [],
+          next: 'section-seventeen',
+          locals: { captionHeading: 'Section 15 of 23' }
+      },
+    '/countersignatory-details': {
       fields: [
-        'amend-why-need-precursor',
-        'amend-how-much-precursor',
-        'amend-what-concentration-precursor',
-        'amend-where-to-store-precursor',
-        'amend-where-to-use-precursor',
-        'store-precursors-other-address',
-        'precursors-use-other-address'
+        'amend-countersignatory-title',
+        'amend-countersignatory-firstname',
+        'amend-countersignatory-middlename',
+        'amend-countersignatory-lastname',
+        'amend-countersignatory-years',
+        'amend-countersignatory-howyouknow',
+        'amend-countersignatory-occupation'
       ],
-      locals: { captionHeading: 'Section 15 of 23' },
-      next: '/section-seventeen'
+      locals: { captionHeading: 'Section 18 of 23' },
+      next: '/countersignatory-address'
     },
-    '/precursors-summary': {
-      fields: [],
-      next: 'section-seventeen',
-      locals: { captionHeading: 'Section 15 of 23' }
+    '/countersignatory-address': {
+      fields: [
+        'amend-countersignatory-address-1',
+        'amend-countersignatory-address-2',
+        'amend-countersignatory-town-or-city',
+        'amend-countersignatory-postcode'
+      ],
+      locals: { captionHeading: 'Section 19 of 23' },
+      next: '/countersignatory-contact'
     },
-    '/section-seventeen': {
-      fields: ['amend-countersignatory-phone', 'amend-countersignatory-email'],
+    '/countersignatory-contact': {
+      fields: [
+        'amend-countersignatory-phone-number',
+        'amend-countersignatory-email'
+      ],
+      locals: { captionHeading: 'Section 20 of 23' },
       next: '/section-eighteen'
     },
     '/section-eighteen': {

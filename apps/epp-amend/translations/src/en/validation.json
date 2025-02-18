@@ -161,36 +161,96 @@
     "amend-precursor-field": {
       "required" : "Select an explosive precursor"
     },
-    "amend-why-need-precursor": {
-      "required": "Explain why you need this explosive precursor",
-      "textAreaDefaultLength": "Reason why you need this explosive precursor must be less than 2,000 characters",
-      "notUrl" : "Your answer must not include a URL"
-    },
-    "amend-how-much-precursor": {
-      "required": "Enter how much of the explosive precursor you wish to acquire at any one time",
-      "maxlength": "Quantity of the explosive precursor you wish to acquire must be 250 characters or less",
-      "notUrl" : "Your answer must not include a URL"
-    },
-    "amend-where-to-store-precursor": {
-      "required": "Select where you will store the explosive precursor"
-    },
-    "amend-what-concentration-precursor": {
-      "required": "Enter what concentration % w/w you need",
-      "isValidConcentrationValue" : "Concentration % w/w must only include numbers or special characters",
-      "maxlength": "Concentration % w/w must be 250 characters or less",
-      "notUrl" : "Your answer must not include a URL"
-    },
-    "amend-where-to-use-precursor": {
-      "required": "Select where you will use the explosive precursor"
-    },
-    "store-precursors-other-address": {
-      "required": "Enter the address where you will store the explosive precursor",
-      "textAreaDefaultLength": "Storage address must be 2,000 characters or less",
-       "notUrl" : "Your answer must not include a URL"
-    },
-    "precursors-use-other-address": {
-      "required": "Enter the address where you will use the explosive precursor",
-      "textAreaDefaultLength": "Usage address must be 2,000 characters or less",
-       "notUrl" : "Your answer must not include a URL"
-    }
+  "amend-why-need-precursor": {
+    "required": "Explain why you need this explosive precursor",
+    "textAreaDefaultLength": "Reason why you need this explosive precursor must be less than 2,000 characters",
+    "notUrl" : "Your answer must not include a URL"
+  },
+  "amend-how-much-precursor": {
+    "required": "Enter how much of the explosive precursor you wish to acquire at any one time",
+    "maxlength": "Quantity of the explosive precursor you wish to acquire must be 250 characters or less",
+    "notUrl" : "Your answer must not include a URL"
+  },
+  "amend-where-to-store-precursor": {
+    "required": "Select where you will store the explosive precursor"
+  },
+  "amend-what-concentration-precursor": {
+    "required": "Enter what concentration % w/w you need",
+    "isValidConcentrationValue" : "Concentration % w/w must only include numbers or special characters",
+    "maxlength": "Concentration % w/w must be 250 characters or less",
+    "notUrl" : "Your answer must not include a URL"
+  },
+  "amend-where-to-use-precursor": {
+    "required": "Select where you will use the explosive precursor"
+  },
+  "store-precursors-other-address": {
+    "required": "Enter the address where you will store the explosive precursor",
+    "textAreaDefaultLength": "Storage address must be 2,000 characters or less",
+    "notUrl" : "Your answer must not include a URL"
+  },
+  "precursors-use-other-address": {
+    "required": "Enter the address where you will use the explosive precursor",
+    "textAreaDefaultLength": "Usage address must be 2,000 characters or less",
+    "notUrl" : "Your answer must not include a URL"
+  },
+  "amend-countersignatory-title": {
+    "required": "Select your countersignatory's title"
+  },
+  "amend-countersignatory-firstname": {
+    "required": "Enter your countersignatory's first name",
+    "maxlength": "Countersignatory's first name must between 1 and 250 characters",
+    "notUrl": "Your answer must not include a URL"
+  },
+  "amend-countersignatory-middlename": {
+    "maxlength": "Countersignatory's middle names must be between 1 and 250 characters",
+    "notUrl": "Your answer must not include a URL"
+  },
+  "amend-countersignatory-lastname": {
+    "required": "Enter your countersignatory's last name",
+    "maxlength": "Countersignatory's last name must be between 1 and 250 characters",
+    "notUrl": "Your answer must not include a URL"
+  },
+  "amend-countersignatory-years": {
+    "required": "Select how many years you have known your countersignatory"
+  },
+  "amend-countersignatory-howyouknow": {
+    "required": "Enter how you know your countersignatory",
+    "maxlength": "How you know your countersignatory must be 250 characters or less",
+    "notUrl": "Your answer must not include a URL"
+  },
+  "amend-countersignatory-occupation": {
+    "required": "Enter your countersignatory's occupation",
+    "maxlength": "Countersignatory's occupation must be 250 characters or less",
+    "notUrl": "Your answer must not include a URL"
+  },
+  "amend-countersignatory-address-1": {
+    "required" : "Enter address line 1, typically the building and street",
+    "minlength": "Address line 1 must be between 2 and 250 characters",
+    "maxlength": "Address line 1 must be between 2 and 250 characters",
+    "notUrl" : "Your answer must not include a URL"
+  },
+  "amend-countersignatory-address-2": {
+    "minlength": "Address line 2 must be between 2 and 250 characters",
+    "maxlength": "Address line 2 must be between 2 and 250 characters",
+    "notUrl" : "Your answer must not include a URL"
+  },
+  "amend-countersignatory-town-or-city": {
+    "required" : "Enter town or city",
+    "minlength": "Town or city must be between 2 and 250 characters",
+    "maxlength": "Town or city must be between 2 and 250 characters",
+    "notUrl" : "Your answer must not include a URL"
+  },
+  "amend-countersignatory-postcode": {
+    "required" : "Enter a UK postcode",
+    "postcode" : "Enter a real UK postcode"
+  },
+  "amend-countersignatory-phone-number": {
+    "required": "Enter your countersignatory's telephone number",
+    "validInternationalPhoneNumber": "Enter a real telephone number",
+    "notUrl" : "Your answer must not include a URL"
+  },
+  "amend-countersignatory-email": {
+    "required": "Enter your countersignatory's email address",
+    "email": "Enter a real email address"
+  }
 }
