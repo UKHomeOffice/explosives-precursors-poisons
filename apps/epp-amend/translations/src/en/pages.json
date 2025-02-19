@@ -66,6 +66,13 @@
     "p1": "Tell us which explosives precursors you want to import acquire use or possess.",
     "p2": "If you need multiple explosives precursors, you can add each one separately."
   },
+  "explosives-precursors": {
+    "header": "Regulated explosives precursors",
+    "p1": "Check what your licence needs to cover using the",
+    "link": "https://www.gov.uk/government/publications/supplying-explosives-precursors/list-of-chemicals",
+    "link-text": "list of regulated chemicals (opens in a new tab)",
+    "p2": "You do not need a licence for reportable explosives precursors."
+  },
   "application-submitted": {
     "confirmed": "Amendment submitted"
   },
@@ -112,6 +119,9 @@
       },
       "amend-new-home-address": {
         "header": "New address"
+      },
+      "amend-licence-for-explosives-precursors": {
+        "header": "Licence for explosives precursors"
       },
       "amend-explosives-precursor": {
         "header": "Explosives precursors"
@@ -192,6 +202,9 @@
       },
       "amend-precursor-field": {
         "label": "Explosives precursor"
+      },
+      "amend-regulated-explosives-precursors": {
+        "label": "Does your licence need to cover explosives precursors?"
       },
       "amend-countersignatory-middlename": {
         "label": "Middle names"

@@ -161,6 +161,9 @@
     "amend-precursor-field": {
       "required" : "Select an explosive precursor"
     },
+  "amend-regulated-explosives-precursors": {
+    "required": "Select if your licence needs to cover explosives precursors"
+  },
   "amend-why-need-precursor": {
     "required": "Explain why you need this explosive precursor",
     "textAreaDefaultLength": "Reason why you need this explosive precursor must be less than 2,000 characters",
