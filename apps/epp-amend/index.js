@@ -6,6 +6,8 @@ const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
 const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator');
 const SaveDocument = require('../epp-common/behaviours/save-document');
 const RemoveDocument = require('../epp-common/behaviours/remove-document');
+const CheckAndRedirect = require('../epp-common/behaviours/check-answer-redirect');
+
 module.exports = {
   name: 'EPP form',
   fields: 'apps/epp-amend/fields',
@@ -53,7 +55,7 @@ module.exports = {
         'amend-phone-number',
         'amend-email'
       ],
-      locals: {captionHeading: 'Section 5 of 23'},
+      locals: { captionHeading: 'Section 5 of 23' },
       next: '/amend-details'
     },
     '/amend-details': {
@@ -74,7 +76,7 @@ module.exports = {
           }
         }
       ],
-      locals: {captionHeading: 'Section 6 of 23'},
+      locals: { captionHeading: 'Section 6 of 23' },
       next: '/new-name'
     },
     '/new-name': {
@@ -97,11 +99,13 @@ module.exports = {
         'amend-Uk-driving-licence-number'
       ],
       forks: [
-        {target: '/upload-british-passport',
+        {
+          target: '/upload-british-passport',
           condition: req =>
             req.sessionModel.get('amend-applicant-Id-type') === 'UK-passport'
         },
-        {target: '/upload-passport',
+        {
+          target: '/upload-passport',
           condition: req =>
             req.sessionModel.get('amend-applicant-Id-type') === 'EU-passport'
         }
@@ -177,29 +181,22 @@ module.exports = {
       next: '/change-substances'
     },
     '/change-substances': {
-      fields: ['amend-change-substances-options'],
-      forks: [
-        {
-          target: '/countersignatory-details',
-          condition: req =>
-            req.sessionModel.get('amend-change-substances-options') === 'no'
-          && req.sessionModel.get('amend-name-options') === 'yes'
-          || req.sessionModel.get('amend-home-address-options') === 'yes'
-        },
-        {
-          target: '/no-details-amend',
-          condition: req =>
-            req.sessionModel.get('amend-change-substances-options') === 'no'
-          && req.sessionModel.get('amend-name-options') === 'no'
-          && req.sessionModel.get('amend-home-address-options') === 'no'
-        }
+      behaviours:[
+        CheckAndRedirect('amend-change-substances-options',
+          ['amend-change-substances-options', 'amend-name-options', 'amend-home-address-options']
+        )
       ],
+      fields: ['amend-change-substances-options'],
       continueOnEdit: true,
+      next: '/explosives-precursors',
       locals: { captionHeading: 'Section 13 of 23' },
-      next: '/explosives-precursors'
+
     },
     '/no-details-amend': {
-      locals: { captionHeading: 'Section 13 of 23'}
+      locals: { captionHeading: 'Section 13 of 23' }
+    },
+     '/countersignatory-details': {
+      locals: { captionHeading: 'Section 13 of 23' }
     },
     '/explosives-precursors': {
       fields: ['amend-poison-type'],
