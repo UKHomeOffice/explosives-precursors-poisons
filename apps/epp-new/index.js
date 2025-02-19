@@ -591,7 +591,6 @@ module.exports = {
     '/declaration': {
       behaviours: [InitiatePaymentRequest],
       fields: ['new-renew-declaration'],
-      // verify path name when payment component will be added to service
       locals: {
         sectionNo: {
           new: 20,
