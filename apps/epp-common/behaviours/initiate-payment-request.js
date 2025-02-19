@@ -6,7 +6,8 @@ const {
 
 module.exports = superclass =>
   class extends superclass {
-    async saveValues(req, res, next) {
+    async saveValues(req, res) {
+      // TODO: Redirection routes based on the flow
       try {
         const randomId = generateRandomId();
         const hmac = generateHmac(randomId);
@@ -36,10 +37,13 @@ module.exports = superclass =>
         const data = await resp.json();
         req.sessionModel.set('payment-id', data.payment_id);
         req.sessionModel.set('random-id', randomId);
-        return res.redirect(data._links.next_url.href);
+        if (data?._links?.next_url?.href) {
+          return res.redirect(data._links.next_url.href);
+        }
+        return res.redirect('/new-and-renew/payment-problem');
       } catch (error) {
         req.log('error', 'Error initiating the payment: ' + error);
-        return next(Error('Something went wrong.'));
+        return res.redirect('/new-and-renew/payment-problem');
       }
     }
   };

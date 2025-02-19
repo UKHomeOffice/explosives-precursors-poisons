@@ -1,0 +1,18 @@
+{{<partials-page}}
+{{$page-content}}
+
+<p class="govuk-body">This can be because:</p>
+<ul class="govuk-list govuk-list--bullet">
+    <li>the card details were incorrect</li>
+    <li>the payment failed fraud checks with your bank account</li>
+    <li>you need to approve a 3D Secure authentication first</li>
+    <li>there are insufficient funds in the account</li>
+</ul>
+<p>Check your card details and try paying again using button below</p>
+<p class="govuk-body">
+    If you keep having problems when paying, contact us at
+    <a class="govuk-link" href="mailto:epp@homeoffice.pnn.police.uk">epp@homeoffice.pnn.police.uk</a>.
+</p>
+{{#input-submit}}try-paying-again{{/input-submit}}
+{{/page-content}}
+{{/partials-page}}

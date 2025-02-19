@@ -5,6 +5,7 @@ const {
 module.exports = superclass =>
   class extends superclass {
     async getValues(req, res, next) {
+      // TODO: Redirection routes based on the flow
       try {
         const id = req.sessionModel.get('random-id');
         const paymentId = req.sessionModel.get('payment-id');

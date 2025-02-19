@@ -148,6 +148,9 @@
   "payment-cancelled": {
     "header": "Payment cancelled"
   },
+  "payment-failed": {
+    "header": "Payment failed"
+  },
   "application-submitted": {
     "submitted": "Application submitted"
   },
