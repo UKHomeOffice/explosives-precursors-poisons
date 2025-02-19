@@ -1,6 +1,6 @@
 {{<partials-page}}
   {{$pageTitle}}
-  {{#values.isNewJourney}}{{#t}}journey.serviceNameNew{{/t}}{{/values.isNewJourney}}{{#values.isRenewJourney}}{{#t}}journey.serviceNameRenew{{/t}}{{/values.isRenewJourney}} &ndash; GOV.UK
+  {{#t}}pages.application-submitted.submitted{{/t}} &ndash; {{#values.isNewJourney}}{{#t}}journey.serviceNameNew{{/t}}{{/values.isNewJourney}}{{#values.isRenewJourney}}{{#t}}journey.serviceNameRenew{{/t}}{{/values.isRenewJourney}} &ndash; GOV.UK
   {{/pageTitle}}
   {{$page-content}}
   <div class="govuk-panel alert-complete govuk-panel--confirmation">
