@@ -14,9 +14,6 @@
   "amend-details":{
     "header": "Amend your licence"
   },
-  "amend-date-of-birth": {
-    "header": " What is your date of Birth?"
-  },
   "home-address": {
     "header": "What is your home address?"
   },
