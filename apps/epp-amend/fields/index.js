@@ -364,7 +364,8 @@ module.exports = {
     dependent: {
       field: 'amend-where-to-store-precursor',
       value: 'amend-store-precursors-other-address'
-    }
+    },
+    attributes: [{ attribute: 'rows', value: 5 }]
   },
   'amend-where-to-use-precursor': {
     mixin: 'checkbox-group',
@@ -389,7 +390,8 @@ module.exports = {
     dependent: {
       field: 'amend-where-to-use-precursor',
       value: 'amend-use-precursors-other-address'
-    }
+    },
+    attributes: [{ attribute: 'rows', value: 5 }]
   },
   'amend-countersignatory-title': {
     mixin: 'select',
