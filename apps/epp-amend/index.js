@@ -236,12 +236,17 @@ module.exports = {
         'precursors-use-other-address'
       ],
       locals: { captionHeading: 'Section 15 of 23' },
-      next: '/section-seventeen'
+      next: '/precursors-summary'
     },
     '/precursors-summary': {
       fields: [],
-      next: 'section-seventeen',
+      next: '/poisons',
       locals: { captionHeading: 'Section 15 of 23' }
+    },
+    '/poisons': {
+      fields: [],
+      locals: { captionHeading: 'Section 16 of 23' },
+      next: '/countersignatory-details'
     },
     '/countersignatory-details': {
       fields: [
@@ -255,11 +260,6 @@ module.exports = {
       ],
       locals: { captionHeading: 'Section 18 of 23' },
       next: '/countersignatory-address'
-    },
-    '/poisons': {
-      fields: [],
-      locals: { captionHeading: 'Section 16 of 23' },
-      next: '/section-sixteen'
     },
     '/countersignatory-address': {
       fields: [
