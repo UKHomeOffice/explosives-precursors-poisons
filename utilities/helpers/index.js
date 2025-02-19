@@ -105,7 +105,7 @@ const textAreaDefaultLength = value => {
 };
 
 const isValidConcentrationValue = value => {
-  return value.match(/^\d+(\.\d+)?%?$/);
+  return value?.match(/^\d+(\.\d+)?%?$/);
 };
 
 const getFormattedDate = date => {

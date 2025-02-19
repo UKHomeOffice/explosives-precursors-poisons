@@ -8,7 +8,9 @@ const {
   validInternationalPhoneNumber,
   removeWhiteSpace,
   getFormattedDate,
-  getPrecursorsShortLabel
+  getPrecursorsShortLabel,
+  textAreaDefaultLength,
+  isValidConcentrationValue
 } = require('../../../utilities/helpers');
 
 const explosivePrecursorsList = require('../../../utilities/constants/explosive-precursors');
@@ -238,5 +240,39 @@ describe('EPP utilities tests', () => {
     for (const input of inputs) {
       expect(getPrecursorsShortLabel(input)).to.be.equal(input);
     }
+  });
+
+  it('.textAreaDefaultLength - should return false when the input is greater than 2000', () => {
+    const str = 'E'.repeat(20001);
+    expect(textAreaDefaultLength(str)).to.be.false;
+  });
+
+  it('.textAreaDefaultLength - should return true when the input is less than or equal to 2000', () => {
+    expect(textAreaDefaultLength('E'.repeat(1999))).to.be.true;
+    expect(textAreaDefaultLength('E'.repeat(1000))).to.be.true;
+  });
+
+  it('.isValidConcentrationValue - should return null for invalid formats', () => {
+    const inputs = ['TEST', '1.024.', '.0.0', 'undefined'];
+    inputs.forEach(input =>
+      expect(isValidConcentrationValue(input)).to.equal(null)
+    );
+  });
+
+  it('.isValidConcentrationValue - should match for valid formats', () => {
+    const inputs = [
+      '1.02',
+      '100',
+      '0.01',
+      '1.0%',
+      '5.6%',
+      '6%',
+      '12.56%',
+      '100',
+      '100%'
+    ];
+    inputs.forEach(input =>
+      expect(isValidConcentrationValue(input)).to.not.equal(null)
+    );
   });
 });
