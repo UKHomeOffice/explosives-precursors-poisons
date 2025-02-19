@@ -1,0 +1,12 @@
+{{<partials-page}}
+  {{$pageTitle}}
+    {{#t}}pages.application-submitted.submitted{{/t}} &ndash; {{#t}}journey.serviceNameNew{{/t}} &ndash; GOV.UK
+  {{/pageTitle}}
+  {{$page-content}}
+  <div class="govuk-panel alert-complete govuk-panel--confirmation">
+    <h1 class="govuk-panel__title">Application submitted</h1>
+    <h2 class="govuk-!-font-weight-regular govuk-!-margin-bottom-0 payment-success-heading">Payment successful</h2>
+  </div>
+  <p>We have sent a receipt and confirmation of your application to {{values.new-renew-email}}</p>
+  {{/page-content}}
+  {{/partials-page}}

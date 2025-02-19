@@ -13,10 +13,11 @@ const ParseSummaryFields = require('../epp-common/behaviours/parse-summary-field
 const ResetSectionSummary = require('../epp-common/behaviours/reset-section-summary');
 const EditRouteStart = require('../epp-common/behaviours/edit-route-start');
 const EditRouteReturn = require('../epp-common/behaviours/edit-route-return');
-
-
 const SaveDocument = require('../epp-common/behaviours/save-document');
 const RemoveDocument = require('../epp-common/behaviours/remove-document');
+
+const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-payment-request');
+const PaymentInfo = require('../epp-common/behaviours/get-payment-info');
 
 module.exports = {
   name: 'EPP form',
@@ -588,9 +589,9 @@ module.exports = {
       }
     },
     '/declaration': {
+      behaviours: [InitiatePaymentRequest],
       fields: ['new-renew-declaration'],
       // verify path name when payment component will be added to service
-      next: '/application-submitted',
       locals: {
         sectionNo: {
           new: 20,
@@ -610,7 +611,10 @@ module.exports = {
       fields: ['name'],
       next: '/continue-to-payment'
     },
-    '/application-submitted': {},
+    '/application-submitted': {
+      behaviours: [PaymentInfo],
+      backLink: false
+    },
     '/complete': {
       backLink: false
     }

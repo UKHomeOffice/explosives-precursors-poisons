@@ -1,21 +1,20 @@
 /* eslint-disable camelcase */
 const crypto = require('crypto');
-const { payment } = require('../../config');
+const { payment, env } = require('../../config');
+const logger = require('hof/lib/logger')({ env });
 
 const generateRandomId = () => crypto.randomBytes(16).toString('hex');
 
-async function initiatePayment(
-  req,
-  {
-    amount,
-    reference,
-    description,
-    return_url,
-    billing_address,
-    email,
-    metadata
-  }
-) {
+async function initiatePayment({
+  amount,
+  reference,
+  description,
+  return_url,
+  token,
+  billing_address,
+  email,
+  metadata
+}) {
   const resp = await fetch(payment.CREATE_PAYMENT_ENDPOINT, {
     method: 'POST',
     headers: {
@@ -26,7 +25,7 @@ async function initiatePayment(
       amount,
       reference,
       description,
-      return_url,
+      return_url: `${return_url}/?token=${token}`,
       delayed_capture: false,
       metadata,
       prefilled_cardholder_details: {
@@ -37,7 +36,7 @@ async function initiatePayment(
     })
   });
 
-  req.log('info', `Callback URL: ${return_url}`);
+  logger.log('info', `Callback URL: ${return_url}`);
 
   return resp;
 }
