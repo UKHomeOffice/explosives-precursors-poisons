@@ -9,6 +9,7 @@ const RemoveDocument = require('../epp-common/behaviours/remove-document');
 const DobEditRedirect = require('../epp-common/behaviours/dob-edit-redirect');
 const RenderPrecursorDetails = require('../epp-common/behaviours/render-precursors-detail');
 const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
+const CheckAndRedirect = require('../epp-common/behaviours/check-answer-redirect');
 
 module.exports = {
   name: 'EPP form',
@@ -66,8 +67,11 @@ module.exports = {
       locals: { captionHeading: 'Section 4 of 23' }
     },
     '/contact-details': {
-      fields: ['amend-phone-number', 'amend-email'],
-      locals: { captionHeading: 'Section 5 of 23' },
+      fields: [
+        'amend-phone-number',
+        'amend-email'
+      ],
+      locals: {captionHeading: 'Section 5 of 23'},
       next: '/amend-details'
     },
     '/amend-details': {
@@ -205,29 +209,22 @@ module.exports = {
       locals: { captionHeading: 'Section 12 of 23' }
     },
     '/change-substances': {
-      fields: ['amend-change-substances-options'],
-      forks: [
-        {
-          target: '/countersignatory-details',
-          condition: req =>
-            req.sessionModel.get('amend-change-substances-options') === 'no'
-          && req.sessionModel.get('amend-name-options') === 'yes'
-          || req.sessionModel.get('amend-home-address-options') === 'yes'
-        },
-        {
-          target: '/no-details-amend',
-          condition: req =>
-            req.sessionModel.get('amend-change-substances-options') === 'no'
-          && req.sessionModel.get('amend-name-options') === 'no'
-          && req.sessionModel.get('amend-home-address-options') === 'no'
-        }
+      behaviours:[
+        CheckAndRedirect('amend-change-substances-options',
+          ['amend-change-substances-options', 'amend-name-options', 'amend-home-address-options']
+        )
       ],
+      fields: ['amend-change-substances-options'],
       continueOnEdit: true,
+      next: '/explosives-precursors',
       locals: { captionHeading: 'Section 13 of 23' },
-      next: '/explosives-precursors'
+
     },
     '/no-details-amend': {
-      locals: { captionHeading: 'Section 13 of 23'}
+      locals: { captionHeading: 'Section 13 of 23' }
+    },
+     '/countersignatory-details': {
+      locals: { captionHeading: 'Section 13 of 23' }
     },
     '/explosives-precursors': {
       fields: ['amend-regulated-explosives-precursors'],
