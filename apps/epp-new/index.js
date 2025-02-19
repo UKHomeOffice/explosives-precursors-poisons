@@ -588,18 +588,15 @@ module.exports = {
       }
     },
     '/declaration': {
-      fields: [],
+      fields: ['new-renew-declaration'],
       // verify path name when payment component will be added to service
-      next: '/continue-to-payment',
+      next: '/application-submitted',
       locals: {
         sectionNo: {
           new: 20,
           renew: 21
         }
       }
-    },
-    '/continue-to-payment': {
-      next: '/application-submitted'
     },
     '/payment-problem': {
       fields: [],

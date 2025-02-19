@@ -102,5 +102,10 @@ module.exports = {
     'new-renew-home-address-postcode': 'new-renew-home-address-country',
     'new-renew-previous-home-address-postcode': 'new-renew-previous-home-address-country',
     'amend-new-postcode': 'amend-new-country'
+  },
+  payment: {
+    CREATE_PAYMENT_ENDPOINT: 'https://publicapi.payments.service.gov.uk/v1/payments',
+    GET_PAYMENT_INFO_ENDPOINT: 'https://publicapi.payments.service.gov.uk/v1/payments/',
+    govUkApiKey: process.env.GOV_UK_PAY_API_KEY
   }
 };
