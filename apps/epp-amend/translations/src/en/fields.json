@@ -200,5 +200,16 @@
   },
   "amend-countersignatory-email": {
     "label": "Email address"
+  },
+  "amend-regulated-explosives-precursors": {
+    "legend": "Do you need to amend the explosives precursors on your licence?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }

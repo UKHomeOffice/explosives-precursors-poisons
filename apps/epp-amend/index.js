@@ -181,11 +181,22 @@ module.exports = {
     '/change-substances': {
       fields: ['amend-explosive-precusor-type'],
       locals: { captionHeading: 'Section 13 of 23' },
-      next: '/section-fourteen'
+      next: '/explosives-precursors'
     },
-    '/section-fourteen': {
-      fields: ['amend-poison-type'],
-      next: '/countersignatory-details'
+    '/explosives-precursors': {
+      fields: ['amend-regulated-explosives-precursors'],
+      forks: [
+        {
+          target: '/select-precursor',
+          continueOnEdit: true,
+          condition: {
+            field: 'amend-regulated-explosives-precursors',
+            value: 'yes'
+          }
+        }
+      ],
+      next: '/poisons',
+      locals: { captionHeading: 'Section 14 of 23' }
     },
     '/select-precursor': {
       fields: ['amend-precursor-field'],
@@ -204,6 +215,11 @@ module.exports = {
       ],
       locals: { captionHeading: 'Section 18 of 23' },
       next: '/countersignatory-address'
+    },
+    '/poisons': {
+      fields: [],
+      locals: { captionHeading: 'Section 16 of 23' },
+      next: '/section-sixteen'
     },
     '/countersignatory-address': {
       fields: [
