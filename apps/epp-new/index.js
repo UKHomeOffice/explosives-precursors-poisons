@@ -164,7 +164,7 @@ module.exports = {
           }
         }
       ],
-      next: '/previous-addresses',
+      next: '/previous-address',
       locals: {
         sectionNo: {
           new: 3,
