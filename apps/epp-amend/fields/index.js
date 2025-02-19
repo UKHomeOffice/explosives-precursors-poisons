@@ -1,17 +1,10 @@
 const dateComponent = require('hof').components.date;
-const validators = require('hof/controller/validation/validators');
 const titles = require('../../../utilities/constants/titles.js');
 const precursorList = require('../../../utilities/constants/explosive-precursors.js');
 const helpers = require('../../../utilities/helpers/index.js');
 const country = require('../../../utilities/constants/countries');
 
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years.js');
-
-function textAreaDefaultLength(value) {
-  return validators.maxlength(value, 2000);
-}
-
-const isValidConcentrationValue = value => value.match(/^\d+(\.\d+)?%?$/);
 
 module.exports = {
   'amend-licence-number': {
@@ -317,7 +310,7 @@ module.exports = {
   },
   'amend-why-need-precursor': {
     mixin: 'textarea',
-    validate: ['required', 'notUrl', textAreaDefaultLength],
+    validate: ['required', 'notUrl', helpers.textAreaDefaultLength],
     attributes: [{ attribute: 'rows', value: 5 }],
     labelClassName: 'govuk-label--s'
   },
@@ -331,7 +324,7 @@ module.exports = {
     mixin: 'input-text',
     validate: [
       'required',
-      isValidConcentrationValue,
+      helpers.isValidConcentrationValue,
       { type: 'maxlength', arguments: 250 },
       'notUrl'
     ],
@@ -358,7 +351,7 @@ module.exports = {
   },
   'store-precursors-other-address': {
     mixin: 'textarea',
-    validate: ['required', textAreaDefaultLength, 'notUrl'],
+    validate: ['required', helpers.textAreaDefaultLength, 'notUrl'],
     dependent: {
       field: 'amend-where-to-store-precursor',
       value: 'amend-store-precursors-other-address'
@@ -383,7 +376,7 @@ module.exports = {
   },
   'precursors-use-other-address': {
     mixin: 'textarea',
-    validate: ['required', textAreaDefaultLength, 'notUrl'],
+    validate: ['required', helpers.textAreaDefaultLength, 'notUrl'],
     dependent: {
       field: 'amend-where-to-use-precursor',
       value: 'amend-use-precursors-other-address'

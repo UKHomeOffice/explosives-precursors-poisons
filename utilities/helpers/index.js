@@ -100,6 +100,14 @@ const TEXT_NOT_PROVIDED = 'Not provided';
 
 const DATE_FORMAT_YYYY_MM_DD = 'YYYY-MM-DD';
 
+const textAreaDefaultLength = value => {
+  return validators.maxlength(value, 2000);
+};
+
+const isValidConcentrationValue = value => {
+  return value.match(/^\d+(\.\d+)?%?$/);
+};
+
 const getFormattedDate = date => {
   if (date && moment(date, DATE_FORMAT_YYYY_MM_DD, true)?.isValid()) {
     return moment(date).format(config.PRETTY_DATE_FORMAT);
@@ -141,5 +149,7 @@ module.exports = {
   TEXT_NOT_PROVIDED,
   DATE_FORMAT_YYYY_MM_DD,
   getFormattedDate,
-  getPrecursorsShortLabel
+  getPrecursorsShortLabel,
+  textAreaDefaultLength,
+  isValidConcentrationValue
 };
