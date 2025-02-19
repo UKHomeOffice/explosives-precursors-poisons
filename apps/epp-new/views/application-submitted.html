@@ -1,6 +1,6 @@
 {{<partials-page}}
   {{$pageTitle}}
-    {{#t}}pages.application-submitted.submitted{{/t}} &ndash; {{#t}}journey.serviceNameNew{{/t}} &ndash; GOV.UK
+  {{#values.isNewJourney}}{{#t}}journey.serviceNameNew{{/t}}{{/values.isNewJourney}}{{#values.isRenewJourney}}{{#t}}journey.serviceNameRenew{{/t}}{{/values.isRenewJourney}} &ndash; GOV.UK
   {{/pageTitle}}
   {{$page-content}}
   <div class="govuk-panel alert-complete govuk-panel--confirmation">
@@ -8,5 +8,12 @@
     <h2 class="govuk-!-font-weight-regular govuk-!-margin-bottom-0 payment-success-heading">Payment successful</h2>
   </div>
   <p>We have sent a receipt and confirmation of your application to {{values.new-renew-email}}</p>
+  <p>We aim to respond to your application within 16 weeks.</p>
+  <h2>What happens next</h2>
+  <p>You do not need to do anything unless we contact you.</p>
+  <p>We may email you for more information. Check your spam or junk folder to make sure you do not miss anything.</p>
+  <p>If we cannot contact you, the application process may be delayed or cancelled.</p>
+  <h2>If you need to make changes to your application</h2>
+  <p>If you need to amend your application or have a question, contact <a class="govuk-link" href="mailto:epp@homeoffice.pnn.police.uk">epp@homeoffice.pnn.police.uk</a>.</p>
   {{/page-content}}
   {{/partials-page}}
