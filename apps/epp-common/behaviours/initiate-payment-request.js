@@ -13,6 +13,11 @@ module.exports = superclass =>
       const errorTemplateBasePath = getErrorTemplateBasePath(applicationType);
 
       try {
+        // Shall we use the existing URL to avoid creating additional requests?
+        if (req.sessionModel.get('payment-page-url')) {
+          return res.redirect(req.sessionModel.get('payment-page-url'));
+        }
+
         const randomId = generateRandomId();
         const hmac = generateHmac(randomId);
         const paymentPayload = generateRequestPayload(
@@ -21,14 +26,16 @@ module.exports = superclass =>
           hmac
         );
         const data = await initiatePayment(paymentPayload);
-        req.log('Create Payment Response: ' + data);
         req.sessionModel.set('payment-id', data.payment_id);
         req.sessionModel.set('random-id', randomId);
-        if (data?._links?.next_url?.href) {
-          return res.redirect(data._links.next_url.href);
+        const paymentPageUrl = data._links?.next_url?.href;
+        req.sessionModel.unset('payment-page-url');
+        if (paymentPageUrl) {
+          return res.redirect(paymentPageUrl);
         }
         return res.redirect(`${errorTemplateBasePath}/payment-problem`);
       } catch (error) {
+        req.sessionModel.unset('payment-page-url');
         req.log('error', 'Error initiating the payment: ' + error);
         return res.redirect(`${errorTemplateBasePath}/payment-problem`);
       }

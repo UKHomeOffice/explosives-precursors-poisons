@@ -7,6 +7,8 @@ module.exports = superclass =>
   class extends superclass {
     async getValues(req, res, next) {
       try {
+        // reset existing payment page URL as user has completed or cancelled the payment
+        req.sessionModel.unset('payment-page-url');
         const id = req.sessionModel.get('random-id');
         const paymentId = req.sessionModel.get('payment-id');
 

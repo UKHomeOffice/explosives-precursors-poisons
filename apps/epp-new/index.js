@@ -599,16 +599,13 @@ module.exports = {
       }
     },
     '/payment-problem': {
-      fields: [],
-      next: '/continue-to-payment'
+      behaviours: [InitiatePaymentRequest]
     },
     '/payment-failed': {
-      fields: [],
-      next: '/continue-to-payment'
+      behaviours: [InitiatePaymentRequest]
     },
     '/payment-cancelled': {
-      fields: ['name'],
-      next: '/continue-to-payment'
+      behaviours: [InitiatePaymentRequest]
     },
     '/application-submitted': {
       behaviours: [PaymentInfo],
