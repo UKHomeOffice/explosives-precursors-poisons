@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+const axios = require('axios');
 const crypto = require('crypto');
 const { payment, env } = require('../../config');
 const logger = require('hof/lib/logger')({ env });
@@ -15,39 +16,50 @@ async function initiatePayment({
   email,
   metadata
 }) {
-  const resp = await fetch(payment.CREATE_PAYMENT_ENDPOINT, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${payment.govUkApiKey}`
-    },
-    body: JSON.stringify({
-      amount,
-      reference,
-      description,
-      return_url: `${return_url}/?token=${token}`,
-      delayed_capture: false,
-      metadata,
-      prefilled_cardholder_details: {
-        billing_address
+  try {
+    const { data } = await axios({
+      url: payment.CREATE_PAYMENT_ENDPOINT,
+      method: 'post',
+      data: {
+        amount,
+        reference,
+        description,
+        return_url: `${return_url}/?token=${token}`,
+        delayed_capture: false,
+        metadata,
+        prefilled_cardholder_details: {
+          billing_address
+        },
+        email,
+        language: 'en'
       },
-      email,
-      language: 'en'
-    })
-  });
 
-  logger.info(`Callback URL: ${return_url}`);
-
-  return resp;
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${payment.govUkApiKey}`
+      }
+    });
+    return data;
+  } catch (error) {
+    logger.error(`Error creating a payment request : ${error}`);
+    throw new Error('Error creating a payment request');
+  }
 }
 
 async function getPaymentDetails(paymentId) {
-  const resp = await fetch(`${payment.GET_PAYMENT_INFO_ENDPOINT}${paymentId}`, {
-    headers: {
-      Authorization: `Bearer ${payment.govUkApiKey}`
-    }
-  });
-  return resp;
+  try {
+    const { data } = await axios({
+      url: `${payment.GET_PAYMENT_INFO_ENDPOINT}${paymentId}`,
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${payment.govUkApiKey}`
+      }
+    });
+    return data;
+  } catch (error) {
+    logger.error(`Error getting the payment details : ${error}`);
+    throw new Error('Error getting the payment details');
+  }
 }
 
 const generateHmac = randomId => {

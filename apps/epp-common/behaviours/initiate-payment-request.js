@@ -20,9 +20,7 @@ module.exports = superclass =>
           applicationType,
           hmac
         );
-
-        const resp = await initiatePayment(paymentPayload);
-        const data = await resp.json();
+        const data = await initiatePayment(paymentPayload);
         req.log('Create Payment Response: ' + data);
         req.sessionModel.set('payment-id', data.payment_id);
         req.sessionModel.set('random-id', randomId);

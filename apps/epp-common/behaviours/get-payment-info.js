@@ -23,8 +23,7 @@ module.exports = superclass =>
           return res.redirect(`${errorTemplateBasePath}/payment-problem`);
         }
         req.log('info', 'Payment requested for: ' + paymentId);
-        const resp = await getPaymentDetails(paymentId);
-        const { state } = await resp.json();
+        const { state } = await getPaymentDetails(paymentId);
         if (state.code === 'P0030') {
           return res.redirect(`${errorTemplateBasePath}/payment-cancelled`);
         }
