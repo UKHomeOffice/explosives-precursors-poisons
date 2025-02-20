@@ -37,6 +37,7 @@ module.exports = superclass =>
         if (state.status !== 'success') {
           return res.redirect(`${errorTemplateBasePath}/payment-problem`);
         }
+        // TODO: Notify?
         req.sessionModel.reset();
       } catch (error) {
         req.log('error', error);
