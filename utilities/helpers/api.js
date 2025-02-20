@@ -36,7 +36,7 @@ async function initiatePayment({
     })
   });
 
-  logger.log('info', `Callback URL: ${return_url}`);
+  logger.info(`Callback URL: ${return_url}`);
 
   return resp;
 }
@@ -102,8 +102,7 @@ const generateRequestPayload = (req, applicationType, hmac) => {
       email: req.sessionModel.get('amend-email')
     };
   }
-  logger.log(
-    'error',
+  logger.error(
     `Application type ${applicationType} not supported for the payment`
   );
   throw new Error('Unknown application type');
@@ -117,8 +116,7 @@ const getErrorTemplateBasePath = applicationType => {
   if (applicationType === 'amend') {
     return '/amend';
   }
-  logger.log(
-    'error',
+  logger.error(
     `Application type ${applicationType} not supported for the payment`
   );
   throw new Error('Unknown application type');
