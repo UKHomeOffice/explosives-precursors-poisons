@@ -37,6 +37,7 @@ module.exports = superclass =>
         if (state.status !== 'success') {
           return res.redirect(`${errorTemplateBasePath}/payment-problem`);
         }
+        req.sessionModel.reset();
       } catch (error) {
         req.log('error', error);
         return next(Error('Error fetching payment status'));
