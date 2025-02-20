@@ -57,9 +57,78 @@ const generateHmac = randomId => {
     .digest('hex');
 };
 
+// TODO: fetch dynamic values from ENV or session?
+const generateRequestPayload = (req, applicationType, hmac) => {
+  if (applicationType === 'new' || applicationType === 'renew') {
+    return {
+      amount: 200,
+      reference: 'New-Renew payment Reference',
+      description: 'New-Renew payment description',
+      return_url: 'http://localhost:8080/new-and-renew/application-submitted',
+      token: hmac,
+      metadata: {
+        ledger_code: 'AB100',
+        internal_reference_number: 'Internal Ref Number'
+      },
+      billing_address: {
+        line1: req.sessionModel.get('new-renew-home-address-line1'),
+        line2: req.sessionModel.get('new-renew-home-address-line2'),
+        postcode: req.sessionModel.get('new-renew-home-address-postcode'),
+        city: req.sessionModel.get('new-renew-home-address-town'),
+        country: req.sessionModel.get('new-renew-home-address-country')
+      },
+      email: req.sessionModel.get('new-renew-email')
+    };
+  }
+
+  if (applicationType === 'amend') {
+    return {
+      amount: 200,
+      reference: 'Amend payment Reference',
+      description: 'Amend payment description',
+      return_url: 'http://localhost:8080/new-and-renew/application-submitted',
+      token: hmac,
+      metadata: {
+        ledger_code: 'AB100',
+        internal_reference_number: 'Internal Ref Number'
+      },
+      billing_address: {
+        line1: req.sessionModel.get('amend-address-1'),
+        line2: req.sessionModel.get('amend-address-2'),
+        postcode: req.sessionModel.get('amend-postcode'),
+        city: req.sessionModel.get('amend-town-or-city'),
+        country: req.sessionModel.get('amend-county')
+      },
+      email: req.sessionModel.get('amend-email')
+    };
+  }
+  logger.log(
+    'error',
+    `Application type ${applicationType} not supported for the payment`
+  );
+  throw new Error('Unknown application type');
+};
+
+const getErrorTemplateBasePath = applicationType => {
+  if (applicationType === 'new' || applicationType === 'renew') {
+    return '/new-and-renew';
+  }
+
+  if (applicationType === 'amend') {
+    return '/amend';
+  }
+  logger.log(
+    'error',
+    `Application type ${applicationType} not supported for the payment`
+  );
+  throw new Error('Unknown application type');
+};
+
 module.exports = {
   initiatePayment,
   getPaymentDetails,
   generateRandomId,
-  generateHmac
+  generateHmac,
+  generateRequestPayload,
+  getErrorTemplateBasePath
 };
