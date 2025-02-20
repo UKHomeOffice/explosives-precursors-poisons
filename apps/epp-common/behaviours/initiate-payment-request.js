@@ -31,6 +31,7 @@ module.exports = superclass =>
         const paymentPageUrl = data._links?.next_url?.href;
         req.sessionModel.unset('payment-page-url');
         if (paymentPageUrl) {
+          req.sessionModel.set('payment-page-url', paymentPageUrl);
           return res.redirect(paymentPageUrl);
         }
         return res.redirect(`${errorTemplateBasePath}/payment-problem`);
