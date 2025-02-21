@@ -102,11 +102,13 @@ module.exports = {
         'amend-Uk-driving-licence-number'
       ],
       forks: [
-        {target: '/upload-british-passport',
+        {
+          target: '/upload-british-passport',
           condition: req =>
             req.sessionModel.get('amend-applicant-Id-type') === 'UK-passport'
         },
-        {target: '/upload-passport',
+        {
+          target: '/upload-passport',
           condition: req =>
             req.sessionModel.get('amend-applicant-Id-type') === 'EU-passport'
         }
@@ -136,6 +138,9 @@ module.exports = {
       locals: { captionHeading: 'Section 9 of 23' }
     },
     '/upload-certificate-conduct': {
+      behaviours: [SaveDocument('amend-certificate-conduct', 'file-upload'),
+        RemoveDocument('amend-certificate-conduct')],
+      fields: ['file-upload'],
       next: '/change-home-address',
       locals: { captionHeading: 'Section 9 of 23' }
     },
@@ -175,37 +180,71 @@ module.exports = {
       locals: { captionHeading: 'Section 11 of 23' }
     },
     '/upload-proof-address': {
-      next: '/section-twelve'
-    },
-    '/section-twelve': {
-      fields: ['amend-reason-for-licence'],
-      next: '/change-substances'
+      behaviours: [SaveDocument('amend-proof-address', 'file-upload'), RemoveDocument('amend-proof-address')],
+      fields: ['file-upload'],
+      continueOnEdit: true,
+      next: '/change-substances',
+      locals: { captionHeading: 'Section 12 of 23' }
     },
     '/change-substances': {
       fields: ['amend-explosive-precusor-type'],
       locals: { captionHeading: 'Section 13 of 23' },
-      next: '/section-fourteen'
+      next: '/explosives-precursors'
     },
-    '/section-fourteen': {
-      fields: ['amend-poison-type'],
-      next: '/select-precursor'
+    '/explosives-precursors': {
+      fields: ['amend-regulated-explosives-precursors'],
+      forks: [
+        {
+          target: '/select-precursor',
+          continueOnEdit: true,
+          condition: {
+            field: 'amend-regulated-explosives-precursors',
+            value: 'yes'
+          }
+        }
+      ],
+      next: '/poisons',
+      locals: { captionHeading: 'Section 14 of 23' }
     },
     '/select-precursor': {
       fields: ['amend-precursor-field'],
       locals: { captionHeading: 'Section 15 of 23' },
       next: '/section-sixteen'
     },
-    '/section-sixteen': {
+    '/countersignatory-details': {
+      fields: [
+        'amend-countersignatory-title',
+        'amend-countersignatory-firstname',
+        'amend-countersignatory-middlename',
+        'amend-countersignatory-lastname',
+        'amend-countersignatory-years',
+        'amend-countersignatory-howyouknow',
+        'amend-countersignatory-occupation'
+      ],
+      locals: { captionHeading: 'Section 18 of 23' },
+      next: '/countersignatory-address'
+    },
+    '/poisons': {
+      fields: [],
+      locals: { captionHeading: 'Section 16 of 23' },
+      next: '/section-sixteen'
+    },
+    '/countersignatory-address': {
       fields: [
         'amend-countersignatory-address-1',
         'amend-countersignatory-address-2',
         'amend-countersignatory-town-or-city',
         'amend-countersignatory-postcode'
       ],
-      next: '/section-seventeen'
+      locals: { captionHeading: 'Section 19 of 23' },
+      next: '/countersignatory-contact'
     },
-    '/section-seventeen': {
-      fields: ['amend-countersignatory-phone', 'amend-countersignatory-email'],
+    '/countersignatory-contact': {
+      fields: [
+        'amend-countersignatory-phone-number',
+        'amend-countersignatory-email'
+      ],
+      locals: { captionHeading: 'Section 20 of 23' },
       next: '/section-eighteen'
     },
     '/section-eighteen': {

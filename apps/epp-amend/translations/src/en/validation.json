@@ -95,7 +95,9 @@
         "fileType": "The selected file must be a JPG, JPEG, PDF or PNG",
         "maxAmendBritishPassport": "You can only upload up to {{maxAmendBritishPassport}} files or less. Remove a file before uploading another",
         "maxAmendPassport": "You can only upload up to {{maxAmendPassport}} files or less. Remove a file before uploading another",
-        "maxAmendDrivingLicence": "You can only upload up to {{maxAmendDrivingLicence}} files or less. Remove a file before uploading another"
+        "maxAmendDrivingLicence": "You can only upload up to {{maxAmendDrivingLicence}} files or less. Remove a file before uploading another",
+        "maxAmendCertificateConduct": "You can only upload up to {{maxAmendCertificateConduct}} files or less. Remove a file before uploading another",
+        "maxAmendProofAddress": "You can only upload up to {{maxAmendProofAddress}} files or less. Remove a file before uploading another"
       },
     "amend-new-name-title": {
         "required" : "Select the title of your new name"
@@ -160,5 +162,68 @@
     },
     "amend-precursor-field": {
       "required" : "Select an explosive precursor"
-    }
+    },
+  "amend-regulated-explosives-precursors": {
+    "required": "Select if your licence needs to cover explosives precursors"
+  },
+  "amend-countersignatory-title": {
+    "required": "Select your countersignatory's title"
+  },
+  "amend-countersignatory-firstname": {
+    "required": "Enter your countersignatory's first name",
+    "maxlength": "Countersignatory's first name must between 1 and 250 characters",
+    "notUrl": "Your answer must not include a URL"
+  },
+  "amend-countersignatory-middlename": {
+    "maxlength": "Countersignatory's middle names must be between 1 and 250 characters",
+    "notUrl": "Your answer must not include a URL"
+  },
+  "amend-countersignatory-lastname": {
+    "required": "Enter your countersignatory's last name",
+    "maxlength": "Countersignatory's last name must be between 1 and 250 characters",
+    "notUrl": "Your answer must not include a URL"
+  },
+  "amend-countersignatory-years": {
+    "required": "Select how many years you have known your countersignatory"
+  },
+  "amend-countersignatory-howyouknow": {
+    "required": "Enter how you know your countersignatory",
+    "maxlength": "How you know your countersignatory must be 250 characters or less",
+    "notUrl": "Your answer must not include a URL"
+  },
+  "amend-countersignatory-occupation": {
+    "required": "Enter your countersignatory's occupation",
+    "maxlength": "Countersignatory's occupation must be 250 characters or less",
+    "notUrl": "Your answer must not include a URL"
+  },
+  "amend-countersignatory-address-1": {
+    "required" : "Enter address line 1, typically the building and street",
+    "minlength": "Address line 1 must be between 2 and 250 characters",
+    "maxlength": "Address line 1 must be between 2 and 250 characters",
+    "notUrl" : "Your answer must not include a URL"
+  },
+  "amend-countersignatory-address-2": {
+    "minlength": "Address line 2 must be between 2 and 250 characters",
+    "maxlength": "Address line 2 must be between 2 and 250 characters",
+    "notUrl" : "Your answer must not include a URL"
+  },
+  "amend-countersignatory-town-or-city": {
+    "required" : "Enter town or city",
+    "minlength": "Town or city must be between 2 and 250 characters",
+    "maxlength": "Town or city must be between 2 and 250 characters",
+    "notUrl" : "Your answer must not include a URL"
+  },
+  "amend-countersignatory-postcode": {
+    "required" : "Enter a UK postcode",
+    "postcode" : "Enter a real UK postcode"
+  },
+  "amend-countersignatory-phone-number": {
+    "required": "Enter your countersignatory's telephone number",
+    "validInternationalPhoneNumber": "Enter a real telephone number",
+    "notUrl" : "Your answer must not include a URL"
+  },
+  "amend-countersignatory-email": {
+    "required": "Enter your countersignatory's email address",
+    "email": "Enter a real email address"
+  }
 }

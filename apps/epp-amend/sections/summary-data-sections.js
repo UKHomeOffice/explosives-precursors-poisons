@@ -163,6 +163,22 @@ module.exports = {
         }
       },
       {
+        step: '/upload-certificate-conduct',
+        field: 'amend-certificate-conduct',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel
+              .get('steps')
+              .includes('/upload-certificate-conduct') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file.name);
+          }
+
+          return null;
+        }
+      },
+      {
         step: '/upload-driving-licence',
         field: 'amend-uk-driving-licence',
         parse: (documents, req) => {
@@ -218,6 +234,30 @@ module.exports = {
         step: '/new-address',
         field: 'amend-new-date-moved-to-address',
         parse: date => date && dateFormatter.format(new Date(date))
+      },
+      {
+        step: '/upload-proof-address',
+        field: 'amend-proof-address',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel
+              .get('steps')
+              .includes('/upload-proof-address') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file?.name)?.join('\n\n');
+          }
+
+          return null;
+        }
+      }
+    ]
+  },
+  'amend-licence-for-explosives-precursors': {
+    steps: [
+      {
+        steps: '/explosives-precursors',
+        field: 'amend-regulated-explosives-precursors'
       }
     ]
   },
@@ -226,6 +266,64 @@ module.exports = {
       {
         steps: '/select-precursor',
         field: 'amend-precursor-field'
+      }
+    ]
+  },
+  'countersignatory-details': {
+    steps: [
+      {
+        step: '/countersignatory-details',
+        field: 'amend-countersignatory-title'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'amend-countersignatory-firstname'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'amend-countersignatory-middlename',
+        parse: value => value || 'Not provided'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'amend-countersignatory-lastname'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'amend-countersignatory-years'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'amend-countersignatory-howyouknow'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'amend-countersignatory-occupation'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'amend-countersignatory-address-1'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'amend-countersignatory-address-2',
+        parse: value => value || 'Not provided'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'amend-countersignatory-town-or-city'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'amend-countersignatory-postcode'
+      },
+      {
+        step: '/countersignatory-contact',
+        field: 'amend-countersignatory-phone-number'
+      },
+      {
+        step: '/countersignatory-contact',
+        field: 'amend-countersignatory-email'
       }
     ]
   }

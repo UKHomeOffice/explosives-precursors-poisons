@@ -76,6 +76,11 @@ module.exports = {
         limit: 1,
         limitValidationError: 'maxAmendPassport'
       },
+      'amend-certificate-conduct': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxAmendCertificateConduct'
+      },
       'amend-uk-driving-licence': {
         allowMultipleUploads: false,
         limit: 1,
@@ -85,6 +90,11 @@ module.exports = {
         allowMultipleUploads: true,
         limit: 2,
         limitValidationError: 'maxNewRenewProofAddress'
+      },
+      'amend-proof-address': {
+        allowMultipleUploads: true,
+        limit: 2,
+        limitValidationError: 'maxAmendProofAddress'
       },
       'new-renew-upload-driving-licence': {
         allowMultipleUploads: false,
