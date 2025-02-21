@@ -163,6 +163,22 @@ module.exports = {
         }
       },
       {
+        step: '/upload-certificate-conduct',
+        field: 'amend-certificate-conduct',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel
+              .get('steps')
+              .includes('/upload-certificate-conduct') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file.name);
+          }
+
+          return null;
+        }
+      },
+      {
         step: '/upload-driving-licence',
         field: 'amend-uk-driving-licence',
         parse: (documents, req) => {
@@ -218,6 +234,22 @@ module.exports = {
         step: '/new-address',
         field: 'amend-new-date-moved-to-address',
         parse: date => date && dateFormatter.format(new Date(date))
+      },
+      {
+        step: '/upload-proof-address',
+        field: 'amend-proof-address',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel
+              .get('steps')
+              .includes('/upload-proof-address') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file?.name)?.join('\n\n');
+          }
+
+          return null;
+        }
       }
     ]
   },
