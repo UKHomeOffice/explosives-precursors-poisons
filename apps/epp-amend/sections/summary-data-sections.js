@@ -234,6 +234,22 @@ module.exports = {
         step: '/new-address',
         field: 'amend-new-date-moved-to-address',
         parse: date => date && dateFormatter.format(new Date(date))
+      },
+      {
+        step: '/upload-proof-address',
+        field: 'amend-proof-address',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel
+              .get('steps')
+              .includes('/upload-proof-address') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file?.name)?.join('\n\n');
+          }
+
+          return null;
+        }
       }
     ]
   },
