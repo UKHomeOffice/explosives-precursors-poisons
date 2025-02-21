@@ -154,6 +154,9 @@ module.exports = {
       locals: { captionHeading: 'Section 9 of 23' }
     },
     '/upload-certificate-conduct': {
+      behaviours: [SaveDocument('amend-certificate-conduct', 'file-upload'),
+        RemoveDocument('amend-certificate-conduct')],
+      fields: ['file-upload'],
       next: '/change-home-address',
       locals: { captionHeading: 'Section 9 of 23' }
     },
@@ -193,11 +196,11 @@ module.exports = {
       locals: { captionHeading: 'Section 11 of 23' }
     },
     '/upload-proof-address': {
-      next: '/section-twelve'
-    },
-    '/section-twelve': {
-      fields: ['amend-reason-for-licence'],
-      next: '/change-substances'
+      behaviours: [SaveDocument('amend-proof-address', 'file-upload'), RemoveDocument('amend-proof-address')],
+      fields: ['file-upload'],
+      continueOnEdit: true,
+      next: '/change-substances',
+      locals: { captionHeading: 'Section 12 of 23' }
     },
     '/change-substances': {
       fields: ['amend-explosive-precusor-type'],

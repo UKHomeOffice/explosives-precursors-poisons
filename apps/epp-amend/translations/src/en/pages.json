@@ -32,18 +32,51 @@
     "header": "Upload British passport",
     "label": "Upload a file",
     "hint": "Your file must be JPEG, PDF or PNG and be 25MB or less",
-    "paragraph1": "Attach an image of your British passport as proof of your identity. the image must be",
+    "paragraph1": "Attach an image of your British passport as proof of your identity. The image must be",
     "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
-    "link-text" : "signed by your countersignatory (opens in a new tab).",
+    "link-text": "signed by your countersignatory (opens in a new tab).",
     "uploading-document": "Document uploading",
-    "not-uploaded": "No files uploaded", 
-    "uploaded": "File uploaded" 
+    "not-uploaded": "No file uploaded", 
+    "uploaded": "Files uploaded" 
+  },
+
+  "upload-proof-address" : {
+    "header": "Upload proof of address",
+    "paragraph1": "You need to scan and attach 2 documents as proof of your home address. The documents must be dated within the last 3 months and",
+    "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
+    "link-text": "signed by your countersignatory (opens in a new tab).",
+    "paragraph2": "The first document must be one of the following:",
+    "paragraph2-li1": "mortgage statement",
+    "paragraph2-li2": "bank or building society statement",
+    "paragraph3": "The second document must be one of the following:",
+    "paragraph3-li1": "credit card statement",
+    "paragraph3-li2": "rental agreement",
+    "paragraph3-li3": "utilities bill (including energy, water, internet or phone bills)",
+    "paragraph3-li4": "council tax bill",
+    "paragraph3-li5": "benefit statement",
+    "label": "Upload a file",
+    "hint": "Your file must be JPG, JPEG, PDF or PNG and be 25MB or less",
+    "uploading-document": "Document uploading",
+    "not-uploaded": "No file uploaded", 
+    "uploaded": "Files uploaded" 
   },
   "upload-passport": {
     "header": "Upload passport",
     "label": "Upload a file",
     "hint": "Your file must be JPG, JPEG, PDF or PNG and be 25MB or less",
     "paragraph1": "Attach an image of your passport from the EU, Switzerland, Norway, Iceland or Liechtenstein as proof of your identity. The image must be ",
+    "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
+    "link-text" : "signed by your countersignatory (opens in a new tab).",
+    "uploading-document": "Document uploading",
+    "not-uploaded": "No files uploaded", 
+    "uploaded": "File uploaded" 
+  },
+  "upload-certificate-conduct": {
+    "header": "Upload certificate of good conduct (optional)",
+    "label": "Upload a file",
+    "hint": "Your file must be JPG, JPEG, PDF or PNG and be 25MB or less",
+    "paragraph1": "A certificate of good conduct is issued by the police in your country of nationality. It shows if you have a criminal record and details of any offences.",
+    "paragraph2": "Attach an image of your certificate of good conduct. The image must be ",
     "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
     "link-text" : "signed by your countersignatory (opens in a new tab).",
     "uploading-document": "Document uploading",
@@ -194,11 +227,17 @@
       "amend-eu-passport" : {
         "label": "Passport attachment"
       },
+      "amend-certificate-conduct" :{
+         "label": "Certificate of good conduct attachment"
+      },
       "amend-uk-driving-licence" : {
         "label": "UK driving licence attachment"
       },
       "amend-new-country": {
         "label": "Country"
+      },
+      "amend-proof-address":{
+         "label": "Proof of address attachment"
       },
       "amend-precursor-field": {
         "label": "Explosives precursor"
