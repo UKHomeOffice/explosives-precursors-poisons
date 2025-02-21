@@ -100,6 +100,11 @@ module.exports = {
         allowMultipleUploads: false,
         limit: 1,
         limitValidationError: 'maxNewRenewDrivingLicence'
+      },
+      'new-renew-medical-form': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxNewRenewMedicalForm'
       }
     }
   },
