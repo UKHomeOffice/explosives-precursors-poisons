@@ -17,10 +17,9 @@ async function initiatePayment({
   metadata
 }) {
   try {
-    const { data } = await axios({
-      url: payment.CREATE_PAYMENT_ENDPOINT,
-      method: 'post',
-      data: {
+    const { data } = await axios.post(
+      payment.CREATE_PAYMENT_ENDPOINT,
+      {
         amount,
         reference,
         description,
@@ -33,12 +32,13 @@ async function initiatePayment({
         email,
         language: 'en'
       },
-
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${payment.govUkApiKey}`
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${payment.govUkApiKey}`
+        }
       }
-    });
+    );
     return data;
   } catch (error) {
     logger.error(`Error creating a payment request : ${error}`);
@@ -48,13 +48,14 @@ async function initiatePayment({
 
 async function getPaymentDetails(paymentId) {
   try {
-    const { data } = await axios({
-      url: `${payment.GET_PAYMENT_INFO_ENDPOINT}${paymentId}`,
-      method: 'get',
-      headers: {
-        Authorization: `Bearer ${payment.govUkApiKey}`
+    const { data } = await axios.get(
+      `${payment.GET_PAYMENT_INFO_ENDPOINT}${paymentId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${payment.govUkApiKey}`
+        }
       }
-    });
+    );
     return data;
   } catch (error) {
     logger.error(`Error getting the payment details : ${error}`);
