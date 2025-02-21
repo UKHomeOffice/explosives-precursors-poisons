@@ -23,7 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const fileUpload = document.getElementById('file-upload');
   const uploadPageLoaderContainer = document.getElementById('upload-page-loading-spinner');
-  const continueWithoutUpload = document.getElementsByName('continueWithoutUpload');
+  const requireFileUpload = document.getElementsByName('requireFileUpload');
+  const optionalFileUpload = document.getElementsByName('optionalFileUpload');
   const removeLinks = document.querySelectorAll('#uploaded-documents > div > div > a');
 
   if (loaderContainer) {
@@ -55,7 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
         uploadPageLoaderContainer.style.display = 'flex';
         fileUpload.disabled = true;
         fileUpload.ariaDisabled = true;
-        continueWithoutUpload.forEach(a => {
+        requireFileUpload.forEach(a => {
+          a.disabled = true;
+          a.ariaDisabled = true;
+        });
+        optionalFileUpload.forEach(a => {
           a.disabled = true;
           a.ariaDisabled = true;
         });
