@@ -104,6 +104,7 @@ const generateRequestPayload = (req, applicationType, hmac) => {
         ledger_code: 'AB100',
         internal_reference_number: 'Internal Ref Number'
       },
+      // TODO: Discuss which address to pick if they have updated their address
       billing_address: {
         line1: req.sessionModel.get('amend-address-1'),
         line2: req.sessionModel.get('amend-address-2'),
@@ -120,6 +121,7 @@ const generateRequestPayload = (req, applicationType, hmac) => {
   throw new Error('Unknown application type');
 };
 
+// TODO: Use constants for magic strings
 const getErrorTemplateBasePath = applicationType => {
   if (applicationType === 'new' || applicationType === 'renew') {
     return '/new-and-renew';

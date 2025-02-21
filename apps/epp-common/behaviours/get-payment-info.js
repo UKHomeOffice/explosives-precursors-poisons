@@ -6,14 +6,14 @@ const {
 module.exports = superclass =>
   class extends superclass {
     async getValues(req, res, next) {
+      const applicationType = req.sessionModel.get('applicationType');
+      const errorTemplateBasePath = getErrorTemplateBasePath(applicationType);
+
       try {
         // reset existing payment page URL as user has completed or cancelled the payment
         req.sessionModel.unset('payment-page-url');
         const id = req.sessionModel.get('random-id');
         const paymentId = req.sessionModel.get('payment-id');
-
-        const applicationType = req.sessionModel.get('applicationType');
-        const errorTemplateBasePath = getErrorTemplateBasePath(applicationType);
 
         if (!id || !paymentId) {
           return res.redirect(`${errorTemplateBasePath}/payment-problem`);
@@ -38,10 +38,10 @@ module.exports = superclass =>
           return res.redirect(`${errorTemplateBasePath}/payment-problem`);
         }
         // TODO: Notify?
-        req.sessionModel.reset();
+        // req.sessionModel.reset();
       } catch (error) {
-        req.log('error', error);
-        return next(Error('Error fetching payment status'));
+        req.log('Error fetching payment status', error);
+        return res.redirect(`${errorTemplateBasePath}/payment-problem`);
       }
 
       return super.getValues(req, res, next);
