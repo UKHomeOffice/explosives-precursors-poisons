@@ -15,6 +15,7 @@ const EditRouteStart = require('../epp-common/behaviours/edit-route-start');
 const EditRouteReturn = require('../epp-common/behaviours/edit-route-return');
 const SaveDocument = require('../epp-common/behaviours/save-document');
 const RemoveDocument = require('../epp-common/behaviours/remove-document');
+const DobEditRedirect = require('../epp-common/behaviours/dob-edit-redirect');
 
 const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-payment-request');
 const PaymentInfo = require('../epp-common/behaviours/get-payment-info');
@@ -101,6 +102,9 @@ module.exports = {
       }
     },
     '/your-details': {
+      behaviours: [
+        DobEditRedirect('new-renew-dob', '/new-and-renew/birth-certificate')
+      ],
       fields: [
         'new-renew-dob',
         'new-renew-birth-place',

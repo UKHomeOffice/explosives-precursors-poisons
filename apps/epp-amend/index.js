@@ -6,6 +6,8 @@ const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
 const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator');
 const SaveDocument = require('../epp-common/behaviours/save-document');
 const RemoveDocument = require('../epp-common/behaviours/remove-document');
+const DobEditRedirect = require('../epp-common/behaviours/dob-edit-redirect');
+
 module.exports = {
   name: 'EPP form',
   fields: 'apps/epp-amend/fields',
@@ -31,6 +33,9 @@ module.exports = {
       locals: { captionHeading: 'Section 2 of 23' }
     },
     '/date-of-birth': {
+      behaviours: [
+        DobEditRedirect('amend-date-of-birth', '/amend/birth-certificate')
+      ],
       fields: ['amend-date-of-birth'],
       next: '/home-address',
       locals: { captionHeading: 'Section 3 of 23' }
@@ -133,6 +138,9 @@ module.exports = {
       locals: { captionHeading: 'Section 9 of 23' }
     },
     '/upload-certificate-conduct': {
+      behaviours: [SaveDocument('amend-certificate-conduct', 'file-upload'),
+        RemoveDocument('amend-certificate-conduct')],
+      fields: ['file-upload'],
       next: '/change-home-address',
       locals: { captionHeading: 'Section 9 of 23' }
     },
@@ -172,11 +180,11 @@ module.exports = {
       locals: { captionHeading: 'Section 11 of 23' }
     },
     '/upload-proof-address': {
-      next: '/section-twelve'
-    },
-    '/section-twelve': {
-      fields: ['amend-reason-for-licence'],
-      next: '/change-substances'
+      behaviours: [SaveDocument('amend-proof-address', 'file-upload'), RemoveDocument('amend-proof-address')],
+      fields: ['file-upload'],
+      continueOnEdit: true,
+      next: '/change-substances',
+      locals: { captionHeading: 'Section 12 of 23' }
     },
     '/change-substances': {
       fields: ['amend-explosive-precusor-type'],
@@ -241,6 +249,10 @@ module.exports = {
     },
     '/section-eighteen': {
       fields: ['amend-countersignatory-document-type'],
+      next: '/confirm'
+    },
+    '/birth-certificate': {
+      fields: [],
       next: '/confirm'
     },
     '/confirm': {

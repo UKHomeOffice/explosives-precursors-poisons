@@ -1,0 +1,75 @@
+{{<partials-page}} {{$encoding}}enctype="multipart/form-data" name="file-upload-form" {{/encoding}}
+{{$page-content}}
+<p class="govuk-body">{{#t}}pages.upload-proof-address.paragraph1{{/t}}
+    <a class="govuk-link" href="{{#t}}pages.upload-proof-address.link{{/t}}" target="_blank" rel="noreferrer noopener">
+        {{#t}}pages.upload-proof-address.link-text{{/t}}
+    </a>
+</p>
+
+<p class="govuk-body">{{#t}}pages.upload-proof-address.paragraph2{{/t}}</p>
+
+<ul class="govuk-!-margin-top-2 govuk-!-margin-left-2">
+    <li>{{#t}}pages.upload-proof-address.paragraph2-li1{{/t}}</li>
+    <li>{{#t}}pages.upload-proof-address.paragraph2-li2{{/t}}</li>
+  </ul>
+
+<p class="govuk-body">{{#t}}pages.upload-proof-address.paragraph3{{/t}}</p>
+
+<ul class="govuk-!-margin-top-2 govuk-!-margin-left-2">
+    <li>{{#t}}pages.upload-proof-address.paragraph3-li1{{/t}}</li>
+    <li>{{#t}}pages.upload-proof-address.paragraph3-li2{{/t}}</li>
+    <li>{{#t}}pages.upload-proof-address.paragraph3-li3{{/t}}</li>
+    <li>{{#t}}pages.upload-proof-address.paragraph3-li4{{/t}}</li>
+    <li>{{#t}}pages.upload-proof-address.paragraph3-li5{{/t}}</li>
+</ul>
+
+<div class="govuk-form-group" id="hofFileUpload">
+    <label class="govuk-label" for="file-upload">
+        <h2>{{#t}}pages.upload-proof-address.label{{/t}}</h2>
+        <span class="govuk-hint">{{#t}}pages.upload-proof-address.hint{{/t}}</span>
+    </label>
+    <p id="file-upload-error-maxFileSize" class="govuk-error-message govuk-!-display-none">
+        <span id="validation-error" class="govuk-visually-hidden">{{#t}}journey.error{{/t}}:</span> {{#t}}validation.file-upload.maxFileSize{{/t}}
+    </p>
+    <p id="file-upload-error-fileType" class="govuk-error-message govuk-!-display-none">
+        <span id="validation-error" class="govuk-visually-hidden">{{#t}}journey.error{{/t}}:</span> {{#t}}validation.file-upload.fileType{{/t}}
+    </p>
+    <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" value="amend-proof-address">
+
+    <div id="upload-page-loading-spinner" class="spinner-container">
+        <div class="spinner-loader"></div>
+        <span class="spinner-message">{{#t}}pages.upload-proof-address.uploading-document{{/t}}</span>
+    </div>
+
+</div>
+
+{{^values.amend-proof-address}}
+<h2 class="govuk-heading-m">{{#t}}pages.upload-proof-address.not-uploaded{{/t}}</h2>
+{{/values.amend-proof-address}}
+
+{{#values.amend-proof-address.length}}
+<h2 class="govuk-heading-m">{{#t}}pages.upload-proof-address.uploaded{{/t}}</h2>
+
+<div id="uploaded-documents" class="govuk-width-container">
+    {{#values.amend-proof-address}}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-three-quarters">
+            {{name}}
+        </div>
+        <div class="govuk-grid-column-one-quarter">
+            <a href="?delete={{id}}" class="govuk-link">{{#t}}buttons.remove{{/t}}</a>
+        </div>
+    </div>
+    <div class="file-upload-hrline"></div>
+    {{/values.amend-proof-address}}
+</div>
+
+{{/values.amend-proof-address.length}}
+
+
+<button class="govuk-button" name="requireFileUpload" value="amend-proof-address">
+    {{#t}}buttons.continue{{/t}}
+</button>
+
+{{/page-content}}
+{{/partials-page}}
