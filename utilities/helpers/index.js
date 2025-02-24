@@ -120,23 +120,23 @@ const isEditMode = req => {
 };
 
 const getPrecursorsShortLabel = input => {
-    if (!input || typeof input !== 'string') {
-        return input;
+  if (!input || typeof input !== 'string') {
+    return input;
+  }
+
+  const resultStr = input.trim();
+
+  for (const { label, shortLabel } of explosivePrecursorsList) {
+    if (resultStr === label) {
+      return shortLabel;
     }
 
-    const resultStr = input.trim();
-
-    for (const { label, shortLabel } of explosivePrecursorsList) {
-        if (resultStr === label) {
-            return shortLabel;
-        }
-
-        if (resultStr.includes(label)) {
-            const newLabel = resultStr.replace(label, shortLabel);
-            return newLabel;
-        }
+    if (resultStr.includes(label)) {
+      const newLabel = resultStr.replace(label, shortLabel);
+      return newLabel;
     }
-    return resultStr;
+  }
+  return resultStr;
 };
 
 module.exports = {
@@ -154,7 +154,7 @@ module.exports = {
   DATE_FORMAT_YYYY_MM_DD,
   getFormattedDate,
   isEditMode,
-    getPrecursorsShortLabel,
-    textAreaDefaultLength,
-    isValidConcentrationValue
+  getPrecursorsShortLabel,
+  textAreaDefaultLength,
+  isValidConcentrationValue
 };
