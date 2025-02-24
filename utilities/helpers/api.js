@@ -94,11 +94,11 @@ const generateRequestPayload = (req, applicationType, hmac) => {
     };
   }
 
-  if (applicationType === 'amend') {
+  if (applicationType === 'replace') {
     return {
       amount: 200,
-      reference: 'Amend payment Reference',
-      description: 'Amend payment description',
+      reference: 'Replace payment Reference',
+      description: 'Replace payment description',
       return_url: 'http://localhost:8080/new-and-renew/application-submitted',
       token: hmac,
       metadata: {
@@ -107,13 +107,13 @@ const generateRequestPayload = (req, applicationType, hmac) => {
       },
       // TODO: Discuss which address to pick if they have updated their address
       billing_address: {
-        line1: req.sessionModel.get('amend-address-1'),
-        line2: req.sessionModel.get('amend-address-2'),
-        postcode: req.sessionModel.get('amend-postcode'),
-        city: req.sessionModel.get('amend-town-or-city'),
-        country: req.sessionModel.get('amend-county')
+        line1: req.sessionModel.get('replace-home-address-1'),
+        line2: req.sessionModel.get('replace-home-address-2'),
+        postcode: req.sessionModel.get('replace-home-postcode'),
+        city: req.sessionModel.get('replace-home-town-or-city'),
+        country: req.sessionModel.get('replace-home-county')
       },
-      email: req.sessionModel.get('amend-email')
+      email: req.sessionModel.get('replace-email')
     };
   }
   logger.error(
@@ -128,8 +128,8 @@ const getErrorTemplateBasePath = applicationType => {
     return '/new-and-renew';
   }
 
-  if (applicationType === 'amend') {
-    return '/amend';
+  if (applicationType === 'replace') {
+    return '/replace';
   }
   logger.error(
     `Application type ${applicationType} not supported for the payment`
