@@ -74,14 +74,20 @@ const generateHmac = randomId => {
 const generateRequestPayload = (req, applicationType, hmac) => {
   if (applicationType === 'new' || applicationType === 'renew') {
     return {
-      amount: 200,
-      reference: 'New-Renew payment Reference',
-      description: 'New-Renew payment description',
+      amount: 3950.0,
+      reference:
+        applicationType === 'new'
+          ? 'New payment Reference'
+          : 'Renew payment reference',
+      description:
+        applicationType === 'new'
+          ? 'New payment description'
+          : 'Renew payment description',
       return_url: 'http://localhost:8080/new-and-renew/application-submitted',
       token: hmac,
       metadata: {
-        ledger_code: 'AB100',
-        internal_reference_number: 'Internal Ref Number'
+        custom_metadata_key1: 'custom_metadata_value1',
+        custom_metadata_key2: 'custom_metadata_value2'
       },
       billing_address: {
         line1: req.sessionModel.get('new-renew-home-address-line1'),
@@ -96,7 +102,7 @@ const generateRequestPayload = (req, applicationType, hmac) => {
 
   if (applicationType === 'replace') {
     return {
-      amount: 200,
+      amount: 25.0,
       reference: 'Replace payment Reference',
       description: 'Replace payment description',
       return_url: 'http://localhost:8080/new-and-renew/application-submitted',
@@ -105,7 +111,7 @@ const generateRequestPayload = (req, applicationType, hmac) => {
         ledger_code: 'AB100',
         internal_reference_number: 'Internal Ref Number'
       },
-      // TODO: Discuss which address to pick if they have updated their address
+      // TODO: Discuss which address to pick if users change the address
       billing_address: {
         line1: req.sessionModel.get('replace-home-address-1'),
         line2: req.sessionModel.get('replace-home-address-2'),
