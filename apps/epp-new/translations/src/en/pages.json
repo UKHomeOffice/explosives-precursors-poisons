@@ -132,6 +132,18 @@
     "files-uploaded": "Files uploaded",
     "uploading-document": "Uploading your document..."
   },
+  "upload-certificate-conduct": {
+    "header": "Upload certificate of good conduct (optional)",
+    "label": "Upload a file",
+    "hint": "Your file must be JPG, JPEG, PDF or PNG and be 25MB or less",
+    "paragraph1": "A certificate of good conduct is issued by the police in your country of nationality. It shows if you have a criminal record and details of any offences.",
+    "paragraph2": "Attach an image of your certificate of good conduct. The image must be ",
+    "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
+    "link-text" : "signed by your countersignatory (opens in a new tab).",
+    "uploading-document": "Document uploading",
+    "not-uploaded": "No files uploaded", 
+    "uploaded": "File uploaded" 
+  },
   "confirm": {
     "header": "Check your answers",
     "title": "Check your answers – Apply for an explosives precursors and poisons licence",
@@ -262,7 +274,10 @@
       },
       "new-renew-upload-driving-licence": {
         "label": "UK driving licence attachment"
-      }
+      },
+      "new-renew-certificate-conduct" :{
+        "label": "Certificate of good conduct attachment"
+     }
     },
     "complete": {
       "header": "Your submission has been sent",
