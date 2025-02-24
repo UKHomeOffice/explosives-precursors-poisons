@@ -8,9 +8,10 @@ const {
   validInternationalPhoneNumber,
   removeWhiteSpace,
   getFormattedDate,
-  getPrecursorsShortLabel,
-  textAreaDefaultLength,
-  isValidConcentrationValue
+  isEditMode,
+    getPrecursorsShortLabel,
+    textAreaDefaultLength,
+    isValidConcentrationValue
 } = require('../../../utilities/helpers');
 
 const explosivePrecursorsList = require('../../../utilities/constants/explosive-precursors');
@@ -184,96 +185,126 @@ describe('EPP utilities tests', () => {
     }
   });
 
-  it('.getPrecursorsShortLabel - should return the shortLabel for the given precursors label', () => {
-    for (const explosivePrecursors of explosivePrecursorsList) {
-      expect(getPrecursorsShortLabel(explosivePrecursors.label)).to.be.equal(
-        explosivePrecursors.shortLabel
-      );
-    }
-  });
-
-  it('.getPrecursorsShortLabel - should return a partial replaced value with shortLabel', () => {
-    for (const explosivePrecursors of explosivePrecursorsList) {
-      expect(
-        getPrecursorsShortLabel(`Why do you need ${explosivePrecursors.label}`)
-      ).to.be.equal(`Why do you need ${explosivePrecursors.shortLabel}`);
-
-      expect(
-        getPrecursorsShortLabel(
-          `Where will you store the ${explosivePrecursors.label}`
-        )
-      ).to.be.equal(
-        `Where will you store the ${explosivePrecursors.shortLabel}`
-      );
-
-      expect(
-        getPrecursorsShortLabel(
-          `Where will you use the ${explosivePrecursors.label}`
-        )
-      ).to.be.equal(`Where will you use the ${explosivePrecursors.shortLabel}`);
-
-      expect(
-        getPrecursorsShortLabel(
-          `Storage address for the ${explosivePrecursors.label}`
-        )
-      ).to.be.equal(
-        `Storage address for the ${explosivePrecursors.shortLabel}`
-      );
-
-      expect(
-        getPrecursorsShortLabel(
-          `Usage address for the ${explosivePrecursors.label}`
-        )
-      ).to.be.equal(`Usage address for the ${explosivePrecursors.shortLabel}`);
-    }
-  });
-
-  it('.getPrecursorsShortLabel - should return original result for falsy or non string inputs', () => {
-    const inputs = [null, undefined, '', 1, true, {}];
-    for (const input of inputs) {
-      expect(getPrecursorsShortLabel(input)).to.be.equal(input);
-    }
-  });
-
-  it('.getPrecursorsShortLabel - should return original result for unknown strings', () => {
-    const inputs = ['Hello World', 'Unit test', 'random-text'];
-    for (const input of inputs) {
-      expect(getPrecursorsShortLabel(input)).to.be.equal(input);
-    }
-  });
-
-  it('.textAreaDefaultLength - should return false when the input is greater than 2000', () => {
-    const str = 'E'.repeat(2001);
-    expect(textAreaDefaultLength(str)).to.be.false;
-  });
-
-  it('.textAreaDefaultLength - should return true when the input is less than or equal to 2000', () => {
-    expect(textAreaDefaultLength('E'.repeat(1999))).to.be.true;
-    expect(textAreaDefaultLength('E'.repeat(1000))).to.be.true;
-    expect(textAreaDefaultLength('E'.repeat(2000))).to.be.true;
-  });
-
-  it('.isValidConcentrationValue - should return null for invalid formats', () => {
-    const inputs = ['TEST', '1.024.', '.0.0', 'undefined'];
-    inputs.forEach(input =>
-      expect(isValidConcentrationValue(input)).to.equal(null)
-    );
-  });
-
-  it('.isValidConcentrationValue - should match for valid formats', () => {
-    const inputs = [
-      '1.02',
-      '100',
-      '0.01',
-      '1.0%',
-      '5.6%',
-      '6%',
-      '12.56%',
-      '100',
-      '100%'
+  it('.isEditMode - should return true when in edit mode', () => {
+    const urls = [
+      'http://localhost:8080/amend/date-of-birth/edit#amend-date-of-birth',
+      'http://localhost:8080/new-and-renew/date-of-birth/edit#amend-date-of-birth',
+      'https:/domain/replace/date-of-birth/edit#amend-date-of-birth',
+      'protocol:/domain/url/edit'
     ];
-    inputs.forEach(input =>
-      expect(isValidConcentrationValue(input)).to.not.equal(null)
-    );
+
+    for (const url of urls) {
+      const { pathname, search } = new URL(url);
+      const originalUrl = pathname + search;
+      expect(isEditMode({ originalUrl })).to.be.true;
+    }
   });
+
+  it('.isEditMode - should return false when not in edit mode', () => {
+    const urls = [
+      'http://localhost:8080/amend/date-of-birth',
+      'http://localhost:8080/new-and-renew/edit-address#amend-date-of-birth',
+      'https:/domain/replace/date-of-birth/edit-first-name#amend-date-of-birth',
+      'protocol:/domain/url/test'
+    ];
+
+    for (const url of urls) {
+      const { pathname, search } = new URL(url);
+      const originalUrl = pathname + search;
+      expect(isEditMode({ originalUrl })).to.be.false;
+    }
+  });
+
+    it('.getPrecursorsShortLabel - should return the shortLabel for the given precursors label', () => {
+        for (const explosivePrecursors of explosivePrecursorsList) {
+            expect(getPrecursorsShortLabel(explosivePrecursors.label)).to.be.equal(
+                explosivePrecursors.shortLabel
+            );
+        }
+    });
+
+    it('.getPrecursorsShortLabel - should return a partial replaced value with shortLabel', () => {
+        for (const explosivePrecursors of explosivePrecursorsList) {
+            expect(
+                getPrecursorsShortLabel(`Why do you need ${explosivePrecursors.label}`)
+            ).to.be.equal(`Why do you need ${explosivePrecursors.shortLabel}`);
+
+            expect(
+                getPrecursorsShortLabel(
+                    `Where will you store the ${explosivePrecursors.label}`
+                )
+            ).to.be.equal(
+                `Where will you store the ${explosivePrecursors.shortLabel}`
+            );
+
+            expect(
+                getPrecursorsShortLabel(
+                    `Where will you use the ${explosivePrecursors.label}`
+                )
+            ).to.be.equal(`Where will you use the ${explosivePrecursors.shortLabel}`);
+
+            expect(
+                getPrecursorsShortLabel(
+                    `Storage address for the ${explosivePrecursors.label}`
+                )
+            ).to.be.equal(
+                `Storage address for the ${explosivePrecursors.shortLabel}`
+            );
+
+            expect(
+                getPrecursorsShortLabel(
+                    `Usage address for the ${explosivePrecursors.label}`
+                )
+            ).to.be.equal(`Usage address for the ${explosivePrecursors.shortLabel}`);
+        }
+    });
+
+    it('.getPrecursorsShortLabel - should return original result for falsy or non string inputs', () => {
+        const inputs = [null, undefined, '', 1, true, {}];
+        for (const input of inputs) {
+            expect(getPrecursorsShortLabel(input)).to.be.equal(input);
+        }
+    });
+
+    it('.getPrecursorsShortLabel - should return original result for unknown strings', () => {
+        const inputs = ['Hello World', 'Unit test', 'random-text'];
+        for (const input of inputs) {
+            expect(getPrecursorsShortLabel(input)).to.be.equal(input);
+        }
+    });
+
+    it('.textAreaDefaultLength - should return false when the input is greater than 2000', () => {
+        const str = 'E'.repeat(2001);
+        expect(textAreaDefaultLength(str)).to.be.false;
+    });
+
+    it('.textAreaDefaultLength - should return true when the input is less than or equal to 2000', () => {
+        expect(textAreaDefaultLength('E'.repeat(1999))).to.be.true;
+        expect(textAreaDefaultLength('E'.repeat(1000))).to.be.true;
+        expect(textAreaDefaultLength('E'.repeat(2000))).to.be.true;
+    });
+
+    it('.isValidConcentrationValue - should return null for invalid formats', () => {
+        const inputs = ['TEST', '1.024.', '.0.0', 'undefined'];
+        inputs.forEach(input =>
+            expect(isValidConcentrationValue(input)).to.equal(null)
+        );
+    });
+
+    it('.isValidConcentrationValue - should match for valid formats', () => {
+        const inputs = [
+            '1.02',
+            '100',
+            '0.01',
+            '1.0%',
+            '5.6%',
+            '6%',
+            '12.56%',
+            '100',
+            '100%'
+        ];
+        inputs.forEach(input =>
+            expect(isValidConcentrationValue(input)).to.not.equal(null)
+        );
+    });
 });

@@ -115,24 +115,28 @@ const getFormattedDate = date => {
   return '';
 };
 
+const isEditMode = req => {
+  return Boolean(req?.originalUrl?.endsWith('/edit'));
+};
+
 const getPrecursorsShortLabel = input => {
-  if (!input || typeof input !== 'string') {
-    return input;
-  }
-
-  const resultStr = input.trim();
-
-  for (const { label, shortLabel } of explosivePrecursorsList) {
-    if (resultStr === label) {
-      return shortLabel;
+    if (!input || typeof input !== 'string') {
+        return input;
     }
 
-    if (resultStr.includes(label)) {
-      const newLabel = resultStr.replace(label, shortLabel);
-      return newLabel;
+    const resultStr = input.trim();
+
+    for (const { label, shortLabel } of explosivePrecursorsList) {
+        if (resultStr === label) {
+            return shortLabel;
+        }
+
+        if (resultStr.includes(label)) {
+            const newLabel = resultStr.replace(label, shortLabel);
+            return newLabel;
+        }
     }
-  }
-  return resultStr;
+    return resultStr;
 };
 
 module.exports = {
@@ -149,7 +153,8 @@ module.exports = {
   TEXT_NOT_PROVIDED,
   DATE_FORMAT_YYYY_MM_DD,
   getFormattedDate,
-  getPrecursorsShortLabel,
-  textAreaDefaultLength,
-  isValidConcentrationValue
+  isEditMode,
+    getPrecursorsShortLabel,
+    textAreaDefaultLength,
+    isValidConcentrationValue
 };
