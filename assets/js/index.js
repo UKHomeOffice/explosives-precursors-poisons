@@ -55,14 +55,14 @@ document.addEventListener('DOMContentLoaded', () => {
       case 'uploading':
         uploadPageLoaderContainer.style.display = 'flex';
         fileUpload.disabled = true;
-        fileUpload.ariaDisabled = true;
-        requireFileUpload.forEach(a => {
-          a.disabled = true;
-          a.ariaDisabled = true;
+        fileUpload.setAttribute('aria-disabled', 'true');
+        requireFileUpload.forEach(requiredContinueBtn => {
+          requiredContinueBtn.disabled = true;
+          requiredContinueBtn.setAttribute('aria-disabled', 'true');
         });
-        optionalFileUpload.forEach(a => {
-          a.disabled = true;
-          a.ariaDisabled = true;
+        optionalFileUpload.forEach(optionalContinueBtn => {
+          optionalContinueBtn.disabled = true;
+          optionalContinueBtn.setAttribute('aria-disabled', 'true');
         });
         removeLinks.forEach(a => {
           a.classList.add('disabled-link');
