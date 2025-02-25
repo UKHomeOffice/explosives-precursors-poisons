@@ -85,7 +85,6 @@ module.exports = {
     '/upload-british-passport': {
       behaviours: [SaveDocument('replace-british-passport', 'file-upload'), RemoveDocument('replace-british-passport')],
       fields: ['file-upload'],
-      continueOnEdit: true,
       next: '/section-thirteen',
       locals: { captionHeading: 'Section 12 of 26' }
     },

@@ -104,7 +104,7 @@ module.exports = {
       'replace-british-passport': {
         allowMultipleUploads: false,
         limit: 1,
-        limitValidationError: 'maxAmendBritishPassport'
+        limitValidationError: 'maxReplaceBritishPassport'
       }
     }
   },

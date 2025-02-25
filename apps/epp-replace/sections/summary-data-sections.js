@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  'replace-new-name-details': {
+  'countersignatory-details': {
     steps: [
       {
         step: '/upload-british-passport',

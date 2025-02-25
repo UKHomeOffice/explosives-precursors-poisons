@@ -17,10 +17,7 @@
         "header": "Check your answers",
         "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",
         "sections": {
-          "replace-british-passport": {
-            "header": "British passport attachment"
-          },
-          "replace-new-name-details": {
+          "countersignatory-details": {
             "header": "Countersignatory details"
           }
         },
