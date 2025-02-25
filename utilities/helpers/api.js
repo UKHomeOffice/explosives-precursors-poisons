@@ -74,7 +74,7 @@ const generateHmac = randomId => {
 const generateRequestPayload = (req, applicationType, hmac) => {
   if (applicationType === 'new' || applicationType === 'renew') {
     return {
-      amount: 3950.0,
+      amount: 3950,
       reference:
         applicationType === 'new'
           ? 'New payment Reference'
@@ -102,10 +102,10 @@ const generateRequestPayload = (req, applicationType, hmac) => {
 
   if (applicationType === 'replace') {
     return {
-      amount: 25.0,
+      amount: 25,
       reference: 'Replace payment Reference',
       description: 'Replace payment description',
-      return_url: 'http://localhost:8080/new-and-renew/application-submitted',
+      return_url: 'http://localhost:8080/replace/application-submitted',
       token: hmac,
       metadata: {
         ledger_code: 'AB100',
