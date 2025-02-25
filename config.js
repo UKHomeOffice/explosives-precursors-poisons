@@ -106,7 +106,7 @@ module.exports = {
         limit: 1,
         limitValidationError: 'maxReplaceBritishPassport'
       },
-      'replace-upload-passport': {
+      'replace-eu-passport': {
         allowMultipleUploads: false,
         limit: 1,
         limitValidationError: 'maxReplaceEuPassport'
