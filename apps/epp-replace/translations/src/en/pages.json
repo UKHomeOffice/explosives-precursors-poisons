@@ -1,5 +1,33 @@
 {
     "application-submitted": {
         "confirmed": "Replaced application submitted"
+      },
+      "upload-british-passport" : {
+        "header": "Upload British passport",
+        "label": "Upload a file",
+        "hint": "Your file must be JPEG, PDF or PNG and be 25MB or less",
+        "paragraph1": "Attach an image of your British passport as proof of your identity. the image must be",
+        "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
+        "link-text" : "signed by your countersignatory (opens in a new tab).",
+        "uploading-document": "Uploading your document..",
+        "not-uploaded": "No files uploaded", 
+        "uploaded": "Files uploaded" 
+      },
+      "confirm": {
+        "header": "Check your answers",
+        "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",
+        "sections": {
+          "replace-british-passport": {
+            "header": "British passport attachment"
+          },
+          "replace-new-name-details": {
+            "header": "Countersignatory details"
+          }
+        },
+      "fields": {
+        "replace-british-passport" : {
+          "label": "British passport attachment"
+        }
       }
+    }
 }
