@@ -26,7 +26,6 @@ module.exports = superclass =>
         }
         req.log('info', 'Payment requested for: ' + paymentId);
         const { state } = await getPaymentDetails(paymentId);
-        console.log(state)
         if (state.code === 'P0030') {
           req.log('error', state.message);
           return res.redirect(`${errorTemplateBasePath}/payment-cancelled`);

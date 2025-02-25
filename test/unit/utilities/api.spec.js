@@ -9,6 +9,26 @@ const {
 } = require('../../../utilities/helpers/api');
 
 describe('apis.js tests', () => {
+  const expectedRequestPayload = {
+    amount: 3950,
+    reference: 'New payment Reference',
+    description: 'New payment description',
+    return_url: 'http://localhost:8080/new-and-renew/application-submitted',
+    token: 'ABCD1234',
+    metadata: {
+      custom_metadata_key1: 'custom_metadata_value1',
+      custom_metadata_key2: 'custom_metadata_value2'
+    },
+    billing_address: {
+      line1: 'mock_get_value',
+      line2: 'mock_get_value',
+      postcode: 'mock_get_value',
+      city: 'mock_get_value',
+      country: 'mock_get_value'
+    },
+    email: 'mock_get_value'
+  };
+
   describe('generateHmac tests', () => {
     let cryptoStub;
 
@@ -46,6 +66,60 @@ describe('apis.js tests', () => {
       expect(() =>
         generateRequestPayload({}, 'hello-world', 'ABCD1234')
       ).to.throw('Unknown application type');
+    });
+
+    it('should return the payload for new application type', () => {
+      expect(
+        generateRequestPayload(
+          {
+            sessionModel: {
+              get: () => 'mock_get_value'
+            }
+          },
+          'new',
+          'ABCD1234'
+        )
+      ).to.deep.equal(expectedRequestPayload);
+    });
+
+    it('should return the payload for renew application type', () => {
+      const updatedPayload = {
+        ...expectedRequestPayload,
+        reference: 'Renew payment reference',
+        description: 'Renew payment description'
+      };
+      expect(
+        generateRequestPayload(
+          {
+            sessionModel: {
+              get: () => 'mock_get_value'
+            }
+          },
+          'renew',
+          'ABCD1234'
+        )
+      ).to.deep.equal(updatedPayload);
+    });
+
+    it('should return the payload for replace application type', () => {
+      const updatedPayload = {
+        ...expectedRequestPayload,
+        amount: 2550,
+        reference: 'Replace payment reference',
+        description: 'Replace payment description',
+        return_url: 'http://localhost:8080/replace/application-submitted'
+      };
+      expect(
+        generateRequestPayload(
+          {
+            sessionModel: {
+              get: () => 'mock_get_value'
+            }
+          },
+          'replace',
+          'ABCD1234'
+        )
+      ).to.deep.equal(updatedPayload);
     });
   });
 

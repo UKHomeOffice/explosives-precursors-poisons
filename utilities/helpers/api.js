@@ -102,14 +102,14 @@ const generateRequestPayload = (req, applicationType, hmac) => {
 
   if (applicationType === 'replace') {
     return {
-      amount: 25,
-      reference: 'Replace payment Reference',
+      amount: 2500,
+      reference: 'Replace payment reference',
       description: 'Replace payment description',
       return_url: 'http://localhost:8080/replace/application-submitted',
       token: hmac,
       metadata: {
-        ledger_code: 'AB100',
-        internal_reference_number: 'Internal Ref Number'
+        custom_metadata_key1: 'custom_metadata_value1',
+        custom_metadata_key2: 'custom_metadata_value2'
       },
       // TODO: Discuss which address to pick if users change the address
       billing_address: {
@@ -128,7 +128,6 @@ const generateRequestPayload = (req, applicationType, hmac) => {
   throw new Error('Unknown application type');
 };
 
-// TODO: Use constants for magic strings
 const getErrorTemplateBasePath = applicationType => {
   if (applicationType === 'new' || applicationType === 'renew') {
     return '/new-and-renew';
