@@ -105,6 +105,11 @@ module.exports = {
         allowMultipleUploads: false,
         limit: 1,
         limitValidationError: 'maxReplaceBritishPassport'
+      },
+      'replace-upload-passport': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxReplaceEuPassport'
       }
     }
   },

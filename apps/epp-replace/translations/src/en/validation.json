@@ -3,6 +3,8 @@
         "required": "Select a file to upload",
         "maxFileSize": "The selected file must be 25MB or smaller",
         "fileType": "The selected file must be a JPG, JPEG, PDF or PNG",
-        "maxReplaceBritishPassport": "You can only upload up to {{maxReplaceBritishPassport}} files or less. Remove a file before uploading another "
+        "maxReplaceBritishPassport": "You can only upload up to {{maxReplaceBritishPassport}} files or less. Remove a file before uploading another",
+        "maxReplaceEuPassport" : "You can only upload up to {{maxReplaceEuPassport}} files or less. Remove a file before uploading another"
+
       }
 }
