@@ -12,16 +12,18 @@ module.exports = superclass =>
       try {
         // reset existing payment page URL as user has completed or cancelled the payment
         req.sessionModel.unset('payment-page-url');
-        const id = req.sessionModel.get('random-id');
+        const randomId = req.sessionModel.get('random-id');
         const paymentId = req.sessionModel.get('payment-id');
 
-        if (!id || !paymentId) {
+        if (!randomId || !paymentId) {
+          req.log('error', 'random id or payment id is missing');
           return res.redirect(`${errorTemplateBasePath}/payment-problem`);
         }
 
         const token = req.query.token;
-        const expectedToken = generateHmac(id);
+        const expectedToken = generateHmac(randomId);
         if (token !== expectedToken) {
+          req.log('error', 'token does not match');
           return res.redirect(`${errorTemplateBasePath}/payment-problem`);
         }
         req.log('info', 'Payment requested for: ' + paymentId);
