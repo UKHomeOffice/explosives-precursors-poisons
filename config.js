@@ -101,7 +101,7 @@ module.exports = {
         limit: 1,
         limitValidationError: 'maxNewRenewDrivingLicence'
       },
-      'new-renew-upload-certificate-conduct': {
+      'new-renew-certificate-conduct': {
         allowMultipleUploads: false,
         limit: 1,
         limitValidationError: 'maxNewRenewCertificateConduct'

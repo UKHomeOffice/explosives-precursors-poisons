@@ -140,9 +140,9 @@
     "paragraph2": "Attach an image of your certificate of good conduct. The image must be ",
     "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
     "link-text" : "signed by your countersignatory (opens in a new tab).",
-    "uploading-document": "Document uploading",
+    "uploading-document": "Uploading your document..",
     "not-uploaded": "No files uploaded", 
-    "uploaded": "File uploaded" 
+    "uploaded": "Files uploaded" 
   },
   "confirm": {
     "header": "Check your answers",
