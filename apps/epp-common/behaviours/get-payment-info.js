@@ -26,15 +26,19 @@ module.exports = superclass =>
         }
         req.log('info', 'Payment requested for: ' + paymentId);
         const { state } = await getPaymentDetails(paymentId);
+        console.log(state)
         if (state.code === 'P0030') {
+          req.log('error', state.message);
           return res.redirect(`${errorTemplateBasePath}/payment-cancelled`);
         }
 
-        if (state.code === 'P0020') {
+        if (state.code === 'P0010') {
+          req.log('error', state.message);
           return res.redirect(`${errorTemplateBasePath}/payment-failed`);
         }
 
         if (state.status !== 'success') {
+          req.log('error', state.status);
           return res.redirect(`${errorTemplateBasePath}/payment-problem`);
         }
         // TODO: Notify?
