@@ -104,7 +104,7 @@ describe('apis.js tests', () => {
     it('should return the payload for replace application type', () => {
       const updatedPayload = {
         ...expectedRequestPayload,
-        amount: 2550,
+        amount: 2500,
         reference: 'Replace payment reference',
         description: 'Replace payment description',
         return_url: 'http://localhost:8080/replace/application-submitted'
