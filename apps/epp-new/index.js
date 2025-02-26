@@ -298,7 +298,11 @@ module.exports = {
       }
     },
     '/upload-certificate-conduct': {
-      fields: [],
+      behaviours: [
+        SaveDocument('new-renew-certificate-conduct', 'file-upload'),
+        RemoveDocument('new-renew-certificate-conduct')
+      ],
+      fields: ['file-upload'],
       next: '/other-licences',
       locals: {
         sectionNo: {

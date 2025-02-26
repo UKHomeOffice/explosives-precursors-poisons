@@ -1,0 +1,48 @@
+{{<partials-page}}
+{{$encoding}}enctype="multipart/form-data" name="file-upload-form" {{/encoding}}
+{{$page-content}}
+<p>{{#t}}pages.upload-certificate-conduct.paragraph1{{/t}}</p>
+   <p>{{#t}}pages.upload-certificate-conduct.paragraph2{{/t}}
+   <a class="govuk-link" href="{{#t}}pages.upload-certificate-conduct.link{{/t}}" rel="noreferrer noopener" target="_blank">{{#t}}pages.upload-certificate-conduct.link-text{{/t}}</a>
+</p>
+<div class="govuk-form-group" id="hofFileUpload">
+   <label class="govuk-label" for="file-upload">
+      <h2>{{#t}}pages.upload-certificate-conduct.label{{/t}}</h2>
+      <span class="govuk-hint">{{#t}}pages.upload-certificate-conduct.hint{{/t}}</span>
+   </label>
+   <p id="file-upload-error-maxFileSize" class="govuk-error-message govuk-!-display-none">
+      <span id="validation-error" class="govuk-visually-hidden">{{#t}}journey.error{{/t}}:</span> {{#t}}validation.file-upload.maxFileSize{{/t}}
+   </p>
+   <p id="file-upload-error-fileType" class="govuk-error-message govuk-!-display-none">
+      <span id="validation-error" class="govuk-visually-hidden">{{#t}}journey.error{{/t}}:</span> {{#t}}validation.file-upload.fileType{{/t}}
+   </p>
+   <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" value="new-renew-certificate-conduct">
+   <div id="upload-page-loading-spinner" class="spinner-container">
+      <div class="spinner-loader"></div>
+      <span class="spinner-message">{{#t}}pages.upload-certificate-conduct.uploading-document{{/t}}</span>
+   </div>
+</div>
+{{^values.new-renew-certificate-conduct}}
+<h2 class="govuk-heading-m">{{#t}}pages.upload-certificate-conduct.not-uploaded{{/t}}</h2>
+{{/values.new-renew-certificate-conduct}}
+{{#values.new-renew-certificate-conduct.length}}
+<h2 class="govuk-heading-m">{{#t}}pages.upload-certificate-conduct.uploaded{{/t}}</h2>
+<div id="uploaded-documents" class="govuk-width-container">
+   {{#values.new-renew-certificate-conduct}}
+   <div class="govuk-grid-row">
+       <div class="govuk-grid-column-three-quarters">
+           {{name}}
+       </div>
+       <div class="govuk-grid-column-one-quarter">
+           <a href="?delete={{id}}" class="govuk-link">{{#t}}buttons.remove{{/t}}</a>
+       </div>
+   </div>
+   <div class="file-upload-hrline"></div>
+   {{/values.new-renew-certificate-conduct}}
+</div>
+{{/values.new-renew-certificate-conduct.length}}
+<button class="govuk-button" name="optionalFileUpload" value="new-renew-certificate-conduct">
+   {{#t}}buttons.continue{{/t}}
+</button>
+{{/page-content}}
+{{/partials-page}}
