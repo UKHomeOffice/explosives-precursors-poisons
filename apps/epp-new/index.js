@@ -166,7 +166,7 @@ module.exports = {
           }
         }
       ],
-      next: '/previous-addresses',
+      next: '/previous-address',
       locals: {
         sectionNo: {
           new: 3,
@@ -432,7 +432,11 @@ module.exports = {
       }
     },
     '/medical-form': {
-      fields: [],
+      behaviours: [
+        SaveDocument('new-renew-medical-form', 'file-upload'),
+        RemoveDocument('new-renew-medical-form')
+      ],
+      fields: ['file-upload'],
       next: '/doctor-details',
       locals: {
         sectionNo: {
