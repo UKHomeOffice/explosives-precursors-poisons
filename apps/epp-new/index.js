@@ -432,7 +432,11 @@ module.exports = {
       }
     },
     '/medical-form': {
-      fields: [],
+      behaviours: [
+        SaveDocument('new-renew-medical-form', 'file-upload'),
+        RemoveDocument('new-renew-medical-form')
+      ],
+      fields: ['file-upload'],
       next: '/doctor-details',
       locals: {
         sectionNo: {
