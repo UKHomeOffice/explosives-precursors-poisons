@@ -106,16 +106,16 @@ module.exports = {
         limit: 1,
         limitValidationError: 'maxNewRenewMedicalForm'
       },
-    'replace-british-passport': {
+      'replace-british-passport': {
         allowMultipleUploads: false,
         limit: 1,
         limitValidationError: 'maxReplaceBritishPassport'
-    },
-    'replace-eu-passport': {
+      },
+      'replace-eu-passport': {
         allowMultipleUploads: false,
         limit: 1,
         limitValidationError: 'maxReplaceEuPassport'
-    }
+      }
     }
   },
   sectionDetails: {
