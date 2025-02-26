@@ -116,10 +116,10 @@ module.exports = {
         limit: 1,
         limitValidationError: 'maxReplaceEuPassport'
       },
-      'new-renew-medical-form': {
+      'replace-certificate-conduct': {
         allowMultipleUploads: false,
         limit: 1,
-        limitValidationError: 'maxNewRenewMedicalForm'
+        limitValidationError: 'maxReplaceCertificateConduct'
       }
     }
   },
