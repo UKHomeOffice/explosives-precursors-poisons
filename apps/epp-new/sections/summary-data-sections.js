@@ -241,6 +241,22 @@ module.exports = {
         }
       },
       {
+        step: '/upload-certificate-conduct',
+        field: 'new-renew-certificate-conduct',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel
+              .get('steps')
+              .includes('/upload-certificate-conduct') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file.name);
+          }
+
+          return null;
+        }
+      },
+      {
         step: '/upload-driving-licence',
         field: 'new-renew-upload-driving-licence',
         parse: (documents, req) => {

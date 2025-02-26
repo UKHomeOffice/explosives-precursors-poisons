@@ -106,6 +106,11 @@ module.exports = {
         limit: 1,
         limitValidationError: 'maxNewRenewMedicalForm'
       },
+      'new-renew-certificate-conduct': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxNewRenewCertificateConduct'
+      },
       'replace-british-passport': {
         allowMultipleUploads: false,
         limit: 1,
