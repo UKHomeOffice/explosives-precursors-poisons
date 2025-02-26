@@ -1,5 +1,7 @@
 const moment = require('moment');
 const validators = require('hof/controller/validation/validators');
+
+const explosivePrecursorsList = require('../constants/explosive-precursors');
 const removeWhiteSpace = value => value?.replace(/\s+/g, '');
 
 const config = require('../../config');
@@ -98,6 +100,14 @@ const TEXT_NOT_PROVIDED = 'Not provided';
 
 const DATE_FORMAT_YYYY_MM_DD = 'YYYY-MM-DD';
 
+const textAreaDefaultLength = value => {
+  return validators.maxlength(value, 2000);
+};
+
+const isValidConcentrationValue = value => {
+  return value?.match(/^\d+(\.\d+)?%?$/);
+};
+
 const getFormattedDate = date => {
   if (date && moment(date, DATE_FORMAT_YYYY_MM_DD, true)?.isValid()) {
     return moment(date).format(config.PRETTY_DATE_FORMAT);
@@ -107,6 +117,26 @@ const getFormattedDate = date => {
 
 const isEditMode = req => {
   return Boolean(req?.originalUrl?.endsWith('/edit'));
+};
+
+const getPrecursorsShortLabel = input => {
+  if (!input || typeof input !== 'string') {
+    return input;
+  }
+
+  const resultStr = input.trim();
+
+  for (const { label, shortLabel } of explosivePrecursorsList) {
+    if (resultStr === label) {
+      return shortLabel;
+    }
+
+    if (resultStr.includes(label)) {
+      const newLabel = resultStr.replace(label, shortLabel);
+      return newLabel;
+    }
+  }
+  return resultStr;
 };
 
 module.exports = {
@@ -123,5 +153,8 @@ module.exports = {
   TEXT_NOT_PROVIDED,
   DATE_FORMAT_YYYY_MM_DD,
   getFormattedDate,
-  isEditMode
+  isEditMode,
+  getPrecursorsShortLabel,
+  textAreaDefaultLength,
+  isValidConcentrationValue
 };

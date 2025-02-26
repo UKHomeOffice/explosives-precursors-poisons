@@ -109,6 +109,9 @@
   "application-submitted": {
     "confirmed": "Amendment submitted"
   },
+  "precursor-details":{
+    "header": "{{values.amend-precursor-field}}"
+  },
   "countersignatory-details": {
     "header": "Countersignatory details",
     "description": "Your countersignatory must not be a parent or relative, unless you are under 18. If you are under 18, your countersignatory must be your parent or legal guardian."

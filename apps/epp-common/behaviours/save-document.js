@@ -27,6 +27,15 @@ module.exports = (documentName, fieldName) => superclass =>
       const validationErrorFunc = (type, args) =>
         new this.ValidationError(key, { type: type, arguments: [args] });
 
+      const documentCategoryConfig = config.upload.documentCategories[documentName];
+
+      if (
+        !documentCategoryConfig ||
+        Object.keys(documentCategoryConfig).length === 0
+      ) {
+        throw new Error('Document configuration is not defined');
+      }
+
       if (req.body.requireFileUpload && documentsByCategory.length === 0) {
         return validationErrorFunc('required');
       } else if (fileToBeValidated) {
@@ -40,8 +49,6 @@ module.exports = (documentName, fieldName) => superclass =>
           !config.upload.allowedMimeTypes.includes(mimetype);
 
         const numberOfDocsUploaded = documentsByCategory.length;
-        const documentCategoryConfig =
-          config.upload.documentCategories[documentName] || {};
 
         if (invalidSize) {
           return validationErrorFunc('maxFileSize');

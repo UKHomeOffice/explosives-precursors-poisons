@@ -7,6 +7,8 @@ const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator'
 const SaveDocument = require('../epp-common/behaviours/save-document');
 const RemoveDocument = require('../epp-common/behaviours/remove-document');
 const DobEditRedirect = require('../epp-common/behaviours/dob-edit-redirect');
+const RenderPrecursorDetails = require('../epp-common/behaviours/render-precursors-detail');
+const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
 
 module.exports = {
   name: 'EPP form',
@@ -41,7 +43,17 @@ module.exports = {
       locals: { captionHeading: 'Section 3 of 23' }
     },
     '/home-address': {
-      behaviours: [PostcodeValidation],
+      behaviours: [
+        PostcodeValidation,
+        SaveHomeAddress([
+          'amend-address-1',
+          'amend-address-2',
+          'amend-town-or-city',
+          'amend-county',
+          'amend-postcode',
+          'amend-country'
+        ])
+      ],
       fields: [
         'amend-address-1',
         'amend-address-2',
@@ -54,11 +66,8 @@ module.exports = {
       locals: { captionHeading: 'Section 4 of 23' }
     },
     '/contact-details': {
-      fields: [
-        'amend-phone-number',
-        'amend-email'
-      ],
-      locals: {captionHeading: 'Section 5 of 23'},
+      fields: ['amend-phone-number', 'amend-email'],
+      locals: { captionHeading: 'Section 5 of 23' },
       next: '/amend-details'
     },
     '/amend-details': {
@@ -79,7 +88,7 @@ module.exports = {
           }
         }
       ],
-      locals: {captionHeading: 'Section 6 of 23'},
+      locals: { captionHeading: 'Section 6 of 23' },
       next: '/new-name'
     },
     '/new-name': {
@@ -118,21 +127,30 @@ module.exports = {
       next: '/upload-driving-licence'
     },
     '/upload-british-passport': {
-      behaviours: [SaveDocument('amend-british-passport', 'file-upload'), RemoveDocument('amend-british-passport')],
+      behaviours: [
+        SaveDocument('amend-british-passport', 'file-upload'),
+        RemoveDocument('amend-british-passport')
+      ],
       fields: ['file-upload'],
       continueOnEdit: true,
       next: '/change-home-address',
       locals: { captionHeading: 'Section 9 of 23' }
     },
     '/upload-passport': {
-      behaviours: [SaveDocument('amend-eu-passport', 'file-upload'), RemoveDocument('amend-eu-passport')],
+      behaviours: [
+        SaveDocument('amend-eu-passport', 'file-upload'),
+        RemoveDocument('amend-eu-passport')
+      ],
       fields: ['file-upload'],
       continueOnEdit: true,
       next: '/upload-certificate-conduct',
       locals: { captionHeading: 'Section 9 of 23' }
     },
     '/upload-driving-licence': {
-      behaviours: [SaveDocument('amend-uk-driving-licence', 'file-upload'), RemoveDocument('amend-uk-driving-licence')],
+      behaviours: [
+        SaveDocument('amend-uk-driving-licence', 'file-upload'),
+        RemoveDocument('amend-uk-driving-licence')
+      ],
       fields: ['file-upload'],
       next: '/change-home-address',
       locals: { captionHeading: 'Section 9 of 23' }
@@ -209,7 +227,31 @@ module.exports = {
     '/select-precursor': {
       fields: ['amend-precursor-field'],
       locals: { captionHeading: 'Section 15 of 23' },
-      next: '/section-sixteen'
+      next: '/precursor-details'
+    },
+    '/precursor-details': {
+      behaviours: [RenderPrecursorDetails('amend-precursor-field')],
+      fields: [
+        'amend-why-need-precursor',
+        'amend-how-much-precursor',
+        'amend-what-concentration-precursor',
+        'amend-where-to-store-precursor',
+        'amend-where-to-use-precursor',
+        'store-precursors-other-address',
+        'precursors-use-other-address'
+      ],
+      locals: { captionHeading: 'Section 15 of 23' },
+      next: '/precursors-summary'
+    },
+    '/precursors-summary': {
+      fields: [],
+      next: '/poisons',
+      locals: { captionHeading: 'Section 15 of 23' }
+    },
+    '/poisons': {
+      fields: [],
+      locals: { captionHeading: 'Section 16 of 23' },
+      next: '/countersignatory-details'
     },
     '/countersignatory-details': {
       fields: [
@@ -223,11 +265,6 @@ module.exports = {
       ],
       locals: { captionHeading: 'Section 18 of 23' },
       next: '/countersignatory-address'
-    },
-    '/poisons': {
-      fields: [],
-      locals: { captionHeading: 'Section 16 of 23' },
-      next: '/section-sixteen'
     },
     '/countersignatory-address': {
       fields: [
