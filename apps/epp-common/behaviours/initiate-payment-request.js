@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const {
   initiatePayment,
   generateRandomId,
@@ -13,7 +14,7 @@ module.exports = superclass =>
       const errorTemplateBasePath = getErrorTemplateBasePath(applicationType);
 
       try {
-        // Shall we use the existing URL to avoid creating additional requests?
+        // TODO: Shall we use the existing URL to avoid creating additional requests?
         if (req.sessionModel.get('payment-page-url')) {
           return res.redirect(req.sessionModel.get('payment-page-url'));
         }
@@ -25,10 +26,10 @@ module.exports = superclass =>
           applicationType,
           hmac
         );
-        const data = await initiatePayment(paymentPayload);
-        req.sessionModel.set('payment-id', data.payment_id);
+        const { payment_id, _links } = await initiatePayment(paymentPayload);
+        req.sessionModel.set('payment-id', payment_id);
         req.sessionModel.set('random-id', randomId);
-        const paymentPageUrl = data._links?.next_url?.href;
+        const paymentPageUrl = _links?.next_url?.href;
         req.sessionModel.unset('payment-page-url');
         if (paymentPageUrl) {
           req.sessionModel.set('payment-page-url', paymentPageUrl);
