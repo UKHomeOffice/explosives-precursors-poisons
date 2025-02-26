@@ -1,6 +1,6 @@
+const dateComponent = require('hof').components.date;
 const titles = require('../../../utilities/constants/titles.js');
 const precursorList = require('../../../utilities/constants/explosive-precursors.js');
-const dateComponent = require('hof').components.date;
 const helpers = require('../../../utilities/helpers/index.js');
 const country = require('../../../utilities/constants/countries');
 
@@ -316,6 +316,82 @@ module.exports = {
     className: ['govuk-radios', 'govuk-radios--inline'],
     options: ['yes', 'no'],
     validate: 'required'
+  },
+  'amend-why-need-precursor': {
+    mixin: 'textarea',
+    validate: ['required', 'notUrl', helpers.textAreaDefaultLength],
+    attributes: [{ attribute: 'rows', value: 5 }],
+    labelClassName: 'govuk-label--s'
+  },
+  'amend-how-much-precursor': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
+    className: ['govuk-input', 'govuk-input--width-10'],
+    labelClassName: 'govuk-label--s'
+  },
+  'amend-what-concentration-precursor': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      helpers.isValidConcentrationValue,
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ],
+    className: ['govuk-input', 'govuk-input--width-5'],
+    labelClassName: 'govuk-label--s',
+    attributes: [{ suffix: '%' }]
+  },
+  'amend-where-to-store-precursor': {
+    mixin: 'checkbox-group',
+    validate: ['required'],
+    legend: {
+      className: 'govuk-label--s'
+    },
+    options: [
+      {
+        value: 'amend-store-precursors-home-address'
+      },
+      {
+        value: 'amend-store-precursors-other-address',
+        toggle: 'store-precursors-other-address',
+        child: 'textarea'
+      }
+    ]
+  },
+  'store-precursors-other-address': {
+    mixin: 'textarea',
+    validate: ['required', helpers.textAreaDefaultLength, 'notUrl'],
+    dependent: {
+      field: 'amend-where-to-store-precursor',
+      value: 'amend-store-precursors-other-address'
+    },
+    attributes: [{ attribute: 'rows', value: 5 }]
+  },
+  'amend-where-to-use-precursor': {
+    mixin: 'checkbox-group',
+    validate: ['required'],
+    legend: {
+      className: 'govuk-label--s'
+    },
+    options: [
+      {
+        value: 'amend-use-precursors-home-address'
+      },
+      {
+        value: 'amend-use-precursors-other-address',
+        toggle: 'precursors-use-other-address',
+        child: 'textarea'
+      }
+    ]
+  },
+  'precursors-use-other-address': {
+    mixin: 'textarea',
+    validate: ['required', helpers.textAreaDefaultLength, 'notUrl'],
+    dependent: {
+      field: 'amend-where-to-use-precursor',
+      value: 'amend-use-precursors-other-address'
+    },
+    attributes: [{ attribute: 'rows', value: 5 }]
   },
   'amend-countersignatory-title': {
     mixin: 'select',
