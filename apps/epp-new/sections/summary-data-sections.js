@@ -288,6 +288,21 @@ module.exports = {
       {
         step: '/medical-history',
         field: 'new-renew-received-treatment'
+      },
+      {
+        step: '/medical-form',
+        field: 'new-renew-medical-form',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel
+              .get('steps')
+              .includes('/medical-form') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file?.name)?.join('\n\n');
+          }
+          return null;
+        }
       }
     ]
   },

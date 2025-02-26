@@ -13,10 +13,9 @@ const ParseSummaryFields = require('../epp-common/behaviours/parse-summary-field
 const ResetSectionSummary = require('../epp-common/behaviours/reset-section-summary');
 const EditRouteStart = require('../epp-common/behaviours/edit-route-start');
 const EditRouteReturn = require('../epp-common/behaviours/edit-route-return');
-
-
 const SaveDocument = require('../epp-common/behaviours/save-document');
 const RemoveDocument = require('../epp-common/behaviours/remove-document');
+const DobEditRedirect = require('../epp-common/behaviours/dob-edit-redirect');
 
 module.exports = {
   name: 'EPP form',
@@ -100,6 +99,9 @@ module.exports = {
       }
     },
     '/your-details': {
+      behaviours: [
+        DobEditRedirect('new-renew-dob', '/new-and-renew/birth-certificate')
+      ],
       fields: [
         'new-renew-dob',
         'new-renew-birth-place',
@@ -164,7 +166,7 @@ module.exports = {
           }
         }
       ],
-      next: '/previous-addresses',
+      next: '/previous-address',
       locals: {
         sectionNo: {
           new: 3,
@@ -434,7 +436,11 @@ module.exports = {
       }
     },
     '/medical-form': {
-      fields: [],
+      behaviours: [
+        SaveDocument('new-renew-medical-form', 'file-upload'),
+        RemoveDocument('new-renew-medical-form')
+      ],
+      fields: ['file-upload'],
       next: '/doctor-details',
       locals: {
         sectionNo: {

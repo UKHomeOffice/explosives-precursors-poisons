@@ -184,11 +184,12 @@
     "required": "Select a file to upload",
     "unsaved": "Your file could not be uploaded – try again",
     "maxFileSize": "The selected file must be 25MB or smaller",
-    "fileType": "The selected file must be a JPG, PDF or PNG",
+    "fileType": "The selected file must be a JPG, JPEG, PDF or PNG",
     "maxNewRenewBritishPassport" : "You can only upload upto {{maxNewRenewBritishPassport}} files or less. Remove a file before uploading another",
     "maxNewRenewEuPassport" : "You can only upload upto {{maxNewRenewEuPassport}} files or less. Remove a file before uploading another",
     "maxNewRenewProofAddress" : "You can only upload upto {{maxNewRenewProofAddress}} files or less. Remove a file before uploading another",
     "maxNewRenewDrivingLicence" : "You can only upload upto {{maxNewRenewDrivingLicence}} files or less. Remove a file before uploading another",
+    "maxNewRenewMedicalForm" : "You can only upload upto {{maxNewRenewMedicalForm}} files or less. Remove a file before uploading another",
     "maxNewRenewCertificateConduct" : "You can only upload upto {{maxNewRenewCertificateConduct}} files or less. Remove a file before uploading another"
   },
   "new-renew-previous-home-address-line1": {

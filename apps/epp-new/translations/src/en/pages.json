@@ -132,6 +132,18 @@
     "files-uploaded": "Files uploaded",
     "uploading-document": "Uploading your document..."
   },
+  "medical-form": {
+    "header": "Upload your medical form (optional)",
+    "p1": "Upload a completed copy of the",
+    "link": "https://assets.publishing.service.gov.uk/media/5a7e4b5ae5274a2e87db0cc9/GPHealthReportTemplate.pdf",
+    "link-text": "medical form.",
+    "p2": "If you upload a medical form, you must complete part 1 and your doctor must complete part 2.",
+    "upload-file": "Upload a file",
+    "file-format": "Your file must be JPEG, PDF or PNG, and be 25MB or less",
+    "no-file-uploaded": "No files uploaded",
+    "files-uploaded": "Files uploaded",
+    "uploading-document": "Uploading your document..."
+  },
   "upload-certificate-conduct": {
     "header": "Upload certificate of good conduct (optional)",
     "label": "Upload a file",
@@ -141,8 +153,8 @@
     "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
     "link-text" : "signed by your countersignatory (opens in a new tab).",
     "uploading-document": "Uploading your document..",
-    "not-uploaded": "No files uploaded", 
-    "uploaded": "Files uploaded" 
+    "not-uploaded": "No files uploaded",
+    "uploaded": "Files uploaded"
   },
   "confirm": {
     "header": "Check your answers",
@@ -274,6 +286,10 @@
       },
       "new-renew-upload-driving-licence": {
         "label": "UK driving licence attachment"
+      },
+      "new-renew-medical-form": {
+        "label": "Medical form attachment"
+      }
       },
       "new-renew-certificate-conduct" :{
         "label": "Certificate of good conduct attachment"

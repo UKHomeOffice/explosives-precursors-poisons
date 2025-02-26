@@ -23,7 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const fileUpload = document.getElementById('file-upload');
   const uploadPageLoaderContainer = document.getElementById('upload-page-loading-spinner');
-  const continueWithoutUpload = document.getElementsByName('continueWithoutUpload');
+  const requireFileUpload = document.getElementsByName('requireFileUpload');
+  const optionalFileUpload = document.getElementsByName('optionalFileUpload');
   const removeLinks = document.querySelectorAll('#uploaded-documents > div > div > a');
 
   if (loaderContainer) {
@@ -54,10 +55,14 @@ document.addEventListener('DOMContentLoaded', () => {
       case 'uploading':
         uploadPageLoaderContainer.style.display = 'flex';
         fileUpload.disabled = true;
-        fileUpload.ariaDisabled = true;
-        continueWithoutUpload.forEach(a => {
-          a.disabled = true;
-          a.ariaDisabled = true;
+        fileUpload.setAttribute('aria-disabled', 'true');
+        requireFileUpload.forEach(requiredContinueBtn => {
+          requiredContinueBtn.disabled = true;
+          requiredContinueBtn.setAttribute('aria-disabled', 'true');
+        });
+        optionalFileUpload.forEach(optionalContinueBtn => {
+          optionalContinueBtn.disabled = true;
+          optionalContinueBtn.setAttribute('aria-disabled', 'true');
         });
         removeLinks.forEach(a => {
           a.classList.add('disabled-link');
