@@ -209,7 +209,7 @@ module.exports = {
       locals: { captionHeading: 'Section 12 of 23' }
     },
     '/change-substances': {
-      behaviours:[
+      behaviours: [
         CheckAndRedirect('amend-change-substances-options',
           ['amend-change-substances-options', 'amend-name-options', 'amend-home-address-options']
         )
@@ -217,13 +217,10 @@ module.exports = {
       fields: ['amend-change-substances-options'],
       continueOnEdit: true,
       next: '/explosives-precursors',
-      locals: { captionHeading: 'Section 13 of 23' },
+      locals: { captionHeading: 'Section 13 of 23' }
 
     },
     '/no-details-amend': {
-      locals: { captionHeading: 'Section 13 of 23' }
-    },
-     '/countersignatory-details': {
       locals: { captionHeading: 'Section 13 of 23' }
     },
     '/explosives-precursors': {
