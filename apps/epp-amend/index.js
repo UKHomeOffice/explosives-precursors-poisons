@@ -71,7 +71,7 @@ module.exports = {
         'amend-phone-number',
         'amend-email'
       ],
-      locals: {captionHeading: 'Section 5 of 23'},
+      locals: { captionHeading: 'Section 5 of 23' },
       next: '/amend-details'
     },
     '/amend-details': {
