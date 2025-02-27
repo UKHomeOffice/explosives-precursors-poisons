@@ -1,0 +1,17 @@
+{{<partials-page}}
+  {{$page-content}}
+<div>
+    <p class="govuk-body">{{#t}}pages.change-substances.paragraph1{{/t}}</p>
+    <ul class="govuk-list govuk-list--bullet"> 
+        <li>{{#t}}pages.change-substances.li1{{/t}}</li>
+        <li>{{#t}}pages.change-substances.li2{{/t}}</li>
+        <li>{{#t}}pages.change-substances.li3{{/t}}</li>
+    </ul>
+</div>
+  
+  {{#fields}}
+    {{#renderField}}amend-change-substances-options{{/renderField}}
+  {{/fields}}
+  {{#input-submit}}continue{{/input-submit}} 
+  {{/page-content}}
+{{/partials-page}}
