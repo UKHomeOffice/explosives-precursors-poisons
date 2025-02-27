@@ -129,6 +129,6 @@ module.exports = {
     AMOUNT_NEW: 3950,
     AMOUNT_RENEW: 3950,
     AMOUNT_REPLACE: 2500,
-    govUkApiKey: process.env.GOV_UK_PAY_API_KEY
+    govUkApiKey: process.env.GOV_PAY_KEY
   }
 };
