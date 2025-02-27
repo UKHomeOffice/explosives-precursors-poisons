@@ -72,14 +72,22 @@ describe('apis.js tests', () => {
 
   describe('generateRequestPayload tests', () => {
     it('unsupported applicationType - should throw an error for amend flow', () => {
-      expect(() => generateRequestPayload({}, 'amend', 'ABCD1234')).to.throw(
-        'Unknown application type'
-      );
+      expect(() =>
+        generateRequestPayload(
+          { protocol: '', get: sinon.stub() },
+          'amend',
+          'ABCD1234'
+        )
+      ).to.throw('Unknown application type');
     });
 
     it('unsupported applicationType - should throw an error for unknown value', () => {
       expect(() =>
-        generateRequestPayload({}, 'hello-world', 'ABCD1234')
+        generateRequestPayload(
+          { protocol: '', get: sinon.stub() },
+          'hello-world',
+          'ABCD1234'
+        )
       ).to.throw('Unknown application type');
     });
 
@@ -89,7 +97,9 @@ describe('apis.js tests', () => {
           {
             sessionModel: {
               get: () => 'mock_get_value'
-            }
+            },
+            get: () => 'localhost:8080',
+            protocol: 'http'
           },
           'new',
           'ABCD1234'
@@ -108,7 +118,9 @@ describe('apis.js tests', () => {
           {
             sessionModel: {
               get: () => 'mock_get_value'
-            }
+            },
+            get: () => 'localhost:8080',
+            protocol: 'http'
           },
           'renew',
           'ABCD1234'
@@ -129,7 +141,9 @@ describe('apis.js tests', () => {
           {
             sessionModel: {
               get: () => 'mock_get_value'
-            }
+            },
+            get: () => 'localhost:8080',
+            protocol: 'http'
           },
           'replace',
           'ABCD1234'

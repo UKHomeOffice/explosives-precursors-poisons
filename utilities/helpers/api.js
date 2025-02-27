@@ -9,9 +9,7 @@ const {
   APP_TYPE_RENEW,
   APP_TYPE_REPLACE,
   PATH_NEW_AND_RENEW,
-  PATH_REPLACE,
-  APP_TYPE_AMEND,
-  PATH_AMEND
+  PATH_REPLACE
 } = require('../constants/string-constants');
 
 const generateRandomId = () => crypto.randomBytes(16).toString('hex');
@@ -87,7 +85,7 @@ async function getPaymentDetails(paymentId) {
 
 const generateRequestPayload = (req, applicationType, hmac) => {
   const return_url = `${req.protocol}://${req.get('host')}${
-    applicationType === APP_TYPE_AMEND ? PATH_AMEND : PATH_NEW_AND_RENEW
+    applicationType === APP_TYPE_REPLACE ? PATH_REPLACE : PATH_NEW_AND_RENEW
   }/application-submitted`;
 
   if (applicationType === APP_TYPE_NEW || applicationType === APP_TYPE_RENEW) {
