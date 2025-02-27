@@ -1,12 +1,19 @@
+const {
+  PATH_NEW_RENEW,
+  PATH_AMEND,
+  PATH_REPLACE,
+  STR_APPLICATION_TYPE
+} = require('../../../utilities/constants/string-constants');
+
 module.exports = superclass =>
   class extends superclass {
     getValues(req, res, next) {
-      const selectedApplicationType = req.sessionModel.get('applicationType');
+      const selectedApplicationType = req.sessionModel.get(STR_APPLICATION_TYPE);
       const expectedUrlMapping = {
-        new: '/new-renew',
-        renew: '/new-renew',
-        amend: '/amend',
-        replace: '/replace'
+        new: PATH_NEW_RENEW,
+        renew: PATH_NEW_RENEW,
+        amend: PATH_AMEND,
+        replace: PATH_REPLACE
       };
 
       if (

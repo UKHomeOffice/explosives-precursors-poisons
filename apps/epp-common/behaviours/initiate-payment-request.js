@@ -7,15 +7,21 @@ const {
   getErrorTemplateBasePath
 } = require('../../../utilities/helpers/api');
 
+const {
+  STR_APPLICATION_TYPE,
+  STR_PAYMENT_PAGE_URL,
+  PATH_PAYMENT_PROBLEM
+} = require('../../../utilities/constants/string-constants');
+
 module.exports = superclass =>
   class extends superclass {
     async saveValues(req, res) {
-      const applicationType = req.sessionModel.get('applicationType');
+      const applicationType = req.sessionModel.get(STR_APPLICATION_TYPE);
       const errorTemplateBasePath = getErrorTemplateBasePath(applicationType);
 
       try {
-        if (req.sessionModel.get('payment-page-url')) {
-          return res.redirect(req.sessionModel.get('payment-page-url'));
+        if (req.sessionModel.get(STR_PAYMENT_PAGE_URL)) {
+          return res.redirect(req.sessionModel.get(STR_PAYMENT_PAGE_URL));
         }
 
         const randomId = generateRandomId();
@@ -29,16 +35,16 @@ module.exports = superclass =>
         req.sessionModel.set('payment-id', payment_id);
         req.sessionModel.set('random-id', randomId);
         const paymentPageUrl = _links?.next_url?.href;
-        req.sessionModel.unset('payment-page-url');
+        req.sessionModel.unset(STR_PAYMENT_PAGE_URL);
         if (paymentPageUrl && payment_id) {
-          req.sessionModel.set('payment-page-url', paymentPageUrl);
+          req.sessionModel.set(STR_PAYMENT_PAGE_URL, paymentPageUrl);
           return res.redirect(paymentPageUrl);
         }
-        return res.redirect(`${errorTemplateBasePath}/payment-problem`);
+        return res.redirect(`${errorTemplateBasePath}${PATH_PAYMENT_PROBLEM}`);
       } catch (error) {
-        req.sessionModel.unset('payment-page-url');
+        req.sessionModel.unset(STR_PAYMENT_PAGE_URL);
         req.log('error', 'Error initiating the payment: ' + error);
-        return res.redirect(`${errorTemplateBasePath}/payment-problem`);
+        return res.redirect(`${errorTemplateBasePath}${PATH_PAYMENT_PROBLEM}`);
       }
     }
   };

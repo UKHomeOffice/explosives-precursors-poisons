@@ -1,8 +1,16 @@
 /* eslint-disable camelcase */
-const axios = require('axios');
+const { model: Model } = require('hof');
 const crypto = require('crypto');
 const { payment, env } = require('../../config');
 const logger = require('hof/lib/logger')({ env });
+
+const {
+  APP_TYPE_NEW,
+  APP_TYPE_RENEW,
+  APP_TYPE_REPLACE,
+  PATH_NEW_AND_RENEW,
+  PATH_REPLACE
+} = require('../constants/string-constants');
 
 const generateRandomId = () => crypto.randomBytes(16).toString('hex');
 
@@ -24,9 +32,15 @@ async function initiatePayment({
   metadata
 }) {
   try {
-    const { data } = await axios.post(
-      payment.CREATE_PAYMENT_ENDPOINT,
-      {
+    const model = new Model();
+    const params = {
+      url: payment.CREATE_PAYMENT_ENDPOINT,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${payment.govUkApiKey}`
+      },
+      data: {
         amount,
         reference,
         description,
@@ -38,14 +52,11 @@ async function initiatePayment({
         },
         email,
         language: 'en'
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${payment.govUkApiKey}`
-        }
       }
-    );
+    };
+
+    const { data } = await model._request(params);
+
     return data;
   } catch (error) {
     logger.error(`Error creating a payment request : ${error}`);
@@ -55,14 +66,16 @@ async function initiatePayment({
 
 async function getPaymentDetails(paymentId) {
   try {
-    const { data } = await axios.get(
-      `${payment.GET_PAYMENT_INFO_ENDPOINT}${paymentId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${payment.govUkApiKey}`
-        }
+    const model = new Model();
+    const params = {
+      url: `${payment.GET_PAYMENT_INFO_ENDPOINT}${paymentId}`,
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${payment.govUkApiKey}`
       }
-    );
+    };
+    const { data } = await model._request(params);
+
     return data;
   } catch (error) {
     logger.error(`Error getting the payment details : ${error}`);
@@ -71,16 +84,18 @@ async function getPaymentDetails(paymentId) {
 }
 
 const generateRequestPayload = (req, applicationType, hmac) => {
-  if (applicationType === 'new' || applicationType === 'renew') {
+  if (applicationType === APP_TYPE_NEW || applicationType === APP_TYPE_RENEW) {
     return {
       amount:
-        applicationType === 'new' ? payment.AMOUNT_NEW : payment.AMOUNT_RENEW,
+        applicationType === APP_TYPE_NEW
+          ? payment.AMOUNT_NEW
+          : payment.AMOUNT_RENEW,
       reference:
-        applicationType === 'new'
+        applicationType === APP_TYPE_NEW
           ? 'New payment Reference'
           : 'Renew payment reference',
       description:
-        applicationType === 'new'
+        applicationType === APP_TYPE_NEW
           ? 'New payment description'
           : 'Renew payment description',
       return_url: 'http://localhost:8080/new-and-renew/application-submitted',
@@ -100,7 +115,7 @@ const generateRequestPayload = (req, applicationType, hmac) => {
     };
   }
 
-  if (applicationType === 'replace') {
+  if (applicationType === APP_TYPE_REPLACE) {
     return {
       amount: payment.AMOUNT_REPLACE,
       reference: 'Replace payment reference',
@@ -129,12 +144,12 @@ const generateRequestPayload = (req, applicationType, hmac) => {
 };
 
 const getErrorTemplateBasePath = applicationType => {
-  if (applicationType === 'new' || applicationType === 'renew') {
-    return '/new-and-renew';
+  if (applicationType === APP_TYPE_NEW || applicationType === APP_TYPE_RENEW) {
+    return PATH_NEW_AND_RENEW;
   }
 
-  if (applicationType === 'replace') {
-    return '/replace';
+  if (applicationType === APP_TYPE_REPLACE) {
+    return PATH_REPLACE;
   }
   logger.error(
     `Application type ${applicationType} not supported for the payment`
