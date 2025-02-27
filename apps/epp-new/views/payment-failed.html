@@ -1,16 +1,16 @@
 {{<partials-page}}
 {{$page-content}}
 
-<p class="govuk-body">This can be because:</p>
+<p class="govuk-body">{{#t}}pages.payment-failed.p1{{/t}}</p>
 <ul class="govuk-list govuk-list--bullet">
-    <li>the card details were incorrect</li>
-    <li>the payment failed fraud checks with your bank account</li>
-    <li>you need to approve a 3D Secure authentication first</li>
-    <li>there are insufficient funds in the account</li>
+    <li>{{#t}}pages.payment-failed.card-details-incorrect{{/t}}</li>
+    <li>{{#t}}pages.payment-failed.fraud-check{{/t}}</li>
+    <li>{{#t}}pages.payment-failed.3d-authentication{{/t}}</li>
+    <li>{{#t}}pages.payment-failed.insufficient-funds{{/t}}</li>
 </ul>
-<p class="govuk-body">Check your card details.</p>
+<p class="govuk-body">{{#t}}pages.payment-failed.p2{{/t}}</p>
 <p class="govuk-body">
-    If you keep having problems when paying, contact us at
+    {{#t}}pages.payment-failed.p3{{/t}}
     <a class="govuk-link" href="mailto:epp@homeoffice.pnn.police.uk">epp@homeoffice.pnn.police.uk</a>.
 </p>
 <div id="loader-container" class=""></div>
