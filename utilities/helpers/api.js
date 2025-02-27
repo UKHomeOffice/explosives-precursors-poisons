@@ -6,6 +6,13 @@ const logger = require('hof/lib/logger')({ env });
 
 const generateRandomId = () => crypto.randomBytes(16).toString('hex');
 
+const generateHmac = randomId => {
+  return crypto
+    .createHmac('sha256', payment.govUkApiKey)
+    .update(randomId)
+    .digest('hex');
+};
+
 async function initiatePayment({
   amount,
   reference,
@@ -63,18 +70,11 @@ async function getPaymentDetails(paymentId) {
   }
 }
 
-const generateHmac = randomId => {
-  return crypto
-    .createHmac('sha256', payment.govUkApiKey)
-    .update(randomId)
-    .digest('hex');
-};
-
-// TODO: fetch dynamic values from ENV or session?
 const generateRequestPayload = (req, applicationType, hmac) => {
   if (applicationType === 'new' || applicationType === 'renew') {
     return {
-      amount: 3950,
+      amount:
+        applicationType === 'new' ? payment.AMOUNT_NEW : payment.AMOUNT_RENEW,
       reference:
         applicationType === 'new'
           ? 'New payment Reference'
@@ -102,7 +102,7 @@ const generateRequestPayload = (req, applicationType, hmac) => {
 
   if (applicationType === 'replace') {
     return {
-      amount: 2500,
+      amount: payment.AMOUNT_REPLACE,
       reference: 'Replace payment reference',
       description: 'Replace payment description',
       return_url: 'http://localhost:8080/replace/application-submitted',

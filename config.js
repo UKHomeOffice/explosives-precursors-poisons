@@ -126,6 +126,9 @@ module.exports = {
   payment: {
     CREATE_PAYMENT_ENDPOINT: 'https://publicapi.payments.service.gov.uk/v1/payments',
     GET_PAYMENT_INFO_ENDPOINT: 'https://publicapi.payments.service.gov.uk/v1/payments/',
+    AMOUNT_NEW: 3950,
+    AMOUNT_RENEW: 3950,
+    AMOUNT_REPLACE: 2500,
     govUkApiKey: process.env.GOV_UK_PAY_API_KEY
   }
 };

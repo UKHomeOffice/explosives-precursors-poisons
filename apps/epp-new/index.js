@@ -18,7 +18,7 @@ const RemoveDocument = require('../epp-common/behaviours/remove-document');
 const DobEditRedirect = require('../epp-common/behaviours/dob-edit-redirect');
 
 const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-payment-request');
-const PaymentInfo = require('../epp-common/behaviours/get-payment-info');
+const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
 
 module.exports = {
   name: 'EPP form',
@@ -616,11 +616,9 @@ module.exports = {
     '/payment-failed': {
       behaviours: [InitiatePaymentRequest]
     },
-    '/payment-cancelled': {
-      behaviours: [InitiatePaymentRequest]
-    },
+    '/payment-cancelled': {},
     '/application-submitted': {
-      behaviours: [PaymentInfo],
+      behaviours: [GetPaymentInfo],
       backLink: false
     },
     '/complete': {

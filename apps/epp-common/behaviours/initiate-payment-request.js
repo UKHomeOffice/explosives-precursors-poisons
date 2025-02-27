@@ -14,7 +14,6 @@ module.exports = superclass =>
       const errorTemplateBasePath = getErrorTemplateBasePath(applicationType);
 
       try {
-        // TODO: Shall we use the existing URL to avoid creating additional requests?
         if (req.sessionModel.get('payment-page-url')) {
           return res.redirect(req.sessionModel.get('payment-page-url'));
         }
@@ -31,7 +30,7 @@ module.exports = superclass =>
         req.sessionModel.set('random-id', randomId);
         const paymentPageUrl = _links?.next_url?.href;
         req.sessionModel.unset('payment-page-url');
-        if (paymentPageUrl) {
+        if (paymentPageUrl && payment_id) {
           req.sessionModel.set('payment-page-url', paymentPageUrl);
           return res.redirect(paymentPageUrl);
         }
