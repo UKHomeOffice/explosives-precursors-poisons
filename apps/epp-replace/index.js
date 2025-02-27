@@ -95,6 +95,15 @@ module.exports = {
       ],
       fields: ['file-upload'],
       locals: { captionHeading: 'Section 12 of 26' },
+      next: '/upload-driving-licence'
+    },
+    '/upload-driving-licence': {
+      behaviours: [
+        SaveDocument('replace-upload-driving-licence', 'file-upload'),
+        RemoveDocument('replace-upload-driving-licence')
+      ],
+      fields: ['file-upload'],
+      locals: { captionHeading: 'Section 12 of 26' },
       next: '/section-thirteen'
     },
     '/section-thirteen': {

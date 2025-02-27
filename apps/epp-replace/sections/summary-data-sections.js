@@ -26,6 +26,20 @@ module.exports = {
           }
           return null;
         }
+      },
+      {
+        step: '/upload-driving-licence',
+        field: 'replace-upload-driving-licence',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel.get('steps').includes('/upload-driving-licence') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file.name);
+          }
+
+          return null;
+        }
       }
     ]
   }
