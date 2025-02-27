@@ -119,10 +119,15 @@ module.exports = {
       next: '/section-fourteen'
     },
     '/section-fourteen': {
-      next: '/section-fifteen'
+      next: '/upload-proof-address'
     },
-    '/section-fifteen': {
-      fields: ['replace-reason-for-licence'],
+    '/upload-proof-address': {
+      behaviours: [
+        SaveDocument('replace-proof-address', 'file-upload'),
+        RemoveDocument('replace-proof-address')
+      ],
+      fields: ['file-upload'],
+      locals: { captionHeading: 'Section 15 of 26' },
       next: '/section-sixteen'
     },
     '/section-sixteen': {

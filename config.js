@@ -125,6 +125,11 @@ module.exports = {
         allowMultipleUploads: false,
         limit: 1,
         limitValidationError: 'maxReplaceDrivingLicence'
+      },
+      'replace-proof-address': {
+        allowMultipleUploads: true,
+        limit: 2,
+        limitValidationError: 'maxReplaceProofAddress'
       }
     }
   },
