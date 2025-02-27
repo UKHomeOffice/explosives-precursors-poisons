@@ -331,5 +331,8 @@
   },
   "new-renew-countersignatory-email": {
     "label": "Email address"
+  },
+  "new-renew-declaration": {
+    "label": "I have read and agree to this declaration"
   }
 }
