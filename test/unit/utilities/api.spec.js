@@ -1,10 +1,8 @@
-const axios = require('axios');
+const proxyquire = require('proxyquire');
 const crypto = require('crypto');
 const {
   generateRequestPayload,
   getErrorTemplateBasePath,
-  initiatePayment,
-  getPaymentDetails,
   generateHmac
 } = require('../../../utilities/helpers/api');
 
@@ -28,6 +26,23 @@ describe('apis.js tests', () => {
     },
     email: 'mock_get_value'
   };
+
+  let modelMock;
+  let getPaymentDetails;
+  let initiatePayment;
+
+  beforeEach(() => {
+    modelMock = {
+      _request: sinon.stub()
+    };
+
+    const apis = proxyquire('../../../utilities/helpers/api', {
+      hof: { model: sinon.stub().returns(modelMock) }
+    });
+
+    getPaymentDetails = apis.getPaymentDetails;
+    initiatePayment = apis.initiatePayment;
+  });
 
   describe('generateHmac tests', () => {
     let cryptoStub;
@@ -157,19 +172,21 @@ describe('apis.js tests', () => {
       const mockResponse = {
         data: { amount: 100, state: { status: 'created', finished: false } }
       };
-      sinon.stub(axios, 'post').resolves(mockResponse);
+      modelMock._request.resolves(mockResponse);
       const result = await initiatePayment({});
       expect(result).to.deep.equal(mockResponse.data);
+      expect(modelMock._request.calledOnce).to.be.true;
     });
 
     it('should throw and error', async () => {
       const mockError = new Error('Error creating a payment request');
-      sinon.stub(axios, 'post').rejects(mockError);
+      modelMock._request.rejects(mockError);
       try {
         await initiatePayment({});
         throw new Error('Test should not throw an error');
       } catch (err) {
         expect(err).to.deep.equal(mockError);
+        expect(modelMock._request.calledOnce).to.be.true;
       }
     });
   });
@@ -180,18 +197,20 @@ describe('apis.js tests', () => {
     });
     it('should return payment details on success', async () => {
       const mockResponse = { data: { amount: 100, status: 'paid' } };
-      sinon.stub(axios, 'get').resolves(mockResponse);
+      modelMock._request.resolves(mockResponse);
       const result = await getPaymentDetails('1234');
+      expect(modelMock._request.calledOnce).to.be.true;
       expect(result).to.deep.equal(mockResponse.data);
     });
 
     it('should throw and error', async () => {
       const mockError = new Error('Error getting the payment details');
-      sinon.stub(axios, 'get').rejects(mockError);
+      modelMock._request.rejects(mockError);
       try {
         await getPaymentDetails('12345');
         throw new Error('Test should not throw an error');
       } catch (err) {
+        expect(modelMock._request.calledOnce).to.be.true;
         expect(err).to.deep.equal(mockError);
       }
     });
