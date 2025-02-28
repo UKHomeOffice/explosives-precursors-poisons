@@ -16,14 +16,22 @@ module.exports = {
     notifyApiKey: process.env.NOTIFY_KEY,
     caseworkerEmail: process.env.CASEWORKER_EMAIL,
     newApplicationUserTemplateId: process.env.NEW_APPLICATION_USER_TEMPLATE_ID,
-    newApplicationBusinessTemplateId: process.env.NEW_APPLICATION_BUSINESS_TEMPLATE_ID,
-    renewApplicationUserTemplateId: process.env.RENEW_APPLICATION_USER_TEMPLATE_ID,
-    renewApplicationBusinessTemplateId: process.env.RENEW_APPLICATION_BUSINESS_TEMPLATE_ID,
-    amendApplicationUserTemplateId: process.env.AMEND_APPLICATION_USER_TEMPLATE_ID,
-    amendApplicationBusinessTemplateId: process.env.AMEND_APPLICATION_BUSINESS_TEMPLATE_ID,
-    replaceApplicationUserTemplateId: process.env.REPLACE_APPLICATION_USER_TEMPLATE_ID,
-    replaceDamagedApplicationUserTemplateId: process.env.REPLACE_DAMAGED_APPLICATION_USER_TEMPLATE_ID,
-    replaceApplicationBusinessTemplateId: process.env.REPLACE_APPLICATION_BUSINESS_TEMPLATE_ID
+    newApplicationBusinessTemplateId:
+      process.env.NEW_APPLICATION_BUSINESS_TEMPLATE_ID,
+    renewApplicationUserTemplateId:
+      process.env.RENEW_APPLICATION_USER_TEMPLATE_ID,
+    renewApplicationBusinessTemplateId:
+      process.env.RENEW_APPLICATION_BUSINESS_TEMPLATE_ID,
+    amendApplicationUserTemplateId:
+      process.env.AMEND_APPLICATION_USER_TEMPLATE_ID,
+    amendApplicationBusinessTemplateId:
+      process.env.AMEND_APPLICATION_BUSINESS_TEMPLATE_ID,
+    replaceApplicationUserTemplateId:
+      process.env.REPLACE_APPLICATION_USER_TEMPLATE_ID,
+    replaceDamagedApplicationUserTemplateId:
+      process.env.REPLACE_DAMAGED_APPLICATION_USER_TEMPLATE_ID,
+    replaceApplicationBusinessTemplateId:
+      process.env.REPLACE_APPLICATION_BUSINESS_TEMPLATE_ID
   },
   // TODO: set return URL and mac in env variables
   feedback: {
@@ -123,11 +131,11 @@ module.exports = {
         limit: 1,
         limitValidationError: 'maxReplaceEuPassport'
       },
-        'replace-upload-driving-licence': {
-            allowMultipleUploads: false,
-            limit: 1,
-            limitValidationError: 'maxReplaceDrivingLicence'
-        }
+      'replace-upload-driving-licence': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxReplaceDrivingLicence'
+      }
     }
   },
   sectionDetails: {
@@ -137,7 +145,8 @@ module.exports = {
   postCodeCountriesMap: {
     'amend-postcode': 'amend-country',
     'new-renew-home-address-postcode': 'new-renew-home-address-country',
-    'new-renew-previous-home-address-postcode': 'new-renew-previous-home-address-country',
+    'new-renew-previous-home-address-postcode':
+      'new-renew-previous-home-address-country',
     'amend-new-postcode': 'amend-new-country'
   }
 };
