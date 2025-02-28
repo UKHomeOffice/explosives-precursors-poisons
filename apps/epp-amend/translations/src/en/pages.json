@@ -187,11 +187,11 @@
       "amend-new-home-address": {
         "header": "New address"
       },
-      "amend-licence-for-explosives-precursors": {
-        "header": "Licence for explosives precursors"
-      },
       "amend-change-substances": {
         "header": "Amend substances"
+      },
+      "amend-licence-for-explosives-precursors": {
+        "header": "Licence for explosives precursors"
       },
       "amend-explosives-precursor": {
         "header": "Explosives precursors"
@@ -279,8 +279,8 @@
       "amend-new-country": {
         "label": "Country"
       },
-      "amend-home-address-options": {
-        "label": "Do you need to amend the substances on your licence?"
+      "amend-proof-address":{
+         "label": "Proof of address attachment"
       },
       "amend-precursor-field": {
         "label": "Explosives precursor"

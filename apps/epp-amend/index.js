@@ -84,7 +84,10 @@ module.exports = {
           'amend-eu-passport',
           'amend-certificate-conduct',
           'amend-uk-driving-licence'
-        ])
+        ]),
+        CheckAndRedirect('amend-name-options',
+          ['amend-change-substances-options', 'amend-name-options', 'amend-home-address-options']
+        )
       ],
       fields: ['amend-name-options'],
       forks: [
@@ -183,7 +186,10 @@ module.exports = {
       behaviours: [
         DeleteRedundantDocuments('amend-home-address-options', [
           'amend-proof-address'
-        ])
+        ]),
+        CheckAndRedirect('amend-home-address-options',
+          ['amend-change-substances-options', 'amend-name-options', 'amend-home-address-options']
+        )
       ],
       fields: ['amend-home-address-options'],
       forks: [

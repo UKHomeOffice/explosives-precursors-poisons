@@ -110,7 +110,6 @@
     "label": "What is your driving licence number?",
     "hint" : "On section 5 of your licence, for example MORGA657054SM9IJ"    
   },
- 
   "amend-home-address-options": {
     "legend": "Do you need to amend your home address on the licence?",
     "options": {
