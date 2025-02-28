@@ -83,10 +83,13 @@ module.exports = {
       next: '/upload-british-passport'
     },
     '/upload-british-passport': {
-      behaviours: [SaveDocument('replace-british-passport', 'file-upload'), RemoveDocument('replace-british-passport')],
+      behaviours: [
+        SaveDocument('replace-british-passport', 'file-upload'),
+        RemoveDocument('replace-british-passport')
+      ],
       fields: ['file-upload'],
-      locals: { captionHeading: 'Section 12 of 26' },
-      next: '/upload-passport'
+      next: '/section-thirteen',
+      locals: { captionHeading: 'Section 12 of 26' }
     },
     '/upload-passport': {
       behaviours: [
@@ -95,17 +98,17 @@ module.exports = {
       ],
       fields: ['file-upload'],
       locals: { captionHeading: 'Section 12 of 26' },
-      next: '/upload-driving-licence'
-    },
-    '/upload-driving-licence': {
-      behaviours: [
-        SaveDocument('replace-upload-driving-licence', 'file-upload'),
-        RemoveDocument('replace-upload-driving-licence')
-      ],
-      fields: ['file-upload'],
-      locals: { captionHeading: 'Section 12 of 26' },
       next: '/section-thirteen'
     },
+      '/upload-driving-licence': {
+          behaviours: [
+              SaveDocument('replace-upload-driving-licence', 'file-upload'),
+              RemoveDocument('replace-upload-driving-licence')
+          ],
+          fields: ['file-upload'],
+          locals: { captionHeading: 'Section 12 of 26' },
+          next: '/section-thirteen'
+      },
     '/section-thirteen': {
       fields: [
         'replace-new-post-address-1',
