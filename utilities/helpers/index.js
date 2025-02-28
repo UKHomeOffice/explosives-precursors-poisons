@@ -25,6 +25,7 @@ const isLicenceValid = req => {
   let fieldName = '';
 
   const applicationType = req.sessionModel.get('applicationType');
+
   if (applicationType === 'renew') {
     licenceNumber = req.form.values['new-renew-licence-number'];
     fieldName = 'new-renew-licence-number';
@@ -33,37 +34,39 @@ const isLicenceValid = req => {
     licenceNumber = req.form.values['amend-licence-number'];
     fieldName = 'amend-licence-number';
   }
-  const removeSpaceOrSperator = licenceNumber.replace(/[^a-zA-Z0-9]/g, '');
-  const alphaValues = removeSpaceOrSperator.slice(2, 3);
+  if (applicationType === 'replace') {
+    licenceNumber = req.form.values['replace-licence-number'];
+    fieldName = 'replace-licence-number';
+  }
+
+  if (!licenceNumber || licenceNumber.trim() === '') {
+    req.log('info', `Skipping validation for optional field: ${fieldName}`);
+    return { isValid: true, fieldName };
+  }
+
+  const removeSpaceOrSeparator = licenceNumber.replace(/[^a-zA-Z0-9]/g, '');
+  const alphaValues = removeSpaceOrSeparator.slice(2, 3);
 
   if (licenceNumber.length > 16 || licenceNumber.length < 13) {
-    const errorMessage =
-      'Licence number should not be greater than 16 or less than 13';
-    req.log('error', errorMessage);
-
+    req.log('error', 'Licence number should be between 13 and 16 characters');
     return {
       isValid: false,
       errorType: 'licence-length-restriction',
-      fieldName: `${fieldName}`
+      fieldName
     };
   }
 
   if (!validLicenceNumber(licenceNumber) || !isAlpha(alphaValues)) {
-    const errorMessage = `${licenceNumber} licence number not in correct format`;
-    req.log('error', errorMessage);
-
+    req.log('error', `${licenceNumber} licence number is not in the correct format`);
     return {
       isValid: false,
       errorType: 'incorrect-format-licence',
-      fieldName: `${fieldName}`
+      fieldName
     };
   }
-  req.log('info', 'licence number is in correct format');
 
-  return {
-    isValid: true,
-    fieldName: fieldName
-  };
+  req.log('info', 'Licence number is in correct format');
+  return { isValid: true, fieldName };
 };
 
 const isWithoutFullStop = value => {
@@ -95,9 +98,7 @@ const validInternationalPhoneNumber = value => {
 };
 
 const DEFAULT_AGGREGATOR_LIMIT = 100;
-
 const TEXT_NOT_PROVIDED = 'Not provided';
-
 const DATE_FORMAT_YYYY_MM_DD = 'YYYY-MM-DD';
 
 const textAreaDefaultLength = value => {

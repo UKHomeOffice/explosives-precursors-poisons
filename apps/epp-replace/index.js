@@ -3,6 +3,7 @@ const SummaryPageBehaviour = require('hof').components.summary;
 const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
 const SaveDocument = require('../epp-common/behaviours/save-document');
 const RemoveDocument = require('../epp-common/behaviours/remove-document');
+const ValidateLicenceNumber = require('../epp-common/behaviours/licence-validator');
 
 module.exports = {
   name: 'EPP form',
@@ -26,10 +27,16 @@ module.exports = {
     },
     '/report-details': {
       fields: ['replace-report-details'],
-      next: '/section-three'
+      next: '/licence-number'
     },
-    '/section-three': {
+    '/licence-number': {
+      behaviours: [ValidateLicenceNumber],
+      mixin: 'input-text',
+      className: ['govuk-input', 'govuk-!-width-two-thirds'],
+      labelClassName: 'visuallyhidden',
       fields: ['replace-licence-number'],
+      isPageHeading: 'true',
+      locals: { captionHeading: 'Section 3 of 26' },
       next: '/section-four'
     },
     '/section-four': {
