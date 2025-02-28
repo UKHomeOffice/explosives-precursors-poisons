@@ -1,6 +1,8 @@
 const validateAndRedirect = require('./behaviours/home-redirection');
 const SummaryPageBehaviour = require('hof').components.summary;
 const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
+const SaveDocument = require('../epp-common/behaviours/save-document');
+const RemoveDocument = require('../epp-common/behaviours/remove-document');
 
 module.exports = {
   name: 'EPP form',
@@ -78,10 +80,13 @@ module.exports = {
     },
     '/section-eleven': {
       fields: ['replace-which-document-type'],
-      next: '/section-twelve'
+      next: '/upload-british-passport'
     },
-    '/section-twelve': {
-      next: '/section-thirteen'
+    '/upload-british-passport': {
+      behaviours: [SaveDocument('replace-british-passport', 'file-upload'), RemoveDocument('replace-british-passport')],
+      fields: ['file-upload'],
+      next: '/section-thirteen',
+      locals: { captionHeading: 'Section 12 of 26' }
     },
     '/section-thirteen': {
       fields: [

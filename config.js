@@ -110,6 +110,11 @@ module.exports = {
         allowMultipleUploads: false,
         limit: 1,
         limitValidationError: 'maxNewRenewCertificateConduct'
+      },
+      'replace-british-passport': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxReplaceBritishPassport'
       }
     }
   },
