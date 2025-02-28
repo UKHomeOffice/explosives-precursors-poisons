@@ -12,7 +12,17 @@ const {
   PATH_REPLACE
 } = require('../constants/string-constants');
 
+/**
+ * Generates a random ID using crypto
+ * @returns {string} - A random ID
+ */
 const generateRandomId = () => crypto.randomBytes(16).toString('hex');
+
+/**
+ * Generates a HMAC using random ID and gov pay key
+ * @param {string} randomId - The random id
+ * @returns {string} - Generated HMAC
+ */
 
 const generateHmac = randomId => {
   return crypto
@@ -20,6 +30,20 @@ const generateHmac = randomId => {
     .update(randomId)
     .digest('hex');
 };
+
+/**
+ * Initiates the payment request
+ * @param {Object} params = The payment parameters as request payload
+ * @param {number} param.amount - The amount for the payment
+ * @param {number} param.reference - The payment reference
+ * @param {number} param.description - The payment description
+ * @param {number} param.return_url - The return url after payment is completed
+ * @param {number} param.token - The payment token to validate the return url
+ * @param {number} param.billing_address - Billing address
+ * @param {number} param.metadata - Additional metadata
+ * @returns {Promise<Object>} - The payment response data
+ * @throws {Error} - If there is any error during initiating payment request
+ */
 
 async function initiatePayment({
   amount,
@@ -64,6 +88,13 @@ async function initiatePayment({
   }
 }
 
+/**
+ * Fetch payment details for a given payment id
+ * @param {string} paymentId = The payment id
+ * @returns {Promise<Object>} - Payment details
+ * @throws {Error} - If there is any error during get payment details
+ */
+
 async function getPaymentDetails(paymentId) {
   try {
     const model = new Model();
@@ -82,6 +113,16 @@ async function getPaymentDetails(paymentId) {
     throw new Error('Error getting the payment details');
   }
 }
+
+/**
+ * Generates the payment request payload based on the application type
+ *
+ * @param {Object} req = The req object
+ * @param {string} applicationType = Selected application type
+ * @param {string} hmac = The generated HMAC
+ * @returns {Object} - Request payload for initiate payment
+ * @throws {Error} - If application type is unexpected
+ */
 
 const generateRequestPayload = (req, applicationType, hmac) => {
   const return_url = `${req.protocol}://${req.get('host')}${
@@ -146,6 +187,14 @@ const generateRequestPayload = (req, applicationType, hmac) => {
   );
   throw new Error('Unknown application type');
 };
+
+/**
+ * Returns the base path for error templates for the given application type
+ *
+ * @param {string} application = The application type
+ * @returns {string} - The base path for the error templates
+ * @returns {Error} - If application type is unexpected
+ */
 
 const getErrorTemplateBasePath = applicationType => {
   if (applicationType === APP_TYPE_NEW || applicationType === APP_TYPE_RENEW) {
