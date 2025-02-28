@@ -16,14 +16,22 @@ module.exports = {
     notifyApiKey: process.env.NOTIFY_KEY,
     caseworkerEmail: process.env.CASEWORKER_EMAIL,
     newApplicationUserTemplateId: process.env.NEW_APPLICATION_USER_TEMPLATE_ID,
-    newApplicationBusinessTemplateId: process.env.NEW_APPLICATION_BUSINESS_TEMPLATE_ID,
-    renewApplicationUserTemplateId: process.env.RENEW_APPLICATION_USER_TEMPLATE_ID,
-    renewApplicationBusinessTemplateId: process.env.RENEW_APPLICATION_BUSINESS_TEMPLATE_ID,
-    amendApplicationUserTemplateId: process.env.AMEND_APPLICATION_USER_TEMPLATE_ID,
-    amendApplicationBusinessTemplateId: process.env.AMEND_APPLICATION_BUSINESS_TEMPLATE_ID,
-    replaceApplicationUserTemplateId: process.env.REPLACE_APPLICATION_USER_TEMPLATE_ID,
-    replaceDamagedApplicationUserTemplateId: process.env.REPLACE_DAMAGED_APPLICATION_USER_TEMPLATE_ID,
-    replaceApplicationBusinessTemplateId: process.env.REPLACE_APPLICATION_BUSINESS_TEMPLATE_ID
+    newApplicationBusinessTemplateId:
+      process.env.NEW_APPLICATION_BUSINESS_TEMPLATE_ID,
+    renewApplicationUserTemplateId:
+      process.env.RENEW_APPLICATION_USER_TEMPLATE_ID,
+    renewApplicationBusinessTemplateId:
+      process.env.RENEW_APPLICATION_BUSINESS_TEMPLATE_ID,
+    amendApplicationUserTemplateId:
+      process.env.AMEND_APPLICATION_USER_TEMPLATE_ID,
+    amendApplicationBusinessTemplateId:
+      process.env.AMEND_APPLICATION_BUSINESS_TEMPLATE_ID,
+    replaceApplicationUserTemplateId:
+      process.env.REPLACE_APPLICATION_USER_TEMPLATE_ID,
+    replaceDamagedApplicationUserTemplateId:
+      process.env.REPLACE_DAMAGED_APPLICATION_USER_TEMPLATE_ID,
+    replaceApplicationBusinessTemplateId:
+      process.env.REPLACE_APPLICATION_BUSINESS_TEMPLATE_ID
   },
   // TODO: set return URL and mac in env variables
   feedback: {
@@ -33,7 +41,9 @@ module.exports = {
     mac: ''
   },
   hosts: {
-    acceptanceTests: process.env.ACCEPTANCE_HOST_NAME || `http://localhost:${process.env.PORT || 8080}`
+    acceptanceTests:
+      process.env.ACCEPTANCE_HOST_NAME ||
+      `http://localhost:${process.env.PORT || 8080}`
   },
   redis: {
     port: process.env.REDIS_PORT || '6379',
@@ -116,11 +126,11 @@ module.exports = {
         limit: 1,
         limitValidationError: 'maxReplaceBritishPassport'
       },
-        'replace-eu-passport': {
-            allowMultipleUploads: false,
-            limit: 1,
-            limitValidationError: 'maxReplaceEuPassport'
-        }
+      'replace-eu-passport': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxReplaceEuPassport'
+      }
     }
   },
   sectionDetails: {
@@ -130,7 +140,8 @@ module.exports = {
   postCodeCountriesMap: {
     'amend-postcode': 'amend-country',
     'new-renew-home-address-postcode': 'new-renew-home-address-country',
-    'new-renew-previous-home-address-postcode': 'new-renew-previous-home-address-country',
+    'new-renew-previous-home-address-postcode':
+      'new-renew-previous-home-address-country',
     'amend-new-postcode': 'amend-new-country'
   }
 };
