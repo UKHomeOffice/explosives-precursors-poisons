@@ -116,11 +116,11 @@ module.exports = {
         limit: 1,
         limitValidationError: 'maxReplaceBritishPassport'
       },
-      'replace-eu-passport': {
-        allowMultipleUploads: false,
-        limit: 1,
-        limitValidationError: 'maxReplaceEuPassport'
-      }
+        'replace-eu-passport': {
+            allowMultipleUploads: false,
+            limit: 1,
+            limitValidationError: 'maxReplaceEuPassport'
+        }
     }
   },
   sectionDetails: {

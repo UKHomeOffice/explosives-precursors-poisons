@@ -10,20 +10,20 @@
         "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
         "link-text" : "signed by your countersignatory (opens in a new tab).",
         "uploading-document": "Uploading your document..",
-        "not-uploaded": "No files uploaded", 
-        "uploaded": "Files uploaded" 
+        "not-uploaded": "No files uploaded",
+        "uploaded": "Files uploaded"
       },
-      "upload-passport": {
-        "header": "Upload passport",
-        "p1": "Attach an image of your passport from the EU, Switzerland, Norway, Iceland or Liechtenstein as proof of your identity. The image must be",
-        "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
-        "link-text": "signed by your countersignatory (opens in a new tab)",
-        "upload-file": "Upload a file",
-        "file-format": "Your file must be JPEG, PDF or PNG, and be 25MB or less",
-        "no-file-uploaded": "No files uploaded",
-        "files-uploaded": "Files uploaded",
-        "uploading-document": "Uploading your document..."
-      },
+  "upload-passport": {
+    "header": "Upload passport",
+    "p1": "Attach an image of your passport from the EU, Switzerland, Norway, Iceland or Liechtenstein as proof of your identity. The image must be",
+    "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
+    "link-text": "signed by your countersignatory (opens in a new tab)",
+    "upload-file": "Upload a file",
+    "file-format": "Your file must be JPEG, PDF or PNG, and be 25MB or less",
+    "no-file-uploaded": "No files uploaded",
+    "files-uploaded": "Files uploaded",
+    "uploading-document": "Uploading your document..."
+  },
       "confirm": {
         "header": "Check your answers",
         "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",
@@ -31,7 +31,6 @@
           "countersignatory-details": {
             "header": "Countersignatory details"
           }
-          
         },
       "fields": {
         "replace-british-passport" : {
@@ -42,5 +41,4 @@
         }
       }
     }
-  }
-
+}
