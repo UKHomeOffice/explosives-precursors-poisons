@@ -62,8 +62,7 @@ module.exports = superclass =>
             `${errorTemplateBasePath}${PATH_PAYMENT_PROBLEM}`
           );
         }
-        // TODO: Notify?
-        // req.sessionModel.reset();
+        // TODO: Notify
       } catch (error) {
         req.log('error', `Error fetching payment status: ${error}`);
         return res.redirect(`${errorTemplateBasePath}${PATH_PAYMENT_PROBLEM}`);
