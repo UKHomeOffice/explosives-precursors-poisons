@@ -298,6 +298,7 @@ module.exports = {
       next: '/declaration'
     },
     '/declaration': {
+      fields: ['amend-declaration'],
       next: '/application-submitted'
     },
     '/application-submitted': {

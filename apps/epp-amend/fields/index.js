@@ -489,5 +489,9 @@ module.exports = {
     validate: ['required', 'email'],
     className: ['govuk-input'],
     labelClassName: 'govuk-label--m'
+  },
+  'amend-declaration': {
+    mixin: 'checkbox',
+    validate: ['required']
   }
 };
