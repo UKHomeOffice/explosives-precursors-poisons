@@ -9,7 +9,9 @@ const {
   APP_TYPE_RENEW,
   APP_TYPE_REPLACE,
   PATH_NEW_AND_RENEW,
-  PATH_REPLACE
+  PATH_REPLACE,
+  API_METHODS,
+  PATH_APPLICATION_SUBMITTED
 } = require('../constants/string-constants');
 
 /**
@@ -34,13 +36,13 @@ const generateHmac = randomId => {
 /**
  * Initiates the payment request
  * @param {Object} params = The payment parameters as request payload
- * @param {number} param.amount - The amount for the payment
- * @param {number} param.reference - The payment reference
- * @param {number} param.description - The payment description
- * @param {number} param.return_url - The return url after payment is completed
- * @param {number} param.token - The payment token to validate the return url
- * @param {number} param.billing_address - Billing address
- * @param {number} param.metadata - Additional metadata
+ * @param {number} params.amount - The amount for the payment
+ * @param {number} params.reference - The payment reference
+ * @param {number} params.description - The payment description
+ * @param {number} params.return_url - The return url after payment is completed
+ * @param {number} params.token - The payment token to validate the return url
+ * @param {number} params.billing_address - Billing address
+ * @param {number} params.metadata - Additional metadata
  * @returns {Promise<Object>} - The payment response data
  * @throws {Error} - If there is any error during initiating payment request
  */
@@ -59,7 +61,7 @@ async function initiatePayment({
     const model = new Model();
     const params = {
       url: payment.CREATE_PAYMENT_ENDPOINT,
-      method: 'POST',
+      method: API_METHODS.POST,
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${payment.govUkApiKey}`
@@ -83,7 +85,7 @@ async function initiatePayment({
 
     return data;
   } catch (error) {
-    logger.error(`Error creating a payment request : ${error}`);
+    logger.error(`Error creating a payment request : ${error.message ?? error}`);
     throw new Error('Error creating a payment request');
   }
 }
@@ -100,7 +102,7 @@ async function getPaymentDetails(paymentId) {
     const model = new Model();
     const params = {
       url: `${payment.GET_PAYMENT_INFO_ENDPOINT}${paymentId}`,
-      method: 'GET',
+      method: API_METHODS.GET,
       headers: {
         Authorization: `Bearer ${payment.govUkApiKey}`
       }
@@ -109,7 +111,7 @@ async function getPaymentDetails(paymentId) {
 
     return data;
   } catch (error) {
-    logger.error(`Error getting the payment details : ${error}`);
+    logger.error(`Error getting the payment details : ${error.message ?? error}`);
     throw new Error('Error getting the payment details');
   }
 }
@@ -127,7 +129,7 @@ async function getPaymentDetails(paymentId) {
 const generateRequestPayload = (req, applicationType, hmac) => {
   const return_url = `${req.protocol}://${req.get('host')}${
     applicationType === APP_TYPE_REPLACE ? PATH_REPLACE : PATH_NEW_AND_RENEW
-  }/application-submitted`;
+  }${PATH_APPLICATION_SUBMITTED}`;
 
   if (applicationType === APP_TYPE_NEW || applicationType === APP_TYPE_RENEW) {
     return {
@@ -191,9 +193,9 @@ const generateRequestPayload = (req, applicationType, hmac) => {
 /**
  * Returns the base path for error templates for the given application type
  *
- * @param {string} application = The application type
- * @returns {string} - The base path for the error templates
- * @returns {Error} - If application type is unexpected
+ * @param {string} applicationType = The application type
+ * @returns {string | Error} - Base path for the error templates or error if application
+ * type is unknown
  */
 
 const getErrorTemplateBasePath = applicationType => {

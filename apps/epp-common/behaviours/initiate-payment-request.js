@@ -43,7 +43,7 @@ module.exports = superclass =>
         return res.redirect(`${errorTemplateBasePath}${PATH_PAYMENT_PROBLEM}`);
       } catch (error) {
         req.sessionModel.unset(STR_PAYMENT_PAGE_URL);
-        req.log('error', 'Error initiating the payment: ' + error);
+        req.log('error', `Error initiating the payment: ${error.message ?? error}`);
         return res.redirect(`${errorTemplateBasePath}${PATH_PAYMENT_PROBLEM}`);
       }
     }

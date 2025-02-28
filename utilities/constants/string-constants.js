@@ -5,6 +5,7 @@ const PATH_REPLACE = '/replace';
 const PATH_PAYMENT_PROBLEM = '/payment-problem';
 const PATH_PAYMENT_FAILED = '/payment-failed';
 const PATH_PAYMENT_CANCELLED = '/payment-cancelled';
+const PATH_APPLICATION_SUBMITTED = '/application-submitted';
 
 const APP_TYPE_NEW = 'new';
 const APP_TYPE_RENEW = 'renew';
@@ -17,6 +18,11 @@ const GOV_PAY_ERROR_CODE_P0030 = 'P0030';
 const GOV_PAY_ERROR_CODE_P0010 = 'P0010';
 const GOV_PAY_STATUS_SUCCESS = 'success';
 
+const API_METHODS = {
+  GET: 'GET',
+  POST: 'POST'
+};
+
 module.exports = {
   PATH_NEW_RENEW,
   PATH_NEW_AND_RENEW,
@@ -25,6 +31,7 @@ module.exports = {
   PATH_PAYMENT_PROBLEM,
   PATH_PAYMENT_FAILED,
   PATH_PAYMENT_CANCELLED,
+  PATH_APPLICATION_SUBMITTED,
   APP_TYPE_NEW,
   APP_TYPE_RENEW,
   APP_TYPE_AMEND,
@@ -33,5 +40,6 @@ module.exports = {
   STR_PAYMENT_PAGE_URL,
   GOV_PAY_ERROR_CODE_P0030,
   GOV_PAY_ERROR_CODE_P0010,
-  GOV_PAY_STATUS_SUCCESS
+  GOV_PAY_STATUS_SUCCESS,
+  API_METHODS
 };
