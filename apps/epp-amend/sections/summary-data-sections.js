@@ -253,14 +253,6 @@ module.exports = {
       }
     ]
   },
-  'amend-licence-for-explosives-precursors': {
-    steps: [
-      {
-        steps: '/explosives-precursors',
-        field: 'amend-regulated-explosives-precursors'
-      }
-    ]
-  },
   'amend-change-substances': {
     steps: [
       {
@@ -274,6 +266,14 @@ module.exports = {
       {
         steps: '/select-precursor',
         field: 'amend-precursor-field'
+      }
+    ]
+  },
+  'amend-licence-for-explosives-precursors': {
+    steps: [
+      {
+        steps: '/explosives-precursors',
+        field: 'amend-regulated-explosives-precursors'
       }
     ]
   },

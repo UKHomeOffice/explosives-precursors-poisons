@@ -75,6 +75,11 @@ module.exports = {
       next: '/amend-details'
     },
     '/amend-details': {
+      behaviours: [
+        CheckAndRedirect('amend-name-options',
+          ['amend-change-substances-options', 'amend-name-options', 'amend-home-address-options']
+        )
+      ],
       fields: ['amend-name-options'],
       forks: [
         {
@@ -167,6 +172,11 @@ module.exports = {
       locals: { captionHeading: 'Section 9 of 23' }
     },
     '/change-home-address': {
+      behaviours: [
+        CheckAndRedirect('amend-home-address-options',
+          ['amend-change-substances-options', 'amend-name-options', 'amend-home-address-options']
+        )
+      ],
       fields: ['amend-home-address-options'],
       forks: [
         {
