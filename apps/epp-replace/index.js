@@ -3,6 +3,7 @@ const SummaryPageBehaviour = require('hof').components.summary;
 const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
 const SaveDocument = require('../epp-common/behaviours/save-document');
 const RemoveDocument = require('../epp-common/behaviours/remove-document');
+const ValidateLicenceNumber = require('../epp-common/behaviours/licence-validator');
 
 module.exports = {
   name: 'EPP form',
@@ -26,10 +27,16 @@ module.exports = {
     },
     '/report-details': {
       fields: ['replace-report-details'],
-      next: '/section-three'
+      next: '/licence-number'
     },
-    '/section-three': {
+    '/licence-number': {
+      behaviours: [ValidateLicenceNumber],
+      mixin: 'input-text',
+      className: ['govuk-input', 'govuk-!-width-two-thirds'],
+      labelClassName: 'visuallyhidden',
       fields: ['replace-licence-number'],
+      isPageHeading: 'true',
+      locals: { captionHeading: 'Section 3 of 26' },
       next: '/section-four'
     },
     '/section-four': {
@@ -85,8 +92,17 @@ module.exports = {
     '/upload-british-passport': {
       behaviours: [SaveDocument('replace-british-passport', 'file-upload'), RemoveDocument('replace-british-passport')],
       fields: ['file-upload'],
-      next: '/section-thirteen',
-      locals: { captionHeading: 'Section 12 of 26' }
+      locals: { captionHeading: 'Section 12 of 26' },
+      next: '/upload-passport'
+    },
+    '/upload-passport': {
+      behaviours: [
+        SaveDocument('replace-eu-passport', 'file-upload'),
+        RemoveDocument('replace-eu-passport')
+      ],
+      fields: ['file-upload'],
+      locals: { captionHeading: 'Section 12 of 26' },
+      next: '/section-thirteen'
     },
     '/section-thirteen': {
       fields: [
