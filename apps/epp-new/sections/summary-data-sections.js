@@ -1,7 +1,10 @@
 'use strict';
 
 const config = require('../../../config');
-const { getFormattedDate } = require('../../../utilities/helpers');
+const {
+  getFormattedDate,
+  isDateOlderOrEqualTo
+} = require('../../../utilities/helpers');
 const dateFormatter = new Intl.DateTimeFormat(
   config.dateLocales,
   config.dateFormat
@@ -361,6 +364,21 @@ module.exports = {
       {
         step: '/countersignatory-contact',
         field: 'new-renew-countersignatory-email'
+      },
+      {
+        step: '/birth-certificate',
+        field: 'new-renew-birth-certificate',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel.get('steps').includes('/birth-certificate') &&
+            documents?.length > 0 &&
+            req.sessionModel.get('new-renew-dob') &&
+            !isDateOlderOrEqualTo(req.sessionModel.get('new-renew-dob'), 18)
+          ) {
+            return documents.map(file => file?.name)?.join('\n\n');
+          }
+          return null;
+        }
       }
     ]
   }
