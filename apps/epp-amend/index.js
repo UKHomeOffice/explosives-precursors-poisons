@@ -97,17 +97,10 @@ module.exports = {
             field: 'amend-name-options',
             value: 'yes'
           }
-        },
-        {
-          target: '/change-home-address',
-          condition: {
-            field: 'amend-name-options',
-            value: 'no'
-          }
         }
       ],
       locals: { captionHeading: 'Section 6 of 23' },
-      next: '/new-name'
+      next: '/change-home-address'
     },
     '/new-name': {
       fields: [
@@ -199,17 +192,10 @@ module.exports = {
             field: 'amend-home-address-options',
             value: 'yes'
           }
-        },
-        {
-          target: '/change-substances',
-          condition: {
-            field: 'amend-home-address-options',
-            value: 'no'
-          }
         }
       ],
       locals: { captionHeading: 'Section 10 of 23' },
-      next: '/new-address'
+      next: '/change-substances'
     },
     '/new-address': {
       fields: [
@@ -243,10 +229,18 @@ module.exports = {
         )
       ],
       fields: ['amend-change-substances-options'],
-      continueOnEdit: true,
-      next: '/explosives-precursors',
+      forks: [
+        {
+          target: '/explosives-precursors',
+          continueOnEdit: true,
+          condition: {
+            field: 'amend-change-substances-options',
+            value: 'yes'
+          }
+        }
+      ],
+      next: '/countersignatory-details',
       locals: { captionHeading: 'Section 13 of 23' }
-
     },
     '/no-details-amend': {
       locals: { captionHeading: 'Section 13 of 23' }

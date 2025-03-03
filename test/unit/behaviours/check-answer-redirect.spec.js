@@ -47,7 +47,7 @@ describe('Tests for check-answer-redirect behaviour', () => {
       expect(req.sessionModel.set.calledWith('test-field-name', 'no'));
     });
 
-    it('current fields answer is - no - should redirect to the given redirect /countersignatory-details - ', () => {
+    it('current fields answer is - no - should redirect to the fork redirect URL - ', () => {
       req = {
         sessionModel: {
           set: sinon.spy(),
@@ -61,17 +61,13 @@ describe('Tests for check-answer-redirect behaviour', () => {
         currentField: 'amend-change-substances-options',
         form: {
           values: {
-            'amend-change-substances-options': 'no'
+            'test-field-name': 'no'
           }
         }
       };
-      instance = new (Behaviour('amend-change-substances-options', [
-        'test-field-name',
-        'test-field-name-two',
-        'test-field-name-three'])(Base))();
       instance.successHandler(req, res, next);
-      expect(res.redirect.calledOnce).to.be.true;
-      expect(res.redirect.calledWith(`${req.baseUrl}/countersignatory-details`)).to.be.true;
+      expect(res.redirect.calledOnce).to.be.false;
+      sinon.assert.calledWithExactly(Base.prototype.successHandler, req, res, next);
       expect(req.sessionModel.set.calledWith('test-field-name', 'no'));
     });
 
