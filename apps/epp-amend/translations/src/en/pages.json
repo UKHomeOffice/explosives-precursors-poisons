@@ -121,6 +121,13 @@
   "precursor-details":{
     "header": "{{values.amend-precursor-field}}"
   },
+  "poisons": {
+    "header": "Regulated poisons",
+    "p1": "Check what your licence needs to cover using the",
+    "link": "https://www.gov.uk/government/publications/supplying-explosives-precursors/list-of-chemicals#regulated-poisons",
+    "link-text" : "list of regulated chemicals (opens in a new tab)",
+    "p2": "You do not need a licence for reportable poisons."
+  },
   "select-poisons": {
     "header": "Poisons",
     "p1": "Tell us which poisons you want to import acquire use or possess.",
