@@ -198,6 +198,9 @@
     "textAreaDefaultLength": "Usage address must be 2,000 characters or less",
     "notUrl" : "Your answer must not include a URL"
   },
+  "amend-poison":{
+    "required": "Select a poison"
+  },
   "amend-countersignatory-title": {
     "required": "Select your countersignatory's title"
   },

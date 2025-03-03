@@ -112,6 +112,11 @@
   "precursor-details":{
     "header": "{{values.amend-precursor-field}}"
   },
+  "select-poisons": {
+    "header": "Poisons",
+    "p1": "Tell us which poisons you want to import acquire use or possess.",
+    "p2": "If you need multiple poisons, you can add each one separately."
+  },
   "countersignatory-details": {
     "header": "Countersignatory details",
     "description": "Your countersignatory must not be a parent or relative, unless you are under 18. If you are under 18, your countersignatory must be your parent or legal guardian."
@@ -158,6 +163,12 @@
       },
       "amend-explosives-precursor": {
         "header": "Explosives precursors"
+      },
+      "amend-licence-for-poisons": {
+        "header": "Licence for poisons"
+      },
+      "amend-select-poisons": {
+        "header": " Poisons"
       }
     },
     "fields": {
@@ -262,6 +273,9 @@
       },
       "amend-countersignatory-phone-number": {
         "label": "Phone number"
+      },
+      "amend-poison": {
+        "label": "Poisons"
       }
     }
   }

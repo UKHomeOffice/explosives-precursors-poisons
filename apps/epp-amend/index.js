@@ -249,8 +249,13 @@ module.exports = {
       locals: { captionHeading: 'Section 15 of 23' }
     },
     '/poisons': {
-      fields: [],
+      fields: ['amend-poisons-option'],
       locals: { captionHeading: 'Section 16 of 23' },
+      next: '/select-poisons'
+    },
+    '/select-poisons': {
+      fields: ['amend-poison'],
+      locals: { captionHeading: 'Section 17 of 23' },
       next: '/countersignatory-details'
     },
     '/countersignatory-details': {
