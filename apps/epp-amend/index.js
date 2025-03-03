@@ -156,8 +156,10 @@ module.exports = {
       locals: { captionHeading: 'Section 9 of 23' }
     },
     '/upload-certificate-conduct': {
-      behaviours: [SaveDocument('amend-certificate-conduct', 'file-upload'),
-        RemoveDocument('amend-certificate-conduct')],
+      behaviours: [
+        SaveDocument('amend-certificate-conduct', 'file-upload'),
+        RemoveDocument('amend-certificate-conduct')
+      ],
       fields: ['file-upload'],
       next: '/change-home-address',
       locals: { captionHeading: 'Section 9 of 23' }
@@ -198,7 +200,10 @@ module.exports = {
       locals: { captionHeading: 'Section 11 of 23' }
     },
     '/upload-proof-address': {
-      behaviours: [SaveDocument('amend-proof-address', 'file-upload'), RemoveDocument('amend-proof-address')],
+      behaviours: [
+        SaveDocument('amend-proof-address', 'file-upload'),
+        RemoveDocument('amend-proof-address')
+      ],
       fields: ['file-upload'],
       continueOnEdit: true,
       next: '/change-substances',
@@ -299,7 +304,8 @@ module.exports = {
     },
     '/declaration': {
       fields: ['amend-declaration'],
-      next: '/application-submitted'
+      next: '/application-submitted',
+      locals: { captionHeading: 'Section 23 of 23' }
     },
     '/application-submitted': {
       clearSession: true
