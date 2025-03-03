@@ -10,59 +10,61 @@
         "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
         "link-text" : "signed by your countersignatory (opens in a new tab).",
         "uploading-document": "Uploading your document..",
-        "not-uploaded": "No files uploaded", 
-        "uploaded": "Files uploaded" 
+        "not-uploaded": "No files uploaded",
+        "uploaded": "Files uploaded"
       },
-      "upload-passport": {
-        "header": "Upload passport",
-        "p1": "Attach an image of your passport from the EU, Switzerland, Norway, Iceland or Liechtenstein as proof of your identity. The image must be",
-        "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
-        "link-text": "signed by your countersignatory (opens in a new tab)",
-        "upload-file": "Upload a file",
-        "file-format": "Your file must be JPEG, PDF or PNG, and be 25MB or less",
-        "no-file-uploaded": "No files uploaded",
-        "files-uploaded": "Files uploaded",
-        "uploading-document": "Uploading your document..."
-      },
-      "upload-driving-licence": {
-        "header": "Upload UK driving licence",
-        "p1": "Attach an image of your driving licence photocard as proof of your identity. The image must be",
-        "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
-        "link-text": "signed by your countersignatory (opens in a new tab)",
-        "upload-file": "Upload a file",
-        "file-format": "Your file must be JPEG, PDF or PNG, and be 25MB or less",
-        "no-file-uploaded": "No files uploaded",
-        "files-uploaded": "Files uploaded",
-        "uploading-document": "Uploading your document..."
-      },
-      "upload-proof-address": {
-        "header": "Upload proof of address",
-        "p1": "You need to scan and attach 2 documents as proof of your home address. The documents must be dated within the last 3 months and",
-        "p2": "The first document must be one of the following:",
-        "p3": "The second document must be one of the following:",
-        "p1-li1": "Mortgage statements",
-        "p1-li2": "bank or building society statement",
-        "p2-li1": "credit card statement",
-        "p2-li2": "rental agreement",
-        "p2-li3": "utilities bill (including energy, water, internet or phone bills)",
-        "p2-li4": "council tax bill",
-        "p2-li5": "benefit statement",
-        "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
-        "link-text": "signed by your countersignatory (opens in a new tab)",
-        "upload-file": "Upload a file",
-        "file-format": "Your file must be JPEG, PDF or PNG, and be 25MB or less",
-        "no-file-uploaded": "No files uploaded",
-        "files-uploaded": "Files uploaded",
-        "uploading-document": "Uploading your document..."
-      },
+  "upload-passport": {
+    "header": "Upload passport",
+    "p1": "Attach an image of your passport from the EU, Switzerland, Norway, Iceland or Liechtenstein as proof of your identity. The image must be",
+    "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
+    "link-text": "signed by your countersignatory (opens in a new tab)",
+    "upload-file": "Upload a file",
+    "file-format": "Your file must be JPEG, PDF or PNG, and be 25MB or less",
+    "no-file-uploaded": "No files uploaded",
+    "files-uploaded": "Files uploaded",
+    "uploading-document": "Uploading your document..."
+  },
+  "upload-driving-licence": {
+    "header": "Upload UK driving licence",
+    "p1": "Attach an image of your driving licence photocard as proof of your identity. The image must be",
+    "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
+    "link-text": "signed by your countersignatory (opens in a new tab)",
+    "upload-file": "Upload a file",
+    "file-format": "Your file must be JPEG, PDF or PNG, and be 25MB or less",
+    "no-file-uploaded": "No files uploaded",
+    "files-uploaded": "Files uploaded",
+    "uploading-document": "Uploading your document..."
+  },
+  "upload-proof-address": {
+    "header": "Upload proof of address",
+    "p1": "You need to scan and attach 2 documents as proof of your home address. The documents must be dated within the last 3 months and",
+    "p2": "The first document must be one of the following:",
+    "p3": "The second document must be one of the following:",
+    "p1-li1": "Mortgage statements",
+    "p1-li2": "bank or building society statement",
+    "p2-li1": "credit card statement",
+    "p2-li2": "rental agreement",
+    "p2-li3": "utilities bill (including energy, water, internet or phone bills)",
+    "p2-li4": "council tax bill",
+    "p2-li5": "benefit statement",
+    "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
+    "link-text": "signed by your countersignatory (opens in a new tab)",
+    "upload-file": "Upload a file",
+    "file-format": "Your file must be JPEG, PDF or PNG, and be 25MB or less",
+    "no-file-uploaded": "No files uploaded",
+    "files-uploaded": "Files uploaded",
+    "uploading-document": "Uploading your document..."
+  },
       "confirm": {
         "header": "Check your answers",
         "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",
         "sections": {
           "countersignatory-details": {
             "header": "Countersignatory details"
+          },
+          "replace-new-name": {
+            "header": "New name"
           }
-          
         },
       "fields": {
         "replace-british-passport" : {
@@ -79,5 +81,4 @@
         }
       }
     }
-  }
-
+}
