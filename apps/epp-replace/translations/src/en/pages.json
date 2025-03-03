@@ -41,6 +41,9 @@
         "sections": {
           "countersignatory-details": {
             "header": "Countersignatory details"
+          },
+          "replace-new-name": {
+            "header": "New name"
           }
         },
       "fields": {
@@ -49,6 +52,9 @@
         },
         "replace-eu-passport" : {
           "label": "Passport attachment"
+        },
+        "replace-upload-driving-licence": {
+          "label": "UK driving licence attachment"
         }
       }
     }
