@@ -1,0 +1,16 @@
+{{<partials-page}}
+  {{$page-content}}
+   <div>
+    <p class="govuk-body">{{#t}}pages.poisons.p1{{/t}}
+        <a class="govuk-link" href="{{#t}}pages.poisons.link{{/t}}" rel="noreferrer noopener" target="_blank">{{#t}}pages.poisons.link-text{{/t}}</a>.
+    </p>
+    <p class="govuk-body">{{#t}}pages.poisons.p2{{/t}}</p>
+   </div>
+  {{#fields}}
+    {{#renderField}}{{/renderField}}
+  {{/fields}}
+
+  {{#input-submit}}continue{{/input-submit}} 
+  
+  {{/page-content}}
+  {{/partials-page}}

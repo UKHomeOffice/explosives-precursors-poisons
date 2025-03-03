@@ -112,6 +112,13 @@
   "precursor-details":{
     "header": "{{values.amend-precursor-field}}"
   },
+  "poisons": {
+    "header": "Regulated poisons",
+    "p1": "Check what your licence needs to cover using the",
+    "link": "https://www.gov.uk/government/publications/supplying-explosives-precursors/list-of-chemicals#regulated-poisons",
+    "link-text" : "list of regulated chemicals (opens in a new tab)",
+    "p2": "You do not need a licence for reportable poisons."
+  },
   "countersignatory-details": {
     "header": "Countersignatory details",
     "description": "Your countersignatory must not be a parent or relative, unless you are under 18. If you are under 18, your countersignatory must be your parent or legal guardian."
@@ -168,6 +175,9 @@
       },
       "amend-explosives-precursor": {
         "header": "Explosives precursors"
+      },
+      "amend-licence-for-poisons": {
+        "header": "Licence for poisons"
       }
     },
     "fields": {
