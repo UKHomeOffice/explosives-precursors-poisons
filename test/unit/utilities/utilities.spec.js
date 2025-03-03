@@ -11,7 +11,8 @@ const {
   isEditMode,
   getPrecursorsShortLabel,
   textAreaDefaultLength,
-  isValidConcentrationValue
+  isValidConcentrationValue,
+  isLicenceValid
 } = require('../../../utilities/helpers');
 
 const explosivePrecursorsList = require('../../../utilities/constants/explosive-precursors');
@@ -306,5 +307,98 @@ describe('EPP utilities tests', () => {
     inputs.forEach(input =>
       expect(isValidConcentrationValue(input)).to.not.equal(null)
     );
+  });
+
+  describe('.isLicenceValid', () => {
+    it('should be valid for empty licence number', () => {
+      const req = {
+        sessionModel: {
+          get: () => 'renew'
+        },
+        form: {
+          values: {
+            'new-renew-licence-number': ''
+          }
+        },
+        log: () => {}
+      };
+      const result = isLicenceValid(req);
+
+      expect(result.isValid).to.be.true;
+      expect(result.fieldName).to.equal('new-renew-licence-number');
+    });
+
+    it('should be invalid for length less than 13', () => {
+      const req = {
+        sessionModel: {
+          get: () => 'renew'
+        },
+        form: {
+          values: {
+            'new-renew-licence-number': '12/a/1235265'
+          }
+        },
+        log: () => {}
+      };
+      const result = isLicenceValid(req);
+
+      expect(result.isValid).to.be.false;
+      expect(result.errorType).to.equal('licence-length-restriction');
+      expect(result.fieldName).to.equal('new-renew-licence-number');
+    });
+
+    it('should be invalid for length greater than 16', () => {
+      const req = {
+        sessionModel: {
+          get: () => 'renew'
+        },
+        form: {
+          values: {
+            'new-renew-licence-number': '12/a/1235265/565775'
+          }
+        },
+        log: () => {}
+      };
+      const result = isLicenceValid(req);
+
+      expect(result.isValid).to.be.false;
+      expect(result.errorType).to.equal('licence-length-restriction');
+      expect(result.fieldName).to.equal('new-renew-licence-number');
+    });
+
+    it('should throw an error for unsupported application type', () => {
+      const req = {
+        sessionModel: {
+          get: () => 'new'
+        },
+        form: {
+          values: {
+            'new-renew-licence-number': '95/W/000000/2024'
+          }
+        },
+        log: () => {}
+      };
+
+      expect(() => isLicenceValid(req)).to.throw('Unknown application type');
+    });
+
+    it('should be valid for correct format licence number', () => {
+      const req = {
+        sessionModel: {
+          get: () => 'replace'
+        },
+        form: {
+          values: {
+            'replace-licence-number': '95/W/000000/2024'
+          }
+        },
+        log: () => {}
+      };
+
+      const result = isLicenceValid(req);
+      expect(result.isValid).to.be.true;
+      expect(result.fieldName).to.equal('replace-licence-number');
+      expect(result.errorType).to.equal(undefined);
+    });
   });
 });

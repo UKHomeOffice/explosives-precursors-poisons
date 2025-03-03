@@ -12,35 +12,27 @@ const validLicenceNumber = value =>
 const isAlpha = str => /^[a-zA-Z]*$/.test(str);
 
 const isApplicationType = (req, value, applicationType) => {
-  if (value === applicationType) {
-    req.log('info', `Application type is ${applicationType}: ${true}`);
-    return true;
-  }
-  req.log('info', `Application type is ${applicationType}: ${false}`);
-  return false;
+  return value === applicationType;
 };
 
 const isLicenceValid = req => {
-  let licenceNumber = '';
-  let fieldName = '';
-
   const applicationType = req.sessionModel.get('applicationType');
+  const licenceFieldsJourneyMap = {
+    renew: 'new-renew-licence-number',
+    amend: 'amend-licence-number',
+    replace: 'replace-licence-number'
+  };
 
-  if (applicationType === 'renew') {
-    licenceNumber = req.form.values['new-renew-licence-number'];
-    fieldName = 'new-renew-licence-number';
+  const fieldName = licenceFieldsJourneyMap[applicationType];
+
+  if (!fieldName) {
+    req.log('error', `Unknown application type: ${applicationType}`);
+    throw new Error('Unknown application type');
   }
-  if (applicationType === 'amend') {
-    licenceNumber = req.form.values['amend-licence-number'];
-    fieldName = 'amend-licence-number';
-  }
-  if (applicationType === 'replace') {
-    licenceNumber = req.form.values['replace-licence-number'];
-    fieldName = 'replace-licence-number';
-  }
+
+  const licenceNumber = req.form.values[fieldName];
 
   if (!licenceNumber || licenceNumber.trim() === '') {
-    req.log('info', `Skipping validation for optional field: ${fieldName}`);
     return { isValid: true, fieldName };
   }
 
@@ -57,7 +49,10 @@ const isLicenceValid = req => {
   }
 
   if (!validLicenceNumber(licenceNumber) || !isAlpha(alphaValues)) {
-    req.log('error', `${licenceNumber} licence number is not in the correct format`);
+    req.log(
+      'error',
+      `${licenceNumber} licence number is not in the correct format`
+    );
     return {
       isValid: false,
       errorType: 'incorrect-format-licence',
