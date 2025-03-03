@@ -33,7 +33,6 @@ module.exports = {
       behaviours: [ValidateLicenceNumber],
       mixin: 'input-text',
       className: ['govuk-input', 'govuk-!-width-two-thirds'],
-      labelClassName: 'visuallyhidden',
       fields: ['replace-licence-number'],
       isPageHeading: 'true',
       locals: { captionHeading: 'Section 3 of 26' },
@@ -97,15 +96,6 @@ module.exports = {
       fields: ['file-upload'],
       locals: { captionHeading: 'Section 12 of 26' },
       next: '/upload-passport'
-    },
-    '/upload-passport': {
-      behaviours: [
-        SaveDocument('replace-eu-passport', 'file-upload'),
-        RemoveDocument('replace-eu-passport')
-      ],
-      fields: ['file-upload'],
-      locals: { captionHeading: 'Section 12 of 26' },
-      next: '/section-thirteen'
     },
     '/upload-passport': {
       behaviours: [
