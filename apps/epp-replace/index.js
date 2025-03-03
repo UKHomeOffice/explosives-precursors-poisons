@@ -31,10 +31,7 @@ module.exports = {
     },
     '/licence-number': {
       behaviours: [ValidateLicenceNumber],
-      mixin: 'input-text',
-      className: ['govuk-input', 'govuk-!-width-two-thirds'],
       fields: ['replace-licence-number'],
-      isPageHeading: 'true',
       locals: { captionHeading: 'Section 3 of 26' },
       next: '/section-four'
     },
