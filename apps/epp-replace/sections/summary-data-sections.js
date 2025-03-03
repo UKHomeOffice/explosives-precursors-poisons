@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-  'countersignatory-details': {
+  'replace-new-name': {
     steps: [
       {
         step: '/upload-british-passport',
@@ -28,6 +28,20 @@ module.exports = {
           ) {
             return documents.map(file => file?.name)?.join('\n\n');
           }
+          return null;
+        }
+      },
+      {
+        step: '/upload-driving-licence',
+        field: 'replace-upload-driving-licence',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel.get('steps').includes('/upload-driving-licence') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file.name);
+          }
+
           return null;
         }
       }
