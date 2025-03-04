@@ -154,6 +154,12 @@
       "none_selected": "Select"
     }
   },
+  "amend-poison": {
+    "hint": "Select a poison",
+      "options":{
+        "none_selected": "Select poison"
+    }
+  },
   "amend-countersignatory-title":{
     "label": "Title",
     "options": {
