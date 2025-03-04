@@ -136,6 +136,7 @@ describe('apis.js tests', () => {
         description: 'Replace payment description',
         return_url: 'http://localhost:8080/replace/application-submitted'
       };
+      delete updatedPayload.billing_address;
       expect(
         generateRequestPayload(
           {

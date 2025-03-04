@@ -85,7 +85,9 @@ async function initiatePayment({
 
     return data;
   } catch (error) {
-    logger.error(`Error creating a payment request : ${error.message ?? error}`);
+    logger.error(
+      `Error creating a payment request : ${error.message ?? error}`
+    );
     throw new Error('Error creating a payment request');
   }
 }
@@ -111,7 +113,9 @@ async function getPaymentDetails(paymentId) {
 
     return data;
   } catch (error) {
-    logger.error(`Error getting the payment details : ${error.message ?? error}`);
+    logger.error(
+      `Error getting the payment details : ${error.message ?? error}`
+    );
     throw new Error('Error getting the payment details');
   }
 }
@@ -172,14 +176,6 @@ const generateRequestPayload = (req, applicationType, hmac) => {
       metadata: {
         custom_metadata_key1: 'custom_metadata_value1',
         custom_metadata_key2: 'custom_metadata_value2'
-      },
-      // TODO: Discuss which address to pick if users change the address
-      billing_address: {
-        line1: req.sessionModel.get('replace-home-address-1'),
-        line2: req.sessionModel.get('replace-home-address-2'),
-        postcode: req.sessionModel.get('replace-home-postcode'),
-        city: req.sessionModel.get('replace-home-town-or-city'),
-        country: req.sessionModel.get('replace-home-county')
       },
       email: req.sessionModel.get('replace-email')
     };
