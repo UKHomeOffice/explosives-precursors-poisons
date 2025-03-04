@@ -46,5 +46,13 @@ module.exports = {
         }
       }
     ]
+  },
+  'licence-details': {
+    steps: [
+      {
+        steps: '/licence-number',
+        field: 'replace-licence-number'
+      }
+    ]
   }
 };

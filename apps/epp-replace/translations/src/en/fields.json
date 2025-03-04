@@ -1,3 +1,6 @@
 {
-
+    "replace-licence-number": {
+        "label": "Enter your licence number (optional)",
+        "hint": "For example 95/W/000000/2024"
+    }
 }
