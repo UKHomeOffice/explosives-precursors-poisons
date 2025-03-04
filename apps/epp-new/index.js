@@ -571,7 +571,7 @@ module.exports = {
     '/countersignatory-id': {
       fields: [],
       // add logic to check if user is 18 to redirect to birth certificate
-      next: '/confirm',
+      next: '/birth-certificate',
       locals: {
         sectionNo: {
           new: 18,
@@ -580,7 +580,11 @@ module.exports = {
       }
     },
     '/birth-certificate': {
-      fields: [],
+      behaviours: [
+        SaveDocument('new-renew-birth-certificate', 'file-upload'),
+        RemoveDocument('new-renew-birth-certificate')
+      ],
+      fields: ['file-upload'],
       next: '/confirm',
       locals: {
         sectionNo: {

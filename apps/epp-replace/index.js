@@ -3,6 +3,7 @@ const SummaryPageBehaviour = require('hof').components.summary;
 const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
 const SaveDocument = require('../epp-common/behaviours/save-document');
 const RemoveDocument = require('../epp-common/behaviours/remove-document');
+const ValidateLicenceNumber = require('../epp-common/behaviours/licence-validator');
 
 module.exports = {
   name: 'EPP form',
@@ -26,10 +27,12 @@ module.exports = {
     },
     '/report-details': {
       fields: ['replace-report-details'],
-      next: '/section-three'
+      next: '/licence-number'
     },
-    '/section-three': {
+    '/licence-number': {
+      behaviours: [ValidateLicenceNumber],
       fields: ['replace-licence-number'],
+      locals: { captionHeading: 'Section 3 of 26' },
       next: '/section-four'
     },
     '/section-four': {
@@ -88,8 +91,8 @@ module.exports = {
         RemoveDocument('replace-british-passport')
       ],
       fields: ['file-upload'],
-      next: '/section-thirteen',
-      locals: { captionHeading: 'Section 12 of 26' }
+      locals: { captionHeading: 'Section 12 of 26' },
+      next: '/upload-passport'
     },
     '/upload-passport': {
       behaviours: [
@@ -98,12 +101,21 @@ module.exports = {
       ],
       fields: ['file-upload'],
       locals: { captionHeading: 'Section 12 of 26' },
-      next: '/section-thirteen'
+      next: '/upload-certificate-conduct'
     },
     '/upload-driving-licence': {
       behaviours: [
         SaveDocument('replace-upload-driving-licence', 'file-upload'),
         RemoveDocument('replace-upload-driving-licence')
+      ],
+      fields: ['file-upload'],
+      locals: { captionHeading: 'Section 12 of 26' },
+      next: '/section-thirteen'
+    },
+    '/upload-certificate-conduct': {
+      behaviours: [
+        SaveDocument('replace-certificate-conduct', 'file-upload'),
+        RemoveDocument('replace-certificate-conduct')
       ],
       fields: ['file-upload'],
       locals: { captionHeading: 'Section 12 of 26' },
@@ -122,10 +134,15 @@ module.exports = {
       next: '/section-fourteen'
     },
     '/section-fourteen': {
-      next: '/section-fifteen'
+      next: '/upload-proof-address'
     },
-    '/section-fifteen': {
-      fields: ['replace-reason-for-licence'],
+    '/upload-proof-address': {
+      behaviours: [
+        SaveDocument('replace-proof-address', 'file-upload'),
+        RemoveDocument('replace-proof-address')
+      ],
+      fields: ['file-upload'],
+      locals: { captionHeading: 'Section 15 of 26' },
       next: '/section-sixteen'
     },
     '/section-sixteen': {
