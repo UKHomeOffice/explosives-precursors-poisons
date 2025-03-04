@@ -17,6 +17,9 @@ const SaveDocument = require('../epp-common/behaviours/save-document');
 const RemoveDocument = require('../epp-common/behaviours/remove-document');
 const DobEditRedirect = require('../epp-common/behaviours/dob-edit-redirect');
 
+const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-payment-request');
+const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
+
 module.exports = {
   name: 'EPP form',
   fields: 'apps/epp-new/fields',
@@ -602,9 +605,8 @@ module.exports = {
       }
     },
     '/declaration': {
-      fields: [],
-      // verify path name when payment component will be added to service
-      next: '/continue-to-payment',
+      behaviours: [InitiatePaymentRequest],
+      fields: ['new-renew-declaration'],
       locals: {
         sectionNo: {
           new: 20,
@@ -612,22 +614,17 @@ module.exports = {
         }
       }
     },
-    '/continue-to-payment': {
-      next: '/application-submitted'
-    },
     '/payment-problem': {
-      fields: [],
-      next: '/continue-to-payment'
+      behaviours: [InitiatePaymentRequest]
     },
     '/payment-failed': {
-      fields: [],
-      next: '/continue-to-payment'
+      behaviours: [InitiatePaymentRequest]
     },
-    '/payment-cancelled': {
-      fields: ['name'],
-      next: '/continue-to-payment'
+    '/payment-cancelled': {},
+    '/application-submitted': {
+      behaviours: [GetPaymentInfo],
+      backLink: false
     },
-    '/application-submitted': {},
     '/complete': {
       backLink: false
     }

@@ -554,5 +554,9 @@ module.exports = {
     validate: ['required', 'email'],
     className: ['govuk-input'],
     labelClassName: 'govuk-label--m'
+  },
+  'new-renew-declaration': {
+    mixin: 'checkbox',
+    validate: ['required']
   }
 };

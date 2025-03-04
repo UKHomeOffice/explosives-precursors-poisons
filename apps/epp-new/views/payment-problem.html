@@ -1,0 +1,12 @@
+{{<partials-page}}
+ {{$page-content}}
+
+    <p class="govuk-body">{{#t}}pages.payment-problem.p1{{/t}}</p>
+    <p class="govuk-body">
+      {{#t}}pages.payment-problem.p2{{/t}} 
+      <a class="govuk-link" href="mailto:epp@homeoffice.pnn.police.uk">epp@homeoffice.pnn.police.uk</a>.
+    </p>
+
+    {{#input-submit}}try-paying-again{{/input-submit}}
+  {{/page-content}}
+{{/partials-page}}
