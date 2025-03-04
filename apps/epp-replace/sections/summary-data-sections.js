@@ -58,6 +58,22 @@ module.exports = {
 
           return null;
         }
+      },
+      {
+        step: '/upload-certificate-conduct',
+        field: 'replace-certificate-conduct',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel
+              .get('steps')
+              .includes('/upload-certificate-conduct') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file.name);
+          }
+
+          return null;
+        }
       }
     ]
   },

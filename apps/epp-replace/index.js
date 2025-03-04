@@ -101,12 +101,21 @@ module.exports = {
       ],
       fields: ['file-upload'],
       locals: { captionHeading: 'Section 12 of 26' },
-      next: '/section-thirteen'
+      next: '/upload-certificate-conduct'
     },
     '/upload-driving-licence': {
       behaviours: [
         SaveDocument('replace-upload-driving-licence', 'file-upload'),
         RemoveDocument('replace-upload-driving-licence')
+      ],
+      fields: ['file-upload'],
+      locals: { captionHeading: 'Section 12 of 26' },
+      next: '/section-thirteen'
+    },
+    '/upload-certificate-conduct': {
+      behaviours: [
+        SaveDocument('replace-certificate-conduct', 'file-upload'),
+        RemoveDocument('replace-certificate-conduct')
       ],
       fields: ['file-upload'],
       locals: { captionHeading: 'Section 12 of 26' },

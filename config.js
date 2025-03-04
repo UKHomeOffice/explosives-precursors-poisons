@@ -132,6 +132,11 @@ module.exports = {
         allowMultipleUploads: true,
         limit: 2,
         limitValidationError: 'maxReplaceProofAddress'
+      },
+      'replace-certificate-conduct': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxReplaceCertificateConduct'
       }
     }
   },
