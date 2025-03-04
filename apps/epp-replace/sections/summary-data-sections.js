@@ -1,14 +1,18 @@
 'use strict';
 
 module.exports = {
-  'countersignatory-details': {
+  'replace-new-name': {
     steps: [
       {
         step: '/upload-british-passport',
         field: 'replace-british-passport',
         parse: (documents, req) => {
           if (
-            req.sessionModel.get('steps').includes('/upload-british-passport') && documents?.length > 0) {
+            req.sessionModel
+              .get('steps')
+              .includes('/upload-british-passport') &&
+            documents?.length > 0
+          ) {
             return documents.map(file => file.name);
           }
           return null;
@@ -28,13 +32,11 @@ module.exports = {
         }
       },
       {
-        step: '/upload-certificate-conduct',
-        field: 'replace-certificate-conduct',
+        step: '/upload-driving-licence',
+        field: 'replace-upload-driving-licence',
         parse: (documents, req) => {
           if (
-            req.sessionModel
-              .get('steps')
-              .includes('/upload-certificate-conduct') &&
+            req.sessionModel.get('steps').includes('/upload-driving-licence') &&
             documents?.length > 0
           ) {
             return documents.map(file => file.name);
@@ -42,6 +44,44 @@ module.exports = {
 
           return null;
         }
+      },
+      {
+        step: '/upload-proof-address',
+        field: 'replace-proof-address',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel.get('steps').includes('/upload-proof-address') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file?.name)?.join('\n\n');
+          }
+
+          return null;
+        }
+      },
+        {
+            step: '/upload-certificate-conduct',
+            field: 'replace-certificate-conduct',
+            parse: (documents, req) => {
+                if (
+                    req.sessionModel
+                        .get('steps')
+                        .includes('/upload-certificate-conduct') &&
+                    documents?.length > 0
+                ) {
+                    return documents.map(file => file.name);
+                }
+
+                return null;
+            }
+        }
+    ]
+  },
+  'licence-details': {
+    steps: [
+      {
+        steps: '/licence-number',
+        field: 'replace-licence-number'
       }
     ]
   }

@@ -257,5 +257,8 @@
   "amend-countersignatory-email": {
     "required": "Enter your countersignatory's email address",
     "email": "Enter a real email address"
+  },
+  "amend-declaration": {
+    "required": "Confirm you have read and agree to this declaration"
   }
 }

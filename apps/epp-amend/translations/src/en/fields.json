@@ -254,5 +254,8 @@
   "precursors-use-other-address": {
     "label": "{{values.usePrecursorOtherAddressLabel}}",
     "hint": "Enter a UK address"
+  },
+  "amend-declaration": {
+    "label": "I have read and agree to this declaration"
   }
 }
