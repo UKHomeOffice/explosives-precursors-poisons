@@ -112,15 +112,15 @@ module.exports = {
       locals: { captionHeading: 'Section 12 of 26' },
       next: '/section-thirteen'
     },
-      '/upload-certificate-conduct': {
-          behaviours: [
-              SaveDocument('replace-certificate-conduct', 'file-upload'),
-              RemoveDocument('replace-certificate-conduct')
-          ],
-          fields: ['file-upload'],
-          locals: { captionHeading: 'Section 12 of 26' },
-          next: '/section-thirteen'
-      },
+    '/upload-certificate-conduct': {
+      behaviours: [
+        SaveDocument('replace-certificate-conduct', 'file-upload'),
+        RemoveDocument('replace-certificate-conduct')
+      ],
+      fields: ['file-upload'],
+      locals: { captionHeading: 'Section 12 of 26' },
+      next: '/section-thirteen'
+    },
     '/section-thirteen': {
       fields: [
         'replace-new-post-address-1',
