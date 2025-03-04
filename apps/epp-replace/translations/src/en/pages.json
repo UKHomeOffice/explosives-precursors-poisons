@@ -35,6 +35,26 @@
     "files-uploaded": "Files uploaded",
     "uploading-document": "Uploading your document..."
   },
+  "upload-proof-address": {
+    "header": "Upload proof of address",
+    "p1": "You need to scan and attach 2 documents as proof of your home address. The documents must be dated within the last 3 months and",
+    "p2": "The first document must be one of the following:",
+    "p3": "The second document must be one of the following:",
+    "p1-li1": "Mortgage statements",
+    "p1-li2": "bank or building society statement",
+    "p2-li1": "credit card statement",
+    "p2-li2": "rental agreement",
+    "p2-li3": "utilities bill (including energy, water, internet or phone bills)",
+    "p2-li4": "council tax bill",
+    "p2-li5": "benefit statement",
+    "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
+    "link-text": "signed by your countersignatory (opens in a new tab)",
+    "upload-file": "Upload a file",
+    "file-format": "Your file must be JPEG, PDF or PNG, and be 25MB or less",
+    "no-file-uploaded": "No files uploaded",
+    "files-uploaded": "Files uploaded",
+    "uploading-document": "Uploading your document..."
+  },
       "confirm": {
         "header": "Check your answers",
         "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",
@@ -61,6 +81,9 @@
         },
         "replace-upload-driving-licence": {
           "label": "UK driving licence attachment"
+        },
+        "replace-proof-address": {
+          "label": "Proof of address attachments"
         }
       }
     }
