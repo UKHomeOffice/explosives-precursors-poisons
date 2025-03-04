@@ -44,7 +44,7 @@ const generateHmac = randomId => {
  * @param {number} params.billing_address - Billing address
  * @param {number} params.metadata - Additional metadata
  * @returns {Promise<Object>} - The payment response data
- * @throws {Error} - If there is any error during initiating payment request
+ * @throws {Error} - If there is any error during initiating the payment request
  */
 
 async function initiatePayment({
