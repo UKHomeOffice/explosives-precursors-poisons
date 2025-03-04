@@ -62,11 +62,17 @@
           "countersignatory-details": {
             "header": "Countersignatory details"
           },
+          "licence-details": {
+            "header": "Licence details"
+          },
           "replace-new-name": {
             "header": "New name"
           }
         },
       "fields": {
+        "replace-licence-number": {
+          "label": "Licence number"
+        },
         "replace-british-passport" : {
           "label": "British passport attachment"
         },

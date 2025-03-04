@@ -1,11 +1,15 @@
 {
-    "file-upload": {
-        "required": "Select a file to upload",
-        "maxFileSize": "The selected file must be 25MB or smaller",
-        "fileType": "The selected file must be a JPG, JPEG, PDF or PNG",
-        "maxReplaceBritishPassport": "You can only upload up to {{maxReplaceBritishPassport}} files or less. Remove a file before uploading another",
-      "maxReplaceEuPassport" : "You can only upload up to {{maxReplaceEuPassport}} files or less. Remove a file before uploading another",
-      "maxReplaceDrivingLicence" : "You can only upload up to {{maxReplaceDrivingLicence}} files or less. Remove a file before uploading another",
-      "maxReplaceProofAddress" : "You can only upload up to {{maxReplaceProofAddress}} files or less. Remove a file before uploading another"
-      }
+  "file-upload": {
+    "required": "Select a file to upload",
+    "maxFileSize": "The selected file must be 25MB or smaller",
+    "fileType": "The selected file must be a JPG, JPEG, PDF or PNG",
+    "maxReplaceBritishPassport": "You can only upload up to {{maxReplaceBritishPassport}} files or less. Remove a file before uploading another",
+    "maxReplaceEuPassport": "You can only upload up to {{maxReplaceEuPassport}} files or less. Remove a file before uploading another",
+    "maxReplaceDrivingLicence": "You can only upload up to {{maxReplaceDrivingLicence}} files or less. Remove a file before uploading another",
+    "maxReplaceProofAddress" : "You can only upload up to {{maxReplaceProofAddress}} files or less. Remove a file before uploading another"
+  },
+  "replace-licence-number": {
+    "incorrect-format-licence": "Enter a real licence number",
+    "licence-length-restriction": "Licence number must be between 13 and 16 characters"
+  }
 }
