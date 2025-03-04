@@ -9,6 +9,7 @@ const RemoveDocument = require('../epp-common/behaviours/remove-document');
 const DobEditRedirect = require('../epp-common/behaviours/dob-edit-redirect');
 const RenderPrecursorDetails = require('../epp-common/behaviours/render-precursors-detail');
 const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
+const CheckAndRedirect = require('../epp-common/behaviours/check-answer-redirect');
 
 module.exports = {
   name: 'EPP form',
@@ -66,11 +67,19 @@ module.exports = {
       locals: { captionHeading: 'Section 4 of 23' }
     },
     '/contact-details': {
-      fields: ['amend-phone-number', 'amend-email'],
+      fields: [
+        'amend-phone-number',
+        'amend-email'
+      ],
       locals: { captionHeading: 'Section 5 of 23' },
       next: '/amend-details'
     },
     '/amend-details': {
+      behaviours: [
+        CheckAndRedirect('amend-name-options',
+          ['amend-change-substances-options', 'amend-name-options', 'amend-home-address-options']
+        )
+      ],
       fields: ['amend-name-options'],
       forks: [
         {
@@ -79,17 +88,10 @@ module.exports = {
             field: 'amend-name-options',
             value: 'yes'
           }
-        },
-        {
-          target: '/change-home-address',
-          condition: {
-            field: 'amend-name-options',
-            value: 'no'
-          }
         }
       ],
       locals: { captionHeading: 'Section 6 of 23' },
-      next: '/new-name'
+      next: '/change-home-address'
     },
     '/new-name': {
       fields: [
@@ -165,6 +167,11 @@ module.exports = {
       locals: { captionHeading: 'Section 9 of 23' }
     },
     '/change-home-address': {
+      behaviours: [
+        CheckAndRedirect('amend-home-address-options',
+          ['amend-change-substances-options', 'amend-name-options', 'amend-home-address-options']
+        )
+      ],
       fields: ['amend-home-address-options'],
       forks: [
         {
@@ -173,17 +180,10 @@ module.exports = {
             field: 'amend-home-address-options',
             value: 'yes'
           }
-        },
-        {
-          target: '/change-substances',
-          condition: {
-            field: 'amend-home-address-options',
-            value: 'no'
-          }
         }
       ],
       locals: { captionHeading: 'Section 10 of 23' },
-      next: '/new-address'
+      next: '/change-substances'
     },
     '/new-address': {
       fields: [
@@ -210,9 +210,27 @@ module.exports = {
       locals: { captionHeading: 'Section 12 of 23' }
     },
     '/change-substances': {
-      fields: ['amend-explosive-precusor-type'],
-      locals: { captionHeading: 'Section 13 of 23' },
-      next: '/explosives-precursors'
+      behaviours: [
+        CheckAndRedirect('amend-change-substances-options',
+          ['amend-change-substances-options', 'amend-name-options', 'amend-home-address-options']
+        )
+      ],
+      fields: ['amend-change-substances-options'],
+      forks: [
+        {
+          target: '/explosives-precursors',
+          continueOnEdit: true,
+          condition: {
+            field: 'amend-change-substances-options',
+            value: 'yes'
+          }
+        }
+      ],
+      next: '/countersignatory-details',
+      locals: { captionHeading: 'Section 13 of 23' }
+    },
+    '/no-details-amend': {
+      locals: { captionHeading: 'Section 13 of 23' }
     },
     '/explosives-precursors': {
       fields: ['amend-regulated-explosives-precursors'],
