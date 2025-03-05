@@ -182,6 +182,7 @@
   },
   "file-upload": {
     "required": "Select a file to upload",
+    "upload-min-files-error": "You must upload at least 2 files",
     "unsaved": "Your file could not be uploaded – try again",
     "maxFileSize": "The selected file must be 25MB or smaller",
     "fileType": "The selected file must be a JPG, JPEG, PDF or PNG",

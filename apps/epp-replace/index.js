@@ -5,6 +5,8 @@ const SaveDocument = require('../epp-common/behaviours/save-document');
 const RemoveDocument = require('../epp-common/behaviours/remove-document');
 const ValidateLicenceNumber = require('../epp-common/behaviours/licence-validator');
 
+const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
+
 module.exports = {
   name: 'EPP form',
   fields: 'apps/epp-replace/fields',
@@ -139,7 +141,8 @@ module.exports = {
     '/upload-proof-address': {
       behaviours: [
         SaveDocument('replace-proof-address', 'file-upload'),
-        RemoveDocument('replace-proof-address')
+        RemoveDocument('replace-proof-address'),
+        UploadFileCounter('replace-proof-address')
       ],
       fields: ['file-upload'],
       locals: { captionHeading: 'Section 15 of 26' },

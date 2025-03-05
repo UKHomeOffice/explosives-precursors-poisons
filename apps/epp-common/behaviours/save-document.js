@@ -36,9 +36,19 @@ module.exports = (documentName, fieldName) => superclass =>
         throw new Error('Document configuration is not defined');
       }
 
-      if (req.body.requireFileUpload && documentsByCategory.length === 0) {
-        return validationErrorFunc('required');
-      } else if (fileToBeValidated) {
+      if (req.body.requireFileUpload) {
+        const documentsCount = documentsByCategory.length;
+        const minLimit = documentCategoryConfig.limit;
+        if (documentsCount === 0) {
+          return validationErrorFunc('required');
+        }
+
+        if (documentsCount < minLimit) {
+          return validationErrorFunc('upload-min-files-error');
+        }
+      }
+
+      if (fileToBeValidated) {
         const uploadSize = fileToBeValidated.size;
         const mimetype = fileToBeValidated.mimetype;
         const uploadSizeTooBig = uploadSize > config.upload.maxFileSizeInBytes;

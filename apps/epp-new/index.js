@@ -17,6 +17,8 @@ const SaveDocument = require('../epp-common/behaviours/save-document');
 const RemoveDocument = require('../epp-common/behaviours/remove-document');
 const DobEditRedirect = require('../epp-common/behaviours/dob-edit-redirect');
 
+const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
+
 const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-payment-request');
 const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
 
@@ -209,7 +211,8 @@ module.exports = {
     '/upload-proof-address': {
       behaviours: [
         SaveDocument('new-renew-proof-address', 'file-upload'),
-        RemoveDocument('new-renew-proof-address')
+        RemoveDocument('new-renew-proof-address'),
+        UploadFileCounter('new-renew-proof-address')
       ],
       fields: ['file-upload'],
       next: '/contact-details',

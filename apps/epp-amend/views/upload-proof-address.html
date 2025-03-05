@@ -34,6 +34,13 @@
     <p id="file-upload-error-fileType" class="govuk-error-message govuk-!-display-none">
         <span id="validation-error" class="govuk-visually-hidden">{{#t}}journey.error{{/t}}:</span> {{#t}}validation.file-upload.fileType{{/t}}
     </p>
+
+    {{#requiredDocsCount}}
+    {{#values.amend-proof-address.length}}
+        <p class="govuk-body">{{values.amend-proof-address.length}} {{#t}}pages.upload-proof-address.counter-of{{/t}} {{requiredDocsCount}} {{#t}}pages.upload-proof-address.counter-files-uploaded{{/t}}</p>
+    {{/values.amend-proof-address.length}}
+    {{/requiredDocsCount}}
+
     <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" value="amend-proof-address">
 
     <div id="upload-page-loading-spinner" class="spinner-container">
@@ -57,7 +64,7 @@
             {{name}}
         </div>
         <div class="govuk-grid-column-one-quarter">
-            <a href="?delete={{id}}" class="govuk-link">{{#t}}buttons.remove{{/t}}</a>
+            <a href="?delete={{id}}" class="govuk-link">{{#t}}buttons.remove{{/t}} <span class="visuallyhidden">{{name}}</span></a>
         </div>
     </div>
     <div class="file-upload-hrline"></div>
