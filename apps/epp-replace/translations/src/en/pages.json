@@ -53,7 +53,9 @@
     "file-format": "Your file must be JPEG, PDF or PNG, and be 25MB or less",
     "no-file-uploaded": "No files uploaded",
     "files-uploaded": "Files uploaded",
-    "uploading-document": "Uploading your document..."
+    "uploading-document": "Uploading your document...",
+    "counter-of": "of",
+    "counter-files-uploaded": "files uploaded"
   },
   "upload-certificate-conduct": {
     "header": "Upload certificate of good conduct (optional)",
