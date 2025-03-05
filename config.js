@@ -15,6 +15,7 @@ module.exports = {
   govukNotify: {
     notifyApiKey: process.env.NOTIFY_KEY,
     caseworkerEmail: process.env.CASEWORKER_EMAIL,
+    replyToEmailID: process.env.REPLY_TO_EMAIL_ID,
     newApplicationUserTemplateId: process.env.NEW_APPLICATION_USER_TEMPLATE_ID,
     newApplicationBusinessTemplateId: process.env.NEW_APPLICATION_BUSINESS_TEMPLATE_ID,
     renewApplicationUserTemplateId: process.env.RENEW_APPLICATION_USER_TEMPLATE_ID,
