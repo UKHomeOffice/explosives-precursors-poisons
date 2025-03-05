@@ -124,6 +124,16 @@
   "countersignatory-contact":{
     "header": "Countersignatory's contact details"
   },
+  "birth-certificate": {
+    "header": "Your countersignatory must be your parent or guardian",
+    "p1": "You told us you are under 18. Your countersignatory must be your parent or legal guardian.",
+    "p2": "To prove this relationship, upload a countersigned copy of your birth certificate or other legal document.",
+    "upload-file": "Upload a file",
+    "file-format": "Your file must be JPEG, PDF or PNG, and be 25MB or less",
+    "no-file-uploaded": "No files uploaded",
+    "files-uploaded": "Files uploaded",
+    "uploading-document": "Uploading your document..."
+  },
   "declaration": {
     "header": "Declaration",
     "p1": "I agree:",
@@ -274,6 +284,9 @@
       },
       "amend-countersignatory-phone-number": {
         "label": "Phone number"
+      },
+      "amend-birth-certificate": {
+        "label": "Birth certificate attachment"
       }
     }
   }
