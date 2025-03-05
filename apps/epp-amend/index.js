@@ -10,6 +10,8 @@ const DobEditRedirect = require('../epp-common/behaviours/dob-edit-redirect');
 const RenderPrecursorDetails = require('../epp-common/behaviours/render-precursors-detail');
 const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
 
+const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
+
 module.exports = {
   name: 'EPP form',
   fields: 'apps/epp-amend/fields',
@@ -202,7 +204,8 @@ module.exports = {
     '/upload-proof-address': {
       behaviours: [
         SaveDocument('amend-proof-address', 'file-upload'),
-        RemoveDocument('amend-proof-address')
+        RemoveDocument('amend-proof-address'),
+        UploadFileCounter('amend-proof-address')
       ],
       fields: ['file-upload'],
       continueOnEdit: true,
