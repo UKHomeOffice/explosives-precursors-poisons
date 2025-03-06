@@ -149,7 +149,11 @@ const getReplacePersonalisation = req => {
   };
 };
 
-const getPersonalisation = (req, applicationType) => {
+const getPersonalisation = (req, applicationType, recipientType) => {
+  if (recipientType === USER) {
+    // only pdf link for user templates
+    return {};
+  }
   switch (applicationType) {
     case 'new':
     case 'renew':
@@ -188,7 +192,11 @@ module.exports = class SendEmailConfirmation {
 
     const emailReplyToId = govukNotify.replyToEmailID;
 
-    const personalisation = getPersonalisation(req, applicationType);
+    const personalisation = getPersonalisation(
+      req,
+      applicationType,
+      recipientType
+    );
 
     req.log(personalisation);
 
