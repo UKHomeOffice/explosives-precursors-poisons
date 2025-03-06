@@ -10,6 +10,8 @@ const DobEditRedirect = require('../epp-common/behaviours/dob-edit-redirect');
 const RenderPrecursorDetails = require('../epp-common/behaviours/render-precursors-detail');
 const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
 
+const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
+
 module.exports = {
   name: 'EPP form',
   fields: 'apps/epp-amend/fields',
@@ -156,8 +158,10 @@ module.exports = {
       locals: { captionHeading: 'Section 9 of 23' }
     },
     '/upload-certificate-conduct': {
-      behaviours: [SaveDocument('amend-certificate-conduct', 'file-upload'),
-        RemoveDocument('amend-certificate-conduct')],
+      behaviours: [
+        SaveDocument('amend-certificate-conduct', 'file-upload'),
+        RemoveDocument('amend-certificate-conduct')
+      ],
       fields: ['file-upload'],
       next: '/change-home-address',
       locals: { captionHeading: 'Section 9 of 23' }
@@ -198,7 +202,11 @@ module.exports = {
       locals: { captionHeading: 'Section 11 of 23' }
     },
     '/upload-proof-address': {
-      behaviours: [SaveDocument('amend-proof-address', 'file-upload'), RemoveDocument('amend-proof-address')],
+      behaviours: [
+        SaveDocument('amend-proof-address', 'file-upload'),
+        RemoveDocument('amend-proof-address'),
+        UploadFileCounter('amend-proof-address')
+      ],
       fields: ['file-upload'],
       continueOnEdit: true,
       next: '/change-substances',
@@ -291,10 +299,16 @@ module.exports = {
     },
     '/section-eighteen': {
       fields: ['amend-countersignatory-document-type'],
-      next: '/confirm'
+      next: '/birth-certificate',
+      locals: { captionHeading: 'Section 21 of 23' }
     },
     '/birth-certificate': {
-      fields: [],
+      behaviours: [
+        SaveDocument('amend-birth-certificate', 'file-upload'),
+        RemoveDocument('amend-birth-certificate')
+      ],
+      fields: ['file-upload'],
+      locals: { captionHeading: 'Section 21 of 23' },
       next: '/confirm'
     },
     '/confirm': {
@@ -303,7 +317,9 @@ module.exports = {
       next: '/declaration'
     },
     '/declaration': {
-      next: '/application-submitted'
+      fields: ['amend-declaration'],
+      next: '/application-submitted',
+      locals: { captionHeading: 'Section 23 of 23' }
     },
     '/application-submitted': {
       clearSession: true

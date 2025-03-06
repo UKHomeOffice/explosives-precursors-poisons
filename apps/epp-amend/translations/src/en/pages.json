@@ -35,7 +35,7 @@
     "paragraph1": "Attach an image of your British passport as proof of your identity. The image must be",
     "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
     "link-text": "signed by your countersignatory (opens in a new tab).",
-    "uploading-document": "Document uploading",
+    "uploading-document": "Uploading your document...",
     "not-uploaded": "No file uploaded", 
     "uploaded": "Files uploaded" 
   },
@@ -56,9 +56,11 @@
     "paragraph3-li5": "benefit statement",
     "label": "Upload a file",
     "hint": "Your file must be JPG, JPEG, PDF or PNG and be 25MB or less",
-    "uploading-document": "Document uploading",
+    "uploading-document": "Uploading your document...",
     "not-uploaded": "No file uploaded", 
-    "uploaded": "Files uploaded" 
+    "uploaded": "Files uploaded",
+    "counter-of": "of",
+    "counter-files-uploaded": "files uploaded"
   },
   "upload-passport": {
     "header": "Upload passport",
@@ -67,7 +69,7 @@
     "paragraph1": "Attach an image of your passport from the EU, Switzerland, Norway, Iceland or Liechtenstein as proof of your identity. The image must be ",
     "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
     "link-text" : "signed by your countersignatory (opens in a new tab).",
-    "uploading-document": "Document uploading",
+    "uploading-document": "Uploading your document...",
     "not-uploaded": "No files uploaded", 
     "uploaded": "File uploaded" 
   },
@@ -79,7 +81,7 @@
     "paragraph2": "Attach an image of your certificate of good conduct. The image must be ",
     "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
     "link-text" : "signed by your countersignatory (opens in a new tab).",
-    "uploading-document": "Document uploading",
+    "uploading-document": "Uploading your document...",
     "not-uploaded": "No files uploaded", 
     "uploaded": "File uploaded" 
   },
@@ -90,7 +92,7 @@
     "paragraph1": "Attach an image of your driving licence photocard as proof of your identity. The image must be",
     "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
     "link-text" : "signed by your countersignatory (opens in a new tab).",
-    "uploading-document": "Document uploading",
+    "uploading-document": "Uploading your document...",
     "not-uploaded": "No files uploaded", 
     "uploaded": "File uploaded" 
   },
@@ -126,6 +128,26 @@
   },
   "countersignatory-contact":{
     "header": "Countersignatory's contact details"
+  },
+  "birth-certificate": {
+    "header": "Your countersignatory must be your parent or guardian",
+    "p1": "You told us you are under 18. Your countersignatory must be your parent or legal guardian.",
+    "p2": "To prove this relationship, upload a countersigned copy of your birth certificate or other legal document.",
+    "upload-file": "Upload a file",
+    "file-format": "Your file must be JPEG, PDF or PNG, and be 25MB or less",
+    "no-file-uploaded": "No files uploaded",
+    "files-uploaded": "Files uploaded",
+    "uploading-document": "Uploading your document..."
+  },
+  "declaration": {
+    "header": "Declaration",
+    "p1": "I agree:",
+    "p1l1": "that the answers I give on this form are true to the best of my knowledge and belief",
+    "p1l2": "to provide additional information if it is reasonable and necessary to determine my suitability",
+    "p2": "I understand that:",
+    "p2l1": "knowingly making false representation on this form may constitute an offence under the Fraud Act 2006",
+    "p2l2": "the details I have provided will be checked against databases to assess my suitability to hold a licence",
+    "p2l3": "my details will be held electronically and processed in accordance with the Data Protection Act 2018"
   },
   "confirm": {
     "header": "Check your answers",
@@ -273,6 +295,9 @@
       },
       "amend-countersignatory-phone-number": {
         "label": "Phone number"
+      },
+      "amend-birth-certificate": {
+        "label": "Birth certificate attachment"
       },
       "amend-poison": {
         "label": "Poisons"

@@ -36,13 +36,12 @@
     </p>
 
     {{#requiredDocsCount}}
-        {{#values.new-renew-proof-address.length}}
-            <p class="govuk-body">{{values.new-renew-proof-address.length}} {{#t}}pages.upload-proof-address.counter-of{{/t}} {{requiredDocsCount}} {{#t}}pages.upload-proof-address.counter-files-uploaded{{/t}}</p>
-        {{/values.new-renew-proof-address.length}}
+    {{#values.replace-proof-address.length}}
+        <p class="govuk-body">{{values.replace-proof-address.length}} {{#t}}pages.upload-proof-address.counter-of{{/t}} {{requiredDocsCount}} {{#t}}pages.upload-proof-address.counter-files-uploaded{{/t}}</p>
+    {{/values.replace-proof-address.length}}
     {{/requiredDocsCount}}
 
-
-    <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" value="new-renew-proof-address">
+    <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" value="replace-proof-address">
 
     <div id="upload-page-loading-spinner" class="spinner-container">
         <div class="spinner-loader"></div>
@@ -51,31 +50,31 @@
 
 </div>
 
-{{^values.new-renew-proof-address}}
+{{^values.replace-proof-address}}
 <h2 class="govuk-heading-m">{{#t}}pages.upload-proof-address.no-file-uploaded{{/t}}</h2>
-{{/values.new-renew-proof-address}}
+{{/values.replace-proof-address}}
 
-{{#values.new-renew-proof-address.length}}
+{{#values.replace-proof-address.length}}
 <h2 class="govuk-heading-m">{{#t}}pages.upload-proof-address.files-uploaded{{/t}}</h2>
 
 <div id="uploaded-documents" class="govuk-width-container">
-    {{#values.new-renew-proof-address}}
+    {{#values.replace-proof-address}}
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-three-quarters">
             {{name}}
         </div>
         <div class="govuk-grid-column-one-quarter">
-            <a href="?delete={{id}}" class="govuk-link">{{#t}}buttons.remove{{/t}}</a>
+            <a href="?delete={{id}}" class="govuk-link">{{#t}}buttons.remove{{/t}}<span class="visuallyhidden">{{name}}</span></a>
         </div>
     </div>
     <div class="file-upload-hrline"></div>
-    {{/values.new-renew-proof-address}}
+    {{/values.replace-proof-address}}
 </div>
 
-{{/values.new-renew-proof-address.length}}
+{{/values.replace-proof-address.length}}
 
 
-<button class="govuk-button" name="requireFileUpload" value="new-renew-proof-address">
+<button class="govuk-button" name="requireFileUpload" value="replace-proof-address">
     {{#t}}buttons.continue{{/t}}
 </button>
 

@@ -17,6 +17,8 @@ const SaveDocument = require('../epp-common/behaviours/save-document');
 const RemoveDocument = require('../epp-common/behaviours/remove-document');
 const DobEditRedirect = require('../epp-common/behaviours/dob-edit-redirect');
 
+const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
+
 module.exports = {
   name: 'EPP form',
   fields: 'apps/epp-new/fields',
@@ -206,7 +208,8 @@ module.exports = {
     '/upload-proof-address': {
       behaviours: [
         SaveDocument('new-renew-proof-address', 'file-upload'),
-        RemoveDocument('new-renew-proof-address')
+        RemoveDocument('new-renew-proof-address'),
+        UploadFileCounter('new-renew-proof-address')
       ],
       fields: ['file-upload'],
       next: '/contact-details',
@@ -568,7 +571,7 @@ module.exports = {
     '/countersignatory-id': {
       fields: [],
       // add logic to check if user is 18 to redirect to birth certificate
-      next: '/confirm',
+      next: '/birth-certificate',
       locals: {
         sectionNo: {
           new: 18,
@@ -577,7 +580,11 @@ module.exports = {
       }
     },
     '/birth-certificate': {
-      fields: [],
+      behaviours: [
+        SaveDocument('new-renew-birth-certificate', 'file-upload'),
+        RemoveDocument('new-renew-birth-certificate')
+      ],
+      fields: ['file-upload'],
       next: '/confirm',
       locals: {
         sectionNo: {

@@ -12,58 +12,56 @@ const validLicenceNumber = value =>
 const isAlpha = str => /^[a-zA-Z]*$/.test(str);
 
 const isApplicationType = (req, value, applicationType) => {
-  if (value === applicationType) {
-    req.log('info', `Application type is ${applicationType}: ${true}`);
-    return true;
-  }
-  req.log('info', `Application type is ${applicationType}: ${false}`);
-  return false;
+  return value === applicationType;
 };
 
 const isLicenceValid = req => {
-  let licenceNumber = '';
-  let fieldName = '';
-
   const applicationType = req.sessionModel.get('applicationType');
-  if (applicationType === 'renew') {
-    licenceNumber = req.form.values['new-renew-licence-number'];
-    fieldName = 'new-renew-licence-number';
+  const licenceFieldsJourneyMap = {
+    renew: 'new-renew-licence-number',
+    amend: 'amend-licence-number',
+    replace: 'replace-licence-number'
+  };
+
+  const fieldName = licenceFieldsJourneyMap[applicationType];
+
+  if (!fieldName) {
+    req.log('error', `Unknown application type: ${applicationType}`);
+    throw new Error('Unknown application type');
   }
-  if (applicationType === 'amend') {
-    licenceNumber = req.form.values['amend-licence-number'];
-    fieldName = 'amend-licence-number';
+
+  const licenceNumber = req.form.values[fieldName];
+
+  if (!licenceNumber || licenceNumber.trim() === '') {
+    return { isValid: true, fieldName };
   }
-  const removeSpaceOrSperator = licenceNumber.replace(/[^a-zA-Z0-9]/g, '');
-  const alphaValues = removeSpaceOrSperator.slice(2, 3);
+
+  const removeSpaceOrSeparator = licenceNumber.replace(/[^a-zA-Z0-9]/g, '');
+  const alphaValues = removeSpaceOrSeparator.slice(2, 3);
 
   if (licenceNumber.length > 16 || licenceNumber.length < 13) {
-    const errorMessage =
-      'Licence number should not be greater than 16 or less than 13';
-    req.log('error', errorMessage);
-
+    req.log('error', 'Licence number should be between 13 and 16 characters');
     return {
       isValid: false,
       errorType: 'licence-length-restriction',
-      fieldName: `${fieldName}`
+      fieldName
     };
   }
 
   if (!validLicenceNumber(licenceNumber) || !isAlpha(alphaValues)) {
-    const errorMessage = `${licenceNumber} licence number not in correct format`;
-    req.log('error', errorMessage);
-
+    req.log(
+      'error',
+      `${licenceNumber} licence number is not in the correct format`
+    );
     return {
       isValid: false,
       errorType: 'incorrect-format-licence',
-      fieldName: `${fieldName}`
+      fieldName
     };
   }
-  req.log('info', 'licence number is in correct format');
 
-  return {
-    isValid: true,
-    fieldName: fieldName
-  };
+  req.log('info', 'Licence number is in correct format');
+  return { isValid: true, fieldName };
 };
 
 const isWithoutFullStop = value => {
@@ -95,9 +93,7 @@ const validInternationalPhoneNumber = value => {
 };
 
 const DEFAULT_AGGREGATOR_LIMIT = 100;
-
 const TEXT_NOT_PROVIDED = 'Not provided';
-
 const DATE_FORMAT_YYYY_MM_DD = 'YYYY-MM-DD';
 
 const textAreaDefaultLength = value => {

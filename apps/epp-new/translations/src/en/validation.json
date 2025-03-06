@@ -182,6 +182,7 @@
   },
   "file-upload": {
     "required": "Select a file to upload",
+    "upload-min-files-error": "You must upload at least 2 files",
     "unsaved": "Your file could not be uploaded – try again",
     "maxFileSize": "The selected file must be 25MB or smaller",
     "fileType": "The selected file must be a JPG, JPEG, PDF or PNG",
@@ -190,7 +191,8 @@
     "maxNewRenewProofAddress" : "You can only upload upto {{maxNewRenewProofAddress}} files or less. Remove a file before uploading another",
     "maxNewRenewDrivingLicence" : "You can only upload upto {{maxNewRenewDrivingLicence}} files or less. Remove a file before uploading another",
     "maxNewRenewMedicalForm" : "You can only upload upto {{maxNewRenewMedicalForm}} files or less. Remove a file before uploading another",
-    "maxNewRenewCertificateConduct" : "You can only upload upto {{maxNewRenewCertificateConduct}} files or less. Remove a file before uploading another"
+    "maxNewRenewCertificateConduct" : "You can only upload upto {{maxNewRenewCertificateConduct}} files or less. Remove a file before uploading another",
+    "maxNewRenewBirthCertificate" : "You can only upload upto {{maxNewRenewBirthCertificate}} files or less. Remove a file before uploading another"
   },
   "new-renew-previous-home-address-line1": {
     "required": "Enter address line 1, typically the building and street",

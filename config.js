@@ -98,6 +98,11 @@ module.exports = {
         limit: 2,
         limitValidationError: 'maxAmendProofAddress'
       },
+      'amend-birth-certificate': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxAmendBirthCertificate'
+      },
       'new-renew-upload-driving-licence': {
         allowMultipleUploads: false,
         limit: 1,
@@ -113,6 +118,11 @@ module.exports = {
         limit: 1,
         limitValidationError: 'maxNewRenewCertificateConduct'
       },
+      'new-renew-birth-certificate': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxNewRenewBirthCertificate'
+      },
       'replace-british-passport': {
         allowMultipleUploads: false,
         limit: 1,
@@ -127,6 +137,16 @@ module.exports = {
         allowMultipleUploads: false,
         limit: 1,
         limitValidationError: 'maxReplaceDrivingLicence'
+      },
+      'replace-proof-address': {
+        allowMultipleUploads: true,
+        limit: 2,
+        limitValidationError: 'maxReplaceProofAddress'
+      },
+      'replace-certificate-conduct': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxReplaceCertificateConduct'
       }
     }
   },

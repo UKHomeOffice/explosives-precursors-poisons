@@ -1,19 +1,13 @@
 {{<partials-page}} {{$encoding}}enctype="multipart/form-data" name="file-upload-form" {{/encoding}} 
 {{$page-content}}
-<p class="govuk-body">{{#t}}pages.upload-driving-licence.p1{{/t}} 
-    <a 
-        class="govuk-link" 
-        href="{{#t}}pages.upload-driving-licence.link{{/t}}" 
-        target="_blank"
-        rel="noreferrer noopener">
-    {{#t}}pages.upload-driving-licence.link-text{{/t}}
-    </a>
-</p>
+<p class="govuk-body">{{#t}}pages.birth-certificate.p1{{/t}}</p>
+
+<p class="govuk-body">{{#t}}pages.birth-certificate.p2{{/t}}</p>
 
 <div class="govuk-form-group" id="hofFileUpload">
     <label class="govuk-label" for="file-upload">
-        <h2>{{#t}}pages.upload-driving-licence.upload-file{{/t}}</h2>
-        <span class="govuk-hint">{{#t}}pages.upload-driving-licence.file-format{{/t}}</span>
+        <h2>{{#t}}pages.birth-certificate.upload-file{{/t}}</h2>
+        <span class="govuk-hint">{{#t}}pages.birth-certificate.file-format{{/t}}</span>
     </label>
     <p id="file-upload-error-maxFileSize" class="govuk-error-message govuk-!-display-none">
         <span id="validation-error" class="govuk-visually-hidden">{{#t}}journey.error{{/t}}:</span> {{#t}}validation.file-upload.maxFileSize{{/t}}
@@ -21,24 +15,24 @@
     <p id="file-upload-error-fileType" class="govuk-error-message govuk-!-display-none">
         <span id="validation-error" class="govuk-visually-hidden">{{#t}}journey.error{{/t}}:</span> {{#t}}validation.file-upload.fileType{{/t}}
     </p>
-    <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" value="new-renew-upload-driving-licence">
+    <input class="govuk-file-upload" id="file-upload" name="file-upload" type="file" value="amend-birth-certificate">
 
     <div id="upload-page-loading-spinner" class="spinner-container">
         <div class="spinner-loader"></div>
-        <span class="spinner-message">{{#t}}pages.upload-driving-licence.uploading-document{{/t}}</span>
+        <span class="spinner-message">{{#t}}pages.birth-certificate.uploading-document{{/t}}</span>
       </div>
 
 </div>
 
-{{^values.new-renew-upload-driving-licence}}
-<h2 class="govuk-heading-m">{{#t}}pages.upload-driving-licence.no-file-uploaded{{/t}}</h2>
-{{/values.new-renew-upload-driving-licence}}
+{{^values.amend-birth-certificate}}
+<h2 class="govuk-heading-m">{{#t}}pages.birth-certificate.no-file-uploaded{{/t}}</h2>
+{{/values.amend-birth-certificate}}
 
-{{#values.new-renew-upload-driving-licence.length}}
-<h2 class="govuk-heading-m">{{#t}}pages.upload-driving-licence.files-uploaded{{/t}}</h2>
+{{#values.amend-birth-certificate.length}}
+<h2 class="govuk-heading-m">{{#t}}pages.birth-certificate.files-uploaded{{/t}}</h2>
 
 <div id="uploaded-documents" class="govuk-width-container">
-    {{#values.new-renew-upload-driving-licence}}
+    {{#values.amend-birth-certificate}}
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-three-quarters">
             {{name}}
@@ -48,13 +42,13 @@
         </div>
     </div>
     <div class="file-upload-hrline"></div>
-    {{/values.new-renew-upload-driving-licence}}
+    {{/values.amend-birth-certificate}}
 </div>
 
-{{/values.new-renew-upload-driving-licence.length}}
+{{/values.amend-birth-certificate.length}}
 
 
-<button class="govuk-button" name="requireFileUpload" value="new-renew-upload-driving-licence">
+<button class="govuk-button" name="requireFileUpload" value="amend-birth-certificate">
     {{#t}}buttons.continue{{/t}}
 </button>
 

@@ -91,13 +91,15 @@
       }, 
       "file-upload": {
         "required": "Select a file to upload",
+        "upload-min-files-error": "You must upload at least 2 files",
         "maxFileSize": "The selected file must 25MB or smaller",
         "fileType": "The selected file must be a JPG, JPEG, PDF or PNG",
         "maxAmendBritishPassport": "You can only upload up to {{maxAmendBritishPassport}} files or less. Remove a file before uploading another",
         "maxAmendPassport": "You can only upload up to {{maxAmendPassport}} files or less. Remove a file before uploading another",
         "maxAmendDrivingLicence": "You can only upload up to {{maxAmendDrivingLicence}} files or less. Remove a file before uploading another",
         "maxAmendCertificateConduct": "You can only upload up to {{maxAmendCertificateConduct}} files or less. Remove a file before uploading another",
-        "maxAmendProofAddress": "You can only upload up to {{maxAmendProofAddress}} files or less. Remove a file before uploading another"
+        "maxAmendProofAddress": "You can only upload up to {{maxAmendProofAddress}} files or less. Remove a file before uploading another",
+        "maxAmendBirthCertificate": "You can only upload upto {{maxAmendBirthCertificate}} files or less. Remove a file before uploading another"
       },
     "amend-new-name-title": {
         "required" : "Select the title of your new name"
@@ -260,5 +262,8 @@
   "amend-countersignatory-email": {
     "required": "Enter your countersignatory's email address",
     "email": "Enter a real email address"
+  },
+  "amend-declaration": {
+    "required": "Confirm you have read and agree to this declaration"
   }
 }

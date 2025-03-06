@@ -44,6 +44,44 @@ module.exports = {
 
           return null;
         }
+      },
+      {
+        step: '/upload-proof-address',
+        field: 'replace-proof-address',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel.get('steps').includes('/upload-proof-address') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file?.name)?.join('\n\n');
+          }
+
+          return null;
+        }
+      },
+      {
+        step: '/upload-certificate-conduct',
+        field: 'replace-certificate-conduct',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel
+              .get('steps')
+              .includes('/upload-certificate-conduct') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file.name);
+          }
+
+          return null;
+        }
+      }
+    ]
+  },
+  'licence-details': {
+    steps: [
+      {
+        steps: '/licence-number',
+        field: 'replace-licence-number'
       }
     ]
   }
