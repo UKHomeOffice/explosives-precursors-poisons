@@ -154,7 +154,18 @@
       "none_selected": "Select"
     }
   },
-  "amend-countersignatory-title":{
+  "amend-poisons-option": {
+    "legend":"Does your licence need to cover poisons?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "amend-countersignatory-title": {
     "label": "Title",
     "options": {
       "none_selected": "Select"
