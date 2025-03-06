@@ -1,5 +1,8 @@
 'use strict';
 const config = require('../../../config');
+const {
+  isDateOlderOrEqualTo
+} = require('../../../utilities/helpers');
 const dateFormatter = new Intl.DateTimeFormat(
   config.dateLocales,
   config.dateFormat
@@ -269,6 +272,22 @@ module.exports = {
       }
     ]
   },
+  'amend-licence-for-poisons': {
+    steps: [
+      {
+        step: '/poisons',
+        field: 'amend-poisons-option'
+      }
+    ]
+  },
+  'amend-select-poisons': {
+    steps: [
+      {
+        step: '/select-poisons',
+        field: 'amend-poison'
+      }
+    ]
+  },
   'countersignatory-details': {
     steps: [
       {
@@ -324,6 +343,21 @@ module.exports = {
       {
         step: '/countersignatory-contact',
         field: 'amend-countersignatory-email'
+      },
+      {
+        step: '/birth-certificate',
+        field: 'amend-birth-certificate',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel.get('steps').includes('/birth-certificate') &&
+            documents?.length > 0 &&
+            req.sessionModel.get('amend-date-of-birth') &&
+            !isDateOlderOrEqualTo(req.sessionModel.get('amend-date-of-birth'), 18)
+          ) {
+            return documents.map(file => file?.name)?.join('\n\n');
+          }
+          return null;
+        }
       }
     ]
   }

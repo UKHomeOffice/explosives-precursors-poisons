@@ -69,6 +69,9 @@
     "not-uploaded": "No files uploaded",
     "uploaded": "Files uploaded"
   },
+  "your-name": {
+    "header": "What is your name on the licence?"
+  },
       "confirm": {
         "header": "Check your answers",
         "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",
@@ -81,6 +84,9 @@
           },
           "replace-new-name": {
             "header": "New name"
+          },
+          "applicant-name": {
+            "header": "Applicant name"
           }
         },
       "fields": {

@@ -99,6 +99,11 @@ module.exports = {
         limit: 2,
         limitValidationError: 'maxAmendProofAddress'
       },
+      'amend-birth-certificate': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxAmendBirthCertificate'
+      },
       'new-renew-upload-driving-licence': {
         allowMultipleUploads: false,
         limit: 1,

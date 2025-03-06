@@ -98,7 +98,8 @@
         "maxAmendPassport": "You can only upload up to {{maxAmendPassport}} files or less. Remove a file before uploading another",
         "maxAmendDrivingLicence": "You can only upload up to {{maxAmendDrivingLicence}} files or less. Remove a file before uploading another",
         "maxAmendCertificateConduct": "You can only upload up to {{maxAmendCertificateConduct}} files or less. Remove a file before uploading another",
-        "maxAmendProofAddress": "You can only upload up to {{maxAmendProofAddress}} files or less. Remove a file before uploading another"
+        "maxAmendProofAddress": "You can only upload up to {{maxAmendProofAddress}} files or less. Remove a file before uploading another",
+        "maxAmendBirthCertificate": "You can only upload upto {{maxAmendBirthCertificate}} files or less. Remove a file before uploading another"
       },
     "amend-new-name-title": {
         "required" : "Select the title of your new name"
@@ -198,6 +199,9 @@
     "required": "Enter the address where you will use the explosive precursor",
     "textAreaDefaultLength": "Usage address must be 2,000 characters or less",
     "notUrl" : "Your answer must not include a URL"
+  },
+  "amend-poison":{
+    "required": "Select a poison"
   },
   "amend-countersignatory-title": {
     "required": "Select your countersignatory's title"

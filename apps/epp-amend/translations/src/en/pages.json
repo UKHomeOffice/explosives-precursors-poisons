@@ -114,6 +114,11 @@
   "precursor-details":{
     "header": "{{values.amend-precursor-field}}"
   },
+  "select-poisons": {
+    "header": "Poisons",
+    "p1": "Tell us which poisons you want to import acquire use or possess.",
+    "p2": "If you need multiple poisons, you can add each one separately."
+  },
   "countersignatory-details": {
     "header": "Countersignatory details",
     "description": "Your countersignatory must not be a parent or relative, unless you are under 18. If you are under 18, your countersignatory must be your parent or legal guardian."
@@ -123,6 +128,16 @@
   },
   "countersignatory-contact":{
     "header": "Countersignatory's contact details"
+  },
+  "birth-certificate": {
+    "header": "Your countersignatory must be your parent or guardian",
+    "p1": "You told us you are under 18. Your countersignatory must be your parent or legal guardian.",
+    "p2": "To prove this relationship, upload a countersigned copy of your birth certificate or other legal document.",
+    "upload-file": "Upload a file",
+    "file-format": "Your file must be JPEG, PDF or PNG, and be 25MB or less",
+    "no-file-uploaded": "No files uploaded",
+    "files-uploaded": "Files uploaded",
+    "uploading-document": "Uploading your document..."
   },
   "declaration": {
     "header": "Declaration",
@@ -170,6 +185,12 @@
       },
       "amend-explosives-precursor": {
         "header": "Explosives precursors"
+      },
+      "amend-licence-for-poisons": {
+        "header": "Licence for poisons"
+      },
+      "amend-select-poisons": {
+        "header": " Poisons"
       }
     },
     "fields": {
@@ -274,6 +295,12 @@
       },
       "amend-countersignatory-phone-number": {
         "label": "Phone number"
+      },
+      "amend-birth-certificate": {
+        "label": "Birth certificate attachment"
+      },
+      "amend-poison": {
+        "label": "Poisons"
       }
     }
   }
