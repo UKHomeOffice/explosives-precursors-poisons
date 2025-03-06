@@ -4,7 +4,10 @@ const NotifyClient = require('notifications-node-client').NotifyClient;
 const notifyKey = govukNotify.notifyApiKey;
 const notifyClient = new NotifyClient(notifyKey);
 
-const { isDateOlderOrEqualTo } = require('../../../utilities/helpers');
+const {
+  isDateOlderOrEqualTo,
+  getFormattedDate
+} = require('../../../utilities/helpers');
 
 const USER = 'user';
 const BUSINESS = 'business';
@@ -65,7 +68,7 @@ const getNewRenewPersonalisation = req => {
     has_other_names:
       req.sessionModel.get('new-renew-other-names') === 'yes' ? 'yes' : 'no',
     other_names: req.sessionModel.get('otherNamesCombined'),
-    date_of_birth: req.sessionModel.get('new-renew-dob'),
+    date_of_birth: getFormattedDate(req.sessionModel.get('new-renew-dob')),
     place_of_birth: req.sessionModel.get('new-renew-birth-place'),
     country_of_birth: req.sessionModel.get('new-renew-birth-country'),
     country_of_nationality: req.sessionModel.get(
