@@ -4,6 +4,26 @@ module.exports = {
   'replace-new-name': {
     steps: [
       {
+        step: '/your-name',
+        field: 'replace-title'
+      },
+      {
+        step: '/your-name',
+        field: 'replace-first-name'
+      },
+      {
+        step: '/your-name',
+        field: 'replace-middle-name'
+      },
+      {
+        step: '/your-name',
+        field: 'replace-last-name'
+      },
+      {
+        step: '/your-name',
+        field: 'replace-other-names'
+      },
+      {
         step: '/upload-british-passport',
         field: 'replace-british-passport',
         parse: (documents, req) => {

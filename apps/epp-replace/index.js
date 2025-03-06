@@ -35,14 +35,14 @@ module.exports = {
       behaviours: [ValidateLicenceNumber],
       fields: ['replace-licence-number'],
       locals: { captionHeading: 'Section 3 of 26' },
-      next: '/section-four'
+      next: '/your-name'
     },
-    '/section-four': {
+    '/your-name': {
       fields: [
-        'replace-name-title',
-        'replace-firstname',
-        'replace-middlename',
-        'replace-lastname'
+        'replace-title',
+        'replace-first-name',
+        'replace-middle-name',
+        'replace-last-name'
       ],
       next: '/section-five'
     },

@@ -69,6 +69,10 @@
     "not-uploaded": "No files uploaded",
     "uploaded": "Files uploaded"
   },
+  "your-name": {
+    "title": "What is your name on the licence?",
+    "header": "What is your name on the licence?"
+  },
       "confirm": {
         "header": "Check your answers",
         "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",
