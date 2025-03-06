@@ -39,10 +39,9 @@ module.exports = {
         changeLink: '/new-and-renew/other-names-summary',
         parse: (list, req) => {
           if (req.sessionModel.get('new-renew-other-names') === 'no') {
-            req.sessionModel.unset('otherNamesCombined');
             return null;
           }
-          const otherNamesCombined = req.sessionModel.get('othernames')?.aggregatedValues.length > 0 ?
+          return req.sessionModel.get('othernames')?.aggregatedValues.length > 0 ?
             req.sessionModel.get('othernames').aggregatedValues.map(a => a.fields.map(field => {
               if (
                 field.field === 'new-renew-other-name-start-date' ||
@@ -52,9 +51,6 @@ module.exports = {
               }
               return field.parsed;
             }).filter(Boolean).join('\n')).join('\n \n') : null;
-
-          req.sessionModel.set('otherNamesCombined', otherNamesCombined);
-          return otherNamesCombined;
         }
       }
     ]

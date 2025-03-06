@@ -12,6 +12,14 @@ const {
 const USER = 'user';
 const BUSINESS = 'business';
 
+const formatSectionSummaryItems = items => {
+  return items
+    ? items.aggregatedValues
+        .map(({ fields }) => fields.map(({ parsed }) => parsed).join('\n'))
+        .join('\n\n ---\n^')
+    : '';
+};
+
 const getTemplateId = (req, applicationType, recipientType) => {
   const userAppTemplateMap = {
     new: govukNotify.newApplicationUserTemplateId,
@@ -67,7 +75,7 @@ const getNewRenewPersonalisation = req => {
     last_name: req.sessionModel.get('new-renew-last-name'),
     has_other_names:
       req.sessionModel.get('new-renew-other-names') === 'yes' ? 'yes' : 'no',
-    other_names: req.sessionModel.get('otherNamesCombined'),
+    other_names: formatSectionSummaryItems(req.sessionModel.get('othernames')),
     date_of_birth: getFormattedDate(req.sessionModel.get('new-renew-dob')),
     place_of_birth: req.sessionModel.get('new-renew-birth-place'),
     country_of_birth: req.sessionModel.get('new-renew-birth-country'),
