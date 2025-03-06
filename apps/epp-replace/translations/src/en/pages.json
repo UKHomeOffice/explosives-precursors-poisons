@@ -84,6 +84,9 @@
           },
           "replace-new-name": {
             "header": "New name"
+          },
+          "applicant-name": {
+            "header": "Applicant name"
           }
         },
       "fields": {
