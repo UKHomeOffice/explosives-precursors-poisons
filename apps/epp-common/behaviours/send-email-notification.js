@@ -4,6 +4,10 @@ const NotifyClient = require('notifications-node-client').NotifyClient;
 const notifyKey = govukNotify.notifyApiKey;
 const notifyClient = new NotifyClient(notifyKey);
 
+const newRenewTranslation = require('../../epp-new/translations/src/en/fields.json');
+const amendTranslation = require('../../epp-amend/translations/src/en/fields.json');
+const replaceTranslation = require('../../epp-replace/translations/src/en/fields.json');
+
 const {
   isDateOlderOrEqualTo,
   getFormattedDate
@@ -18,6 +22,21 @@ const formatSectionSummaryItems = items => {
         .map(({ fields }) => fields.map(({ parsed }) => parsed).join('\n'))
         .join('\n\n ---\n^')
     : '';
+};
+
+const parseDocumentList = documents => {
+  return Array.isArray(documents)
+    ? documents.map(doc => `[${doc.name}](${doc.url})`).join('\n')
+    : '';
+};
+
+const getLabel = (fieldKey, fieldValue, translation) => {
+  if (Array.isArray(fieldValue)) {
+    return fieldValue
+      .map(option => translation[fieldKey].options[option].label)
+      .join(', ');
+  }
+  return translation[fieldKey]?.options[fieldValue]?.label;
 };
 
 const getTemplateId = (req, applicationType, recipientType) => {
@@ -68,10 +87,10 @@ const getNewRenewPersonalisation = req => {
     licence_number: req.sessionModel.get('new-renew-licence-number'),
     title: req.sessionModel.get('new-renew-title'),
     first_name: req.sessionModel.get('new-renew-first-name'),
-    has_middle_name: req.sessionModel.get('new-renew-first-name')
+    has_middle_name: req.sessionModel.get('new-renew-middle-name')
       ? 'yes'
       : 'no',
-    middle_name: req.sessionModel.get('new-renew-first-name'),
+    middle_name: req.sessionModel.get('new-renew-middle-name'),
     last_name: req.sessionModel.get('new-renew-last-name'),
     has_other_names:
       req.sessionModel.get('new-renew-other-names') === 'yes' ? 'yes' : 'no',
@@ -93,7 +112,9 @@ const getNewRenewPersonalisation = req => {
       req.sessionModel.get('new-renew-other-country-nationality') || '',
     current_address: req.sessionModel.get('homeAddressInline'),
     moved_date: req.sessionModel.get('new-renew-home-address-moveto-date'),
-    proof_of_address: '',
+    proof_of_address: parseDocumentList(
+      req.sessionModel.get('new-renew-proof-address')
+    ),
     has_previous_address: 'no', // TODO: where to get it
     previous_addresses: '', // TODO: Format previous addresses
     phone_number: req.sessionModel.get('new-renew-phone-number'),
@@ -107,9 +128,21 @@ const getNewRenewPersonalisation = req => {
         ? 'yes'
         : 'no',
     certificate_conduct_attachment: '',
-    firearms_licence: req.sessionModel.get('new-renew-other-firearms-licence'),
-    shotgun_licence: req.sessionModel.get('new-renew-other-shotgun-licence'),
-    licence_refused: req.sessionModel.get('new-renew-other-refused-licence'),
+    firearms_licence: getLabel(
+      'new-renew-other-firearms-licence',
+      req.sessionModel.get('new-renew-other-firearms-licence'),
+      newRenewTranslation
+    ),
+    shotgun_licence: getLabel(
+      'new-renew-other-shotgun-licence',
+      req.sessionModel.get('new-renew-other-shotgun-licence'),
+      newRenewTranslation
+    ),
+    licence_refused: getLabel(
+      'new-renew-other-refused-licence',
+      req.sessionModel.get('new-renew-other-refused-licence'),
+      newRenewTranslation
+    ),
     has_criminal_record: req.sessionModel
       .get('steps')
       .includes('/criminal-record')
