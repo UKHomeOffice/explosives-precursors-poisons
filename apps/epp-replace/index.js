@@ -44,6 +44,7 @@ module.exports = {
         'replace-middle-name',
         'replace-last-name'
       ],
+      locals: { captionHeading: 'Section 4 of 26' },
       next: '/section-five'
     },
     '/section-five': {
