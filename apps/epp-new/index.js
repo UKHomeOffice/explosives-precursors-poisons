@@ -19,6 +19,9 @@ const DobEditRedirect = require('../epp-common/behaviours/dob-edit-redirect');
 
 const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
 
+const SendNotification = require('../epp-common/behaviours/submit-notify');
+const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
+
 module.exports = {
   name: 'EPP form',
   fields: 'apps/epp-new/fields',
@@ -147,7 +150,17 @@ module.exports = {
       }
     },
     '/home-address': {
-      behaviours: [PostcodeValidation],
+      behaviours: [
+        PostcodeValidation,
+        SaveHomeAddress([
+          'amend-address-1',
+          'amend-address-2',
+          'amend-town-or-city',
+          'amend-county',
+          'amend-postcode',
+          'amend-country'
+        ])
+      ],
       fields: [
         'new-renew-home-address-line1',
         'new-renew-home-address-line2',
@@ -605,6 +618,7 @@ module.exports = {
       }
     },
     '/declaration': {
+      behaviours: [SendNotification],
       fields: [],
       // verify path name when payment component will be added to service
       next: '/continue-to-payment',

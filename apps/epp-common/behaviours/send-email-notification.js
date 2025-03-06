@@ -63,7 +63,7 @@ const getNewRenewPersonalisation = req => {
     last_name: req.sessionModel.get('new-renew-last-name'),
     has_other_names:
       req.sessionModel.get('new-renew-other-names') === 'yes' ? 'yes' : 'no',
-    other_names: 'TBD', // TODO: Update and format
+    other_names: req.sessionModel.get('otherNamesCombined'),
     date_of_birth: req.sessionModel.get('new-renew-dob'),
     place_of_birth: req.sessionModel.get('new-renew-birth-place'),
     country_of_birth: req.sessionModel.get('new-renew-birth-country'),
@@ -79,11 +79,11 @@ const getNewRenewPersonalisation = req => {
     occupation: req.sessionModel.get('new-renew-occupation'),
     other_nationality:
       req.sessionModel.get('new-renew-other-country-nationality') || '',
-    current_address: req.sessionModel.get('homeAddressInline') || '', // TODO: Different formatter for notify
+    current_address: req.sessionModel.get('homeAddressInline'),
     moved_date: req.sessionModel.get('new-renew-home-address-moveto-date'),
-    proof_of_address: 'TBD', // TODO: Format attachment
+    proof_of_address: '',
     has_previous_address: 'no', // TODO: where to get it
-    previous_addresses: 'TBD', // TODO: Format previous addresses
+    previous_addresses: '', // TODO: Format previous addresses
     phone_number: req.sessionModel.get('new-renew-phone-number'),
     email_address: req.sessionModel.get('new-renew-email'),
     identity_document: 'TBD', // TODO: refactor here and also on notify to look for all possible values
@@ -91,10 +91,10 @@ const getNewRenewPersonalisation = req => {
     identity_document_attachment: 'TBD', // TODO: refactor here and also on notify to look for all possible values
     has_certificate_conduct:
       req.sessionModel.get('new-renew-dob') &&
-      isDateOlderOrEqualTo(req.sessionModel.get('new-renew-dob'), 18)
+      !isDateOlderOrEqualTo(req.sessionModel.get('new-renew-dob'), 18)
         ? 'yes'
         : 'no',
-    certificate_conduct_attachment: 'TBD', // TODO: Format attachment
+    certificate_conduct_attachment: '',
     firearms_licence: req.sessionModel.get('new-renew-other-firearms-licence'),
     shotgun_licence: req.sessionModel.get('new-renew-other-shotgun-licence'),
     licence_refused: req.sessionModel.get('new-renew-other-refused-licence'),
@@ -172,12 +172,6 @@ module.exports = class SendEmailConfirmation {
       throw Error(errorMessage);
     }
 
-    // TODO: helpers
-    // getPersonalisation(req) // this should return data for specific journey like payload in payment
-    // getTemplateId(req) // return the appropriate template id whether its user or business and what journey
-    // getUserEmail(req) // return the user email based on the journey
-    // PDF - should generate the pdf based on journey and user of business
-
     const templateId = getTemplateId(req, applicationType, recipientType);
 
     const recipientEmailAddress =
@@ -191,6 +185,8 @@ module.exports = class SendEmailConfirmation {
     const emailReplyToId = govukNotify.replyToEmailID;
 
     const personalisation = getPersonalisation(req, applicationType);
+
+    req.log(personalisation);
 
     try {
       await notifyClient.sendEmail(templateId, recipientEmailAddress, {
