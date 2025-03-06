@@ -54,6 +54,7 @@ const getUserEmail = applicationType => {
 
 const getNewRenewPersonalisation = req => {
   return {
+    licence_number: req.sessionModel.get('new-renew-licence-number'),
     title: req.sessionModel.get('new-renew-title'),
     first_name: req.sessionModel.get('new-renew-first-name'),
     has_middle_name: req.sessionModel.get('new-renew-first-name')
