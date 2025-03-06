@@ -162,6 +162,9 @@
         "before": "Date you moved to this address must be in the past",
         "after": "Date you moved to this address must be after {{diff}}, your date of birth"
     },
+    "amend-change-substances-options": {
+      "required" : "Select if you need to amend the substances on your licence"
+    },
     "amend-precursor-field": {
       "required" : "Select an explosive precursor"
     },
