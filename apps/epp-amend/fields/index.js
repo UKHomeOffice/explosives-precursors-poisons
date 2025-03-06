@@ -1,6 +1,7 @@
 const dateComponent = require('hof').components.date;
 const titles = require('../../../utilities/constants/titles.js');
 const precursorList = require('../../../utilities/constants/explosive-precursors.js');
+const poisonsList = require('../../../utilities/constants/poisons.js');
 const helpers = require('../../../utilities/helpers/index.js');
 const country = require('../../../utilities/constants/countries');
 
@@ -392,6 +393,18 @@ module.exports = {
       value: 'amend-use-precursors-other-address'
     },
     attributes: [{ attribute: 'rows', value: 5 }]
+  },
+  'amend-poison': {
+    mixin: 'select',
+    validate: ['required'],
+    labelClassName: 'visuallyhidden',
+    className: ['govuk-select', 'govuk-input--width-2'],
+    options: [
+      {
+        value: '',
+        label: 'fields.amend-poison.options.none_selected'
+      }
+    ].concat(poisonsList)
   },
   'amend-countersignatory-title': {
     mixin: 'select',

@@ -272,6 +272,22 @@ module.exports = {
       }
     ]
   },
+  'amend-licence-for-poisons': {
+    steps: [
+      {
+        step: '/poisons',
+        field: 'amend-poisons-option'
+      }
+    ]
+  },
+  'amend-select-poisons': {
+    steps: [
+      {
+        step: '/select-poisons',
+        field: 'amend-poison'
+      }
+    ]
+  },
   'countersignatory-details': {
     steps: [
       {
