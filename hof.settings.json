@@ -1,9 +1,10 @@
 {
   "appName": "Explosives precursors and poisons",
+  "cookie": {
+    "sameSite": "lax"
+  },
   "theme": "govUK",
-  "behaviours": [
-    "hof/components/clear-session"
-  ],
+  "behaviours": ["hof/components/clear-session"],
   "translations": "./apps/epp-new-renew/translations",
   "routes": [
     "./apps/epp-common",
