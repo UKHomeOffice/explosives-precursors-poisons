@@ -7,6 +7,8 @@ const ValidateLicenceNumber = require('../epp-common/behaviours/licence-validato
 
 const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
 
+// TODO: Use DeleteRedundantDocuments behaviour similar to amend flow to
+// remove the uploaded files when dependent option changes
 module.exports = {
   name: 'EPP form',
   fields: 'apps/epp-replace/fields',
