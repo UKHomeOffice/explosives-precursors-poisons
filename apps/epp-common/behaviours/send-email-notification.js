@@ -4,6 +4,8 @@ const NotifyClient = require('notifications-node-client').NotifyClient;
 const notifyKey = govukNotify.notifyApiKey;
 const notifyClient = new NotifyClient(notifyKey);
 
+const { isDateOlderOrEqualTo } = require('../../../utilities/helpers');
+
 const USER = 'user';
 const BUSINESS = 'business';
 
@@ -50,6 +52,116 @@ const getUserEmail = applicationType => {
   return appUserEmailMap[applicationType];
 };
 
+const getNewRenewPersonalisation = req => {
+  return {
+    title: req.sessionModel.get('new-renew-title'),
+    first_name: req.sessionModel.get('new-renew-first-name'),
+    has_middle_name: req.sessionModel.get('new-renew-first-name')
+      ? 'yes'
+      : 'no',
+    middle_name: req.sessionModel.get('new-renew-first-name'),
+    last_name: req.sessionModel.get('new-renew-last-name'),
+    has_other_names:
+      req.sessionModel.get('new-renew-other-names') === 'yes' ? 'yes' : 'no',
+    other_names: 'TBD', // TODO: Update and format
+    date_of_birth: req.sessionModel.get('new-renew-dob'),
+    place_of_birth: req.sessionModel.get('new-renew-birth-place'),
+    country_of_birth: req.sessionModel.get('new-renew-birth-country'),
+    country_of_nationality: req.sessionModel.get(
+      'new-renew-country-nationality'
+    ),
+    has_other_nationality:
+      req.sessionModel.get('new-renew-more-nationalities') === 'yes'
+        ? 'yes'
+        : 'no',
+    sex: req.sessionModel.get('new-renew-your-sex'),
+    height: req.sessionModel.get('new-renew-your-height'),
+    occupation: req.sessionModel.get('new-renew-occupation'),
+    other_nationality:
+      req.sessionModel.get('new-renew-other-country-nationality') || '',
+    current_address: req.sessionModel.get('homeAddressInline') || '', // TODO: Different formatter for notify
+    moved_date: req.sessionModel.get('new-renew-home-address-moveto-date'),
+    proof_of_address: 'TBD', // TODO: Format attachment
+    has_previous_address: 'no', // TODO: where to get it
+    previous_addresses: 'TBD', // TODO: Format previous addresses
+    phone_number: req.sessionModel.get('new-renew-phone-number'),
+    email_address: req.sessionModel.get('new-renew-email'),
+    identity_document: 'TBD', // TODO: refactor here and also on notify to look for all possible values
+    identity_document_number: 'TBD', // TODO: refactor here and also on notify to look for all possible values
+    identity_document_attachment: 'TBD', // TODO: refactor here and also on notify to look for all possible values
+    has_certificate_conduct:
+      req.sessionModel.get('new-renew-dob') &&
+      isDateOlderOrEqualTo(req.sessionModel.get('new-renew-dob'), 18)
+        ? 'yes'
+        : 'no',
+    certificate_conduct_attachment: 'TBD', // TODO: Format attachment
+    firearms_licence: req.sessionModel.get('new-renew-other-firearms-licence'),
+    shotgun_licence: req.sessionModel.get('new-renew-other-shotgun-licence'),
+    licence_refused: req.sessionModel.get('new-renew-other-refused-licence'),
+    has_criminal_record: req.sessionModel
+      .get('steps')
+      .includes('/criminal-record')
+      ? 'yes'
+      : 'no',
+    criminal_offences: 'TBD', // TODO: fetch and format
+    explosive_precursor: 'TBD', // TODO: fetch and format
+    poisons: 'TBD', // TODO: fetch and format
+    countersignatory_title: req.sessionModel.get(
+      'new-renew-countersignatory-title'
+    ),
+    countersignatory_first_name: req.sessionModel.get(
+      'new-renew-countersignatory-firstname'
+    ),
+    has_countersignatory_middle_name: req.sessionModel.get(
+      'new-renew-countersignatory-middlename'
+    )
+      ? 'yes'
+      : 'no',
+    countersignatory_middle_name: req.sessionModel.get(
+      'new-renew-countersignatory-middlename'
+    ),
+    countersignatory_last_name: req.sessionModel.get(
+      'new-renew-countersignatory-lastname'
+    ),
+    countersignatory_address: 'TBD', // TODO: Format inlin address
+    countersignatory_phone: req.sessionModel.get(
+      'new-renew-countersignatory-phone-number'
+    ),
+    countersignatory_email: req.sessionModel.get(
+      'new-renew-countersignatory-email'
+    ),
+    countersignatory_id_type: 'TBD', // TODO: Format here and also update the template
+    countersignatory_id: 'TBD' // TODO: Format here and also update the template
+  };
+};
+const getAmendPersonalisation = req => {
+  return {
+    licence_number: req.sessionModel.get('amend-licence-number')
+  };
+};
+const getReplacePersonalisation = req => {
+  return {
+    licence_number: req.sessionModel.get('amend-licence-number')
+  };
+};
+
+const getPersonalisation = (req, applicationType) => {
+  switch (applicationType) {
+    case 'new':
+    case 'renew':
+      return getNewRenewPersonalisation(req);
+
+    case 'amend':
+      return getAmendPersonalisation(req);
+
+    case 'replace':
+      return getReplacePersonalisation(req);
+
+    default:
+      throw Error(`Unknown application type: ${applicationType}`);
+  }
+};
+
 module.exports = class SendEmailConfirmation {
   async sendEmailNotification(req, recipientType) {
     const applicationType = req.sessionModel.get('applicationType');
@@ -59,7 +171,6 @@ module.exports = class SendEmailConfirmation {
       req.log('error', errorMessage);
       throw Error(errorMessage);
     }
-    const personalisation = {};
 
     // TODO: helpers
     // getPersonalisation(req) // this should return data for specific journey like payload in payment
@@ -78,6 +189,8 @@ module.exports = class SendEmailConfirmation {
       recipientType === USER ? 'User' : 'Business';
 
     const emailReplyToId = govukNotify.replyToEmailID;
+
+    const personalisation = getPersonalisation(req, applicationType);
 
     try {
       await notifyClient.sendEmail(templateId, recipientEmailAddress, {
