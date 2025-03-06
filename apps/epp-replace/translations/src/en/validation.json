@@ -13,5 +13,22 @@
   "replace-licence-number": {
     "incorrect-format-licence": "Enter a real licence number",
     "licence-length-restriction": "Licence number must be between 13 and 16 characters"
-  }
+  },
+  "replace-title": {
+    "required": "Select your title"
+},
+"replace-first-name": {
+    "required": "Enter your first name",
+    "maxlength": "First name must between 1 and 250 characters",
+    "notUrl": "Your answer must not include a URL"
+},
+"replace-middle-name": {
+     "maxlength": "Middle names must be between 250 characters or less",
+     "notUrl": "Your answer must not include a URL"
+},
+"replace-last-name": {
+    "required": "Enter your last name",
+    "maxlength": "Last name must be between 1 and 250 characters",
+    "notUrl": "Your answer must not include a URL"
+}
 }

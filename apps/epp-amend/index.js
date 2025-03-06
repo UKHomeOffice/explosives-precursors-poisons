@@ -257,8 +257,13 @@ module.exports = {
       locals: { captionHeading: 'Section 15 of 23' }
     },
     '/poisons': {
-      fields: [],
+      fields: ['amend-poisons-option'],
       locals: { captionHeading: 'Section 16 of 23' },
+      next: '/select-poisons'
+    },
+    '/select-poisons': {
+      fields: ['amend-poison'],
+      locals: { captionHeading: 'Section 17 of 23' },
       next: '/countersignatory-details'
     },
     '/countersignatory-details': {
@@ -294,10 +299,16 @@ module.exports = {
     },
     '/section-eighteen': {
       fields: ['amend-countersignatory-document-type'],
-      next: '/confirm'
+      next: '/birth-certificate',
+      locals: { captionHeading: 'Section 21 of 23' }
     },
     '/birth-certificate': {
-      fields: [],
+      behaviours: [
+        SaveDocument('amend-birth-certificate', 'file-upload'),
+        RemoveDocument('amend-birth-certificate')
+      ],
+      fields: ['file-upload'],
+      locals: { captionHeading: 'Section 21 of 23' },
       next: '/confirm'
     },
     '/confirm': {
