@@ -2,5 +2,20 @@
     "replace-licence-number": {
         "label": "Enter your licence number (optional)",
         "hint": "For example 95/W/000000/2024"
-    }
+    },
+    "replace-title": {
+        "label": "Title",
+        "options": {
+          "none_selected": "Select"
+        }
+      },
+      "replace-first-name": {
+        "label": "First name"
+      },
+      "replace-middle-name": {
+        "label": "Middle names (optional)"
+      },
+      "replace-last-name": {
+        "label": "Last name"
+      }
 }
