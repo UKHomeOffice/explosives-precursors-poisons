@@ -12,9 +12,11 @@ const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
 const CheckAndRedirect = require('../epp-common/behaviours/check-answer-redirect');
 const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
 const DobUnder18Redirect = require('../epp-common/behaviours/dob-under18-redirect');
+const AggregateSaveUpdate = require('../epp-common/behaviours/aggregator-save-update');
+const ParseSummaryFields = require('../epp-common/behaviours/parse-summary-fields');
+const EditRouteReturn = require('../epp-common/behaviours/edit-route-return');
 const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redundant-documents');
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
-
 const SendNotification = require('../epp-common/behaviours/submit-notify');
 
 
@@ -285,7 +287,21 @@ module.exports = {
       next: '/precursors-summary'
     },
     '/precursors-summary': {
-      fields: [],
+      behaviours: [AggregateSaveUpdate, ParseSummaryFields, EditRouteReturn],
+      aggregateTo: 'precursorDetails',
+      aggregateFrom: [
+        'amend-why-need-precursor',
+        'amend-how-much-precursor',
+        'amend-what-concentration-precursor',
+        'amend-where-to-store-precursor',
+        'amend-where-to-use-precursor',
+        'store-precursors-other-address',
+        'precursors-use-other-address'
+      ],
+      titleField: ['amend-precursor-field'],
+      addStep: 'precursor-details',
+      addAnotherLinkText: 'explosives precursors',
+      continueOnEdit: false,
       next: '/poisons',
       locals: { captionHeading: 'Section 15 of 23' }
     },
