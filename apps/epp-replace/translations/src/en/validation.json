@@ -30,5 +30,8 @@
     "required": "Enter your last name",
     "maxlength": "Last name must be between 1 and 250 characters",
     "notUrl": "Your answer must not include a URL"
+},
+"replace-licence": {
+  "required": "Select why you need a replacement licence"
 }
 }

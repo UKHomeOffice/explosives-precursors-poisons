@@ -14,15 +14,26 @@ module.exports = {
   fields: 'apps/epp-replace/fields',
   views: 'apps/epp-replace/views',
   translations: 'apps/epp-replace/translations',
-  baseUrl: '/replace-licence',
+  baseUrl: '/replace',
   steps: {
-    '/section-one': {
+    '/replace-licence': {
       behaviours: [validateAndRedirect, RemoveEditMode],
       backLink: '/application-type',
       fields: ['replace-licence'],
-      next: '/section-two'
+      forks: [
+        {
+          target: '/police-report',
+          condition: req => req.sessionModel.get('replace-licence') === 'replace-licence-stolen',
+          continueOnEdit: true
+        },
+        {
+          target: '/licence-number',
+          condition: req => req.sessionModel.get('replace-licence') !== 'replace-licence-stolen',
+          continueOnEdit: true
+        }
+      ]
     },
-    '/section-two': {
+    '/police-report': {
       fields: ['replace-is-crime-reported'],
       next: '/report-details'
     },

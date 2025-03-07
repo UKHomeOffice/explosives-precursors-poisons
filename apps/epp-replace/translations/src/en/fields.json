@@ -17,5 +17,22 @@
       },
       "replace-last-name": {
         "label": "Last name"
+      },
+      "replace-licence": {
+        "legend": "Why do you need a replacement licence?",
+        "options": {
+          "replace-licence-stolen": {
+            "label": "Licence was stolen"
+          },
+          "replace-licence-lost": {
+            "label": "Licence is lost"
+          },
+          "replace-licence-damaged": {
+            "label": "Licence is damaged"
+          },
+          "replace-licence-destroyed": {
+            "label": "Licence is destroyed"
+          }
+        }
       }
 }
