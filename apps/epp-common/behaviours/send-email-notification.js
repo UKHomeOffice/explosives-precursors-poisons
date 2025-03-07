@@ -83,8 +83,16 @@ const getUserEmail = applicationType => {
 };
 
 const getIdentityAttachment = (req, idFields) => {
+  const fieldMap = {
+    'new-renew-UK-passport-number': 'new-renew-british-passport',
+    'new-renew-EU-passport-number': 'new-renew-eu-passport',
+    'new-renew-Uk-driving-licence-number': 'new-renew-upload-driving-licence'
+  };
+
   for (const idField of idFields) {
-    console.log('idField ', idField);
+    if (req.sessionModel.get(idField)) {
+      return parseDocumentList(req.sessionModel.get(fieldMap[idField]) || '');
+    }
   }
 
   return '';
@@ -140,17 +148,21 @@ const getNewRenewPersonalisation = req => {
       req.sessionModel.get('new-renew-UK-passport-number') ||
       req.sessionModel.get('new-renew-EU-passport-number') ||
       req.sessionModel.get('new-renew-Uk-driving-licence-number'),
-    identity_document_attachment: getIdentityAttachment([
+    identity_document_attachment: getIdentityAttachment(req, [
       'new-renew-UK-passport-number',
       'new-renew-EU-passport-number',
       'new-renew-Uk-driving-licence-number'
-    ]), // TODO: refactor here and also on notify to look for all possible values
+    ]),
     has_certificate_conduct:
       req.sessionModel.get('new-renew-dob') &&
       !isDateOlderOrEqualTo(req.sessionModel.get('new-renew-dob'), 18)
         ? 'yes'
         : 'no',
-    certificate_conduct_attachment: '',
+    certificate_conduct_attachment:
+      req.sessionModel.get('new-renew-dob') &&
+      !isDateOlderOrEqualTo(req.sessionModel.get('new-renew-dob'), 18)
+        ? parseDocumentList(req.sessionModel.get('new-renew-birth-certificate'))
+        : '',
     firearms_licence: getLabel(
       'new-renew-other-firearms-licence',
       req.sessionModel.get('new-renew-other-firearms-licence'),
@@ -198,8 +210,15 @@ const getNewRenewPersonalisation = req => {
     countersignatory_email: req.sessionModel.get(
       'new-renew-countersignatory-email'
     ),
-    countersignatory_id_type: 'TBD', // TODO: Format here and also update the template
-    countersignatory_id: 'TBD' // TODO: Format here and also update the template
+    countersignatory_id_type: req.sessionModel.get(
+      'new-renew-countersignatory-Id-type'
+    ),
+    countersignatory_id:
+      req.sessionModel.get('new-renew-UK-passport-number') ||
+      req.sessionModel.get('new-renew-EU-passport-number') ||
+      req.sessionModel.get(
+        'new-renew-countersignatory-Uk-driving-licence-number'
+      ) // TODO: confirm field names when id page is done
   };
 };
 const getAmendPersonalisation = req => {
