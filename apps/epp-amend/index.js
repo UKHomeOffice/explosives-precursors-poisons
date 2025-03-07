@@ -1,7 +1,7 @@
 const validateAndRedirect = require('./behaviours/home-redirection');
 const SummaryPageBehaviour = require('hof').components.summary;
 const ValidateLicenceNumber = require('../epp-common/behaviours/licence-validator');
-const PostcodeValidation = require('../../utilities/helpers//postcode-validation');
+const PostcodeValidation = require('../../utilities/helpers/postcode-validation');
 const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
 const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator');
 const SaveDocument = require('../epp-common/behaviours/save-document');
@@ -9,8 +9,8 @@ const RemoveDocument = require('../epp-common/behaviours/remove-document');
 const DobEditRedirect = require('../epp-common/behaviours/dob-edit-redirect');
 const RenderPrecursorDetails = require('../epp-common/behaviours/render-precursors-detail');
 const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
-
 const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
+const DobUnder18Redirect = require('../epp-common/behaviours/dob-under18-redirect');
 
 const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redundant-documents');
 
@@ -310,12 +310,18 @@ module.exports = {
         'amend-countersignatory-email'
       ],
       locals: { captionHeading: 'Section 20 of 23' },
-      next: '/section-eighteen'
+      next: '/countersignatory-id'
     },
-    '/section-eighteen': {
-      fields: ['amend-countersignatory-document-type'],
-      next: '/birth-certificate',
-      locals: { captionHeading: 'Section 21 of 23' }
+    '/countersignatory-id': {
+      behaviours: [DobUnder18Redirect('amend-date-of-birth', '/birth-certificate')],
+      fields: [
+        'amend-countersignatory-Id-type',
+        'amend-countersignatory-UK-passport-number',
+        'amend-countersignatory-EU-passport-number',
+        'amend-countersignatory-Uk-driving-licence-number'
+      ],
+      locals: { captionHeading: 'Section 21 of 23' },
+      next: '/birth-certificate'
     },
     '/birth-certificate': {
       behaviours: [

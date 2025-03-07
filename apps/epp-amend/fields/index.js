@@ -503,6 +503,67 @@ module.exports = {
     className: ['govuk-input'],
     labelClassName: 'govuk-label--m'
   },
+  'amend-countersignatory-Id-type': {
+    isPageHeading: true,
+    mixin: 'radio-group',
+    validate: ['required'],
+    options: [
+      {
+        value: 'UK-passport',
+        toggle: 'amend-countersignatory-UK-passport-number',
+        child: 'input-text'
+      },
+      {
+        value: 'EU-passport',
+        toggle: 'amend-countersignatory-EU-passport-number',
+        child: 'input-text'
+      },
+      {
+        value: 'Uk-driving-licence',
+        toggle: 'amend-countersignatory-Uk-driving-licence-number',
+        child: 'input-text'
+      }
+    ]
+  },
+  'amend-countersignatory-UK-passport-number': {
+    validate: [
+      'required',
+      { type: 'maxlength', arguments: 9 },
+      'alphanum',
+      'notUrl'
+    ],
+    className: ['govuk-input', 'govuk-!-width-one-thirds'],
+    dependent: {
+      field: 'amend-countersignatory-Id-type',
+      value: 'UK-passport'
+    }
+  },
+  'amend-countersignatory-EU-passport-number': {
+    validate: [
+      'required',
+      { type: 'maxlength', arguments: 9 },
+      'alphanum',
+      'notUrl'
+    ],
+    className: ['govuk-input', 'govuk-!-width-one-thirds'],
+    dependent: {
+      field: 'amend-countersignatory-Id-type',
+      value: 'EU-passport'
+    }
+  },
+  'amend-countersignatory-Uk-driving-licence-number': {
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: 16 },
+      helpers.isValidUkDrivingLicenceNumber
+    ],
+    className: ['govuk-input', 'govuk-!-width-one-thirds'],
+    dependent: {
+      field: 'amend-countersignatory-Id-type',
+      value: 'Uk-driving-licence'
+    }
+  },
   'amend-declaration': {
     mixin: 'checkbox',
     validate: ['required']
