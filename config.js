@@ -159,5 +159,13 @@ module.exports = {
     'new-renew-home-address-postcode': 'new-renew-home-address-country',
     'new-renew-previous-home-address-postcode': 'new-renew-previous-home-address-country',
     'amend-new-postcode': 'amend-new-country'
+  },
+  payment: {
+    CREATE_PAYMENT_ENDPOINT: 'https://publicapi.payments.service.gov.uk/v1/payments',
+    GET_PAYMENT_INFO_ENDPOINT: 'https://publicapi.payments.service.gov.uk/v1/payments/',
+    AMOUNT_NEW: 3950,
+    AMOUNT_RENEW: 3950,
+    AMOUNT_REPLACE: 2500,
+    govUkApiKey: process.env.GOV_PAY_KEY
   }
 };
