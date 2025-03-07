@@ -4,7 +4,6 @@ const precursorList = require('../../../utilities/constants/explosive-precursors
 const poisonsList = require('../../../utilities/constants/poisons.js');
 const helpers = require('../../../utilities/helpers/index.js');
 const country = require('../../../utilities/constants/countries');
-
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years.js');
 
 module.exports = {
@@ -297,6 +296,15 @@ module.exports = {
       validate: ['required', 'date', 'before']
     }
   ),
+  'amend-change-substances-options': {
+    mixin: 'radio-group',
+    legend: {
+      className: 'govuk-label--m'
+    },
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    options: ['yes', 'no'],
+    validate: 'required'
+  },
   'amend-precursor-field': {
     mixin: 'select',
     validate: ['required'],
