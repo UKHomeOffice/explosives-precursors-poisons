@@ -19,6 +19,8 @@ const DobEditRedirect = require('../epp-common/behaviours/dob-edit-redirect');
 
 const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
 
+const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redundant-documents');
+
 const SendNotification = require('../epp-common/behaviours/submit-notify');
 const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
 
@@ -432,6 +434,11 @@ module.exports = {
       }
     },
     '/medical-history': {
+      behaviours: [
+        DeleteRedundantDocuments('new-renew-received-treatment', [
+          'new-renew-medical-form'
+        ])
+      ],
       fields: ['new-renew-has-seen-doctor', 'new-renew-received-treatment'],
       forks: [
         {
