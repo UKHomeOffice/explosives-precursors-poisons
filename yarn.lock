@@ -2904,10 +2904,10 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hof@22.2.0-cookie-config-change-beta:
-  version "22.2.0-cookie-config-change-beta"
-  resolved "https://registry.yarnpkg.com/hof/-/hof-22.2.0-cookie-config-change-beta.tgz#b257d6997e5c3459c7eb79bd76a4edd3275f5d2f"
-  integrity sha512-aPmnzkR6CeL4qftL9w1U0klpJf9ie7qncg8rU10aX5mwlEiLE+joADAG3MbgEhFetzKe4EkmOqpTlLvOUfoHew==
+hof@^22.2.1:
+  version "22.2.1"
+  resolved "https://registry.yarnpkg.com/hof/-/hof-22.2.1.tgz#a92d0054c3e6a77710591df42f39a3e2189e2066"
+  integrity sha512-Fx1vDOfzXROmMXhml5A8hqGnsuK5wqG+FKWR4crTxQmj7Kp9COZ/pVPif/Ris01D3A93eWZM/9oKaanxK1VeAw==
   dependencies:
     aliasify "^2.1.0"
     axios "^1.5.1"
