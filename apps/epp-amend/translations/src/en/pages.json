@@ -301,6 +301,18 @@
       },
       "amend-poison": {
         "label": "Poisons"
+      },
+      "amend-countersignatory-Id-type": {
+        "label": "Identification document"
+      },
+      "amend-countersignatory-UK-passport-number": {
+        "label": "British passport number"
+      },
+      "amend-countersignatory-EU-passport-number": {
+        "label": "Passport number"
+      },
+      "amend-countersignatory-Uk-driving-licence-number": {
+        "label": "UK driving licence number"
       }
     }
   }
