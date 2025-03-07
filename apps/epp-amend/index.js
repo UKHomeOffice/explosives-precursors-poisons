@@ -334,7 +334,7 @@ module.exports = {
         'amend-countersignatory-Uk-driving-licence-number'
       ],
       locals: { captionHeading: 'Section 21 of 23' },
-      next: '/birth-certificate'
+      next: '/confirm'
     },
     '/birth-certificate': {
       behaviours: [
