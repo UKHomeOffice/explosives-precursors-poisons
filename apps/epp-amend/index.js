@@ -12,6 +12,8 @@ const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
 
 const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
 
+const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redundant-documents');
+
 module.exports = {
   name: 'EPP form',
   fields: 'apps/epp-amend/fields',
@@ -73,6 +75,14 @@ module.exports = {
       next: '/amend-details'
     },
     '/amend-details': {
+      behaviours: [
+        DeleteRedundantDocuments('amend-name-options', [
+          'amend-british-passport',
+          'amend-eu-passport',
+          'amend-certificate-conduct',
+          'amend-uk-driving-licence'
+        ])
+      ],
       fields: ['amend-name-options'],
       forks: [
         {
@@ -167,6 +177,11 @@ module.exports = {
       locals: { captionHeading: 'Section 9 of 23' }
     },
     '/change-home-address': {
+      behaviours: [
+        DeleteRedundantDocuments('amend-home-address-options', [
+          'amend-proof-address'
+        ])
+      ],
       fields: ['amend-home-address-options'],
       forks: [
         {
