@@ -345,6 +345,22 @@ module.exports = {
         field: 'amend-countersignatory-email'
       },
       {
+        step: '/countersignatory-id',
+        field: 'amend-countersignatory-Id-type'
+      },
+      {
+        step: '/countersignatory-id',
+        field: 'amend-countersignatory-UK-passport-number'
+      },
+      {
+        step: '/countersignatory-id',
+        field: 'amend-countersignatory-EU-passport-number'
+      },
+      {
+        step: '/countersignatory-id',
+        field: 'amend-countersignatory-Uk-driving-licence-number'
+      },
+      {
         step: '/birth-certificate',
         field: 'amend-birth-certificate',
         parse: (documents, req) => {
