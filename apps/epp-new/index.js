@@ -155,12 +155,12 @@ module.exports = {
       behaviours: [
         PostcodeValidation,
         SaveHomeAddress([
-          'amend-address-1',
-          'amend-address-2',
-          'amend-town-or-city',
-          'amend-county',
-          'amend-postcode',
-          'amend-country'
+          'new-renew-home-address-line1',
+          'new-renew-home-address-line2',
+          'new-renew-home-address-town',
+          'new-renew-home-address-county',
+          'new-renew-home-address-postcode',
+          'new-renew-home-address-country'
         ])
       ],
       fields: [

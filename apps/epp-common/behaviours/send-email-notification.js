@@ -82,6 +82,14 @@ const getUserEmail = applicationType => {
   return appUserEmailMap[applicationType];
 };
 
+const getIdentityAttachment = (req, idFields) => {
+  for (const idField of idFields) {
+    console.log('idField ', idField);
+  }
+
+  return '';
+};
+
 const getNewRenewPersonalisation = req => {
   return {
     licence_number: req.sessionModel.get('new-renew-licence-number'),
@@ -105,7 +113,11 @@ const getNewRenewPersonalisation = req => {
       req.sessionModel.get('new-renew-more-nationalities') === 'yes'
         ? 'yes'
         : 'no',
-    sex: req.sessionModel.get('new-renew-your-sex'),
+    sex: getLabel(
+      'new-renew-your-sex',
+      req.sessionModel.get('new-renew-your-sex'),
+      newRenewTranslation
+    ),
     height: req.sessionModel.get('new-renew-your-height'),
     occupation: req.sessionModel.get('new-renew-occupation'),
     other_nationality:
@@ -119,9 +131,20 @@ const getNewRenewPersonalisation = req => {
     previous_addresses: '', // TODO: Format previous addresses
     phone_number: req.sessionModel.get('new-renew-phone-number'),
     email_address: req.sessionModel.get('new-renew-email'),
-    identity_document: 'TBD', // TODO: refactor here and also on notify to look for all possible values
-    identity_document_number: 'TBD', // TODO: refactor here and also on notify to look for all possible values
-    identity_document_attachment: 'TBD', // TODO: refactor here and also on notify to look for all possible values
+    identity_document: getLabel(
+      'new-renew-applicant-Id-type',
+      req.sessionModel.get('new-renew-applicant-Id-type'),
+      newRenewTranslation
+    ),
+    identity_document_number:
+      req.sessionModel.get('new-renew-UK-passport-number') ||
+      req.sessionModel.get('new-renew-EU-passport-number') ||
+      req.sessionModel.get('new-renew-Uk-driving-licence-number'),
+    identity_document_attachment: getIdentityAttachment([
+      'new-renew-UK-passport-number',
+      'new-renew-EU-passport-number',
+      'new-renew-Uk-driving-licence-number'
+    ]), // TODO: refactor here and also on notify to look for all possible values
     has_certificate_conduct:
       req.sessionModel.get('new-renew-dob') &&
       !isDateOlderOrEqualTo(req.sessionModel.get('new-renew-dob'), 18)
