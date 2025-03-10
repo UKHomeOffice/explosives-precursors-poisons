@@ -13,6 +13,7 @@ const CheckAndRedirect = require('../epp-common/behaviours/check-answer-redirect
 const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
 const DobUnder18Redirect = require('../epp-common/behaviours/dob-under18-redirect');
 const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redundant-documents');
+const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 
 module.exports = {
   name: 'EPP form',
@@ -20,6 +21,7 @@ module.exports = {
   views: 'apps/epp-amend/views',
   translations: 'apps/epp-amend/translations',
   baseUrl: '/amend',
+  behaviours: [JourneyValidator],
   steps: {
     '/licence-number': {
       behaviours: [validateAndRedirect, RemoveEditMode, ValidateLicenceNumber],

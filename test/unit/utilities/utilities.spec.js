@@ -189,7 +189,7 @@ describe('EPP utilities tests', () => {
   it('.isEditMode - should return true when in edit mode', () => {
     const urls = [
       'http://localhost:8080/amend/date-of-birth/edit#amend-date-of-birth',
-      'http://localhost:8080/new-and-renew/date-of-birth/edit#amend-date-of-birth',
+      'http://localhost:8080/new-renew/date-of-birth/edit#amend-date-of-birth',
       'https:/domain/replace/date-of-birth/edit#amend-date-of-birth',
       'protocol:/domain/url/edit'
     ];
@@ -204,7 +204,7 @@ describe('EPP utilities tests', () => {
   it('.isEditMode - should return false when not in edit mode', () => {
     const urls = [
       'http://localhost:8080/amend/date-of-birth',
-      'http://localhost:8080/new-and-renew/edit-address#amend-date-of-birth',
+      'http://localhost:8080/new-renew/edit-address#amend-date-of-birth',
       'https:/domain/replace/date-of-birth/edit-first-name#amend-date-of-birth',
       'protocol:/domain/url/test'
     ];

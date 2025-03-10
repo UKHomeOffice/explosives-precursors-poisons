@@ -1,5 +1,4 @@
 const PATH_NEW_RENEW = '/new-renew';
-const PATH_NEW_AND_RENEW = '/new-and-renew';
 const PATH_AMEND = '/amend';
 const PATH_REPLACE = '/replace';
 const PATH_PAYMENT_PROBLEM = '/payment-problem';
@@ -25,7 +24,6 @@ const API_METHODS = {
 
 module.exports = {
   PATH_NEW_RENEW,
-  PATH_NEW_AND_RENEW,
   PATH_AMEND,
   PATH_REPLACE,
   PATH_PAYMENT_PROBLEM,

@@ -48,11 +48,11 @@ describe('get-payment-info tests', () => {
     req.sessionModel.get.withArgs('applicationType').returns('new');
 
     await behaviour.getValues(req, res, next);
-    expect(res.redirect.calledWith('/new-and-renew/payment-problem')).to.be
+    expect(res.redirect.calledWith('/new-renew/payment-problem')).to.be
       .true;
-    expect(res.redirect.calledWith('/new-and-renew/payment-failed')).to.be
+    expect(res.redirect.calledWith('/new-renew/payment-failed')).to.be
       .false;
-    expect(res.redirect.calledWith('/new-and-renew/payment-cancelled')).to.be
+    expect(res.redirect.calledWith('/new-renew/payment-cancelled')).to.be
       .false;
     expect(next.called).to.be.false;
   });
@@ -66,11 +66,11 @@ describe('get-payment-info tests', () => {
     generateHmacMock.returns('XYZ1234');
 
     await behaviour.getValues(req, res, next);
-    expect(res.redirect.calledWith('/new-and-renew/payment-problem')).to.be
+    expect(res.redirect.calledWith('/new-renew/payment-problem')).to.be
       .true;
-    expect(res.redirect.calledWith('/new-and-renew/payment-failed')).to.be
+    expect(res.redirect.calledWith('/new-renew/payment-failed')).to.be
       .false;
-    expect(res.redirect.calledWith('/new-and-renew/payment-cancelled')).to.be
+    expect(res.redirect.calledWith('/new-renew/payment-cancelled')).to.be
       .false;
     expect(next.called).to.be.false;
   });
@@ -87,11 +87,11 @@ describe('get-payment-info tests', () => {
     });
 
     await behaviour.getValues(req, res, next);
-    expect(res.redirect.calledWith('/new-and-renew/payment-cancelled')).to.be
+    expect(res.redirect.calledWith('/new-renew/payment-cancelled')).to.be
       .true;
-    expect(res.redirect.calledWith('/new-and-renew/payment-problem')).to.be
+    expect(res.redirect.calledWith('/new-renew/payment-problem')).to.be
       .false;
-    expect(res.redirect.calledWith('/new-and-renew/payment-failed')).to.be
+    expect(res.redirect.calledWith('/new-renew/payment-failed')).to.be
       .false;
     expect(next.called).to.be.false;
   });
@@ -108,10 +108,10 @@ describe('get-payment-info tests', () => {
     });
 
     await behaviour.getValues(req, res, next);
-    expect(res.redirect.calledWith('/new-and-renew/payment-failed')).to.be.true;
-    expect(res.redirect.calledWith('/new-and-renew/payment-cancelled')).to.be
+    expect(res.redirect.calledWith('/new-renew/payment-failed')).to.be.true;
+    expect(res.redirect.calledWith('/new-renew/payment-cancelled')).to.be
       .false;
-    expect(res.redirect.calledWith('/new-and-renew/payment-problem')).to.be;
+    expect(res.redirect.calledWith('/new-renew/payment-problem')).to.be;
     expect(next.called).to.be.false;
   });
 
@@ -127,11 +127,11 @@ describe('get-payment-info tests', () => {
     });
 
     await behaviour.getValues(req, res, next);
-    expect(res.redirect.calledWith('/new-and-renew/payment-problem')).to.be
+    expect(res.redirect.calledWith('/new-renew/payment-problem')).to.be
       .true;
-    expect(res.redirect.calledWith('/new-and-renew/payment-failed')).to.be
+    expect(res.redirect.calledWith('/new-renew/payment-failed')).to.be
       .false;
-    expect(res.redirect.calledWith('/new-and-renew/payment-cancelled')).to.be
+    expect(res.redirect.calledWith('/new-renew/payment-cancelled')).to.be
       .false;
     expect(next.called).to.be.false;
   });
@@ -148,11 +148,11 @@ describe('get-payment-info tests', () => {
     );
 
     await behaviour.getValues(req, res, next);
-    expect(res.redirect.calledWith('/new-and-renew/payment-problem')).to.be
+    expect(res.redirect.calledWith('/new-renew/payment-problem')).to.be
       .true;
-    expect(res.redirect.calledWith('/new-and-renew/payment-failed')).to.be
+    expect(res.redirect.calledWith('/new-renew/payment-failed')).to.be
       .false;
-    expect(res.redirect.calledWith('/new-and-renew/payment-cancelled')).to.be
+    expect(res.redirect.calledWith('/new-renew/payment-cancelled')).to.be
       .false;
     expect(next.called).to.be.false;
   });
@@ -170,11 +170,11 @@ describe('get-payment-info tests', () => {
 
     await behaviour.getValues(req, res, next);
     expect(next.called).to.be.true;
-    expect(res.redirect.calledWith('/new-and-renew/payment-problem')).to.be
+    expect(res.redirect.calledWith('/new-renew/payment-problem')).to.be
       .false;
-    expect(res.redirect.calledWith('/new-and-renew/payment-failed')).to.be
+    expect(res.redirect.calledWith('/new-renew/payment-failed')).to.be
       .false;
-    expect(res.redirect.calledWith('/new-and-renew/payment-cancelled')).to.be
+    expect(res.redirect.calledWith('/new-renew/payment-cancelled')).to.be
       .false;
   });
 });
