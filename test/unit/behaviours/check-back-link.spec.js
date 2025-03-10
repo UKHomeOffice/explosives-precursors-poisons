@@ -25,19 +25,19 @@ describe('check-back-link behaviour tests', () => {
     controller
       .locals(req, res)
       .should.have.property('backLink')
-      .that.equals('/new-and-renew/licence-number');
+      .that.equals('/new-renew/licence-number');
   });
 
   it('renew edit journey - should update backLink to licence-number/edit page', () => {
     req.form.options.route = '/your-name';
-    res.locals.backLink = '/new-and-renew/licence-number/edit';
+    res.locals.backLink = '/new-renew/licence-number/edit';
 
     req.sessionModel.set('isRenewJourney', true);
     controller.locals(req, res).should.have.property('backLink');
     controller
       .locals(req, res)
       .should.have.property('backLink')
-      .that.equals('/new-and-renew/licence-number/edit');
+      .that.equals('/new-renew/licence-number/edit');
   });
 
   it('edit non renew journey - should not update the backLink', () => {

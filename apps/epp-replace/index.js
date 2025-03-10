@@ -6,6 +6,7 @@ const RemoveDocument = require('../epp-common/behaviours/remove-document');
 const ValidateLicenceNumber = require('../epp-common/behaviours/licence-validator');
 
 const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
+const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 
 // TODO: Use DeleteRedundantDocuments behaviour similar to amend flow to
 // remove the uploaded files when dependent option changes
@@ -15,6 +16,7 @@ module.exports = {
   views: 'apps/epp-replace/views',
   translations: 'apps/epp-replace/translations',
   baseUrl: '/replace',
+  behaviours: [JourneyValidator],
   steps: {
     '/replace-licence': {
       behaviours: [validateAndRedirect, RemoveEditMode],

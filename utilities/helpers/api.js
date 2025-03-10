@@ -8,10 +8,10 @@ const {
   APP_TYPE_NEW,
   APP_TYPE_RENEW,
   APP_TYPE_REPLACE,
-  PATH_NEW_AND_RENEW,
   PATH_REPLACE,
   API_METHODS,
-  PATH_APPLICATION_SUBMITTED
+  PATH_APPLICATION_SUBMITTED,
+  PATH_NEW_RENEW
 } = require('../constants/string-constants');
 
 /**
@@ -132,7 +132,7 @@ async function getPaymentDetails(paymentId) {
 
 const generateRequestPayload = (req, applicationType, hmac) => {
   const return_url = `${req.protocol}://${req.get('host')}${
-    applicationType === APP_TYPE_REPLACE ? PATH_REPLACE : PATH_NEW_AND_RENEW
+    applicationType === APP_TYPE_REPLACE ? PATH_REPLACE : PATH_NEW_RENEW
   }${PATH_APPLICATION_SUBMITTED}`;
 
   if (applicationType === APP_TYPE_NEW || applicationType === APP_TYPE_RENEW) {
@@ -196,7 +196,7 @@ const generateRequestPayload = (req, applicationType, hmac) => {
 
 const getErrorTemplateBasePath = applicationType => {
   if (applicationType === APP_TYPE_NEW || applicationType === APP_TYPE_RENEW) {
-    return PATH_NEW_AND_RENEW;
+    return PATH_NEW_RENEW;
   }
 
   if (applicationType === APP_TYPE_REPLACE) {

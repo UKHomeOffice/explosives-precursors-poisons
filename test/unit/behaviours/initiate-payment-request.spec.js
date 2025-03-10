@@ -73,7 +73,7 @@ describe('get-payment-info tests', () => {
 
     await behaviour.saveValues(req, res, next);
 
-    expect(res.redirect.calledWith('/new-and-renew/payment-problem')).to.be
+    expect(res.redirect.calledWith('/new-renew/payment-problem')).to.be
       .true;
   });
 
@@ -87,7 +87,7 @@ describe('get-payment-info tests', () => {
 
     await behaviour.saveValues(req, res, next);
 
-    expect(res.redirect.calledWith('/new-and-renew/payment-problem')).to.be
+    expect(res.redirect.calledWith('/new-renew/payment-problem')).to.be
       .true;
   });
 
