@@ -110,7 +110,6 @@
     "label": "What is your driving licence number?",
     "hint" : "On section 5 of your licence, for example MORGA657054SM9IJ"    
   },
- 
   "amend-home-address-options": {
     "legend": "Do you need to amend your home address on the licence?",
     "options": {
@@ -147,6 +146,17 @@
   "amend-new-date-moved-to-address": {
       "legend": "What date did you change your address?",
       "hint": " For example, 30 09 1969"
+  },
+  "amend-change-substances-options":{
+    "legend": "Do you need to amend the substances on your licence?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   },
   "amend-precursor-field": {
     "hint": "Select an explosives precursor",
