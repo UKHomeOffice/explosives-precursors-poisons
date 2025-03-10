@@ -1,18 +1,18 @@
 {
-    "application-submitted": {
-        "confirmed": "Replaced application submitted"
-      },
-      "upload-british-passport" : {
-        "header": "Upload British passport",
-        "label": "Upload a file",
-        "hint": "Your file must be JPEG, PDF or PNG and be 25MB or less",
-        "paragraph1": "Attach an image of your British passport as proof of your identity. the image must be",
-        "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
-        "link-text" : "signed by your countersignatory (opens in a new tab).",
-        "uploading-document": "Uploading your document..",
-        "not-uploaded": "No files uploaded",
-        "uploaded": "Files uploaded"
-      },
+  "application-submitted": {
+    "confirmed": "Replaced application submitted"
+  },
+  "upload-british-passport": {
+    "header": "Upload British passport",
+    "label": "Upload a file",
+    "hint": "Your file must be JPEG, PDF or PNG and be 25MB or less",
+    "paragraph1": "Attach an image of your British passport as proof of your identity. the image must be",
+    "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
+    "link-text": "signed by your countersignatory (opens in a new tab).",
+    "uploading-document": "Uploading your document..",
+    "not-uploaded": "No files uploaded",
+    "uploaded": "Files uploaded"
+  },
   "upload-passport": {
     "header": "Upload passport",
     "p1": "Attach an image of your passport from the EU, Switzerland, Norway, Iceland or Liechtenstein as proof of your identity. The image must be",
@@ -64,53 +64,66 @@
     "paragraph1": "A certificate of good conduct is issued by the police in your country of nationality. It shows if you have a criminal record and details of any offences.",
     "paragraph2": "Attach an image of your certificate of good conduct. The image must be ",
     "link": "https://www.gov.uk/government/publications/explosives-precursors-licence-applications-countersignatory/explosives-precursors-and-poisons-licence-applications-how-to-get-documents-countersigned",
-    "link-text" : "signed by your countersignatory (opens in a new tab).",
+    "link-text": "signed by your countersignatory (opens in a new tab).",
     "uploading-document": "Uploading your document..",
     "not-uploaded": "No files uploaded",
     "uploaded": "Files uploaded"
   },
+  "birth-certificate": {
+    "header": "Your countersignatory must be your parent or guardian",
+    "p1": "You told us you are under 18. Your countersignatory must be your parent or legal guardian.",
+    "p2": "To prove this relationship, upload a countersigned copy of your birth certificate or other legal document.",
+    "upload-file": "Upload a file",
+    "file-format": "Your file must be JPEG, PDF or PNG, and be 25MB or less",
+    "no-file-uploaded": "No files uploaded",
+    "files-uploaded": "Files uploaded",
+    "uploading-document": "Uploading your document..."
+  },
   "your-name": {
     "header": "What is your name on the licence?"
   },
-      "confirm": {
-        "header": "Check your answers",
-        "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",
-        "sections": {
-          "countersignatory-details": {
-            "header": "Countersignatory details"
-          },
-          "licence-details": {
-            "header": "Licence details"
-          },
-          "replace-licence": {
-            "header": "Replacement reason"
-          },
-          "replace-new-name": {
-            "header": "New name"
-          },
-          "applicant-name": {
-            "header": "Applicant name"
-          }
-        },
-      "fields": {
-        "replace-licence-number": {
-          "label": "Licence number"
-        },
-        "replace-british-passport" : {
-          "label": "British passport attachment"
-        },
-        "replace-eu-passport" : {
-          "label": "Passport attachment"
-        },
-        "replace-upload-driving-licence": {
-          "label": "UK driving licence attachment"
-        },
-        "replace-proof-address": {
-          "label": "Proof of address attachments"
-        },
-        "replace-certificate-conduct" :{
-          "label": "Certificate of good conduct attachment"
-        }
+  "confirm": {
+    "header": "Check your answers",
+    "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",
+    "sections": {
+      "countersignatory-details": {
+        "header": "Countersignatory details"
+      },
+      "licence-details": {
+        "header": "Licence details"
+      },
+      "replace-licence": {
+        "header": "Replacement reason"
+      },
+      "replace-new-name": {
+        "header": "New name"
+      },
+      "applicant-name": {
+        "header": "Applicant name"
+      }
+    },
+    "fields": {
+      "replace-licence-number": {
+        "label": "Licence number"
+      },
+      "replace-british-passport": {
+        "label": "British passport attachment"
+      },
+      "replace-eu-passport": {
+        "label": "Passport attachment"
+      },
+      "replace-upload-driving-licence": {
+        "label": "UK driving licence attachment"
+      },
+      "replace-proof-address": {
+        "label": "Proof of address attachments"
+      },
+      "replace-certificate-conduct": {
+        "label": "Certificate of good conduct attachment"
+      },
+      "replace-birth-certificate": {
+        "label": "Birth certificate attachment"
       }
     }
+  }
 }
