@@ -25,7 +25,6 @@ const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-paymen
 const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 
-const SendNotification = require('../epp-common/behaviours/submit-notify');
 const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
 
 module.exports = {
@@ -646,7 +645,7 @@ module.exports = {
     },
     '/payment-cancelled': {},
     '/application-submitted': {
-      behaviours: [GetPaymentInfo, SendNotification],
+      behaviours: [GetPaymentInfo],
       backLink: false
     }
   }
