@@ -23,6 +23,7 @@ const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redund
 
 const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-payment-request');
 const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
+const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 
 module.exports = {
   name: 'EPP form',
@@ -31,7 +32,7 @@ module.exports = {
   translations: 'apps/epp-new/translations',
   baseUrl: '/new-renew',
   params: '/:action?/:id?/:edit?',
-  behaviours: [sectionCounter],
+  behaviours: [sectionCounter, JourneyValidator],
   steps: {
     '/your-name': {
       behaviours: [
