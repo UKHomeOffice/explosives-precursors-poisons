@@ -25,6 +25,9 @@ const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-paymen
 const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 
+const SendNotification = require('../epp-common/behaviours/submit-notify');
+const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
+
 module.exports = {
   name: 'EPP form',
   fields: 'apps/epp-new/fields',
@@ -153,7 +156,17 @@ module.exports = {
       }
     },
     '/home-address': {
-      behaviours: [PostcodeValidation],
+      behaviours: [
+        PostcodeValidation,
+        SaveHomeAddress([
+          'new-renew-home-address-line1',
+          'new-renew-home-address-line2',
+          'new-renew-home-address-town',
+          'new-renew-home-address-county',
+          'new-renew-home-address-postcode',
+          'new-renew-home-address-country'
+        ])
+      ],
       fields: [
         'new-renew-home-address-line1',
         'new-renew-home-address-line2',
@@ -633,10 +646,7 @@ module.exports = {
     },
     '/payment-cancelled': {},
     '/application-submitted': {
-      behaviours: [GetPaymentInfo],
-      backLink: false
-    },
-    '/complete': {
+      behaviours: [GetPaymentInfo, SendNotification],
       backLink: false
     }
   }
