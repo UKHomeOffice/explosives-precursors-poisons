@@ -628,7 +628,7 @@ module.exports = {
       }
     },
     '/declaration': {
-      behaviours: [InitiatePaymentRequest, SendNotification],
+      behaviours: [InitiatePaymentRequest],
       fields: ['new-renew-declaration'],
       locals: {
         sectionNo: {
@@ -645,10 +645,7 @@ module.exports = {
     },
     '/payment-cancelled': {},
     '/application-submitted': {
-      behaviours: [GetPaymentInfo],
-      backLink: false
-    },
-    '/complete': {
+      behaviours: [GetPaymentInfo, SendNotification],
       backLink: false
     }
   }
