@@ -2,5 +2,7 @@
 "start": "initial button",
 "delete": "Delete",
 "remove": "Remove",
-"edit": "Change"
+"edit": "Change",
+"continue-payment": "Continue to payment",
+"try-paying-again": "Try paying again"
 }
