@@ -4,7 +4,6 @@ const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
 const SaveDocument = require('../epp-common/behaviours/save-document');
 const RemoveDocument = require('../epp-common/behaviours/remove-document');
 const ValidateLicenceNumber = require('../epp-common/behaviours/licence-validator');
-
 const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 
@@ -222,6 +221,15 @@ module.exports = {
     },
     '/section-twenty-one': {
       fields: ['replace-countersignatory-document-type'],
+      next: '/birth-certificate'
+    },
+    '/birth-certificate': {
+      behaviours: [
+        SaveDocument('replace-birth-certificate', 'file-upload'),
+        RemoveDocument('replace-birth-certificate')
+      ],
+      fields: ['file-upload'],
+      locals: { captionHeading: 'Section 24 of 26' },
       next: '/confirm'
     },
     '/confirm': {

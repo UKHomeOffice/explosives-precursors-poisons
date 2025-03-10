@@ -8,7 +8,8 @@
     "maxReplaceEuPassport": "You can only upload up to {{maxReplaceEuPassport}} files or less. Remove a file before uploading another",
     "maxReplaceDrivingLicence": "You can only upload up to {{maxReplaceDrivingLicence}} files or less. Remove a file before uploading another",
     "maxReplaceProofAddress" : "You can only upload up to {{maxReplaceProofAddress}} files or less. Remove a file before uploading another",
-    "maxReplaceCertificateConduct" : "You can only upload up to {{maxReplaceCertificateConduct}} files or less. Remove a file before uploading another"
+    "maxReplaceCertificateConduct" : "You can only upload up to {{maxReplaceCertificateConduct}} files or less. Remove a file before uploading another",
+    "maxReplaceBirthCertificate": "You can only upload upto {{maxReplaceBirthCertificate}} files or less. Remove a file before uploading another"
   },
   "replace-licence-number": {
     "incorrect-format-licence": "Enter a real licence number",

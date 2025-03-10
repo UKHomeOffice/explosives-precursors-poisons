@@ -1,5 +1,7 @@
 'use strict';
-
+const {
+  isDateOlderOrEqualTo
+} = require('../../../utilities/helpers');
 module.exports = {
   'replace-licence': {
     steps: [
@@ -114,6 +116,24 @@ module.exports = {
       {
         step: '/licence-number',
         field: 'replace-licence-number'
+      }
+    ]
+  },
+  'countersignatory-details': {
+    steps: [
+      {
+        step: '/birth-certificate',
+        field: 'replace-birth-certificate',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel.get('steps').includes('/birth-certificate') &&
+            documents?.length > 0 && req.sessionModel.get('replace-date-of-birth')
+            && !isDateOlderOrEqualTo(req.sessionModel.get('replace-date-of-birth'), 18)
+          ) {
+            return documents.map(file => file?.name)?.join('\n\n');
+          }
+          return null;
+        }
       }
     ]
   }
