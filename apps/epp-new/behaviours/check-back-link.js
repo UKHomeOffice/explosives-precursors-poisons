@@ -7,8 +7,8 @@ module.exports = superclass =>
       if (locals?.route === 'your-name' && isRenewJourney) {
         const isEditMode = locals.backLink?.endsWith('/edit');
         locals.backLink = isEditMode
-          ? '/new-and-renew/licence-number/edit'
-          : '/new-and-renew/licence-number';
+          ? '/new-renew/licence-number/edit'
+          : '/new-renew/licence-number';
       }
       return locals;
     }

@@ -29,7 +29,7 @@ module.exports = {
   fields: 'apps/epp-new/fields',
   views: 'apps/epp-new/views',
   translations: 'apps/epp-new/translations',
-  baseUrl: '/new-and-renew',
+  baseUrl: '/new-renew',
   params: '/:action?/:id?/:edit?',
   behaviours: [sectionCounter],
   steps: {
@@ -107,7 +107,7 @@ module.exports = {
     },
     '/your-details': {
       behaviours: [
-        DobEditRedirect('new-renew-dob', '/new-and-renew/birth-certificate')
+        DobEditRedirect('new-renew-dob', '/new-renew/birth-certificate')
       ],
       fields: [
         'new-renew-dob',
