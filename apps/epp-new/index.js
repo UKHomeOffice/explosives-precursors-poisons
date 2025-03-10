@@ -21,6 +21,9 @@ const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-count
 
 const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redundant-documents');
 
+const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-payment-request');
+const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
+
 const SendNotification = require('../epp-common/behaviours/submit-notify');
 const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
 
@@ -625,10 +628,8 @@ module.exports = {
       }
     },
     '/declaration': {
-      behaviours: [SendNotification],
-      fields: [],
-      // verify path name when payment component will be added to service
-      next: '/continue-to-payment',
+      behaviours: [InitiatePaymentRequest, SendNotification],
+      fields: ['new-renew-declaration'],
       locals: {
         sectionNo: {
           new: 20,
@@ -636,22 +637,17 @@ module.exports = {
         }
       }
     },
-    '/continue-to-payment': {
-      next: '/application-submitted'
-    },
     '/payment-problem': {
-      fields: [],
-      next: '/continue-to-payment'
+      behaviours: [InitiatePaymentRequest]
     },
     '/payment-failed': {
-      fields: [],
-      next: '/continue-to-payment'
+      behaviours: [InitiatePaymentRequest]
     },
-    '/payment-cancelled': {
-      fields: ['name'],
-      next: '/continue-to-payment'
+    '/payment-cancelled': {},
+    '/application-submitted': {
+      behaviours: [GetPaymentInfo],
+      backLink: false
     },
-    '/application-submitted': {},
     '/complete': {
       backLink: false
     }

@@ -1,11 +1,11 @@
 {{<partials-page}}
  {{$page-content}}
- {{^isRenewRoute}}
+ {{#values.isNewJourney}}
  <p class="govuk-body">{{#t}}pages.confirm.new-submit-warning{{/t}}</p>
-{{/isRenewRoute}}
-  {{#isRenewRoute}}
+{{/values.isNewJourney}}
+  {{#values.isRenewJourney}}
     <p class="govuk-body">{{#t}}pages.confirm.renew-submit-warning{{/t}}</p>
-  {{/isRenewRoute}}
+  {{/values.isRenewJourney}}
     
     {{#rows}}
       {{> partials-summary-table}}

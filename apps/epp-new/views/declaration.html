@@ -1,0 +1,23 @@
+{{<partials-page}}
+ {{$page-content}}
+
+    <p class="govuk-body">{{#t}}pages.declaration.p1{{/t}}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{#t}}pages.declaration.p1l1{{/t}}</li>
+        <li>{{#t}}pages.declaration.p1l2{{/t}}</li>
+    </ul>
+
+    <p class="govuk-body">{{#t}}pages.declaration.p2{{/t}}</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{#t}}pages.declaration.p2l1{{/t}}</li>
+        <li>{{#t}}pages.declaration.p2l2{{/t}}</li>
+        <li>{{#t}}pages.declaration.p2l3{{/t}}</li>
+    </ul>
+  {{#fields}}
+    {{#renderField}}{{/renderField}}
+  {{/fields}}
+
+  <div id="loader-container" class=""></div>
+  <div id="report-submit">{{#input-submit}}continue-payment{{/input-submit}}</div>
+  {{/page-content}}
+{{/partials-page}}

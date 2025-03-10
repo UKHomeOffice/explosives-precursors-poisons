@@ -1,6 +1,14 @@
 'use strict';
 
 module.exports = {
+  'replace-licence': {
+    steps: [
+      {
+        step: '/replace-licence',
+        field: 'replace-licence'
+      }
+    ]
+  },
   'replace-new-name': {
     steps: [
       {
@@ -104,7 +112,7 @@ module.exports = {
   'licence-details': {
     steps: [
       {
-        steps: '/licence-number',
+        step: '/licence-number',
         field: 'replace-licence-number'
       }
     ]

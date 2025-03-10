@@ -82,6 +82,9 @@
           "licence-details": {
             "header": "Licence details"
           },
+          "replace-licence": {
+            "header": "Replacement reason"
+          },
           "replace-new-name": {
             "header": "New name"
           },

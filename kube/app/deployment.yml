@@ -73,6 +73,11 @@ spec:
                 secretKeyRef:
                   name: notify-key
                   key: notify-key
+            - name: GOV_PAY_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: gov-pay-key
+                  key: gov-pay-key
             - name: USE_MOCKS
               value: "false"
             - name: KEYCLOAK_SECRET
