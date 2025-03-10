@@ -834,10 +834,19 @@ aws-sdk@^2.2.36:
     uuid "8.0.0"
     xml2js "0.6.2"
 
-axios@^1.5.1, axios@^1.7.2:
+axios@^1.7.2:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.8.1.tgz#7c118d2146e9ebac512b7d1128771cdd738d11e3"
   integrity sha512-NN+fvwH/kV01dYUQ3PTOZns4LWtWhOFCAhQ/pHb88WQ1hNe5V/dvFwc4VJcDL11LT9xSX0QtsR8sWUuyOuOq7g==
+  dependencies:
+    follow-redirects "^1.15.6"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
+
+axios@^1.8.2:
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.8.2.tgz#fabe06e241dfe83071d4edfbcaa7b1c3a40f7979"
+  integrity sha512-ls4GYBm5aig9vWx8AWDSGLpnpDQRtWAfrjU+EuytuODrFBkqesN2RkOQCBzrA1RQNHw1SmRMSDDDSwzNAYQ6Rg==
   dependencies:
     follow-redirects "^1.15.6"
     form-data "^4.0.0"
@@ -2904,13 +2913,13 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hof@^22.2.1:
-  version "22.2.1"
-  resolved "https://registry.yarnpkg.com/hof/-/hof-22.2.1.tgz#a92d0054c3e6a77710591df42f39a3e2189e2066"
-  integrity sha512-Fx1vDOfzXROmMXhml5A8hqGnsuK5wqG+FKWR4crTxQmj7Kp9COZ/pVPif/Ris01D3A93eWZM/9oKaanxK1VeAw==
+hof@^22.2.2:
+  version "22.3.1"
+  resolved "https://registry.yarnpkg.com/hof/-/hof-22.3.1.tgz#605bd0f0424c6ddaecac4a7d2f37b9ce8f2439e7"
+  integrity sha512-3bFJ09YU59wGmlFQrgvTSZhlp8QhoeOI2X2NzCWd03B14AXwyHitsLlKjrJDAFPU/knpHoU4se04JKxhQQzmBQ==
   dependencies:
     aliasify "^2.1.0"
-    axios "^1.5.1"
+    axios "^1.8.2"
     bluebird "^3.7.2"
     body-parser "^1.15.1"
     browserify "^17.0.0"
