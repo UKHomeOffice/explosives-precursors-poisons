@@ -14,7 +14,6 @@ const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-count
 const DobUnder18Redirect = require('../epp-common/behaviours/dob-under18-redirect');
 const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redundant-documents');
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
-const CheckAndRedirect = require('../epp-common/behaviours/check-answer-redirect');
 
 module.exports = {
   name: 'EPP form',
