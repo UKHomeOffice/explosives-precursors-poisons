@@ -17,9 +17,18 @@ const {
   isDateOlderOrEqualTo,
   getFormattedDate
 } = require('../../../utilities/helpers');
+const {
+  APP_TYPE_REPLACE,
+  APP_TYPE_AMEND,
+  APP_TYPE_NEW,
+  APP_TYPE_RENEW
+} = require('../../../utilities/constants/string-constants');
 
 const USER = 'user';
 const BUSINESS = 'business';
+
+const STR_YES = 'yes';
+const STR_NO = 'no';
 
 const formatSectionSummaryItems = items => {
   return items
@@ -61,7 +70,7 @@ const getTemplateId = (req, applicationType, recipientType) => {
 
   if (recipientType === USER) {
     if (
-      applicationType === 'replace' &&
+      applicationType === APP_TYPE_REPLACE &&
       req.sessionModel.get('replace-replacement-reason') === 'damaged'
     ) {
       return govukNotify.replaceDamagedApplicationUserTemplateId;
@@ -106,18 +115,22 @@ const getIdentityAttachment = (req, idFields) => {
   return '';
 };
 
+const checkYesNo = value => (value === STR_YES ? STR_YES : STR_NO);
+
+const hasValue = value => (value ? STR_YES : STR_NO);
+
 const hasCountersignatoryDetails = (req, applicationType) => {
-  if (applicationType === 'amend') {
+  if (applicationType === APP_TYPE_AMEND) {
     return (
-      req.sessionModel.get('amend-name-options') === 'yes' ||
-      req.sessionModel.get('amend-home-address-options') === 'yes'
+      req.sessionModel.get('amend-name-options') === STR_YES ||
+      req.sessionModel.get('amend-home-address-options') === STR_YES
     );
   }
 
-  if (applicationType === 'replace') {
+  if (applicationType === APP_TYPE_REPLACE) {
     return (
-      req.sessionModel.get('replace-name-options') === 'yes' ||
-      req.sessionModel.get('replace-home-address-options') === 'yes'
+      req.sessionModel.get('replace-name-options') === STR_YES ||
+      req.sessionModel.get('replace-home-address-options') === STR_YES
     );
   }
 
@@ -135,17 +148,14 @@ const getNewRenewPersonalisation = req => {
     first_name: getSessionValueOrDefault(
       req.sessionModel.get('new-renew-first-name')
     ),
-    has_middle_name: req.sessionModel.get('new-renew-middle-name')
-      ? 'yes'
-      : 'no',
+    has_middle_name: hasValue(req.sessionModel.get('new-renew-middle-name')),
     middle_name: getSessionValueOrDefault(
       req.sessionModel.get('new-renew-middle-name')
     ),
     last_name: getSessionValueOrDefault(
       req.sessionModel.get('new-renew-last-name')
     ),
-    has_other_names:
-      req.sessionModel.get('new-renew-other-names') === 'yes' ? 'yes' : 'no',
+    has_other_names: checkYesNo(req.sessionModel.get('new-renew-other-names')),
     other_names: getSessionValueOrDefault(
       formatSectionSummaryItems(req.sessionModel.get('othernames'))
     ),
@@ -161,10 +171,9 @@ const getNewRenewPersonalisation = req => {
     country_of_nationality: getSessionValueOrDefault(
       req.sessionModel.get('new-renew-country-nationality')
     ),
-    has_other_nationality:
-      req.sessionModel.get('new-renew-more-nationalities') === 'yes'
-        ? 'yes'
-        : 'no',
+    has_other_nationality: checkYesNo(
+      req.sessionModel.get('new-renew-more-nationalities')
+    ),
     sex: getSessionValueOrDefault(
       getLabel(
         'new-renew-your-sex',
@@ -190,7 +199,7 @@ const getNewRenewPersonalisation = req => {
     proof_of_address: getSessionValueOrDefault(
       parseDocumentList(req.sessionModel.get('new-renew-proof-address'))
     ),
-    has_previous_address: 'no', // TODO: where to get it
+    has_previous_address: STR_NO, // TODO: where to get it
     previous_addresses: '', // TODO: Format previous addresses
     phone_number: getSessionValueOrDefault(
       req.sessionModel.get('new-renew-phone-number')
@@ -219,9 +228,9 @@ const getNewRenewPersonalisation = req => {
     ),
     has_certificate_conduct:
       req.sessionModel.get('new-renew-dob') &&
-      !isDateOlderOrEqualTo(req.sessionModel.get('new-renew-dob'), 18)
-        ? 'yes'
-        : 'no',
+      hasValue(
+        !isDateOlderOrEqualTo(req.sessionModel.get('new-renew-dob'), 18)
+      ),
     certificate_conduct_attachment:
       getSessionValueOrDefault(req.sessionModel.get('new-renew-dob')) &&
       !isDateOlderOrEqualTo(req.sessionModel.get('new-renew-dob'), 18)
@@ -251,8 +260,8 @@ const getNewRenewPersonalisation = req => {
     has_criminal_record: req.sessionModel
       .get('steps')
       .includes('/criminal-record')
-      ? 'yes'
-      : 'no',
+      ? STR_YES
+      : STR_NO,
     criminal_offences: 'TBD', // TODO: fetch and format
     explosive_precursor: 'TBD', // TODO: fetch and format
     poisons: 'TBD', // TODO: fetch and format
@@ -262,18 +271,16 @@ const getNewRenewPersonalisation = req => {
     countersignatory_first_name: getSessionValueOrDefault(
       req.sessionModel.get('new-renew-countersignatory-firstname')
     ),
-    has_countersignatory_middle_name: req.sessionModel.get(
-      'new-renew-countersignatory-middlename'
-    )
-      ? 'yes'
-      : 'no',
+    has_countersignatory_middle_name: hasValue(
+      req.sessionModel.get('new-renew-countersignatory-middlename')
+    ),
     countersignatory_middle_name: getSessionValueOrDefault(
       req.sessionModel.get('new-renew-countersignatory-middlename')
     ),
     countersignatory_last_name: getSessionValueOrDefault(
       req.sessionModel.get('new-renew-countersignatory-lastname')
     ),
-    countersignatory_address: 'TBD', // TODO: Format inlin address
+    countersignatory_address: 'TBD', // TODO: Format inline address
     countersignatory_phone: getSessionValueOrDefault(
       req.sessionModel.get('new-renew-countersignatory-phone-number')
     ),
@@ -301,7 +308,7 @@ const getAmendPersonalisation = req => {
     first_name: getSessionValueOrDefault(
       req.sessionModel.get('amend-firstname')
     ),
-    has_middle_name: req.sessionModel.get('amend-middlename') ? 'yes' : 'no',
+    has_middle_name: hasValue(req.sessionModel.get('amend-middlename')),
     middle_name: getSessionValueOrDefault(
       req.sessionModel.get('amend-middlename')
     ),
@@ -318,11 +325,10 @@ const getAmendPersonalisation = req => {
     email_address: getSessionValueOrDefault(
       req.sessionModel.get('amend-email')
     ),
-    has_amended_name:
-      req.sessionModel.get('amend-name-options') === 'yes' ? 'yes' : 'no',
+    has_amended_name: checkYesNo(req.sessionModel.get('amend-name-options')),
     new_name: '', // TODO format the values
     identity_document:
-      req.sessionModel.get('amend-name-options') === 'yes'
+      req.sessionModel.get('amend-name-options') === STR_YES
         ? getSessionValueOrDefault(
             getLabel(
               'amend-applicant-Id-type',
@@ -343,13 +349,12 @@ const getAmendPersonalisation = req => {
         'amend-Uk-driving-licence-number'
       ])
     ),
-    has_amended_address:
-      req.sessionModel.get('amend-home-address-options') === 'yes'
-        ? 'yes'
-        : 'no',
+    has_amended_address: checkYesNo(
+      req.sessionModel.get('amend-home-address-options')
+    ),
     new_address: '', // TODO: save and format new address
     date_moved_to:
-      req.sessionModel.get('amend-home-address-options') === 'yes'
+      req.sessionModel.get('amend-home-address-options') === STR_YES
         ? getSessionValueOrDefault(
             req.sessionModel.get('amend-new-date-moved-to-address')
           )
@@ -357,51 +362,52 @@ const getAmendPersonalisation = req => {
     address_proof_attachments: getSessionValueOrDefault(
       parseDocumentList(req.sessionModel.get('amend-proof-address'))
     ),
-    has_amended_substances: 'yes', // TODO: Page to be developed
+    has_amended_substances: STR_YES, // TODO: Page to be developed
     explosive_precursor: '', // TODO: from section summary
-    has_amended_poisons: 'yes', // TODO: Page to be developed
+    has_amended_poisons: STR_YES, // TODO: Page to be developed
     poison_list: '', // TODO: from summary page
-    has_countersignatory_details: hasCountersignatoryDetails(req, 'amend')
-      ? 'yes'
-      : 'no',
+    has_countersignatory_details: hasValue(
+      hasCountersignatoryDetails(req, APP_TYPE_AMEND)
+    ),
 
-    countersignatory_title: hasCountersignatoryDetails(req, 'amend')
+    countersignatory_title: hasCountersignatoryDetails(req, APP_TYPE_AMEND)
       ? getSessionValueOrDefault(
           req.sessionModel.get('amend-countersignatory-title')
         )
       : '',
-    countersignatory_first_name: hasCountersignatoryDetails(req, 'amend')
+    countersignatory_first_name: hasCountersignatoryDetails(req, APP_TYPE_AMEND)
       ? getSessionValueOrDefault(
           req.sessionModel.get('amend-countersignatory-firstname')
         )
       : '',
     has_countersignatory_middle_name:
-      hasCountersignatoryDetails(req, 'amend') &&
-      req.sessionModel.get('amend-countersignatory-middlename')
-        ? 'yes'
-        : 'no',
-    countersignatory_middle_name: hasCountersignatoryDetails(req, 'amend')
+      hasCountersignatoryDetails(req, APP_TYPE_AMEND) &&
+      hasValue(req.sessionModel.get('amend-countersignatory-middlename')),
+    countersignatory_middle_name: hasCountersignatoryDetails(
+      req,
+      APP_TYPE_AMEND
+    )
       ? getSessionValueOrDefault(
           req.sessionModel.get('amend-countersignatory-middlename')
         )
       : '',
-    countersignatory_last_name: hasCountersignatoryDetails(req, 'amend')
+    countersignatory_last_name: hasCountersignatoryDetails(req, APP_TYPE_AMEND)
       ? getSessionValueOrDefault(
           req.sessionModel.get('amend-countersignatory-lastname')
         )
       : '',
-    countersignatory_address: 'TBD', // TODO: Format inlin address
-    countersignatory_phone: hasCountersignatoryDetails(req, 'amend')
+    countersignatory_address: 'TBD', // TODO: Format inline address
+    countersignatory_phone: hasCountersignatoryDetails(req, APP_TYPE_AMEND)
       ? getSessionValueOrDefault(
           req.sessionModel.get('amend-countersignatory-phone-number')
         )
       : '',
-    countersignatory_email: hasCountersignatoryDetails(req, 'amend')
+    countersignatory_email: hasCountersignatoryDetails(req, APP_TYPE_AMEND)
       ? getSessionValueOrDefault(
           req.sessionModel.get('amend-countersignatory-email')
         )
       : '',
-    countersignatory_id_type: hasCountersignatoryDetails(req, 'amend')
+    countersignatory_id_type: hasCountersignatoryDetails(req, APP_TYPE_AMEND)
       ? getSessionValueOrDefault(
           getLabel(
             'amend-countersignatory-Id-type',
@@ -410,7 +416,7 @@ const getAmendPersonalisation = req => {
           )
         )
       : '',
-    countersignatory_id: hasCountersignatoryDetails(req, 'amend')
+    countersignatory_id: hasCountersignatoryDetails(req, APP_TYPE_AMEND)
       ? getSessionValueOrDefault(
           req.sessionModel.get('amend-countersignatory-UK-passport-number') ||
             req.sessionModel.get('amend-countersignatory-EU-passport-number') ||
@@ -422,15 +428,15 @@ const getAmendPersonalisation = req => {
   };
 };
 
-// TODO: Valuidate all fields when pages are built
+// TODO: Validate all fields when pages are built
 const getReplacePersonalisation = req => {
   return {
     why_need_replacement: getSessionValueOrDefault(
       req.sessionModel.get('replace-licence')
     ),
-    has_licence_stolen: req.sessionModel.get('steps').includes('/police-report')
-      ? 'yes'
-      : 'no',
+    has_licence_stolen: hasValue(
+      req.sessionModel.get('steps').includes('/police-report')
+    ),
     reported_to_police: getSessionValueOrDefault(req.sessionModel.get('TBD')),
     police_force: getSessionValueOrDefault(req.sessionModel.get('TBD')),
     crime_number: getSessionValueOrDefault(req.sessionModel.get('TBD')),
@@ -439,10 +445,10 @@ const getReplacePersonalisation = req => {
     current_address: getSessionValueOrDefault(req.sessionModel.get('TBD')),
     phone_number: getSessionValueOrDefault(req.sessionModel.get('TBD')),
     email_address: getSessionValueOrDefault(req.sessionModel.get('TBD')),
-    has_amended_name: req.sessionModel.get('TBD') === 'yes' ? 'yes' : 'no',
+    has_amended_name: checkYesNo(req.sessionModel.get('TBD')),
     new_name: '', // TODO format the values
     identity_document:
-      req.sessionModel.get('TBD') === 'yes'
+      req.sessionModel.get('TBD') === STR_YES
         ? getSessionValueOrDefault(
             getLabel('TBD', req.sessionModel.get('TBD'), replaceTranslation)
           )
@@ -455,52 +461,59 @@ const getReplacePersonalisation = req => {
     identity_document_attachment: getSessionValueOrDefault(
       getIdentityAttachment(req, ['TBD', 'TBD', 'TBD'])
     ),
-    has_amended_address: req.sessionModel.get('TBD') === 'yes' ? 'yes' : 'no',
+    has_amended_address: checkYesNo(req.sessionModel.get('TBD')),
     new_address: '', // TODO: save and format new address
     date_moved_to:
-      req.sessionModel.get('TBD') === 'yes'
+      req.sessionModel.get('TBD') === STR_YES
         ? getSessionValueOrDefault(req.sessionModel.get('TBD'))
         : '',
     address_proof_attachments: getSessionValueOrDefault(
       parseDocumentList(req.sessionModel.get('TBD'))
     ),
-    has_amended_substances: 'yes', // TODO: Page to be developed
+    has_amended_substances: STR_YES, // TODO: Page to be developed
     explosive_precursor: '', // TODO: from section summary
-    has_amended_poisons: 'yes', // TODO: Page to be developed
+    has_amended_poisons: STR_YES, // TODO: Page to be developed
     poison_list: '', // TODO: from summary page
-    has_countersignatory_details: hasCountersignatoryDetails(req, 'replace')
-      ? 'yes'
-      : 'no',
-
-    countersignatory_title: hasCountersignatoryDetails(req, 'replace')
+    has_countersignatory_details: hasValue(
+      hasCountersignatoryDetails(req, APP_TYPE_REPLACE)
+    ),
+    countersignatory_title: hasCountersignatoryDetails(req, APP_TYPE_REPLACE)
       ? getSessionValueOrDefault(req.sessionModel.get('TBD'))
       : '',
-    countersignatory_first_name: hasCountersignatoryDetails(req, 'replace')
+    countersignatory_first_name: hasCountersignatoryDetails(
+      req,
+      APP_TYPE_REPLACE
+    )
       ? getSessionValueOrDefault(req.sessionModel.get('TBD'))
       : '',
     has_countersignatory_middle_name:
-      hasCountersignatoryDetails(req, 'replace') && req.sessionModel.get('TBD')
-        ? 'yes'
-        : 'no',
-    countersignatory_middle_name: hasCountersignatoryDetails(req, 'replace')
+      hasCountersignatoryDetails(req, APP_TYPE_REPLACE) &&
+      hasValue(req.sessionModel.get('TBD')),
+    countersignatory_middle_name: hasCountersignatoryDetails(
+      req,
+      APP_TYPE_REPLACE
+    )
       ? getSessionValueOrDefault(req.sessionModel.get('TBD'))
       : '',
-    countersignatory_last_name: hasCountersignatoryDetails(req, 'replace')
+    countersignatory_last_name: hasCountersignatoryDetails(
+      req,
+      APP_TYPE_REPLACE
+    )
       ? getSessionValueOrDefault(req.sessionModel.get('TBD'))
       : '',
-    countersignatory_address: 'TBD', // TODO: Format inlin address
-    countersignatory_phone: hasCountersignatoryDetails(req, 'replace')
+    countersignatory_address: 'TBD', // TODO: Format inline address
+    countersignatory_phone: hasCountersignatoryDetails(req, APP_TYPE_REPLACE)
       ? getSessionValueOrDefault(req.sessionModel.get('TBD'))
       : '',
-    countersignatory_email: hasCountersignatoryDetails(req, 'replace')
+    countersignatory_email: hasCountersignatoryDetails(req, APP_TYPE_REPLACE)
       ? getSessionValueOrDefault(req.sessionModel.get('TBD'))
       : '',
-    countersignatory_id_type: hasCountersignatoryDetails(req, 'replace')
+    countersignatory_id_type: hasCountersignatoryDetails(req, APP_TYPE_REPLACE)
       ? getSessionValueOrDefault(
           getLabel('TBD', req.sessionModel.get('TBD'), replaceTranslation)
         )
       : '',
-    countersignatory_id: hasCountersignatoryDetails(req, 'replace')
+    countersignatory_id: hasCountersignatoryDetails(req, APP_TYPE_REPLACE)
       ? getSessionValueOrDefault(
           req.sessionModel.get('TBD') ||
             req.sessionModel.get('TBD') ||
@@ -516,14 +529,14 @@ const getPersonalisation = (req, applicationType, recipientType) => {
     return {};
   }
   switch (applicationType) {
-    case 'new':
-    case 'renew':
+    case APP_TYPE_NEW:
+    case APP_TYPE_RENEW:
       return getNewRenewPersonalisation(req);
 
-    case 'amend':
+    case APP_TYPE_AMEND:
       return getAmendPersonalisation(req);
 
-    case 'replace':
+    case APP_TYPE_REPLACE:
       return getReplacePersonalisation(req);
 
     default:
