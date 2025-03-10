@@ -28,5 +28,16 @@ module.exports = {
   'replace-last-name': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }]
+  },
+  'replace-licence': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: 'required',
+    options: [
+      'replace-licence-stolen',
+      'replace-licence-lost',
+      'replace-licence-damaged',
+      'replace-licence-destroyed'
+    ]
   }
 };
