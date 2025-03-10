@@ -359,8 +359,6 @@ module.exports = {
       next: '/application-submitted',
       locals: { captionHeading: 'Section 23 of 23' }
     },
-    '/application-submitted': {
-    
-    }
+    '/application-submitted': {}
   }
 };

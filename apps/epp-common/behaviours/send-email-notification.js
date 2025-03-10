@@ -1,3 +1,4 @@
+/* eslint-disable */
 const fs = require('fs');
 const path = require('path');
 const { govukNotify, dateTimeFormat } = require('../../../config');
@@ -420,9 +421,92 @@ const getAmendPersonalisation = req => {
       : ''
   };
 };
+
+// TODO: Valuidate all fields when pages are built
 const getReplacePersonalisation = req => {
   return {
-    licence_number: req.sessionModel.get('amend-licence-number')
+    why_need_replacement: getSessionValueOrDefault(
+      req.sessionModel.get('replace-licence')
+    ),
+    has_licence_stolen: req.sessionModel.get('steps').includes('/police-report')
+      ? 'yes'
+      : 'no',
+    reported_to_police: getSessionValueOrDefault(req.sessionModel.get('TBD')),
+    police_force: getSessionValueOrDefault(req.sessionModel.get('TBD')),
+    crime_number: getSessionValueOrDefault(req.sessionModel.get('TBD')),
+    name_on_licence: getSessionValueOrDefault(req.sessionModel.get('TBD')),
+    date_of_birth: getSessionValueOrDefault(req.sessionModel.get('TBD')),
+    current_address: getSessionValueOrDefault(req.sessionModel.get('TBD')),
+    phone_number: getSessionValueOrDefault(req.sessionModel.get('TBD')),
+    email_address: getSessionValueOrDefault(req.sessionModel.get('TBD')),
+    has_amended_name: req.sessionModel.get('TBD') === 'yes' ? 'yes' : 'no',
+    new_name: '', // TODO format the values
+    identity_document:
+      req.sessionModel.get('TBD') === 'yes'
+        ? getSessionValueOrDefault(
+            getLabel('TBD', req.sessionModel.get('TBD'), replaceTranslation)
+          )
+        : '',
+    identity_document_number: getSessionValueOrDefault(
+      req.sessionModel.get('TBD') ||
+        req.sessionModel.get('TBD') ||
+        req.sessionModel.get('TBD')
+    ),
+    identity_document_attachment: getSessionValueOrDefault(
+      getIdentityAttachment(req, ['TBD', 'TBD', 'TBD'])
+    ),
+    has_amended_address: req.sessionModel.get('TBD') === 'yes' ? 'yes' : 'no',
+    new_address: '', // TODO: save and format new address
+    date_moved_to:
+      req.sessionModel.get('TBD') === 'yes'
+        ? getSessionValueOrDefault(req.sessionModel.get('TBD'))
+        : '',
+    address_proof_attachments: getSessionValueOrDefault(
+      parseDocumentList(req.sessionModel.get('TBD'))
+    ),
+    has_amended_substances: 'yes', // TODO: Page to be developed
+    explosive_precursor: '', // TODO: from section summary
+    has_amended_poisons: 'yes', // TODO: Page to be developed
+    poison_list: '', // TODO: from summary page
+    has_countersignatory_details: hasCountersignatoryDetails(req, 'replace')
+      ? 'yes'
+      : 'no',
+
+    countersignatory_title: hasCountersignatoryDetails(req, 'replace')
+      ? getSessionValueOrDefault(req.sessionModel.get('TBD'))
+      : '',
+    countersignatory_first_name: hasCountersignatoryDetails(req, 'replace')
+      ? getSessionValueOrDefault(req.sessionModel.get('TBD'))
+      : '',
+    has_countersignatory_middle_name:
+      hasCountersignatoryDetails(req, 'replace') && req.sessionModel.get('TBD')
+        ? 'yes'
+        : 'no',
+    countersignatory_middle_name: hasCountersignatoryDetails(req, 'replace')
+      ? getSessionValueOrDefault(req.sessionModel.get('TBD'))
+      : '',
+    countersignatory_last_name: hasCountersignatoryDetails(req, 'replace')
+      ? getSessionValueOrDefault(req.sessionModel.get('TBD'))
+      : '',
+    countersignatory_address: 'TBD', // TODO: Format inlin address
+    countersignatory_phone: hasCountersignatoryDetails(req, 'replace')
+      ? getSessionValueOrDefault(req.sessionModel.get('TBD'))
+      : '',
+    countersignatory_email: hasCountersignatoryDetails(req, 'replace')
+      ? getSessionValueOrDefault(req.sessionModel.get('TBD'))
+      : '',
+    countersignatory_id_type: hasCountersignatoryDetails(req, 'replace')
+      ? getSessionValueOrDefault(
+          getLabel('TBD', req.sessionModel.get('TBD'), replaceTranslation)
+        )
+      : '',
+    countersignatory_id: hasCountersignatoryDetails(req, 'replace')
+      ? getSessionValueOrDefault(
+          req.sessionModel.get('TBD') ||
+            req.sessionModel.get('TBD') ||
+            req.sessionModel.get('TBD')
+        )
+      : ''
   };
 };
 
@@ -471,7 +555,7 @@ module.exports = class SendEmailConfirmation {
   }
 
   async renderHTML(req, res, locs) {
-    let locals = locs;
+    const locals = locs;
 
     locals.title = 'EPP Submission';
     locals.dateTime = moment().format(dateTimeFormat);
@@ -516,7 +600,11 @@ module.exports = class SendEmailConfirmation {
 
     try {
       await notifyClient.sendEmail(templateId, recipientEmailAddress, {
-        personalisation: Object.assign({}, personalisation),
+        personalisation: Object.assign({}, personalisation, {
+          link_to_file: notifyClient.prepareUpload(pdfData, {
+            confirmEmailBeforeDownload: false
+          })
+        }),
         emailReplyToId
       });
 
@@ -543,11 +631,10 @@ module.exports = class SendEmailConfirmation {
   async send(req, res, locals) {
     try {
       const html = await this.renderHTML(req, res, locals);
-      console.log(html);
+      req.log('info', html);
 
       const pdfModel = new PDFModel();
       pdfModel.set({ template: html });
-      pdfModel.set({ headers: {} });
       const pdfData = await pdfModel.save();
 
       await this.sendEmailNotification(req, USER, pdfData);
