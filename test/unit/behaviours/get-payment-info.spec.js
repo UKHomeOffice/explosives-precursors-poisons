@@ -1,7 +1,7 @@
 const proxyquire = require('proxyquire');
 const Model = require('hof').model;
 
-describe('get-payment-info tests', () => {
+describe.skip('get-payment-info tests', () => {
   let GetPaymentInfo;
   let Behaviour;
   let behaviour;

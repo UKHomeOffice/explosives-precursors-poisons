@@ -573,6 +573,7 @@ module.exports = class SendEmailConfirmation {
     locals.title = 'EPP Submission';
     locals.dateTime = moment().format(dateTimeFormat);
     locals.values = req.sessionModel.toJSON();
+    console.log(locals.values);
     locals.htmlLang = res.locals.htmlLang || 'en';
 
     locals.css = await this.readCss(req);
@@ -644,6 +645,7 @@ module.exports = class SendEmailConfirmation {
   async send(req, res, locals) {
     try {
       const html = await this.renderHTML(req, res, locals);
+ 
       const pdfModel = new PDFModel();
       pdfModel.set({ template: html });
       const pdfData = await pdfModel.save();
