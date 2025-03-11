@@ -148,6 +148,11 @@ module.exports = {
         allowMultipleUploads: false,
         limit: 1,
         limitValidationError: 'maxReplaceCertificateConduct'
+      },
+      'replace-birth-certificate': {
+        allowMultipleUploads: false,
+        limit: 1,
+        limitValidationError: 'maxReplaceBirthCertificate'
       }
     }
   },
