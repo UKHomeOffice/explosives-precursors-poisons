@@ -23,15 +23,16 @@ const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redund
 
 const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-payment-request');
 const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
+const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 
 module.exports = {
   name: 'EPP form',
   fields: 'apps/epp-new/fields',
   views: 'apps/epp-new/views',
   translations: 'apps/epp-new/translations',
-  baseUrl: '/new-and-renew',
+  baseUrl: '/new-renew',
   params: '/:action?/:id?/:edit?',
-  behaviours: [sectionCounter],
+  behaviours: [sectionCounter, JourneyValidator],
   steps: {
     '/your-name': {
       behaviours: [
@@ -107,7 +108,7 @@ module.exports = {
     },
     '/your-details': {
       behaviours: [
-        DobEditRedirect('new-renew-dob', '/new-and-renew/birth-certificate')
+        DobEditRedirect('new-renew-dob', '/new-renew/birth-certificate')
       ],
       fields: [
         'new-renew-dob',

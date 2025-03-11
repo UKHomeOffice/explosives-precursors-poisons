@@ -7,7 +7,7 @@ module.exports = {
   fields: 'apps/epp-renew/fields',
   views: 'apps/epp-renew/views',
   translations: 'apps/epp-renew/translations',
-  baseUrl: '/new-and-renew',
+  baseUrl: '/new-renew',
   steps: {
     '/licence-number': {
       behaviours: [validateAndRedirect, RemoveEditMode, ValidateLicenceNumber],

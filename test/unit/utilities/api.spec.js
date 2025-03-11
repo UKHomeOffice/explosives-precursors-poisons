@@ -11,7 +11,7 @@ describe('apis.js tests', () => {
     amount: 3950,
     reference: 'New payment Reference',
     description: 'New payment description',
-    return_url: 'http://localhost:8080/new-and-renew/application-submitted',
+    return_url: 'http://localhost:8080/new-renew/application-submitted',
     token: 'ABCD1234',
     metadata: {
       custom_metadata_key1: 'custom_metadata_value1',
@@ -167,11 +167,11 @@ describe('apis.js tests', () => {
     });
 
     it('supported applicationType - should return the path for new flow', () => {
-      expect(getErrorTemplateBasePath('new')).to.equal('/new-and-renew');
+      expect(getErrorTemplateBasePath('new')).to.equal('/new-renew');
     });
 
     it('supported applicationType - should return the path for renew flow', () => {
-      expect(getErrorTemplateBasePath('renew')).to.equal('/new-and-renew');
+      expect(getErrorTemplateBasePath('renew')).to.equal('/new-renew');
     });
 
     it('supported applicationType - should return the path for replace flow', () => {

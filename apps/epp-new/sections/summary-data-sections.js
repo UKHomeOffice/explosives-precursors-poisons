@@ -36,7 +36,7 @@ module.exports = {
       {
         step: '/other-names-summary',
         field: 'othernames',
-        changeLink: '/new-and-renew/other-names-summary',
+        changeLink: '/new-renew/other-names-summary',
         parse: (list, req) => {
           if (req.sessionModel.get('new-renew-other-names') === 'no') {
             return null;

@@ -13,7 +13,7 @@ module.exports = {
       fields: ['application-type'],
       forks: [
         {
-          target: '/new-and-renew/your-name',
+          target: '/new-renew/your-name',
           condition: {
             field: 'application-type',
             value: 'new'
@@ -27,7 +27,7 @@ module.exports = {
           }
         },
         {
-          target: '/new-and-renew/licence-number',
+          target: '/new-renew/licence-number',
           condition: {
             field: 'application-type',
             value: 'renew'
