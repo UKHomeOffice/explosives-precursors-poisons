@@ -30,6 +30,23 @@ const BUSINESS = 'business';
 const STR_YES = 'yes';
 const STR_NO = 'no';
 
+const getPdfTitle = req => {
+  const applicationType = req.sessionModel.get('applicationType');
+
+  switch (applicationType) {
+    case APP_TYPE_NEW:
+      return req.translate('journey.serviceNameNew');
+    case APP_TYPE_RENEW:
+      return req.translate('journey.serviceNameRenew');
+
+    case APP_TYPE_AMEND:
+    case APP_TYPE_REPLACE:
+      return req.translate('journey.serviceName');
+    default:
+      throw Error(`Unknown application type: ${applicationType}`);
+  }
+};
+
 const formatSectionSummaryItems = items => {
   return items
     ? items.aggregatedValues
@@ -569,11 +586,9 @@ module.exports = class SendEmailConfirmation {
 
   async renderHTML(req, res, locs) {
     const locals = locs;
-
-    locals.title = 'EPP Submission';
+    locals.title = getPdfTitle(req);
     locals.dateTime = moment().format(dateTimeFormat);
     locals.values = req.sessionModel.toJSON();
-    console.log(locals.values);
     locals.htmlLang = res.locals.htmlLang || 'en';
 
     locals.css = await this.readCss(req);
@@ -645,7 +660,7 @@ module.exports = class SendEmailConfirmation {
   async send(req, res, locals) {
     try {
       const html = await this.renderHTML(req, res, locals);
- 
+
       const pdfModel = new PDFModel();
       pdfModel.set({ template: html });
       const pdfData = await pdfModel.save();
