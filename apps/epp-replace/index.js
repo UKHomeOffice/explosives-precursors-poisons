@@ -6,6 +6,7 @@ const RemoveDocument = require('../epp-common/behaviours/remove-document');
 const ValidateLicenceNumber = require('../epp-common/behaviours/licence-validator');
 const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
+const DobUnder18Redirect = require('../epp-common/behaviours/dob-under18-redirect');
 
 // TODO: Use DeleteRedundantDocuments behaviour similar to amend flow to
 // remove the uploaded files when dependent option changes
@@ -227,6 +228,17 @@ module.exports = {
     '/section-twenty-one': {
       fields: ['replace-countersignatory-document-type'],
       next: '/birth-certificate'
+    },
+    '/countersignatory-id': {
+      behaviours: [DobUnder18Redirect('replace-date-of-birth', '/birth-certificate')],
+      fields: [
+        'replace-countersignatory-Id-type',
+        'replace-countersignatory-UK-passport-number',
+        'replace-countersignatory-EU-passport-number',
+        'replace-countersignatory-Uk-driving-licence-number'
+      ],
+      locals: { captionHeading: 'Section 24 of 26' },
+      next: '/confirm'
     },
     '/birth-certificate': {
       behaviours: [

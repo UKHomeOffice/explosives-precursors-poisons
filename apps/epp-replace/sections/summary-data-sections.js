@@ -130,6 +130,22 @@ module.exports = {
   'countersignatory-details': {
     steps: [
       {
+        step: '/countersignatory-id',
+        field: 'require-countersignatory-Id-type'
+      },
+      {
+        step: '/countersignatory-id',
+        field: 'require-countersignatory-UK-passport-number'
+      },
+      {
+        step: '/countersignatory-id',
+        field: 'require-countersignatory-EU-passport-number'
+      },
+      {
+        step: '/countersignatory-id',
+        field: 'require-countersignatory-Uk-driving-licence-number'
+      },
+      {
         step: '/birth-certificate',
         field: 'replace-birth-certificate',
         parse: (documents, req) => {
