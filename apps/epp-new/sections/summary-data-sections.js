@@ -144,7 +144,7 @@ module.exports = {
       {
         step: '/previous-addresses',
         field: 'otheraddresses',
-        changeLink: '/new-and-renew/previous-addresses',
+        changeLink: '/new-renew/previous-addresses',
         parse: (list, req) => {
           if (req.sessionModel.get('new-renew-previous-addresses') === 'no') {
             return null;
