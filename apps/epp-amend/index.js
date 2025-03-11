@@ -356,7 +356,8 @@ module.exports = {
       next: '/declaration'
     },
     '/declaration': {
-      behaviours: [SendNotification],
+      behaviours: [SummaryPageBehaviour, SendNotification],
+      sections: require('./sections/summary-data-sections'),
       fields: ['amend-declaration'],
       next: '/application-submitted',
       locals: { captionHeading: 'Section 23 of 23' }

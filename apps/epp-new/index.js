@@ -3,7 +3,7 @@ const sectionCounter = require('./behaviours/section-counter');
 const checkBackLink = require('./behaviours/check-back-link');
 const validateAndRedirect = require('./behaviours/home-redirection');
 const filterCountries = require('./behaviours/filter-countries');
-const summary = hof.components.summary;
+const SummaryPageBehaviour = hof.components.summary;
 const ConfirmationDisplay = require('./behaviours/confirmation-type');
 const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
 const PostcodeValidation = require('../../utilities/helpers/postcode-validation');
@@ -617,7 +617,7 @@ module.exports = {
       }
     },
     '/confirm': {
-      behaviours: [summary, ConfirmationDisplay, EditRouteStart],
+      behaviours: [SummaryPageBehaviour, ConfirmationDisplay, EditRouteStart],
       sections: require('./sections/summary-data-sections'),
       next: '/declaration',
       locals: {
@@ -645,7 +645,8 @@ module.exports = {
     },
     '/payment-cancelled': {},
     '/application-submitted': {
-      behaviours: [GetPaymentInfo],
+      sections: require('./sections/summary-data-sections'),
+      behaviours: [SummaryPageBehaviour, GetPaymentInfo],
       backLink: false
     }
   }
