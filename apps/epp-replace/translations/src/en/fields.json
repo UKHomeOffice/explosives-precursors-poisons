@@ -34,5 +34,11 @@
             "label": "Licence is destroyed"
           }
         }
+      },
+      "replace-poison": {
+        "hint": "Select a poison",
+          "options":{
+            "none_selected": "Select poison"
+        }
       }
 }

@@ -119,6 +119,14 @@ module.exports = {
       }
     ]
   },
+  'replace-licence-for-poisons': {
+    steps: [
+      {
+        step: '/select-poisons',
+        field: 'replace-poison'
+      }
+    ]
+  },
   'countersignatory-details': {
     steps: [
       {
