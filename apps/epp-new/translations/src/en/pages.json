@@ -19,6 +19,9 @@
     "title": "Other names summary",
     "header": "Other nationalities"
   },
+  "previous-addresses": {
+    "header": "Previous address history"
+  },
   "home-address": {
     "header": "What is your home address?"
   },
@@ -243,11 +246,17 @@
       },
       "other-names-summary": {
         "header": "Other names summary"
+      },
+      "previous-addresses": {
+        "label": "Previous addresses"
       }
     },
     "fields": {
       "new-renew-licence-number": {
         "label": "Licence number"
+      },
+      "otheraddresses": {
+        "label": "Previous addresses"
       },
       "new-renew-other-country-nationality": {
         "label": "Other nationality"
@@ -302,6 +311,9 @@
       },
       "othernames": {
         "label": "Other names"
+      },
+      "otheraddresses": {
+        "label": "Previous addresses"
       },
       "new-renew-countersignatory-middlename": {
         "label": "Middle names"

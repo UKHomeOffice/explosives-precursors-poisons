@@ -142,6 +142,25 @@ module.exports = {
         parse: date => date && dateFormatter.format(new Date(date))
       },
       {
+        step: '/previous-addresses',
+        field: 'otheraddresses',
+        changeLink: '/new-and-renew/previous-addresses',
+        parse: (list, req) => {
+          if (req.sessionModel.get('new-renew-previous-addresses') === 'no') {
+            return null;
+          }
+          return req.sessionModel.get('otheraddresses')?.aggregatedValues.length > 0 ?
+            req.sessionModel.get('otheraddresses').aggregatedValues.map(a => a.fields.map(field => {
+              if (
+                field.field === 'new-renew-previous-home-address-moveto-date'
+              ) {
+                field.parsed = getFormattedDate(field.parsed);
+              }
+              return field.parsed;
+            }).filter(Boolean).join('\n')).join('\n \n') : null;
+        }
+      },
+      {
         step: '/upload-proof-address',
         field: 'new-renew-proof-address',
         parse: (documents, req) => {
