@@ -115,6 +115,12 @@ spec:
             {{ else if eq .KUBE_NAMESPACE .PROD_ENV }}
               value: https://fv-{{ .APP_NAME }}.sas.homeoffice.gov.uk/file
             {{ end }}
+            - name: PDF_CONVERTER_URL
+            {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
+              value: https://html-pdf-converter-{{ .DRONE_SOURCE_BRANCH }}:10443/convert
+            {{ else }}
+              value: https://html-pdf-converter:10443/convert
+            {{ end }}
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
             - name: DEBUG
               value: "*"

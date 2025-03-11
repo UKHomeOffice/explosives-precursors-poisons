@@ -644,8 +644,6 @@ module.exports = class SendEmailConfirmation {
   async send(req, res, locals) {
     try {
       const html = await this.renderHTML(req, res, locals);
-      req.log('info', html);
-
       const pdfModel = new PDFModel();
       pdfModel.set({ template: html });
       const pdfData = await pdfModel.save();
