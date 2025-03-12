@@ -1,7 +1,5 @@
 'use strict';
-const {
-  isDateOlderOrEqualTo
-} = require('../../../utilities/helpers');
+const { isDateOlderOrEqualTo } = require('../../../utilities/helpers');
 module.exports = {
   'replace-licence': {
     steps: [
@@ -129,60 +127,60 @@ module.exports = {
   },
   'countersignatory-details': {
     steps: [
-        {
-            step: '/countersignatory-details',
-            field: 'replace-countersignatory-title'
-        },
-        {
-            step: '/countersignatory-details',
-            field: 'replace-countersignatory-firstname'
-        },
-        {
-            step: '/countersignatory-details',
-            field: 'replace-countersignatory-middlename',
-            parse: value => value || 'Not provided'
-        },
-        {
-            step: '/countersignatory-details',
-            field: 'replace-countersignatory-lastname'
-        },
-        {
-            step: '/countersignatory-details',
-            field: 'replace-countersignatory-years'
-        },
-        {
-            step: '/countersignatory-details',
-            field: 'replace-countersignatory-howyouknow'
-        },
-        {
-            step: '/countersignatory-details',
-            field: 'replace-countersignatory-occupation'
-        },
-        {
-            step: '/countersignatory-address',
-            field: 'replace-countersignatory-address-1'
-        },
-        {
-            step: '/countersignatory-address',
-            field: 'replace-countersignatory-address-2',
-            parse: value => value || 'Not provided'
-        },
-        {
-            step: '/countersignatory-address',
-            field: 'replace-countersignatory-town-or-city'
-        },
-        {
-            step: '/countersignatory-address',
-            field: 'replace-countersignatory-postcode'
-        },
-        {
-            step: '/countersignatory-contact',
-            field: 'replace-countersignatory-phone-number'
-        },
-        {
-            step: '/countersignatory-contact',
-            field: 'replace-countersignatory-email'
-        },
+      {
+        step: '/countersignatory-details',
+        field: 'replace-countersignatory-title'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'replace-countersignatory-firstname'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'replace-countersignatory-middlename',
+        parse: value => value || 'Not provided'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'replace-countersignatory-lastname'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'replace-countersignatory-years'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'replace-countersignatory-howyouknow'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'replace-countersignatory-occupation'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'replace-countersignatory-address-1'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'replace-countersignatory-address-2',
+        parse: value => value || 'Not provided'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'replace-countersignatory-town-or-city'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'replace-countersignatory-postcode'
+      },
+      {
+        step: '/countersignatory-contact',
+        field: 'replace-countersignatory-phone-number'
+      },
+      {
+        step: '/countersignatory-contact',
+        field: 'replace-countersignatory-email'
+      },
       {
         step: '/countersignatory-id',
         field: 'replace-countersignatory-Id-type'
@@ -205,8 +203,12 @@ module.exports = {
         parse: (documents, req) => {
           if (
             req.sessionModel.get('steps').includes('/birth-certificate') &&
-            documents?.length > 0 && req.sessionModel.get('replace-date-of-birth')
-            && !isDateOlderOrEqualTo(req.sessionModel.get('replace-date-of-birth'), 18)
+            documents?.length > 0 &&
+            req.sessionModel.get('replace-date-of-birth') &&
+            !isDateOlderOrEqualTo(
+              req.sessionModel.get('replace-date-of-birth'),
+              18
+            )
           ) {
             return documents.map(file => file?.name)?.join('\n\n');
           }
