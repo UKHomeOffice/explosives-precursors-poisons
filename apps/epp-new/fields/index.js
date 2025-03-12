@@ -564,8 +564,8 @@ module.exports = {
   'new-renew-licence-type': {
     mixin: 'radio-group',
     options: [
-      { value: 'Firearms', label: 'Firearms' },
-      { value: 'Shotgun', label: 'Shotgun' }
+      { value: 'firearms' },
+      { value: 'shotgun' }
     ],
     validate: 'required',
     legend: {
