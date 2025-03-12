@@ -10,9 +10,6 @@ const dateFormatter = new Intl.DateTimeFormat(
   config.dateFormat
 );
 
-const FIVE_YEARS_AGO = new Date();
-FIVE_YEARS_AGO.setFullYear(FIVE_YEARS_AGO.getFullYear() - 5);
-
 module.exports = {
   'your-name': {
     steps: [
@@ -150,10 +147,7 @@ module.exports = {
         changeLink: '/new-renew/previous-addresses',
         parse: (list, req) => {
           const homeMoveDate = req.sessionModel.get('new-renew-home-address-moveto-date');
-          if (homeMoveDate && new Date(homeMoveDate) <= FIVE_YEARS_AGO) {
-            return null;
-          }
-          if (req.sessionModel.get('new-renew-previous-addresses') === 'no') {
+          if (homeMoveDate && isDateOlderOrEqualTo(homeMoveDate, 5)) {
             return null;
           }
           const addresses = req.sessionModel.get('otheraddresses')?.aggregatedValues || [];

@@ -247,17 +247,11 @@
       },
       "other-names-summary": {
         "header": "Other names summary"
-      },
-      "previous-addresses": {
-        "label": "Previous addresses"
       }
     },
     "fields": {
       "new-renew-licence-number": {
         "label": "Licence number"
-      },
-      "otheraddresses": {
-        "label": "Previous addresses"
       },
       "new-renew-other-country-nationality": {
         "label": "Other nationality"
