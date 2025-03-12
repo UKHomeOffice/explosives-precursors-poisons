@@ -54,7 +54,7 @@ module.exports = {
   },
   'new-renew-phone-number': {
     mixin: 'input-text',
-    validate: ['required', 'internationalPhoneNumber'],
+    validate: ['required', 'notUrl', validInternationalPhoneNumber],
     className: ['govuk-input'],
     labelClassName: 'govuk-label--m'
   },
