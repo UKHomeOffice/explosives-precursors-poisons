@@ -32,21 +32,9 @@ module.exports = superclass =>
           if (!field.value) {
             field.parsed = TEXT_NOT_PROVIDED;
           }
-          else if(field.field === 'amend-where-to-store-precursor'){
-            console.log(req.sessionModel.get('amend-where-to-store-precursor'));
-            field.parsed = req.sessionModel.get('homeAddressInline');
+          if(field.field === 'precursors-use-other-address' || field.field === 'store-precursors-other-address') {
+            field.showInSummary = false;
           }
-            else if (field.field === 'amend-where-to-use-precursor'){
-              console.log(req.sessionModel.get('amend-where-to-use-precursor'));
-            field.parsed = req.sessionModel.get('homeAddressInline')
-          }
-           else if(field.field === 'store-precursors-other-address'){
-            field.parsed = req.sessionModel.get('store-precursors-other-address')
-          }
-          else if(field.field === 'precursors-use-other-address'){
-            field.parsed = req.sessionModel.get('precursors-use-other-address')
-          }
-          console.log( 'fields: ', field)
           field.field += '.summary-heading';
           return field;
         });

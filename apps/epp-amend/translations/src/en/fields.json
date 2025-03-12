@@ -269,8 +269,7 @@
   },
   "store-precursors-other-address": {
     "label": "{{values.storePrecursorOtherAddressLabel}}",
-    "hint": "Enter a UK address",
-    "summary-heading": "{{values.storePrecursorOtherAddressLabel}}"
+    "hint": "Enter a UK address"
   },
   "amend-where-to-use-precursor": {
     "legend": "{{values.whereToUsePrecursorLegend}}",
@@ -288,8 +287,7 @@
   },
   "precursors-use-other-address": {
     "label": "{{values.usePrecursorOtherAddressLabel}}",
-    "hint": "Enter a UK address",
-    "summary-heading": "{{values.usePrecursorOtherAddressLabel}}"
+    "hint": "Enter a UK address"
   },
   "amend-countersignatory-Id-type": {
     "legend": "Which identity document do you want to use?",

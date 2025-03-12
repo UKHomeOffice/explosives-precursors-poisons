@@ -75,9 +75,9 @@ module.exports = superclass => class extends superclass {
     const isUpdate = req.sessionModel.get('isUpdate');
     const updatingIndex = req.sessionModel.get('updatingIndex');
 
-    if(isUpdate) {
+    if (isUpdate) {
       items.splice(updatingIndex, 0, newItem);
-    }else{
+    } else {
       if (aggregateLimit) {
         if (items.length < aggregateLimit) {
           items.push(newItem);
@@ -158,7 +158,38 @@ module.exports = superclass => class extends superclass {
 
   parseField(field, value, req) {
     const fieldName = field.field || field;
-    const parser = req.form.options.fieldsConfig[fieldName].parse;
+    const valueVar = field.value || value;
+    const newValue = '';
+    const parser = req.form.options.fieldsConfig[fieldName].parse; // what is supposed to do it's always undefined
+    if (Array.isArray(value)) {
+      if (fieldName === 'amend-where-to-store-precursor') {
+        newValue = req.sessionModel.get('homeAddressInline')
+          .concat('\n', req.sessionModel.get('store-precursors-other-address'));
+        value = newValue;
+      }
+      if (fieldName === 'amend-where-to-use-precursor') {
+        newValue = req.sessionModel.get('homeAddressInline')
+          .concat('\n', req.sessionModel.get('precursors-use-other-address'));
+        value = newValue;
+      }
+    } else {
+      if (fieldName === 'amend-where-to-store-precursor' && valueVar === 'amend-store-precursors-home-address') {
+        newValue = req.sessionModel.get('homeAddressInline');
+        value = newValue;
+      }
+      if (fieldName === 'amend-where-to-use-precursor' && valueVar === 'amend-use-precursors-home-address') {
+        newValue = req.sessionModel.get('homeAddressInline');
+        value = newValue;
+      }
+      if (fieldName === 'amend-where-to-store-precursor' && valueVar === 'amend-store-precursors-other-address') {
+        newValue = req.sessionModel.get('precursors-use-other-address');
+        value = newValue;
+      }
+      if (fieldName === 'amend-where-to-use-precursor' && valueVar === 'amend-use-precursors-other-address') {
+        newValue = req.sessionModel.get('store-precursors-other-address');
+        value = newValue;
+      }
+    }
     return parser ? parser(value) : value;
   }
 
