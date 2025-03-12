@@ -2,8 +2,9 @@
 const fs = require('fs');
 const path = require('path');
 const { govukNotify, dateTimeFormat } = require('../../../config');
+const utils = require('../../../utilities/helpers');
 
-const NotifyClient = require('notifications-node-client').NotifyClient;
+const NotifyClient = utils.NotifyClient;
 const notifyKey = govukNotify.notifyApiKey;
 const notifyClient = new NotifyClient(notifyKey);
 const PDFModel = require('hof').apis.pdfConverter;
@@ -628,6 +629,13 @@ module.exports = class SendEmailConfirmation {
     );
 
     try {
+      if (notifyKey === 'USE_MOCK') {
+        req.log(
+          'warn',
+          '*** Notify API Key set to USE_MOCK. Ensure disabled in production! ***'
+        );
+      }
+
       await notifyClient.sendEmail(templateId, recipientEmailAddress, {
         personalisation: Object.assign({}, personalisation, {
           link_to_file: notifyClient.prepareUpload(pdfData, {

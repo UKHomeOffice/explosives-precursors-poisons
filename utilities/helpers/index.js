@@ -1,10 +1,21 @@
 const moment = require('moment');
 const validators = require('hof/controller/validation/validators');
-
 const explosivePrecursorsList = require('../constants/explosive-precursors');
-const removeWhiteSpace = value => value?.replace(/\s+/g, '');
-
 const config = require('../../config');
+
+class NotifyMock {
+  sendEmail() {
+    return Promise.resolve();
+  }
+
+  sendSms() {
+    return Promise.resolve();
+  }
+
+  prepareUpload() {}
+}
+
+const removeWhiteSpace = value => value?.replace(/\s+/g, '');
 
 const validLicenceNumber = value =>
   value.match(/^\d{2}[\/,\-| ]?\w[\/,\-| ]?\d{6}[\/,\-| ]?\d{4}$/);
@@ -152,5 +163,9 @@ module.exports = {
   isEditMode,
   getPrecursorsShortLabel,
   textAreaDefaultLength,
-  isValidConcentrationValue
+  isValidConcentrationValue,
+  NotifyClient:
+    config.govukNotify.notifyApiKey === 'USE_MOCK'
+      ? NotifyMock
+      : require('notifications-node-client').NotifyClient
 };
