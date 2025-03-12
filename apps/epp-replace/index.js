@@ -227,7 +227,7 @@ module.exports = {
     },
     '/section-twenty-one': {
       fields: ['replace-countersignatory-document-type'],
-      next: '/birth-certificate'
+      next: '/countersignatory-id'
     },
     '/countersignatory-id': {
       behaviours: [DobUnder18Redirect('replace-date-of-birth', '/birth-certificate')],

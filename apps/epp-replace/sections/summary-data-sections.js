@@ -131,19 +131,19 @@ module.exports = {
     steps: [
       {
         step: '/countersignatory-id',
-        field: 'require-countersignatory-Id-type'
+        field: 'replace-countersignatory-Id-type'
       },
       {
         step: '/countersignatory-id',
-        field: 'require-countersignatory-UK-passport-number'
+        field: 'replace-countersignatory-UK-passport-number'
       },
       {
         step: '/countersignatory-id',
-        field: 'require-countersignatory-EU-passport-number'
+        field: 'replace-countersignatory-EU-passport-number'
       },
       {
         step: '/countersignatory-id',
-        field: 'require-countersignatory-Uk-driving-licence-number'
+        field: 'replace-countersignatory-Uk-driving-licence-number'
       },
       {
         step: '/birth-certificate',

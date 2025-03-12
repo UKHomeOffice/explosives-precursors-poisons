@@ -1,5 +1,6 @@
 const titles = require('../../../utilities/constants/titles');
-const poisonsList = require('../../../utilities/constants/poisons.js');const helpers = require('../../../utilities/helpers/index.js');
+const poisonsList = require('../../../utilities/constants/poisons.js');
+const helpers = require('../../../utilities/helpers/index.js');
 
 module.exports = {
   'replace-licence-number': {
