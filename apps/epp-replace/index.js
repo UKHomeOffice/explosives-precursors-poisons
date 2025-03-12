@@ -36,8 +36,23 @@ module.exports = {
       ]
     },
     '/police-report': {
-      fields: ['replace-is-crime-reported'],
-      next: '/report-details'
+      fields: ['replace-police-report'],
+      next: '/report-details',
+      forks: [
+        {
+          target: '/report-details',
+          condition: {
+            value: 'yes'
+          }
+        },
+        {
+          target: '/report-to-police',
+          condition: {
+            value: 'no'
+          }
+        }
+      ],
+      locals: { captionHeading: 'Section 2 of 26' }
     },
     '/report-to-police': {
       backLink: '/section-two'

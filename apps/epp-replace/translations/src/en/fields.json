@@ -18,6 +18,17 @@
       "replace-last-name": {
         "label": "Last name"
       },
+      "replace-police-report": {
+        "legend": "Have you reported the theft to the police?",
+        "options": {
+          "yes": {
+            "label": "Yes"
+          },
+          "no": {
+            "label": "No"
+          }
+        }
+      },
       "replace-licence": {
         "legend": "Why do you need a replacement licence?",
         "options": {
