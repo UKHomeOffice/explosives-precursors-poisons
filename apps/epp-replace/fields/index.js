@@ -1,4 +1,5 @@
 const titles = require('../../../utilities/constants/titles');
+const poisonsList = require('../../../utilities/constants/poisons.js');
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years.js');
 const { validInternationalPhoneNumber } = require('../../../utilities/helpers');
 
@@ -138,5 +139,17 @@ module.exports = {
     validate: ['required', 'email'],
     className: ['govuk-input'],
     labelClassName: 'govuk-label--m'
+  },
+  'replace-poison': {
+    mixin: 'select',
+    validate: ['required'],
+    labelClassName: 'visuallyhidden',
+    className: ['govuk-select', 'govuk-input--width-2'],
+    options: [
+      {
+        value: '',
+        label: 'fields.replace-poison.options.none_selected'
+      }
+    ].concat(poisonsList)
   }
 };

@@ -79,6 +79,11 @@
     "files-uploaded": "Files uploaded",
     "uploading-document": "Uploading your document..."
   },
+  "select-poisons": {
+    "header": "Poisons",
+    "p1": "Tell us which poisons you want to import acquire use or possess.",
+    "p2": "If you need multiple poisons, you can add each one separately."
+  },
   "your-name": {
     "header": "What is your name on the licence?"
   },
@@ -96,9 +101,6 @@
     "header": "Check your answers",
     "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",
     "sections": {
-      "countersignatory-details": {
-        "header": "Countersignatory details"
-      },
       "licence-details": {
         "header": "Licence details"
       },
@@ -110,6 +112,15 @@
       },
       "applicant-name": {
         "header": "Applicant name"
+      },
+      "replace-licence-for-poisons": {
+        "header": "Licence for poisons"
+      },
+      "replace-select-poisons": {
+        "header": " Poisons"
+      },
+      "countersignatory-details": {
+        "header": "Countersignatory details"
       }
     },
     "fields": {
@@ -151,6 +162,9 @@
       },
       "replace-countersignatory-phone-number": {
         "label": "Phone number"
+      },
+      "replace-poison": {
+        "label": "Poisons"
       }
     }
   }
