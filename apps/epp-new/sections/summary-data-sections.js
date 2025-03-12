@@ -10,6 +10,9 @@ const dateFormatter = new Intl.DateTimeFormat(
   config.dateFormat
 );
 
+const FIVE_YEARS_AGO = new Date();
+FIVE_YEARS_AGO.setFullYear(FIVE_YEARS_AGO.getFullYear() - 5);
+
 module.exports = {
   'your-name': {
     steps: [
@@ -146,18 +149,18 @@ module.exports = {
         field: 'otheraddresses',
         changeLink: '/new-renew/previous-addresses',
         parse: (list, req) => {
+          const homeMoveDate = req.sessionModel.get('new-renew-home-address-moveto-date');
+          if (homeMoveDate && new Date(homeMoveDate) <= FIVE_YEARS_AGO) {
+            return null;
+          }
           if (req.sessionModel.get('new-renew-previous-addresses') === 'no') {
             return null;
           }
-          return req.sessionModel.get('otheraddresses')?.aggregatedValues.length > 0 ?
-            req.sessionModel.get('otheraddresses').aggregatedValues.map(a => a.fields.map(field => {
-              if (
-                field.field === 'new-renew-previous-home-address-moveto-date'
-              ) {
-                field.parsed = getFormattedDate(field.parsed);
-              }
-              return field.parsed;
-            }).filter(Boolean).join('\n')).join('\n \n') : null;
+          const addresses = req.sessionModel.get('otheraddresses')?.aggregatedValues || [];
+
+          return addresses.length > 0 ? addresses.map(({ fields }) => fields.map(f =>
+            f.field === 'new-renew-previous-home-address-moveto-date'
+              ? getFormattedDate(f.parsed) : f.parsed).filter(Boolean).join('\n')).filter(Boolean).join('\n\n') : null;
         }
       },
       {
@@ -165,14 +168,9 @@ module.exports = {
         field: 'new-renew-proof-address',
         parse: (documents, req) => {
           if (
-            req.sessionModel
-              .get('steps')
-              .includes('/upload-proof-address') &&
-            documents?.length > 0
-          ) {
+            req.sessionModel.get('steps').includes('/upload-proof-address') && documents?.length > 0) {
             return documents.map(file => file?.name)?.join('\n\n');
           }
-
           return null;
         }
       }
