@@ -3,6 +3,8 @@ const poisonsList = require('../../../utilities/constants/poisons.js');
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years.js');
 const { validInternationalPhoneNumber } = require('../../../utilities/helpers');
 
+const helpers = require('../../../utilities/helpers/index.js');
+
 module.exports = {
   'replace-licence-number': {
     mixin: 'input-text',
@@ -151,5 +153,66 @@ module.exports = {
         label: 'fields.replace-poison.options.none_selected'
       }
     ].concat(poisonsList)
+  },
+  'replace-countersignatory-Id-type': {
+    isPageHeading: true,
+    mixin: 'radio-group',
+    validate: ['required'],
+    options: [
+      {
+        value: 'UK-passport',
+        toggle: 'replace-countersignatory-UK-passport-number',
+        child: 'input-text'
+      },
+      {
+        value: 'EU-passport',
+        toggle: 'replace-countersignatory-EU-passport-number',
+        child: 'input-text'
+      },
+      {
+        value: 'Uk-driving-licence',
+        toggle: 'replace-countersignatory-Uk-driving-licence-number',
+        child: 'input-text'
+      }
+    ]
+  },
+  'replace-countersignatory-UK-passport-number': {
+    validate: [
+      'required',
+      { type: 'maxlength', arguments: 9 },
+      'alphanum',
+      'notUrl'
+    ],
+    className: ['govuk-input', 'govuk-!-width-one-thirds'],
+    dependent: {
+      field: 'replace-countersignatory-Id-type',
+      value: 'UK-passport'
+    }
+  },
+  'replace-countersignatory-EU-passport-number': {
+    validate: [
+      'required',
+      { type: 'maxlength', arguments: 9 },
+      'alphanum',
+      'notUrl'
+    ],
+    className: ['govuk-input', 'govuk-!-width-one-thirds'],
+    dependent: {
+      field: 'replace-countersignatory-Id-type',
+      value: 'EU-passport'
+    }
+  },
+  'replace-countersignatory-Uk-driving-licence-number': {
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: 16 },
+      helpers.isValidUkDrivingLicenceNumber
+    ],
+    className: ['govuk-input', 'govuk-!-width-one-thirds'],
+    dependent: {
+      field: 'replace-countersignatory-Id-type',
+      value: 'Uk-driving-licence'
+    }
   }
 };

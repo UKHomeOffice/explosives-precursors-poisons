@@ -165,6 +165,18 @@
       },
       "replace-poison": {
         "label": "Poisons"
+      },
+      "replace-countersignatory-Id-type": {
+        "label": "Identification document"
+      },
+      "replace-countersignatory-UK-passport-number": {
+        "label": "British passport number"
+      },
+      "replace-countersignatory-EU-passport-number": {
+        "label": "Passport number"
+      },
+      "replace-countersignatory-Uk-driving-licence-number": {
+        "label": "UK driving licence number"
       }
     }
   }
