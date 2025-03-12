@@ -1,22 +1,17 @@
 {
   "license-number": {
-    "title": "Enter your licence number",
     "header": "Enter your licence number"
   },
   "other-licences": {
-    "title": "Other licences",
     "header": "Other licences"
   },
   "your-name": {
-    "title": "Your name",
     "header": "Your name"
   },
   "other-names": {
-    "title": "Other names",
     "header": "Other names"
   },
   "other-nationalities": {
-    "title": "Other names summary",
     "header": "Other nationalities"
   },
   "home-address": {
@@ -26,14 +21,12 @@
     "header": "Previous address"
   },
   "contact-details": {
-    "title": "What are your contact details?",
     "header": "What are your contact details?"
   },
   "other-names-summary": {
     "header": "Other names summary"
   },
   "criminal-record": {
-    "title": "Criminal records, warnings and cautions",
     "header": "Criminal records, warnings and cautions",
     "paragraph1": "You must declare all convictions, even spent ones under the Rehabilitation of Offenders Act 1974.",
     "paragraph2": "You do not need to tell us about motoring offences that were dealt with by way of fixed penalty.",
@@ -240,9 +233,6 @@
       },
       "proof-of-identity":{
         "header": "Proof of identity"
-      },
-      "other-licences": {
-        "header": "Other licences"
       },
       "medical-information": {
         "header": "Medical information"
