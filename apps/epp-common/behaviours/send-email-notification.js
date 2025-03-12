@@ -155,6 +155,17 @@ const hasCountersignatoryDetails = (req, applicationType) => {
   return false;
 };
 
+const hasPreviousAddress = req => {
+  const homeMoveDate = req.sessionModel.get(
+    'new-renew-home-address-moveto-date'
+  );
+  return !!(
+    homeMoveDate &&
+    !isDateOlderOrEqualTo(homeMoveDate, 5) &&
+    req.sessionModel.get('otheraddresses')?.aggregatedValues?.length
+  );
+};
+
 const getSessionValueOrDefault = value => value || '';
 
 const getNewRenewPersonalisation = req => {
@@ -217,8 +228,10 @@ const getNewRenewPersonalisation = req => {
     proof_of_address: getSessionValueOrDefault(
       parseDocumentList(req.sessionModel.get('new-renew-proof-address'))
     ),
-    has_previous_address: STR_NO, // TODO: where to get it
-    previous_addresses: '', // TODO: Format previous addresses
+    has_previous_address: hasValue(hasPreviousAddress(req)),
+    previous_addresses: getSessionValueOrDefault(
+      formatSectionSummaryItems(req.sessionModel.get('otheraddresses'))
+    ),
     phone_number: getSessionValueOrDefault(
       req.sessionModel.get('new-renew-phone-number')
     ),
