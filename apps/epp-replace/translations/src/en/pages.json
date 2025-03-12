@@ -82,6 +82,16 @@
   "your-name": {
     "header": "What is your name on the licence?"
   },
+  "countersignatory-details": {
+    "header": "Countersignatory details",
+    "description": "Your countersignatory must not be a parent or relative, unless you are under 18. If you are under 18, your countersignatory must be your parent or legal guardian."
+  },
+  "countersignatory-address": {
+    "header": "Countersignatory address"
+  },
+  "countersignatory-contact":{
+    "header": "Countersignatory's contact details"
+  },
   "confirm": {
     "header": "Check your answers",
     "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",
@@ -123,6 +133,24 @@
       },
       "replace-birth-certificate": {
         "label": "Birth certificate attachment"
+      },
+      "replace-countersignatory-middlename": {
+        "label": "Middle names"
+      },
+      "replace-countersignatory-years":{
+        "label": "How many years have you known countersignatory?"
+      },
+      "replace-countersignatory-howyouknow":{
+        "label": "How do you know countersignatory?"
+      },
+      "replace-countersignatory-occupation":{
+        "label": "Countersignatory’s occupation"
+      },
+      "replace-countersignatory-address-2": {
+        "label": "Address line 2"
+      },
+      "replace-countersignatory-phone-number": {
+        "label": "Phone number"
       }
     }
   }

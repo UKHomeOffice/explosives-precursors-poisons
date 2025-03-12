@@ -34,5 +34,65 @@
 },
 "replace-licence": {
   "required": "Select why you need a replacement licence"
-}
+},
+"replace-countersignatory-title": {
+    "required": "Select your countersignatory's title"
+  },
+  "replace-countersignatory-firstname": {
+    "required": "Enter your countersignatory's first name",
+    "maxlength": "Countersignatory's first name must between 1 and 250 characters",
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
+  },
+  "replace-countersignatory-middlename": {
+    "maxlength": "Countersignatory's middle names must be between 1 and 250 characters",
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
+  },
+  "replace-countersignatory-lastname": {
+    "required": "Enter your countersignatory's last name",
+    "maxlength": "Countersignatory's last name must be between 1 and 250 characters",
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
+  },
+  "replace-countersignatory-years": {
+    "required": "Select how many years you have known your countersignatory"
+  },
+  "replace-countersignatory-howyouknow": {
+    "required": "Enter how you know your countersignatory",
+    "maxlength": "How you know your countersignatory must be 250 characters or less",
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
+  },
+  "replace-countersignatory-occupation": {
+    "required": "Enter your countersignatory's occupation",
+    "maxlength": "Countersignatory's occupation must be 250 characters or less",
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
+  },
+  "replace-countersignatory-address-1": {
+    "required" : "Enter address line 1, typically the building and street",
+    "minlength": "Address line 1 must be between 2 and 250 characters",
+    "maxlength": "Address line 1 must be between 2 and 250 characters",
+    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
+  },
+  "replace-countersignatory-address-2": {
+    "minlength": "Address line 2 must be between 2 and 250 characters",
+    "maxlength": "Address line 2 must be between 2 and 250 characters",
+    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
+  },
+  "replace-countersignatory-town-or-city": {
+    "required" : "Enter town or city",
+    "minlength": "Town or city must be between 2 and 250 characters",
+    "maxlength": "Town or city must be between 2 and 250 characters",
+    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
+  },
+  "replace-countersignatory-postcode": {
+    "required" : "Enter a UK postcode",
+    "postcode" : "Enter a real UK postcode"
+  },
+  "replace-countersignatory-phone-number": {
+    "required": "Enter your countersignatory's telephone number",
+    "validInternationalPhoneNumber": "Enter a real telephone number",
+    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
+  },
+  "replace-countersignatory-email": {
+    "required": "Enter your countersignatory's email address",
+    "email": "Enter a real email address"
+  }
 }

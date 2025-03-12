@@ -182,41 +182,44 @@ module.exports = {
     },
     '/section-seventeen': {
       fields: ['replace-poison-type'],
-      next: '/section-eighteen'
+      next: '/section-seventeen-poison'
     },
     '/section-seventeen-poison': {
       fields: ['replace-poison-details'],
       next: '/section-seventeen-summary'
     },
     '/section-seventeen-summary': {
-      next: '/section-eighteen'
+      next: '/countersignatory-details'
     },
-    '/section-eighteen': {
+    '/countersignatory-details': {
       fields: [
-        'replace-countersignatory-name-title',
+        'replace-countersignatory-title',
         'replace-countersignatory-firstname',
         'replace-countersignatory-middlename',
         'replace-countersignatory-lastname',
-        'replace-years-known-countersignatory',
-        'replace-how-you-know-countersignatory',
+        'replace-countersignatory-years',
+        'replace-countersignatory-howyouknow',
         'replace-countersignatory-occupation'
       ],
-      next: '/section-nineteen'
+      locals: { captionHeading: 'Section 21 of 26' },
+      next: '/countersignatory-address'
     },
-    '/section-nineteen': {
+    '/countersignatory-address': {
       fields: [
         'replace-countersignatory-address-1',
         'replace-countersignatory-address-2',
         'replace-countersignatory-town-or-city',
         'replace-countersignatory-postcode'
       ],
-      next: '/section-twenty'
+      locals: { captionHeading: 'Section 22 of 26' },
+      next: '/countersignatory-contact'
     },
-    '/section-twenty': {
+    '/countersignatory-contact': {
       fields: [
-        'replace-countersignatory-phone',
+        'replace-countersignatory-phone-number',
         'replace-countersignatory-email'
       ],
+      locals: { captionHeading: 'Section 23 of 26' },
       next: '/section-twenty-one'
     },
     '/section-twenty-one': {

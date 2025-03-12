@@ -122,6 +122,60 @@ module.exports = {
   'countersignatory-details': {
     steps: [
       {
+        step: '/countersignatory-details',
+        field: 'replace-countersignatory-title'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'replace-countersignatory-firstname'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'replace-countersignatory-middlename',
+        parse: value => value || 'Not provided'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'replace-countersignatory-lastname'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'replace-countersignatory-years'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'replace-countersignatory-howyouknow'
+      },
+      {
+        step: '/countersignatory-details',
+        field: 'replace-countersignatory-occupation'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'replace-countersignatory-address-1'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'replace-countersignatory-address-2',
+        parse: value => value || 'Not provided'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'replace-countersignatory-town-or-city'
+      },
+      {
+        step: '/countersignatory-address',
+        field: 'replace-countersignatory-postcode'
+      },
+      {
+        step: '/countersignatory-contact',
+        field: 'replace-countersignatory-phone-number'
+      },
+      {
+        step: '/countersignatory-contact',
+        field: 'replace-countersignatory-email'
+      },
+      {
         step: '/birth-certificate',
         field: 'replace-birth-certificate',
         parse: (documents, req) => {
