@@ -290,7 +290,20 @@ module.exports = {
       locals: { captionHeading: 'Section 15 of 23' }
     },
     '/poisons': {
+      behaviours: [
+        CheckAndRedirect('amend-poisons-option',
+          ['amend-poisons-option', 'amend-regulated-explosives-precursors']
+        )],
       fields: ['amend-poisons-option'],
+      forks: [
+        {
+          target: '/countersignatory-details',
+          condition: {
+            field: 'amend-name-options',
+            value: 'no'
+          }
+        }
+      ],
       locals: { captionHeading: 'Section 16 of 23' },
       next: '/select-poisons'
     },
@@ -298,6 +311,9 @@ module.exports = {
       fields: ['amend-poison'],
       locals: { captionHeading: 'Section 17 of 23' },
       next: '/countersignatory-details'
+    },
+    '/no-poisons-or-precursors': {
+      field: []
     },
     '/countersignatory-details': {
       fields: [

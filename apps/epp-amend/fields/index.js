@@ -402,6 +402,15 @@ module.exports = {
     },
     attributes: [{ attribute: 'rows', value: 5 }]
   },
+  'amend-poisons-option': {
+    mixin: 'radio-group',
+    legend: {
+      className: 'govuk-label--m'
+    },
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    options: ['yes', 'no'],
+    validate: 'required'
+  },
   'amend-poison': {
     mixin: 'select',
     validate: ['required'],
