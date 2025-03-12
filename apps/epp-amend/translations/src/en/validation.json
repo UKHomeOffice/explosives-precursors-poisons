@@ -57,8 +57,9 @@
         "required" : "Select a country of address"
     },
     "amend-phone-number": {
-        "required": "Enter your telephone number",
-        "internationalPhoneNumber": "Enter a real telephone number"
+      "required": "Enter your telephone number",
+      "validInternationalPhoneNumber": "Enter a real telephone number",
+      "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
     },
     "amend-email": {
         "required": "Enter a contact email address",
