@@ -1,5 +1,5 @@
 const titles = require('../../../utilities/constants/titles');
-
+const poisonsList = require('../../../utilities/constants/poisons.js');
 module.exports = {
   'replace-licence-number': {
     mixin: 'input-text',
@@ -39,5 +39,17 @@ module.exports = {
       'replace-licence-damaged',
       'replace-licence-destroyed'
     ]
+  },
+  'replace-poison': {
+    mixin: 'select',
+    validate: ['required'],
+    labelClassName: 'visuallyhidden',
+    className: ['govuk-select', 'govuk-input--width-2'],
+    options: [
+      {
+        value: '',
+        label: 'fields.replace-poison.options.none_selected'
+      }
+    ].concat(poisonsList)
   }
 };

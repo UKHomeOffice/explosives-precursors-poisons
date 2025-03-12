@@ -181,17 +181,22 @@ module.exports = {
       next: '/section-seventeen'
     },
     '/section-seventeen': {
-      fields: ['replace-poison-type'],
-      next: '/section-eighteen'
+      fields: [],
+      next: '/select-poisons'
+    },
+    '/select-poisons': {
+      fields: ['replace-poison'],
+      locals: { captionHeading: 'Section 20 of 26' },
+      next: '/countersignatory-details'
     },
     '/section-seventeen-poison': {
       fields: ['replace-poison-details'],
       next: '/section-seventeen-summary'
     },
     '/section-seventeen-summary': {
-      next: '/section-eighteen'
+      next: '/countersignatory-details'
     },
-    '/section-eighteen': {
+    '/countersignatory-details': {
       fields: [
         'replace-countersignatory-name-title',
         'replace-countersignatory-firstname',
