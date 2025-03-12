@@ -327,6 +327,12 @@ module.exports = {
       }
     },
     '/other-licences': {
+      behaviours: [
+        ResetSectionSummary(
+          'licenceshistory',
+          'new-renew-other-refused-licence'
+        )
+      ],
       fields: [
         'new-renew-other-firearms-licence',
         'new-renew-other-shotgun-licence',
@@ -335,19 +341,14 @@ module.exports = {
       forks: [
         {
           target: '/add-licence-refusal',
+          continueOnEdit: true,
           condition: {
             field: 'new-renew-other-refused-licence',
             value: 'yes'
           }
-        },
-        {
-          target: '/criminal-record',
-          condition: {
-            field: 'new-renew-other-refused-licence',
-            value: 'no'
-          }
         }
       ],
+      next: '/criminal-record',
       locals: {
         sectionNo: {
           new: 8,
@@ -371,7 +372,16 @@ module.exports = {
       }
     },
     '/licence-history': {
-      fields: [],
+      behaviours: [AggregateSaveUpdate, ParseSummaryFields, EditRouteReturn],
+      aggregateTo: 'licenceshistory',
+      aggregateFrom: [
+        'new-renew-licence-type',
+        'new-renew-why-licence-refused',
+        'new-renew-licence-refused-date'
+      ],
+      titleField: ['new-renew-licence-type'],
+      addStep: 'add-licence-refusal',
+      addAnotherLinkText: 'refusal or revocation',
       next: '/criminal-record',
       locals: {
         sectionNo: {

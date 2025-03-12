@@ -159,22 +159,6 @@ module.exports = {
       }
     ]
   },
-  'other-licences': {
-    steps: [
-      {
-        step: '/other-license',
-        field: 'new-renew-other-firearms-licence'
-      },
-      {
-        step: '/other-license',
-        field: 'new-renew-other-shotgun-licence'
-      },
-      {
-        step: '/other-license',
-        field: 'new-renew-other-refused-licence'
-      }
-    ]
-  },
   'criminal-record': {
     steps: [
       {
@@ -271,6 +255,39 @@ module.exports = {
           }
 
           return null;
+        }
+      }
+    ]
+  },
+  'other-licences': {
+    steps: [
+      {
+        step: '/other-licences',
+        field: 'new-renew-other-firearms-licence'
+      },
+      {
+        step: '/other-licences',
+        field: 'new-renew-other-shotgun-licence'
+      },
+      {
+        step: '/other-licences',
+        field: 'new-renew-other-refused-licence'
+      },
+      {
+        step: '/licence-history',
+        field: 'licenceshistory',
+        changeLink: '/new-renew/licence-history',
+        parse: (list, req) => {
+          if (req.sessionModel.get('new-renew-other-refused-licence') === 'no') {
+            return null;
+          }
+          return req.sessionModel.get('licenceshistory')?.aggregatedValues.length > 0 ?
+            req.sessionModel.get('licenceshistory').aggregatedValues.map(a => a.fields.map(field => {
+              if (field.field === 'new-renew-licence-refused-date') {
+                field.parsed = getFormattedDate(field.parsed);
+              }
+              return field.parsed;
+            }).filter(Boolean).join('\n')).join('\n \n') : null;
         }
       }
     ]

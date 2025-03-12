@@ -217,6 +217,9 @@
   "add-licence-refusal": {
     "header": "Add a refused or revoked licence"
   },
+  "licence-history": {
+    "header": "Revoked or refused licence history"
+  },
   "confirm": {
     "header": "Check your answers",
     "title": "Check your answers – Apply for an explosives precursors and poisons licence",
@@ -237,6 +240,9 @@
       },
       "proof-of-identity":{
         "header": "Proof of identity"
+      },
+      "other-licences": {
+        "header": "Other licences"
       },
       "medical-information": {
         "header": "Medical information"
@@ -356,6 +362,9 @@
      },
      "new-renew-birth-certificate": {
       "label": "Birth certificate attachment"
+     },
+     "licenceshistory": {
+      "label": "Revoked or refused licence history"
      }
     },
     "complete": {
