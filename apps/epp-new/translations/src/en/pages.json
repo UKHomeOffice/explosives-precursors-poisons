@@ -214,6 +214,9 @@
     "make-change-application": "If you need to make changes to your application",
     "p6": "If you need to amend your application or have a question, contact"
   },
+  "add-licence-refusal": {
+    "header": "Add a refused or revoked licence"
+  },
   "confirm": {
     "header": "Check your answers",
     "title": "Check your answers – Apply for an explosives precursors and poisons licence",

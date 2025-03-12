@@ -24,6 +24,7 @@ const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redund
 const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-payment-request');
 const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
+const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator');
 
 module.exports = {
   name: 'EPP form',
@@ -93,7 +94,10 @@ module.exports = {
         'new-renew-other-name-start-date',
         'new-renew-other-name-stop-date'
       ],
-      titleField: ['new-renew-other-name-first-name', 'new-renew-other-name-last-name'],
+      titleField: [
+        'new-renew-other-name-first-name',
+        'new-renew-other-name-last-name'
+      ],
       addStep: 'other-names',
       addAnotherLinkText: 'previous name',
       continueOnEdit: false,
@@ -247,12 +251,14 @@ module.exports = {
         {
           target: '/upload-british-passport',
           condition: req =>
-            req.sessionModel.get('new-renew-applicant-Id-type') === 'UK-passport'
+            req.sessionModel.get('new-renew-applicant-Id-type') ===
+            'UK-passport'
         },
         {
           target: '/upload-passport',
           condition: req =>
-            req.sessionModel.get('new-renew-applicant-Id-type') === 'EU-passport'
+            req.sessionModel.get('new-renew-applicant-Id-type') ===
+            'EU-passport'
         }
       ],
 
@@ -350,7 +356,12 @@ module.exports = {
       }
     },
     '/add-licence-refusal': {
-      fields: [],
+      behaviours: [AfterDateOfBirth('new-renew-dob')],
+      fields: [
+        'new-renew-licence-type',
+        'new-renew-why-licence-refused',
+        'new-renew-licence-refused-date'
+      ],
       next: '/licence-history',
       locals: {
         sectionNo: {
