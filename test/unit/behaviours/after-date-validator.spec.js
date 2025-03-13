@@ -1,6 +1,6 @@
 const CheckChangedDate = require('../../../utilities/helpers/move-date-validator');
 
-describe.only('after-date-validator', () => {
+describe('after-date-validator', () => {
   let AfterDateValidator;
   let ValidationError;
   let MockSuperclass;
