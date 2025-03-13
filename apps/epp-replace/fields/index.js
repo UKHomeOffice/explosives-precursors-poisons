@@ -45,6 +45,13 @@ module.exports = {
       'replace-licence-destroyed'
     ]
   },
+  'replace-police-report': {
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: 'required',
+    options: ['yes', 'no'],
+    className: ['govuk-radios', 'govuk-radios--inline']
+  },
   'replace-countersignatory-title': {
     mixin: 'select',
     validate: 'required',
