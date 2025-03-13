@@ -37,28 +37,27 @@ module.exports = {
     },
     '/police-report': {
       fields: ['replace-police-report'],
-      next: '/report-details',
       forks: [
         {
-          target: '/report-details',
+          target: '/crime-report-details',
           condition: {
             field: 'replace-police-report',
             value: 'yes'
           }
         },
         {
-          target: '/report-to-police',
+          target: '/must-report-theft',
           condition: {
             field: 'replace-police-report',
             value: 'no'
           }
         }
-      ]
+      ],
+      next: '/crime-report-details'
     },
-    '/report-to-police': {
-      backLink: '/police-report'
+    '/must-report-theft': {
     },
-    '/report-details': {
+    '/crime-report-details': {
       fields: ['replace-report-details'],
       next: '/licence-number'
     },
