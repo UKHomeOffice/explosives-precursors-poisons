@@ -93,7 +93,10 @@ module.exports = {
         'new-renew-other-name-start-date',
         'new-renew-other-name-stop-date'
       ],
-      titleField: ['new-renew-other-name-first-name', 'new-renew-other-name-last-name'],
+      titleField: [
+        'new-renew-other-name-first-name',
+        'new-renew-other-name-last-name'
+      ],
       addStep: 'other-names',
       addAnotherLinkText: 'previous name',
       continueOnEdit: false,
@@ -170,7 +173,16 @@ module.exports = {
           condition: req => {
             const moveToDate =
               req.form.values['new-renew-home-address-moveto-date'];
-            return moveToDate && isDateOlderOrEqualTo(moveToDate, 5);
+            const redirect = moveToDate && isDateOlderOrEqualTo(moveToDate, 5);
+            if (redirect) {
+              if (
+                req.sessionModel.get('otheraddresses')?.aggregatedValues
+                  ?.length > 0
+              ) {
+                req.sessionModel.unset('otheraddresses');
+              }
+            }
+            return redirect;
           }
         }
       ],
@@ -202,7 +214,21 @@ module.exports = {
       }
     },
     '/previous-addresses': {
-      fields: [],
+      behaviours: [AggregateSaveUpdate, ParseSummaryFields, EditRouteReturn],
+      aggregateTo: 'otheraddresses',
+      aggregateFrom: [
+        'new-renew-previous-home-address-line1',
+        'new-renew-previous-home-address-line2',
+        'new-renew-previous-home-address-town',
+        'new-renew-previous-home-address-county',
+        'new-renew-previous-home-address-postcode',
+        'new-renew-previous-home-address-country',
+        'new-renew-previous-home-address-moveto-date'
+      ],
+      titleField: 'new-renew-previous-home-address-line1',
+      addStep: 'previous-address',
+      addAnotherLinkText: 'previous address',
+      continueOnEdit: false,
       next: '/upload-proof-address',
       locals: {
         sectionNo: {
@@ -247,12 +273,14 @@ module.exports = {
         {
           target: '/upload-british-passport',
           condition: req =>
-            req.sessionModel.get('new-renew-applicant-Id-type') === 'UK-passport'
+            req.sessionModel.get('new-renew-applicant-Id-type') ===
+            'UK-passport'
         },
         {
           target: '/upload-passport',
           condition: req =>
-            req.sessionModel.get('new-renew-applicant-Id-type') === 'EU-passport'
+            req.sessionModel.get('new-renew-applicant-Id-type') ===
+            'EU-passport'
         }
       ],
 
