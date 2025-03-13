@@ -132,7 +132,7 @@ module.exports = class SendEmailConfirmation {
 
       req.log(
         'info',
-        `${userOrBusinessStr()} Confirmation Email sent successfully`
+        `epp.submit_form.send_email_with_file_notify.successful.${userOrBusinessStr()}`
       );
     } catch (err) {
       const errorDetails = err.response?.data
@@ -143,7 +143,7 @@ module.exports = class SendEmailConfirmation {
 
       req.log(
         'error',
-        `Failed to send ${userOrBusinessStr()} Confirmation Email`,
+        `epp.submit_form.send_email_with_file_notify.error.${userOrBusinessStr()}`,
         errorMessage
       );
       throw Error(errorMessage);
