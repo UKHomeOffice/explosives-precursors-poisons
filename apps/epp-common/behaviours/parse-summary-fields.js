@@ -19,7 +19,6 @@ module.exports = superclass =>
         'new-renew-other-name-start-date',
         'new-renew-other-name-stop-date',
         'new-renew-previous-home-address-moveto-date',
-        'new-renew-other-name-stop-date',
         'new-renew-licence-refused-date'
       ];
       const locals = super.locals(req, res);
