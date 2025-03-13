@@ -47,9 +47,6 @@ module.exports = {
     isPageHeading: true,
     validate: 'required',
     options: ['yes', 'no'],
-    legend: {
-      className: 'govuk-label--m'
-    },
     className: ['govuk-radios', 'govuk-radios--inline']
   },
   'replace-poison': {

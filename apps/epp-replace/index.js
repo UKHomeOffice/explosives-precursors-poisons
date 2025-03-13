@@ -42,20 +42,21 @@ module.exports = {
         {
           target: '/report-details',
           condition: {
+            field: 'replace-police-report',
             value: 'yes'
           }
         },
         {
           target: '/report-to-police',
           condition: {
+            field: 'replace-police-report',
             value: 'no'
           }
         }
-      ],
-      locals: { captionHeading: 'Section 2 of 26' }
+      ]
     },
     '/report-to-police': {
-      backLink: '/section-two'
+      backLink: '/police-report'
     },
     '/report-details': {
       fields: ['replace-report-details'],

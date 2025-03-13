@@ -92,7 +92,7 @@
     "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",
     "sections": {
       "replace-police-report": {
-        "header": "Have you reported this to the police?"
+        "header": "Have you reported the theft to the police?"
       },
       "licence-details": {
         "header": "Licence details"
@@ -119,6 +119,9 @@
     "fields": {
       "replace-licence-number": {
         "label": "Licence number"
+      },
+      "replace-police-report": {
+        "label": "Authorities"
       },
       "replace-british-passport": {
         "label": "British passport attachment"
