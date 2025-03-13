@@ -53,9 +53,11 @@ module.exports = {
           }
         }
       ],
+      locals: { captionHeading: 'Section 2 of 26' },
       next: '/crime-report-details'
     },
     '/must-report-theft': {
+      field: ['report']
     },
     '/crime-report-details': {
       fields: ['replace-report-details'],
