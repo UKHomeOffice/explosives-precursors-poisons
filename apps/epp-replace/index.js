@@ -57,7 +57,7 @@ module.exports = {
       next: '/crime-report-details'
     },
     '/must-report-theft': {
-      field: ['report']
+      next: '/licence-number'
     },
     '/crime-report-details': {
       fields: ['replace-report-details'],
