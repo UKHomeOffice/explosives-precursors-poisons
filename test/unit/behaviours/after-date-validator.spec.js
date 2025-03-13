@@ -1,38 +1,70 @@
-/* eslint max-len: 0 */
-'use strict';
+const CheckChangedDate = require('../../../utilities/helpers/move-date-validator');
 
-const { reqres } = require('hof/utilities');
-const Behaviour = require('../../../apps/epp-common/behaviours/after-date-validator');
-const Controller = require('hof').controller;
+describe.only('after-date-validator', () => {
+  let AfterDateValidator;
+  let ValidationError;
+  let MockSuperclass;
+  let mockReq;
 
+  beforeEach(() => {
+    ValidationError = sinon.stub();
+    MockSuperclass = class {
+      /* eslint-disable-next-line no-unused-vars */
+      validateField(key, req) {
+        return true;
+      }
+      constructor() {
+        this.ValidationError = ValidationError;
+      }
+    };
 
-describe("apps/epp-common 'after-date-validator' behaviour", () => {
-  let behaviour;
-  let req;
-  let res;
-  let key;
+    AfterDateValidator =
+      require('../../../apps/epp-common/behaviours/after-date-validator')(
+        'dobFieldName'
+      )(MockSuperclass);
 
+    mockReq = {
+      log: sinon.stub(),
+      sessionModel: {
+        get: sinon.stub()
+      }
+    };
+  });
+  it('should return ValidationError if date is after dob', () => {
+    sinon
+      .stub(CheckChangedDate, 'checkIfDateAfterDob')
+      .returns({ error: 'Date is after dob' });
 
-  beforeEach(done => {
-    req = reqres.req();
-    res = reqres.res();
-    key = sinon.stub();
+    const instance = new AfterDateValidator();
+    const result = instance.validateField(
+      'amend-new-date-name-changed',
+      mockReq
+    );
 
-    const DateValidaition = Behaviour(Controller);
-    behaviour = new DateValidaition({ template: 'new-name', route: '/new-name' });
-    behaviour._configure(req, res, done);
+    expect(result).to.be.instanceOf(ValidationError);
+    expect(
+      CheckChangedDate.checkIfDateAfterDob.calledWith(
+        'amend-new-date-name-changed',
+        mockReq,
+        'dobFieldName'
+      )
+    ).to.be.true;
+
+    CheckChangedDate.checkIfDateAfterDob.restore();
   });
 
+  it('should not return ValidationError if date is not after dob', () => {
+    sinon.stub(CheckChangedDate, 'checkIfDateAfterDob').returns({});
 
-  describe("The date after date of birth validate '.validateField' method", () => {
-    it("returns an error if the 'amend-new-date-name-changed' is before the 'amend-date-of-birth'", () => {
-      req.form.values['amend-date-of-birth'] = '1978-10-19';
-      req.form.values['amend-new-date-name-changed'] = '1960-10-19';
+    const instance = new AfterDateValidator();
+    const result = instance.validateField(
+      'amend-new-date-name-changed',
+      mockReq
+    );
 
-      behaviour.validateField(key, req, err => {
-        err['amend-new-date-name-changed'].should.be.an.instanceof(behaviour.ValidationError);
-        err['amend-new-date-name-changed'].should.have.property('type').and.equal('after');
-      });
-    });
+    expect(result).to.be.true;
+    expect(mockReq.log.calledWith('info', 'No validation error')).to.be.true;
+
+    CheckChangedDate.checkIfDateAfterDob.restore();
   });
 });
