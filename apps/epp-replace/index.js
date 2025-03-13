@@ -188,16 +188,16 @@ module.exports = {
     '/select-poisons': {
       fields: ['replace-poison'],
       locals: { captionHeading: 'Section 20 of 26' },
-      next: '/countersignatory-details'
+      next: '/section-seventeen-poison'
     },
     '/section-seventeen-poison': {
       fields: ['replace-poison-details'],
       next: '/section-seventeen-summary'
     },
     '/section-seventeen-summary': {
-      next: '/section-eighteen'
+      next: '/countersignatory-details'
     },
-    '/section-eighteen': {
+    '/countersignatory-details': {
       fields: [
         'replace-countersignatory-title',
         'replace-countersignatory-firstname',
