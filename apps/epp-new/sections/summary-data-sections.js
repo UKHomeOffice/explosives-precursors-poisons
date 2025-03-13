@@ -142,18 +142,29 @@ module.exports = {
         parse: date => date && dateFormatter.format(new Date(date))
       },
       {
+        step: '/previous-addresses',
+        field: 'otheraddresses',
+        changeLink: '/new-renew/previous-addresses',
+        parse: (list, req) => {
+          const homeMoveDate = req.sessionModel.get('new-renew-home-address-moveto-date');
+          if (homeMoveDate && isDateOlderOrEqualTo(homeMoveDate, 5)) {
+            return null;
+          }
+          const addresses = req.sessionModel.get('otheraddresses')?.aggregatedValues || [];
+
+          return addresses.length > 0 ? addresses.map(({ fields }) => fields.map(f =>
+            f.field === 'new-renew-previous-home-address-moveto-date'
+              ? getFormattedDate(f.parsed) : f.parsed).filter(Boolean).join('\n')).filter(Boolean).join('\n\n') : null;
+        }
+      },
+      {
         step: '/upload-proof-address',
         field: 'new-renew-proof-address',
         parse: (documents, req) => {
           if (
-            req.sessionModel
-              .get('steps')
-              .includes('/upload-proof-address') &&
-            documents?.length > 0
-          ) {
+            req.sessionModel.get('steps').includes('/upload-proof-address') && documents?.length > 0) {
             return documents.map(file => file?.name)?.join('\n\n');
           }
-
           return null;
         }
       }

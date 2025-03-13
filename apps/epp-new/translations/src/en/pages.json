@@ -14,6 +14,10 @@
   "other-nationalities": {
     "header": "Other nationalities"
   },
+  "previous-addresses": {
+    "header": "Previous address history",
+    "p1":   "You must enter your address from the last 5 years. This information helps us carry out the suitability checks needed to issue a licence."
+  },
   "home-address": {
     "header": "What is your home address?"
   },
@@ -301,6 +305,9 @@
       },
       "othernames": {
         "label": "Other names"
+      },
+      "otheraddresses": {
+        "label": "Previous addresses"
       },
       "new-renew-countersignatory-middlename": {
         "label": "Middle names"
