@@ -11,6 +11,14 @@ module.exports = {
       }
     ]
   },
+  'replace-police-report': {
+    steps: [
+      {
+        step: '/police-report',
+        field: 'replace-police-report'
+      }
+    ]
+  },
   'replace-new-name': {
     steps: [
       {

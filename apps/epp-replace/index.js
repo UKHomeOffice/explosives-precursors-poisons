@@ -36,13 +36,30 @@ module.exports = {
       ]
     },
     '/police-report': {
-      fields: ['replace-is-crime-reported'],
-      next: '/report-details'
+      fields: ['replace-police-report'],
+      forks: [
+        {
+          target: '/crime-report-details',
+          condition: {
+            field: 'replace-police-report',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/must-report-theft',
+          condition: {
+            field: 'replace-police-report',
+            value: 'no'
+          }
+        }
+      ],
+      locals: { captionHeading: 'Section 2 of 26' },
+      next: '/crime-report-details'
     },
-    '/report-to-police': {
-      backLink: '/section-two'
+    '/must-report-theft': {
+      next: '/licence-number'
     },
-    '/report-details': {
+    '/crime-report-details': {
       fields: ['replace-report-details'],
       next: '/licence-number'
     },
