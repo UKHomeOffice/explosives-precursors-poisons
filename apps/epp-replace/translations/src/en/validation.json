@@ -21,16 +21,16 @@
   "replace-first-name": {
     "required": "Enter your first name",
     "maxlength": "First name must between 1 and 250 characters",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "replace-middle-name": {
     "maxlength": "Middle names must be between 250 characters or less",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "replace-last-name": {
     "required": "Enter your last name",
     "maxlength": "Last name must be between 1 and 250 characters",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
 },
 "replace-licence": {
   "required": "Select why you need a replacement licence"

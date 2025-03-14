@@ -3,23 +3,23 @@
         "required": "Enter a licence number",
         "incorrect-format-licence": "Enter a real licence number",
         "licence-length-restriction": "Licence number must be between 13 and 16 characters",
-        "notUrl" : "Your answer must not include a URL"
+        "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
     },
     "amend-name-title" : {
         "required" : "Select your title"
     },
     "amend-firstname" : {
         "required" : "Enter your first name",
-        "notUrl" : "Your answer must not include a URL",
+        "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer",
         "maxlength" : "First name must between 1 and 250 characters"
     },
     "amend-middlename" :{
-        "notUrl" : "Your answer must not include a URL",
+        "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer",
          "maxlength" : "Middle names must be between 250 characters or less"
     },
     "amend-lastname" : {
         "required" : "Enter your last name",
-        "notUrl" : "Your answer must not include a URL",
+        "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer",
         "maxlength" : "Last name must be between 1 and 250 characters"
     },
     "amend-date-of-birth": {
@@ -31,23 +31,23 @@
         "required" : "Enter address line 1, typically the building and street",
         "minlength": "Address line 1 must be between 2 and 250 characters",
         "maxlength": "Address line 1 must be between 2 and 250 characters",
-        "notUrl" : "Your answer must not include a URL"
+        "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
     },
     "amend-address-2": {
         "minlength": "Address line 2 must be between 2 and 250 characters",
         "maxlength": "Address line 2 must be between 2 and 250 characters",
-        "notUrl" : "Your answer must not include a URL"
+        "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
     },
     "amend-town-or-city": {
         "required" : "Enter town or city",
         "minlength": "Town or city must be between 2 and 250 characters",
         "maxlength": "Town or city must be between 2 and 250 characters",
-        "notUrl" : "Your answer must not include a URL"
+        "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
     },
     "amend-county":{
         "minlength": "County, state or province must be between 2 and 250 characters",
         "maxlength": "County, state or province must be between 2 and 250 characters",
-        "notUrl" : "Your answer must not include a URL"
+        "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
     },
     "amend-postcode": {
         "required" : "Enter a UK postcode",
@@ -108,16 +108,16 @@
     "amend-new-firstname": {
         "required": "Enter the first name you want on your amended licence",
         "maxlength": "First name must between 1 and 250 characters",
-        "notUrl": "Your answer must not include a URL"
+        "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
     },
     "amend-new-lastname": {
         "required": "Enter the last name you want on your amended licence",
         "maxlength": "Last name must between 1 and 250 characters",
-        "notUrl": "Your answer must not include a URL"
+        "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
     },
     "amend-new-middlename": {
         "maxlength": "Middle name must between 1 and 250 characters",
-        "notUrl": "Your answer must not include a URL"
+        "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
     },
     "amend-new-date-name-changed": {
         "required": "Enter the date you changed your name",
@@ -132,23 +132,23 @@
      "required": "Enter address line 1, typically the building and street",
      "maxlength": "Address line 1 must be between 2 and 250 characters",
      "minlength": "Address line 2 must be between 2 and 250 characters",
-     "notUrl" : "Your answer must not include a URL"
+     "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
     },
     "amend-new-address-2": {
       "maxlength": "Address line 1 must be between 2 and 250 characters",
       "minlength": "Address line 2 must be between 2 and 250 characters",
-      "notUrl" : "Your answer must not include a URL"
+      "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
     },
     "amend-new-town-or-city": {
       "required": "Enter town or city",
       "maxlength": "Town or city must be between 2 and 250 characters",
       "minlength": "Address line 2 must be between 2 and 250 characters",
-      "notUrl" : "Your answer must not include a URL"
+      "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
     },
     "amend-new-county": {
       "maxlength": "County, state or province must be between 2 and 250 characters",
       "minlength": "Address line 2 must be between 2 and 250 characters",
-      "notUrl" : "Your answer must not include a URL"
+      "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
     },
     "amend-new-postcode": {
       "required" : "Enter a UK postcode",
@@ -175,12 +175,12 @@
   "amend-why-need-precursor": {
     "required": "Explain why you need this explosive precursor",
     "textAreaDefaultLength": "Reason why you need this explosive precursor must be less than 2,000 characters",
-    "notUrl" : "Your answer must not include a URL"
+    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "amend-how-much-precursor": {
     "required": "Enter how much of the explosive precursor you wish to acquire at any one time",
     "maxlength": "Quantity of the explosive precursor you wish to acquire must be 250 characters or less",
-    "notUrl" : "Your answer must not include a URL"
+    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "amend-where-to-store-precursor": {
     "required": "Select where you will store the explosive precursor"
@@ -189,7 +189,7 @@
     "required": "Enter what concentration % w/w you need",
     "isValidConcentrationValue" : "Concentration % w/w must only include numbers or special characters",
     "maxlength": "Concentration % w/w must be 250 characters or less",
-    "notUrl" : "Your answer must not include a URL"
+    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "amend-where-to-use-precursor": {
     "required": "Select where you will use the explosive precursor"
@@ -197,12 +197,12 @@
   "store-precursors-other-address": {
     "required": "Enter the address where you will store the explosive precursor",
     "textAreaDefaultLength": "Storage address must be 2,000 characters or less",
-    "notUrl" : "Your answer must not include a URL"
+    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "precursors-use-other-address": {
     "required": "Enter the address where you will use the explosive precursor",
     "textAreaDefaultLength": "Usage address must be 2,000 characters or less",
-    "notUrl" : "Your answer must not include a URL"
+    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "amend-poisons-option": {
     "required": "Select if your licence needs to cover poisons"
@@ -216,16 +216,16 @@
   "amend-countersignatory-firstname": {
     "required": "Enter your countersignatory's first name",
     "maxlength": "Countersignatory's first name must between 1 and 250 characters",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "amend-countersignatory-middlename": {
     "maxlength": "Countersignatory's middle names must be between 1 and 250 characters",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "amend-countersignatory-lastname": {
     "required": "Enter your countersignatory's last name",
     "maxlength": "Countersignatory's last name must be between 1 and 250 characters",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "amend-countersignatory-years": {
     "required": "Select how many years you have known your countersignatory"
@@ -233,29 +233,29 @@
   "amend-countersignatory-howyouknow": {
     "required": "Enter how you know your countersignatory",
     "maxlength": "How you know your countersignatory must be 250 characters or less",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "amend-countersignatory-occupation": {
     "required": "Enter your countersignatory's occupation",
     "maxlength": "Countersignatory's occupation must be 250 characters or less",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "amend-countersignatory-address-1": {
     "required" : "Enter address line 1, typically the building and street",
     "minlength": "Address line 1 must be between 2 and 250 characters",
     "maxlength": "Address line 1 must be between 2 and 250 characters",
-    "notUrl" : "Your answer must not include a URL"
+    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "amend-countersignatory-address-2": {
     "minlength": "Address line 2 must be between 2 and 250 characters",
     "maxlength": "Address line 2 must be between 2 and 250 characters",
-    "notUrl" : "Your answer must not include a URL"
+    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "amend-countersignatory-town-or-city": {
     "required" : "Enter town or city",
     "minlength": "Town or city must be between 2 and 250 characters",
     "maxlength": "Town or city must be between 2 and 250 characters",
-    "notUrl" : "Your answer must not include a URL"
+    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "amend-countersignatory-postcode": {
     "required" : "Enter a UK postcode",
@@ -264,7 +264,7 @@
   "amend-countersignatory-phone-number": {
     "required": "Enter your countersignatory's telephone number",
     "validInternationalPhoneNumber": "Enter a real telephone number",
-    "notUrl" : "Your answer must not include a URL"
+    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "amend-countersignatory-email": {
     "required": "Enter your countersignatory's email address",
