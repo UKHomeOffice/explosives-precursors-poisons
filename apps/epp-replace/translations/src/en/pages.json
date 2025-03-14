@@ -87,6 +87,10 @@
   "your-name": {
     "header": "What is your name on the licence?"
   },
+  "must-report-theft": {
+    "header": "You must report the theft to the police",
+    "p1": "If you want to apply for a replacement licence, you need to report the theft to the police. They will provide you with a crime reference number, which you must use to complete this form."
+  },
   "countersignatory-details": {
     "header": "Countersignatory details",
     "description": "Your countersignatory must not be a parent or relative, unless you are under 18. If you are under 18, your countersignatory must be your parent or legal guardian."
