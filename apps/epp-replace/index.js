@@ -117,9 +117,9 @@ module.exports = {
         }
       ],
       locals: { captionHeading: 'Section 2 of 26' },
-      next: '/section-nine'
+      next: '/amend-licence'
     },
-    '/section-nine': {
+    '/amend-licence': {
       fields: ['replace-replace-type'],
       next: '/section-ten'
     },
