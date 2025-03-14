@@ -17,6 +17,14 @@ module.exports = {
       }
     ]
   },
+  'replace-is-details-changed': {
+    steps: [
+      {
+        step: '/changed-details',
+        field: 'replace-is-details-changed'
+      }
+    ]
+  },
   'replace-new-name': {
     steps: [
       {

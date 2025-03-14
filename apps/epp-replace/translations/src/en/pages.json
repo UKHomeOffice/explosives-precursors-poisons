@@ -124,11 +124,17 @@
       },
       "countersignatory-details": {
         "header": "Countersignatory details"
+      },
+      "replace-is-details-changed": {
+        "header": "Changes to licence"
       }
     },
     "fields": {
       "replace-licence-number": {
         "label": "Licence number"
+      },
+      "replace-is-details-changed": {
+        "label": "Have any of your details changed since the licence was issued?"
       },
       "replace-police-report": {
         "label": "Have you reported the theft to the police?"

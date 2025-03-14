@@ -183,6 +183,14 @@ module.exports = {
       }
     ]
   },
+  'replace-is-details-changed': {
+    fields: ['replace-is-details-changed'],
+    mixin: 'radio-group',
+    isPageHeading: true,
+    validate: 'required',
+    options: ['yes', 'no'],
+    className: ['govuk-radios', 'govuk-radios--inline']
+  },
   'replace-countersignatory-UK-passport-number': {
     validate: [
       'required',
