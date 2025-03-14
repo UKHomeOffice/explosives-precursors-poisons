@@ -1,0 +1,11 @@
+{{<partials-page}}
+{{$page-content}}
+{{> partials-aggregator-summary-table}}
+<br>
+<a href="{{baseUrl}}/{{addStep}}" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+    Add another {{addAnotherLinkText}}
+</a>
+<br>
+{{#input-submit}}continue{{/input-submit}}
+{{/page-content}}
+{{/partials-page}}

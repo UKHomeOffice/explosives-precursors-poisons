@@ -117,7 +117,7 @@ module.exports = {
       ],
       next: '/identity-details',
       locals: { captionHeading: 'Section 7 of 23' },
-      behaviours: [AfterDateOfBirth]
+      behaviours: [AfterDateOfBirth('amend-date-of-birth')]
     },
     '/identity-details': {
       fields: [
@@ -212,7 +212,7 @@ module.exports = {
         'amend-new-country',
         'amend-new-date-moved-to-address'
       ],
-      behaviours: [AfterDateOfBirth, PostcodeValidation],
+      behaviours: [AfterDateOfBirth('amend-date-of-birth'), PostcodeValidation],
       next: '/upload-proof-address',
       locals: { captionHeading: 'Section 11 of 23' }
     },

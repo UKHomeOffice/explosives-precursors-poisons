@@ -36,11 +36,11 @@
       "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer",
       "maxlength": "Passport number must be 9 characters or less",
       "alphanum": "Passport number must only include numbers and letters a-z"
-      
+
     },
     "new-renew-EU-passport-number": {
       "required": "Enter your passport number",
-      "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer", 
+      "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer",
       "maxlength": "Passport number must be 9 characters or less",
       "alphanum": " Passport number must only include numbers and letters a-z"
     },
@@ -49,7 +49,7 @@
       "isValidUkDrivingLicenceNumber": "Enter a real UK driving licence number",
       "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer",
       "minlength": "Driving licence number must be 16 characters"
-    }, 
+    },
     "medical-declaration": {
         "required" : "Confirm you have read and agree to this medical declaration"
     },
@@ -292,5 +292,19 @@
   },
   "new-renew-declaration": {
     "required": "Confirm you have read and agree to this declaration"
+  },
+  "new-renew-licence-type": {
+    "required": "Select which licence type was refused or revoked"
+  },
+  "new-renew-why-licence-refused": {
+    "required": "Enter why the licence was refused or revoked",
+    "textAreaDefaultLength": "Reason why you need this explosive precursor must be less than 2,000 characters",
+    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
+  },
+  "new-renew-licence-refused-date": {
+    "required": "Enter a date when the licence was refused or revoked",
+    "date": "Enter a real date",
+    "before": "Date licence was refused or revoked must be in the past",
+    "after": "Date licence was refused or revoked must be after {{diff}}, your date of birth"
   }
 }

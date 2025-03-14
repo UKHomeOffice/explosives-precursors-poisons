@@ -1,19 +1,27 @@
 const CheckChangedDate = require('../../../utilities/helpers/move-date-validator');
 
-module.exports = superclass =>
+module.exports = dobFieldName => superclass =>
   class extends superclass {
     validateField(key, req) {
-      const amendDobFieldName = 'amend-date-of-birth';
-      const amendChangedDateResult = CheckChangedDate.checkBirthDateAfterMoveDate(key, req, amendDobFieldName);
-
       req.log('info', `Key value for form is : ${key}`);
 
-      if(key === 'amend-new-date-name-changed' &&
-         Object.keys(amendChangedDateResult).length !== 0) {
-        return new this.ValidationError(key, amendChangedDateResult);
-      } else if(key === 'amend-new-date-moved-to-address' &&
-              Object.keys(amendChangedDateResult).length !== 0) {
-        return new this.ValidationError(key, amendChangedDateResult);
+      const keysToCheck = [
+        'amend-new-date-name-changed',
+        'amend-new-date-moved-to-address',
+        'new-renew-licence-refused-date'
+      ];
+
+      if (
+        keysToCheck.includes(key) &&
+        dobFieldName &&
+        Object.keys(
+          CheckChangedDate.checkIfDateAfterDob(key, req, dobFieldName)
+        )?.length > 0
+      ) {
+        return new this.ValidationError(
+          key,
+          CheckChangedDate.checkIfDateAfterDob(key, req, dobFieldName)
+        );
       }
 
       req.log('info', 'No validation error');

@@ -8,6 +8,8 @@ const {
 } = require('../../../utilities/helpers');
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years');
 
+const { textAreaDefaultLength } = require('../../../utilities/helpers');
+
 
 module.exports = {
   'new-renew-title': {
@@ -558,5 +560,34 @@ module.exports = {
   'new-renew-declaration': {
     mixin: 'checkbox',
     validate: ['required']
-  }
+  },
+  'new-renew-licence-type': {
+    mixin: 'radio-group',
+    options: [
+      { value: 'Firearms', label: 'Firearms' },
+      { value: 'Shotgun', label: 'Shotgun' }
+    ],
+    validate: 'required',
+    legend: {
+      className: 'govuk-fieldset__legend govuk-fieldset__legend--s'
+    }
+  },
+  'new-renew-why-licence-refused': {
+    mixin: 'textarea',
+    validate: ['required', 'notUrl', textAreaDefaultLength],
+    attributes: [{ attribute: 'rows', value: 5 }],
+    labelClassName: 'govuk-label--s'
+  },
+  'new-renew-licence-refused-date': dateComponent(
+    'new-renew-licence-refused-date',
+    {
+      mixin: 'input-date',
+      legend: { className: 'bold' },
+      validate: [
+        'required',
+        'date',
+        { type: 'before', arguments: ['0', 'days'] }
+      ]
+    }
+  )
 };
