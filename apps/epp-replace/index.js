@@ -96,10 +96,27 @@ module.exports = {
     },
     '/section-seven': {
       fields: ['replace-phone-number', 'replace-email'],
-      next: '/section-eight'
+      next: '/changed-details'
     },
-    '/section-eight': {
+    '/changed-details': {
       fields: ['replace-is-details-changed'],
+      forks: [
+        {
+          target: '/section-nine',
+          condition: {
+            field: 'replace-is-details-changed',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/confirm',
+          condition: {
+            field: 'replace-is-details-changed',
+            value: 'no'
+          }
+        }
+      ],
+      locals: { captionHeading: 'Section 2 of 26' },
       next: '/section-nine'
     },
     '/section-nine': {
