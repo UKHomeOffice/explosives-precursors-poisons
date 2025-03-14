@@ -5,16 +5,16 @@
     "new-renew-first-name": {
         "required": "Enter your first name",
         "maxlength": "First name must between 1 and 250 characters",
-        "notUrl": "Your answer must not include a URL"
+        "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
     },
     "new-renew-middle-name": {
          "maxlength": "Middle names must be between 250 characters or less",
-         "notUrl": "Your answer must not include a URL"
+         "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
     },
     "new-renew-last-name": {
         "required": "Enter your last name",
         "maxlength": "Last name must be between 1 and 250 characters",
-        "notUrl": "Your answer must not include a URL"
+        "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
     },
     "new-renew-other-names": {
         "required": "Select if you have ever used any other names"
@@ -64,22 +64,22 @@
     "new-renew-other-name-first-name": {
         "required": "Enter your first name",
         "maxlength": "First name must between 1 and 250 characters",
-        "notUrl": "Your answer must not include a URL"
+        "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
     },
     "new-renew-other-name-middle-name": {
          "maxlength": "Middle names must be between 250 characters or less",
-         "notUrl": "Your answer must not include a URL"
+         "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
     },
     "new-renew-other-name-last-name": {
         "required": "Enter your last name",
         "maxlength": "Last name must be between 1 and 250 characters",
-        "notUrl": "Your answer must not include a URL"
+        "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
     },
     "new-renew-other-name-stop-date": {
         "date": "Enter a real date",
         "before": "Date you stopped using this name must be in the past",
         "maxlength": "Last name must be between 1 and 250 characters",
-        "notUrl": "Your answer must not include a URL"
+        "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
     },
     "new-renew-has-seen-doctor":{
     "required": "Select if you have seen a doctor for any mental health-related problems"
@@ -116,7 +116,7 @@
     "required": "Enter your place of birth",
     "minlength": "Place of birth must be between 2 and 250 characters",
     "maxlength": "Place of birth must be between 2 and 250 characters",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "new-renew-birth-country": {
     "required": "Enter your country of birth"
@@ -136,13 +136,13 @@
     "numeric": "Height must only contain numbers",
     "min": "Height must be between 50 and 300cm",
     "max": "Height must be between 50 and 300cm",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "new-renew-occupation": {
     "required": "Enter your occupation",
     "minlength": "Occupation must be between 2 and 250 characters",
     "maxlength": "Occupation must be between 2 and 250 characters",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "new-renew-have-criminal-record": {
     "required": "Select if you have a criminal record or any type of formal warning"
@@ -151,23 +151,23 @@
     "required": "Enter address line 1, typically the building and street",
     "minlength": "Address line 1 must be between 2 and 250 characters",
     "maxlength": "Address line 1 must be between 2 and 250 characters",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "new-renew-home-address-line2": {
     "minlength": "Address line 2 must be between 2 and 250 characters",
     "maxlength": "Address line 2 must be between 2 and 250 characters",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "new-renew-home-address-town": {
     "required": "Enter town or city",
     "minlength": "Town or city must be between 2 and 250 characters",
     "maxlength": "Town or city must be between 2 and 250 characters",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "new-renew-home-address-county": {
     "minlength": "County, state or province must be between 2 and 250 characters",
     "maxlength": "County, state or province must be between 2 and 250 characters",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "new-renew-home-address-postcode": {
     "required": "Enter a UK postcode",
@@ -199,23 +199,23 @@
     "required": "Enter address line 1, typically the building and street",
     "minlength": "Address line 1 must be between 2 and 250 characters",
     "maxlength": "Address line 1 must be between 2 and 250 characters",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "new-renew-previous-home-address-line2": {
     "minlength": "Address line 2 must be between 2 and 250 characters",
     "maxlength": "Address line 2 must be between 2 and 250 characters",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "new-renew-previous-home-address-town": {
     "required": "Enter town or city",
     "minlength": "Town or city must be between 2 and 250 characters",
     "maxlength": "Town or city must be between 2 and 250 characters",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "new-renew-previous-home-address-county": {
     "minlength": "County, state or province must be between 2 and 250 characters",
     "maxlength": "County, state or province must be between 2 and 250 characters",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "new-renew-previous-home-address-postcode": {
     "required": "Enter a UK postcode",
@@ -235,16 +235,16 @@
   "new-renew-countersignatory-firstname": {
     "required": "Enter your countersignatory's first name",
     "maxlength": "Countersignatory's first name must between 1 and 250 characters",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "new-renew-countersignatory-middlename": {
     "maxlength": "Countersignatory's middle names must be between 1 and 250 characters",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "new-renew-countersignatory-lastname": {
     "required": "Enter your countersignatory's last name",
     "maxlength": "Countersignatory's last name must be between 1 and 250 characters",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "new-renew-countersignatory-years": {
     "required": "Select how many years you have known your countersignatory"
@@ -253,29 +253,29 @@
   "new-renew-countersignatory-howyouknow": {
     "required": "Enter how you know your countersignatory",
     "maxlength": "How you know your countersignatory must be 250 characters or less",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "new-renew-countersignatory-occupation": {
     "required": "Enter your countersignatory's occupation",
     "maxlength": "Countersignatory's occupation must be 250 characters or less",
-    "notUrl": "Your answer must not include a URL"
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "new-renew-countersignatory-address-1": {
     "required" : "Enter address line 1, typically the building and street",
     "minlength": "Address line 1 must be between 2 and 250 characters",
     "maxlength": "Address line 1 must be between 2 and 250 characters",
-    "notUrl" : "Your answer must not include a URL"
+    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "new-renew-countersignatory-address-2": {
     "minlength": "Address line 2 must be between 2 and 250 characters",
     "maxlength": "Address line 2 must be between 2 and 250 characters",
-    "notUrl" : "Your answer must not include a URL"
+    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "new-renew-countersignatory-town-or-city": {
     "required" : "Enter town or city",
     "minlength": "Town or city must be between 2 and 250 characters",
     "maxlength": "Town or city must be between 2 and 250 characters",
-    "notUrl" : "Your answer must not include a URL"
+    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "new-renew-countersignatory-postcode": {
     "required" : "Enter a UK postcode",
@@ -284,7 +284,7 @@
   "new-renew-countersignatory-phone-number": {
     "required": "Enter your countersignatory's telephone number",
     "validInternationalPhoneNumber": "Enter a real telephone number",
-    "notUrl" : "Your answer must not include a URL"
+    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "new-renew-countersignatory-email": {
     "required": "Enter your countersignatory's email address",

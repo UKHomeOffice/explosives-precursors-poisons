@@ -3,7 +3,7 @@ const sectionCounter = require('./behaviours/section-counter');
 const checkBackLink = require('./behaviours/check-back-link');
 const validateAndRedirect = require('./behaviours/home-redirection');
 const filterCountries = require('./behaviours/filter-countries');
-const summary = hof.components.summary;
+const SummaryPageBehaviour = hof.components.summary;
 const ConfirmationDisplay = require('./behaviours/confirmation-type');
 const RemoveEditMode = require('../epp-common/behaviours/remove-edit-mode');
 const PostcodeValidation = require('../../utilities/helpers/postcode-validation');
@@ -25,6 +25,8 @@ const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-paymen
 const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator');
+
+const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
 
 module.exports = {
   name: 'EPP form',
@@ -157,7 +159,17 @@ module.exports = {
       }
     },
     '/home-address': {
-      behaviours: [PostcodeValidation],
+      behaviours: [
+        PostcodeValidation,
+        SaveHomeAddress([
+          'new-renew-home-address-line1',
+          'new-renew-home-address-line2',
+          'new-renew-home-address-town',
+          'new-renew-home-address-county',
+          'new-renew-home-address-postcode',
+          'new-renew-home-address-country'
+        ])
+      ],
       fields: [
         'new-renew-home-address-line1',
         'new-renew-home-address-line2',
@@ -649,7 +661,7 @@ module.exports = {
       }
     },
     '/confirm': {
-      behaviours: [summary, ConfirmationDisplay, EditRouteStart],
+      behaviours: [SummaryPageBehaviour, ConfirmationDisplay, EditRouteStart],
       sections: require('./sections/summary-data-sections'),
       next: '/declaration',
       locals: {
@@ -677,10 +689,8 @@ module.exports = {
     },
     '/payment-cancelled': {},
     '/application-submitted': {
-      behaviours: [GetPaymentInfo],
-      backLink: false
-    },
-    '/complete': {
+      sections: require('./sections/summary-data-sections'),
+      behaviours: [SummaryPageBehaviour, GetPaymentInfo],
       backLink: false
     }
   }

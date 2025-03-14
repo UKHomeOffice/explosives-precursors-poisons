@@ -1,3 +1,5 @@
+const SendEmailConfirmation = require('./send-email-notification');
+
 const {
   getPaymentDetails,
   generateHmac,
@@ -62,7 +64,15 @@ module.exports = superclass =>
             `${errorTemplateBasePath}${PATH_PAYMENT_PROBLEM}`
           );
         }
-        // TODO: Notify
+
+        // Notify
+        const notifyEmail = new SendEmailConfirmation();
+        try {
+          await notifyEmail.send(req, res, super.locals(req, res));
+        } catch (error) {
+          req.log('error', 'Failed to send notification emails:', error);
+          return next(Error(`Failed to send notification emails: ${error}`));
+        }
       } catch (error) {
         req.log('error', `Error fetching payment status: ${error.message ?? error}`);
         return res.redirect(`${errorTemplateBasePath}${PATH_PAYMENT_PROBLEM}`);
