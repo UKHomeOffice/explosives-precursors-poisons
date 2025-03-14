@@ -14,6 +14,8 @@ const {
   PATH_NEW_RENEW
 } = require('../constants/string-constants');
 
+const { getCryptoRandomString } = require('./crypto-random-string');
+
 /**
  * Generates a random ID using crypto
  * @returns {string} - A random ID
@@ -37,12 +39,11 @@ const generateHmac = randomId => {
  * Initiates the payment request
  * @param {Object} params = The payment parameters as request payload
  * @param {number} params.amount - The amount for the payment
- * @param {number} params.reference - The payment reference
- * @param {number} params.description - The payment description
- * @param {number} params.return_url - The return url after payment is completed
- * @param {number} params.token - The payment token to validate the return url
- * @param {number} params.billing_address - Billing address
- * @param {number} params.metadata - Additional metadata
+ * @param {string} params.reference - The payment reference
+ * @param {string} params.description - The payment description
+ * @param {string} params.return_url - The return url after payment is completed
+ * @param {string} params.token - The payment token to validate the return url
+ * @param {Object | undefined} params.billing_address - Billing address
  * @returns {Promise<Object>} - The payment response data
  * @throws {Error} - If there is any error during initiating the payment request
  */
@@ -54,8 +55,7 @@ async function initiatePayment({
   return_url,
   token,
   billing_address,
-  email,
-  metadata
+  email
 }) {
   try {
     const model = new Model();
@@ -72,7 +72,6 @@ async function initiatePayment({
         description,
         return_url: `${return_url}/?token=${token}`,
         delayed_capture: false,
-        metadata,
         prefilled_cardholder_details: {
           billing_address
         },
@@ -130,10 +129,12 @@ async function getPaymentDetails(paymentId) {
  * @throws {Error} - If application type is unexpected
  */
 
-const generateRequestPayload = (req, applicationType, hmac) => {
+const generateRequestPayload = async (req, applicationType, hmac) => {
   const return_url = `${req.protocol}://${req.get('host')}${
     applicationType === APP_TYPE_REPLACE ? PATH_REPLACE : PATH_NEW_RENEW
   }${PATH_APPLICATION_SUBMITTED}`;
+
+  const uniqueRefNumber = await getCryptoRandomString();
 
   if (applicationType === APP_TYPE_NEW || applicationType === APP_TYPE_RENEW) {
     return {
@@ -141,20 +142,13 @@ const generateRequestPayload = (req, applicationType, hmac) => {
         applicationType === APP_TYPE_NEW
           ? payment.AMOUNT_NEW
           : payment.AMOUNT_RENEW,
-      reference:
-        applicationType === APP_TYPE_NEW
-          ? 'New payment Reference'
-          : 'Renew payment reference',
+      reference: uniqueRefNumber,
       description:
         applicationType === APP_TYPE_NEW
-          ? 'New payment description'
-          : 'Renew payment description',
+          ? payment.NEW_LICENCE_PAYMENT_DESCRIPTION
+          : payment.RENEW_LICENCE_PAYMENT_DESCRIPTION,
       return_url,
       token: hmac,
-      metadata: {
-        custom_metadata_key1: 'custom_metadata_value1',
-        custom_metadata_key2: 'custom_metadata_value2'
-      },
       billing_address: {
         line1: req.sessionModel.get('new-renew-home-address-line1'),
         line2: req.sessionModel.get('new-renew-home-address-line2'),
@@ -169,14 +163,10 @@ const generateRequestPayload = (req, applicationType, hmac) => {
   if (applicationType === APP_TYPE_REPLACE) {
     return {
       amount: payment.AMOUNT_REPLACE,
-      reference: 'Replace payment reference',
-      description: 'Replace payment description',
+      reference: uniqueRefNumber,
+      description: payment.REPLACE_LICENCE_PAYMENT_DESCRIPTION,
       return_url,
       token: hmac,
-      metadata: {
-        custom_metadata_key1: 'custom_metadata_value1',
-        custom_metadata_key2: 'custom_metadata_value2'
-      },
       email: req.sessionModel.get('replace-email')
     };
   }

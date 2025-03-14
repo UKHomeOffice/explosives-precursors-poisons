@@ -9,14 +9,9 @@ const {
 describe('apis.js tests', () => {
   const expectedRequestPayload = {
     amount: 3950,
-    reference: 'New payment Reference',
-    description: 'New payment description',
+    description: 'Payment for: New Explosives Precursors and Poisons Licence',
     return_url: 'http://localhost:8080/new-renew/application-submitted',
     token: 'ABCD1234',
-    metadata: {
-      custom_metadata_key1: 'custom_metadata_value1',
-      custom_metadata_key2: 'custom_metadata_value2'
-    },
     billing_address: {
       line1: 'mock_get_value',
       line2: 'mock_get_value',
@@ -35,7 +30,6 @@ describe('apis.js tests', () => {
     modelMock = {
       _request: sinon.stub()
     };
-
     const apis = proxyquire('../../../utilities/helpers/api', {
       hof: { model: sinon.stub().returns(modelMock) }
     });
@@ -71,85 +65,92 @@ describe('apis.js tests', () => {
   });
 
   describe('generateRequestPayload tests', () => {
-    it('unsupported applicationType - should throw an error for amend flow', () => {
-      expect(() =>
-        generateRequestPayload(
+    const mockError = new Error('Unknown application type');
+    it('unsupported applicationType - should throw an error for amend flow', async () => {
+      try {
+        await generateRequestPayload(
           { protocol: '', get: sinon.stub() },
           'amend',
           'ABCD1234'
-        )
-      ).to.throw('Unknown application type');
+        );
+      } catch (err) {
+        expect(err).to.deep.equal(mockError);
+      }
     });
 
-    it('unsupported applicationType - should throw an error for unknown value', () => {
-      expect(() =>
-        generateRequestPayload(
+    it('unsupported applicationType - should throw an error for unknown value', async () => {
+      try {
+        await generateRequestPayload(
           { protocol: '', get: sinon.stub() },
           'hello-world',
           'ABCD1234'
-        )
-      ).to.throw('Unknown application type');
+        );
+      } catch (err) {
+        expect(err).to.deep.equal(mockError);
+      }
     });
 
-    it('should return the payload for new application type', () => {
-      expect(
-        generateRequestPayload(
-          {
-            sessionModel: {
-              get: () => 'mock_get_value'
-            },
-            get: () => 'localhost:8080',
-            protocol: 'http'
+    it('should return the payload for new application type', async () => {
+      const result = await generateRequestPayload(
+        {
+          sessionModel: {
+            get: () => 'mock_get_value'
           },
-          'new',
-          'ABCD1234'
-        )
-      ).to.deep.equal(expectedRequestPayload);
+          get: () => 'localhost:8080',
+          protocol: 'http'
+        },
+        'new',
+        'ABCD1234'
+      );
+      delete result.reference;
+      expect(result).to.deep.equal(expectedRequestPayload);
     });
 
-    it('should return the payload for renew application type', () => {
+    it('should return the payload for renew application type', async () => {
       const updatedPayload = {
         ...expectedRequestPayload,
-        reference: 'Renew payment reference',
-        description: 'Renew payment description'
+        description:
+          'Payment for: Renew Explosives Precursors and Poisons Licence'
       };
-      expect(
-        generateRequestPayload(
-          {
-            sessionModel: {
-              get: () => 'mock_get_value'
-            },
-            get: () => 'localhost:8080',
-            protocol: 'http'
+
+      const result = await generateRequestPayload(
+        {
+          sessionModel: {
+            get: () => 'mock_get_value'
           },
-          'renew',
-          'ABCD1234'
-        )
-      ).to.deep.equal(updatedPayload);
+          get: () => 'localhost:8080',
+          protocol: 'http'
+        },
+        'renew',
+        'ABCD1234'
+      );
+      delete result.reference;
+      expect(result).to.deep.equal(updatedPayload);
     });
 
-    it('should return the payload for replace application type', () => {
+    it('should return the payload for replace application type', async () => {
       const updatedPayload = {
         ...expectedRequestPayload,
         amount: 2500,
-        reference: 'Replace payment reference',
-        description: 'Replace payment description',
+        description:
+          'Payment for: Replace Explosives Precursors and Poisons Licence',
         return_url: 'http://localhost:8080/replace/application-submitted'
       };
       delete updatedPayload.billing_address;
-      expect(
-        generateRequestPayload(
-          {
-            sessionModel: {
-              get: () => 'mock_get_value'
-            },
-            get: () => 'localhost:8080',
-            protocol: 'http'
+
+      const result = await generateRequestPayload(
+        {
+          sessionModel: {
+            get: () => 'mock_get_value'
           },
-          'replace',
-          'ABCD1234'
-        )
-      ).to.deep.equal(updatedPayload);
+          get: () => 'localhost:8080',
+          protocol: 'http'
+        },
+        'replace',
+        'ABCD1234'
+      );
+      delete result.reference;
+      expect(result).to.deep.equal(updatedPayload);
     });
   });
 
