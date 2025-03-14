@@ -15,6 +15,9 @@ const DobUnder18Redirect = require('../epp-common/behaviours/dob-under18-redirec
 const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redundant-documents');
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 
+const SendNotification = require('../epp-common/behaviours/submit-notify');
+
+
 module.exports = {
   name: 'EPP form',
   fields: 'apps/epp-amend/fields',
@@ -369,12 +372,12 @@ module.exports = {
       next: '/declaration'
     },
     '/declaration': {
+      behaviours: [SummaryPageBehaviour, SendNotification],
+      sections: require('./sections/summary-data-sections'),
       fields: ['amend-declaration'],
       next: '/application-submitted',
       locals: { captionHeading: 'Section 23 of 23' }
     },
-    '/application-submitted': {
-      clearSession: true
-    }
+    '/application-submitted': {}
   }
 };
