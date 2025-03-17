@@ -77,11 +77,12 @@ module.exports = {
         'replace-last-name'
       ],
       locals: { captionHeading: 'Section 4 of 26' },
-      next: '/section-five'
+      next: '/date-of-birth'
     },
-    '/section-five': {
+    '/date-of-birth': {
       fields: ['replace-date-of-birth'],
-      next: '/section-six'
+      next: '/section-six',
+      locals: {captionHeading: 'Section 5 of 20'}
     },
     '/section-six': {
       fields: [

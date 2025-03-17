@@ -125,5 +125,10 @@
 },
 "replace-is-details-changed": {
   "required": "Select if any of your details have changed since the licence was issued"
-}
+},
+"replace-date-of-birth": {
+  "required": "Enter your date of birth",
+  "date": "Enter a real date",
+  "before": "Your date of birth must be in the past"
+  }
 }
