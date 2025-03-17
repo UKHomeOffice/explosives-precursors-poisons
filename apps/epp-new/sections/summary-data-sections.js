@@ -170,14 +170,6 @@ module.exports = {
       }
     ]
   },
-  'criminal-record': {
-    steps: [
-      {
-        step: '/criminal-record',
-        field: 'new-renew-have-criminal-record'
-      }
-    ]
-  },
   'new-renew-contact-details': {
     steps: [
       {
@@ -299,6 +291,31 @@ module.exports = {
               }
               return field.parsed;
             }).filter(Boolean).join('\n')).join('\n \n') : null;
+        }
+      }
+    ]
+  },
+  'criminal-record': {
+    steps: [
+      {
+        step: '/criminal-record',
+        field: 'new-renew-have-criminal-record'
+      },
+      {
+        step: '/criminal-record-summary',
+        field: 'criminalrecordsummary',
+        changeLink: '/new-renew/criminal-record-summary',
+        parse: (list, req) => {
+          if (req.sessionModel.get('new-renew-have-criminal-record') === 'no') {
+            return null;
+          }
+          return req.sessionModel.get('criminalrecordsummary')?.aggregatedValues.length > 0 ?
+              req.sessionModel.get('criminalrecordsummary').aggregatedValues.map(a => a.fields.map(field => {
+                if (field.field === 'new-renew-offence-date') {
+                  field.parsed = getFormattedDate(field.parsed);
+                }
+                return field.parsed;
+              }).filter(Boolean).join('\n')).join('\n \n') : null;
         }
       }
     ]

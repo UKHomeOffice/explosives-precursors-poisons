@@ -426,20 +426,20 @@ module.exports = {
       }
     },
     '/criminal-record': {
+      behaviours: [
+        ResetSectionSummary(
+          'criminalrecordsummary',
+          'new-renew-have-criminal-record'
+        )
+      ],
       fields: ['new-renew-have-criminal-record'],
       forks: [
         {
           target: '/add-offence',
+          continueOnEdit: true,
           condition: {
             field: 'new-renew-have-criminal-record',
             value: 'yes'
-          }
-        },
-        {
-          target: '/medical-declaration',
-          condition: {
-            field: 'new-renew-have-criminal-record',
-            value: 'no'
           }
         }
       ],
@@ -448,7 +448,8 @@ module.exports = {
           new: 9,
           renew: 10
         }
-      }
+      },
+      next: '/medical-declaration'
     },
     '/add-offence': {
       behaviours: [AfterDateOfBirth('new-renew-dob')],
@@ -466,7 +467,16 @@ module.exports = {
       }
     },
     '/criminal-record-summary': {
-      fields: [],
+      behaviours: [AggregateSaveUpdate, ParseSummaryFields, EditRouteReturn],
+      aggregateTo: 'criminalrecordsummary',
+      aggregateFrom: [
+        'new-renew-offence-name',
+        'new-renew-offence-country',
+        'new-renew-offence-date'
+      ],
+      titleField: ['new-renew-offence-name'],
+      addStep: 'add-offence',
+      addAnotherLinkText: 'offence',
       next: '/medical-declaration',
       locals: {
         sectionNo: {
