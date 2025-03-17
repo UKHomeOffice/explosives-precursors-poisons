@@ -451,7 +451,12 @@ module.exports = {
       }
     },
     '/add-offence': {
-      fields: [],
+      behaviours: [AfterDateOfBirth('new-renew-dob')],
+      fields: [
+        'new-renew-offence-name',
+        'new-renew-offence-country',
+        'new-renew-offence-date'
+      ],
       next: '/criminal-record-summary',
       locals: {
         sectionNo: {

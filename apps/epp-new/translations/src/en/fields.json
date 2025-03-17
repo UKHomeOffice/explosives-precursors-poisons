@@ -354,5 +354,22 @@
     "legend": "Date the licence was refused or revoked",
     "hint": "Enter an approximate date if you are unsure",
     "summary-heading": "Date the licence was refused or revoked"
+  },
+  "new-renew-offence-name": {
+    "label": "Name of offence",
+    "summary-heading": "Name of offence"
+  },
+  "new-renew-offence-country": {
+    "label": "Which country was the offence committed in?",
+    "hint": "Select a country from the list",
+    "options": {
+      "none_selected": "Select"
+    },
+    "summary-heading": "Country"
+  },
+  "new-renew-offence-date": {
+    "legend": "When did the offence happen?",
+    "hint": "If you do not know, enter an approximate date. For example, 21 3 2017",
+    "summary-heading": "When offence happened"
   }
 }

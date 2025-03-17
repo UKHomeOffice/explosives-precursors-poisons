@@ -8,7 +8,8 @@ module.exports = dobFieldName => superclass =>
       const keysToCheck = [
         'amend-new-date-name-changed',
         'amend-new-date-moved-to-address',
-        'new-renew-licence-refused-date'
+        'new-renew-licence-refused-date',
+        'new-renew-offence-date'
       ];
 
       if (

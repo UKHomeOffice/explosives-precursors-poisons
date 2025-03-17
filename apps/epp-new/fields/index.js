@@ -10,7 +10,6 @@ const countersignatoryYears = require('../../../utilities/constants/countersigna
 
 const { textAreaDefaultLength } = require('../../../utilities/helpers');
 
-
 module.exports = {
   'new-renew-title': {
     mixin: 'select',
@@ -71,13 +70,30 @@ module.exports = {
     mixin: 'radio-group',
     validate: ['required'],
     options: [
-      { value: 'UK-passport', toggle: 'new-renew-UK-passport-number', child: 'input-text' },
-      { value: 'EU-passport', toggle: 'new-renew-EU-passport-number', child: 'input-text' },
-      { value: 'Uk-driving-licence', toggle: 'new-renew-Uk-driving-licence-number', child: 'input-text' }
+      {
+        value: 'UK-passport',
+        toggle: 'new-renew-UK-passport-number',
+        child: 'input-text'
+      },
+      {
+        value: 'EU-passport',
+        toggle: 'new-renew-EU-passport-number',
+        child: 'input-text'
+      },
+      {
+        value: 'Uk-driving-licence',
+        toggle: 'new-renew-Uk-driving-licence-number',
+        child: 'input-text'
+      }
     ]
   },
   'new-renew-UK-passport-number': {
-    validate: ['required', { type: 'maxlength', arguments: 9 }, 'alphanum', 'notUrl'],
+    validate: [
+      'required',
+      { type: 'maxlength', arguments: 9 },
+      'alphanum',
+      'notUrl'
+    ],
     className: ['govuk-input', 'govuk-!-width-one-thirds'],
     dependent: {
       field: 'new-renew-applicant-Id-type',
@@ -85,7 +101,12 @@ module.exports = {
     }
   },
   'new-renew-EU-passport-number': {
-    validate: ['required', { type: 'maxlength', arguments: 9 }, 'alphanum', 'notUrl'],
+    validate: [
+      'required',
+      { type: 'maxlength', arguments: 9 },
+      'alphanum',
+      'notUrl'
+    ],
     className: ['govuk-input', 'govuk-!-width-one-thirds'],
     dependent: {
       field: 'new-renew-applicant-Id-type',
@@ -93,7 +114,12 @@ module.exports = {
     }
   },
   'new-renew-Uk-driving-licence-number': {
-    validate: ['required', 'notUrl', { type: 'minlength', arguments: 16 }, isValidUkDrivingLicenceNumber],
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: 16 },
+      isValidUkDrivingLicenceNumber
+    ],
     className: ['govuk-input', 'govuk-!-width-one-thirds'],
     dependent: {
       field: 'new-renew-applicant-Id-type',
@@ -448,7 +474,8 @@ module.exports = {
     options: [
       {
         value: '',
-        label: 'fields.new-renew-previous-home-address-country.options.none_selected'
+        label:
+          'fields.new-renew-previous-home-address-country.options.none_selected'
       }
     ].concat(countries)
   },
@@ -589,5 +616,32 @@ module.exports = {
         { type: 'before', arguments: ['0', 'days'] }
       ]
     }
-  )
+  ),
+  'new-renew-offence-name': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ],
+    labelClassName: 'govuk-label--s'
+  },
+  'new-renew-offence-country': {
+    mixin: 'select',
+    className: ['typeahead'],
+    labelClassName: 'govuk-label--s',
+    options: [
+      {
+        value: '',
+        label: 'fields.new-renew-offence-country.options.none_selected'
+      }
+    ].concat(countries),
+    validate: ['required']
+  },
+  'new-renew-offence-date': dateComponent('new-renew-offence-date', {
+    mixin: 'input-date',
+    legend: { className: 'govuk-label--s' },
+    validate: ['required', 'date', { type: 'before', arguments: ['0', 'days'] }]
+  })
 };
