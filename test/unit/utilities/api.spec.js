@@ -9,7 +9,7 @@ const {
 describe('apis.js tests', () => {
   const expectedRequestPayload = {
     amount: 3950,
-    description: 'Payment for: New Explosives Precursors and Poisons Licence',
+    description: 'New Explosives Precursors and Poisons Licence',
     return_url: 'http://localhost:8080/new-renew/application-submitted',
     token: 'ABCD1234',
     billing_address: {
@@ -109,8 +109,7 @@ describe('apis.js tests', () => {
     it('should return the payload for renew application type', async () => {
       const updatedPayload = {
         ...expectedRequestPayload,
-        description:
-          'Payment for: Renew Explosives Precursors and Poisons Licence'
+        description: 'Renew Explosives Precursors and Poisons Licence'
       };
 
       const result = await generateRequestPayload(
@@ -132,8 +131,7 @@ describe('apis.js tests', () => {
       const updatedPayload = {
         ...expectedRequestPayload,
         amount: 2500,
-        description:
-          'Payment for: Replace Explosives Precursors and Poisons Licence',
+        description: 'Replace Explosives Precursors and Poisons Licence',
         return_url: 'http://localhost:8080/replace/application-submitted'
       };
       delete updatedPayload.billing_address;
