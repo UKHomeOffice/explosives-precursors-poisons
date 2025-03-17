@@ -122,5 +122,8 @@
 },
 "replace-police-report": {
   "required": "Select if you have reported the theft to the police"
+},
+"replace-is-details-changed": {
+  "required": "Select if any of your details have changed since the licence was issued"
 }
 }
