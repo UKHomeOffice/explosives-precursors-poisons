@@ -169,6 +169,9 @@ module.exports = {
   payment: {
     CREATE_PAYMENT_ENDPOINT: 'https://publicapi.payments.service.gov.uk/v1/payments',
     GET_PAYMENT_INFO_ENDPOINT: 'https://publicapi.payments.service.gov.uk/v1/payments/',
+    NEW_LICENCE_PAYMENT_DESCRIPTION: 'New Explosives Precursors and Poisons Licence',
+    RENEW_LICENCE_PAYMENT_DESCRIPTION: 'Renew Explosives Precursors and Poisons Licence',
+    REPLACE_LICENCE_PAYMENT_DESCRIPTION: 'Replace Explosives Precursors and Poisons Licence',
     AMOUNT_NEW: 3950,
     AMOUNT_RENEW: 3950,
     AMOUNT_REPLACE: 2500,

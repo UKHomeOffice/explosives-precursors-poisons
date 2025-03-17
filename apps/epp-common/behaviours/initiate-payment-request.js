@@ -26,7 +26,7 @@ module.exports = superclass =>
 
         const randomId = generateRandomId();
         const hmac = generateHmac(randomId);
-        const paymentPayload = generateRequestPayload(
+        const paymentPayload = await generateRequestPayload(
           req,
           applicationType,
           hmac
