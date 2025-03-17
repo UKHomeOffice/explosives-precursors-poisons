@@ -341,5 +341,18 @@
   },
   "new-renew-declaration": {
     "label": "I have read and agree to this declaration"
+  },
+  "new-renew-licence-type": {
+    "legend": "Licence type",
+    "summary-heading": "Licence type"
+  },
+  "new-renew-why-licence-refused": {
+    "label": "Why was the licence refused or revoked?",
+    "summary-heading": "Why the licence was refused or revoked"
+  },
+  "new-renew-licence-refused-date": {
+    "legend": "Date the licence was refused or revoked",
+    "hint": "Enter an approximate date if you are unsure",
+    "summary-heading": "Date the licence was refused or revoked"
   }
 }

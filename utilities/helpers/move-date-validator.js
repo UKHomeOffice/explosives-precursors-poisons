@@ -2,7 +2,7 @@ const validators = require('hof/controller/validation/validators');
 const moment = require('moment');
 const config = require('../../config');
 
-const checkBirthDateAfterMoveDate = (key, req, birthDateField) => {
+const checkIfDateAfterDob = (key, req, birthDateField) => {
   const dateOfBirth = req.sessionModel.get(birthDateField);
   const dateChanged = req.form.values[key];
 
@@ -19,5 +19,5 @@ const checkBirthDateAfterMoveDate = (key, req, birthDateField) => {
 
 
 module.exports = {
-  checkBirthDateAfterMoveDate
+  checkIfDateAfterDob
 };
