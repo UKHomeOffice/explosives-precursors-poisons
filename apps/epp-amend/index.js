@@ -12,14 +12,13 @@ const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
 const CheckAndRedirect = require('../epp-common/behaviours/check-answer-redirect');
 const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
 const DobUnder18Redirect = require('../epp-common/behaviours/dob-under18-redirect');
-const AggregateSaveUpdate = require('../epp-common/behaviours/aggregator-save-update');
-const ParseSummaryFields = require('../epp-common/behaviours/parse-summary-fields');
+const AggregateSaveEditPrecursorPoison = require('../epp-common/behaviours/aggregator-save-update-precursors-poisons');
 const EditRouteStart = require('../epp-common/behaviours/edit-route-start');
 const EditRouteReturn = require('../epp-common/behaviours/edit-route-return');
 const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redundant-documents');
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 const SendNotification = require('../epp-common/behaviours/submit-notify');
-
+const ParseSummaryPrecursorsPoisons = require('../epp-common/behaviours/parse-summary-precursors-poisons');
 
 module.exports = {
   name: 'EPP form',
@@ -289,7 +288,7 @@ module.exports = {
       next: '/precursors-summary'
     },
     '/precursors-summary': {
-      behaviours: [AggregateSaveUpdate, ParseSummaryFields, EditRouteReturn],
+      behaviours: [AggregateSaveEditPrecursorPoison, ParseSummaryPrecursorsPoisons, EditRouteReturn],
       aggregateTo: 'precursorDetails',
       aggregateFrom: [
         'amend-why-need-precursor',
@@ -298,10 +297,9 @@ module.exports = {
         'amend-where-to-store-precursor',
         'amend-where-to-use-precursor',
         'store-precursors-other-address',
-        'precursors-use-other-address',
-        'selected-precursor-title'
+        'precursors-use-other-address'
       ],
-      titleField: ['selected-precursor-title'],
+      titleField: ['amend-precursor-field'],
       addStep: 'precursor-details',
       addAnotherLinkText: 'explosives precursors',
       continueOnEdit: false,

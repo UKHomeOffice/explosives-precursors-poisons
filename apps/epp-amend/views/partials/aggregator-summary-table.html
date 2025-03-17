@@ -4,11 +4,11 @@
     <div class="table-options govuk-!-margin-bottom-6">
         <h2 class="govuk-table__caption--m">{{joinTitle}}</h2>
         <div>
-            <a href="{{baseUrl}}/{{route}}/edit/{{index}}">{{#t}}buttons.edit{{/t}}<span class="visuallyhidden">Change {{itemTitle}} details</span></a>
-            <a href="{{baseUrl}}/{{route}}/delete/{{index}}" class="govuk-!-margin-left-3">{{#t}}buttons.remove{{/t}}<span class="visuallyhidden">Remove {{itemTitle}}</span></a>
+            <a href="{{baseUrl}}/{{route}}/edit/{{index}}">{{#t}}buttons.edit{{/t}}<span class="visuallyhidden">{{itemTitle}}</span></a>
+            <a href="{{baseUrl}}/{{route}}/delete/{{index}}" class="govuk-!-margin-left-3">{{#t}}buttons.remove{{/t}}<span class="visuallyhidden">{{itemTitle}}</span></a>
         </div>
     </div>
-    <dl class="govuk-summary-list govuk-!-width-full">
+    <dl class="govuk-summary-list looped-records govuk-!-width-full">
         {{#fields}}
         {{#showInSummary}}
           <div class="govuk-summary-list__row">

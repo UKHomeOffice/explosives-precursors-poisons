@@ -22,15 +22,13 @@ module.exports = fieldName => superclass =>
       const usePrecursorOtherAddressLabel = getPrecursorsShortLabel(
         `Usage address for the ${selectedPrecursor}`
       );
-      const selectedPrecursorShortLabel = getPrecursorsShortLabel(selectedPrecursor);
 
       const labelValuesMap = {
         whyNeedPrecursorLabel: whyNeedPrecursorLabel,
         whereToStorePrecursorLegend: whereToStorePrecursorLegend,
         whereToUsePrecursorLegend: whereToUsePrecursorLegend,
         storePrecursorOtherAddressLabel: storePrecursorOtherAddressLabel,
-        usePrecursorOtherAddressLabel: usePrecursorOtherAddressLabel,
-        selectedPrecursorShortTitle : selectedPrecursorShortLabel
+        usePrecursorOtherAddressLabel: usePrecursorOtherAddressLabel
       };
 
       Object.entries(labelValuesMap).forEach(([key, value]) => {
