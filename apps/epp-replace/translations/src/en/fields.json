@@ -46,6 +46,18 @@
           }
         }
       },
+      "replace-is-details-changed": {
+        "legend": "Have any of your details changed since the licence was issued?",
+        "hint": "Includes the name, address and substances recorded on the licence",
+        "options": {
+          "yes": {
+            "label": "Yes"
+          },
+          "no": {
+            "label": "No"
+          }
+        }
+      },
       "replace-countersignatory-title":{
         "label": "Title",
         "options": {
