@@ -164,6 +164,9 @@
       "none_selected": "Select"
     }
   },
+  "selected-precursor-title":{
+    "joinTitle" : "{{values.selectedPrecursorShortTitle}}"
+  },
   "amend-poisons-option": {
     "legend":"Does your licence need to cover poisons?",
     "options": {

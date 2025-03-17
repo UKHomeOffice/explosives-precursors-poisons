@@ -14,6 +14,7 @@ const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-count
 const DobUnder18Redirect = require('../epp-common/behaviours/dob-under18-redirect');
 const AggregateSaveUpdate = require('../epp-common/behaviours/aggregator-save-update');
 const ParseSummaryFields = require('../epp-common/behaviours/parse-summary-fields');
+const EditRouteStart = require('../epp-common/behaviours/edit-route-start');
 const EditRouteReturn = require('../epp-common/behaviours/edit-route-return');
 const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redundant-documents');
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
@@ -26,6 +27,7 @@ module.exports = {
   views: 'apps/epp-amend/views',
   translations: 'apps/epp-amend/translations',
   baseUrl: '/amend',
+  params: '/:action?/:id?/:edit?',
   behaviours: [JourneyValidator],
   steps: {
     '/licence-number': {
@@ -296,9 +298,10 @@ module.exports = {
         'amend-where-to-store-precursor',
         'amend-where-to-use-precursor',
         'store-precursors-other-address',
-        'precursors-use-other-address'
+        'precursors-use-other-address',
+        'selected-precursor-title'
       ],
-      titleField: ['amend-precursor-field'],
+      titleField: ['selected-precursor-title'],
       addStep: 'precursor-details',
       addAnotherLinkText: 'explosives precursors',
       continueOnEdit: false,
@@ -384,7 +387,7 @@ module.exports = {
     },
     '/confirm': {
       sections: require('./sections/summary-data-sections'),
-      behaviours: [SummaryPageBehaviour],
+      behaviours: [SummaryPageBehaviour, EditRouteStart],
       next: '/declaration'
     },
     '/declaration': {

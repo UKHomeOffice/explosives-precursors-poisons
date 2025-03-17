@@ -1,4 +1,5 @@
 const { DEFAULT_AGGREGATOR_LIMIT } = require('../../../utilities/helpers');
+
 module.exports = superclass => class extends superclass {
   constructor(options) {
     if (!options.aggregateTo) {
@@ -159,7 +160,7 @@ module.exports = superclass => class extends superclass {
   parseField(field, value, req) {
     const fieldName = field.field || field;
     const valueVar = field.value || value;
-    const newValue = '';
+    let newValue = '';
     const parser = req.form.options.fieldsConfig[fieldName].parse; // what is supposed to do it's always undefined
     if (Array.isArray(value)) {
       if (fieldName === 'amend-where-to-store-precursor') {
@@ -209,3 +210,43 @@ module.exports = superclass => class extends superclass {
     });
   }
 };
+// function concatTwoFields(fieldNames, value, req){
+//   let newValue = '';
+//   if (fieldNames === 'amend-where-to-store-precursor') {
+//     newValue = req.sessionModel.get('homeAddressInline')
+//       .concat('\n', req.sessionModel.get('store-precursors-other-address'));
+//    value = newValue;
+//   }
+//   else if (fieldNames === 'amend-where-to-use-precursor') {
+//     newValue = req.sessionModel.get('homeAddressInline')
+//       .concat('\n', req.sessionModel.get('precursors-use-other-address'));
+//     value = newValue;
+//   }
+//   return value
+// };
+
+// function DisplayInOnlyOneRow(fieldNames, valueVar, req){
+//   const isStoreHomeAdd = fieldNames === 'amend-where-to-store-precursor' && valueVar === "amend-store-precursors-home-address";
+//   const isUseHomeAdd = fieldNames === 'amend-where-to-store-precursor' &&  valueVar === "amend-use-precursors-home-address";
+//   const isStoreOtherAdd = fieldNames === 'amend-where-to-store-precursor' &&  valueVar === "amend-store-precursors-other-address";
+//   const isUseOtherAdd = fieldNames === 'amend-where-to-store-precursor' && valueVar === "amend-store-precursors-other-address";
+ 
+//   switch(fieldNames){
+
+//     case isStoreHomeAdd:
+//       return req.sessionModel.get('homeAddressInline');
+      
+//     case isUseHomeAdd:
+//       return req.sessionModel.get('homeAddressInline');
+      
+//     case isStoreOtherAdd:
+//       return req.sessionModel.get('precursors-use-other-address');
+      
+//     case isUseOtherAdd:
+//       return req.sessionModel.get('store-precursors-other-address');
+      
+//     default : 
+//      return 'no match'
+//   }
+// }
+ 
