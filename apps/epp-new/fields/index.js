@@ -7,9 +7,7 @@ const {
   isValidUkDrivingLicenceNumber
 } = require('../../../utilities/helpers');
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years');
-
 const { textAreaDefaultLength } = require('../../../utilities/helpers');
-
 
 module.exports = {
   'new-renew-title': {
@@ -589,5 +587,66 @@ module.exports = {
         { type: 'before', arguments: ['0', 'days'] }
       ]
     }
-  )
+  ),
+  'new-renew-countersignatory-Id-type': {
+    isPageHeading: true,
+    mixin: 'radio-group',
+    validate: ['required'],
+    options: [
+      {
+        value: 'UK-passport',
+        toggle: 'new-renew-countersignatory-UK-passport-number',
+        child: 'input-text'
+      },
+      {
+        value: 'EU-passport',
+        toggle: 'new-renew-countersignatory-EU-passport-number',
+        child: 'input-text'
+      },
+      {
+        value: 'Uk-driving-licence',
+        toggle: 'new-renew-countersignatory-Uk-driving-licence-number',
+        child: 'input-text'
+      }
+    ]
+  },
+  'new-renew-countersignatory-UK-passport-number': {
+    validate: [
+      'required',
+      { type: 'maxlength', arguments: 9 },
+      'alphanum',
+      'notUrl'
+    ],
+    className: ['govuk-input', 'govuk-!-width-one-thirds'],
+    dependent: {
+      field: 'new-renew-countersignatory-Id-type',
+      value: 'UK-passport'
+    }
+  },
+  'new-renew-countersignatory-EU-passport-number': {
+    validate: [
+      'required',
+      { type: 'maxlength', arguments: 9 },
+      'alphanum',
+      'notUrl'
+    ],
+    className: ['govuk-input', 'govuk-!-width-one-thirds'],
+    dependent: {
+      field: 'new-renew-countersignatory-Id-type',
+      value: 'EU-passport'
+    }
+  },
+  'new-renew-countersignatory-Uk-driving-licence-number': {
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: 16 },
+      isValidUkDrivingLicenceNumber
+    ],
+    className: ['govuk-input', 'govuk-!-width-one-thirds'],
+    dependent: {
+      field: 'new-renew-countersignatory-Id-type',
+      value: 'Uk-driving-licence'
+    }
+  }
 };

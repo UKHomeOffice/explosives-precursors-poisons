@@ -16,7 +16,7 @@ const EditRouteReturn = require('../epp-common/behaviours/edit-route-return');
 const SaveDocument = require('../epp-common/behaviours/save-document');
 const RemoveDocument = require('../epp-common/behaviours/remove-document');
 const DobEditRedirect = require('../epp-common/behaviours/dob-edit-redirect');
-
+const DobUnder18Redirect = require('../epp-common/behaviours/dob-under18-redirect');
 const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
 
 const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redundant-documents');
@@ -636,9 +636,14 @@ module.exports = {
       }
     },
     '/countersignatory-id': {
-      fields: [],
-      // add logic to check if user is 18 to redirect to birth certificate
-      next: '/birth-certificate',
+      behaviours: [DobUnder18Redirect('new-renew-dob', '/birth-certificate')],
+      fields: [
+        'new-renew-countersignatory-Id-type',
+        'new-renew-countersignatory-UK-passport-number',
+        'new-renew-countersignatory-EU-passport-number',
+        'new-renew-countersignatory-Uk-driving-licence-number'
+      ],
+      next: '/confirm',
       locals: {
         sectionNo: {
           new: 18,
