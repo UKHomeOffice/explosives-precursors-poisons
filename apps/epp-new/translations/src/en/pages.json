@@ -217,6 +217,12 @@
   "licence-history": {
     "header": "Revoked or refused licence history"
   },
+  "add-offence": {
+    "header": "Add criminal record entry"
+  },
+  "criminal-record-summary": {
+    "header": "Your criminal record"
+  },
   "confirm": {
     "header": "Check your answers",
     "title": "Check your answers – Apply for an explosives precursors and poisons licence",
@@ -374,7 +380,10 @@
      },
      "licenceshistory": {
       "label": "Revoked or refused licence history"
-     }
+     },
+      "criminalrecordsummary": {
+        "label": "Offences"
+      }
     },
     "complete": {
       "header": "Your submission has been sent",

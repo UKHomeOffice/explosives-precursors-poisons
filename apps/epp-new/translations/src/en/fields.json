@@ -355,6 +355,23 @@
     "hint": "Enter an approximate date if you are unsure",
     "summary-heading": "Date the licence was refused or revoked"
   },
+  "new-renew-offence-name": {
+    "label": "Name of offence",
+    "summary-heading": "Name of offence"
+  },
+  "new-renew-offence-country": {
+    "label": "Which country was the offence committed in?",
+    "hint": "Select a country from the list",
+    "options": {
+      "none_selected": "Select"
+    },
+    "summary-heading": "Country"
+  },
+  "new-renew-offence-date": {
+    "legend": "When did the offence happen?",
+    "hint": "If you do not know, enter an approximate date. For example, 21 3 2017",
+    "summary-heading": "When offence happened"
+  },
   "new-renew-countersignatory-Id-type": {
     "legend": "Which identity document do you want to use?",
     "hint": "If your licence is granted, you will need to show this document when buying the substances",
@@ -373,14 +390,14 @@
   },
   "new-renew-countersignatory-UK-passport-number": {
     "label": "What is your passport number?",
-    "hint" : "For example, 120897A"    
+    "hint" : "For example, 120897A"
   },
   "new-renew-countersignatory-EU-passport-number": {
     "label": "What is your passport number?",
-    "hint" : "For example, 120897A"  
+    "hint" : "For example, 120897A"
   },
   "new-renew-countersignatory-Uk-driving-licence-number": {
     "label": "What is your driving licence number?",
-    "hint" : "On section 5 of your licence, for example MORGA657054SM9IJ"    
+    "hint" : "On section 5 of your licence, for example MORGA657054SM9IJ"
   }
 }
