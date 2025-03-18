@@ -636,14 +636,14 @@ module.exports = {
       }
     },
     '/countersignatory-id': {
-      behaviours: [DobUnder18Redirect('new-renew-date-of-birth', '/birth-certificate')],
+      behaviours: [DobUnder18Redirect('new-renew-dob', '/birth-certificate')],
       fields: [
         'new-renew-countersignatory-Id-type',
         'new-renew-countersignatory-UK-passport-number',
         'new-renew-countersignatory-EU-passport-number',
         'new-renew-countersignatory-Uk-driving-licence-number'
       ],
-      next: '/birth-certificate',
+      next: '/confirm',
       locals: {
         sectionNo: {
           new: 18,
