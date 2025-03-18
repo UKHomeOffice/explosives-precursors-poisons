@@ -9,8 +9,6 @@ const {
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years');
 const { textAreaDefaultLength } = require('../../../utilities/helpers');
 
-
-
 module.exports = {
   'new-renew-title': {
     mixin: 'select',
