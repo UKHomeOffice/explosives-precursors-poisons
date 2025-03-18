@@ -14,7 +14,7 @@ module.exports = {
   'replace-title': {
     mixin: 'select',
     validate: 'required',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     className: ['govuk-select', 'govuk-input--width-2'],
     options: [
       {
@@ -56,7 +56,7 @@ module.exports = {
   'replace-countersignatory-title': {
     mixin: 'select',
     validate: 'required',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     className: ['govuk-select', 'govuk-input--width-2'],
     options: [
       {
@@ -68,22 +68,22 @@ module.exports = {
   'replace-countersignatory-firstname': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s'
+    labelClassName: 'govuk-label--m'
   },
   'replace-countersignatory-middlename': {
     mixin: 'input-text',
     validate: ['notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s'
+    labelClassName: 'govuk-label--m'
   },
   'replace-countersignatory-lastname': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s'
+    labelClassName: 'govuk-label--m'
   },
   'replace-countersignatory-years': {
     mixin: 'select',
     validate: 'required',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     className: ['govuk-select', 'govuk-input--width-2'],
     options: [
       {
@@ -95,16 +95,16 @@ module.exports = {
   'replace-countersignatory-howyouknow': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s'
+    labelClassName: 'govuk-label--m'
   },
   'replace-countersignatory-occupation': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s'
+    labelClassName: 'govuk-label--m'
   },
   'replace-countersignatory-address-1': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
@@ -114,7 +114,7 @@ module.exports = {
   },
   'replace-countersignatory-address-2': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     validate: [
       { type: 'minlength', arguments: 2 },
       { type: 'maxlength', arguments: 250 },
@@ -123,7 +123,7 @@ module.exports = {
   },
   'replace-countersignatory-town-or-city': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
@@ -133,7 +133,7 @@ module.exports = {
   },
   'replace-countersignatory-postcode': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     className: ['govuk-input', 'govuk-input--width-10'],
     validate: ['required', 'postcode'],
     formatter: ['ukPostcode']
@@ -220,7 +220,7 @@ module.exports = {
   },
   'replace-date-of-birth': dateComponent('replace-date-of-birth', {
     mixin: 'input-date',
-    legend: { className: 'bold' },
+    legend: { className: 'govuk-label--m' },
     validate: ['required', 'date', 'before']
   }),
   'replace-countersignatory-Uk-driving-licence-number': {
