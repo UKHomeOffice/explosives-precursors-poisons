@@ -1,5 +1,13 @@
 'use strict';
-const { isDateOlderOrEqualTo } = require('../../../utilities/helpers');
+const config = require('../../../config');
+const {
+  isDateOlderOrEqualTo
+} = require('../../../utilities/helpers');
+const dateFormatter = new Intl.DateTimeFormat(
+  config.dateLocales,
+  config.dateFormat
+);
+
 module.exports = {
   'replace-licence': {
     steps: [
@@ -138,6 +146,15 @@ module.exports = {
       {
         step: '/select-poisons',
         field: 'replace-poison'
+      }
+    ]
+  },
+  'replace-date-of-birth': {
+    steps: [
+      {
+        step: '/date-of-birth',
+        field: 'replace-date-of-birth',
+        parse: date => date && dateFormatter.format(new Date(date))
       }
     ]
   },

@@ -2,6 +2,7 @@ const titles = require('../../../utilities/constants/titles');
 const poisonsList = require('../../../utilities/constants/poisons.js');
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years.js');
 const { validInternationalPhoneNumber } = require('../../../utilities/helpers');
+const dateComponent = require('hof').components.date;
 
 const helpers = require('../../../utilities/helpers/index.js');
 
@@ -217,6 +218,11 @@ module.exports = {
       value: 'EU-passport'
     }
   },
+  'replace-date-of-birth': dateComponent('replace-date-of-birth', {
+    mixin: 'input-date',
+    legend: { className: 'bold' },
+    validate: ['required', 'date', 'before']
+  }),
   'replace-countersignatory-Uk-driving-licence-number': {
     validate: [
       'required',

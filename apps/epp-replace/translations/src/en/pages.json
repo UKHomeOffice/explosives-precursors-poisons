@@ -2,6 +2,9 @@
   "application-submitted": {
     "confirmed": "Replaced application submitted"
   },
+"date-of-birth": {
+  "header": "What is your date of birth?"
+},
   "upload-british-passport": {
     "header": "Upload British passport",
     "label": "Upload a file",
@@ -101,12 +104,19 @@
   "countersignatory-contact":{
     "header": "Countersignatory's contact details"
   },
+  "replace-date-of-birth": {
+    "hint": " For example, 30 09 1969",
+    "label": "Date of birth"
+  },
   "confirm": {
     "header": "Check your answers",
     "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",
     "sections": {
       "replace-police-report": {
         "header": "Authorities"
+      },
+      "replace-date-of-birth": {
+        "header": "Applicant date of birth"
       },
       "licence-details": {
         "header": "Licence details"
@@ -139,6 +149,9 @@
       },
       "replace-is-details-changed": {
         "label": "Have any of your details changed since the licence was issued?"
+      },
+        "replace-date-of-birth": {
+        "label": "Date of birth"
       },
       "replace-police-report": {
         "label": "Have you reported the theft to the police?"

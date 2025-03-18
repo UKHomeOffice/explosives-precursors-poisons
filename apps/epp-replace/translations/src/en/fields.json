@@ -138,5 +138,9 @@
       "replace-countersignatory-Uk-driving-licence-number": {
         "label": "What is your driving licence number?",
         "hint" : "On section 5 of your licence, for example MORGA657054SM9IJ"    
+      },
+      "replace-date-of-birth": {
+        "hint": " For example, 30 09 1969",
+        "label": "Date of birth"
       }
 }
