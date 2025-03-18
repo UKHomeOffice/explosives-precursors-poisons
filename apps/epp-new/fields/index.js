@@ -8,7 +8,7 @@ const {
 } = require('../../../utilities/helpers');
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years');
 const { textAreaDefaultLength } = require('../../../utilities/helpers');
-const helpers = require('../../../utilities/helpers/index.js');
+
 
 
 module.exports = {
@@ -643,7 +643,7 @@ module.exports = {
       'required',
       'notUrl',
       { type: 'minlength', arguments: 16 },
-      helpers.isValidUkDrivingLicenceNumber
+      isValidUkDrivingLicenceNumber
     ],
     className: ['govuk-input', 'govuk-!-width-one-thirds'],
     dependent: {

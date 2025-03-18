@@ -643,7 +643,13 @@ module.exports = {
         'new-renew-countersignatory-EU-passport-number',
         'new-renew-countersignatory-Uk-driving-licence-number'
       ],
-      next: '/confirm'
+      next: '/confirm',
+      locals: {
+        sectionNo: {
+          new: 18,
+          renew: 19
+        }
+      }
     },
     '/birth-certificate': {
       behaviours: [
