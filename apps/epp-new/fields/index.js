@@ -25,20 +25,17 @@ module.exports = {
   'new-renew-first-name': {
     mixin: 'input-text',
     validate: ['required', 'notUrl'],
-    labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    labelClassName: 'govuk-label--m'
   },
   'new-renew-middle-name': {
     mixin: 'input-text',
     validate: ['notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    labelClassName: 'govuk-label--m'
   },
   'new-renew-last-name': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    labelClassName: 'govuk-label--m'
   },
   'new-renew-other-names': {
     mixin: 'radio-group',
@@ -144,20 +141,17 @@ module.exports = {
   'new-renew-other-name-first-name': {
     mixin: 'input-text',
     validate: ['required', 'notUrl'],
-    labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    labelClassName: 'govuk-label--m'
   },
   'new-renew-other-name-middle-name': {
     mixin: 'input-text',
     validate: ['notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    labelClassName: 'govuk-label--m'
   },
   'new-renew-other-name-last-name': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    labelClassName: 'govuk-label--m'
   },
   'new-renew-other-name-start-date': dateComponent(
     'new-renew-other-name-start-date',
@@ -356,7 +350,6 @@ module.exports = {
   'new-renew-home-address-line1': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
@@ -367,7 +360,6 @@ module.exports = {
   'new-renew-home-address-line2': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
     validate: [
       { type: 'minlength', arguments: 2 },
       { type: 'maxlength', arguments: 250 },
@@ -377,7 +369,6 @@ module.exports = {
   'new-renew-home-address-town': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
@@ -388,7 +379,6 @@ module.exports = {
   'new-renew-home-address-county': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
     validate: [
       { type: 'minlength', arguments: 2 },
       { type: 'maxlength', arguments: 250 },

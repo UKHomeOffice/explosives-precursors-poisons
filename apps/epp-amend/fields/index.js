@@ -9,7 +9,6 @@ const countersignatoryYears = require('../../../utilities/constants/countersigna
 module.exports = {
   'amend-licence-number': {
     mixin: 'input-text',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
     labelClassName: 'visuallyhidden',
     validate: ['required', 'notUrl']
   },
@@ -27,18 +26,15 @@ module.exports = {
   },
   'amend-firstname': {
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    labelClassName: 'govuk-label--m'
   },
   'amend-middlename': {
     validate: ['notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    labelClassName: 'govuk-label--m'
   },
   'amend-lastname': {
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    labelClassName: 'govuk-label--m'
   },
   'amend-phone-number': {
     mixin: 'input-text',
@@ -69,7 +65,6 @@ module.exports = {
   'amend-address-1': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
@@ -80,7 +75,6 @@ module.exports = {
   'amend-address-2': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
     validate: [
       { type: 'minlength', arguments: 2 },
       { type: 'maxlength', arguments: 250 },
@@ -90,7 +84,6 @@ module.exports = {
   'amend-town-or-city': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
@@ -101,7 +94,6 @@ module.exports = {
   'amend-county': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
     validate: [
       { type: 'minlength', arguments: 2 },
       { type: 'maxlength', arguments: 250 },
@@ -111,14 +103,13 @@ module.exports = {
   'amend-postcode': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    className: ['govuk-input', 'govuk-input--width-10'],
     formatter: ['ukPostcode']
   },
   'amend-country': {
     mixin: 'select',
     validate: ['required'],
     labelClassName: 'govuk-label--m',
-    className: ['govuk-!-width-two-thirds'],
     options: [
       {
         value: '',
@@ -191,7 +182,6 @@ module.exports = {
     mixin: 'select',
     validate: ['required'],
     labelClassName: 'govuk-label--m',
-    className: ['govuk-input--width-2'],
     options: [
       {
         value: '',
@@ -201,18 +191,15 @@ module.exports = {
   },
   'amend-new-firstname': {
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    labelClassName: 'govuk-label--m'
   },
   'amend-new-middlename': {
     validate: ['notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    labelClassName: 'govuk-label--m'
   },
   'amend-new-lastname': {
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    labelClassName: 'govuk-label--m'
   },
   'amend-new-date-name-changed': dateComponent('amend-new-date-name-changed', {
     mixin: 'input-date',
@@ -320,7 +307,7 @@ module.exports = {
   'amend-regulated-explosives-precursors': {
     mixin: 'radio-group',
     legend: {
-      className: 'govuk-label--m'
+      className: 'govuk-label--s'
     },
     className: ['govuk-radios', 'govuk-radios--inline'],
     options: ['yes', 'no'],
@@ -330,13 +317,13 @@ module.exports = {
     mixin: 'textarea',
     validate: ['required', 'notUrl', helpers.textAreaDefaultLength],
     attributes: [{ attribute: 'rows', value: 5 }],
-    labelClassName: 'govuk-label--m'
+    labelClassName: 'govuk-label--s'
   },
   'amend-how-much-precursor': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
     className: ['govuk-input', 'govuk-input--width-10'],
-    labelClassName: 'govuk-label--m'
+    labelClassName: 'govuk-label--s'
   },
   'amend-what-concentration-precursor': {
     mixin: 'input-text',
@@ -347,14 +334,14 @@ module.exports = {
       'notUrl'
     ],
     className: ['govuk-input', 'govuk-input--width-5'],
-    labelClassName: 'govuk-label--m',
+    labelClassName: 'govuk-label--s',
     attributes: [{ suffix: '%' }]
   },
   'amend-where-to-store-precursor': {
     mixin: 'checkbox-group',
     validate: ['required'],
     legend: {
-      className: 'govuk-label--m'
+      className: 'govuk-label--s'
     },
     options: [
       {
@@ -380,7 +367,7 @@ module.exports = {
     mixin: 'checkbox-group',
     validate: ['required'],
     legend: {
-      className: 'govuk-label--m'
+      className: 'govuk-label--s'
     },
     options: [
       {

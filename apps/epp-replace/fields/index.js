@@ -25,14 +25,17 @@ module.exports = {
   },
   'replace-first-name': {
     mixin: 'input-text',
+    labelClassName: 'govuk-label--m',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }]
   },
   'replace-middle-name': {
     mixin: 'input-text',
+    labelClassName: 'govuk-label--m',
     validate: ['notUrl', { type: 'maxlength', arguments: [250] }]
   },
   'replace-last-name': {
     mixin: 'input-text',
+    labelClassName: 'govuk-label--m',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }]
   },
   'replace-licence': {
