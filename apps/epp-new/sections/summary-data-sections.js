@@ -310,12 +310,12 @@ module.exports = {
             return null;
           }
           return req.sessionModel.get('criminalrecordsummary')?.aggregatedValues.length > 0 ?
-              req.sessionModel.get('criminalrecordsummary').aggregatedValues.map(a => a.fields.map(field => {
-                if (field.field === 'new-renew-offence-date') {
-                  field.parsed = getFormattedDate(field.parsed);
-                }
-                return field.parsed;
-              }).filter(Boolean).join('\n')).join('\n \n') : null;
+            req.sessionModel.get('criminalrecordsummary').aggregatedValues.map(a => a.fields.map(field => {
+              if (field.field === 'new-renew-offence-date') {
+                field.parsed = getFormattedDate(field.parsed);
+              }
+              return field.parsed;
+            }).filter(Boolean).join('\n')).join('\n \n') : null;
         }
       }
     ]
