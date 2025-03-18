@@ -411,6 +411,22 @@ module.exports = {
         field: 'new-renew-countersignatory-email'
       },
       {
+        step: '/countersignatory-id',
+        field: 'new-renew-countersignatory-Id-type'
+      },
+      {
+        step: '/countersignatory-id',
+        field: 'new-renew-countersignatory-UK-passport-number'
+      },
+      {
+        step: '/countersignatory-id',
+        field: 'new-renew-countersignatory-EU-passport-number'
+      },
+      {
+        step: '/countersignatory-id',
+        field: 'new-renew-countersignatory-Uk-driving-licence-number'
+      },
+      {
         step: '/birth-certificate',
         field: 'new-renew-birth-certificate',
         parse: (documents, req) => {

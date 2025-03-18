@@ -333,6 +333,18 @@
       "new-renew-countersignatory-phone-number": {
         "label": "Phone number"
       },
+      "new-renew-countersignatory-Id-type": {
+        "label": "Identification document"
+      },
+      "new-renew-countersignatory-UK-passport-number": {
+        "label": "British passport number"
+      },
+      "new-renew-countersignatory-EU-passport-number": {
+        "label": "Passport number"
+      },
+      "new-renew-countersignatory-Uk-driving-licence-number": {
+        "label": "UK driving licence number"
+      },
       "new-renew-applicant-Id-type": {
         "label": "Identification document"
       },
