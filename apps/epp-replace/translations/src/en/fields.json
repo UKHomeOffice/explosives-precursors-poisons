@@ -142,5 +142,13 @@
       "replace-date-of-birth": {
         "hint": " For example, 30 09 1969",
         "label": "Date of birth"
-      }
+      },
+      "replace-phone-number": {
+        "label": "Contact phone number",
+        "hint": "For international numbers, include the country code"
+    },
+    "replace-email": {
+        "label": "Email address",
+        "hint": "Where we will contact you about the outcome of your application"
+    }
 }

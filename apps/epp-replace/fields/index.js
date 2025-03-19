@@ -235,5 +235,17 @@ module.exports = {
       field: 'replace-countersignatory-Id-type',
       value: 'Uk-driving-licence'
     }
+  },
+  'replace-phone-number': {
+    mixin: 'input-text',
+    className: ['govuk-input'],
+    labelClassName: 'govuk-label--m',
+    validate: ['required', 'internationalPhoneNumber']
+  },
+  'replace-email': {
+    mixin: 'input-text',
+    className: ['govuk-input'],
+    labelClassName: 'govuk-label--m',
+    validate: ['required', 'email']
   }
 };
