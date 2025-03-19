@@ -300,7 +300,7 @@ module.exports = {
         'precursors-use-other-address'
       ],
       titleField: ['amend-precursor-field'],
-      addStep: 'precursor-details',
+      addStep: 'select-precursor',
       addAnotherLinkText: 'explosives precursors',
       continueOnEdit: false,
       next: '/poisons',

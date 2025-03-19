@@ -164,31 +164,25 @@ module.exports = superclass => class extends superclass {
     const parser = req.form.options.fieldsConfig[fieldName]?.parse;
     if (Array.isArray(value)) {
       if (fieldName === 'amend-where-to-store-precursor') {
-        newValue = req.sessionModel.get('homeAddressInline')
+        value = req.sessionModel.get('homeAddressInline')
           .concat('\n', req.sessionModel.get('store-precursors-other-address'));
-        value = newValue;
       }
       if (fieldName === 'amend-where-to-use-precursor') {
-        newValue = req.sessionModel.get('homeAddressInline')
+        value = req.sessionModel.get('homeAddressInline')
           .concat('\n', req.sessionModel.get('precursors-use-other-address'));
-        value = newValue;
       }
     } else {
       if (fieldName === 'amend-where-to-store-precursor' && valueVar === 'amend-store-precursors-home-address') {
-        newValue = req.sessionModel.get('homeAddressInline');
-        value = newValue;
+        value = req.sessionModel.get('homeAddressInline');
       }
       if (fieldName === 'amend-where-to-use-precursor' && valueVar === 'amend-use-precursors-home-address') {
-        newValue = req.sessionModel.get('homeAddressInline');
-        value = newValue;
+        value = req.sessionModel.get('homeAddressInline');
       }
       if (fieldName === 'amend-where-to-store-precursor' && valueVar === 'amend-store-precursors-other-address') {
-        newValue = req.sessionModel.get('precursors-use-other-address');
-        value = newValue;
+        value = req.sessionModel.get('store-precursors-other-address');
       }
       if (fieldName === 'amend-where-to-use-precursor' && valueVar === 'amend-use-precursors-other-address') {
-        newValue = req.sessionModel.get('store-precursors-other-address');
-        value = newValue;
+        value = req.sessionModel.get('precursors-use-other-address');
       }
     }
     return parser ? parser(value) : value;

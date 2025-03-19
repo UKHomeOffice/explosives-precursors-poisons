@@ -24,7 +24,6 @@ module.exports = superclass =>
           if (field.field === 'precursors-use-other-address' || field.field === 'store-precursors-other-address') {
             field.showInSummary = false;
           }
-          
           field.field += '.summary-heading';
           return field;
         });
