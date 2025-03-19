@@ -1,5 +1,9 @@
 {
-"start": "initial button",
-"remove": "Remove",
-"continue": "Continue"
+  "start": "initial button",
+  "remove": "Remove",
+  "continue": "Continue",
+  "delete": "Delete",
+  "edit": "Change",
+  "continue-payment": "Continue to payment",
+  "try-paying-again": "Try paying again"
 }

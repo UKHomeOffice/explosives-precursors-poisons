@@ -142,5 +142,8 @@
       "replace-date-of-birth": {
         "hint": " For example, 30 09 1969",
         "label": "Date of birth"
+      },
+      "amend-declaration": {
+        "label": "I have read and agree to this declaration"
       }
 }

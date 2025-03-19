@@ -235,5 +235,9 @@ module.exports = {
       field: 'replace-countersignatory-Id-type',
       value: 'Uk-driving-licence'
     }
+  },
+  'amend-declaration': {
+    mixin: 'checkbox',
+    validate: ['required']
   }
 };

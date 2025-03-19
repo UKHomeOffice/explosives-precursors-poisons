@@ -130,5 +130,8 @@
   "required": "Enter your date of birth",
   "date": "Enter a real date",
   "before": "Your date of birth must be in the past"
+  },
+  "amend-declaration": {
+    "required": "Confirm you have read and agree to this declaration"
   }
 }
