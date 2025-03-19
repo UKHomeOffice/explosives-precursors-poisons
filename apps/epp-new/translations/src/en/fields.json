@@ -373,7 +373,7 @@
     "summary-heading": "When offence happened"
   },
   "new-renew-countersignatory-Id-type": {
-    "legend": "Which identity document do you want to use?",
+    "legend": "What is your countersignatory's identity document?",
     "hint": "If your licence is granted, you will need to show this document when buying the substances",
     "options": {
       "UK-passport": {
