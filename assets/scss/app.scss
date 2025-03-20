@@ -367,6 +367,11 @@ pre.looped-records {
     align-items: baseline;
   }
 }
+.looped-records{
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-all;
+}
 
 .alert-complete {
   background-color: #00703C;

@@ -1,5 +1,4 @@
 const {
-  getFormattedDate,
   TEXT_NOT_PROVIDED
 } = require('../../../utilities/helpers');
 module.exports = superclass =>
@@ -15,25 +14,14 @@ module.exports = superclass =>
      */
     locals(req, res) {
       // Update dateFields with every new date field that needs to be formatted
-      const dateFields = [
-        'new-renew-other-name-start-date',
-        'new-renew-other-name-stop-date',
-        'new-renew-previous-home-address-moveto-date',
-        'new-renew-licence-refused-date',
-        'new-renew-offence-date'
-      ];
+
       const locals = super.locals(req, res);
       locals.items = locals.items.map(item => {
         item.fields = item.fields.map(field => {
-          if (dateFields.includes(field.field)) {
-            if (field.value) {
-              field.parsed = getFormattedDate(field.value);
-            }
-          }
           if (!field.value) {
             field.parsed = TEXT_NOT_PROVIDED;
           }
-          if(field.field === 'precursors-use-other-address' || field.field === 'store-precursors-other-address') {
+          if (field.field === 'precursors-use-other-address' || field.field === 'store-precursors-other-address' || field.field === 'amend-display-precursor-title') {
             field.showInSummary = false;
           }
           field.field += '.summary-heading';
