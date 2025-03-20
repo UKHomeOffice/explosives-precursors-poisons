@@ -1,4 +1,5 @@
 'use strict';
+const { fields } = require('..');
 const config = require('../../../config');
 const {
   isDateOlderOrEqualTo
@@ -267,8 +268,35 @@ module.exports = {
   'amend-explosives-precursor': {
     steps: [
       {
-        steps: '/select-precursor',
+        step: '/select-precursor',
         field: 'amend-precursor-field'
+      },
+    ]
+  },
+  'amend-explosives-precursor-details': {
+    steps: [
+      {
+        step: '/precursors-summary',
+        field: 'precursorDetails',
+        changeLink: '/amend/precursors-summary',
+        parse: (list, req) => {
+          if (!list?.aggregatedValues) { return null; }
+          for(const item of list.aggregatedValues){
+            item.fields.map(element => {
+              if(element.field === 'store-precursors-other-address' || element.field === 'precursors-use-other-address'){
+                element.showInSummary = false;
+              }else if(element.field === 'amend-precursor-field'){
+                element.showInSummary = false;
+              }else if(element.field === 'amend-display-precursor-title'){
+                element.parsed = item.joinTitle;
+              }
+              else{
+                element.field
+              }
+             })
+          }
+          return list;
+        }
       }
     ]
   },

@@ -160,32 +160,32 @@ module.exports = superclass => class extends superclass {
   parseField(field, value, req) {
     const fieldName = field.field || field;
     const valueVar = field.value || value;
-    let newValue = '';
+    let newValue = value;
     const parser = req.form.options.fieldsConfig[fieldName]?.parse;
     if (Array.isArray(value)) {
       if (fieldName === 'amend-where-to-store-precursor') {
-        value = req.sessionModel.get('homeAddressInline')
+        newValue = req.sessionModel.get('homeAddressInline')
           .concat('\n', req.sessionModel.get('store-precursors-other-address'));
       }
       if (fieldName === 'amend-where-to-use-precursor') {
-        value = req.sessionModel.get('homeAddressInline')
+        newValue = req.sessionModel.get('homeAddressInline')
           .concat('\n', req.sessionModel.get('precursors-use-other-address'));
       }
     } else {
       if (fieldName === 'amend-where-to-store-precursor' && valueVar === 'amend-store-precursors-home-address') {
-        value = req.sessionModel.get('homeAddressInline');
+        newValue = req.sessionModel.get('homeAddressInline');
       }
       if (fieldName === 'amend-where-to-use-precursor' && valueVar === 'amend-use-precursors-home-address') {
-        value = req.sessionModel.get('homeAddressInline');
+        newValue = req.sessionModel.get('homeAddressInline');
       }
       if (fieldName === 'amend-where-to-store-precursor' && valueVar === 'amend-store-precursors-other-address') {
-        value = req.sessionModel.get('store-precursors-other-address');
+        newValue = req.sessionModel.get('store-precursors-other-address');
       }
       if (fieldName === 'amend-where-to-use-precursor' && valueVar === 'amend-use-precursors-other-address') {
-        value = req.sessionModel.get('precursors-use-other-address');
+        newValue = req.sessionModel.get('precursors-use-other-address');
       }
     }
-    return parser ? parser(value) : value;
+    return parser ? parser(newValue) : newValue;
   }
 
   locals(req, res) {
