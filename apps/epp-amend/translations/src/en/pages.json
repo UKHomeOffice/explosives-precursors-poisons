@@ -293,7 +293,25 @@
          "label": "Proof of address attachment"
       },
       "amend-precursor-field": {
-        "label": "Explosives precursor"
+         "label": "Explosives precursor"
+      },
+      "amend-display-precursor-title": {
+         "label": "Explosives precursor name"
+      },
+      "amend-why-need-precursor": {
+        "label": "For what purpose do you need this regulated substance?"
+      },
+      "amend-how-much-precursor": {
+        "label": "How much do you wish to acquire?"
+      },
+      "amend-what-concentration-precursor": {
+        "label": "What concentration % w/w of the substance do you need for your intended purpose?"
+      },
+      "amend-where-to-store-precursor": {
+        "label":"Home address (storage)"
+      },
+      "amend-where-to-use-precursor": {
+        "label": "Home address (usage)"
       },
       "amend-regulated-explosives-precursors": {
         "label": "Does your licence need to cover explosives precursors?"

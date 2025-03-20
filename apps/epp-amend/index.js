@@ -270,6 +270,7 @@ module.exports = {
     },
     '/select-precursor': {
       fields: ['amend-precursor-field'],
+      continueOnEdit: true,
       locals: { captionHeading: 'Section 15 of 23' },
       next: '/precursor-details'
     },
@@ -291,6 +292,7 @@ module.exports = {
       behaviours: [AggregateSaveEditPrecursorPoison, ParseSummaryPrecursorsPoisons, EditRouteReturn],
       aggregateTo: 'precursorDetails',
       aggregateFrom: [
+        'amend-display-precursor-title',
         'amend-why-need-precursor',
         'amend-how-much-precursor',
         'amend-what-concentration-precursor',
