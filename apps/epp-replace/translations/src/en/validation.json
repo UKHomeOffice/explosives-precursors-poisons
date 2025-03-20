@@ -133,7 +133,7 @@
   },
   "replace-phone-number": {
     "required": "Enter your telephone number",
-    "internationalPhoneNumber": "Enter a real telephone number"
+    "validInternationalPhoneNumber": "Enter a real telephone number"
 },
 "replace-email": {
     "required": "Enter a contact email address",
