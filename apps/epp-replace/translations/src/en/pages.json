@@ -108,6 +108,9 @@
     "hint": " For example, 30 09 1969",
     "label": "Date of birth"
   },
+  "contact-details": {
+    "header": "What are your contact details?"
+  },
   "confirm": {
     "header": "Check your answers",
     "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",
@@ -115,6 +118,9 @@
       "replace-police-report": {
         "header": "Authorities"
       },
+      "replace-contact-details": {
+        "header": "Contact details"
+     },
       "replace-date-of-birth": {
         "header": "Applicant date of birth"
       },
@@ -146,6 +152,12 @@
     "fields": {
       "replace-licence-number": {
         "label": "Licence number"
+      },
+      "replace-phone-number": {
+        "label": "Contact phone number"
+      },
+      "replace-email": {
+        "label": "Email address"
       },
       "replace-is-details-changed": {
         "label": "Have any of your details changed since the licence was issued?"
