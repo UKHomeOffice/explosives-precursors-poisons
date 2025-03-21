@@ -142,5 +142,32 @@
       "replace-date-of-birth": {
         "hint": " For example, 30 09 1969",
         "label": "Date of birth"
+      },
+      "replace-which-document-type": {
+        "legend": "Which identity document do you want to use?",
+        "options": {
+          "UK-passport": {
+            "label": "British passport"
+          },
+          "EU-passport": {
+            "label": "Passport from the EU, Switzerland, Norway, Iceland or Liechtenstein"
+          },
+          "Uk-driving-licence": {
+            "label": "UK driving licence",
+            "hint": "Must be a photocard licence."
+          }
+        }
+      },
+      "replace-UK-passport-number": {
+        "label": "What is your passport number?",
+        "hint" : "For example, 120897A"    
+      },
+      "replace-EU-passport-number": {
+        "label": "What is your passport number?",
+        "hint" : "For example, 120897A"  
+      },
+      "replace-Uk-driving-licence-number": {
+        "label": "What is your driving licence number?",
+        "hint" : "On section 5 of your licence, for example MORGA657054SM9IJ"    
       }
 }

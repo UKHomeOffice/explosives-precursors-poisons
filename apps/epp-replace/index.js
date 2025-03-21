@@ -103,7 +103,7 @@ module.exports = {
       fields: ['replace-is-details-changed'],
       forks: [
         {
-          target: '/section-nine',
+          target: '/amend-licence',
           condition: {
             field: 'replace-is-details-changed',
             value: 'yes'
@@ -132,11 +132,32 @@ module.exports = {
         'replace-new-lastname',
         'replace-date-new-name-changed'
       ],
-      next: '/section-eleven'
+      next: '/identity-details'
     },
-    '/section-eleven': {
-      fields: ['replace-which-document-type'],
-      next: '/upload-british-passport'
+    '/identity-details': {
+      fields: ['replace-which-document-type',
+        'replace-UK-passport-number',
+        'replace-EU-passport-number',
+        'replace-Uk-driving-licence-number'
+      ],
+      next: '/upload-british-passport',
+      forks: [
+        {
+          target: '/upload-british-passport',
+          condition: req => req.sessionModel.get('replace-which-document-type') === 'UK-passport',
+          continueOnEdit: false
+        },
+        {
+          target: '/upload-passport',
+          condition: req => req.sessionModel.get('replace-which-document-type') === 'EU-passport',
+          continueOnEdit: false
+        },
+        {
+          target: '/upload-driving-licence',
+          condition: req => req.sessionModel.get('replace-which-document-type') === 'Uk-driving-licence',
+          continueOnEdit: false
+        }
+        ]
     },
     '/upload-british-passport': {
       behaviours: [

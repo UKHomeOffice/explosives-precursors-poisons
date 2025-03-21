@@ -36,6 +36,22 @@ module.exports = {
   'replace-new-name': {
     steps: [
       {
+        step: '/identity-details',
+        field: 'replace-which-document-type'
+      },
+      {
+        step: '/identity-details',
+        field: 'replace-UK-passport-number'
+      },
+      {
+        step: '/identity-details',
+        field: 'replace-EU-passport-number'
+      },
+      {
+        step: '/identity-details',
+        field: 'replace-Uk-driving-licence-number'
+      },
+      {
         step: '/upload-british-passport',
         field: 'replace-british-passport',
         parse: (documents, req) => {
@@ -103,7 +119,6 @@ module.exports = {
           ) {
             return documents.map(file => file.name);
           }
-
           return null;
         }
       }
