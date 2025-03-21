@@ -97,7 +97,7 @@ module.exports = {
     },
     '/contact-details': {
       fields: ['replace-phone-number', 'replace-email'],
-      locals: {captionHeading: 'Section 7 of 20'},
+      locals: {captionHeading: 'Section 7 of 26'},
       next: '/changed-details'
     },
     '/changed-details': {

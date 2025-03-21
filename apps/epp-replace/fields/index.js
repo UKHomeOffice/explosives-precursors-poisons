@@ -240,7 +240,7 @@ module.exports = {
     mixin: 'input-text',
     className: ['govuk-input'],
     labelClassName: 'govuk-label--m',
-    validate: ['required', validInternationalPhoneNumber]
+    validate: ['required', validInternationalPhoneNumber, 'notUrl']
   },
   'replace-email': {
     mixin: 'input-text',
