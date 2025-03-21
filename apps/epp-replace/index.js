@@ -157,7 +157,7 @@ module.exports = {
           condition: req => req.sessionModel.get('replace-which-document-type') === 'Uk-driving-licence',
           continueOnEdit: false
         }
-        ]
+      ]
     },
     '/upload-british-passport': {
       behaviours: [
