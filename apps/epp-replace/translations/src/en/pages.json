@@ -218,6 +218,18 @@
       },
       "replace-countersignatory-Uk-driving-licence-number": {
         "label": "UK driving licence number"
+      },
+      "replace-which-document-type": {
+        "label": "Identification document"
+      },
+      "replace-UK-passport-number": {
+        "label": "British passport number"
+      },
+      "replace-EU-passport-number": {
+        "label": "Passport number"
+      },
+      "replace-Uk-driving-licence-number": {
+        "label": "UK driving licence number"
       }
     }
   }
