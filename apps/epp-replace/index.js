@@ -146,17 +146,17 @@ module.exports = {
         {
           target: '/upload-british-passport',
           condition: req => req.sessionModel.get('replace-which-document-type') === 'UK-passport',
-          continueOnEdit: false
+          continueOnEdit: true
         },
         {
           target: '/upload-passport',
           condition: req => req.sessionModel.get('replace-which-document-type') === 'EU-passport',
-          continueOnEdit: false
+          continueOnEdit: true
         },
         {
           target: '/upload-driving-licence',
           condition: req => req.sessionModel.get('replace-which-document-type') === 'Uk-driving-licence',
-          continueOnEdit: false
+          continueOnEdit: true
         }
       ]
     },

@@ -1,9 +1,8 @@
 const titles = require('../../../utilities/constants/titles');
 const poisonsList = require('../../../utilities/constants/poisons.js');
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years.js');
-const { isValidUkDrivingLicenceNumber } = require('../../../utilities/helpers');
+const { isValidUkDrivingLicenceNumber, validInternationalPhoneNumber } = require('../../../utilities/helpers');
 const helpers = require('../../../utilities/helpers/index.js');
-const { validInternationalPhoneNumber } = require('../../../utilities/helpers');
 
 module.exports = {
   'replace-licence-number': {
