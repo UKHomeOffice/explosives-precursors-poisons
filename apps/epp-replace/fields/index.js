@@ -1,4 +1,5 @@
 const titles = require('../../../utilities/constants/titles');
+const dateComponent = require('hof').components.date;
 const poisonsList = require('../../../utilities/constants/poisons.js');
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years.js');
 const { isValidUkDrivingLicenceNumber, validInternationalPhoneNumber } = require('../../../utilities/helpers');
