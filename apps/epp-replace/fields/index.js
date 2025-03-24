@@ -236,8 +236,20 @@ module.exports = {
       value: 'Uk-driving-licence'
     }
   },
-  'amend-declaration': {
-    mixin: 'checkbox',
-    validate: ['required']
-  }
+  'replace-phone-number': {
+    mixin: 'input-text',
+    className: ['govuk-input'],
+    labelClassName: 'govuk-label--m',
+    validate: ['required', validInternationalPhoneNumber, 'notUrl']
+  },
+  'replace-email': {
+    mixin: 'input-text',
+    className: ['govuk-input'],
+    labelClassName: 'govuk-label--m',
+    validate: ['required', 'email']
+  },
+    'amend-declaration': {
+        mixin: 'checkbox',
+        validate: ['required']
+    }
 };

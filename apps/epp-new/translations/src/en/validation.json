@@ -322,7 +322,7 @@
     "after": "Date offence happened must be after {{diff}}, your date of birth"
   },
   "new-renew-countersignatory-Id-type": {
-    "required": "Select which identity document you want to use"
+    "required": "Select which countersignatory identity document you can provide details for"
   },
   "new-renew-countersignatory-UK-passport-number": {
     "required": "Enter your passport number",
