@@ -46,7 +46,7 @@ module.exports = {
     validate: 'required',
     className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
-      className: 'govuk-fieldset__legend govuk-fieldset__legend--m'
+      className: 'govuk-fieldset__legend--m'
     }
   },
   'new-renew-phone-number': {
@@ -157,7 +157,7 @@ module.exports = {
     'new-renew-other-name-start-date',
     {
       mixin: 'input-date',
-      legend: { className: 'govuk-label--m' },
+      legend: { className: 'govuk-fieldset__legend--m' },
       validate: [
         'required',
         'date',
@@ -169,7 +169,7 @@ module.exports = {
     'new-renew-other-name-stop-date',
     {
       mixin: 'input-date',
-      legend: { className: 'govuk-label--m' },
+      legend: { className: 'govuk-fieldset__legend--m' },
       validate: ['date', { type: 'before', arguments: ['0', 'days'] }]
     }
   ),
@@ -177,19 +177,13 @@ module.exports = {
     mixin: 'radio-group',
     options: [{ value: 'yes' }, { value: 'no' }],
     validate: ['required'],
-    className: ['govuk-radios', 'govuk-radios--inline'],
-    legend: {
-      className: 'govuk-fieldset__legend'
-    }
+    className: ['govuk-radios', 'govuk-radios--inline']
   },
   'new-renew-received-treatment': {
     mixin: 'radio-group',
     options: [{ value: 'yes' }, { value: 'no' }],
     validate: ['required'],
-    className: ['govuk-radios', 'govuk-radios--inline'],
-    legend: {
-      className: 'govuk-fieldset__legend'
-    }
+    className: ['govuk-radios', 'govuk-radios--inline']
   },
   'new-renew-other-firearms-licence': {
     mixin: 'radio-group',
@@ -197,7 +191,7 @@ module.exports = {
     validate: ['required'],
     className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
-      className: ['govuk-fieldset__legend', 'govuk-label--m']
+      className: 'govuk-fieldset__legend--m'
     }
   },
   'new-renew-other-shotgun-licence': {
@@ -206,7 +200,7 @@ module.exports = {
     validate: ['required'],
     className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
-      className: ['govuk-fieldset__legend', 'govuk-label--m']
+      className: 'govuk-fieldset__legend--m'
     }
   },
   'new-renew-other-refused-licence': {
@@ -215,7 +209,7 @@ module.exports = {
     validate: ['required'],
     className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
-      className: ['govuk-fieldset__legend', 'govuk-label--m']
+      className: 'govuk-fieldset__legend--m'
     }
   },
   'new-renew-other-country-nationality': {
@@ -233,17 +227,17 @@ module.exports = {
   },
   'new-renew-date-fr': dateComponent('new-renew-date-fr', {
     mixin: 'input-date',
-    legend: { className: 'govuk-label--m' },
+    legend: { className: 'govuk-fieldset__legend--m' },
     validate: ['date', 'before']
   }),
   'new-renew-date-to': dateComponent('new-renew-date-to', {
     mixin: 'input-date',
-    legend: { className: 'govuk-label--m' },
+    legend: { className: 'govuk-fieldset__legend--m' },
     validate: ['date', 'before']
   }),
   'new-renew-dob': dateComponent('new-renew-dob', {
     mixin: 'input-date',
-    legend: { className: 'govuk-label--m' },
+    legend: { className: 'govuk-fieldset__legend--m' },
     validate: ['required', 'date', 'before']
   }),
   'new-renew-birth-place': {
@@ -289,7 +283,7 @@ module.exports = {
     validate: 'required',
     className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
-      className: 'govuk-fieldset__legend govuk-fieldset__legend--m'
+      className: 'govuk-fieldset__legend--m'
     }
   },
   'new-renew-your-sex': {
@@ -302,7 +296,7 @@ module.exports = {
     validate: 'required',
     className: ['govuk-radios'],
     legend: {
-      className: 'govuk-fieldset__legend govuk-fieldset__legend--m'
+      className: 'govuk-fieldset__legend--m'
     }
   },
   'new-renew-your-height': {
@@ -344,7 +338,7 @@ module.exports = {
     validate: ['required'],
     className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
-      className: ['govuk-fieldset__legend', 'govuk-label--m']
+      className: 'govuk-fieldset__legend--m'
     }
   },
   'new-renew-home-address-line1': {
@@ -407,7 +401,7 @@ module.exports = {
     'new-renew-home-address-moveto-date',
     {
       mixin: 'input-date',
-      legend: { className: 'govuk-label--m' },
+      legend: { className: 'govuk-fieldset__legend--m' },
       validate: ['required', 'date', 'before']
     }
   ),
@@ -472,7 +466,7 @@ module.exports = {
     'new-renew-previous-home-address-moveto-date',
     {
       mixin: 'input-date',
-      legend: { className: 'govuk-label--m' },
+      legend: { className: 'govuk-fieldset__legend--m' },
       validate: ['required', 'date', 'before']
     }
   ),
@@ -585,7 +579,7 @@ module.exports = {
     ],
     validate: 'required',
     legend: {
-      className: 'govuk-fieldset__legend govuk-fieldset__legend--m'
+      className: 'govuk-fieldset__legend--m'
     }
   },
   'new-renew-why-licence-refused': {
@@ -598,7 +592,7 @@ module.exports = {
     'new-renew-licence-refused-date',
     {
       mixin: 'input-date',
-      legend: { className: 'govuk-label--m' },
+      legend: { className: 'govuk-fieldset__legend--m' },
       validate: [
         'required',
         'date',
@@ -630,7 +624,7 @@ module.exports = {
   },
   'new-renew-offence-date': dateComponent('new-renew-offence-date', {
     mixin: 'input-date',
-    legend: { className: 'govuk-label--m' },
+    legend: { className: 'govuk-fieldset__legend--m' },
     validate: ['required', 'date', { type: 'before', arguments: ['0', 'days'] }]
   }),
   'new-renew-countersignatory-Id-type': {

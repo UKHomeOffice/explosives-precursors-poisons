@@ -51,7 +51,7 @@ module.exports = {
   'amend-name-options': {
     mixin: 'radio-group',
     legend: {
-      className: 'govuk-label--m'
+      className: 'govuk-fieldset__legend--m'
     },
     className: ['govuk-radios', 'govuk-radios--inline'],
     options: ['yes', 'no'],
@@ -59,7 +59,7 @@ module.exports = {
   },
   'amend-date-of-birth': dateComponent('amend-date-of-birth', {
     mixin: 'input-date',
-    legend: { className: 'govuk-label--m' },
+    legend: { className: 'govuk-fieldset__legend--m' },
     validate: ['required', 'date', 'before']
   }),
   'amend-address-1': {
@@ -203,13 +203,13 @@ module.exports = {
   },
   'amend-new-date-name-changed': dateComponent('amend-new-date-name-changed', {
     mixin: 'input-date',
-    legend: { className: 'govuk-label--m' },
+    legend: { className: 'govuk-fieldset__legend--m' },
     validate: ['required', 'date', 'before']
   }),
   'amend-home-address-options': {
     mixin: 'radio-group',
     legend: {
-      className: 'govuk-label--m'
+      className: 'govuk-fieldset__legend--m'
     },
     className: ['govuk-radios', 'govuk-radios--inline'],
     options: ['yes', 'no'],
@@ -279,14 +279,14 @@ module.exports = {
     'amend-new-date-moved-to-address',
     {
       mixin: 'input-date',
-      legend: { className: 'govuk-label--m' },
+      legend: { className: 'govuk-fieldset__legend--m' },
       validate: ['required', 'date', 'before']
     }
   ),
   'amend-change-substances-options': {
     mixin: 'radio-group',
     legend: {
-      className: 'govuk-label--m'
+      className: 'govuk-fieldset__legend--m'
     },
     className: ['govuk-radios', 'govuk-radios--inline'],
     options: ['yes', 'no'],
@@ -392,7 +392,7 @@ module.exports = {
   'amend-poisons-option': {
     mixin: 'radio-group',
     legend: {
-      className: 'govuk-label--m'
+      className: 'govuk-fieldset__legend--m'
     },
     className: ['govuk-radios', 'govuk-radios--inline'],
     options: ['yes', 'no'],

@@ -223,7 +223,7 @@ module.exports = {
   },
   'replace-date-of-birth': dateComponent('replace-date-of-birth', {
     mixin: 'input-date',
-    legend: { className: 'govuk-label--m' },
+    legend: { className: 'govuk-fieldset__legend--m' },
     validate: ['required', 'date', 'before']
   }),
   'replace-countersignatory-Uk-driving-licence-number': {
