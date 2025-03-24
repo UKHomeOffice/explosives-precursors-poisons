@@ -3,7 +3,6 @@ const dateComponent = require('hof').components.date;
 const poisonsList = require('../../../utilities/constants/poisons.js');
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years.js');
 const { isValidUkDrivingLicenceNumber, validInternationalPhoneNumber } = require('../../../utilities/helpers');
-const helpers = require('../../../utilities/helpers/index.js');
 
 module.exports = {
   'replace-licence-number': {
@@ -230,7 +229,7 @@ module.exports = {
       'required',
       'notUrl',
       { type: 'minlength', arguments: 16 },
-      helpers.isValidUkDrivingLicenceNumber
+      isValidUkDrivingLicenceNumber
     ],
     className: ['govuk-input', 'govuk-!-width-one-thirds'],
     dependent: {
