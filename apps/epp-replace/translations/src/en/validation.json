@@ -130,5 +130,14 @@
   "required": "Enter your date of birth",
   "date": "Enter a real date",
   "before": "Your date of birth must be in the past"
-  }
+  },
+  "replace-phone-number": {
+    "required": "Enter your telephone number",
+    "validInternationalPhoneNumber": "Enter a real telephone number",
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
+},
+"replace-email": {
+    "required": "Enter a contact email address",
+    "email": "Enter a real email address"
+}
 }

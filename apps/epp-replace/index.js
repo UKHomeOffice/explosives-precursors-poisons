@@ -93,10 +93,11 @@ module.exports = {
         'replace-post-postcode',
         'replace-post-country'
       ],
-      next: '/section-seven'
+      next: '/contact-details'
     },
-    '/section-seven': {
+    '/contact-details': {
       fields: ['replace-phone-number', 'replace-email'],
+      locals: {captionHeading: 'Section 7 of 26'},
       next: '/changed-details'
     },
     '/changed-details': {
