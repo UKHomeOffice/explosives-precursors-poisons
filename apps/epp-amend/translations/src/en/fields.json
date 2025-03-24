@@ -303,6 +303,52 @@
     "label": "{{values.usePrecursorOtherAddressLabel}}",
     "hint": "Enter a UK address"
   },
+  "amend-why-need-poison":{
+    "label": "{{values.whyNeedPoisonLabel}}",
+    "hint": "Detailed answers mean we can process your application faster"
+  },
+  "amend-how-much-poison":{
+    "label": "How much do you wish to acquire at any one time?",
+    "hint": "Enter the amount and the unit. For example, 10 litres"
+  },
+  "amend-compound-or-salt": {
+    "label": "Specific compound or salt"
+  },
+  "amend-what-concentration-poison":{
+    "label": "What concentration % w/w do you need?"
+  },
+  "amend-where-to-store-poison": {
+    "legend": "{{values.whereToStorePoisonLegend}}",
+    "hint": "This must be in the UK",
+    "options": {
+      "amend-store-poison-home-address": {
+        "label": "{{values.homeAddressInline}}"
+      },
+      "amend-store-poison-other-address": {
+        "label": "Other address"
+      }
+    }
+  },
+  "store-poison-other-address": {
+    "label": "{{values.storePoisonOtherAddressLabel}}",
+    "hint": "Enter a UK address"
+  },
+  "amend-where-to-use-poison": {
+    "legend": "{{values.whereToUsePoisonLegend}}",
+    "hint": "This must be in the UK",
+    "options": {
+      "amend-use-poison-home-address": {
+        "label": "{{values.homeAddressInline}}"
+      },
+      "amend-use-poison-other-address": {
+        "label": "Other address"
+      }
+    }
+  },
+  "poison-use-other-address": {
+    "label": "{{values.usePoisonOtherAddressLabel}}",
+    "hint": "Enter a UK address"
+  },
   "amend-countersignatory-Id-type": {
     "legend": "What is your countersignatory’s identity document?",
     "hint": "You only need to provide a document number.",

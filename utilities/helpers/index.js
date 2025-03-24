@@ -1,6 +1,7 @@
 const moment = require('moment');
 const validators = require('hof/controller/validation/validators');
 const explosivePrecursorsList = require('../constants/explosive-precursors');
+const poisonList = require('../constants/poisons');
 const config = require('../../config');
 
 class NotifyMock {
@@ -145,6 +146,25 @@ const getPrecursorsShortLabel = input => {
   }
   return resultStr;
 };
+const getPoisonShortLabel = input => {
+  if (!input || typeof input !== 'string') {
+    return input;
+  }
+
+  const resultStr = input.trim();
+
+  for (const { label, shortLabel } of poisonList) {
+    if (resultStr === label) {
+      return shortLabel;
+    }
+
+    if (resultStr.includes(label)) {
+      const newLabel = resultStr.replace(label, shortLabel);
+      return newLabel;
+    }
+  }
+  return resultStr;
+};
 
 module.exports = {
   isLicenceValid,
@@ -162,6 +182,7 @@ module.exports = {
   getFormattedDate,
   isEditMode,
   getPrecursorsShortLabel,
+  getPoisonShortLabel,
   textAreaDefaultLength,
   isValidConcentrationValue,
   NotifyClient:

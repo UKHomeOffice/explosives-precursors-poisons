@@ -411,6 +411,88 @@ module.exports = {
       }
     ].concat(poisonsList)
   },
+  'amend-why-need-poison': {
+    mixin: 'textarea',
+    validate: ['required', 'notUrl', helpers.textAreaDefaultLength],
+    attributes: [{ attribute: 'rows', value: 5 }],
+    labelClassName: 'govuk-label--s'
+  },
+  'amend-how-much-poison': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
+    className: ['govuk-input', 'govuk-input--width-10'],
+    labelClassName: 'govuk-label--s'
+  },
+  'amend-compound-or-salt': {
+    mixin: 'textarea',
+    validate: ['required', 'notUrl', helpers.textAreaDefaultLength],
+    attributes: [{ attribute: 'rows', value: 5 }],
+    labelClassName: 'govuk-label--s'
+  },
+  'amend-what-concentration-poison': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      helpers.isValidConcentrationValue,
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ],
+    className: ['govuk-input', 'govuk-input--width-5'],
+    labelClassName: 'govuk-label--s',
+    attributes: [{ suffix: '%' }]
+  },
+  'amend-where-to-store-poison': {
+    mixin: 'checkbox-group',
+    validate: ['required'],
+    legend: {
+      className: 'govuk-label--s'
+    },
+    options: [
+      {
+        value: 'amend-store-poison-home-address'
+      },
+      {
+        value: 'amend-store-poison-other-address',
+        toggle: 'store-poison-other-address',
+        child: 'textarea'
+      }
+    ]
+  },
+  'store-poison-other-address': {
+    mixin: 'textarea',
+    validate: ['required', helpers.textAreaDefaultLength, 'notUrl'],
+    dependent: {
+      field: 'amend-where-to-store-poison',
+      value: 'amend-store-poison-other-address'
+    },
+    attributes: [{ attribute: 'rows', value: 5 }]
+  },
+  'amend-where-to-use-poison': {
+    mixin: 'checkbox-group',
+    validate: ['required'],
+    legend: {
+      className: 'govuk-label--s'
+    },
+    options: [
+      {
+        value: 'amend-use-poison-home-address'
+      },
+      {
+        value: 'amend-use-poison-other-address',
+        toggle: 'poison-use-other-address',
+        child: 'textarea'
+      }
+    ]
+  },
+  'poison-use-other-address': {
+    mixin: 'textarea',
+    validate: ['required', helpers.textAreaDefaultLength, 'notUrl'],
+    dependent: {
+      field: 'amend-where-to-use-poison',
+      value: 'amend-use-poison-other-address'
+    },
+    attributes: [{ attribute: 'rows', value: 5 }]
+  },
   'amend-no-poisons-precursors-options': {
     mixin: 'radio-group',
     legend: {
