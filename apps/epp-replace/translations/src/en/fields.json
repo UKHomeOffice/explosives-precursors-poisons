@@ -169,5 +169,13 @@
       "replace-Uk-driving-licence-number": {
         "label": "What is your driving licence number?",
         "hint" : "On section 5 of your licence, for example MORGA657054SM9IJ"    
-      }
+      },
+      "replace-phone-number": {
+        "label": "Contact phone number",
+        "hint": "For international numbers, include the country code"
+    },
+    "replace-email": {
+        "label": "Email address",
+        "hint": "Where we will contact you about the outcome of your application"
+    }
 }

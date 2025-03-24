@@ -290,5 +290,17 @@ module.exports = {
       field: 'replace-which-document-type',
       value: 'Uk-driving-licence'
     }
+  },
+  'replace-phone-number': {
+    mixin: 'input-text',
+    className: ['govuk-input'],
+    labelClassName: 'govuk-label--m',
+    validate: ['required', validInternationalPhoneNumber, 'notUrl']
+  },
+  'replace-email': {
+    mixin: 'input-text',
+    className: ['govuk-input'],
+    labelClassName: 'govuk-label--m',
+    validate: ['required', 'email']
   }
 };

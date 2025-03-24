@@ -17,6 +17,18 @@ module.exports = {
       }
     ]
   },
+  'replace-contact-details': {
+    steps: [
+      {
+        steps: '/contact-details',
+        field: 'replace-phone-number'
+      },
+      {
+        steps: '/contact-details',
+        field: 'replace-email'
+      }
+    ]
+  },
   'replace-police-report': {
     steps: [
       {
