@@ -248,8 +248,8 @@ module.exports = {
     labelClassName: 'govuk-label--m',
     validate: ['required', 'email']
   },
-    'amend-declaration': {
-        mixin: 'checkbox',
-        validate: ['required']
-    }
+  'amend-declaration': {
+    mixin: 'checkbox',
+    validate: ['required']
+  }
 };
