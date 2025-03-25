@@ -313,8 +313,7 @@ module.exports = {
   },
   'replace-home-address-1': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    labelClassName: 'govuk-label--m',
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
@@ -324,8 +323,7 @@ module.exports = {
   },
   'replace-home-address-2': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    labelClassName: 'govuk-label--m',
     validate: [
       { type: 'minlength', arguments: 2 },
       { type: 'maxlength', arguments: 250 },
@@ -334,8 +332,7 @@ module.exports = {
   },
   'replace-home-town-or-city': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    labelClassName: 'govuk-label--m',
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
@@ -345,8 +342,7 @@ module.exports = {
   },
   'replace-home-county': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    labelClassName: 'govuk-label--m',
     validate: [
       { type: 'minlength', arguments: 2 },
       { type: 'maxlength', arguments: 250 },
@@ -355,28 +351,20 @@ module.exports = {
   },
   'replace-home-postcode': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    labelClassName: 'govuk-label--m',
+    className: ['govuk-input', 'govuk-input--width-10'],
     formatter: ['ukPostcode']
   },
   'replace-home-country': {
     mixin: 'select',
     validate: ['required'],
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-!-width-two-thirds'],
+    labelClassName: 'govuk-label--m',
+    className: ['typeahead'],
     options: [
       {
         value: '',
         label: 'fields.replace-home-country.options.none_selected'
       }
     ].concat(countries)
-  },
-  'replace-home-address-moveto-date': dateComponent(
-    'replace-home-address-moveto-date',
-    {
-      mixin: 'input-date',
-      legend: { className: 'bold' },
-      validate: ['required', 'date', 'before']
-    }
-  )
+  }
 };
