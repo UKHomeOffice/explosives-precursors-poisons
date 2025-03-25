@@ -19,7 +19,8 @@ const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redund
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 const SendNotification = require('../epp-common/behaviours/submit-notify');
 const ParseSummaryPrecursorsPoisons = require('../epp-common/behaviours/parse-summary-precursors-poisons');
-const ModifySummaryChangeLink = require('../epp-common/behaviours/modify-summary-changeLink');
+const ModifySummaryChangeLink = require('../epp-common/behaviours/modify-summary-change-links');
+const ResetSectionSummary = require('../epp-common/behaviours/reset-section-summary');
 
 module.exports = {
   name: 'EPP form',
@@ -233,8 +234,14 @@ module.exports = {
     },
     '/change-substances': {
       behaviours: [
-        CheckAndRedirect('amend-change-substances-options',
-          ['amend-change-substances-options', 'amend-name-options', 'amend-home-address-options']
+        CheckAndRedirect('amend-change-substances-options', [
+          'amend-change-substances-options',
+          'amend-name-options',
+          'amend-home-address-options'
+        ]),
+        ResetSectionSummary(
+          'precursors-details-aggregate',
+          'amend-change-substances-options'
         )
       ],
       fields: ['amend-change-substances-options'],
@@ -255,6 +262,12 @@ module.exports = {
       locals: { captionHeading: 'Section 13 of 23' }
     },
     '/explosives-precursors': {
+      behaviours: [
+        ResetSectionSummary(
+          'precursors-details-aggregate',
+          'amend-regulated-explosives-precursors'
+        )
+      ],
       fields: ['amend-regulated-explosives-precursors'],
       forks: [
         {
@@ -291,7 +304,7 @@ module.exports = {
     },
     '/precursors-summary': {
       behaviours: [AggregateSaveEditPrecursorPoison, ParseSummaryPrecursorsPoisons, EditRouteReturn],
-      aggregateTo: 'precursorDetails',
+      aggregateTo: 'precursors-details-aggregate',
       aggregateFrom: [
         'amend-display-precursor-title',
         'amend-why-need-precursor',

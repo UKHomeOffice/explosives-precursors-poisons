@@ -162,27 +162,34 @@ module.exports = superclass => class extends superclass {
     const valueVar = field.value || value;
     let newValue = value;
     const parser = req.form.options.fieldsConfig[fieldName]?.parse;
+    const homeAddress = req.sessionModel.get('homeAddressInline');
+    const storePrecursorsOtherAddress = req.sessionModel.get('store-precursors-other-address');
+    const precursorsUseOtherAddress = req.sessionModel.get('precursors-use-other-address');
     if (Array.isArray(value)) {
       if (fieldName === 'amend-where-to-store-precursor') {
-        newValue = req.sessionModel.get('homeAddressInline')
-          .concat('\n', req.sessionModel.get('store-precursors-other-address'));
+        newValue = homeAddress?.concat('\n\n', storePrecursorsOtherAddress);
       }
       if (fieldName === 'amend-where-to-use-precursor') {
-        newValue = req.sessionModel.get('homeAddressInline')
-          .concat('\n', req.sessionModel.get('precursors-use-other-address'));
+        newValue = homeAddress?.concat('\n\n', precursorsUseOtherAddress);
       }
     } else {
-      if (fieldName === 'amend-where-to-store-precursor' && valueVar === 'amend-store-precursors-home-address') {
-        newValue = req.sessionModel.get('homeAddressInline');
-      }
-      if (fieldName === 'amend-where-to-use-precursor' && valueVar === 'amend-use-precursors-home-address') {
-        newValue = req.sessionModel.get('homeAddressInline');
-      }
-      if (fieldName === 'amend-where-to-store-precursor' && valueVar === 'amend-store-precursors-other-address') {
-        newValue = req.sessionModel.get('store-precursors-other-address');
-      }
-      if (fieldName === 'amend-where-to-use-precursor' && valueVar === 'amend-use-precursors-other-address') {
-        newValue = req.sessionModel.get('precursors-use-other-address');
+      switch (fieldName) {
+        case 'amend-where-to-store-precursor':
+          if (valueVar === 'amend-store-precursors-home-address') {
+            newValue = homeAddress;
+          } else if (valueVar === 'amend-store-precursors-other-address') {
+            newValue = storePrecursorsOtherAddress;
+          }
+          break;
+        case 'amend-where-to-use-precursor':
+          if (valueVar === 'amend-use-precursors-home-address') {
+            newValue = homeAddress;
+          } else if (valueVar === 'amend-use-precursors-other-address') {
+            newValue = precursorsUseOtherAddress;
+          }
+          break;
+        default:
+          break;
       }
     }
     return parser ? parser(newValue) : newValue;
