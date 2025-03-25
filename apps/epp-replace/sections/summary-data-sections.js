@@ -160,6 +160,34 @@ module.exports = {
       }
     ]
   },
+  'home-address-details': {
+    steps: [
+      {
+        step: '/home-address',
+        field: 'replace-home-address-1'
+      },
+      {
+        step: '/home-address',
+        field: 'replace-home-address-2'
+      },
+      {
+        step: '/home-address',
+        field: 'replace-home-town-or-city'
+      },
+      {
+        step: '/home-address',
+        field: 'replace-home-county'
+      },
+      {
+        step: '/home-address',
+        field: 'replace-home-postcode'
+      },
+      {
+        step: '/home-address',
+        field: 'replace-home-country'
+      }
+    ]
+  },
   'licence-details': {
     steps: [
       {

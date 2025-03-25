@@ -7,6 +7,7 @@ const ValidateLicenceNumber = require('../epp-common/behaviours/licence-validato
 const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 const DobUnder18Redirect = require('../epp-common/behaviours/dob-under18-redirect');
+const PostcodeValidation = require('../../utilities/helpers/postcode-validation');
 
 // TODO: Use DeleteRedundantDocuments behaviour similar to amend flow to
 // remove the uploaded files when dependent option changes
@@ -81,17 +82,18 @@ module.exports = {
     },
     '/date-of-birth': {
       fields: ['replace-date-of-birth'],
-      next: '/section-six',
+      next: '/home-address',
       locals: {captionHeading: 'Section 5 of 20'}
     },
-    '/section-six': {
+    '/home-address': {
+      behaviours: [PostcodeValidation],
       fields: [
-        'replace-post-address-1',
-        'replace-post-address-2',
-        'replace-post-town-or-city',
-        'replace-post-county',
-        'replace-post-postcode',
-        'replace-post-country'
+        'replace-home-address-1',
+        'replace-home-address-2',
+        'replace-home-town-or-city',
+        'replace-home-county',
+        'replace-home-postcode',
+        'replace-home-country'
       ],
       next: '/contact-details'
     },

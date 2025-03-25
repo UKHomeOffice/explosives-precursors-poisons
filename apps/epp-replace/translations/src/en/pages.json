@@ -2,9 +2,12 @@
   "application-submitted": {
     "confirmed": "Replaced application submitted"
   },
-"date-of-birth": {
+  "date-of-birth": {
   "header": "What is your date of birth?"
-},
+  },
+  "home-address": {
+  "header": "What is your home address?"
+  },
   "upload-british-passport": {
     "header": "Upload British passport",
     "label": "Upload a file",
@@ -118,9 +121,12 @@
       "replace-police-report": {
         "header": "Authorities"
       },
+      "home-address-details": {
+        "header": "Address on licence"
+      },
       "replace-contact-details": {
         "header": "Contact details"
-     },
+      },
       "replace-date-of-birth": {
         "header": "Applicant date of birth"
       },
@@ -152,6 +158,9 @@
     "fields": {
       "replace-licence-number": {
         "label": "Licence number"
+      },
+      "replace-home-country": {
+        "label": "Country"
       },
       "replace-phone-number": {
         "label": "Contact phone number"

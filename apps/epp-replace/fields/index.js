@@ -3,6 +3,7 @@ const dateComponent = require('hof').components.date;
 const poisonsList = require('../../../utilities/constants/poisons.js');
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years.js');
 const { isValidUkDrivingLicenceNumber, validInternationalPhoneNumber } = require('../../../utilities/helpers');
+const countries = require('../../../utilities/constants/countries');
 
 module.exports = {
   'replace-licence-number': {
@@ -309,5 +310,73 @@ module.exports = {
     className: ['govuk-input'],
     labelClassName: 'govuk-label--m',
     validate: ['required', 'email']
-  }
+  },
+  'replace-home-address-1': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'replace-home-address-2': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    validate: [
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'replace-home-town-or-city': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'replace-home-county': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    validate: [
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'replace-home-postcode': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    formatter: ['ukPostcode']
+  },
+  'replace-home-country': {
+    mixin: 'select',
+    validate: ['required'],
+    labelClassName: 'govuk-label--s',
+    className: ['govuk-!-width-two-thirds'],
+    options: [
+      {
+        value: '',
+        label: 'fields.replace-home-country.options.none_selected'
+      }
+    ].concat(countries)
+  },
+  'replace-home-address-moveto-date': dateComponent(
+    'replace-home-address-moveto-date',
+    {
+      mixin: 'input-date',
+      legend: { className: 'bold' },
+      validate: ['required', 'date', 'before']
+    }
+  )
 };
