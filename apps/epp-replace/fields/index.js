@@ -328,6 +328,6 @@ module.exports = {
     mixin: 'input-text',
     className: ['govuk-input'],
     labelClassName: 'govuk-label--m',
-    validate: ['required', { type: 'maxlength', arguments: 250 },'notUrl']
-  },
+    validate: ['required', { type: 'maxlength', arguments: 250 }, 'notUrl']
+  }
 };
