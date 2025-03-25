@@ -203,11 +203,8 @@
       "amend-licence-for-explosives-precursors": {
         "header": "Licence for explosives precursors"
       },
-      "amend-explosives-precursor": {
-        "header": "Explosives precursors"
-      },
       "amend-explosives-precursor-details":{
-         "header": "Explosive precursor"
+         "header": "Explosives precursors"
       },
       "amend-licence-for-poisons": {
         "header": "Licence for poisons"
@@ -311,10 +308,10 @@
         "label": "What concentration % w/w of the substance do you need for your intended purpose?"
       },
       "amend-where-to-store-precursor": {
-        "label":"Home address (storage)"
+        "label":"Storage address"
       },
       "amend-where-to-use-precursor": {
-        "label": "Home address (usage)"
+        "label": "Usage address"
       },
       "amend-regulated-explosives-precursors": {
         "label": "Does your licence need to cover explosives precursors?"

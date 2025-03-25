@@ -19,6 +19,7 @@ const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redund
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 const SendNotification = require('../epp-common/behaviours/submit-notify');
 const ParseSummaryPrecursorsPoisons = require('../epp-common/behaviours/parse-summary-precursors-poisons');
+const ModifySummaryChangeLink = require('../epp-common/behaviours/modify-summary-changeLink');
 
 module.exports = {
   name: 'EPP form',
@@ -298,8 +299,6 @@ module.exports = {
         'amend-what-concentration-precursor',
         'amend-where-to-store-precursor',
         'amend-where-to-use-precursor'
-        // 'store-precursors-other-address',
-        // 'precursors-use-other-address'
       ],
       titleField: ['amend-precursor-field'],
       addStep: 'select-precursor',
@@ -387,7 +386,7 @@ module.exports = {
     },
     '/confirm': {
       sections: require('./sections/summary-data-sections'),
-      behaviours: [SummaryPageBehaviour, EditRouteStart],
+      behaviours: [SummaryPageBehaviour, EditRouteStart, ModifySummaryChangeLink],
       next: '/declaration'
     },
     '/declaration': {

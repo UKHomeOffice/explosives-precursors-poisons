@@ -21,7 +21,8 @@ module.exports = superclass =>
           if (!field.value) {
             field.parsed = TEXT_NOT_PROVIDED;
           }
-          if (field.field === 'precursors-use-other-address' || field.field === 'store-precursors-other-address' || field.field === 'amend-display-precursor-title') {
+          if (field.field === 'precursors-use-other-address' || field.field === 'store-precursors-other-address'
+            || field.field === 'amend-display-precursor-title') {
             field.showInSummary = false;
           }
           field.field += '.summary-heading';
