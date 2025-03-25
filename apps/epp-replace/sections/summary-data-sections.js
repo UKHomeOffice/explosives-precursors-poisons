@@ -34,6 +34,14 @@ module.exports = {
       {
         step: '/police-report',
         field: 'replace-police-report'
+      },
+      {
+        step: '/crime-report-details',
+        field: 'replace-police-force'
+      },
+      {
+        step: '/crime-report-details',
+        field: 'replace-crime-number'
       }
     ]
   },

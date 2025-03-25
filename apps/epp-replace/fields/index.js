@@ -3,6 +3,7 @@ const dateComponent = require('hof').components.date;
 const poisonsList = require('../../../utilities/constants/poisons.js');
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years.js');
 const { isValidUkDrivingLicenceNumber, validInternationalPhoneNumber } = require('../../../utilities/helpers');
+const policeForces = require('../../../utilities/constants/police-forces.js');
 
 module.exports = {
   'replace-licence-number': {
@@ -309,5 +310,24 @@ module.exports = {
     className: ['govuk-input'],
     labelClassName: 'govuk-label--m',
     validate: ['required', 'email']
-  }
+  },
+  'replace-police-force': {
+    mixin: 'select',
+    className: ['typeahead'],
+    labelClassName: 'govuk-label--m',
+    options: [
+      {
+        value: '',
+        label:
+          'fields.replace-police-force.options.none_selected'
+      }
+    ].concat(policeForces),
+    validate: ['required']
+  },
+  'replace-crime-number': {
+    mixin: 'input-text',
+    className: ['govuk-input'],
+    labelClassName: 'govuk-label--m',
+    validate: ['required', { type: 'maxlength', arguments: 250 },'notUrl']
+  },
 };

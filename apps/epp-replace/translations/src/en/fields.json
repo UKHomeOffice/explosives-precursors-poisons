@@ -177,5 +177,15 @@
     "replace-email": {
         "label": "Email address",
         "hint": "Where we will contact you about the outcome of your application"
+    },
+    "replace-police-force": {
+      "label": "Which police force did you report this to?",
+      "hint": "Select a police force from the list",
+      "options": {
+        "none_selected": "Select"
+      }
+    },
+    "replace-crime-number": {
+      "label": "Crime number"
     }
 }

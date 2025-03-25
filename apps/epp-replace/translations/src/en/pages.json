@@ -5,6 +5,9 @@
 "date-of-birth": {
   "header": "What is your date of birth?"
 },
+"crime-report-details": {
+  "header": "Crime report details"
+},
   "upload-british-passport": {
     "header": "Upload British passport",
     "label": "Upload a file",
