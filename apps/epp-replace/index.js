@@ -141,6 +141,7 @@ module.exports = {
         'replace-EU-passport-number',
         'replace-Uk-driving-licence-number'
       ],
+      locals: { captionHeading: 'Section 11 of 26' },
       next: '/upload-british-passport',
       forks: [
         {
