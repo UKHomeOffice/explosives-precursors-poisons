@@ -8,6 +8,7 @@ const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-count
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 const DobUnder18Redirect = require('../epp-common/behaviours/dob-under18-redirect');
 const PostcodeValidation = require('../../utilities/helpers/postcode-validation');
+const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
 
 // TODO: Use DeleteRedundantDocuments behaviour similar to amend flow to
 // remove the uploaded files when dependent option changes
@@ -86,7 +87,7 @@ module.exports = {
       locals: {captionHeading: 'Section 5 of 20'}
     },
     '/home-address': {
-      behaviours: [PostcodeValidation],
+      behaviours: [PostcodeValidation, SaveHomeAddress],
       fields: [
         'replace-home-address-1',
         'replace-home-address-2',
