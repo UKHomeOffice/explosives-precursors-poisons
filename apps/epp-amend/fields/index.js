@@ -317,7 +317,7 @@ module.exports = {
     mixin: 'textarea',
     validate: ['required', 'notUrl', helpers.textAreaDefaultLength],
     attributes: [{ attribute: 'rows', value: 5 }],
-    labelClassName: 'govuk-label--s'
+    labelClassName: 'govuk-label--m'
   },
   'amend-how-much-precursor': {
     mixin: 'input-text',

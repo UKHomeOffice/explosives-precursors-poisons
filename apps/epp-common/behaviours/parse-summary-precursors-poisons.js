@@ -14,7 +14,8 @@ module.exports = superclass =>
       const fieldsToHide = [
         'precursors-use-other-address',
         'store-precursors-other-address',
-        'amend-display-precursor-title'
+        'amend-display-precursor-title',
+        'replace-display-poison-title'
       ];
       const locals = super.locals(req, res);
       locals.items = locals.items.map(item => {

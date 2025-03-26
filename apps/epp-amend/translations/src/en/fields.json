@@ -254,9 +254,9 @@
     }
   },
   "amend-why-need-precursor":{
-    "label": "{{values.whyNeedPrecursorLabel}}",
+    "label": "{{values.whyNeedSubstanceLabel}}",
     "hint": "Detailed answers mean we can process your application faster",
-    "summary-heading": "{{values.whyNeedPrecursorLabel}}"
+    "summary-heading": "{{values.whyNeedSubstanceLabel}}"
   },
   "amend-how-much-precursor":{
     "label": "How much do you wish to acquire at any one time?",
@@ -268,8 +268,8 @@
     "summary-heading": "What concentration % w/w do you need?"
   },
   "amend-where-to-store-precursor": {
-    "legend": "{{values.whereToStorePrecursorLegend}}",
-    "summary-heading": "{{values.whereToStorePrecursorLegend}}",
+    "legend": "{{values.whereToStoreSubstanceLegend}}",
+    "summary-heading": "{{values.whereToStoreSubstanceLegend}}",
     "hint": "This must be in the UK",
     "options": {
       "amend-store-precursors-home-address": {
@@ -282,13 +282,13 @@
     }
   },
   "store-precursors-other-address": {
-    "label": "{{values.storePrecursorOtherAddressLabel}}",
+    "label": "{{values.storeSubstanceOtherAddressLabel}}",
     "hint": "Enter a UK address"
   },
   "amend-where-to-use-precursor": {
-    "legend": "{{values.whereToUsePrecursorLegend}}",
+    "legend": "{{values.whereToUseSubstanceLegend}}",
     "hint": "This must be in the UK",
-    "summary-heading": "{{values.whereToUsePrecursorLegend}}",
+    "summary-heading": "{{values.whereToUseSubstanceLegend}}",
     "options": {
       "amend-use-precursors-home-address": {
         "label": "{{values.homeAddressInline}}",
@@ -300,7 +300,7 @@
     }
   },
   "precursors-use-other-address": {
-    "label": "{{values.usePrecursorOtherAddressLabel}}",
+    "label": "{{values.useSubstanceOtherAddressLabel}}",
     "hint": "Enter a UK address"
   },
   "amend-countersignatory-Id-type": {

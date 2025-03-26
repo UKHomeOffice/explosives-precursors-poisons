@@ -11,6 +11,7 @@ const PostcodeValidation = require('../../utilities/helpers/postcode-validation'
 const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
 const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-payment-request');
 const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
+const RenderSubstanceDetails = require('../epp-common/behaviours/render-substance-detail');
 
 // TODO: Use DeleteRedundantDocuments behaviour similar to amend flow to
 // remove the uploaded files when dependent option changes
@@ -134,7 +135,7 @@ module.exports = {
           }
         }
       ],
-      locals: { captionHeading: 'Section 2 of 26' },
+      locals: { captionHeading: 'Section 2 of 26' },// to do change section number
       next: '/amend-licence'
     },
     '/amend-licence': {
@@ -262,14 +263,27 @@ module.exports = {
     '/select-poisons': {
       fields: ['replace-poison'],
       locals: { captionHeading: 'Section 20 of 26' },
-      next: '/section-seventeen-poison'
+      next: '/poison-details'
     },
-    '/section-seventeen-poison': {
+    '/poison-details': {
+      behaviours: [RenderSubstanceDetails('replace-poison')],
+      fields: [
+        'replace-why-need-poison',
+        'replace-how-much-poison',
+        'replace-compound-or-salt',
+        'replace-what-concentration-poison',
+        'replace-where-to-store-poison',
+        'replace-where-to-use-poison',
+        'store-poison-other-address',
+        'poison-use-other-address'
+      ],
+      next: '/poisons-summary',
+      locals: { captionHeading: 'Section 20 of 26' }
+    },
+    '/poisons-summary': {
       fields: ['replace-poison-details'],
-      next: '/section-seventeen-summary'
-    },
-    '/section-seventeen-summary': {
-      next: '/countersignatory-details'
+      next: '/countersignatory-details',
+      locals: { captionHeading: 'Section 20 of 26' }
     },
     '/countersignatory-details': {
       fields: [

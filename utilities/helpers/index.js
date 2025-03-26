@@ -1,6 +1,7 @@
 const moment = require('moment');
 const validators = require('hof/controller/validation/validators');
 const explosivePrecursorsList = require('../constants/explosive-precursors');
+const poisonList = require('../constants/poisons');
 const config = require('../../config');
 
 class NotifyMock {
@@ -126,14 +127,20 @@ const isEditMode = req => {
   return Boolean(req?.originalUrl?.endsWith('/edit'));
 };
 
-const getPrecursorsShortLabel = input => {
+const getSubstanceShortLabel = (fieldName, input )=> {
   if (!input || typeof input !== 'string') {
     return input;
   }
 
   const resultStr = input.trim();
+  let listReceived = "";
+  if(fieldName.includes('poison')){
+    listReceived = poisonList;
+  }else{
+    listReceived = explosivePrecursorsList;
+  }
 
-  for (const { label, shortLabel } of explosivePrecursorsList) {
+  for (const { label, shortLabel } of listReceived) {
     if (resultStr === label) {
       return shortLabel;
     }
@@ -161,7 +168,7 @@ module.exports = {
   DATE_FORMAT_YYYY_MM_DD,
   getFormattedDate,
   isEditMode,
-  getPrecursorsShortLabel,
+  getSubstanceShortLabel,
   textAreaDefaultLength,
   isValidConcentrationValue,
   NotifyClient:

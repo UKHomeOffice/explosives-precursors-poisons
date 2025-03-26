@@ -7,7 +7,7 @@ const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator'
 const SaveDocument = require('../epp-common/behaviours/save-document');
 const RemoveDocument = require('../epp-common/behaviours/remove-document');
 const DobEditRedirect = require('../epp-common/behaviours/dob-edit-redirect');
-const RenderPrecursorDetails = require('../epp-common/behaviours/render-precursors-detail');
+const RenderSubstanceDetails = require('../epp-common/behaviours/render-substance-detail');
 const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
 const CheckAndRedirect = require('../epp-common/behaviours/check-answer-redirect');
 const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
@@ -294,7 +294,7 @@ module.exports = {
       next: '/precursor-details'
     },
     '/precursor-details': {
-      behaviours: [RenderPrecursorDetails('amend-precursor-field')],
+      behaviours: [RenderSubstanceDetails('amend-precursor-field')],
       fields: [
         'amend-why-need-precursor',
         'amend-how-much-precursor',

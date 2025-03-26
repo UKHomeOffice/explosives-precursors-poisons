@@ -1,4 +1,4 @@
-const RenderPrecursorsDetail = require('../../../apps/epp-common/behaviours/render-precursors-detail');
+const RenderPrecursorsDetail = require('../../../apps/epp-common/behaviours/render-substance-detail');
 
 describe('Tests for render precursors detail behaviour', () => {
   class Base {
