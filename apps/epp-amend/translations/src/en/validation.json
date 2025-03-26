@@ -210,6 +210,9 @@
   "amend-poison":{
     "required": "Select a poison"
   },
+  "amend-no-poisons-precursors-options": {
+    "required": "Select if you want to continue the form without changing the explosives precursors or poisons"
+  },
   "amend-countersignatory-title": {
     "required": "Select your countersignatory's title"
   },

@@ -188,5 +188,8 @@
     },
     "replace-crime-number": {
       "label": "Crime number"
-    }
+    },
+  "amend-declaration": {
+    "label": "I have read and agree to this declaration"
+  }
 }

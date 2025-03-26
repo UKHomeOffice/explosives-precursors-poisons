@@ -329,5 +329,9 @@ module.exports = {
     className: ['govuk-input'],
     labelClassName: 'govuk-label--m',
     validate: ['required', { type: 'maxlength', arguments: 250 }, 'notUrl']
-  }
+  },
+    'amend-declaration': {
+        mixin: 'checkbox',
+        validate: ['required']
+    }
 };
