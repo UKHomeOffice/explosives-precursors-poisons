@@ -184,6 +184,17 @@
         "none_selected": "Select poison"
     }
   },
+  "amend-no-poisons-precursors-options": {
+    "legend":"Do you want to continue the form without changing the explosives precursors or poisons?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "amend-countersignatory-title": {
     "label": "Title",
     "options": {

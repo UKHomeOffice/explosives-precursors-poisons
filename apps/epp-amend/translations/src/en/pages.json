@@ -145,6 +145,10 @@
     "p1": "Tell us which poisons you want to import acquire use or possess.",
     "p2": "If you need multiple poisons, you can add each one separately."
   },
+  "no-poisons-or-precursors": {
+    "header": "The explosives precursors and poisons on your licence will not change",
+    "paragraph1": "You told us you do not need to amend the explosives precursors or poisons on your current licence. This includes the storage or usage address for the substances."
+  },
   "countersignatory-details": {
     "header": "Countersignatory details",
     "description": "Your countersignatory must not be a parent or relative, unless you are under 18. If you are under 18, your countersignatory must be your parent or legal guardian."

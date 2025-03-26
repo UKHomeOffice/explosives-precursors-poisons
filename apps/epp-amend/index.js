@@ -268,6 +268,9 @@ module.exports = {
         ResetSectionSummary(
           'precursors-details-aggregate',
           'amend-regulated-explosives-precursors'
+        ),
+        CheckAndRedirect('amend-regulated-explosives-precursors',
+          ['amend-poisons-option', 'amend-regulated-explosives-precursors']
         )
       ],
       fields: ['amend-regulated-explosives-precursors'],
@@ -330,15 +333,16 @@ module.exports = {
       fields: ['amend-poisons-option'],
       forks: [
         {
-          target: '/countersignatory-details',
+          target: '/select-poisons',
+          continueOnEdit: true,
           condition: {
             field: 'amend-name-options',
-            value: 'no'
+            value: 'yes'
           }
         }
       ],
-      locals: { captionHeading: 'Section 16 of 23' },
-      next: '/select-poisons'
+      next: '/countersignatory-details',
+      locals: { captionHeading: 'Section 16 of 23' }
     },
     '/select-poisons': {
       fields: ['amend-poison'],
@@ -346,7 +350,19 @@ module.exports = {
       next: '/countersignatory-details'
     },
     '/no-poisons-or-precursors': {
-      field: []
+      behaviours: [SetBackLink],
+      fields: ['amend-no-poisons-precursors-options'],
+      forks: [
+        {
+          target: '/change-substances',
+          continueOnEdit: true,
+          condition: {
+            field: 'amend-no-poisons-precursors-options',
+            value: 'no'
+          }
+        }
+      ],
+      next: '/countersignatory-details'
     },
     '/countersignatory-details': {
       fields: [
