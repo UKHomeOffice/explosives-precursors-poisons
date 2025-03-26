@@ -1,4 +1,7 @@
-const { getPoisonShortLabel } = require('../../../utilities/helpers');
+const {
+  SUBSTANCES: { POISON }
+} = require('../../../utilities/constants/string-constants');
+const { getSubstanceShortLabel } = require('../../../utilities/helpers');
 
 /**
  * @param {string} fieldName - The field name used on the select precursor page
@@ -7,20 +10,25 @@ module.exports = fieldName => superclass =>
   class extends superclass {
     getValues(req, res, next) {
       const selectedPoison = req.sessionModel.get(fieldName);
-      const whyNeedPoisonLabel = getPoisonShortLabel(
-        `Why do you need ${selectedPoison}`
+      const whyNeedPoisonLabel = getSubstanceShortLabel(
+        `Why do you need ${selectedPoison}`,
+        POISON
       );
-      const whereToStorePoisonLegend = getPoisonShortLabel(
-        `Where will you store the ${selectedPoison}`
+      const whereToStorePoisonLegend = getSubstanceShortLabel(
+        `Where will you store the ${selectedPoison}`,
+        POISON
       );
-      const whereToUsePoisonLegend = getPoisonShortLabel(
-        `Where will you use the ${selectedPoison}`
+      const whereToUsePoisonLegend = getSubstanceShortLabel(
+        `Where will you use the ${selectedPoison}`,
+        POISON
       );
-      const storePoisonOtherAddressLabel = getPoisonShortLabel(
-        `Storage address for the ${selectedPoison}`
+      const storePoisonOtherAddressLabel = getSubstanceShortLabel(
+        `Storage address for the ${selectedPoison}`,
+        POISON
       );
-      const usePoisonOtherAddressLabel = getPoisonShortLabel(
-        `Usage address for the ${selectedPoison}`
+      const usePoisonOtherAddressLabel = getSubstanceShortLabel(
+        `Usage address for the ${selectedPoison}`,
+        POISON
       );
 
       const labelValuesMap = {

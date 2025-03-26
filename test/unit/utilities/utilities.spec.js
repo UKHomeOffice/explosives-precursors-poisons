@@ -9,13 +9,15 @@ const {
   removeWhiteSpace,
   getFormattedDate,
   isEditMode,
-  getPrecursorsShortLabel,
+  getSubstanceShortLabel,
   textAreaDefaultLength,
   isValidConcentrationValue,
   isLicenceValid
 } = require('../../../utilities/helpers');
 
 const explosivePrecursorsList = require('../../../utilities/constants/explosive-precursors');
+const poisonsList = require('../../../utilities/constants/poisons');
+const { SUBSTANCES } = require('../../../utilities/constants/string-constants');
 
 describe('EPP utilities tests', () => {
   it('.validLicenceNumber - should match for valid formats', () => {
@@ -216,61 +218,80 @@ describe('EPP utilities tests', () => {
     }
   });
 
-  it('.getPrecursorsShortLabel - should return the shortLabel for the given precursors label', () => {
+  it('.getSubstanceShortLabel - should return the shortLabel for the given precursors label', () => {
     for (const explosivePrecursors of explosivePrecursorsList) {
-      expect(getPrecursorsShortLabel(explosivePrecursors.label)).to.be.equal(
-        explosivePrecursors.shortLabel
-      );
+      expect(
+        getSubstanceShortLabel(explosivePrecursors.label, SUBSTANCES.PRECURSOR)
+      ).to.be.equal(explosivePrecursors.shortLabel);
     }
   });
 
-  it('.getPrecursorsShortLabel - should return a partial replaced value with shortLabel', () => {
+  it('.getSubstanceShortLabel - should return the shortLabel for the given poison label', () => {
+    for (const poison of poisonsList) {
+      expect(
+        getSubstanceShortLabel(poison.label, SUBSTANCES.POISON)
+      ).to.be.equal(poison.shortLabel);
+    }
+  });
+
+  it('.getSubstanceShortLabel - should return a partial replaced value with shortLabel', () => {
     for (const explosivePrecursors of explosivePrecursorsList) {
       expect(
-        getPrecursorsShortLabel(`Why do you need ${explosivePrecursors.label}`)
+        getSubstanceShortLabel(
+          `Why do you need ${explosivePrecursors.label}`,
+          SUBSTANCES.PRECURSOR
+        )
       ).to.be.equal(`Why do you need ${explosivePrecursors.shortLabel}`);
 
       expect(
-        getPrecursorsShortLabel(
-          `Where will you store the ${explosivePrecursors.label}`
+        getSubstanceShortLabel(
+          `Where will you store the ${explosivePrecursors.label}`,
+          SUBSTANCES.PRECURSOR
         )
       ).to.be.equal(
         `Where will you store the ${explosivePrecursors.shortLabel}`
       );
 
       expect(
-        getPrecursorsShortLabel(
-          `Where will you use the ${explosivePrecursors.label}`
+        getSubstanceShortLabel(
+          `Where will you use the ${explosivePrecursors.label}`,
+          SUBSTANCES.PRECURSOR
         )
       ).to.be.equal(`Where will you use the ${explosivePrecursors.shortLabel}`);
 
       expect(
-        getPrecursorsShortLabel(
-          `Storage address for the ${explosivePrecursors.label}`
+        getSubstanceShortLabel(
+          `Storage address for the ${explosivePrecursors.label}`,
+          SUBSTANCES.PRECURSOR
         )
       ).to.be.equal(
         `Storage address for the ${explosivePrecursors.shortLabel}`
       );
 
       expect(
-        getPrecursorsShortLabel(
-          `Usage address for the ${explosivePrecursors.label}`
+        getSubstanceShortLabel(
+          `Usage address for the ${explosivePrecursors.label}`,
+          SUBSTANCES.PRECURSOR
         )
       ).to.be.equal(`Usage address for the ${explosivePrecursors.shortLabel}`);
     }
   });
 
-  it('.getPrecursorsShortLabel - should return original result for falsy or non string inputs', () => {
+  it('.getSubstanceShortLabel - should return original result for falsy or non string inputs', () => {
     const inputs = [null, undefined, '', 1, true, {}];
     for (const input of inputs) {
-      expect(getPrecursorsShortLabel(input)).to.be.equal(input);
+      expect(getSubstanceShortLabel(input, SUBSTANCES.PRECURSOR)).to.be.equal(
+        input
+      );
     }
   });
 
-  it('.getPrecursorsShortLabel - should return original result for unknown strings', () => {
+  it('.getSubstanceShortLabel - should return original result for unknown strings', () => {
     const inputs = ['Hello World', 'Unit test', 'random-text'];
     for (const input of inputs) {
-      expect(getPrecursorsShortLabel(input)).to.be.equal(input);
+      expect(getSubstanceShortLabel(input, SUBSTANCES.PRECURSOR)).to.be.equal(
+        input
+      );
     }
   });
 

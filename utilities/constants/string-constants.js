@@ -23,6 +23,11 @@ const API_METHODS = {
   POST: 'POST'
 };
 
+const SUBSTANCES = {
+  PRECURSOR: 'precursor',
+  POISON: 'poison'
+};
+
 module.exports = {
   PATH_NEW_RENEW,
   PATH_AMEND,
@@ -41,5 +46,6 @@ module.exports = {
   GOV_PAY_ERROR_CODE_P0030,
   GOV_PAY_ERROR_CODE_P0010,
   GOV_PAY_STATUS_SUCCESS,
-  API_METHODS
+  API_METHODS,
+  SUBSTANCES
 };

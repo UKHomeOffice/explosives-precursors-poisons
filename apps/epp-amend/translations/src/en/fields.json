@@ -259,13 +259,13 @@
     "summary-heading": "{{values.whyNeedPrecursorLabel}}"
   },
   "amend-how-much-precursor":{
-    "label": "How much do you wish to acquire at any one time?",
+    "label": "How much do you wish to acquire at any one time within a 6-month period?",
     "hint": "Enter the amount and the unit. For example, 10 litres",
     "summary-heading": "How much do you wish to acquire at any one time?"
   },
   "amend-what-concentration-precursor":{
     "label": "What concentration % w/w do you need?",
-    "summary-heading": "What concentration % w/w do you need?"
+    "summary-heading": "What concentration % w/w of the substance do you need?"
   },
   "amend-where-to-store-precursor": {
     "legend": "{{values.whereToStorePrecursorLegend}}",
@@ -308,14 +308,14 @@
     "hint": "Detailed answers mean we can process your application faster"
   },
   "amend-how-much-poison":{
-    "label": "How much do you wish to acquire at any one time?",
+    "label": "How much do you wish to acquire at any one time within a 6-month period?",
     "hint": "Enter the amount and the unit. For example, 10 litres"
   },
   "amend-compound-or-salt": {
     "label": "Specific compound or salt"
   },
   "amend-what-concentration-poison":{
-    "label": "What concentration % w/w do you need?"
+    "label": "What concentration % w/w of the substance do you need?"
   },
   "amend-where-to-store-poison": {
     "legend": "{{values.whereToStorePoisonLegend}}",

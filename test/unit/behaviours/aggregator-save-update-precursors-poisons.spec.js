@@ -1,7 +1,7 @@
 const proxyquire = require('proxyquire');
 const helpersStub = {
   DEFAULT_AGGREGATOR_LIMIT: 5,
-  getPrecursorsShortLabel: sinon.stub().returns('short-label')
+  getSubstanceShortLabel: sinon.stub().returns('short-label')
 };
 
 const Behaviour = proxyquire(
