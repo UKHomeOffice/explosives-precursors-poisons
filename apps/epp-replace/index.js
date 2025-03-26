@@ -7,6 +7,8 @@ const ValidateLicenceNumber = require('../epp-common/behaviours/licence-validato
 const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 const DobUnder18Redirect = require('../epp-common/behaviours/dob-under18-redirect');
+const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-payment-request');
+const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
 
 // TODO: Use DeleteRedundantDocuments behaviour similar to amend flow to
 // remove the uploaded files when dependent option changes
@@ -316,10 +318,21 @@ module.exports = {
       next: '/declaration'
     },
     '/declaration': {
-      next: '/application-submitted'
+      behaviours: [InitiatePaymentRequest],
+      fields: ['amend-declaration'],
+      locals: { captionHeading: 'Section 26 of 26' }
     },
+    '/payment-problem': {
+      behaviours: [InitiatePaymentRequest]
+    },
+    '/payment-failed': {
+      behaviours: [InitiatePaymentRequest]
+    },
+    '/payment-cancelled': {},
     '/application-submitted': {
-      clearSession: true
+      sections: require('./sections/summary-data-sections'),
+      behaviours: [SummaryPageBehaviour, GetPaymentInfo],
+      backLink: false
     }
   }
 };

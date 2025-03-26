@@ -178,5 +178,8 @@
     "replace-email": {
         "label": "Email address",
         "hint": "Where we will contact you about the outcome of your application"
-    }
+    },
+  "amend-declaration": {
+    "label": "I have read and agree to this declaration"
+  }
 }
