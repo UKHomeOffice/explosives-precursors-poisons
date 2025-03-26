@@ -64,8 +64,7 @@ module.exports = {
       next: '/licence-number'
     },
     '/crime-report-details': {
-      fields: ['replace-police-force', 'replace-crime-number'],
-      locals: { captionHeading: 'Section 2 of 26' },
+      fields: ['replace-report-details'],
       next: '/licence-number'
     },
     '/licence-number': {
@@ -139,9 +138,9 @@ module.exports = {
     },
     '/amend-licence': {
       fields: ['replace-replace-type'],
-      next: '/section-ten'
+      next: '/new-name'
     },
-    '/section-ten': {
+    '/new-name': {
       fields: [
         'replace-new-name-title',
         'replace-new-firstname',
@@ -149,6 +148,7 @@ module.exports = {
         'replace-new-lastname',
         'replace-date-new-name-changed'
       ],
+      locals: { captionHeading: 'Section 10 of 26' },
       next: '/identity-details'
     },
     '/identity-details': {

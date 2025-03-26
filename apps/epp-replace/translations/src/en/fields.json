@@ -9,6 +9,25 @@
           "none_selected": "Select"
         }
       },
+      "replace-new-name-title": {
+        "label": "Title",
+        "options": {
+          "none_selected": "Select"
+        }
+      },
+      "replace-new-firstname": {
+        "label": "First name"
+      },
+      "replace-new-middlename": {
+        "label": "Middle names (optional)"
+      },
+      "replace-new-lastname": {
+        "label": "Last name"
+      },
+      "replace-date-new-name-changed": {
+        "legend": "What date did you change your name?",
+        "hint": "For example, 30 09 2014"
+      },
       "replace-first-name": {
         "label": "First name"
       },

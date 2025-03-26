@@ -392,5 +392,33 @@ module.exports = {
   'amend-declaration': {
     mixin: 'checkbox',
     validate: ['required']
-  }
+  },
+  'replace-new-name-title': {
+    mixin: 'select',
+    validate: ['required'],
+    labelClassName: 'govuk-label--m',
+    options: [
+      {
+        value: '',
+        label: 'fields.replace-new-name-title.options.none_selected'
+      }
+    ].concat(titles)
+  },
+  'replace-new-firstname': {
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--m'
+  },
+  'replace-new-middlename': {
+    validate: ['notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--m'
+  },
+  'replace-new-lastname': {
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
+    labelClassName: 'govuk-label--m'
+  },
+  'replace-date-new-name-changed': dateComponent('replace-date-new-name-changed', {
+    mixin: 'input-date',
+    legend: { className: 'govuk-fieldset__legend--m' },
+    validate: ['required', 'date', 'before']
+  }),
 };
