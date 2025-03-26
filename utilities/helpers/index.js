@@ -157,14 +157,13 @@ const getPoisonShortLabel = input => {
 
   const resultStr = input.trim();
 
-  for (const { label, shortLabel } of poisonList) {
+  for (const { label, shortLabel } of list) {
     if (resultStr === label) {
       return shortLabel;
     }
 
     if (resultStr.includes(label)) {
-      const newLabel = resultStr.replace(label, shortLabel);
-      return newLabel;
+      return resultStr.replace(label, shortLabel);
     }
   }
   return resultStr;
@@ -186,6 +185,7 @@ module.exports = {
   getFormattedDate,
   isEditMode,
   getPrecursorsShortLabel,
+  getPoisonShortLabel,
   textAreaDefaultLength,
   isValidConcentrationValue,
   NotifyClient:
