@@ -87,7 +87,17 @@ module.exports = {
       locals: {captionHeading: 'Section 5 of 20'}
     },
     '/home-address': {
-      behaviours: [PostcodeValidation, SaveHomeAddress],
+      behaviours: [
+        PostcodeValidation,
+        SaveHomeAddress([
+          'replace-home-address-1',
+          'replace-home-address-2',
+          'replace-home-town-or-city',
+          'replace-home-county',
+          'replace-home-postcode',
+          'replace-home-country'
+        ])
+      ],
       fields: [
         'replace-home-address-1',
         'replace-home-address-2',
