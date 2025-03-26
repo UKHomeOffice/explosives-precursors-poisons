@@ -163,6 +163,7 @@ module.exports = {
   postCodeCountriesMap: {
     'amend-postcode': 'amend-country',
     'new-renew-home-address-postcode': 'new-renew-home-address-country',
+    'replace-home-postcode': 'replace-home-country',
     'new-renew-previous-home-address-postcode': 'new-renew-previous-home-address-country',
     'amend-new-postcode': 'amend-new-country'
   },

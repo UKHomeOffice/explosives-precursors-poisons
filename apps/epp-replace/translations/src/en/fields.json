@@ -189,6 +189,29 @@
     "replace-crime-number": {
       "label": "Crime number"
     },
+  "replace-home-address-1": {
+    "label": "Address line 1"
+  },
+  "replace-home-address-2": {
+    "label": "Address line 2 (optional)"
+  },
+  "replace-home-town-or-city": {
+    "label": "Town or city"
+  },
+  "replace-home-county": {
+    "label": "County, state, province (optional)"
+  },
+  "replace-home-postcode": {
+    "label": "Postcode (optional)",
+    "hint": "Postcode is optional if your address is outside the UK"
+  },
+  "replace-home-country": {
+    "label": "Country of address",
+    "hint": "Select a country from the list",
+    "options": {
+      "none_selected": "Select"
+    }
+  },
   "amend-declaration": {
     "label": "I have read and agree to this declaration"
   }

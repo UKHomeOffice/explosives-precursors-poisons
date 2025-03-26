@@ -3,6 +3,7 @@ const dateComponent = require('hof').components.date;
 const poisonsList = require('../../../utilities/constants/poisons.js');
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years.js');
 const { isValidUkDrivingLicenceNumber, validInternationalPhoneNumber } = require('../../../utilities/helpers');
+const countries = require('../../../utilities/constants/countries');
 const policeForces = require('../../../utilities/constants/police-forces.js');
 
 module.exports = {
@@ -330,6 +331,62 @@ module.exports = {
     labelClassName: 'govuk-label--m',
     validate: ['required', { type: 'maxlength', arguments: 250 }, 'notUrl']
   },
+    'replace-home-address-1': {
+        mixin: 'input-text',
+        labelClassName: 'govuk-label--m',
+        validate: [
+            'required',
+            { type: 'minlength', arguments: 2 },
+            { type: 'maxlength', arguments: 250 },
+            'notUrl'
+        ]
+    },
+    'replace-home-address-2': {
+        mixin: 'input-text',
+        labelClassName: 'govuk-label--m',
+        validate: [
+            { type: 'minlength', arguments: 2 },
+            { type: 'maxlength', arguments: 250 },
+            'notUrl'
+        ]
+    },
+    'replace-home-town-or-city': {
+        mixin: 'input-text',
+        labelClassName: 'govuk-label--m',
+        validate: [
+            'required',
+            { type: 'minlength', arguments: 2 },
+            { type: 'maxlength', arguments: 250 },
+            'notUrl'
+        ]
+    },
+    'replace-home-county': {
+        mixin: 'input-text',
+        labelClassName: 'govuk-label--m',
+        validate: [
+            { type: 'minlength', arguments: 2 },
+            { type: 'maxlength', arguments: 250 },
+            'notUrl'
+        ]
+    },
+    'replace-home-postcode': {
+        mixin: 'input-text',
+        labelClassName: 'govuk-label--m',
+        className: ['govuk-input', 'govuk-input--width-10'],
+        formatter: ['ukPostcode']
+    },
+    'replace-home-country': {
+        mixin: 'select',
+        validate: ['required'],
+        labelClassName: 'govuk-label--m',
+        className: ['typeahead'],
+        options: [
+            {
+                value: '',
+                label: 'fields.replace-home-country.options.none_selected'
+            }
+        ].concat(countries)
+    },
   'amend-declaration': {
     mixin: 'checkbox',
     validate: ['required']

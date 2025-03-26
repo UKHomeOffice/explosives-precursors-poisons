@@ -7,6 +7,8 @@ const ValidateLicenceNumber = require('../epp-common/behaviours/licence-validato
 const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 const DobUnder18Redirect = require('../epp-common/behaviours/dob-under18-redirect');
+const PostcodeValidation = require('../../utilities/helpers/postcode-validation');
+const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
 const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-payment-request');
 const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
 
@@ -84,17 +86,28 @@ module.exports = {
     },
     '/date-of-birth': {
       fields: ['replace-date-of-birth'],
-      next: '/section-six',
+      next: '/home-address',
       locals: {captionHeading: 'Section 5 of 20'}
     },
-    '/section-six': {
+    '/home-address': {
+      behaviours: [
+        PostcodeValidation,
+        SaveHomeAddress([
+          'replace-home-address-1',
+          'replace-home-address-2',
+          'replace-home-town-or-city',
+          'replace-home-county',
+          'replace-home-postcode',
+          'replace-home-country'
+        ])
+      ],
       fields: [
-        'replace-post-address-1',
-        'replace-post-address-2',
-        'replace-post-town-or-city',
-        'replace-post-county',
-        'replace-post-postcode',
-        'replace-post-country'
+        'replace-home-address-1',
+        'replace-home-address-2',
+        'replace-home-town-or-city',
+        'replace-home-county',
+        'replace-home-postcode',
+        'replace-home-country'
       ],
       next: '/contact-details'
     },
