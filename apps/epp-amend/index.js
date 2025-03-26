@@ -14,8 +14,8 @@ const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-count
 const DobUnder18Redirect = require('../epp-common/behaviours/dob-under18-redirect');
 const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redundant-documents');
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
-
 const SendNotification = require('../epp-common/behaviours/submit-notify');
+const SetBackLink = require('../epp-common/behaviours/set-backlink');
 
 
 module.exports = {
@@ -248,7 +248,8 @@ module.exports = {
       locals: { captionHeading: 'Section 13 of 23' }
     },
     '/no-details-amend': {
-      locals: { captionHeading: 'Section 13 of 23' }
+      behaviours: [SetBackLink],
+      locals: {captionHeading: 'Section 13 of 23' }
     },
     '/explosives-precursors': {
       fields: ['amend-regulated-explosives-precursors'],
