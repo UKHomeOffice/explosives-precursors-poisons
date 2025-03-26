@@ -1,12 +1,12 @@
 {
-  "application-submitted": {
-    "confirmed": "Replaced application submitted"
-  },
-  "date-of-birth": {
+"date-of-birth": {
   "header": "What is your date of birth?"
-  },
+},
+"crime-report-details": {
+  "header": "Crime report details"
+},
   "home-address": {
-  "header": "What is your home address?"
+    "header": "What is your home address?"
   },
   "upload-british-passport": {
     "header": "Upload British passport",
