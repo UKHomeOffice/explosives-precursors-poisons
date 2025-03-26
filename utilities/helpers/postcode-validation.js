@@ -1,17 +1,24 @@
 const validators = require('hof/controller/validation/validators');
 const { getKeyByValue } = require('../helpers/index');
-const countryField = require('../../config');
+
+const postCodeCountriesMap = {
+  'amend-postcode': 'amend-country',
+  'new-renew-home-address-postcode': 'new-renew-home-address-country',
+  'replace-home-postcode': 'replace-home-country',
+  'new-renew-previous-home-address-postcode': 'new-renew-previous-home-address-country',
+  'amend-new-postcode': 'amend-new-country',
+  'new-renew-doctor-postcode': 'new-renew-doctor-country'
+};
 
 module.exports = superclass =>
   class extends superclass {
     validateField(key, req) {
-      const selectedCountryField = countryField.postCodeCountriesMap[key];
-      if (countryField.postCodeCountriesMap[key]) {
+      const selectedCountryField = postCodeCountriesMap[key];
+      if (selectedCountryField) {
         const country = req.form.values[selectedCountryField];
-
         const postcode =
           req.form.values[
-            getKeyByValue(countryField.postCodeCountriesMap, selectedCountryField)
+            getKeyByValue(postCodeCountriesMap, selectedCountryField)
           ];
 
         const validationErrorFunc = type =>

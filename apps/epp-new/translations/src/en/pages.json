@@ -223,6 +223,9 @@
   "criminal-record-summary": {
     "header": "Your criminal record"
   },
+  "doctor-details": {
+    "header": "Your doctor’s contact details"
+  },
   "confirm": {
     "header": "Check your answers",
     "title": "Check your answers – Apply for an explosives precursors and poisons licence",
@@ -383,6 +386,15 @@
      },
       "criminalrecordsummary": {
         "label": "Offences"
+      },
+      "new-renew-doctor-name": {
+        "label": "Doctor’s name"
+      },
+      "new-renew-doctor-postcode": {
+        "label": "Postcode"
+      },
+      "new-renew-doctor-country": {
+        "label": "Country"
       }
     },
     "complete": {
