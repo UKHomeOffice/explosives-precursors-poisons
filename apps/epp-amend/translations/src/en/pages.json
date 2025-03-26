@@ -130,6 +130,9 @@
   "precursor-details":{
     "header": "{{values.amend-precursor-field}}"
   },
+  "precursors-summary": {
+    "header": "Poisons on your licence"
+  },
   "poisons": {
     "header": "Regulated poisons",
     "p1": "Check what your licence needs to cover using the",
@@ -213,8 +216,8 @@
       "amend-licence-for-explosives-precursors": {
         "header": "Licence for explosives precursors"
       },
-      "amend-explosives-precursor": {
-        "header": "Explosives precursors"
+      "amend-explosives-precursor-details":{
+         "header": "Explosives precursors"
       },
       "amend-licence-for-poisons": {
         "header": "Licence for poisons"
@@ -303,7 +306,25 @@
          "label": "Proof of address attachment"
       },
       "amend-precursor-field": {
-        "label": "Explosives precursor"
+         "label": "Explosives precursors"
+      },
+      "amend-display-precursor-title": {
+         "label": "Explosives precursor name"
+      },
+      "amend-why-need-precursor": {
+        "label": "For what purpose do you need this regulated substance?"
+      },
+      "amend-how-much-precursor": {
+        "label": "How much do you wish to acquire?"
+      },
+      "amend-what-concentration-precursor": {
+        "label": "What concentration % w/w of the substance do you need for your intended purpose?"
+      },
+      "amend-where-to-store-precursor": {
+        "label":"Storage address"
+      },
+      "amend-where-to-use-precursor": {
+        "label": "Usage address"
       },
       "amend-regulated-explosives-precursors": {
         "label": "Does your licence need to cover explosives precursors?"
