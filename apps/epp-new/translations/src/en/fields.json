@@ -399,5 +399,32 @@
   "new-renew-countersignatory-Uk-driving-licence-number": {
     "label": "What is your driving licence number?",
     "hint" : "On section 5 of your licence, for example MORGA657054SM9IJ"
+  },
+  "new-renew-doctor-name": {
+    "label": "Your doctor’s name",
+    "hint": "If you do not have a specific doctor, enter the name of the medical practice"
+  },
+  "new-renew-doctor-address-line-1": {
+    "label": "Address line 1"
+  },
+  "new-renew-doctor-address-line-2": {
+    "label": "Address line 2 (optional)"
+  },
+  "new-renew-doctor-town-city": {
+    "label": "Town or city"
+  },
+  "new-renew-doctor-county": {
+    "label": "County, state, province (optional)"
+  },
+  "new-renew-doctor-postcode": {
+    "label": "Postcode (optional)",
+    "hint": "Postcode is optional if the address is outside the UK"
+  },
+  "new-renew-doctor-country": {
+    "label": "Country of address",
+    "hint": "Select a country from the list",
+    "options": {
+      "none_selected": "Select"
+    }
   }
 }

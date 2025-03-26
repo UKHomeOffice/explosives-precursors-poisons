@@ -351,6 +351,37 @@ module.exports = {
           }
           return null;
         }
+      },
+      {
+        step: '/doctor-details',
+        field: 'new-renew-doctor-name'
+      },
+      {
+        step: '/doctor-details',
+        field: 'new-renew-doctor-address-line-1'
+      },
+      {
+        step: '/doctor-details',
+        field: 'new-renew-doctor-address-line-2',
+        parse: value => value || 'Not provided'
+      },
+      {
+        step: '/doctor-details',
+        field: 'new-renew-doctor-town-city'
+      },
+      {
+        step: '/doctor-details',
+        field: 'new-renew-doctor-county',
+        parse: value => value || 'Not provided'
+      },
+      {
+        step: '/doctor-details',
+        field: 'new-renew-doctor-postcode',
+        parse: value => value || 'Not provided'
+      },
+      {
+        step: '/doctor-details',
+        field: 'new-renew-doctor-country'
       }
     ]
   },

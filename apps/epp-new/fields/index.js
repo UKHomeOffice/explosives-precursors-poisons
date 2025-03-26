@@ -687,5 +687,48 @@ module.exports = {
       field: 'new-renew-countersignatory-Id-type',
       value: 'Uk-driving-licence'
     }
+  },
+  'new-renew-doctor-name': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--m',
+    validate: ['required', 'notUrl']
+  },
+  'new-renew-doctor-address-line-1': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--m',
+    validate: ['required', 'notUrl']
+  },
+  'new-renew-doctor-address-line-2': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--m',
+    validate: ['notUrl']
+  },
+  'new-renew-doctor-town-city': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--m',
+    validate: ['required', 'notUrl']
+  },
+  'new-renew-doctor-county': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--m',
+    validate: ['notUrl']
+  },
+  'new-renew-doctor-postcode': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--m',
+    className: ['govuk-input', 'govuk-input--width-10'],
+    formatter: ['ukPostcode']
+  },
+  'new-renew-doctor-country': {
+    mixin: 'select',
+    className: ['typeahead'],
+    labelClassName: 'govuk-label--m',
+    options: [
+      {
+        value: '',
+        label: 'fields.new-renew-doctor-country.options.none_selected'
+      }
+    ].concat(countries),
+    validate: ['required']
   }
 };
