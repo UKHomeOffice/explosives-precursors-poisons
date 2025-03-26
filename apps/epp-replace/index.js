@@ -11,6 +11,8 @@ const PostcodeValidation = require('../../utilities/helpers/postcode-validation'
 const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
 const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-payment-request');
 const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
+const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator');
+
 
 // TODO: Use DeleteRedundantDocuments behaviour similar to amend flow to
 // remove the uploaded files when dependent option changes
@@ -40,7 +42,7 @@ module.exports = {
       ]
     },
     '/police-report': {
-      fields: ['replace-police-report'],
+      fields: ['replace-police-report', 'replace-crime-number'],
       forks: [
         {
           target: '/crime-report-details',
@@ -149,6 +151,7 @@ module.exports = {
         'replace-date-new-name-changed'
       ],
       locals: { captionHeading: 'Section 10 of 26' },
+      behaviours: [AfterDateOfBirth('replace-date-of-birth')],
       next: '/identity-details'
     },
     '/identity-details': {

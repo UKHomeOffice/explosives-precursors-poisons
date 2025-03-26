@@ -65,7 +65,8 @@ module.exports = {
       },
       {
         step: '/new-name',
-        field: 'replace-new-middlename'
+        field: 'replace-new-middlename',
+        parse: value => value || 'Not provided'
       },
       {
         step: '/new-name',
