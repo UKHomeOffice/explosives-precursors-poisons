@@ -21,6 +21,7 @@ const SendNotification = require('../epp-common/behaviours/submit-notify');
 const ParseSummaryPrecursorsPoisons = require('../epp-common/behaviours/parse-summary-precursors-poisons');
 const ModifySummaryChangeLink = require('../epp-common/behaviours/modify-summary-change-links');
 const ResetSectionSummary = require('../epp-common/behaviours/reset-section-summary');
+const SetBackLink = require('../epp-common/behaviours/set-backlink');
 
 module.exports = {
   name: 'EPP form',
@@ -259,7 +260,8 @@ module.exports = {
       locals: { captionHeading: 'Section 13 of 23' }
     },
     '/no-details-amend': {
-      locals: { captionHeading: 'Section 13 of 23' }
+      behaviours: [SetBackLink],
+      locals: {captionHeading: 'Section 13 of 23' }
     },
     '/explosives-precursors': {
       behaviours: [

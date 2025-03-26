@@ -7,15 +7,13 @@ const {
   isValidUkDrivingLicenceNumber
 } = require('../../../utilities/helpers');
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years');
-
 const { textAreaDefaultLength } = require('../../../utilities/helpers');
-
 
 module.exports = {
   'new-renew-title': {
     mixin: 'select',
     validate: 'required',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     className: ['govuk-select', 'govuk-input--width-2'],
     options: [
       {
@@ -27,20 +25,17 @@ module.exports = {
   'new-renew-first-name': {
     mixin: 'input-text',
     validate: ['required', 'notUrl'],
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    labelClassName: 'govuk-label--m'
   },
   'new-renew-middle-name': {
     mixin: 'input-text',
     validate: ['notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    labelClassName: 'govuk-label--m'
   },
   'new-renew-last-name': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    labelClassName: 'govuk-label--m'
   },
   'new-renew-other-names': {
     mixin: 'radio-group',
@@ -51,7 +46,7 @@ module.exports = {
     validate: 'required',
     className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
-      className: 'govuk-fieldset__legend govuk-fieldset__legend--s'
+      className: 'govuk-fieldset__legend--m'
     }
   },
   'new-renew-phone-number': {
@@ -71,13 +66,30 @@ module.exports = {
     mixin: 'radio-group',
     validate: ['required'],
     options: [
-      { value: 'UK-passport', toggle: 'new-renew-UK-passport-number', child: 'input-text' },
-      { value: 'EU-passport', toggle: 'new-renew-EU-passport-number', child: 'input-text' },
-      { value: 'Uk-driving-licence', toggle: 'new-renew-Uk-driving-licence-number', child: 'input-text' }
+      {
+        value: 'UK-passport',
+        toggle: 'new-renew-UK-passport-number',
+        child: 'input-text'
+      },
+      {
+        value: 'EU-passport',
+        toggle: 'new-renew-EU-passport-number',
+        child: 'input-text'
+      },
+      {
+        value: 'Uk-driving-licence',
+        toggle: 'new-renew-Uk-driving-licence-number',
+        child: 'input-text'
+      }
     ]
   },
   'new-renew-UK-passport-number': {
-    validate: ['required', { type: 'maxlength', arguments: 9 }, 'alphanum', 'notUrl'],
+    validate: [
+      'required',
+      { type: 'maxlength', arguments: 9 },
+      'alphanum',
+      'notUrl'
+    ],
     className: ['govuk-input', 'govuk-!-width-one-thirds'],
     dependent: {
       field: 'new-renew-applicant-Id-type',
@@ -85,7 +97,12 @@ module.exports = {
     }
   },
   'new-renew-EU-passport-number': {
-    validate: ['required', { type: 'maxlength', arguments: 9 }, 'alphanum', 'notUrl'],
+    validate: [
+      'required',
+      { type: 'maxlength', arguments: 9 },
+      'alphanum',
+      'notUrl'
+    ],
     className: ['govuk-input', 'govuk-!-width-one-thirds'],
     dependent: {
       field: 'new-renew-applicant-Id-type',
@@ -93,7 +110,12 @@ module.exports = {
     }
   },
   'new-renew-Uk-driving-licence-number': {
-    validate: ['required', 'notUrl', { type: 'minlength', arguments: 16 }, isValidUkDrivingLicenceNumber],
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: 16 },
+      isValidUkDrivingLicenceNumber
+    ],
     className: ['govuk-input', 'govuk-!-width-one-thirds'],
     dependent: {
       field: 'new-renew-applicant-Id-type',
@@ -107,7 +129,7 @@ module.exports = {
   'new-renew-other-name-title': {
     mixin: 'select',
     validate: 'required',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     className: ['govuk-select', 'govuk-input--width-2'],
     options: [
       {
@@ -119,26 +141,23 @@ module.exports = {
   'new-renew-other-name-first-name': {
     mixin: 'input-text',
     validate: ['required', 'notUrl'],
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    labelClassName: 'govuk-label--m'
   },
   'new-renew-other-name-middle-name': {
     mixin: 'input-text',
     validate: ['notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    labelClassName: 'govuk-label--m'
   },
   'new-renew-other-name-last-name': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds']
+    labelClassName: 'govuk-label--m'
   },
   'new-renew-other-name-start-date': dateComponent(
     'new-renew-other-name-start-date',
     {
       mixin: 'input-date',
-      legend: { className: 'bold' },
+      legend: { className: 'govuk-fieldset__legend--m' },
       validate: [
         'required',
         'date',
@@ -150,7 +169,7 @@ module.exports = {
     'new-renew-other-name-stop-date',
     {
       mixin: 'input-date',
-      legend: { className: 'bold' },
+      legend: { className: 'govuk-fieldset__legend--m' },
       validate: ['date', { type: 'before', arguments: ['0', 'days'] }]
     }
   ),
@@ -158,19 +177,13 @@ module.exports = {
     mixin: 'radio-group',
     options: [{ value: 'yes' }, { value: 'no' }],
     validate: ['required'],
-    className: ['govuk-radios', 'govuk-radios--inline'],
-    legend: {
-      className: 'govuk-fieldset__legend'
-    }
+    className: ['govuk-radios', 'govuk-radios--inline']
   },
   'new-renew-received-treatment': {
     mixin: 'radio-group',
     options: [{ value: 'yes' }, { value: 'no' }],
     validate: ['required'],
-    className: ['govuk-radios', 'govuk-radios--inline'],
-    legend: {
-      className: 'govuk-fieldset__legend'
-    }
+    className: ['govuk-radios', 'govuk-radios--inline']
   },
   'new-renew-other-firearms-licence': {
     mixin: 'radio-group',
@@ -178,7 +191,7 @@ module.exports = {
     validate: ['required'],
     className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
-      className: ['govuk-fieldset__legend', 'bold']
+      className: 'govuk-fieldset__legend--m'
     }
   },
   'new-renew-other-shotgun-licence': {
@@ -187,7 +200,7 @@ module.exports = {
     validate: ['required'],
     className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
-      className: ['govuk-fieldset__legend', 'bold']
+      className: 'govuk-fieldset__legend--m'
     }
   },
   'new-renew-other-refused-licence': {
@@ -196,13 +209,13 @@ module.exports = {
     validate: ['required'],
     className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
-      className: ['govuk-fieldset__legend', 'bold']
+      className: 'govuk-fieldset__legend--m'
     }
   },
   'new-renew-other-country-nationality': {
     mixin: 'select',
     className: ['typeahead'],
-    labelClassName: 'bold',
+    labelClassName: 'govuk-label--m',
     options: [
       {
         value: '',
@@ -214,22 +227,22 @@ module.exports = {
   },
   'new-renew-date-fr': dateComponent('new-renew-date-fr', {
     mixin: 'input-date',
-    legend: { className: 'bold' },
+    legend: { className: 'govuk-fieldset__legend--m' },
     validate: ['date', 'before']
   }),
   'new-renew-date-to': dateComponent('new-renew-date-to', {
     mixin: 'input-date',
-    legend: { className: 'bold' },
+    legend: { className: 'govuk-fieldset__legend--m' },
     validate: ['date', 'before']
   }),
   'new-renew-dob': dateComponent('new-renew-dob', {
     mixin: 'input-date',
-    legend: { className: 'bold' },
+    legend: { className: 'govuk-fieldset__legend--m' },
     validate: ['required', 'date', 'before']
   }),
   'new-renew-birth-place': {
     mixin: 'input-text',
-    labelClassName: 'bold',
+    labelClassName: 'govuk-label--m',
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
@@ -240,7 +253,7 @@ module.exports = {
   'new-renew-birth-country': {
     mixin: 'select',
     className: ['typeahead'],
-    labelClassName: 'bold',
+    labelClassName: 'govuk-label--m',
     options: [
       {
         value: '',
@@ -252,7 +265,7 @@ module.exports = {
   'new-renew-country-nationality': {
     mixin: 'select',
     className: ['typeahead'],
-    labelClassName: 'bold',
+    labelClassName: 'govuk-label--m',
     options: [
       {
         value: '',
@@ -270,7 +283,7 @@ module.exports = {
     validate: 'required',
     className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
-      className: 'govuk-fieldset__legend govuk-fieldset__legend--s'
+      className: 'govuk-fieldset__legend--m'
     }
   },
   'new-renew-your-sex': {
@@ -283,13 +296,13 @@ module.exports = {
     validate: 'required',
     className: ['govuk-radios'],
     legend: {
-      className: 'govuk-fieldset__legend govuk-fieldset__legend--s'
+      className: 'govuk-fieldset__legend--m'
     }
   },
   'new-renew-your-height': {
     mixin: 'input-text',
     className: ['govuk-input', 'govuk-input--width-2'],
-    labelClassName: 'bold',
+    labelClassName: 'govuk-label--m',
     validate: [
       'required',
       'notUrl',
@@ -308,7 +321,7 @@ module.exports = {
   },
   'new-renew-occupation': {
     mixin: 'input-text',
-    labelClassName: 'bold',
+    labelClassName: 'govuk-label--m',
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
@@ -325,13 +338,12 @@ module.exports = {
     validate: ['required'],
     className: ['govuk-radios', 'govuk-radios--inline'],
     legend: {
-      className: ['govuk-fieldset__legend, bold']
+      className: 'govuk-fieldset__legend--m'
     }
   },
   'new-renew-home-address-line1': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    labelClassName: 'govuk-label--m',
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
@@ -341,8 +353,7 @@ module.exports = {
   },
   'new-renew-home-address-line2': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    labelClassName: 'govuk-label--m',
     validate: [
       { type: 'minlength', arguments: 2 },
       { type: 'maxlength', arguments: 250 },
@@ -351,8 +362,7 @@ module.exports = {
   },
   'new-renew-home-address-town': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    labelClassName: 'govuk-label--m',
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
@@ -362,8 +372,7 @@ module.exports = {
   },
   'new-renew-home-address-county': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
-    className: ['govuk-input', 'govuk-!-width-two-thirds'],
+    labelClassName: 'govuk-label--m',
     validate: [
       { type: 'minlength', arguments: 2 },
       { type: 'maxlength', arguments: 250 },
@@ -372,14 +381,14 @@ module.exports = {
   },
   'new-renew-home-address-postcode': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     className: ['govuk-input', 'govuk-input--width-10'],
     formatter: ['ukPostcode']
   },
   'new-renew-home-address-country': {
     mixin: 'select',
     validate: ['required'],
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     className: ['typeahead'],
     options: [
       {
@@ -392,13 +401,13 @@ module.exports = {
     'new-renew-home-address-moveto-date',
     {
       mixin: 'input-date',
-      legend: { className: 'bold' },
+      legend: { className: 'govuk-fieldset__legend--m' },
       validate: ['required', 'date', 'before']
     }
   ),
   'new-renew-previous-home-address-line1': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
@@ -408,7 +417,7 @@ module.exports = {
   },
   'new-renew-previous-home-address-line2': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     validate: [
       { type: 'minlength', arguments: 2 },
       { type: 'maxlength', arguments: 250 },
@@ -417,7 +426,7 @@ module.exports = {
   },
   'new-renew-previous-home-address-town': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
@@ -427,7 +436,7 @@ module.exports = {
   },
   'new-renew-previous-home-address-county': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     validate: [
       { type: 'minlength', arguments: 2 },
       { type: 'maxlength', arguments: 250 },
@@ -436,19 +445,20 @@ module.exports = {
   },
   'new-renew-previous-home-address-postcode': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     className: ['govuk-input', 'govuk-input--width-10'],
     formatter: ['ukPostcode']
   },
   'new-renew-previous-home-address-country': {
     mixin: 'select',
     validate: ['required'],
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     className: ['typeahead'],
     options: [
       {
         value: '',
-        label: 'fields.new-renew-previous-home-address-country.options.none_selected'
+        label:
+          'fields.new-renew-previous-home-address-country.options.none_selected'
       }
     ].concat(countries)
   },
@@ -456,14 +466,14 @@ module.exports = {
     'new-renew-previous-home-address-moveto-date',
     {
       mixin: 'input-date',
-      legend: { className: 'bold' },
+      legend: { className: 'govuk-fieldset__legend--m' },
       validate: ['required', 'date', 'before']
     }
   ),
   'new-renew-countersignatory-title': {
     mixin: 'select',
     validate: 'required',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     className: ['govuk-select', 'govuk-input--width-2'],
     options: [
       {
@@ -475,22 +485,22 @@ module.exports = {
   'new-renew-countersignatory-firstname': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s'
+    labelClassName: 'govuk-label--m'
   },
   'new-renew-countersignatory-middlename': {
     mixin: 'input-text',
     validate: ['notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s'
+    labelClassName: 'govuk-label--m'
   },
   'new-renew-countersignatory-lastname': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s'
+    labelClassName: 'govuk-label--m'
   },
   'new-renew-countersignatory-years': {
     mixin: 'select',
     validate: 'required',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     className: ['govuk-select', 'govuk-input--width-2'],
     options: [
       {
@@ -502,16 +512,16 @@ module.exports = {
   'new-renew-countersignatory-howyouknow': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s'
+    labelClassName: 'govuk-label--m'
   },
   'new-renew-countersignatory-occupation': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s'
+    labelClassName: 'govuk-label--m'
   },
   'new-renew-countersignatory-address-1': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
@@ -521,7 +531,7 @@ module.exports = {
   },
   'new-renew-countersignatory-address-2': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     validate: [
       { type: 'minlength', arguments: 2 },
       { type: 'maxlength', arguments: 250 },
@@ -530,7 +540,7 @@ module.exports = {
   },
   'new-renew-countersignatory-town-or-city': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
@@ -540,7 +550,7 @@ module.exports = {
   },
   'new-renew-countersignatory-postcode': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     className: ['govuk-input', 'govuk-input--width-10'],
     validate: ['required', 'postcode'],
     formatter: ['ukPostcode']
@@ -569,25 +579,113 @@ module.exports = {
     ],
     validate: 'required',
     legend: {
-      className: 'govuk-fieldset__legend govuk-fieldset__legend--s'
+      className: 'govuk-fieldset__legend--m'
     }
   },
   'new-renew-why-licence-refused': {
     mixin: 'textarea',
     validate: ['required', 'notUrl', textAreaDefaultLength],
     attributes: [{ attribute: 'rows', value: 5 }],
-    labelClassName: 'govuk-label--s'
+    labelClassName: 'govuk-label--m'
   },
   'new-renew-licence-refused-date': dateComponent(
     'new-renew-licence-refused-date',
     {
       mixin: 'input-date',
-      legend: { className: 'bold' },
+      legend: { className: 'govuk-fieldset__legend--m' },
       validate: [
         'required',
         'date',
         { type: 'before', arguments: ['0', 'days'] }
       ]
     }
-  )
+  ),
+  'new-renew-offence-name': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ],
+    labelClassName: 'govuk-label--m'
+  },
+  'new-renew-offence-country': {
+    mixin: 'select',
+    className: ['typeahead'],
+    labelClassName: 'govuk-label--m',
+    options: [
+      {
+        value: '',
+        label: 'fields.new-renew-offence-country.options.none_selected'
+      }
+    ].concat(countries),
+    validate: ['required']
+  },
+  'new-renew-offence-date': dateComponent('new-renew-offence-date', {
+    mixin: 'input-date',
+    legend: { className: 'govuk-fieldset__legend--m' },
+    validate: ['required', 'date', { type: 'before', arguments: ['0', 'days'] }]
+  }),
+  'new-renew-countersignatory-Id-type': {
+    isPageHeading: true,
+    mixin: 'radio-group',
+    validate: ['required'],
+    options: [
+      {
+        value: 'UK-passport',
+        toggle: 'new-renew-countersignatory-UK-passport-number',
+        child: 'input-text'
+      },
+      {
+        value: 'EU-passport',
+        toggle: 'new-renew-countersignatory-EU-passport-number',
+        child: 'input-text'
+      },
+      {
+        value: 'Uk-driving-licence',
+        toggle: 'new-renew-countersignatory-Uk-driving-licence-number',
+        child: 'input-text'
+      }
+    ]
+  },
+  'new-renew-countersignatory-UK-passport-number': {
+    validate: [
+      'required',
+      { type: 'maxlength', arguments: 9 },
+      'alphanum',
+      'notUrl'
+    ],
+    className: ['govuk-input', 'govuk-!-width-one-thirds'],
+    dependent: {
+      field: 'new-renew-countersignatory-Id-type',
+      value: 'UK-passport'
+    }
+  },
+  'new-renew-countersignatory-EU-passport-number': {
+    validate: [
+      'required',
+      { type: 'maxlength', arguments: 9 },
+      'alphanum',
+      'notUrl'
+    ],
+    className: ['govuk-input', 'govuk-!-width-one-thirds'],
+    dependent: {
+      field: 'new-renew-countersignatory-Id-type',
+      value: 'EU-passport'
+    }
+  },
+  'new-renew-countersignatory-Uk-driving-licence-number': {
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: 16 },
+      isValidUkDrivingLicenceNumber
+    ],
+    className: ['govuk-input', 'govuk-!-width-one-thirds'],
+    dependent: {
+      field: 'new-renew-countersignatory-Id-type',
+      value: 'Uk-driving-licence'
+    }
+  }
 };

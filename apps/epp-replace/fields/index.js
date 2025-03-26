@@ -1,10 +1,8 @@
 const titles = require('../../../utilities/constants/titles');
+const dateComponent = require('hof').components.date;
 const poisonsList = require('../../../utilities/constants/poisons.js');
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years.js');
-const { validInternationalPhoneNumber } = require('../../../utilities/helpers');
-const dateComponent = require('hof').components.date;
-
-const helpers = require('../../../utilities/helpers/index.js');
+const { isValidUkDrivingLicenceNumber, validInternationalPhoneNumber } = require('../../../utilities/helpers');
 
 module.exports = {
   'replace-licence-number': {
@@ -14,7 +12,7 @@ module.exports = {
   'replace-title': {
     mixin: 'select',
     validate: 'required',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     className: ['govuk-select', 'govuk-input--width-2'],
     options: [
       {
@@ -25,14 +23,17 @@ module.exports = {
   },
   'replace-first-name': {
     mixin: 'input-text',
+    labelClassName: 'govuk-label--m',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }]
   },
   'replace-middle-name': {
     mixin: 'input-text',
+    labelClassName: 'govuk-label--m',
     validate: ['notUrl', { type: 'maxlength', arguments: [250] }]
   },
   'replace-last-name': {
     mixin: 'input-text',
+    labelClassName: 'govuk-label--m',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }]
   },
   'replace-licence': {
@@ -56,7 +57,7 @@ module.exports = {
   'replace-countersignatory-title': {
     mixin: 'select',
     validate: 'required',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     className: ['govuk-select', 'govuk-input--width-2'],
     options: [
       {
@@ -68,22 +69,22 @@ module.exports = {
   'replace-countersignatory-firstname': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s'
+    labelClassName: 'govuk-label--m'
   },
   'replace-countersignatory-middlename': {
     mixin: 'input-text',
     validate: ['notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s'
+    labelClassName: 'govuk-label--m'
   },
   'replace-countersignatory-lastname': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s'
+    labelClassName: 'govuk-label--m'
   },
   'replace-countersignatory-years': {
     mixin: 'select',
     validate: 'required',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     className: ['govuk-select', 'govuk-input--width-2'],
     options: [
       {
@@ -95,16 +96,16 @@ module.exports = {
   'replace-countersignatory-howyouknow': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s'
+    labelClassName: 'govuk-label--m'
   },
   'replace-countersignatory-occupation': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: [250] }],
-    labelClassName: 'govuk-label--s'
+    labelClassName: 'govuk-label--m'
   },
   'replace-countersignatory-address-1': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
@@ -114,7 +115,7 @@ module.exports = {
   },
   'replace-countersignatory-address-2': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     validate: [
       { type: 'minlength', arguments: 2 },
       { type: 'maxlength', arguments: 250 },
@@ -123,7 +124,7 @@ module.exports = {
   },
   'replace-countersignatory-town-or-city': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
@@ -133,7 +134,7 @@ module.exports = {
   },
   'replace-countersignatory-postcode': {
     mixin: 'input-text',
-    labelClassName: 'govuk-label--s',
+    labelClassName: 'govuk-label--m',
     className: ['govuk-input', 'govuk-input--width-10'],
     validate: ['required', 'postcode'],
     formatter: ['ukPostcode']
@@ -220,7 +221,7 @@ module.exports = {
   },
   'replace-date-of-birth': dateComponent('replace-date-of-birth', {
     mixin: 'input-date',
-    legend: { className: 'bold' },
+    legend: { className: 'govuk-fieldset__legend--m' },
     validate: ['required', 'date', 'before']
   }),
   'replace-countersignatory-Uk-driving-licence-number': {
@@ -228,12 +229,85 @@ module.exports = {
       'required',
       'notUrl',
       { type: 'minlength', arguments: 16 },
-      helpers.isValidUkDrivingLicenceNumber
+      isValidUkDrivingLicenceNumber
     ],
     className: ['govuk-input', 'govuk-!-width-one-thirds'],
     dependent: {
       field: 'replace-countersignatory-Id-type',
       value: 'Uk-driving-licence'
     }
+  },
+  'replace-which-document-type': {
+    isPageHeading: true,
+    mixin: 'radio-group',
+    validate: ['required'],
+    options: [
+      {
+        value: 'UK-passport',
+        toggle: 'replace-UK-passport-number',
+        child: 'input-text'
+      },
+      {
+        value: 'EU-passport',
+        toggle: 'replace-EU-passport-number',
+        child: 'input-text'
+      },
+      {
+        value: 'Uk-driving-licence',
+        toggle: 'replace-Uk-driving-licence-number',
+        child: 'input-text'
+      }
+    ]
+  },
+  'replace-UK-passport-number': {
+    validate: [
+      'required',
+      { type: 'maxlength', arguments: 9 },
+      'alphanum',
+      'notUrl'
+    ],
+    className: ['govuk-input', 'govuk-!-width-one-thirds'],
+    dependent: {
+      field: 'replace-which-document-type',
+      value: 'UK-passport'
+    }
+  },
+  'replace-EU-passport-number': {
+    validate: [
+      'required',
+      { type: 'maxlength', arguments: 9 },
+      'alphanum',
+      'notUrl'
+    ],
+    className: ['govuk-input', 'govuk-!-width-one-thirds'],
+    dependent: {
+      field: 'replace-which-document-type',
+      value: 'EU-passport'
+    }
+  },
+  'replace-Uk-driving-licence-number': {
+    validate: [
+      'required',
+      'notUrl',
+      { type: 'minlength', arguments: 16 },
+      isValidUkDrivingLicenceNumber
+    ],
+    className: ['govuk-input', 'govuk-!-width-one-thirds'],
+    dependent: {
+      field: 'replace-which-document-type',
+      value: 'Uk-driving-licence'
+    }
+  },
+  'replace-phone-number': {
+    mixin: 'input-text',
+    className: ['govuk-input'],
+    labelClassName: 'govuk-label--m',
+    validate: ['required', validInternationalPhoneNumber, 'notUrl']
+  },
+  'replace-email': {
+    mixin: 'input-text',
+    className: ['govuk-input'],
+    labelClassName: 'govuk-label--m',
+    validate: ['required', 'email']
   }
 };

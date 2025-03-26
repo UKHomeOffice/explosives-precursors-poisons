@@ -217,6 +217,12 @@
   "licence-history": {
     "header": "Revoked or refused licence history"
   },
+  "add-offence": {
+    "header": "Add criminal record entry"
+  },
+  "criminal-record-summary": {
+    "header": "Your criminal record"
+  },
   "confirm": {
     "header": "Check your answers",
     "title": "Check your answers – Apply for an explosives precursors and poisons licence",
@@ -327,6 +333,18 @@
       "new-renew-countersignatory-phone-number": {
         "label": "Phone number"
       },
+      "new-renew-countersignatory-Id-type": {
+        "label": "Identification document"
+      },
+      "new-renew-countersignatory-UK-passport-number": {
+        "label": "British passport number"
+      },
+      "new-renew-countersignatory-EU-passport-number": {
+        "label": "Passport number"
+      },
+      "new-renew-countersignatory-Uk-driving-licence-number": {
+        "label": "UK driving licence number"
+      },
       "new-renew-applicant-Id-type": {
         "label": "Identification document"
       },
@@ -362,7 +380,10 @@
      },
      "licenceshistory": {
       "label": "Revoked or refused licence history"
-     }
+     },
+      "criminalrecordsummary": {
+        "label": "Offences"
+      }
     },
     "complete": {
       "header": "Your submission has been sent",

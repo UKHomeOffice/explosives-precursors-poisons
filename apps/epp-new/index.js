@@ -16,7 +16,7 @@ const EditRouteReturn = require('../epp-common/behaviours/edit-route-return');
 const SaveDocument = require('../epp-common/behaviours/save-document');
 const RemoveDocument = require('../epp-common/behaviours/remove-document');
 const DobEditRedirect = require('../epp-common/behaviours/dob-edit-redirect');
-
+const DobUnder18Redirect = require('../epp-common/behaviours/dob-under18-redirect');
 const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
 
 const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redundant-documents');
@@ -426,20 +426,20 @@ module.exports = {
       }
     },
     '/criminal-record': {
+      behaviours: [
+        ResetSectionSummary(
+          'criminalrecordsummary',
+          'new-renew-have-criminal-record'
+        )
+      ],
       fields: ['new-renew-have-criminal-record'],
       forks: [
         {
           target: '/add-offence',
+          continueOnEdit: true,
           condition: {
             field: 'new-renew-have-criminal-record',
             value: 'yes'
-          }
-        },
-        {
-          target: '/medical-declaration',
-          condition: {
-            field: 'new-renew-have-criminal-record',
-            value: 'no'
           }
         }
       ],
@@ -448,10 +448,16 @@ module.exports = {
           new: 9,
           renew: 10
         }
-      }
+      },
+      next: '/medical-declaration'
     },
     '/add-offence': {
-      fields: [],
+      behaviours: [AfterDateOfBirth('new-renew-dob')],
+      fields: [
+        'new-renew-offence-name',
+        'new-renew-offence-country',
+        'new-renew-offence-date'
+      ],
       next: '/criminal-record-summary',
       locals: {
         sectionNo: {
@@ -461,7 +467,16 @@ module.exports = {
       }
     },
     '/criminal-record-summary': {
-      fields: [],
+      behaviours: [AggregateSaveUpdate, ParseSummaryFields, EditRouteReturn],
+      aggregateTo: 'criminalrecordsummary',
+      aggregateFrom: [
+        'new-renew-offence-name',
+        'new-renew-offence-country',
+        'new-renew-offence-date'
+      ],
+      titleField: ['new-renew-offence-name'],
+      addStep: 'add-offence',
+      addAnotherLinkText: 'offence',
       next: '/medical-declaration',
       locals: {
         sectionNo: {
@@ -636,9 +651,14 @@ module.exports = {
       }
     },
     '/countersignatory-id': {
-      fields: [],
-      // add logic to check if user is 18 to redirect to birth certificate
-      next: '/birth-certificate',
+      behaviours: [DobUnder18Redirect('new-renew-dob', '/birth-certificate')],
+      fields: [
+        'new-renew-countersignatory-Id-type',
+        'new-renew-countersignatory-UK-passport-number',
+        'new-renew-countersignatory-EU-passport-number',
+        'new-renew-countersignatory-Uk-driving-licence-number'
+      ],
+      next: '/confirm',
       locals: {
         sectionNo: {
           new: 18,
