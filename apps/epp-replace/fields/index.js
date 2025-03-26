@@ -420,5 +420,5 @@ module.exports = {
     mixin: 'input-date',
     legend: { className: 'govuk-fieldset__legend--m' },
     validate: ['required', 'date', 'before']
-  }),
+  })
 };
