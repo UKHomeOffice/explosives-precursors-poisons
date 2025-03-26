@@ -145,6 +145,7 @@
       },
       "replace-which-document-type": {
         "legend": "Which identity document do you want to use?",
+        "hint": "If your licence is granted, you will need to show this document when buying the substances",
         "options": {
           "UK-passport": {
             "label": "British passport"
@@ -200,5 +201,8 @@
       "options": {
         "none_selected": "Select"
       }
-    }
+    },
+  "amend-declaration": {
+    "label": "I have read and agree to this declaration"
+  }
 }

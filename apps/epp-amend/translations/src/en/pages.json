@@ -103,6 +103,15 @@
     "li2": "need to change the concentration or volume of substances that your licence covers",
     "li3": "have changed your storage or usage address since your current licence was issued"
   },
+  "no-details-amend": {
+    "header": "You do not need to use this form",
+    "paragraph1": "You can only use this form to amend the following details on your licence:",
+    "li1": "name",
+    "li2": "address",
+    "li3": "substances - including usage or storage address",
+    "insetText": "If you need to amend something else on your licence, like your contact details, email",
+    "linkText": "epp@homeoffice.pnn.police.uk."
+  },
   "select-precursor": {
     "header": "Explosives precursors",
     "p1": "Tell us which explosives precursors you want to import acquire use or possess.",
@@ -132,6 +141,10 @@
     "header": "Poisons",
     "p1": "Tell us which poisons you want to import acquire use or possess.",
     "p2": "If you need multiple poisons, you can add each one separately."
+  },
+  "no-poisons-or-precursors": {
+    "header": "The explosives precursors and poisons on your licence will not change",
+    "paragraph1": "You told us you do not need to amend the explosives precursors or poisons on your current licence. This includes the storage or usage address for the substances."
   },
   "countersignatory-details": {
     "header": "Countersignatory details",

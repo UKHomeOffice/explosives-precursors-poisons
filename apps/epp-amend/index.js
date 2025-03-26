@@ -14,8 +14,8 @@ const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-count
 const DobUnder18Redirect = require('../epp-common/behaviours/dob-under18-redirect');
 const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redundant-documents');
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
-
 const SendNotification = require('../epp-common/behaviours/submit-notify');
+const SetBackLink = require('../epp-common/behaviours/set-backlink');
 
 
 module.exports = {
@@ -248,9 +248,14 @@ module.exports = {
       locals: { captionHeading: 'Section 13 of 23' }
     },
     '/no-details-amend': {
-      locals: { captionHeading: 'Section 13 of 23' }
+      behaviours: [SetBackLink],
+      locals: {captionHeading: 'Section 13 of 23' }
     },
     '/explosives-precursors': {
+      behaviours: [
+        CheckAndRedirect('amend-regulated-explosives-precursors',
+          ['amend-poisons-option', 'amend-regulated-explosives-precursors']
+        )],
       fields: ['amend-regulated-explosives-precursors'],
       forks: [
         {
@@ -297,15 +302,16 @@ module.exports = {
       fields: ['amend-poisons-option'],
       forks: [
         {
-          target: '/countersignatory-details',
+          target: '/select-poisons',
+          continueOnEdit: true,
           condition: {
             field: 'amend-name-options',
-            value: 'no'
+            value: 'yes'
           }
         }
       ],
-      locals: { captionHeading: 'Section 16 of 23' },
-      next: '/select-poisons'
+      next: '/countersignatory-details',
+      locals: { captionHeading: 'Section 16 of 23' }
     },
     '/select-poisons': {
       fields: ['amend-poison'],
@@ -313,7 +319,19 @@ module.exports = {
       next: '/countersignatory-details'
     },
     '/no-poisons-or-precursors': {
-      field: []
+      behaviours: [SetBackLink],
+      fields: ['amend-no-poisons-precursors-options'],
+      forks: [
+        {
+          target: '/change-substances',
+          continueOnEdit: true,
+          condition: {
+            field: 'amend-no-poisons-precursors-options',
+            value: 'no'
+          }
+        }
+      ],
+      next: '/countersignatory-details'
     },
     '/countersignatory-details': {
       fields: [

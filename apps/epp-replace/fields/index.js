@@ -366,5 +366,9 @@ module.exports = {
         label: 'fields.replace-home-country.options.none_selected'
       }
     ].concat(countries)
+  },
+  'amend-declaration': {
+    mixin: 'checkbox',
+    validate: ['required']
   }
 };

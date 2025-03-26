@@ -9,6 +9,8 @@ const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 const DobUnder18Redirect = require('../epp-common/behaviours/dob-under18-redirect');
 const PostcodeValidation = require('../../utilities/helpers/postcode-validation');
 const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
+const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-payment-request');
+const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
 
 // TODO: Use DeleteRedundantDocuments behaviour similar to amend flow to
 // remove the uploaded files when dependent option changes
@@ -154,6 +156,7 @@ module.exports = {
         'replace-EU-passport-number',
         'replace-Uk-driving-licence-number'
       ],
+      locals: { captionHeading: 'Section 11 of 26' },
       next: '/upload-british-passport',
       forks: [
         {
@@ -328,10 +331,21 @@ module.exports = {
       next: '/declaration'
     },
     '/declaration': {
-      next: '/application-submitted'
+      behaviours: [InitiatePaymentRequest],
+      fields: ['amend-declaration'],
+      locals: { captionHeading: 'Section 26 of 26' }
     },
+    '/payment-problem': {
+      behaviours: [InitiatePaymentRequest]
+    },
+    '/payment-failed': {
+      behaviours: [InitiatePaymentRequest]
+    },
+    '/payment-cancelled': {},
     '/application-submitted': {
-      clearSession: true
+      sections: require('./sections/summary-data-sections'),
+      behaviours: [SummaryPageBehaviour, GetPaymentInfo],
+      backLink: false
     }
   }
 };

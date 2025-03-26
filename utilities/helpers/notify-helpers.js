@@ -157,19 +157,36 @@ const getSessionValueOrDefault = value => value || '';
 const getReplacePersonalisation = req => {
   return {
     why_need_replacement: getSessionValueOrDefault(
-      req.sessionModel.get('replace-licence')
+      getLabel(
+        'replace-licence',
+        req.sessionModel.get('replace-licence'),
+        replaceTranslation
+      )
     ),
     has_licence_stolen: hasValue(
       req.sessionModel.get('steps').includes('/police-report')
     ),
-    reported_to_police: getSessionValueOrDefault(req.sessionModel.get('TBD')),
+    reported_to_police: getSessionValueOrDefault(
+      getLabel(
+        'replace-police-report',
+        req.sessionModel.get('replace-police-report'),
+        replaceTranslation
+      )
+    ),
+
     police_force: getSessionValueOrDefault(req.sessionModel.get('TBD')),
     crime_number: getSessionValueOrDefault(req.sessionModel.get('TBD')),
     name_on_licence: getSessionValueOrDefault(req.sessionModel.get('TBD')),
-    date_of_birth: getSessionValueOrDefault(req.sessionModel.get('TBD')),
+    date_of_birth: getSessionValueOrDefault(
+      getFormattedDate(req.sessionModel.get('replace-date-of-birth'))
+    ),
     current_address: getSessionValueOrDefault(req.sessionModel.get('TBD')),
-    phone_number: getSessionValueOrDefault(req.sessionModel.get('TBD')),
-    email_address: getSessionValueOrDefault(req.sessionModel.get('TBD')),
+    phone_number: getSessionValueOrDefault(
+      req.sessionModel.get('replace-phone-number')
+    ),
+    email_address: getSessionValueOrDefault(
+      req.sessionModel.get('replace-email')
+    ),
     has_amended_name: checkYesNo(req.sessionModel.get('TBD')),
     new_name: '', // TODO format the values
     identity_document:
@@ -305,7 +322,9 @@ const getAmendPersonalisation = req => {
     date_moved_to:
       req.sessionModel.get('amend-home-address-options') === STR_YES
         ? getSessionValueOrDefault(
-            getFormattedDate(req.sessionModel.get('amend-new-date-moved-to-address'))
+            getFormattedDate(
+              req.sessionModel.get('amend-new-date-moved-to-address')
+            )
           )
         : '',
     address_proof_attachments: getSessionValueOrDefault(
@@ -432,7 +451,9 @@ const getNewRenewPersonalisation = req => {
       req.sessionModel.get('homeAddressInline')
     ),
     moved_date: getSessionValueOrDefault(
-      getFormattedDate(req.sessionModel.get('new-renew-home-address-moveto-date'))
+      getFormattedDate(
+        req.sessionModel.get('new-renew-home-address-moveto-date')
+      )
     ),
     proof_of_address: getSessionValueOrDefault(
       parseDocumentList(req.sessionModel.get('new-renew-proof-address'))
