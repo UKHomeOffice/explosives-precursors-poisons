@@ -8,6 +8,9 @@
   "home-address": {
     "header": "What is your home address?"
   },
+  "new-name": {
+    "header": "What is your new name?"
+  },
   "upload-british-passport": {
     "header": "Upload British passport",
     "label": "Upload a file",

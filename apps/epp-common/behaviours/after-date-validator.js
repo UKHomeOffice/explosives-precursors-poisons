@@ -6,6 +6,7 @@ module.exports = dobFieldName => superclass =>
       req.log('info', `Key value for form is : ${key}`);
 
       const keysToCheck = [
+        'replace-date-new-name-changed',
         'amend-new-date-name-changed',
         'amend-new-date-moved-to-address',
         'new-renew-licence-refused-date',

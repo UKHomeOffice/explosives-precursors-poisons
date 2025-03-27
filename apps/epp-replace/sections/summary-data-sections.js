@@ -56,6 +56,28 @@ module.exports = {
   'replace-new-name': {
     steps: [
       {
+        step: '/new-name',
+        field: 'replace-new-name-title'
+      },
+      {
+        step: '/new-name',
+        field: 'replace-new-firstname'
+      },
+      {
+        step: '/new-name',
+        field: 'replace-new-middlename',
+        parse: value => value || 'Not provided'
+      },
+      {
+        step: '/new-name',
+        field: 'replace-new-lastname'
+      },
+      {
+        step: '/new-name',
+        field: 'replace-date-new-name-changed',
+        parse: date => date && dateFormatter.format(new Date(date))
+      },
+      {
         step: '/identity-details',
         field: 'replace-which-document-type'
       },
