@@ -424,10 +424,13 @@ module.exports = {
       behaviours: [SummaryPageBehaviour, SendNotification],
       sections: require('./sections/summary-data-sections'),
       fields: ['amend-declaration'],
-      next: '/application-submitted',
+      next: '/amendment-submitted',
       locals: { captionHeading: 'Section 23 of 23' }
     },
-    '/application-submitted': {},
+    '/amendment-submitted': {
+      clearSession: true,
+      backLink: false
+    },
     '/exit': {}
   }
 };
