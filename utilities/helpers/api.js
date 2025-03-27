@@ -11,7 +11,8 @@ const {
   PATH_REPLACE,
   API_METHODS,
   PATH_APPLICATION_SUBMITTED,
-  PATH_NEW_RENEW
+  PATH_NEW_RENEW,
+  PATH_REPLACE_APPLICATION_SUBMITTED
 } = require('../constants/string-constants');
 
 const { getCryptoRandomString } = require('./crypto-random-string');
@@ -130,9 +131,15 @@ async function getPaymentDetails(paymentId) {
  */
 
 const generateRequestPayload = async (req, applicationType, hmac) => {
-  const return_url = `${req.protocol}://${req.get('host')}${
-    applicationType === APP_TYPE_REPLACE ? PATH_REPLACE : PATH_NEW_RENEW
-  }${PATH_APPLICATION_SUBMITTED}`;
+  let return_url = `${req.protocol}://${req.get(
+    'host'
+  )}${PATH_NEW_RENEW}${PATH_APPLICATION_SUBMITTED}`;
+
+  if (applicationType === APP_TYPE_REPLACE) {
+    return_url = `${req.protocol}://${req.get(
+      'host'
+    )}${PATH_REPLACE}${PATH_REPLACE_APPLICATION_SUBMITTED}`;
+  }
 
   const uniqueRefNumber = await getCryptoRandomString();
 

@@ -132,7 +132,7 @@ describe('apis.js tests', () => {
         ...expectedRequestPayload,
         amount: 2500,
         description: 'Replace Explosives Precursors and Poisons Licence',
-        return_url: 'http://localhost:8080/replace/application-submitted'
+        return_url: 'http://localhost:8080/replace/replace-application-submitted'
       };
       delete updatedPayload.billing_address;
 

@@ -5,6 +5,7 @@ const PATH_PAYMENT_PROBLEM = '/payment-problem';
 const PATH_PAYMENT_FAILED = '/payment-failed';
 const PATH_PAYMENT_CANCELLED = '/payment-cancelled';
 const PATH_APPLICATION_SUBMITTED = '/application-submitted';
+const PATH_REPLACE_APPLICATION_SUBMITTED = '/replace-application-submitted';
 
 const APP_TYPE_NEW = 'new';
 const APP_TYPE_RENEW = 'renew';
@@ -30,6 +31,7 @@ module.exports = {
   PATH_PAYMENT_FAILED,
   PATH_PAYMENT_CANCELLED,
   PATH_APPLICATION_SUBMITTED,
+  PATH_REPLACE_APPLICATION_SUBMITTED,
   APP_TYPE_NEW,
   APP_TYPE_RENEW,
   APP_TYPE_AMEND,
