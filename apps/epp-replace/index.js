@@ -347,7 +347,7 @@ module.exports = {
       behaviours: [InitiatePaymentRequest]
     },
     '/payment-cancelled': {},
-    '/application-submitted': {
+    '/replace-application-submitted': {
       sections: require('./sections/summary-data-sections'),
       behaviours: [SummaryPageBehaviour, GetPaymentInfo],
       backLink: false
