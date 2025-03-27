@@ -17,6 +17,7 @@ module.exports = {
       locals: {
         captionHeading: 'Section 1 of 21'
       }
-    }
+    },
+    '/exit': {}
   }
 };
