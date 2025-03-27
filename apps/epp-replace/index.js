@@ -66,7 +66,8 @@ module.exports = {
       next: '/licence-number'
     },
     '/crime-report-details': {
-      fields: ['replace-report-details', 'replace-crime-number'],
+      fields: ['replace-police-force', 'replace-crime-number'],
+      locals: { captionHeading: 'Section 2 of 26' },
       next: '/licence-number'
     },
     '/licence-number': {
