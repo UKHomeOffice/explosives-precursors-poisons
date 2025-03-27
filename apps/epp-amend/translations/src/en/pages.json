@@ -337,6 +337,27 @@
       "amend-regulated-explosives-precursors": {
         "label": "Does your licence need to cover explosives precursors?"
       },
+      "amend-poison": {
+        "label": "Poison"
+      },
+      "amend-display-poison-title": {
+         "label": "Poison name"
+      },
+      "amend-why-need-poison": {
+        "label": "For what purpose do you need this regulated substance?"
+      },
+      "amend-how-much-poison": {
+        "label": "How much do you wish to acquire?"
+      },
+      "amend-what-concentration-poison": {
+        "label": "What concentration % w/w of the substance do you need for your intended purpose?"
+      },
+      "amend-where-to-store-poison": {
+        "label":"Storage address"
+      },
+      "amend-where-to-use-poison": {
+        "label": "Usage address"
+      },
       "amend-countersignatory-middlename": {
         "label": "Middle names"
       },
