@@ -2912,7 +2912,7 @@ hmac-drbg@^1.0.1:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.1"
 
-hof@^22.2.1:
+hof@^22.3.3:
   version "22.3.3"
   resolved "https://registry.yarnpkg.com/hof/-/hof-22.3.3.tgz#49dc045731c66e843d4284e739bd8a78c2e55e88"
   integrity sha512-eVQ5SMeA6tVIgbkUbN56cBveler1i6AU4hvr3OygRqhSqdJyFYjm9U8Z39+or8f7qCadAuyaP7eHeoeB0yqRiQ==
