@@ -124,8 +124,13 @@
     "link-text": "list of regulated chemicals (opens in a new tab)",
     "p2": "You do not need a licence for reportable explosives precursors."
   },
-  "application-submitted": {
-    "confirmed": "Amendment submitted"
+  "amendment-submitted": {
+    "submitted": "Amendment submitted",
+    "confirmation-sent": "Confirmation email sent to {{values.amend-email}}",
+    "return-licence": "You must return your old licence",
+    "p1": "There are instructions on how to return your licence in your confirmation email.",
+    "p2": "After we receive your old licence, we will process the amendment to your licence. We aim to respond within 16 weeks.",
+    "p3": "If you have any questions, contact"
   },
   "precursor-details":{
     "header": "{{values.amend-precursor-field}}"
