@@ -535,8 +535,17 @@ module.exports = {
       }
     },
     '/doctor-details': {
-      fields: [],
-      next: '/precursor-or-poison',
+      behaviours: [PostcodeValidation],
+      fields: [
+        'new-renew-doctor-name',
+        'new-renew-doctor-address-line-1',
+        'new-renew-doctor-address-line-2',
+        'new-renew-doctor-town-city',
+        'new-renew-doctor-county',
+        'new-renew-doctor-postcode',
+        'new-renew-doctor-country'
+      ],
+      next: '/explosives-precursors',
       locals: {
         sectionNo: {
           new: 11,
@@ -544,7 +553,7 @@ module.exports = {
         }
       }
     },
-    '/precursor-or-poison': {
+    '/explosives-precursors': {
       fields: [],
       next: '/select-precursor',
       locals: {

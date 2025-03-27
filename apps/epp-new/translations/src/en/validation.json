@@ -342,5 +342,30 @@
     "isValidUkDrivingLicenceNumber": "Enter a real UK driving licence number",
     "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer",
     "minlength": "Driving licence number must be 16 characters"
+  },
+  "new-renew-doctor-name": {
+    "required": "Enter the name of your doctor or medical practice",
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
+  },
+  "new-renew-doctor-address-line-1": {
+    "required": "Enter address line 1 of your doctor's address, typically the building and street",
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
+  },
+  "new-renew-doctor-address-line-2": {
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
+  },
+  "new-renew-doctor-town-city": {
+    "required": "Enter your doctor's town or city of address",
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
+  },
+  "new-renew-doctor-county": {
+    "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
+  },
+  "new-renew-doctor-postcode": {
+    "required": "Enter a UK postcode",
+    "postcode": "Enter a real UK postcode"
+  },
+  "new-renew-doctor-country": {
+    "required": "Select your doctor's country of address"
   }
 }

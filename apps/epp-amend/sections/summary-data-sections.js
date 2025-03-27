@@ -264,19 +264,33 @@ module.exports = {
       }
     ]
   },
-  'amend-explosives-precursor': {
-    steps: [
-      {
-        steps: '/select-precursor',
-        field: 'amend-precursor-field'
-      }
-    ]
-  },
   'amend-licence-for-explosives-precursors': {
     steps: [
       {
         steps: '/explosives-precursors',
         field: 'amend-regulated-explosives-precursors'
+      }
+    ]
+  },
+  'amend-explosives-precursor-details': {
+    steps: [
+      {
+        step: '/precursors-summary',
+        field: 'precursors-details-aggregate',
+        parse: list => {
+          if (!list?.aggregatedValues) { return null; }
+          for(const item of list.aggregatedValues) {
+            item.fields.map(element => {
+              if(element.field === 'amend-display-precursor-title') {
+                element.parsed = item.joinTitle;
+              }else{
+                element.field;
+                element.omitChangeLink = true;
+              }
+            });
+          }
+          return list;
+        }
       }
     ]
   },

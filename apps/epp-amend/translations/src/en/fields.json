@@ -164,6 +164,9 @@
       "none_selected": "Select"
     }
   },
+  "selected-precursor-title":{
+    "joinTitle" : "{{values.selectedPrecursorShortTitle}}"
+  },
   "amend-poisons-option": {
     "legend":"Does your licence need to cover poisons?",
     "options": {
@@ -252,21 +255,26 @@
   },
   "amend-why-need-precursor":{
     "label": "{{values.whyNeedPrecursorLabel}}",
-    "hint": "Detailed answers mean we can process your application faster"
+    "hint": "Detailed answers mean we can process your application faster",
+    "summary-heading": "{{values.whyNeedPrecursorLabel}}"
   },
   "amend-how-much-precursor":{
     "label": "How much do you wish to acquire at any one time?",
-    "hint": "Enter the amount and the unit. For example, 10 litres"
+    "hint": "Enter the amount and the unit. For example, 10 litres",
+    "summary-heading": "How much do you wish to acquire at any one time?"
   },
   "amend-what-concentration-precursor":{
-    "label": "What concentration % w/w do you need?"
+    "label": "What concentration % w/w do you need?",
+    "summary-heading": "What concentration % w/w do you need?"
   },
   "amend-where-to-store-precursor": {
     "legend": "{{values.whereToStorePrecursorLegend}}",
+    "summary-heading": "{{values.whereToStorePrecursorLegend}}",
     "hint": "This must be in the UK",
     "options": {
       "amend-store-precursors-home-address": {
-        "label": "{{values.homeAddressInline}}"
+        "label": "{{values.homeAddressInline}}",
+        "summary-heading": "{{values.homeAddressInline}}"
       },
       "amend-store-precursors-other-address": {
         "label": "Other address"
@@ -280,9 +288,11 @@
   "amend-where-to-use-precursor": {
     "legend": "{{values.whereToUsePrecursorLegend}}",
     "hint": "This must be in the UK",
+    "summary-heading": "{{values.whereToUsePrecursorLegend}}",
     "options": {
       "amend-use-precursors-home-address": {
-        "label": "{{values.homeAddressInline}}"
+        "label": "{{values.homeAddressInline}}",
+        "summary-heading": "{{values.homeAddressInline}}"
       },
       "amend-use-precursors-other-address": {
         "label": "Other address"

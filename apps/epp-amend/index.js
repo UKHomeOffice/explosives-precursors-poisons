@@ -12,11 +12,16 @@ const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
 const CheckAndRedirect = require('../epp-common/behaviours/check-answer-redirect');
 const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
 const DobUnder18Redirect = require('../epp-common/behaviours/dob-under18-redirect');
+const AggregateSaveEditPrecursorPoison = require('../epp-common/behaviours/aggregator-save-update-precursors-poisons');
+const EditRouteStart = require('../epp-common/behaviours/edit-route-start');
+const EditRouteReturn = require('../epp-common/behaviours/edit-route-return');
 const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redundant-documents');
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 const SendNotification = require('../epp-common/behaviours/submit-notify');
+const ParseSummaryPrecursorsPoisons = require('../epp-common/behaviours/parse-summary-precursors-poisons');
+const ModifySummaryChangeLink = require('../epp-common/behaviours/modify-summary-change-links');
+const ResetSectionSummary = require('../epp-common/behaviours/reset-section-summary');
 const SetBackLink = require('../epp-common/behaviours/set-backlink');
-
 
 module.exports = {
   name: 'EPP form',
@@ -24,6 +29,7 @@ module.exports = {
   views: 'apps/epp-amend/views',
   translations: 'apps/epp-amend/translations',
   baseUrl: '/amend',
+  params: '/:action?/:id?/:edit?',
   behaviours: [JourneyValidator],
   steps: {
     '/licence-number': {
@@ -229,8 +235,14 @@ module.exports = {
     },
     '/change-substances': {
       behaviours: [
-        CheckAndRedirect('amend-change-substances-options',
-          ['amend-change-substances-options', 'amend-name-options', 'amend-home-address-options']
+        CheckAndRedirect('amend-change-substances-options', [
+          'amend-change-substances-options',
+          'amend-name-options',
+          'amend-home-address-options'
+        ]),
+        ResetSectionSummary(
+          'precursors-details-aggregate',
+          'amend-change-substances-options'
         )
       ],
       fields: ['amend-change-substances-options'],
@@ -253,9 +265,14 @@ module.exports = {
     },
     '/explosives-precursors': {
       behaviours: [
+        ResetSectionSummary(
+          'precursors-details-aggregate',
+          'amend-regulated-explosives-precursors'
+        ),
         CheckAndRedirect('amend-regulated-explosives-precursors',
           ['amend-poisons-option', 'amend-regulated-explosives-precursors']
-        )],
+        )
+      ],
       fields: ['amend-regulated-explosives-precursors'],
       forks: [
         {
@@ -272,6 +289,7 @@ module.exports = {
     },
     '/select-precursor': {
       fields: ['amend-precursor-field'],
+      continueOnEdit: true,
       locals: { captionHeading: 'Section 15 of 23' },
       next: '/precursor-details'
     },
@@ -290,7 +308,20 @@ module.exports = {
       next: '/precursors-summary'
     },
     '/precursors-summary': {
-      fields: [],
+      behaviours: [AggregateSaveEditPrecursorPoison, ParseSummaryPrecursorsPoisons, EditRouteReturn],
+      aggregateTo: 'precursors-details-aggregate',
+      aggregateFrom: [
+        'amend-display-precursor-title',
+        'amend-why-need-precursor',
+        'amend-how-much-precursor',
+        'amend-what-concentration-precursor',
+        'amend-where-to-store-precursor',
+        'amend-where-to-use-precursor'
+      ],
+      titleField: ['amend-precursor-field'],
+      addStep: 'select-precursor',
+      addAnotherLinkText: 'explosives precursors',
+      continueOnEdit: false,
       next: '/poisons',
       locals: { captionHeading: 'Section 15 of 23' }
     },
@@ -386,7 +417,7 @@ module.exports = {
     },
     '/confirm': {
       sections: require('./sections/summary-data-sections'),
-      behaviours: [SummaryPageBehaviour],
+      behaviours: [SummaryPageBehaviour, EditRouteStart, ModifySummaryChangeLink],
       next: '/declaration'
     },
     '/declaration': {
