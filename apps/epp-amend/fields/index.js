@@ -3,7 +3,7 @@ const titles = require('../../../utilities/constants/titles.js');
 const precursorList = require('../../../utilities/constants/explosive-precursors.js');
 const poisonsList = require('../../../utilities/constants/poisons.js');
 const helpers = require('../../../utilities/helpers/index.js');
-const country = require('../../../utilities/constants/countries');
+const countries = require('../../../utilities/constants/countries');
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years.js');
 
 module.exports = {
@@ -109,13 +109,14 @@ module.exports = {
   'amend-country': {
     mixin: 'select',
     validate: ['required'],
+    className: ['typeahead'],
     labelClassName: 'govuk-label--m',
     options: [
       {
         value: '',
         label: 'fields.amend-country.options.none_selected'
       }
-    ].concat(country)
+    ].concat(countries)
   },
   'amend-applicant-Id-type': {
     isPageHeading: true,
@@ -266,14 +267,14 @@ module.exports = {
   'amend-new-country': {
     mixin: 'select',
     validate: ['required'],
+    className: ['typeahead'],
     labelClassName: 'govuk-label--m',
-    className: ['govuk-input govuk-!-width-full'],
     options: [
       {
         value: '',
         label: 'fields.amend-new-country.options.none_selected'
       }
-    ].concat(country)
+    ].concat(countries)
   },
   'amend-new-date-moved-to-address': dateComponent(
     'amend-new-date-moved-to-address',
@@ -307,7 +308,7 @@ module.exports = {
   'amend-regulated-explosives-precursors': {
     mixin: 'radio-group',
     legend: {
-      className: 'govuk-label--s'
+      className: 'govuk-fieldset__legend--m'
     },
     className: ['govuk-radios', 'govuk-radios--inline'],
     options: ['yes', 'no'],
@@ -413,7 +414,7 @@ module.exports = {
   'amend-no-poisons-precursors-options': {
     mixin: 'radio-group',
     legend: {
-      className: 'govuk-label--m'
+      className: 'govuk-fieldset__legend--m'
     },
     className: ['govuk-radios', 'govuk-radios--inline'],
     options: ['yes', 'no'],
