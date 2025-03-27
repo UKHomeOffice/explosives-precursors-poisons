@@ -131,14 +131,12 @@ async function getPaymentDetails(paymentId) {
  */
 
 const generateRequestPayload = async (req, applicationType, hmac) => {
-  let return_url = `${req.protocol}://${req.get(
-    'host'
-  )}${PATH_NEW_RENEW}${PATH_APPLICATION_SUBMITTED}`;
+  const baseUrl = `${req.protocol}://${req.get('host')}`;
+
+  let return_url = `${baseUrl}${PATH_NEW_RENEW}${PATH_APPLICATION_SUBMITTED}`;
 
   if (applicationType === APP_TYPE_REPLACE) {
-    return_url = `${req.protocol}://${req.get(
-      'host'
-    )}${PATH_REPLACE}${PATH_REPLACE_APPLICATION_SUBMITTED}`;
+    return_url = `${baseUrl}${PATH_REPLACE}${PATH_REPLACE_APPLICATION_SUBMITTED}`;
   }
 
   const uniqueRefNumber = await getCryptoRandomString();
