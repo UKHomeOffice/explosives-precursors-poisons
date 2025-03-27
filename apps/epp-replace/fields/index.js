@@ -420,5 +420,14 @@ module.exports = {
     mixin: 'input-date',
     legend: { className: 'govuk-fieldset__legend--m' },
     validate: ['required', 'date', 'before']
-  })
+  }),
+  'replace-home-address-options': {
+    mixin: 'radio-group',
+    legend: {
+      className: 'govuk-label--m'
+    },
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    options: ['yes', 'no'],
+    validate: 'required'
+  }
 };

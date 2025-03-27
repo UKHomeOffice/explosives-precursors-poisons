@@ -206,7 +206,7 @@ module.exports = {
       ],
       fields: ['file-upload'],
       locals: { captionHeading: 'Section 12 of 26' },
-      next: '/section-thirteen'
+      next: '/change-home-address'
     },
     '/upload-certificate-conduct': {
       behaviours: [
@@ -215,9 +215,30 @@ module.exports = {
       ],
       fields: ['file-upload'],
       locals: { captionHeading: 'Section 12 of 26' },
-      next: '/section-thirteen'
+      next: '/change-home-address'
     },
-    '/section-thirteen': {
+    '/change-home-address': {
+      fields: ['replace-home-address-options'],
+      forks: [
+        {
+          target: '/new-address',
+          condition: {
+            field: 'replace-home-address-options',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/change-substances',
+          condition: {
+            field: 'replace-home-address-options',
+            value: 'no'
+          }
+        }
+      ],
+      locals: { captionHeading: 'Section 13 of 26' },
+      next: '/new-address'
+    },
+    '/new-address': {
       fields: [
         'replace-new-post-address-1',
         'replace-new-post-address-2',
@@ -227,9 +248,6 @@ module.exports = {
         'replace-new-post-country',
         'replace-new-date-moved-to-address'
       ],
-      next: '/section-fourteen'
-    },
-    '/section-fourteen': {
       next: '/upload-proof-address'
     },
     '/upload-proof-address': {
@@ -240,9 +258,9 @@ module.exports = {
       ],
       fields: ['file-upload'],
       locals: { captionHeading: 'Section 15 of 26' },
-      next: '/section-sixteen'
+      next: '/change-substances'
     },
-    '/section-sixteen': {
+    '/change-substances': {
       fields: ['replace-explosive-precusor-type'],
       // fields: [
       //   'replace-countersignatory-address-1',
