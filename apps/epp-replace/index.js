@@ -42,7 +42,7 @@ module.exports = {
       ]
     },
     '/police-report': {
-      fields: ['replace-police-report', 'replace-crime-number'],
+      fields: ['replace-police-report'],
       forks: [
         {
           target: '/crime-report-details',
@@ -66,7 +66,7 @@ module.exports = {
       next: '/licence-number'
     },
     '/crime-report-details': {
-      fields: ['replace-report-details'],
+      fields: ['replace-report-details', 'replace-crime-number'],
       next: '/licence-number'
     },
     '/licence-number': {
