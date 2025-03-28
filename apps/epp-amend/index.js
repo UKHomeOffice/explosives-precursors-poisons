@@ -372,6 +372,7 @@ module.exports = {
         'amend-display-poison-title',
         'amend-why-need-poison',
         'amend-how-much-poison',
+        'amend-compound-or-salt',
         'amend-what-concentration-poison',
         'amend-where-to-store-poison',
         'amend-where-to-use-poison'
