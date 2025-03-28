@@ -1,7 +1,9 @@
 const moment = require('moment');
 const validators = require('hof/controller/validation/validators');
 const explosivePrecursorsList = require('../constants/explosive-precursors');
+const poisonList = require('../constants/poisons');
 const config = require('../../config');
+const { SUBSTANCES } = require('../constants/string-constants');
 
 class NotifyMock {
   sendEmail() {
@@ -126,21 +128,23 @@ const isEditMode = req => {
   return Boolean(req?.originalUrl?.endsWith('/edit'));
 };
 
-const getPrecursorsShortLabel = input => {
-  if (!input || typeof input !== 'string') {
+const getSubstanceShortLabel = (input, substance) => {
+  if (!input || typeof input !== 'string' || !substance) {
     return input;
   }
 
   const resultStr = input.trim();
 
-  for (const { label, shortLabel } of explosivePrecursorsList) {
+  const list =
+    substance === SUBSTANCES.POISON ? poisonList : explosivePrecursorsList;
+
+  for (const { label, shortLabel } of list) {
     if (resultStr === label) {
       return shortLabel;
     }
 
     if (resultStr.includes(label)) {
-      const newLabel = resultStr.replace(label, shortLabel);
-      return newLabel;
+      return resultStr.replace(label, shortLabel);
     }
   }
   return resultStr;
@@ -161,7 +165,7 @@ module.exports = {
   DATE_FORMAT_YYYY_MM_DD,
   getFormattedDate,
   isEditMode,
-  getPrecursorsShortLabel,
+  getSubstanceShortLabel,
   textAreaDefaultLength,
   isValidConcentrationValue,
   NotifyClient:

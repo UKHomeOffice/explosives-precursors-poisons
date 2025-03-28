@@ -741,6 +741,7 @@ module.exports = {
       sections: require('./sections/summary-data-sections'),
       behaviours: [SummaryPageBehaviour, GetPaymentInfo],
       backLink: false
-    }
+    },
+    '/exit': {}
   }
 };

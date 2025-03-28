@@ -111,6 +111,7 @@ module.exports = {
         'replace-home-postcode',
         'replace-home-country'
       ],
+      locals: { captionHeading: 'Section 6 of 26' },
       next: '/contact-details'
     },
     '/contact-details': {
@@ -351,6 +352,7 @@ module.exports = {
       sections: require('./sections/summary-data-sections'),
       behaviours: [SummaryPageBehaviour, GetPaymentInfo],
       backLink: false
-    }
+    },
+    '/exit': {}
   }
 };
