@@ -111,6 +111,7 @@ module.exports = {
         'replace-home-postcode',
         'replace-home-country'
       ],
+      locals: { captionHeading: 'Section 6 of 26' },
       next: '/contact-details'
     },
     '/contact-details': {
