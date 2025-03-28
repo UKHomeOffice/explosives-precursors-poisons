@@ -1,0 +1,14 @@
+{{<partials-page}}
+  {{$page-content}}
+   <div>
+    <p class="govuk-body">{{#t}}pages.change-home-address.p1{{/t}}</p>
+    <p class="govuk-body">{{#t}}pages.change-home-address.p2{{/t}}</p>
+   </div>
+  {{#fields}}
+    {{#renderField}}{{/renderField}}
+  {{/fields}}
+
+  {{#input-submit}}continue{{/input-submit}} 
+
+  {{/page-content}}
+  {{/partials-page}}
