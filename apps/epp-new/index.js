@@ -27,6 +27,7 @@ const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator');
 
 const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
+const SaveCounterSignatoryAddress = require('../epp-common/behaviours/save-countersignatory-address');
 
 module.exports = {
   name: 'EPP form',
@@ -632,6 +633,14 @@ module.exports = {
       }
     },
     '/countersignatory-address': {
+      behaviours: [
+        SaveCounterSignatoryAddress([
+          'new-renew-countersignatory-address-1',
+          'new-renew-countersignatory-address-2',
+          'new-renew-countersignatory-town-or-city',
+          'new-renew-countersignatory-postcode'
+        ])
+      ],
       fields: [
         'new-renew-countersignatory-address-1',
         'new-renew-countersignatory-address-2',
