@@ -156,17 +156,18 @@
     "p3": "If you keep having problems when paying, contact us at"
 
   },
-  "application-submitted": {
-    "submitted": "Application submitted",
+  "replace-application-submitted": {
+    "submitted": "Replace application submitted",
     "payment-successful": "Payment successful",
-    "p1": "We have sent a receipt and confirmation of your application to {{values.new-renew-email}}",
-    "p2": "We aim to respond to your application within 16 weeks.",
-    "what-happens-next": "What happens next",
-    "p3": "You do not need to do anything unless we contact you.",
-    "p4": "We may email you for more information. Check your spam or junk folder to make sure you do not miss anything.",
-    "p5": "If we cannot contact you, the application process may be delayed or cancelled.",
+    "p1": "We have sent a receipt and confirmation of your application to {{values.replace-email}}",
+    "licence-damaged": "If your licence was damaged, you must return it",
+    "p2": "There are instructions on how to return your licence in your confirmation email.",
+    "p3": "After we receive your old licence, we will begin the replacement process.",
+    "licence-stolen-lost": "If your licence was lost, stolen or destroyed",
+    "p4": "You do not need to do anything unless we contact you.",
+    "p5": "We may email you for more information. Check your spam or junk folder to make sure you do not miss anything.",
     "make-change-application": "If you need to make changes to your application",
-    "p6": "If you need to amend your application or have a question, contact"
+    "p6": "If you need to make changes to your replacement application or have any questions, contact"
   },
   "confirm": {
     "header": "Check your answers",

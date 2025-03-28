@@ -99,7 +99,7 @@
     "required": "Select a poison"
   },
 "replace-countersignatory-Id-type": {
-  "required": "Select which identity document you want to use"
+  "required": "Select which countersignatory identity document you can provide details for"
 },
 "replace-countersignatory-UK-passport-number": {
   "required": "Enter your passport number",
