@@ -1,4 +1,7 @@
-const { getPrecursorsShortLabel } = require('../../../utilities/helpers');
+const { getSubstanceShortLabel } = require('../../../utilities/helpers');
+const {
+  SUBSTANCES: { PRECURSOR }
+} = require('../../../utilities/constants/string-constants');
 
 /**
  * @param {string} fieldName - The field name used on the select precursor page
@@ -7,20 +10,20 @@ module.exports = fieldName => superclass =>
   class extends superclass {
     getValues(req, res, next) {
       const selectedPrecursor = req.sessionModel.get(fieldName);
-      const whyNeedPrecursorLabel = getPrecursorsShortLabel(
-        `Why do you need ${selectedPrecursor}`
+      const whyNeedPrecursorLabel = getSubstanceShortLabel(
+        `Why do you need ${selectedPrecursor}`, PRECURSOR
       );
-      const whereToStorePrecursorLegend = getPrecursorsShortLabel(
-        `Where will you store the ${selectedPrecursor}`
+      const whereToStorePrecursorLegend = getSubstanceShortLabel(
+        `Where will you store the ${selectedPrecursor}`, PRECURSOR
       );
-      const whereToUsePrecursorLegend = getPrecursorsShortLabel(
-        `Where will you use the ${selectedPrecursor}`
+      const whereToUsePrecursorLegend = getSubstanceShortLabel(
+        `Where will you use the ${selectedPrecursor}`, PRECURSOR
       );
-      const storePrecursorOtherAddressLabel = getPrecursorsShortLabel(
-        `Storage address for the ${selectedPrecursor}`
+      const storePrecursorOtherAddressLabel = getSubstanceShortLabel(
+        `Storage address for the ${selectedPrecursor}`, PRECURSOR
       );
-      const usePrecursorOtherAddressLabel = getPrecursorsShortLabel(
-        `Usage address for the ${selectedPrecursor}`
+      const usePrecursorOtherAddressLabel = getSubstanceShortLabel(
+        `Usage address for the ${selectedPrecursor}`, PRECURSOR
       );
 
       const labelValuesMap = {

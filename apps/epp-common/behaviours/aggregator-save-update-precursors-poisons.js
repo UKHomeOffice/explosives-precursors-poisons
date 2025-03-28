@@ -1,4 +1,5 @@
-const { DEFAULT_AGGREGATOR_LIMIT, getPrecursorsShortLabel } = require('../../../utilities/helpers');
+const { SUBSTANCES } = require('../../../utilities/constants/string-constants');
+const { DEFAULT_AGGREGATOR_LIMIT, getSubstanceShortLabel } = require('../../../utilities/helpers');
 
 module.exports = superclass => class extends superclass {
   constructor(options) {
@@ -56,7 +57,7 @@ module.exports = superclass => class extends superclass {
 
 
       if (!isTitleField && itemTitle.length === 0) {
-        itemTitle.push(getPrecursorsShortLabel(req.sessionModel.get('amend-precursor-field')));
+        itemTitle.push(getSubstanceShortLabel(req.sessionModel.get('amend-precursor-field'), SUBSTANCES.PRECURSOR));
       }
 
       fields.push({

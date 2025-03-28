@@ -17,6 +17,7 @@ const EditRouteStart = require('../epp-common/behaviours/edit-route-start');
 const EditRouteReturn = require('../epp-common/behaviours/edit-route-return');
 const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redundant-documents');
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
+const RenderPoisonDetails = require('../epp-common/behaviours/render-poison-detail');
 const SendNotification = require('../epp-common/behaviours/submit-notify');
 const ParseSummaryPrecursorsPoisons = require('../epp-common/behaviours/parse-summary-precursors-poisons');
 const ModifySummaryChangeLink = require('../epp-common/behaviours/modify-summary-change-links');
@@ -336,18 +337,37 @@ module.exports = {
           target: '/select-poisons',
           continueOnEdit: true,
           condition: {
-            field: 'amend-name-options',
-            value: 'yes'
+            field: 'amend-poisons-options',
+            value: 'no'
           }
         }
       ],
-      next: '/countersignatory-details',
+      next: '/select-poisons',
       locals: { captionHeading: 'Section 16 of 23' }
     },
     '/select-poisons': {
       fields: ['amend-poison'],
-      locals: { captionHeading: 'Section 17 of 23' },
-      next: '/countersignatory-details'
+      next: '/poison-details',
+      locals: { captionHeading: 'Section 17 of 23' }
+    },
+    '/poison-details': {
+      behaviours: [RenderPoisonDetails('amend-poison')],
+      fields: [
+        'amend-why-need-poison',
+        'amend-how-much-poison',
+        'amend-compound-or-salt',
+        'amend-what-concentration-poison',
+        'amend-where-to-store-poison',
+        'amend-where-to-use-poison',
+        'store-poison-other-address',
+        'poison-use-other-address'
+      ],
+      next: '/poisons-summary',
+      locals: { captionHeading: 'Section 17 of 23' }
+    },
+    '/poisons-summary': {
+      next: '/countersignatory-details',
+      locals: { captionHeading: 'Section 17 of 23' }
     },
     '/no-poisons-or-precursors': {
       behaviours: [SetBackLink],
