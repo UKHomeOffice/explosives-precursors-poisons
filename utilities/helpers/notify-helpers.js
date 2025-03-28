@@ -42,8 +42,8 @@ const formatSectionSummaryItems = items => {
 };
 
 const parseDocumentList = documents => {
-  return Array.isArray(documents)
-    ? documents.map(doc => `[${doc.name}](${doc.url})`).join('\n')
+  return Array.isArray(documents) && documents.length
+    ? '\n' + documents.map(doc => `[${doc.name}](${doc.url})`).join('\n')
     : '';
 };
 
@@ -106,7 +106,10 @@ const getIdentityAttachment = (req, idFields) => {
     'new-renew-Uk-driving-licence-number': 'new-renew-upload-driving-licence',
     'amend-UK-passport-number': 'amend-british-passport',
     'amend-EU-passport-number': 'amend-eu-passport',
-    'amend-Uk-driving-licence-number': 'amend-uk-driving-licence'
+    'amend-Uk-driving-licence-number': 'amend-uk-driving-licence',
+    'replace-UK-passport-number': 'replace-british-passport',
+    'replace-EU-passport-number': 'replace-eu-passport',
+    'replace-Uk-driving-licence-number': 'replace-upload-driving-licence'
   };
 
   for (const idField of idFields) {
@@ -488,15 +491,13 @@ const getNewRenewPersonalisation = req => {
       ])
     ),
     has_certificate_conduct:
-      req.sessionModel.get('new-renew-dob') &&
-      hasValue(
-        !isDateOlderOrEqualTo(req.sessionModel.get('new-renew-dob'), 18)
-      ),
-    certificate_conduct_attachment:
-      getSessionValueOrDefault(req.sessionModel.get('new-renew-dob')) &&
-      !isDateOlderOrEqualTo(req.sessionModel.get('new-renew-dob'), 18)
-        ? parseDocumentList(req.sessionModel.get('new-renew-birth-certificate'))
-        : '',
+      req.sessionModel.get('steps')?.includes('/upload-certificate-conduct') &&
+      parseDocumentList(req.sessionModel.get('new-renew-certificate-conduct'))
+        ? STR_YES
+        : STR_NO,
+    certificate_conduct_attachment: getSessionValueOrDefault(
+      parseDocumentList(req.sessionModel.get('new-renew-certificate-conduct'))
+    ),
     firearms_licence: getSessionValueOrDefault(
       getLabel(
         'new-renew-other-firearms-licence',
@@ -523,7 +524,9 @@ const getNewRenewPersonalisation = req => {
       .includes('/criminal-record')
       ? STR_YES
       : STR_NO,
-    criminal_offences: 'TBD', // TODO: fetch and format
+    criminal_offences: getSessionValueOrDefault(
+      formatSectionSummaryItems(req.sessionModel.get('criminalrecordsummary'))
+    ),
     explosive_precursor: 'TBD', // TODO: fetch and format
     poisons: 'TBD', // TODO: fetch and format
     countersignatory_title: getSessionValueOrDefault(
@@ -541,7 +544,9 @@ const getNewRenewPersonalisation = req => {
     countersignatory_last_name: getSessionValueOrDefault(
       req.sessionModel.get('new-renew-countersignatory-lastname')
     ),
-    countersignatory_address: 'TBD', // TODO: Format inline address
+    countersignatory_address: getSessionValueOrDefault(
+      req.sessionModel.get('counterSignatoryAddress')
+    ),
     countersignatory_phone: getSessionValueOrDefault(
       req.sessionModel.get('new-renew-countersignatory-phone-number')
     ),
@@ -550,14 +555,14 @@ const getNewRenewPersonalisation = req => {
     ),
     countersignatory_id_type: getSessionValueOrDefault(
       req.sessionModel.get('new-renew-countersignatory-Id-type')
-    ), // TODO: confirm field names when id page is done
+    ),
     countersignatory_id: getSessionValueOrDefault(
       req.sessionModel.get('new-renew-countersignatory-UK-passport-number') ||
         req.sessionModel.get('new-renew-countersignatory-EU-passport-number') ||
         req.sessionModel.get(
           'new-renew-countersignatory-Uk-driving-licence-number'
         )
-    ) // TODO: confirm field names when id page is done
+    )
   };
 };
 
