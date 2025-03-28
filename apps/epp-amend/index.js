@@ -362,10 +362,24 @@ module.exports = {
         'store-poison-other-address',
         'poison-use-other-address'
       ],
-      next: '/poisons-summary',
+      next: '/poison-summary',
       locals: { captionHeading: 'Section 17 of 23' }
     },
-    '/poisons-summary': {
+    '/poison-summary': {
+      behaviours: [AggregateSaveEditPrecursorPoison, ParseSummaryPrecursorsPoisons, EditRouteReturn],
+      aggregateTo: 'poison-details-aggregate',
+      aggregateFrom: [
+        'amend-display-poison-title',
+        'amend-why-need-poison',
+        'amend-how-much-poison',
+        'amend-what-concentration-poison',
+        'amend-where-to-store-poison',
+        'amend-where-to-use-poison'
+      ],
+      titleField: ['amend-poison'],
+      addStep: 'select-poisons',
+      addAnotherLinkText: 'poison',
+      continueOnEdit: false,
       next: '/countersignatory-details',
       locals: { captionHeading: 'Section 17 of 23' }
     },
