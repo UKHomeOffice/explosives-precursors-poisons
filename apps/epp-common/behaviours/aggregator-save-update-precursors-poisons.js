@@ -60,13 +60,14 @@ module.exports = superclass => class extends superclass {
         itemTitle.push(getSubstanceShortLabel(req.sessionModel.get('amend-precursor-field'), SUBSTANCES.PRECURSOR));
       }
       if(!isTitleField && itemTitle.length === 0 && req.originalUrl.includes('/poison-summary')) {
-        itemTitle.push(getSubstanceShortLabel(req.sessionModel.get('amend-poison'), SUBSTANCES.POISON))
+        itemTitle.push(getSubstanceShortLabel(req.sessionModel.get('amend-poison'), SUBSTANCES.POISON));
       }
 
       fields.push({
         field: aggregateFromField,
         parsed: req.originalUrl.includes('/poison-summary') ?
-          this.parsePoisonField(aggregateFromField, value, req) : this.parsePrecursorField(aggregateFromField, value, req),
+          this.parsePoisonField(aggregateFromField, value, req) :
+          this.parsePrecursorField(aggregateFromField, value, req),
         value,
         showInSummary: true,
         changeField: aggregateFromElement.changeField

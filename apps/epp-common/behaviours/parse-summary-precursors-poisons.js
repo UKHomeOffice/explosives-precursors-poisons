@@ -29,7 +29,6 @@ module.exports = superclass =>
             field.showInSummary = false;
           }
           field.field += '.summary-heading';
-          console.log("field:@@@@@@@@@@@@@@@@", field)
           return field;
         });
         return item;
