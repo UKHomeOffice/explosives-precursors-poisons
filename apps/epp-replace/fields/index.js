@@ -4,7 +4,9 @@ const poisonsList = require('../../../utilities/constants/poisons.js');
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years.js');
 const {
   isValidUkDrivingLicenceNumber,
-  validInternationalPhoneNumber
+  validInternationalPhoneNumber,
+  textAreaDefaultLength,
+  isValidConcentrationValue
 } = require('../../../utilities/helpers');
 const countries = require('../../../utilities/constants/countries');
 const policeForces = require('../../../utilities/constants/police-forces.js');
@@ -388,6 +390,88 @@ module.exports = {
         label: 'fields.replace-home-country.options.none_selected'
       }
     ].concat(countries)
+  },
+  'replace-why-need-poison': {
+    mixin: 'textarea',
+    validate: ['required', 'notUrl', textAreaDefaultLength],
+    attributes: [{ attribute: 'rows', value: 5 }],
+    labelClassName: 'govuk-label--s'
+  },
+  'replace-how-much-poison': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
+    className: ['govuk-input', 'govuk-input--width-10'],
+    labelClassName: 'govuk-label--s'
+  },
+  'replace-compound-or-salt': {
+    mixin: 'textarea',
+    validate: ['required', 'notUrl', textAreaDefaultLength],
+    attributes: [{ attribute: 'rows', value: 5 }],
+    labelClassName: 'govuk-label--s'
+  },
+  'replace-what-concentration-poison': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      isValidConcentrationValue,
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ],
+    className: ['govuk-input', 'govuk-input--width-5'],
+    labelClassName: 'govuk-label--s',
+    attributes: [{ suffix: '%' }]
+  },
+  'replace-where-to-store-poison': {
+    mixin: 'checkbox-group',
+    validate: ['required'],
+    legend: {
+      className: 'govuk-label--s'
+    },
+    options: [
+      {
+        value: 'replace-store-poison-home-address'
+      },
+      {
+        value: 'replace-store-poison-other-address',
+        toggle: 'store-poison-other-address',
+        child: 'textarea'
+      }
+    ]
+  },
+  'store-poison-other-address': {
+    mixin: 'textarea',
+    validate: ['required', textAreaDefaultLength, 'notUrl'],
+    dependent: {
+      field: 'replace-where-to-store-poison',
+      value: 'replace-store-poison-other-address'
+    },
+    attributes: [{ attribute: 'rows', value: 5 }]
+  },
+  'replace-where-to-use-poison': {
+    mixin: 'checkbox-group',
+    validate: ['required'],
+    legend: {
+      className: 'govuk-label--s'
+    },
+    options: [
+      {
+        value: 'replace-use-poison-home-address'
+      },
+      {
+        value: 'replace-use-poison-other-address',
+        toggle: 'poison-use-other-address',
+        child: 'textarea'
+      }
+    ]
+  },
+  'poison-use-other-address': {
+    mixin: 'textarea',
+    validate: ['required', textAreaDefaultLength, 'notUrl'],
+    dependent: {
+      field: 'replace-where-to-use-poison',
+      value: 'replace-use-poison-other-address'
+    },
+    attributes: [{ attribute: 'rows', value: 5 }]
   },
   'amend-declaration': {
     mixin: 'checkbox',
