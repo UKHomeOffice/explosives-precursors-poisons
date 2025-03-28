@@ -131,8 +131,8 @@
         }
       },
       "replace-countersignatory-Id-type": {
-        "legend": "Which identity document do you want to use?",
-        "hint": "If your licence is granted, you will need to show this document when buying the substances",
+        "legend": "What is your countersignatory’s identity document?",
+        "hint": "You only need to provide a document number.",
         "options": {
           "UK-passport": {
             "label": "British passport"
