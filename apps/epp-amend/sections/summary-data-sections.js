@@ -310,6 +310,28 @@ module.exports = {
       }
     ]
   },
+  'amend-poison-details': {
+    steps: [
+      {
+        step: '/poisons-summary',
+        field: 'poisons-details-aggregate',
+        parse: list => {
+          if (!list?.aggregatedValues) { return null; }
+          for(const item of list.aggregatedValues) {
+            item.fields.map(element => {
+              if(element.field === 'amend-display-poison-title') {
+                element.parsed = item.joinTitle;
+              }else{
+                element.field;
+                element.omitChangeLink = true;
+              }
+            });
+          }
+          return list;
+        }
+      }
+    ]
+  },
   'countersignatory-details': {
     steps: [
       {
