@@ -35,6 +35,8 @@ module.exports = {
         }
       ],
       next: '/replace/replace-licence'
-    }
+    },
+    '/exit': {},
+    '/session-timeout': {}
   }
 };

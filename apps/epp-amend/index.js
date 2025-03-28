@@ -430,6 +430,7 @@ module.exports = {
     '/amendment-submitted': {
       clearSession: true,
       backLink: false
-    }
+    },
+    '/exit': {}
   }
 };

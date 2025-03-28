@@ -4,7 +4,10 @@
     "sameSite": "lax"
   },
   "theme": "govUK",
-  "behaviours": ["hof/components/clear-session"],
+  "behaviours": [
+    "hof/components/clear-session",
+    "hof/components/session-timeout-warning"
+  ],
   "translations": "./apps/epp-new-renew/translations",
   "routes": [
     "./apps/epp-common",
