@@ -157,8 +157,8 @@ module.exports = {
     }
   },
   sectionDetails: {
-    totalStepsNew: 20,
-    totalStepsRenew: 21
+    totalStepsNew: 21,
+    totalStepsRenew: 22
   },
   payment: {
     CREATE_PAYMENT_ENDPOINT: 'https://publicapi.payments.service.gov.uk/v1/payments',

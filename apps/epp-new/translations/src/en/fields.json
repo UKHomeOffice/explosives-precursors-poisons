@@ -426,5 +426,11 @@
     "options": {
       "none_selected": "Select"
     }
+  },
+  "amend-precursor-field": {
+    "hint": "Select an explosives precursor",
+    "options":{
+      "none_selected": "Select"
+    }
   }
 }

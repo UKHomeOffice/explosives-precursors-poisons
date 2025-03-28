@@ -226,6 +226,11 @@
   "doctor-details": {
     "header": "Your doctor’s contact details"
   },
+  "select-precursor": {
+    "header": "Explosives precursors",
+    "p1": "Tell us which explosives precursors you want to import, acquire, use or possess.",
+    "p2": "If you need multiple explosives precursors, you can add each one separately."
+  },
   "confirm": {
     "header": "Check your answers",
     "title": "Check your answers – Apply for an explosives precursors and poisons licence",
