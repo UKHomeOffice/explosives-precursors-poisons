@@ -554,7 +554,11 @@ const getNewRenewPersonalisation = req => {
       req.sessionModel.get('new-renew-countersignatory-email')
     ),
     countersignatory_id_type: getSessionValueOrDefault(
-      req.sessionModel.get('new-renew-countersignatory-Id-type')
+      getLabel(
+        'new-renew-countersignatory-Id-type',
+        req.sessionModel.get('new-renew-countersignatory-Id-type'),
+        newRenewTranslation
+      )
     ),
     countersignatory_id: getSessionValueOrDefault(
       req.sessionModel.get('new-renew-countersignatory-UK-passport-number') ||
