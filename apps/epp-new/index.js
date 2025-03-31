@@ -565,7 +565,19 @@ module.exports = {
       }
     },
     '/select-precursor': {
-      fields: [],
+      // Conscious decision to use the same field as amend
+      // TODO: rename to a common field if the functionality
+      // works as expected
+      fields: ['amend-precursor-field'],
+      next: '/precursor-details',
+      locals: {
+        sectionNo: {
+          new: 13,
+          renew: 14
+        }
+      }
+    },
+    '/precursor-details': {
       next: '/precursors-summary',
       locals: {
         sectionNo: {
@@ -576,7 +588,7 @@ module.exports = {
     },
     '/precursors-summary': {
       fields: [],
-      next: '/select-poison',
+      next: '/poisons',
       locals: {
         sectionNo: {
           new: 13,
@@ -584,13 +596,21 @@ module.exports = {
         }
       }
     },
-    '/select-poison': {
-      fields: [],
-      next: '/poison-details',
+    '/poisons': {
+      next: '/select-poison',
       locals: {
         sectionNo: {
           new: 14,
           renew: 15
+        }
+      }
+    },
+    '/select-poison': {
+      next: '/poison-details',
+      locals: {
+        sectionNo: {
+          new: 15,
+          renew: 16
         }
       }
     },
@@ -599,8 +619,8 @@ module.exports = {
       next: '/poison-summary',
       locals: {
         sectionNo: {
-          new: 14,
-          renew: 15
+          new: 15,
+          renew: 16
         }
       }
     },
@@ -609,8 +629,8 @@ module.exports = {
       next: '/countersignatory-details',
       locals: {
         sectionNo: {
-          new: 14,
-          renew: 15
+          new: 15,
+          renew: 16
         }
       }
     },
@@ -627,8 +647,8 @@ module.exports = {
       next: '/countersignatory-address',
       locals: {
         sectionNo: {
-          new: 15,
-          renew: 16
+          new: 16,
+          renew: 17
         }
       }
     },
@@ -650,8 +670,8 @@ module.exports = {
       next: '/countersignatory-contact',
       locals: {
         sectionNo: {
-          new: 16,
-          renew: 17
+          new: 17,
+          renew: 18
         }
       }
     },
@@ -663,8 +683,8 @@ module.exports = {
       next: '/countersignatory-id',
       locals: {
         sectionNo: {
-          new: 17,
-          renew: 18
+          new: 18,
+          renew: 19
         }
       }
     },
@@ -679,8 +699,8 @@ module.exports = {
       next: '/confirm',
       locals: {
         sectionNo: {
-          new: 18,
-          renew: 19
+          new: 19,
+          renew: 20
         }
       }
     },
@@ -693,8 +713,8 @@ module.exports = {
       next: '/confirm',
       locals: {
         sectionNo: {
-          new: 18,
-          renew: 19
+          new: 19,
+          renew: 20
         }
       }
     },
@@ -704,8 +724,8 @@ module.exports = {
       next: '/declaration',
       locals: {
         sectionNo: {
-          new: 19,
-          renew: 20
+          new: 20,
+          renew: 21
         }
       }
     },
@@ -714,8 +734,8 @@ module.exports = {
       fields: ['new-renew-declaration'],
       locals: {
         sectionNo: {
-          new: 20,
-          renew: 21
+          new: 21,
+          renew: 22
         }
       }
     },

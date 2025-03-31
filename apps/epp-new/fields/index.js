@@ -8,6 +8,7 @@ const {
 } = require('../../../utilities/helpers');
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years');
 const { textAreaDefaultLength } = require('../../../utilities/helpers');
+const precursorList = require('../../../utilities/constants/explosive-precursors');
 
 module.exports = {
   'new-renew-title': {
@@ -730,5 +731,16 @@ module.exports = {
       }
     ].concat(countries),
     validate: ['required']
+  },
+  'amend-precursor-field': {
+    mixin: 'select',
+    validate: ['required'],
+    labelClassName: ['govuk-label--m', 'visuallyhidden'],
+    options: [
+      {
+        value: '',
+        label: 'fields.amend-precursor-field.options.none_selected'
+      }
+    ].concat(precursorList)
   }
 };
