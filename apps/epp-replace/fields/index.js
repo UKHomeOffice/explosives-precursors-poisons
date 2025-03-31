@@ -431,15 +431,15 @@ module.exports = {
     options: ['yes', 'no'],
     validate: 'required'
   },
-'precursor-field': {
+  'precursor-field': {
     mixin: 'select',
     validate: ['required'],
     labelClassName: ['govuk-label--m', 'visuallyhidden'],
     options: [
-        {
-            value: '',
-            label: 'fields.precursor-field.options.none_selected'
-        }
+      {
+        value: '',
+        label: 'fields.precursor-field.options.none_selected'
+      }
     ].concat(precursorList)
-}
+  }
 };
