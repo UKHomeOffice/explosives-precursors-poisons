@@ -350,8 +350,8 @@ module.exports = {
           target: '/select-poisons',
           continueOnEdit: true,
           condition: {
-            field: 'amend-poisons-options',
-            value: 'no'
+            field: 'amend-poisons-option',
+            value: 'yes'
           }
         }
       ],
@@ -361,6 +361,7 @@ module.exports = {
     '/select-poisons': {
       fields: ['amend-poison'],
       next: '/poison-details',
+      continueOnEdit: true,
       locals: { captionHeading: 'Section 17 of 23' }
     },
     '/poison-details': {
