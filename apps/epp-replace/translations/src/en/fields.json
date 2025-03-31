@@ -233,5 +233,11 @@
   },
   "amend-declaration": {
     "label": "I have read and agree to this declaration"
+  },
+  "precursor-field": {
+    "hint": "Select an explosives precursor",
+    "options":{
+      "none_selected": "Select"
+    }
   }
 }

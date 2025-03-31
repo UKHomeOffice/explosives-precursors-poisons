@@ -241,26 +241,21 @@ module.exports = {
       ],
       fields: ['file-upload'],
       locals: { captionHeading: 'Section 15 of 26' },
-      next: '/section-sixteen'
+      next: '/change-substances'
     },
-    '/section-sixteen': {
-      fields: ['replace-explosive-precusor-type'],
-      // fields: [
-      //   'replace-countersignatory-address-1',
-      //   'replace-countersignatory-address-2',
-      //   'replace-countersignatory-town-or-city',
-      //   'replace-countersignatory-postcode'
-      // ],
-      next: '/section-sixteen-type'
+    '/change-substances': {
+      next: '/explosives-precursors'
     },
-    '/section-sixteen-type': {
-      fields: ['replace-explosive-precusor-details'],
-      next: '/section-sixteen-summary'
+    '/explosives-precursors': {
+      next: '/select-precursor'
     },
-    '/section-sixteen-summary': {
-      next: '/section-seventeen'
+    '/select-precursor': {
+      fields: ['precursor-field'],
+      continueOnEdit: true,
+      locals: { captionHeading: 'Section 18 of 26' },
+      next: '/precursor-details'
     },
-    '/section-seventeen': {
+    '/precursor-details': {
       fields: [],
       next: '/select-poisons'
     },

@@ -224,5 +224,8 @@
     "date": "Enter a real date",
     "before": "Date you changed your name must be in the past",
     "after": "Date you changed your name must be after {{diff}}, your date of birth"
-}
+},
+  "precursor-field": {
+    "required" : "Select an explosive precursor"
+  }
 }

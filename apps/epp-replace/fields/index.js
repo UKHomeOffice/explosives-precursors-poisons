@@ -8,6 +8,7 @@ const {
 } = require('../../../utilities/helpers');
 const countries = require('../../../utilities/constants/countries');
 const policeForces = require('../../../utilities/constants/police-forces.js');
+const precursorList = require('../../../utilities/constants/explosive-precursors');
 
 module.exports = {
   'replace-licence-number': {
@@ -420,5 +421,16 @@ module.exports = {
     mixin: 'input-date',
     legend: { className: 'govuk-fieldset__legend--m' },
     validate: ['required', 'date', 'before']
-  })
+  }),
+  'precursor-field': {
+    mixin: 'select',
+    validate: ['required'],
+    labelClassName: ['govuk-label--m', 'visuallyhidden'],
+    options: [
+      {
+        value: '',
+        label: 'fields.precursor-field.options.none_selected'
+      }
+    ].concat(precursorList)
+  }
 };
