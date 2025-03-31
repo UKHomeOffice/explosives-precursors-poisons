@@ -422,15 +422,24 @@ module.exports = {
     legend: { className: 'govuk-fieldset__legend--m' },
     validate: ['required', 'date', 'before']
   }),
-  'precursor-field': {
+  'replace-home-address-options': {
+    mixin: 'radio-group',
+    legend: {
+      className: 'govuk-label--m'
+    },
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    options: ['yes', 'no'],
+    validate: 'required'
+  },
+'precursor-field': {
     mixin: 'select',
     validate: ['required'],
     labelClassName: ['govuk-label--m', 'visuallyhidden'],
     options: [
-      {
-        value: '',
-        label: 'fields.precursor-field.options.none_selected'
-      }
+        {
+            value: '',
+            label: 'fields.precursor-field.options.none_selected'
+        }
     ].concat(precursorList)
-  }
+}
 };

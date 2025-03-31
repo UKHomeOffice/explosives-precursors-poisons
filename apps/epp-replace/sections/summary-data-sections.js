@@ -53,6 +53,14 @@ module.exports = {
       }
     ]
   },
+  'replace-home-address-options': {
+    steps: [
+      {
+        step: '/change-home-address',
+        field: 'replace-home-address-options'
+      }
+    ]
+  },
   'replace-new-name': {
     steps: [
       {
