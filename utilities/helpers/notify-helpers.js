@@ -17,6 +17,18 @@ const BUSINESS = 'business';
 const STR_YES = 'yes';
 const STR_NO = 'no';
 
+/**
+ * Retrieves the PDF title based on the application type stored in the session model.
+ *
+ * @param {Object} req - The request object containing session data and translation function.
+ * @param {Object} req.sessionModel - The session model containing application data.
+ * @param {function} req.sessionModel.get - Function to get a value from the session model.
+ * @param {string} req.sessionModel.get.applicationType - The type of application.
+ * @param {function} req.translate - Function to translate keys into localized strings.
+ * @returns {string} The translated service name based on the application type.
+ * @throws {Error} Throws an error if the application type is unknown.
+ */
+
 const getPdfTitle = req => {
   const applicationType = req.sessionModel.get('applicationType');
 
@@ -33,6 +45,18 @@ const getPdfTitle = req => {
       throw Error(`Unknown application type: ${applicationType}`);
   }
 };
+
+/**
+ * Formats the section summary items into a string.
+ *
+ * @param {Object} items - The items to be formatted.
+ * @param {Array} items.aggregatedValues - An array of aggregated values.
+ * @param {Array} items.aggregatedValues[].fields - An array of fields within each aggregated value.
+ * @param {Object} items.aggregatedValues[].fields[] - A field object.
+ * @param {string} items.aggregatedValues[].fields[].parsed - The parsed value of the field.
+ * @returns {string} A formatted string of section summary items, with
+ * fields separated by newlines and sections separated by "\n\n ---\n^".
+ */
 const formatSectionSummaryItems = items => {
   return items
     ? items.aggregatedValues
@@ -41,12 +65,33 @@ const formatSectionSummaryItems = items => {
     : '';
 };
 
+/**
+ * Parses a list of documents into a formatted string.
+ *
+ * @param {Array} documents - An array of document objects.
+ * @param {string} documents[].name - The name of the document.
+ * @param {string} documents[].url - The URL of the document.
+ * @returns {string} A formatted string of document links, each on a new line,
+ * or an empty string if the documents array is empty or not an array.
+ */
 const parseDocumentList = documents => {
-  return Array.isArray(documents)
-    ? documents.map(doc => `[${doc.name}](${doc.url})`).join('\n')
+  return Array.isArray(documents) && documents.length
+    ? '\n' + documents.map(doc => `[${doc.name}](${doc.url})`).join('\n')
     : '';
 };
 
+/**
+ * Retrieves the label for a given field key and value from the provided translation object.
+ *
+ * @param {string} fieldKey - The key of the field to retrieve the label for.
+ * @param {string|Array} fieldValue - The value(s) of the field to retrieve the label(s)
+ * for. Can be a string or an array of strings.
+ * @param {Object} translation - The translation object containing field labels.
+ * @param {Object} translation[fieldKey] - The translation entry for the field.
+ * @param {Object} translation[fieldKey].options - The options for the field.
+ * @param {Object} translation[fieldKey].options[].label - The label for each option.
+ * @returns {string} The label(s) for the given field value(s), joined by ', ' if multiple.
+ */
 const getLabel = (fieldKey, fieldValue, translation) => {
   if (Array.isArray(fieldValue)) {
     return fieldValue
@@ -56,6 +101,17 @@ const getLabel = (fieldKey, fieldValue, translation) => {
   return translation[fieldKey]?.options[fieldValue]?.label;
 };
 
+/**
+ * Retrieves the template ID based on the application type and recipient type.
+ *
+ * @param {Object} req - The request object containing session and configuration data.
+ * @param {Object} req.sessionModel - The session model containing application data.
+ * @param {function} req.sessionModel.get - Function to get a value from the session model.
+ * @param {string} applicationType - The type of application (e.g., 'new', 'renew', 'amend', 'replace').
+ * @param {string} recipientType - The type of recipient (e.g., 'USER', 'BUSINESS').
+ * @returns {string} The template ID for the given application and recipient
+ * type, or an empty string if no match is found.
+ */
 const getTemplateId = (req, applicationType, recipientType) => {
   const userAppTemplateMap = {
     new: govukNotify.newApplicationUserTemplateId,
@@ -88,6 +144,13 @@ const getTemplateId = (req, applicationType, recipientType) => {
   return '';
 };
 
+/**
+ * Retrieves the email field key based on the application type.
+ *
+ * @param {string} applicationType - The type of application
+ * (e.g., 'new', 'renew', 'amend', 'replace').
+ * @returns {string} The email field key corresponding to the given application type.
+ */
 const getUserEmail = applicationType => {
   const appUserEmailMap = {
     new: 'new-renew-email',
@@ -99,6 +162,16 @@ const getUserEmail = applicationType => {
   return appUserEmailMap[applicationType];
 };
 
+/**
+ * Retrieves the identity attachment document list based on the provided ID fields.
+ *
+ * @param {Object} req - The request object containing session data.
+ * @param {Object} req.sessionModel - The session model containing application data.
+ * @param {function} req.sessionModel.get - Function to get a value from the session model.
+ * @param {Array<string>} idFields - An array of ID field keys to check in the session model.
+ * @returns {string} A formatted string of document links for the identity attachment,
+ * or an empty string if no matching document is found.
+ */
 const getIdentityAttachment = (req, idFields) => {
   const fieldMap = {
     'new-renew-UK-passport-number': 'new-renew-british-passport',
@@ -106,7 +179,10 @@ const getIdentityAttachment = (req, idFields) => {
     'new-renew-Uk-driving-licence-number': 'new-renew-upload-driving-licence',
     'amend-UK-passport-number': 'amend-british-passport',
     'amend-EU-passport-number': 'amend-eu-passport',
-    'amend-Uk-driving-licence-number': 'amend-uk-driving-licence'
+    'amend-Uk-driving-licence-number': 'amend-uk-driving-licence',
+    'replace-UK-passport-number': 'replace-british-passport',
+    'replace-EU-passport-number': 'replace-eu-passport',
+    'replace-Uk-driving-licence-number': 'replace-upload-driving-licence'
   };
 
   for (const idField of idFields) {
@@ -118,10 +194,31 @@ const getIdentityAttachment = (req, idFields) => {
   return '';
 };
 
+/**
+ * Checks if the given value is a "yes" or "no" string.
+ *
+ * @param {string} value - The value to check.
+ * @returns {string} - Returns `STR_YES` if the value is equal to `STR_YES`, otherwise returns `STR_NO`.
+ */
 const checkYesNo = value => (value === STR_YES ? STR_YES : STR_NO);
 
+/**
+ * Determines if the given value is truthy or falsy.
+ *
+ * @param {*} value - The value to check.
+ * @returns {string} - Returns `STR_YES` if the value is truthy, otherwise returns `STR_NO`.
+ */
 const hasValue = value => (value ? STR_YES : STR_NO);
 
+/**
+ * Determines if the request contains countersignatory details based on the application type.
+ *
+ * @param {Object} req - The request object containing session data.
+ * @param {Object} req.sessionModel - The session model containing application data.
+ * @param {function} req.sessionModel.get - Function to get a value from the session model.
+ * @param {string} applicationType - The type of application (e.g., 'APP_TYPE_AMEND', 'APP_TYPE_REPLACE').
+ * @returns {boolean} True if countersignatory details are present for the given application type, false otherwise.
+ */
 const hasCountersignatoryDetails = (req, applicationType) => {
   if (applicationType === APP_TYPE_AMEND) {
     return (
@@ -140,6 +237,15 @@ const hasCountersignatoryDetails = (req, applicationType) => {
   return false;
 };
 
+/**
+ * Determines if the request contains a previous address based on the home move date.
+ *
+ * @param {Object} req - The request object containing session data.
+ * @param {Object} req.sessionModel - The session model containing application data.
+ * @param {function} req.sessionModel.get - Function to get a value from the session model.
+ * @returns {boolean} True if the home move date is within the last 5
+ * years and there are other addresses, false otherwise.
+ */
 const hasPreviousAddress = req => {
   const homeMoveDate = req.sessionModel.get(
     'new-renew-home-address-moveto-date'
@@ -151,6 +257,12 @@ const hasPreviousAddress = req => {
   );
 };
 
+/**
+ * Returns the provided value if it is defined, otherwise returns an empty string.
+ *
+ * @param {*} value - The value to check.
+ * @returns {*} The provided value if it is defined, otherwise an empty string.
+ */
 const getSessionValueOrDefault = value => value || '';
 
 // TODO: Validate all fields when pages are built
@@ -396,6 +508,14 @@ const getAmendPersonalisation = req => {
   };
 };
 
+/**
+ * Retrieves personalisation data for a new or renewal application.
+ *
+ * @param {Object} req - The request object containing session data.
+ * @param {Object} req.sessionModel - The session model containing application data.
+ * @param {function} req.sessionModel.get - Function to get a value from the session model.
+ * @returns {Object} An object containing personalisation data for the new or renewal application.
+ */
 const getNewRenewPersonalisation = req => {
   return {
     licence_number: getSessionValueOrDefault(
@@ -488,15 +608,13 @@ const getNewRenewPersonalisation = req => {
       ])
     ),
     has_certificate_conduct:
-      req.sessionModel.get('new-renew-dob') &&
-      hasValue(
-        !isDateOlderOrEqualTo(req.sessionModel.get('new-renew-dob'), 18)
-      ),
-    certificate_conduct_attachment:
-      getSessionValueOrDefault(req.sessionModel.get('new-renew-dob')) &&
-      !isDateOlderOrEqualTo(req.sessionModel.get('new-renew-dob'), 18)
-        ? parseDocumentList(req.sessionModel.get('new-renew-birth-certificate'))
-        : '',
+      req.sessionModel.get('steps')?.includes('/upload-certificate-conduct') &&
+      parseDocumentList(req.sessionModel.get('new-renew-certificate-conduct'))
+        ? STR_YES
+        : STR_NO,
+    certificate_conduct_attachment: getSessionValueOrDefault(
+      parseDocumentList(req.sessionModel.get('new-renew-certificate-conduct'))
+    ),
     firearms_licence: getSessionValueOrDefault(
       getLabel(
         'new-renew-other-firearms-licence',
@@ -523,7 +641,9 @@ const getNewRenewPersonalisation = req => {
       .includes('/criminal-record')
       ? STR_YES
       : STR_NO,
-    criminal_offences: 'TBD', // TODO: fetch and format
+    criminal_offences: getSessionValueOrDefault(
+      formatSectionSummaryItems(req.sessionModel.get('criminalrecordsummary'))
+    ),
     explosive_precursor: 'TBD', // TODO: fetch and format
     poisons: 'TBD', // TODO: fetch and format
     countersignatory_title: getSessionValueOrDefault(
@@ -541,7 +661,9 @@ const getNewRenewPersonalisation = req => {
     countersignatory_last_name: getSessionValueOrDefault(
       req.sessionModel.get('new-renew-countersignatory-lastname')
     ),
-    countersignatory_address: 'TBD', // TODO: Format inline address
+    countersignatory_address: getSessionValueOrDefault(
+      req.sessionModel.get('counterSignatoryAddress')
+    ),
     countersignatory_phone: getSessionValueOrDefault(
       req.sessionModel.get('new-renew-countersignatory-phone-number')
     ),
@@ -549,15 +671,19 @@ const getNewRenewPersonalisation = req => {
       req.sessionModel.get('new-renew-countersignatory-email')
     ),
     countersignatory_id_type: getSessionValueOrDefault(
-      req.sessionModel.get('new-renew-countersignatory-Id-type')
-    ), // TODO: confirm field names when id page is done
+      getLabel(
+        'new-renew-countersignatory-Id-type',
+        req.sessionModel.get('new-renew-countersignatory-Id-type'),
+        newRenewTranslation
+      )
+    ),
     countersignatory_id: getSessionValueOrDefault(
       req.sessionModel.get('new-renew-countersignatory-UK-passport-number') ||
         req.sessionModel.get('new-renew-countersignatory-EU-passport-number') ||
         req.sessionModel.get(
           'new-renew-countersignatory-Uk-driving-licence-number'
         )
-    ) // TODO: confirm field names when id page is done
+    )
   };
 };
 

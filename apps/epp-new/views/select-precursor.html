@@ -1,0 +1,13 @@
+{{<partials-page}}
+{{$page-content}}
+<div>
+    <p class="govuk-body">{{#t}}pages.select-precursor.p1{{/t}}</p>
+    <p class="govuk-body">{{#t}}pages.select-precursor.p2{{/t}}</p>
+</div>
+
+{{#fields}}
+{{#renderField}}{{/renderField}}
+{{/fields}}
+{{#input-submit}}continue{{/input-submit}}
+{{/page-content}}
+{{/partials-page}}

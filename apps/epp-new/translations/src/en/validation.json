@@ -367,5 +367,8 @@
   },
   "new-renew-doctor-country": {
     "required": "Select your doctor's country of address"
+  },
+  "amend-precursor-field": {
+    "required" : "Select an explosive precursor"
   }
 }
