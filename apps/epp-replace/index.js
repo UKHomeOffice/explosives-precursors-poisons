@@ -12,7 +12,7 @@ const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
 const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-payment-request');
 const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
 const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator');
-const ThreeAmendNo = require('../epp-common/behaviours/amend-questions-redirect')
+const NavigateNoChanges = require('./behaviours/navigate-no-changes');
 
 
 // TODO: Use DeleteRedundantDocuments behaviour similar to amend flow to
@@ -120,7 +120,7 @@ module.exports = {
       next: '/changed-details'
     },
     '/changed-details': {
-      behaviour: [ThreeAmendNo],
+      behaviour: [NavigateNoChanges],
       fields: ['replace-is-details-changed'],
       forks: [
         {
@@ -220,7 +220,7 @@ module.exports = {
       next: '/change-home-address'
     },
     '/change-home-address': {
-      behaviour: [ThreeAmendNo],
+      behaviour: [NavigateNoChanges],
       fields: ['replace-home-address-options'],
       forks: [
         {
@@ -264,7 +264,7 @@ module.exports = {
       next: '/change-substances'
     },
     '/change-substances': {
-      behaviour: [ThreeAmendNo],
+      behaviour: [NavigateNoChanges],
       fields: ['replace-explosive-precusor-type'],
       // fields: [
       //   'replace-countersignatory-address-1',

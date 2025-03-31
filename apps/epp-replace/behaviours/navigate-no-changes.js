@@ -11,7 +11,6 @@ module.exports = superclass =>
 
 
       if (allFieldsNo) {
-        req.sessionModel.set('backLinkForRedirect', req.originalUrl);
         return res.redirect(`${req.baseUrl}/confirm`);
       }
 
