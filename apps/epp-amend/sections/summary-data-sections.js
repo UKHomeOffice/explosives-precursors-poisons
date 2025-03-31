@@ -302,18 +302,10 @@ module.exports = {
       }
     ]
   },
-  'amend-select-poisons': {
-    steps: [
-      {
-        step: '/select-poisons',
-        field: 'amend-poison'
-      }
-    ]
-  },
   'amend-poison-details': {
     steps: [
       {
-        step: '/poisons-summary',
+        step: '/poison-summary',
         field: 'poisons-details-aggregate',
         parse: list => {
           if (!list?.aggregatedValues) { return null; }

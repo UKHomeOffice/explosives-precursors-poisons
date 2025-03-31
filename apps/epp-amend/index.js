@@ -82,10 +82,7 @@ module.exports = {
       locals: { captionHeading: 'Section 4 of 23' }
     },
     '/contact-details': {
-      fields: [
-        'amend-phone-number',
-        'amend-email'
-      ],
+      fields: ['amend-phone-number', 'amend-email'],
       locals: { captionHeading: 'Section 5 of 23' },
       next: '/amend-details'
     },
@@ -97,9 +94,11 @@ module.exports = {
           'amend-certificate-conduct',
           'amend-uk-driving-licence'
         ]),
-        CheckAndRedirect('amend-name-options',
-          ['amend-change-substances-options', 'amend-name-options', 'amend-home-address-options']
-        )
+        CheckAndRedirect('amend-name-options', [
+          'amend-change-substances-options',
+          'amend-name-options',
+          'amend-home-address-options'
+        ])
       ],
       fields: ['amend-name-options'],
       forks: [
@@ -192,9 +191,11 @@ module.exports = {
         DeleteRedundantDocuments('amend-home-address-options', [
           'amend-proof-address'
         ]),
-        CheckAndRedirect('amend-home-address-options',
-          ['amend-change-substances-options', 'amend-name-options', 'amend-home-address-options']
-        )
+        CheckAndRedirect('amend-home-address-options', [
+          'amend-change-substances-options',
+          'amend-name-options',
+          'amend-home-address-options'
+        ])
       ],
       fields: ['amend-home-address-options'],
       forks: [
@@ -242,7 +243,7 @@ module.exports = {
           'amend-home-address-options'
         ]),
         ResetSectionSummary(
-          'precursors-details-aggregate',
+          ['precursors-details-aggregate', 'poisons-details-aggregate'],
           'amend-change-substances-options'
         )
       ],
@@ -262,17 +263,18 @@ module.exports = {
     },
     '/no-details-amend': {
       behaviours: [SetBackLink],
-      locals: {captionHeading: 'Section 13 of 23' }
+      locals: { captionHeading: 'Section 13 of 23' }
     },
     '/explosives-precursors': {
       behaviours: [
         ResetSectionSummary(
-          'precursors-details-aggregate',
+          ['precursors-details-aggregate'],
           'amend-regulated-explosives-precursors'
         ),
-        CheckAndRedirect('amend-regulated-explosives-precursors',
-          ['amend-poisons-option', 'amend-regulated-explosives-precursors']
-        )
+        CheckAndRedirect('amend-regulated-explosives-precursors', [
+          'amend-poisons-option',
+          'amend-regulated-explosives-precursors'
+        ])
       ],
       fields: ['amend-regulated-explosives-precursors'],
       forks: [
@@ -305,11 +307,16 @@ module.exports = {
         'store-precursors-other-address',
         'precursors-use-other-address'
       ],
+      continueOnEdit: true,
       locals: { captionHeading: 'Section 15 of 23' },
       next: '/precursors-summary'
     },
     '/precursors-summary': {
-      behaviours: [AggregateSaveEditPrecursorPoison, ParseSummaryPrecursorsPoisons, EditRouteReturn],
+      behaviours: [
+        AggregateSaveEditPrecursorPoison,
+        ParseSummaryPrecursorsPoisons,
+        EditRouteReturn
+      ],
       aggregateTo: 'precursors-details-aggregate',
       aggregateFrom: [
         'amend-display-precursor-title',
@@ -328,9 +335,15 @@ module.exports = {
     },
     '/poisons': {
       behaviours: [
-        CheckAndRedirect('amend-poisons-option',
-          ['amend-poisons-option', 'amend-regulated-explosives-precursors']
-        )],
+        CheckAndRedirect('amend-poisons-option', [
+          'amend-poisons-option',
+          'amend-regulated-explosives-precursors'
+        ]),
+        ResetSectionSummary(
+          ['poisons-details-aggregate'],
+          'amend-poisons-option'
+        )
+      ],
       fields: ['amend-poisons-option'],
       forks: [
         {
@@ -362,12 +375,17 @@ module.exports = {
         'store-poison-other-address',
         'poison-use-other-address'
       ],
+      continueOnEdit: true,
       next: '/poison-summary',
       locals: { captionHeading: 'Section 17 of 23' }
     },
     '/poison-summary': {
-      behaviours: [AggregateSaveEditPrecursorPoison, ParseSummaryPrecursorsPoisons, EditRouteReturn],
-      aggregateTo: 'poison-details-aggregate',
+      behaviours: [
+        AggregateSaveEditPrecursorPoison,
+        ParseSummaryPrecursorsPoisons,
+        EditRouteReturn
+      ],
+      aggregateTo: 'poisons-details-aggregate',
       aggregateFrom: [
         'amend-display-poison-title',
         'amend-why-need-poison',
@@ -431,7 +449,9 @@ module.exports = {
       next: '/countersignatory-id'
     },
     '/countersignatory-id': {
-      behaviours: [DobUnder18Redirect('amend-date-of-birth', '/birth-certificate')],
+      behaviours: [
+        DobUnder18Redirect('amend-date-of-birth', '/birth-certificate')
+      ],
       fields: [
         'amend-countersignatory-Id-type',
         'amend-countersignatory-UK-passport-number',
@@ -452,7 +472,11 @@ module.exports = {
     },
     '/confirm': {
       sections: require('./sections/summary-data-sections'),
-      behaviours: [SummaryPageBehaviour, EditRouteStart, ModifySummaryChangeLink],
+      behaviours: [
+        SummaryPageBehaviour,
+        EditRouteStart,
+        ModifySummaryChangeLink
+      ],
       next: '/declaration'
     },
     '/declaration': {

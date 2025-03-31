@@ -233,7 +233,7 @@
       "amend-licence-for-poisons": {
         "header": "Licence for poisons"
       },
-      "amend-select-poisons": {
+      "amend-poison-details": {
         "header": " Poisons"
       }
     },

@@ -42,7 +42,7 @@ module.exports = {
         checkBackLink,
         RemoveEditMode,
         validateAndRedirect,
-        ResetSectionSummary('othernames', 'new-renew-other-names')
+        ResetSectionSummary(['othernames'], 'new-renew-other-names')
       ],
       fields: [
         'new-renew-title',
@@ -364,7 +364,7 @@ module.exports = {
     '/other-licences': {
       behaviours: [
         ResetSectionSummary(
-          'licenceshistory',
+          ['licenceshistory'],
           'new-renew-other-refused-licence'
         )
       ],
@@ -428,7 +428,7 @@ module.exports = {
     '/criminal-record': {
       behaviours: [
         ResetSectionSummary(
-          'criminalrecordsummary',
+          ['criminalrecordsummary'],
           'new-renew-have-criminal-record'
         )
       ],
