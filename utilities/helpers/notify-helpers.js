@@ -54,7 +54,8 @@ const getPdfTitle = req => {
  * @param {Array} items.aggregatedValues[].fields - An array of fields within each aggregated value.
  * @param {Object} items.aggregatedValues[].fields[] - A field object.
  * @param {string} items.aggregatedValues[].fields[].parsed - The parsed value of the field.
- * @returns {string} A formatted string of section summary items, with fields separated by newlines and sections separated by "\n\n ---\n^".
+ * @returns {string} A formatted string of section summary items, with
+ * fields separated by newlines and sections separated by "\n\n ---\n^".
  */
 const formatSectionSummaryItems = items => {
   return items
@@ -70,7 +71,8 @@ const formatSectionSummaryItems = items => {
  * @param {Array} documents - An array of document objects.
  * @param {string} documents[].name - The name of the document.
  * @param {string} documents[].url - The URL of the document.
- * @returns {string} A formatted string of document links, each on a new line, or an empty string if the documents array is empty or not an array.
+ * @returns {string} A formatted string of document links, each on a new line,
+ * or an empty string if the documents array is empty or not an array.
  */
 const parseDocumentList = documents => {
   return Array.isArray(documents) && documents.length
@@ -82,7 +84,8 @@ const parseDocumentList = documents => {
  * Retrieves the label for a given field key and value from the provided translation object.
  *
  * @param {string} fieldKey - The key of the field to retrieve the label for.
- * @param {string|Array} fieldValue - The value(s) of the field to retrieve the label(s) for. Can be a string or an array of strings.
+ * @param {string|Array} fieldValue - The value(s) of the field to retrieve the label(s)
+ * for. Can be a string or an array of strings.
  * @param {Object} translation - The translation object containing field labels.
  * @param {Object} translation[fieldKey] - The translation entry for the field.
  * @param {Object} translation[fieldKey].options - The options for the field.
@@ -106,7 +109,8 @@ const getLabel = (fieldKey, fieldValue, translation) => {
  * @param {function} req.sessionModel.get - Function to get a value from the session model.
  * @param {string} applicationType - The type of application (e.g., 'new', 'renew', 'amend', 'replace').
  * @param {string} recipientType - The type of recipient (e.g., 'USER', 'BUSINESS').
- * @returns {string} The template ID for the given application and recipient type, or an empty string if no match is found.
+ * @returns {string} The template ID for the given application and recipient
+ * type, or an empty string if no match is found.
  */
 const getTemplateId = (req, applicationType, recipientType) => {
   const userAppTemplateMap = {
@@ -143,7 +147,8 @@ const getTemplateId = (req, applicationType, recipientType) => {
 /**
  * Retrieves the email field key based on the application type.
  *
- * @param {string} applicationType - The type of application (e.g., 'new', 'renew', 'amend', 'replace').
+ * @param {string} applicationType - The type of application
+ * (e.g., 'new', 'renew', 'amend', 'replace').
  * @returns {string} The email field key corresponding to the given application type.
  */
 const getUserEmail = applicationType => {
@@ -164,7 +169,8 @@ const getUserEmail = applicationType => {
  * @param {Object} req.sessionModel - The session model containing application data.
  * @param {function} req.sessionModel.get - Function to get a value from the session model.
  * @param {Array<string>} idFields - An array of ID field keys to check in the session model.
- * @returns {string} A formatted string of document links for the identity attachment, or an empty string if no matching document is found.
+ * @returns {string} A formatted string of document links for the identity attachment,
+ * or an empty string if no matching document is found.
  */
 const getIdentityAttachment = (req, idFields) => {
   const fieldMap = {
@@ -204,7 +210,6 @@ const checkYesNo = value => (value === STR_YES ? STR_YES : STR_NO);
  */
 const hasValue = value => (value ? STR_YES : STR_NO);
 
-
 /**
  * Determines if the request contains countersignatory details based on the application type.
  *
@@ -238,7 +243,8 @@ const hasCountersignatoryDetails = (req, applicationType) => {
  * @param {Object} req - The request object containing session data.
  * @param {Object} req.sessionModel - The session model containing application data.
  * @param {function} req.sessionModel.get - Function to get a value from the session model.
- * @returns {boolean} True if the home move date is within the last 5 years and there are other addresses, false otherwise.
+ * @returns {boolean} True if the home move date is within the last 5
+ * years and there are other addresses, false otherwise.
  */
 const hasPreviousAddress = req => {
   const homeMoveDate = req.sessionModel.get(
