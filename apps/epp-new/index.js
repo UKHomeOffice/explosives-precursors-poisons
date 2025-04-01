@@ -565,10 +565,7 @@ module.exports = {
       }
     },
     '/select-precursor': {
-      // Conscious decision to use the same field as amend
-      // TODO: rename to a common field if the functionality
-      // works as expected
-      fields: ['amend-precursor-field'],
+      fields: ['precursor-field'],
       next: '/precursor-details',
       locals: {
         sectionNo: {

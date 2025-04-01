@@ -88,6 +88,11 @@
     "files-uploaded": "Files uploaded",
     "uploading-document": "Uploading your document..."
   },
+  "change-home-address": {
+    "header": "Change in home address",
+    "p1": "You must change your address if you have moved home since your current licence was issued.",
+    "p2": "Storage or usage address can be amended later under the substances section."
+  },
   "select-poisons": {
     "header": "Poisons",
     "p1": "Tell us which poisons you want to import acquire use or possess.",
@@ -164,12 +169,20 @@
     "make-change-application": "If you need to make changes to your application",
     "p6": "If you need to make changes to your replacement application or have any questions, contact"
   },
+  "select-precursor": {
+    "header": "Explosives precursors",
+    "p1": "Tell us which explosives precursors you want to import acquire use or possess.",
+    "p2": "If you need multiple explosives precursors, you can add each one separately."
+  },
   "confirm": {
     "header": "Check your answers",
     "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",
     "sections": {
       "replace-police-report": {
         "header": "Authorities"
+      },
+      "replace-home-address-options": {
+        "header": "Amend address"
       },
       "home-address-details": {
         "header": "Address on licence"

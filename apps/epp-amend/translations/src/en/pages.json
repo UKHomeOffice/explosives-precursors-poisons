@@ -133,7 +133,7 @@
     "p3": "If you have any questions, contact"
   },
   "precursor-details":{
-    "header": "{{values.amend-precursor-field}}"
+    "header": "{{values.precursor-field}}"
   },
   "precursors-summary": {
     "header": "Explosives precursors on your licence"
@@ -316,7 +316,7 @@
       "amend-proof-address":{
          "label": "Proof of address attachment"
       },
-      "amend-precursor-field": {
+      "precursor-field": {
          "label": "Explosives precursors"
       },
       "amend-display-precursor-title": {

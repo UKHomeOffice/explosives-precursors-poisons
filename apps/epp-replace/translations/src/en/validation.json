@@ -224,5 +224,11 @@
     "date": "Enter a real date",
     "before": "Date you changed your name must be in the past",
     "after": "Date you changed your name must be after {{diff}}, your date of birth"
-}
+},
+"replace-home-address-options": {
+  "required": "Select if you need to amend your home address on the licence"
+},
+  "precursor-field": {
+    "required" : "Select an explosive precursor"
+  }
 }

@@ -291,13 +291,13 @@ module.exports = {
       locals: { captionHeading: 'Section 14 of 23' }
     },
     '/select-precursor': {
-      fields: ['amend-precursor-field'],
+      fields: ['precursor-field'],
       continueOnEdit: true,
       locals: { captionHeading: 'Section 15 of 23' },
       next: '/precursor-details'
     },
     '/precursor-details': {
-      behaviours: [RenderPrecursorDetails('amend-precursor-field')],
+      behaviours: [RenderPrecursorDetails('precursor-field')],
       fields: [
         'amend-why-need-precursor',
         'amend-how-much-precursor',
@@ -326,7 +326,7 @@ module.exports = {
         'amend-where-to-store-precursor',
         'amend-where-to-use-precursor'
       ],
-      titleField: ['amend-precursor-field'],
+      titleField: ['precursor-field'],
       addStep: 'select-precursor',
       addAnotherLinkText: 'explosives precursors',
       continueOnEdit: false,

@@ -12,6 +12,7 @@ const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
 const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-payment-request');
 const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
 const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator');
+const NavigateNoChanges = require('./behaviours/navigate-no-changes');
 
 
 // TODO: Use DeleteRedundantDocuments behaviour similar to amend flow to
@@ -120,6 +121,7 @@ module.exports = {
       next: '/changed-details'
     },
     '/changed-details': {
+      behaviour: [NavigateNoChanges],
       fields: ['replace-is-details-changed'],
       forks: [
         {
@@ -207,7 +209,7 @@ module.exports = {
       ],
       fields: ['file-upload'],
       locals: { captionHeading: 'Section 12 of 26' },
-      next: '/section-thirteen'
+      next: '/change-home-address'
     },
     '/upload-certificate-conduct': {
       behaviours: [
@@ -216,9 +218,31 @@ module.exports = {
       ],
       fields: ['file-upload'],
       locals: { captionHeading: 'Section 12 of 26' },
-      next: '/section-thirteen'
+      next: '/change-home-address'
     },
-    '/section-thirteen': {
+    '/change-home-address': {
+      behaviour: [NavigateNoChanges],
+      fields: ['replace-home-address-options'],
+      forks: [
+        {
+          target: '/new-address',
+          condition: {
+            field: 'replace-home-address-options',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/change-substances',
+          condition: {
+            field: 'replace-home-address-options',
+            value: 'no'
+          }
+        }
+      ],
+      locals: { captionHeading: 'Section 13 of 26' },
+      next: '/new-address'
+    },
+    '/new-address': {
       fields: [
         'replace-new-post-address-1',
         'replace-new-post-address-2',
@@ -228,9 +252,6 @@ module.exports = {
         'replace-new-post-country',
         'replace-new-date-moved-to-address'
       ],
-      next: '/section-fourteen'
-    },
-    '/section-fourteen': {
       next: '/upload-proof-address'
     },
     '/upload-proof-address': {
@@ -241,26 +262,22 @@ module.exports = {
       ],
       fields: ['file-upload'],
       locals: { captionHeading: 'Section 15 of 26' },
-      next: '/section-sixteen'
+      next: '/change-substances'
     },
-    '/section-sixteen': {
-      fields: ['replace-explosive-precusor-type'],
-      // fields: [
-      //   'replace-countersignatory-address-1',
-      //   'replace-countersignatory-address-2',
-      //   'replace-countersignatory-town-or-city',
-      //   'replace-countersignatory-postcode'
-      // ],
-      next: '/section-sixteen-type'
+    '/change-substances': {
+      behaviour: [NavigateNoChanges],
+      next: '/explosives-precursors'
     },
-    '/section-sixteen-type': {
-      fields: ['replace-explosive-precusor-details'],
-      next: '/section-sixteen-summary'
+    '/explosives-precursors': {
+      next: '/select-precursor'
     },
-    '/section-sixteen-summary': {
-      next: '/section-seventeen'
+    '/select-precursor': {
+      fields: ['precursor-field'],
+      continueOnEdit: true,
+      locals: { captionHeading: 'Section 18 of 26' },
+      next: '/precursor-details'
     },
-    '/section-seventeen': {
+    '/precursor-details': {
       fields: [],
       next: '/select-poisons'
     },

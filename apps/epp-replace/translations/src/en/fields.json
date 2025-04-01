@@ -15,6 +15,17 @@
           "none_selected": "Select"
         }
       },
+      "replace-home-address-options": {
+        "legend": "Do you need to amend your home address on the licence?",
+        "options": {
+          "yes": {
+            "label": "Yes"
+          },
+          "no": {
+            "label": "No"
+          }
+        }
+      },
       "replace-new-firstname": {
         "label": "First name"
       },
@@ -233,5 +244,11 @@
   },
   "amend-declaration": {
     "label": "I have read and agree to this declaration"
+  },
+  "precursor-field": {
+    "hint": "Select an explosives precursor",
+    "options":{
+      "none_selected": "Select"
+    }
   }
 }
