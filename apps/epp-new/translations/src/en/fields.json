@@ -432,5 +432,16 @@
     "options":{
       "none_selected": "Select"
     }
+  },
+  "new-renew-poisons-options": {
+    "legend":"Does your licence need to cover poisons?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }

@@ -370,5 +370,8 @@
   },
   "amend-precursor-field": {
     "required" : "Select an explosive precursor"
+  },
+  "new-renew-poisons-options": {
+    "required": "Select if your licence needs to cover poisons"
   }
 }
