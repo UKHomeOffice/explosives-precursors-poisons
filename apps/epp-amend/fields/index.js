@@ -293,7 +293,7 @@ module.exports = {
     options: ['yes', 'no'],
     validate: 'required'
   },
-  'amend-precursor-field': {
+  'precursor-field': {
     mixin: 'select',
     validate: ['required'],
     labelClassName: ['govuk-label--m', 'visuallyhidden'],
@@ -301,7 +301,7 @@ module.exports = {
     options: [
       {
         value: '',
-        label: 'fields.amend-precursor-field.options.none_selected'
+        label: 'fields.precursor-field.options.none_selected'
       }
     ].concat(precursorList)
   },

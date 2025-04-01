@@ -57,7 +57,7 @@ module.exports = superclass => class extends superclass {
 
 
       if (!isTitleField && itemTitle.length === 0) {
-        itemTitle.push(getSubstanceShortLabel(req.sessionModel.get('amend-precursor-field'), SUBSTANCES.PRECURSOR));
+        itemTitle.push(getSubstanceShortLabel(req.sessionModel.get('precursor-field'), SUBSTANCES.PRECURSOR));
       }
 
       fields.push({

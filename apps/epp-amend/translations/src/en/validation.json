@@ -166,7 +166,7 @@
     "amend-change-substances-options": {
       "required" : "Select if you need to amend the substances on your licence"
     },
-    "amend-precursor-field": {
+    "precursor-field": {
       "required" : "Select an explosive precursor"
     },
   "amend-regulated-explosives-precursors": {

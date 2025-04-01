@@ -227,5 +227,8 @@
 },
 "replace-home-address-options": {
   "required": "Select if you need to amend your home address on the licence"
-}
+},
+  "precursor-field": {
+    "required" : "Select an explosive precursor"
+  }
 }
