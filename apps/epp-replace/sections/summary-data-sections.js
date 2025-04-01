@@ -174,6 +174,58 @@ module.exports = {
       }
     ]
   },
+  'replace-new-home-address': {
+    steps: [
+      {
+        step: '/new-address',
+        field: 'replace-new-address-1'
+      },
+      {
+        step: '/new-address',
+        field: 'replace-new-address-2',
+        parse: value => value || 'Not provided'
+      },
+      {
+        step: '/new-address',
+        field: 'replace-new-town-or-city'
+      },
+      {
+        step: '/new-address',
+        field: 'replace-new-county',
+        parse: value => value || 'Not provided'
+      },
+      {
+        step: '/new-address',
+        field: 'replace-new-postcode',
+        parse: value => value || 'Not provided'
+      },
+      {
+        step: '/new-address',
+        field: 'replace-new-country'
+      },
+      {
+        step: '/new-address',
+        field: 'replace-new-date-moved-to-address',
+        parse: date => date && dateFormatter.format(new Date(date))
+      },
+      {
+        step: '/upload-proof-address',
+        field: 'replace-proof-address',
+        parse: (documents, req) => {
+          if (
+            req.sessionModel
+              .get('steps')
+              .includes('/upload-proof-address') &&
+            documents?.length > 0
+          ) {
+            return documents.map(file => file?.name)?.join('\n\n');
+          }
+
+          return null;
+        }
+      }
+    ]
+  },
   'applicant-name': {
     steps: [
       {
