@@ -244,14 +244,16 @@ module.exports = {
     },
     '/new-address': {
       fields: [
-        'replace-new-post-address-1',
-        'replace-new-post-address-2',
-        'replace-new-post-town-or-city',
-        'replace-new-post-county',
-        'replace-new-post-postcode',
-        'replace-new-post-country',
+        'replace-new-address-1',
+        'replace-new-address-2',
+        'replace-new-town-or-city',
+        'replace-new-county',
+        'replace-new-postcode',
+        'replace-new-country',
         'replace-new-date-moved-to-address'
       ],
+      behaviours: [AfterDateOfBirth('replace-date-of-birth'), PostcodeValidation],
+      locals: { captionHeading: 'Section 14 of 26' },
       next: '/upload-proof-address'
     },
     '/upload-proof-address': {

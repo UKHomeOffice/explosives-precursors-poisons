@@ -11,6 +11,9 @@
   "new-name": {
     "header": "What is your new name?"
   },
+  "new-address": {
+    "header": "What is your new address?"
+  },
   "upload-british-passport": {
     "header": "Upload British passport",
     "label": "Upload a file",
@@ -195,6 +198,9 @@
       },
       "licence-details": {
         "header": "Licence details"
+      },
+      "replace-new-home-address": {
+        "header": "New address"
       },
       "replace-licence": {
         "header": "Replacement reason"
