@@ -441,5 +441,69 @@ module.exports = {
         label: 'fields.precursor-field.options.none_selected'
       }
     ].concat(precursorList)
-  }
+  },
+  'replace-new-address-1': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--m',
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'replace-new-address-2': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--m',
+    validate: [
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'replace-new-town-or-city': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--m',
+    validate: [
+      'required',
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'replace-new-county': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--m',
+    validate: [
+      { type: 'minlength', arguments: 2 },
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ]
+  },
+  'replace-new-postcode': {
+    mixin: 'input-text',
+    labelClassName: 'govuk-label--m',
+    className: ['govuk-input', 'govuk-input--width-10'],
+    formatter: ['ukPostcode']
+  },
+  'replace-new-country': {
+    mixin: 'select',
+    validate: ['required'],
+    className: ['typeahead'],
+    labelClassName: 'govuk-label--m',
+    options: [
+      {
+        value: '',
+        label: 'fields.replace-new-country.options.none_selected'
+      }
+    ].concat(countries)
+  },
+  'replace-new-date-moved-to-address': dateComponent(
+    'replace-new-date-moved-to-address',
+    {
+      mixin: 'input-date',
+      legend: { className: 'govuk-fieldset__legend--m' },
+      validate: ['required', 'date', 'before']
+    }
+  )
 };

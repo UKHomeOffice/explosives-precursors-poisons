@@ -59,6 +59,32 @@
           }
         }
       },
+      "replace-new-address-1": {
+        "label": "Address line 1"
+      },
+      "replace-new-address-2": {
+        "label": "Address line 2 (optional)"
+      },
+      "replace-new-town-or-city": {
+        "label": "Town or city"
+      },
+      "replace-new-county": {
+        "label": "County, state, province (optional)"
+      },
+      "replace-new-postcode": {
+        "label": "Postcode (required for UK)",
+        "hint": "Postcode is optional if your address is outside the UK"
+      },
+      "replace-new-country": {
+        "label": "Country",
+        "options": {
+          "none_selected": "Select"
+        }
+      },
+      "replace-new-date-moved-to-address": {
+          "legend": "When did you move to this address?",
+          "hint": " For example, 30 09 1969"
+      },
       "replace-licence": {
         "legend": "Why do you need a replacement licence?",
         "options": {

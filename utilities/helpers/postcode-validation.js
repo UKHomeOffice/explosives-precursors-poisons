@@ -7,7 +7,8 @@ const postCodeCountriesMap = {
   'replace-home-postcode': 'replace-home-country',
   'new-renew-previous-home-address-postcode': 'new-renew-previous-home-address-country',
   'amend-new-postcode': 'amend-new-country',
-  'new-renew-doctor-postcode': 'new-renew-doctor-country'
+  'new-renew-doctor-postcode': 'new-renew-doctor-country',
+  'replace-new-postcode': 'replace-new-country'
 };
 
 module.exports = superclass =>
