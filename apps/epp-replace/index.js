@@ -191,7 +191,7 @@ module.exports = {
       ],
       fields: ['file-upload'],
       locals: { captionHeading: 'Section 12 of 26' },
-      next: '/upload-passport'
+      next: '/change-home-address'
     },
     '/upload-passport': {
       behaviours: [

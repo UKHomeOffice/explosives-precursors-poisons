@@ -182,7 +182,8 @@ module.exports = {
       },
       {
         step: '/new-address',
-        field: 'replace-new-address-2'
+        field: 'replace-new-address-2',
+        parse: value => value || 'Not provided'
       },
       {
         step: '/new-address',
@@ -190,11 +191,13 @@ module.exports = {
       },
       {
         step: '/new-address',
-        field: 'replace-new-county'
+        field: 'replace-new-county',
+        parse: value => value || 'Not provided'
       },
       {
         step: '/new-address',
-        field: 'replace-new-postcode'
+        field: 'replace-new-postcode',
+        parse: value => value || 'Not provided'
       },
       {
         step: '/new-address',

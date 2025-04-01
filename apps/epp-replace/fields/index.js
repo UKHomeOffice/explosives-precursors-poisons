@@ -445,7 +445,6 @@ module.exports = {
   'replace-new-address-1': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-input govuk-!-width-full'],
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
@@ -456,7 +455,6 @@ module.exports = {
   'replace-new-address-2': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-input govuk-!-width-full'],
     validate: [
       { type: 'minlength', arguments: 2 },
       { type: 'maxlength', arguments: 250 },
@@ -466,7 +464,6 @@ module.exports = {
   'replace-new-town-or-city': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-input govuk-!-width-full'],
     validate: [
       'required',
       { type: 'minlength', arguments: 2 },
@@ -477,7 +474,6 @@ module.exports = {
   'replace-new-county': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--m',
-    className: ['govuk-input', 'govuk-input govuk-!-width-full'],
     validate: [
       { type: 'minlength', arguments: 2 },
       { type: 'maxlength', arguments: 250 },
