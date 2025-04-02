@@ -272,14 +272,14 @@ module.exports = {
       locals: { captionHeading: 'Section 16 of 26' },
       forks: [
         {
-          target: '/change-substances',
+          target: '/explosives-precursors',
           condition: {
             field: 'replace-change-substances',
             value: 'yes'
           }
         },
         {
-          target: '/countersignatory-details',
+          target: '/precursor-details',
           condition: {
             field: 'replace-change-substances',
             value: 'no'

@@ -4,7 +4,8 @@ module.exports = superclass =>
       const fields = [
         'replace-home-address-options',
         'replace-explosive-precusor-type',
-        'replace-replace-type'
+        'replace-replace-type',
+        'replace-change-substances'
       ];
 
       const allFieldsNo = fields.every(field => req.sessionModel.get(field) === 'no');
