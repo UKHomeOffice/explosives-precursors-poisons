@@ -300,7 +300,9 @@ const getReplacePersonalisation = req => {
       req.sessionModel.get('replace-email')
     ),
     has_amended_name: checkYesNo(req.sessionModel.get('TBD')),
-    new_name: '', // TODO format the values
+    new_name: getSessionValueOrDefault(
+      req.sessionModel.get('formattedNewName')
+    ),
     identity_document:
       req.sessionModel.get('TBD') === STR_YES
         ? getSessionValueOrDefault(
@@ -404,7 +406,9 @@ const getAmendPersonalisation = req => {
       req.sessionModel.get('amend-email')
     ),
     has_amended_name: checkYesNo(req.sessionModel.get('amend-name-options')),
-    new_name: '', // TODO format the values
+    new_name: getSessionValueOrDefault(
+      req.sessionModel.get('formattedNewName')
+    ),
     identity_document:
       req.sessionModel.get('amend-name-options') === STR_YES
         ? getSessionValueOrDefault(
@@ -430,7 +434,9 @@ const getAmendPersonalisation = req => {
     has_amended_address: checkYesNo(
       req.sessionModel.get('amend-home-address-options')
     ),
-    new_address: '', // TODO: save and format new address
+    new_address: getSessionValueOrDefault(
+      req.sessionModel.get('otherAddressInline')
+    ),
     date_moved_to:
       req.sessionModel.get('amend-home-address-options') === STR_YES
         ? getSessionValueOrDefault(
@@ -476,7 +482,11 @@ const getAmendPersonalisation = req => {
           req.sessionModel.get('amend-countersignatory-lastname')
         )
       : '',
-    countersignatory_address: 'TBD', // TODO: Format inline address
+    countersignatory_address: hasCountersignatoryDetails(req, APP_TYPE_AMEND)
+      ? getSessionValueOrDefault(
+          req.sessionModel.get('counterSignatoryAddress')
+        )
+      : '',
     countersignatory_phone: hasCountersignatoryDetails(req, APP_TYPE_AMEND)
       ? getSessionValueOrDefault(
           req.sessionModel.get('amend-countersignatory-phone-number')

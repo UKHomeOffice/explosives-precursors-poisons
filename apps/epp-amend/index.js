@@ -8,7 +8,7 @@ const SaveDocument = require('../epp-common/behaviours/save-document');
 const RemoveDocument = require('../epp-common/behaviours/remove-document');
 const DobEditRedirect = require('../epp-common/behaviours/dob-edit-redirect');
 const RenderPrecursorDetails = require('../epp-common/behaviours/render-precursors-detail');
-const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
+const SaveAddress = require('../epp-common/behaviours/save-home-other-address');
 const CheckAndRedirect = require('../epp-common/behaviours/check-answer-redirect');
 const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
 const DobUnder18Redirect = require('../epp-common/behaviours/dob-under18-redirect');
@@ -23,6 +23,8 @@ const ParseSummaryPrecursorsPoisons = require('../epp-common/behaviours/parse-su
 const ModifySummaryChangeLink = require('../epp-common/behaviours/modify-summary-change-links');
 const ResetSectionSummary = require('../epp-common/behaviours/reset-section-summary');
 const SetBackLink = require('../epp-common/behaviours/set-backlink');
+const SaveNewName = require('../epp-common/behaviours/save-new-name');
+const SaveCounterSignatoryAddress = require('../epp-common/behaviours/save-countersignatory-address');
 
 module.exports = {
   name: 'EPP form',
@@ -61,14 +63,17 @@ module.exports = {
     '/home-address': {
       behaviours: [
         PostcodeValidation,
-        SaveHomeAddress([
-          'amend-address-1',
-          'amend-address-2',
-          'amend-town-or-city',
-          'amend-county',
-          'amend-postcode',
-          'amend-country'
-        ])
+        SaveAddress(
+          [
+            'amend-address-1',
+            'amend-address-2',
+            'amend-town-or-city',
+            'amend-county',
+            'amend-postcode',
+            'amend-country'
+          ],
+          'home'
+        )
       ],
       fields: [
         'amend-address-1',
@@ -82,10 +87,7 @@ module.exports = {
       locals: { captionHeading: 'Section 4 of 23' }
     },
     '/contact-details': {
-      fields: [
-        'amend-phone-number',
-        'amend-email'
-      ],
+      fields: ['amend-phone-number', 'amend-email'],
       locals: { captionHeading: 'Section 5 of 23' },
       next: '/amend-details'
     },
@@ -97,9 +99,11 @@ module.exports = {
           'amend-certificate-conduct',
           'amend-uk-driving-licence'
         ]),
-        CheckAndRedirect('amend-name-options',
-          ['amend-change-substances-options', 'amend-name-options', 'amend-home-address-options']
-        )
+        CheckAndRedirect('amend-name-options', [
+          'amend-change-substances-options',
+          'amend-name-options',
+          'amend-home-address-options'
+        ])
       ],
       fields: ['amend-name-options'],
       forks: [
@@ -115,6 +119,16 @@ module.exports = {
       next: '/change-home-address'
     },
     '/new-name': {
+      behaviours: [
+        AfterDateOfBirth('amend-date-of-birth'),
+        SaveNewName([
+          'amend-new-name-title',
+          'amend-new-firstname',
+          'amend-new-middlename',
+          'amend-new-lastname',
+          'amend-new-date-name-changed'
+        ])
+      ],
       fields: [
         'amend-new-name-title',
         'amend-new-firstname',
@@ -123,8 +137,7 @@ module.exports = {
         'amend-new-date-name-changed'
       ],
       next: '/identity-details',
-      locals: { captionHeading: 'Section 7 of 23' },
-      behaviours: [AfterDateOfBirth('amend-date-of-birth')]
+      locals: { captionHeading: 'Section 7 of 23' }
     },
     '/identity-details': {
       fields: [
@@ -192,9 +205,11 @@ module.exports = {
         DeleteRedundantDocuments('amend-home-address-options', [
           'amend-proof-address'
         ]),
-        CheckAndRedirect('amend-home-address-options',
-          ['amend-change-substances-options', 'amend-name-options', 'amend-home-address-options']
-        )
+        CheckAndRedirect('amend-home-address-options', [
+          'amend-change-substances-options',
+          'amend-name-options',
+          'amend-home-address-options'
+        ])
       ],
       fields: ['amend-home-address-options'],
       forks: [
@@ -210,6 +225,21 @@ module.exports = {
       next: '/change-substances'
     },
     '/new-address': {
+      behaviours: [
+        AfterDateOfBirth('amend-date-of-birth'),
+        PostcodeValidation,
+        SaveAddress(
+          [
+            'amend-new-address-1',
+            'amend-new-address-2',
+            'amend-new-town-or-city',
+            'amend-new-county',
+            'amend-new-postcode',
+            'amend-new-country'
+          ],
+          'other'
+        )
+      ],
       fields: [
         'amend-new-address-1',
         'amend-new-address-2',
@@ -219,7 +249,6 @@ module.exports = {
         'amend-new-country',
         'amend-new-date-moved-to-address'
       ],
-      behaviours: [AfterDateOfBirth('amend-date-of-birth'), PostcodeValidation],
       next: '/upload-proof-address',
       locals: { captionHeading: 'Section 11 of 23' }
     },
@@ -262,7 +291,7 @@ module.exports = {
     },
     '/no-details-amend': {
       behaviours: [SetBackLink],
-      locals: {captionHeading: 'Section 13 of 23' }
+      locals: { captionHeading: 'Section 13 of 23' }
     },
     '/explosives-precursors': {
       behaviours: [
@@ -270,9 +299,10 @@ module.exports = {
           'precursors-details-aggregate',
           'amend-regulated-explosives-precursors'
         ),
-        CheckAndRedirect('amend-regulated-explosives-precursors',
-          ['amend-poisons-option', 'amend-regulated-explosives-precursors']
-        )
+        CheckAndRedirect('amend-regulated-explosives-precursors', [
+          'amend-poisons-option',
+          'amend-regulated-explosives-precursors'
+        ])
       ],
       fields: ['amend-regulated-explosives-precursors'],
       forks: [
@@ -309,7 +339,11 @@ module.exports = {
       next: '/precursors-summary'
     },
     '/precursors-summary': {
-      behaviours: [AggregateSaveEditPrecursorPoison, ParseSummaryPrecursorsPoisons, EditRouteReturn],
+      behaviours: [
+        AggregateSaveEditPrecursorPoison,
+        ParseSummaryPrecursorsPoisons,
+        EditRouteReturn
+      ],
       aggregateTo: 'precursors-details-aggregate',
       aggregateFrom: [
         'amend-display-precursor-title',
@@ -328,9 +362,11 @@ module.exports = {
     },
     '/poisons': {
       behaviours: [
-        CheckAndRedirect('amend-poisons-option',
-          ['amend-poisons-option', 'amend-regulated-explosives-precursors']
-        )],
+        CheckAndRedirect('amend-poisons-option', [
+          'amend-poisons-option',
+          'amend-regulated-explosives-precursors'
+        ])
+      ],
       fields: ['amend-poisons-option'],
       forks: [
         {
@@ -398,6 +434,14 @@ module.exports = {
       next: '/countersignatory-address'
     },
     '/countersignatory-address': {
+      behaviours: [
+        SaveCounterSignatoryAddress([
+          'amend-countersignatory-address-1',
+          'amend-countersignatory-address-2',
+          'amend-countersignatory-town-or-city',
+          'amend-countersignatory-postcode'
+        ])
+      ],
       fields: [
         'amend-countersignatory-address-1',
         'amend-countersignatory-address-2',
@@ -416,7 +460,9 @@ module.exports = {
       next: '/countersignatory-id'
     },
     '/countersignatory-id': {
-      behaviours: [DobUnder18Redirect('amend-date-of-birth', '/birth-certificate')],
+      behaviours: [
+        DobUnder18Redirect('amend-date-of-birth', '/birth-certificate')
+      ],
       fields: [
         'amend-countersignatory-Id-type',
         'amend-countersignatory-UK-passport-number',
@@ -437,7 +483,11 @@ module.exports = {
     },
     '/confirm': {
       sections: require('./sections/summary-data-sections'),
-      behaviours: [SummaryPageBehaviour, EditRouteStart, ModifySummaryChangeLink],
+      behaviours: [
+        SummaryPageBehaviour,
+        EditRouteStart,
+        ModifySummaryChangeLink
+      ],
       next: '/declaration'
     },
     '/declaration': {
