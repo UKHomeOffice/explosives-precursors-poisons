@@ -150,6 +150,24 @@ const getSubstanceShortLabel = (input, substance) => {
   return resultStr;
 };
 
+const displayOptionalField = (req, step, value) => {
+  if (req.sessionModel?.get('steps')?.includes(step)) {
+    return value || 'Not provided';
+  }
+  return null;
+};
+
+const formatAttachments = (documents, req, step) => {
+  if (
+    req.sessionModel?.get('steps')?.includes(step) &&
+    Array.isArray(documents) &&
+    documents.length > 0
+  ) {
+    return documents.map(file => file?.name)?.join('\n\n');
+  }
+  return '';
+};
+
 module.exports = {
   isLicenceValid,
   isApplicationType,
@@ -168,6 +186,8 @@ module.exports = {
   getSubstanceShortLabel,
   textAreaDefaultLength,
   isValidConcentrationValue,
+  displayOptionalField,
+  formatAttachments,
   NotifyClient:
     config.govukNotify.notifyApiKey === 'USE_MOCK'
       ? NotifyMock

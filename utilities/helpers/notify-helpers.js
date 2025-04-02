@@ -320,6 +320,14 @@ const getReplacePersonalisation = req => {
     identity_document_attachment: getSessionValueOrDefault(
       getIdentityAttachment(req, ['TBD', 'TBD', 'TBD'])
     ),
+    has_certificate_conduct:
+        req.sessionModel.get('steps')?.includes('/upload-certificate-conduct') &&
+        parseDocumentList(req.sessionModel.get('replace-certificate-conduct'))
+            ? STR_YES
+            : STR_NO,
+    certificate_conduct_attachment: getSessionValueOrDefault(
+        parseDocumentList(req.sessionModel.get('replace-certificate-conduct'))
+    ),
     has_amended_address: checkYesNo(req.sessionModel.get('TBD')),
     new_address: '', // TODO: save and format new address
     date_moved_to:
@@ -433,6 +441,14 @@ const getAmendPersonalisation = req => {
         'amend-EU-passport-number',
         'amend-Uk-driving-licence-number'
       ])
+    ),
+    has_certificate_conduct:
+        req.sessionModel.get('steps')?.includes('/upload-certificate-conduct') &&
+        parseDocumentList(req.sessionModel.get('amend-certificate-conduct'))
+            ? STR_YES
+            : STR_NO,
+    certificate_conduct_attachment: getSessionValueOrDefault(
+        parseDocumentList(req.sessionModel.get('amend-certificate-conduct'))
     ),
     has_amended_address: checkYesNo(
       req.sessionModel.get('amend-home-address-options')
