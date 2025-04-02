@@ -29,6 +29,8 @@ const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator'
 const SaveAddress = require('../epp-common/behaviours/save-home-other-address');
 const SaveCounterSignatoryAddress = require('../epp-common/behaviours/save-countersignatory-address');
 
+const NoPrecursorOrPoison = require('../epp-common/behaviours/no-precursor-poison-navigate');
+
 module.exports = {
   name: 'EPP form',
   fields: 'apps/epp-new/fields',
@@ -555,7 +557,7 @@ module.exports = {
       }
     },
     '/explosives-precursors': {
-      fields: [],
+      fields: ['new-renew-regulated-explosives-precursors'],
       next: '/select-precursor',
       locals: {
         sectionNo: {
@@ -594,14 +596,28 @@ module.exports = {
       }
     },
     '/poisons': {
-      next: '/select-poison',
+      behaviours: [NoPrecursorOrPoison],
+      fields: ['new-renew-poisons-options'],
+      forks: [
+        {
+          target: '/countersignatory-details',
+          continueOnEdit: false,
+          condition: {
+            field: 'new-renew-poisons-options',
+            value: 'no'
+          }
+        }
+      ],
+      continueOnEdit: true,
       locals: {
         sectionNo: {
           new: 14,
           renew: 15
         }
-      }
+      },
+      next: '/select-poison'
     },
+    '/no-poisons-or-precursors': {},
     '/select-poison': {
       next: '/poison-details',
       locals: {
