@@ -451,10 +451,11 @@ const getAmendPersonalisation = req => {
     address_proof_attachments: getSessionValueOrDefault(
       parseDocumentList(req.sessionModel.get('amend-proof-address'))
     ),
-    has_amended_substances: STR_YES, // TODO: Page to be developed
-    explosive_precursor: '', // TODO: from section summary
-    has_amended_poisons: STR_YES, // TODO: Page to be developed
-    poison_list: '', // TODO: from summary page
+    has_amended_substances: checkYesNo(req.sessionModel.get('amend-change-substances-options')),
+    has_amended_precursor: checkYesNo(req.sessionModel.get('amend-regulated-explosives-precursors')),
+    explosive_precursor: '', // TODO: Format and display
+    has_amended_poisons: checkYesNo(req.sessionModel.get('amend-poisons-option')),
+    poison_list: '', // TODO: Format and display
     has_countersignatory_details: hasValue(
       hasCountersignatoryDetails(req, APP_TYPE_AMEND)
     ),
