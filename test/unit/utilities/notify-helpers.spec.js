@@ -140,6 +140,20 @@ describe('notify-helpers tests', () => {
       const result = formatSectionSummaryItems(items);
       expect(result).to.equal(expectedOutput);
     });
+
+    it('should return the formatted date for date field', () => {
+      const items = {
+        aggregatedValues: [
+          {
+            fields: [
+              { field: 'new-renew-other-name-start-date', parsed: '2000-01-01' }
+            ]
+          }
+        ]
+      };
+      const result = formatSectionSummaryItems(items);
+      expect(result).to.equal('01 January 2000');
+    });
   });
 
   describe('parseDocumentList tests', () => {

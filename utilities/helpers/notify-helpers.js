@@ -58,9 +58,22 @@ const getPdfTitle = req => {
  * fields separated by newlines and sections separated by "\n\n ---\n^".
  */
 const formatSectionSummaryItems = items => {
+  const dateFields = [
+    'new-renew-other-name-start-date',
+    'new-renew-other-name-stop-date'
+  ];
   return items
     ? items.aggregatedValues
-        .map(({ fields }) => fields.map(({ parsed }) => parsed).join('\n'))
+        .map(({ fields }) =>
+          fields
+            .map(({ field, parsed }) => {
+              if (dateFields.includes(field)) {
+                return getFormattedDate(parsed);
+              }
+              return parsed;
+            })
+            .join('\n')
+        )
         .join('\n\n ---\n^')
     : '';
 };
