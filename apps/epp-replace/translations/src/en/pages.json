@@ -172,6 +172,14 @@
     "make-change-application": "If you need to make changes to your application",
     "p6": "If you need to make changes to your replacement application or have any questions, contact"
   },
+  "change-substances": {
+    "header": "Change in substances",
+    "paragraph1": "You must amend the substances on your licence if you:",
+    "paragraph4": "Tell us about any:",
+    "listElement1": "need to add or remove substances you can acquire, possess or use",
+    "listElement2": "need to change the concentration or volume of substances that your licence covers",
+    "listElement3": "have changed your storage or usage address since your current licence was issued"
+  },
   "select-precursor": {
     "header": "Explosives precursors",
     "p1": "Tell us which explosives precursors you want to import acquire use or possess.",
@@ -186,6 +194,9 @@
       },
       "replace-home-address-options": {
         "header": "Amend address"
+      },
+      "replace-change-substances": {
+        "header": "Amend substances"
       },
       "home-address-details": {
         "header": "Address on licence"

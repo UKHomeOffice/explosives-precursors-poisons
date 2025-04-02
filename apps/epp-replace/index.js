@@ -268,7 +268,24 @@ module.exports = {
     },
     '/change-substances': {
       behaviour: [NavigateNoChanges],
-      next: '/explosives-precursors'
+      fields: ['replace-change-substances'],
+      locals: { captionHeading: 'Section 16 of 26' },
+      forks: [
+        {
+          target: '/change-substances',
+          condition: {
+            field: 'replace-change-substances',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/countersignatory-details',
+          condition: {
+            field: 'replace-change-substances',
+            value: 'no'
+          }
+        }
+      ]
     },
     '/explosives-precursors': {
       next: '/select-precursor'

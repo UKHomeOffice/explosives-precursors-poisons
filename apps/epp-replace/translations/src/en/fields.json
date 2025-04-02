@@ -81,6 +81,17 @@
           "none_selected": "Select"
         }
       },
+      "replace-change-substances": {
+        "legend": "Do you need to amend the substances on your licence?",
+        "options": {
+          "yes": {
+            "label": "Yes"
+          },
+          "no": {
+            "label": "No"
+          }
+        }
+      },
       "replace-new-date-moved-to-address": {
           "legend": "When did you move to this address?",
           "hint": " For example, 30 09 1969"
