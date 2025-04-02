@@ -762,7 +762,8 @@ module.exports = {
     '/application-submitted': {
       sections: require('./sections/summary-data-sections'),
       behaviours: [SummaryPageBehaviour, GetPaymentInfo],
-      backLink: false
+      backLink: false,
+      clearSession: true
     },
     '/exit': {}
   }
