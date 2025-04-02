@@ -95,7 +95,7 @@ const parseDocumentList = documents => {
 const getLabel = (fieldKey, fieldValue, translation) => {
   if (Array.isArray(fieldValue)) {
     return fieldValue
-      .map(option => translation[fieldKey].options[option].label)
+      .map(option => translation[fieldKey]?.options[option]?.label)
       .join(', ');
   }
   return translation[fieldKey]?.options[fieldValue]?.label;
@@ -173,6 +173,9 @@ const getUserEmail = applicationType => {
  * or an empty string if no matching document is found.
  */
 const getIdentityAttachment = (req, idFields) => {
+  if (!Array.isArray(idFields) || !req) {
+    return '';
+  }
   const fieldMap = {
     'new-renew-UK-passport-number': 'new-renew-british-passport',
     'new-renew-EU-passport-number': 'new-renew-eu-passport',
