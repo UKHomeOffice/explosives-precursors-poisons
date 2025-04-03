@@ -250,7 +250,7 @@
    },
    "replace-new-county": {
      "maxlength": "County, state or province must be between 2 and 250 characters",
-     "minlength": "County, state, province must be between 2 and 250 characters",
+     "minlength": "County, state or province must be between 2 and 250 characters",
      "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
    },
    "replace-new-postcode": {
