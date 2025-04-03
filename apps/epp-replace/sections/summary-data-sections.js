@@ -290,7 +290,7 @@ module.exports = {
     steps: [
       {
         step: '/select-poisons',
-        field: 'replace-poison'
+        field: 'poison-field'
       }
     ]
   },

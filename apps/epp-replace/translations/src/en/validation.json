@@ -132,7 +132,7 @@
     "required": "Enter your countersignatory's email address",
     "email": "Enter a real email address"
   },
-  "replace-poison": {
+  "poison-field": {
     "required": "Select a poison"
   },
 "replace-countersignatory-Id-type": {

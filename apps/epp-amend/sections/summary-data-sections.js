@@ -311,7 +311,7 @@ module.exports = {
           if (!list?.aggregatedValues) { return null; }
           for(const item of list.aggregatedValues) {
             item.fields.map(element => {
-              if(element.field === 'amend-display-poison-title') {
+              if(element.field === 'display-poison-title') {
                 element.parsed = item.joinTitle;
               }else{
                 element.field;

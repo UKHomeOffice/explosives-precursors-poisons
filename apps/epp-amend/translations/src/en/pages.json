@@ -343,7 +343,7 @@
       "poison-field": {
         "label": "Poison"
       },
-      "amend-display-poison-title": {
+      "display-poison-title": {
          "label": "Poison name"
       },
       "why-need-poison": {

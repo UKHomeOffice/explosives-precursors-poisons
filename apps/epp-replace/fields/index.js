@@ -159,7 +159,7 @@ module.exports = {
     className: ['govuk-input'],
     labelClassName: 'govuk-label--m'
   },
-  'replace-poison': {
+  'poison-field': {
     mixin: 'select',
     validate: ['required'],
     labelClassName: 'visuallyhidden',
@@ -167,7 +167,7 @@ module.exports = {
     options: [
       {
         value: '',
-        label: 'fields.replace-poison.options.none_selected'
+        label: 'fields.poison-field.options.none_selected'
       }
     ].concat(poisonsList)
   },

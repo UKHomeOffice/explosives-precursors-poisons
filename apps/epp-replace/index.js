@@ -285,12 +285,12 @@ module.exports = {
       next: '/select-poisons'
     },
     '/select-poisons': {
-      fields: ['replace-poison'],
+      fields: ['poison-field'],
       next: '/poison-details',
       locals: { captionHeading: 'Section 20 of 26' }
     },
     '/poison-details': {
-      behaviours: [RenderPoisonDetails('replace-poison')],
+      behaviours: [RenderPoisonDetails('poison-field')],
       fields: [
         'why-need-poison',
         'how-much-poison',

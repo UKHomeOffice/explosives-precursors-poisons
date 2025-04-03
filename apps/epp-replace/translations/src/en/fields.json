@@ -115,7 +115,7 @@
       }
     }
   },
-  "replace-poison": {
+  "poison-field": {
     "hint": "Select a poison",
     "options": {
       "none_selected": "Select poison"

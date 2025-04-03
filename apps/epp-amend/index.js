@@ -388,7 +388,7 @@ module.exports = {
       ],
       aggregateTo: 'poisons-details-aggregate',
       aggregateFrom: [
-        'amend-display-poison-title',
+        'display-poison-title',
         'why-need-poison',
         'how-much-poison',
         'compound-or-salt',
