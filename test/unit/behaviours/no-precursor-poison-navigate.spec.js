@@ -29,7 +29,7 @@ describe('NoPrecursorOrPoison behaviour tests', () => {
       req.sessionModel.set = sinon.stub();
       req.sessionModel.get.withArgs('new-renew-poisons-options').returns('no');
       req.sessionModel.get
-        .withArgs('new-renew-regulated-explosives-precursors')
+        .withArgs('new-renew-regulated-explosives-precursors-options')
         .returns('no');
       req.originalUrl = '/test-url';
       req.baseUrl = '/base-url';
@@ -51,7 +51,7 @@ describe('NoPrecursorOrPoison behaviour tests', () => {
       req.sessionModel.get = sinon.stub();
       req.sessionModel.get.withArgs('new-renew-poisons-options').returns('yes');
       req.sessionModel.get
-        .withArgs('new-renew-regulated-explosives-precursors')
+        .withArgs('new-renew-regulated-explosives-precursors-options')
         .returns('no');
 
       instance.successHandler(req, res, next);

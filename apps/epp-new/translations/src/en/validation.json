@@ -373,5 +373,8 @@
   },
   "new-renew-poisons-options": {
     "required": "Select if your licence needs to cover poisons"
+  },
+  "new-renew-regulated-explosives-precursors-options": {
+    "required": "Select if your licence needs to cover explosives precursors"
   }
 }

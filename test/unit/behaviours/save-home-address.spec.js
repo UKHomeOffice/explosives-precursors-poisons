@@ -1,4 +1,4 @@
-const SaveHomeAddress = require('../../../apps/epp-common/behaviours/save-home-address');
+const SaveAddress = require('../../../apps/epp-common/behaviours/save-home-other-address');
 
 describe('Tests for save home address behaviour', () => {
   class Base {
@@ -19,7 +19,7 @@ describe('Tests for save home address behaviour', () => {
     beforeEach(() => {
       sinon.stub(Base.prototype, 'saveValues').returns(req, res, next);
       const addressFields = ['address-field-1', 'address-field-2'];
-      instance = new (SaveHomeAddress(addressFields)(Base))();
+      instance = new (SaveAddress(addressFields, 'home')(Base))();
     });
 
     it('init - saveValues', () => {
