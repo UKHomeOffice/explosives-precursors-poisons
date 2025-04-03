@@ -399,7 +399,7 @@ module.exports = {
     options: ['yes', 'no'],
     validate: 'required'
   },
-  'amend-poison': {
+  'poison-field': {
     mixin: 'select',
     validate: ['required'],
     labelClassName: 'visuallyhidden',
@@ -407,7 +407,7 @@ module.exports = {
     options: [
       {
         value: '',
-        label: 'fields.amend-poison.options.none_selected'
+        label: 'fields.poison-field.options.none_selected'
       }
     ].concat(poisonsList)
   },

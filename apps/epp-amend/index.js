@@ -359,13 +359,13 @@ module.exports = {
       locals: { captionHeading: 'Section 16 of 23' }
     },
     '/select-poisons': {
-      fields: ['amend-poison'],
+      fields: ['poison-field'],
       next: '/poison-details',
       continueOnEdit: true,
       locals: { captionHeading: 'Section 17 of 23' }
     },
     '/poison-details': {
-      behaviours: [RenderPoisonDetails('amend-poison')],
+      behaviours: [RenderPoisonDetails('poison-field')],
       fields: [
         'why-need-poison',
         'how-much-poison',
@@ -396,7 +396,7 @@ module.exports = {
         'where-to-store-poison',
         'where-to-use-poison'
       ],
-      titleField: ['amend-poison'],
+      titleField: ['poison-field'],
       addStep: 'select-poisons',
       addAnotherLinkText: 'poison',
       continueOnEdit: false,

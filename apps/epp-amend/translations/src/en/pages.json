@@ -151,7 +151,7 @@
     "p2": "If you need multiple poisons, you can add each one separately."
   },
   "poison-details":{
-    "header": "{{values.amend-poison}}"
+    "header": "{{values.poison-field}}"
   },
   "poison-summary": {
     "header": "Poisons on your licence"
@@ -340,7 +340,7 @@
       "amend-regulated-explosives-precursors": {
         "label": "Does your licence need to cover explosives precursors?"
       },
-      "amend-poison": {
+      "poison-field": {
         "label": "Poison"
       },
       "amend-display-poison-title": {

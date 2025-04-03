@@ -57,10 +57,10 @@ module.exports = superclass => class extends superclass {
 
 
       if(!isTitleField && itemTitle.length === 0 && req.originalUrl.includes('/precursors-summary')) {
-        itemTitle.push(getSubstanceShortLabel(req.sessionModel.get('amend-precursor-field'), SUBSTANCES.PRECURSOR));
+        itemTitle.push(getSubstanceShortLabel(req.sessionModel.get('precursor-field'), SUBSTANCES.PRECURSOR));
       }
       if(!isTitleField && itemTitle.length === 0 && req.originalUrl.includes('/poison-summary')) {
-        itemTitle.push(getSubstanceShortLabel(req.sessionModel.get('amend-poison'), SUBSTANCES.POISON));
+        itemTitle.push(getSubstanceShortLabel(req.sessionModel.get('poison-field'), SUBSTANCES.POISON));
       }
 
       fields.push({

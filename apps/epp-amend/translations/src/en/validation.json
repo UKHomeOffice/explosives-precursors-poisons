@@ -207,7 +207,7 @@
   "amend-poisons-option": {
     "required": "Select if your licence needs to cover poisons"
   },
-  "amend-poison":{
+  "poison-field":{
     "required": "Select a poison"
   },
   "why-need-poison": {
