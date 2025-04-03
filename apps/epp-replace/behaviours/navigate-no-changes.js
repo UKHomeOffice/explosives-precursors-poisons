@@ -3,7 +3,6 @@ module.exports = superclass =>
     successHandler(req, res, next) {
       const fields = [
         'replace-home-address-options',
-        'replace-explosive-precusor-type',
         'replace-replace-type',
         'replace-change-substances'
       ];

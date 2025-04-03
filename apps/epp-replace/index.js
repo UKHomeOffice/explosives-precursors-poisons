@@ -279,7 +279,7 @@ module.exports = {
           }
         },
         {
-          target: '/precursor-details',
+          target: '/countersignatory-details',
           condition: {
             field: 'replace-change-substances',
             value: 'no'
