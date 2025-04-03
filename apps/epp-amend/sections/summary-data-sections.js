@@ -1,7 +1,9 @@
 'use strict';
 const config = require('../../../config');
 const {
-  isDateOlderOrEqualTo
+  isDateOlderOrEqualTo,
+  displayOptionalField,
+  formatAttachments
 } = require('../../../utilities/helpers');
 const dateFormatter = new Intl.DateTimeFormat(
   config.dateLocales,
@@ -29,7 +31,9 @@ module.exports = {
       },
       {
         step: '/name-on-licence',
-        field: 'amend-middlename'
+        field: 'amend-middlename',
+        parse: (value, req) =>
+          displayOptionalField(req, '/name-on-licence', value)
       },
       {
         step: '/name-on-licence',
@@ -54,7 +58,8 @@ module.exports = {
       },
       {
         step: '/home-address',
-        field: 'amend-address-2'
+        field: 'amend-address-2',
+        parse: (value, req) => displayOptionalField(req, '/home-address', value)
       },
       {
         step: '/home-address',
@@ -62,11 +67,13 @@ module.exports = {
       },
       {
         step: '/home-address',
-        field: 'amend-county'
+        field: 'amend-county',
+        parse: (value, req) => displayOptionalField(req, '/home-address', value)
       },
       {
         step: '/home-address',
-        field: 'amend-postcode'
+        field: 'amend-postcode',
+        parse: (value, req) => displayOptionalField(req, '/home-address', value)
       },
       {
         step: '/home-address',
@@ -106,7 +113,8 @@ module.exports = {
       },
       {
         step: '/new-name',
-        field: 'amend-new-middlename'
+        field: 'amend-new-middlename',
+        parse: (value, req) => displayOptionalField(req, '/new-name', value)
       },
       {
         step: '/new-name',
@@ -136,66 +144,26 @@ module.exports = {
       {
         step: '/upload-british-passport',
         field: 'amend-british-passport',
-        parse: (documents, req) => {
-          if (
-            req.sessionModel
-              .get('steps')
-              .includes('/upload-british-passport') &&
-            documents?.length > 0
-          ) {
-            return documents.map(file => file.name);
-          }
-
-          return null;
-        }
+        parse: (documents, req) =>
+          formatAttachments(documents, req, '/upload-british-passport')
       },
       {
         step: '/upload-passport',
         field: 'amend-eu-passport',
-        parse: (documents, req) => {
-          if (
-            req.sessionModel
-              .get('steps')
-              .includes('/upload-passport') &&
-            documents?.length > 0
-          ) {
-            return documents.map(file => file.name);
-          }
-
-          return null;
-        }
+        parse: (documents, req) =>
+          formatAttachments(documents, req, '/upload-passport')
       },
       {
         step: '/upload-certificate-conduct',
         field: 'amend-certificate-conduct',
-        parse: (documents, req) => {
-          if (
-            req.sessionModel
-              .get('steps')
-              .includes('/upload-certificate-conduct') &&
-            documents?.length > 0
-          ) {
-            return documents.map(file => file.name);
-          }
-
-          return null;
-        }
+        parse: (documents, req) =>
+          formatAttachments(documents, req, '/upload-certificate-conduct')
       },
       {
         step: '/upload-driving-licence',
         field: 'amend-uk-driving-licence',
-        parse: (documents, req) => {
-          if (
-            req.sessionModel
-              .get('steps')
-              .includes('/upload-driving-licence') &&
-            documents?.length > 0
-          ) {
-            return documents.map(file => file.name);
-          }
-
-          return null;
-        }
+        parse: (documents, req) =>
+          formatAttachments(documents, req, '/upload-driving-licence')
       }
     ]
   },
@@ -215,7 +183,8 @@ module.exports = {
       },
       {
         step: '/new-address',
-        field: 'amend-new-address-2'
+        field: 'amend-new-address-2',
+        parse: (value, req) => displayOptionalField(req, '/new-address', value)
       },
       {
         step: '/new-address',
@@ -223,11 +192,13 @@ module.exports = {
       },
       {
         step: '/new-address',
-        field: 'amend-new-county'
+        field: 'amend-new-county',
+        parse: (value, req) => displayOptionalField(req, '/new-address', value)
       },
       {
         step: '/new-address',
-        field: 'amend-new-postcode'
+        field: 'amend-new-postcode',
+        parse: (value, req) => displayOptionalField(req, '/new-address', value)
       },
       {
         step: '/new-address',
@@ -241,18 +212,8 @@ module.exports = {
       {
         step: '/upload-proof-address',
         field: 'amend-proof-address',
-        parse: (documents, req) => {
-          if (
-            req.sessionModel
-              .get('steps')
-              .includes('/upload-proof-address') &&
-            documents?.length > 0
-          ) {
-            return documents.map(file => file?.name)?.join('\n\n');
-          }
-
-          return null;
-        }
+        parse: (documents, req) =>
+          formatAttachments(documents, req, '/upload-proof-address')
       }
     ]
   },
@@ -278,12 +239,14 @@ module.exports = {
         step: '/precursors-summary',
         field: 'precursors-details-aggregate',
         parse: list => {
-          if (!list?.aggregatedValues) { return null; }
-          for(const item of list.aggregatedValues) {
+          if (!list?.aggregatedValues) {
+            return null;
+          }
+          for (const item of list.aggregatedValues) {
             item.fields.map(element => {
-              if(element.field === 'amend-display-precursor-title') {
+              if (element.field === 'amend-display-precursor-title') {
                 element.parsed = item.joinTitle;
-              }else{
+              } else {
                 element.field;
                 element.omitChangeLink = true;
               }
@@ -337,7 +300,8 @@ module.exports = {
       {
         step: '/countersignatory-details',
         field: 'amend-countersignatory-middlename',
-        parse: value => value || 'Not provided'
+        parse: (value, req) =>
+          displayOptionalField(req, '/countersignatory-details', value)
       },
       {
         step: '/countersignatory-details',
@@ -362,7 +326,8 @@ module.exports = {
       {
         step: '/countersignatory-address',
         field: 'amend-countersignatory-address-2',
-        parse: value => value || 'Not provided'
+        parse: (value, req) =>
+          displayOptionalField(req, '/countersignatory-address', value)
       },
       {
         step: '/countersignatory-address',
@@ -404,7 +369,10 @@ module.exports = {
             req.sessionModel.get('steps').includes('/birth-certificate') &&
             documents?.length > 0 &&
             req.sessionModel.get('amend-date-of-birth') &&
-            !isDateOlderOrEqualTo(req.sessionModel.get('amend-date-of-birth'), 18)
+            !isDateOlderOrEqualTo(
+              req.sessionModel.get('amend-date-of-birth'),
+              18
+            )
           ) {
             return documents.map(file => file?.name)?.join('\n\n');
           }

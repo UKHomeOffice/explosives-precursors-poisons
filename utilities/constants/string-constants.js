@@ -6,6 +6,7 @@ const PATH_PAYMENT_FAILED = '/payment-failed';
 const PATH_PAYMENT_CANCELLED = '/payment-cancelled';
 const PATH_APPLICATION_SUBMITTED = '/application-submitted';
 const PATH_REPLACE_APPLICATION_SUBMITTED = '/replace-application-submitted';
+const PATH_APPLICATION_TYPE = '/application-type';
 
 const APP_TYPE_NEW = 'new';
 const APP_TYPE_RENEW = 'renew';
@@ -47,5 +48,6 @@ module.exports = {
   GOV_PAY_ERROR_CODE_P0010,
   GOV_PAY_STATUS_SUCCESS,
   API_METHODS,
-  SUBSTANCES
+  SUBSTANCES,
+  PATH_APPLICATION_TYPE
 };

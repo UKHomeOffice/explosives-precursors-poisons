@@ -26,7 +26,7 @@ const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator');
 
-const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
+const SaveAddress = require('../epp-common/behaviours/save-home-other-address');
 const SaveCounterSignatoryAddress = require('../epp-common/behaviours/save-countersignatory-address');
 
 const NoPrecursorOrPoison = require('../epp-common/behaviours/no-precursor-poison-navigate');
@@ -164,14 +164,14 @@ module.exports = {
     '/home-address': {
       behaviours: [
         PostcodeValidation,
-        SaveHomeAddress([
+        SaveAddress([
           'new-renew-home-address-line1',
           'new-renew-home-address-line2',
           'new-renew-home-address-town',
           'new-renew-home-address-county',
           'new-renew-home-address-postcode',
           'new-renew-home-address-country'
-        ])
+        ], 'home')
       ],
       fields: [
         'new-renew-home-address-line1',
@@ -762,7 +762,8 @@ module.exports = {
     '/application-submitted': {
       sections: require('./sections/summary-data-sections'),
       behaviours: [SummaryPageBehaviour, GetPaymentInfo],
-      backLink: false
+      backLink: false,
+      clearSession: true
     },
     '/exit': {}
   }
