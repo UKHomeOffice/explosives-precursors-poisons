@@ -302,11 +302,25 @@ module.exports = {
       }
     ]
   },
-  'amend-select-poisons': {
+  'amend-poison-details': {
     steps: [
       {
-        step: '/select-poisons',
-        field: 'amend-poison'
+        step: '/poison-summary',
+        field: 'poisons-details-aggregate',
+        parse: list => {
+          if (!list?.aggregatedValues) { return null; }
+          for(const item of list.aggregatedValues) {
+            item.fields.map(element => {
+              if(element.field === 'amend-display-poison-title') {
+                element.parsed = item.joinTitle;
+              }else{
+                element.field;
+                element.omitChangeLink = true;
+              }
+            });
+          }
+          return list;
+        }
       }
     ]
   },
