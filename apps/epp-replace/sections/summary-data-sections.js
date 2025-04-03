@@ -226,6 +226,14 @@ module.exports = {
       }
     ]
   },
+  'replace-change-substances': {
+    steps: [
+      {
+        step: '/change-substances',
+        field: 'replace-change-substances'
+      }
+    ]
+  },
   'applicant-name': {
     steps: [
       {
