@@ -346,22 +346,22 @@
       "amend-display-poison-title": {
          "label": "Poison name"
       },
-      "amend-why-need-poison": {
+      "why-need-poison": {
         "label": "For what purpose do you need this regulated substance?"
       },
-      "amend-how-much-poison": {
+      "how-much-poison": {
         "label": "How much do you wish to acquire?"
       },
-      "amend-compound-or-salt": {
+      "compound-or-salt": {
         "label": "Specific compound or salt"
       },
-      "amend-what-concentration-poison": {
+      "what-concentration-poison": {
         "label": "What concentration % w/w of the substance do you need for your intended purpose?"
       },
-      "amend-where-to-store-poison": {
+      "where-to-store-poison": {
         "label":"Storage address"
       },
-      "amend-where-to-use-poison": {
+      "where-to-use-poison": {
         "label": "Usage address"
       },
       "amend-countersignatory-middlename": {

@@ -35,31 +35,31 @@
 "replace-licence": {
   "required": "Select why you need a replacement licence"
 },
-"replace-why-need-poison": {
+"why-need-poison": {
     "required": "Explain why you need this poison",
     "textAreaDefaultLength": "Reason why you need this poison must be less than 2,000 characters",
     "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
-  "replace-how-much-poison": {
+  "how-much-poison": {
     "required": "Enter how much of poison you wish to acquire at any one time",
     "maxlength": "Quantity of the explosive precursor you wish to acquire must be 250 characters or less",
     "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
-  "replace-compound-or-salt": {
+  "compound-or-salt": {
      "required": "Enter the specific compound or salt",
      "textAreaDefaultLength": " Specific compound or salt must be less than 2,000 characters",
      "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
-  "replace-what-concentration-poison": {
+  "what-concentration-poison": {
     "required": "Enter what concentration % w/w you need",
     "isValidConcentrationValue" : "Concentration % w/w must only include numbers or special characters",
     "maxlength": "Concentration % w/w must be 250 characters or less",
     "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
-  "replace-where-to-store-poison": {
+  "where-to-store-poison": {
     "required": "Select where you will store the poison"
   },
-  "replace-where-to-use-poison": {
+  "where-to-use-poison": {
     "required": "Select where you will use the poison"
   },
   "store-poison-other-address": {

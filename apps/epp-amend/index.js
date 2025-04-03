@@ -367,12 +367,12 @@ module.exports = {
     '/poison-details': {
       behaviours: [RenderPoisonDetails('amend-poison')],
       fields: [
-        'amend-why-need-poison',
-        'amend-how-much-poison',
-        'amend-compound-or-salt',
-        'amend-what-concentration-poison',
-        'amend-where-to-store-poison',
-        'amend-where-to-use-poison',
+        'why-need-poison',
+        'how-much-poison',
+        'compound-or-salt',
+        'what-concentration-poison',
+        'where-to-store-poison',
+        'where-to-use-poison',
         'store-poison-other-address',
         'poison-use-other-address'
       ],
@@ -389,12 +389,12 @@ module.exports = {
       aggregateTo: 'poisons-details-aggregate',
       aggregateFrom: [
         'amend-display-poison-title',
-        'amend-why-need-poison',
-        'amend-how-much-poison',
-        'amend-compound-or-salt',
-        'amend-what-concentration-poison',
-        'amend-where-to-store-poison',
-        'amend-where-to-use-poison'
+        'why-need-poison',
+        'how-much-poison',
+        'compound-or-salt',
+        'what-concentration-poison',
+        'where-to-store-poison',
+        'where-to-use-poison'
       ],
       titleField: ['amend-poison'],
       addStep: 'select-poisons',

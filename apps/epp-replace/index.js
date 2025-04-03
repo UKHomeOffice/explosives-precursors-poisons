@@ -292,12 +292,12 @@ module.exports = {
     '/poison-details': {
       behaviours: [RenderPoisonDetails('replace-poison')],
       fields: [
-        'replace-why-need-poison',
-        'replace-how-much-poison',
-        'replace-compound-or-salt',
-        'replace-what-concentration-poison',
-        'replace-where-to-store-poison',
-        'replace-where-to-use-poison',
+        'why-need-poison',
+        'how-much-poison',
+        'compound-or-salt',
+        'what-concentration-poison',
+        'where-to-store-poison',
+        'where-to-use-poison',
         'store-poison-other-address',
         'poison-use-other-address'
       ],

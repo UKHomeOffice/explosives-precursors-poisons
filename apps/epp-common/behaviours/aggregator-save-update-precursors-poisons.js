@@ -209,25 +209,25 @@ module.exports = superclass => class extends superclass {
     const storePoisonOtherAddress = req.sessionModel.get('store-poison-other-address');
     const poisonUseOtherAddress = req.sessionModel.get('poison-use-other-address');
     if (Array.isArray(value)) {
-      if (fieldName === 'amend-where-to-store-poison') {
+      if (fieldName === 'where-to-store-poison') {
         newValue = homeAddress?.concat('\n\n', storePoisonOtherAddress);
       }
-      if (fieldName === 'amend-where-to-use-poison') {
+      if (fieldName === 'where-to-use-poison') {
         newValue = homeAddress?.concat('\n\n', poisonUseOtherAddress);
       }
     } else {
       switch (fieldName) {
-        case 'amend-where-to-store-poison':
-          if (valueVar === 'amend-store-poison-home-address') {
+        case 'where-to-store-poison':
+          if (valueVar === 'store-poison-home-address-value') {
             newValue = homeAddress;
-          } else if (valueVar === 'amend-store-poison-other-address') {
+          } else if (valueVar === 'store-poison-other-address-value') {
             newValue = storePoisonOtherAddress;
           }
           break;
-        case 'amend-where-to-use-poison':
-          if (valueVar === 'amend-use-poison-home-address') {
+        case 'where-to-use-poison':
+          if (valueVar === 'use-poison-home-address') {
             newValue = homeAddress;
-          } else if (valueVar === 'amend-use-poison-other-address') {
+          } else if (valueVar === 'use-poison-other-address-value') {
             newValue = poisonUseOtherAddress;
           }
           break;

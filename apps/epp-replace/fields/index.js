@@ -392,25 +392,25 @@ module.exports = {
       }
     ].concat(countries)
   },
-  'replace-why-need-poison': {
+  'why-need-poison': {
     mixin: 'textarea',
     validate: ['required', 'notUrl', textAreaDefaultLength],
     attributes: [{ attribute: 'rows', value: 5 }],
     labelClassName: 'govuk-label--s'
   },
-  'replace-how-much-poison': {
+  'how-much-poison': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
     className: ['govuk-input', 'govuk-input--width-10'],
     labelClassName: 'govuk-label--s'
   },
-  'replace-compound-or-salt': {
+  'compound-or-salt': {
     mixin: 'textarea',
     validate: ['required', 'notUrl', textAreaDefaultLength],
     attributes: [{ attribute: 'rows', value: 5 }],
     labelClassName: 'govuk-label--s'
   },
-  'replace-what-concentration-poison': {
+  'what-concentration-poison': {
     mixin: 'input-text',
     validate: [
       'required',
@@ -422,7 +422,7 @@ module.exports = {
     labelClassName: 'govuk-label--s',
     attributes: [{ suffix: '%' }]
   },
-  'replace-where-to-store-poison': {
+  'where-to-store-poison': {
     mixin: 'checkbox-group',
     validate: ['required'],
     legend: {
@@ -430,10 +430,10 @@ module.exports = {
     },
     options: [
       {
-        value: 'replace-store-poison-home-address'
+        value: 'store-poison-home-address-value'
       },
       {
-        value: 'replace-store-poison-other-address',
+        value: 'store-poison-other-address-value',
         toggle: 'store-poison-other-address',
         child: 'textarea'
       }
@@ -443,12 +443,12 @@ module.exports = {
     mixin: 'textarea',
     validate: ['required', textAreaDefaultLength, 'notUrl'],
     dependent: {
-      field: 'replace-where-to-store-poison',
-      value: 'replace-store-poison-other-address'
+      field: 'where-to-store-poison',
+      value: 'store-poison-other-address-value'
     },
     attributes: [{ attribute: 'rows', value: 5 }]
   },
-  'replace-where-to-use-poison': {
+  'where-to-use-poison': {
     mixin: 'checkbox-group',
     validate: ['required'],
     legend: {
@@ -456,10 +456,10 @@ module.exports = {
     },
     options: [
       {
-        value: 'replace-use-poison-home-address'
+        value: 'use-poison-home-address'
       },
       {
-        value: 'replace-use-poison-other-address',
+        value: 'use-poison-other-address-value',
         toggle: 'poison-use-other-address',
         child: 'textarea'
       }
@@ -469,8 +469,8 @@ module.exports = {
     mixin: 'textarea',
     validate: ['required', textAreaDefaultLength, 'notUrl'],
     dependent: {
-      field: 'replace-where-to-use-poison',
-      value: 'replace-use-poison-other-address'
+      field: 'where-to-use-poison',
+      value: 'use-poison-other-address-value'
     },
     attributes: [{ attribute: 'rows', value: 5 }]
   },
