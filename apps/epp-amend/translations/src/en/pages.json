@@ -382,6 +382,9 @@
       "amend-countersignatory-address-2": {
         "label": "Address line 2 (optional)"
       },
+      "amend-countersignatory-postcode":{
+        "label": "Postcode (required for UK)"
+      },
       "amend-countersignatory-phone-number": {
         "label": "Contact phone number"
       },
