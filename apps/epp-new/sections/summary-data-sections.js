@@ -1,16 +1,12 @@
 'use strict';
 
-const config = require('../../../config');
 const {
   getFormattedDate,
   isDateOlderOrEqualTo,
   displayOptionalField,
-  formatAttachments
+  formatAttachments,
+  TEXT_NOT_PROVIDED
 } = require('../../../utilities/helpers');
-const dateFormatter = new Intl.DateTimeFormat(
-  config.dateLocales,
-  config.dateFormat
-);
 
 module.exports = {
   'your-name': {
@@ -67,7 +63,7 @@ module.exports = {
       {
         step: '/your-details',
         field: 'new-renew-dob',
-        parse: date => date && dateFormatter.format(new Date(date))
+        parse: date => date && getFormattedDate(date)
       },
       {
         step: '/your-details',
@@ -104,12 +100,22 @@ module.exports = {
       {
         step: '/other-nationalities',
         field: 'new-renew-date-fr',
-        parse: date => date ? dateFormatter.format(new Date(date)) : 'Not provided'
+        parse: (date, req) => {
+          if(req.sessionModel?.get('steps')?.includes('/other-nationalities')) {
+            return date ? getFormattedDate(date) : TEXT_NOT_PROVIDED;
+          }
+          return null;
+        }
       },
       {
         step: '/other-nationalities',
         field: 'new-renew-date-to',
-        parse: date => date ? dateFormatter.format(new Date(date)) : 'Not provided'
+        parse: (date, req) => {
+          if(req.sessionModel?.get('steps')?.includes('/other-nationalities')) {
+            return date ? getFormattedDate(date) : TEXT_NOT_PROVIDED;
+          }
+          return null;
+        }
       }
     ]
   },
@@ -145,7 +151,7 @@ module.exports = {
       {
         step: '/home-address',
         field: 'new-renew-home-address-moveto-date',
-        parse: date => date && dateFormatter.format(new Date(date))
+        parse: date => date && getFormattedDate(date)
       },
       {
         step: '/upload-proof-address',

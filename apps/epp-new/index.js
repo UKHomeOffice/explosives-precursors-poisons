@@ -134,6 +134,7 @@ module.exports = {
         {
           target: '/other-nationalities',
           condition: {
+            continueOnEdit: true,
             field: 'new-renew-more-nationalities',
             value: 'yes'
           }
