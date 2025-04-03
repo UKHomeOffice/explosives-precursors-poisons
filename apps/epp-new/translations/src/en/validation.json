@@ -368,7 +368,10 @@
   "new-renew-doctor-country": {
     "required": "Select your doctor's country of address"
   },
-  "amend-precursor-field": {
+  "precursor-field": {
     "required" : "Select an explosive precursor"
+  },
+  "new-renew-poisons-options": {
+    "required": "Select if your licence needs to cover poisons"
   }
 }

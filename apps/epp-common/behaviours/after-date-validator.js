@@ -10,7 +10,8 @@ module.exports = dobFieldName => superclass =>
         'amend-new-date-name-changed',
         'amend-new-date-moved-to-address',
         'new-renew-licence-refused-date',
-        'new-renew-offence-date'
+        'new-renew-offence-date',
+        'replace-new-date-moved-to-address'
       ];
 
       if (

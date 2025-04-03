@@ -11,6 +11,9 @@
   "new-name": {
     "header": "What is your new name?"
   },
+  "new-address": {
+    "header": "What is your new address?"
+  },
   "upload-british-passport": {
     "header": "Upload British passport",
     "label": "Upload a file",
@@ -172,6 +175,11 @@
     "make-change-application": "If you need to make changes to your application",
     "p6": "If you need to make changes to your replacement application or have any questions, contact"
   },
+  "select-precursor": {
+    "header": "Explosives precursors",
+    "p1": "Tell us which explosives precursors you want to import acquire use or possess.",
+    "p2": "If you need multiple explosives precursors, you can add each one separately."
+  },
   "confirm": {
     "header": "Check your answers",
     "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",
@@ -193,6 +201,9 @@
       },
       "licence-details": {
         "header": "Licence details"
+      },
+      "replace-new-home-address": {
+        "header": "New address"
       },
       "replace-licence": {
         "header": "Replacement reason"

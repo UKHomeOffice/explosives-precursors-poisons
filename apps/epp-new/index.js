@@ -29,6 +29,8 @@ const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator'
 const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
 const SaveCounterSignatoryAddress = require('../epp-common/behaviours/save-countersignatory-address');
 
+const NoPrecursorOrPoison = require('../epp-common/behaviours/no-precursor-poison-navigate');
+
 module.exports = {
   name: 'EPP form',
   fields: 'apps/epp-new/fields',
@@ -43,7 +45,7 @@ module.exports = {
         checkBackLink,
         RemoveEditMode,
         validateAndRedirect,
-        ResetSectionSummary('othernames', 'new-renew-other-names')
+        ResetSectionSummary(['othernames'], 'new-renew-other-names')
       ],
       fields: [
         'new-renew-title',
@@ -365,7 +367,7 @@ module.exports = {
     '/other-licences': {
       behaviours: [
         ResetSectionSummary(
-          'licenceshistory',
+          ['licenceshistory'],
           'new-renew-other-refused-licence'
         )
       ],
@@ -429,7 +431,7 @@ module.exports = {
     '/criminal-record': {
       behaviours: [
         ResetSectionSummary(
-          'criminalrecordsummary',
+          ['criminalrecordsummary'],
           'new-renew-have-criminal-record'
         )
       ],
@@ -555,7 +557,7 @@ module.exports = {
       }
     },
     '/explosives-precursors': {
-      fields: [],
+      fields: ['new-renew-regulated-explosives-precursors'],
       next: '/select-precursor',
       locals: {
         sectionNo: {
@@ -565,10 +567,7 @@ module.exports = {
       }
     },
     '/select-precursor': {
-      // Conscious decision to use the same field as amend
-      // TODO: rename to a common field if the functionality
-      // works as expected
-      fields: ['amend-precursor-field'],
+      fields: ['precursor-field'],
       next: '/precursor-details',
       locals: {
         sectionNo: {
@@ -597,14 +596,28 @@ module.exports = {
       }
     },
     '/poisons': {
-      next: '/select-poison',
+      behaviours: [NoPrecursorOrPoison],
+      fields: ['new-renew-poisons-options'],
+      forks: [
+        {
+          target: '/countersignatory-details',
+          continueOnEdit: false,
+          condition: {
+            field: 'new-renew-poisons-options',
+            value: 'no'
+          }
+        }
+      ],
+      continueOnEdit: true,
       locals: {
         sectionNo: {
           new: 14,
           renew: 15
         }
-      }
+      },
+      next: '/select-poison'
     },
+    '/no-poisons-or-precursors': {},
     '/select-poison': {
       next: '/poison-details',
       locals: {

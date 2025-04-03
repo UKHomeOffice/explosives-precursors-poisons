@@ -56,13 +56,18 @@ module.exports = superclass => class extends superclass {
       const value = req.sessionModel.get(aggregateFromField);
 
 
-      if (!isTitleField && itemTitle.length === 0) {
+      if(!isTitleField && itemTitle.length === 0 && req.originalUrl.includes('/precursors-summary')) {
         itemTitle.push(getSubstanceShortLabel(req.sessionModel.get('amend-precursor-field'), SUBSTANCES.PRECURSOR));
+      }
+      if(!isTitleField && itemTitle.length === 0 && req.originalUrl.includes('/poison-summary')) {
+        itemTitle.push(getSubstanceShortLabel(req.sessionModel.get('amend-poison'), SUBSTANCES.POISON));
       }
 
       fields.push({
         field: aggregateFromField,
-        parsed: this.parseField(aggregateFromField, value, req),
+        parsed: req.originalUrl.includes('/poison-summary') ?
+          this.parsePoisonField(aggregateFromField, value, req) :
+          this.parsePrecursorField(aggregateFromField, value, req),
         value,
         showInSummary: true,
         changeField: aggregateFromElement.changeField
@@ -158,7 +163,7 @@ module.exports = superclass => class extends superclass {
     return { redirected: true };
   }
 
-  parseField(field, value, req) {
+  parsePrecursorField(field, value, req) {
     const fieldName = field.field || field;
     const valueVar = field.value || value;
     let newValue = value;
@@ -195,6 +200,44 @@ module.exports = superclass => class extends superclass {
     }
     return parser ? parser(newValue) : newValue;
   }
+  parsePoisonField(field, value, req) {
+    const fieldName = field.field || field;
+    const valueVar = field.value || value;
+    let newValue = value;
+    const parser = req.form.options.fieldsConfig[fieldName]?.parse;
+    const homeAddress = req.sessionModel.get('homeAddressInline');
+    const storePoisonOtherAddress = req.sessionModel.get('store-poison-other-address');
+    const poisonUseOtherAddress = req.sessionModel.get('poison-use-other-address');
+    if (Array.isArray(value)) {
+      if (fieldName === 'amend-where-to-store-poison') {
+        newValue = homeAddress?.concat('\n\n', storePoisonOtherAddress);
+      }
+      if (fieldName === 'amend-where-to-use-poison') {
+        newValue = homeAddress?.concat('\n\n', poisonUseOtherAddress);
+      }
+    } else {
+      switch (fieldName) {
+        case 'amend-where-to-store-poison':
+          if (valueVar === 'amend-store-poison-home-address') {
+            newValue = homeAddress;
+          } else if (valueVar === 'amend-store-poison-other-address') {
+            newValue = storePoisonOtherAddress;
+          }
+          break;
+        case 'amend-where-to-use-poison':
+          if (valueVar === 'amend-use-poison-home-address') {
+            newValue = homeAddress;
+          } else if (valueVar === 'amend-use-poison-other-address') {
+            newValue = poisonUseOtherAddress;
+          }
+          break;
+        default:
+          break;
+      }
+    }
+    return parser ? parser(newValue) : newValue;
+  }
+
 
   locals(req, res) {
     const items = this.getAggregateArray(req);

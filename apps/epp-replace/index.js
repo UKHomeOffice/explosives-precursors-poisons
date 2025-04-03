@@ -192,7 +192,7 @@ module.exports = {
       ],
       fields: ['file-upload'],
       locals: { captionHeading: 'Section 12 of 26' },
-      next: '/upload-passport'
+      next: '/change-home-address'
     },
     '/upload-passport': {
       behaviours: [
@@ -245,14 +245,16 @@ module.exports = {
     },
     '/new-address': {
       fields: [
-        'replace-new-post-address-1',
-        'replace-new-post-address-2',
-        'replace-new-post-town-or-city',
-        'replace-new-post-county',
-        'replace-new-post-postcode',
-        'replace-new-post-country',
+        'replace-new-address-1',
+        'replace-new-address-2',
+        'replace-new-town-or-city',
+        'replace-new-county',
+        'replace-new-postcode',
+        'replace-new-country',
         'replace-new-date-moved-to-address'
       ],
+      behaviours: [AfterDateOfBirth('replace-date-of-birth'), PostcodeValidation],
+      locals: { captionHeading: 'Section 14 of 26' },
       next: '/upload-proof-address'
     },
     '/upload-proof-address': {
@@ -267,23 +269,18 @@ module.exports = {
     },
     '/change-substances': {
       behaviour: [NavigateNoChanges],
-      fields: ['replace-explosive-precusor-type'],
-      // fields: [
-      //   'replace-countersignatory-address-1',
-      //   'replace-countersignatory-address-2',
-      //   'replace-countersignatory-town-or-city',
-      //   'replace-countersignatory-postcode'
-      // ],
-      next: '/section-sixteen-type'
+      next: '/explosives-precursors'
     },
-    '/section-sixteen-type': {
-      fields: ['replace-explosive-precusor-details'],
-      next: '/section-sixteen-summary'
+    '/explosives-precursors': {
+      next: '/select-precursor'
     },
-    '/section-sixteen-summary': {
-      next: '/section-seventeen'
+    '/select-precursor': {
+      fields: ['precursor-field'],
+      continueOnEdit: true,
+      locals: { captionHeading: 'Section 18 of 26' },
+      next: '/precursor-details'
     },
-    '/section-seventeen': {
+    '/precursor-details': {
       fields: [],
       next: '/select-poisons'
     },

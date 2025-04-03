@@ -427,10 +427,21 @@
       "none_selected": "Select"
     }
   },
-  "amend-precursor-field": {
+  "precursor-field": {
     "hint": "Select an explosives precursor",
     "options":{
       "none_selected": "Select"
+    }
+  },
+  "new-renew-poisons-options": {
+    "legend":"Does your licence need to cover poisons?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
     }
   }
 }
