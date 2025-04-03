@@ -271,7 +271,7 @@ module.exports = {
           'amend-home-address-options'
         ]),
         ResetSectionSummary(
-          'precursors-details-aggregate',
+          ['precursors-details-aggregate', 'poisons-details-aggregate'],
           'amend-change-substances-options'
         )
       ],
@@ -335,6 +335,7 @@ module.exports = {
         'store-precursors-other-address',
         'precursors-use-other-address'
       ],
+      continueOnEdit: true,
       locals: { captionHeading: 'Section 15 of 23' },
       next: '/precursors-summary'
     },
@@ -365,7 +366,11 @@ module.exports = {
         CheckAndRedirect('amend-poisons-option', [
           'amend-poisons-option',
           'amend-regulated-explosives-precursors'
-        ])
+        ]),
+        ResetSectionSummary(
+          ['poisons-details-aggregate'],
+          'amend-poisons-option'
+        )
       ],
       fields: ['amend-poisons-option'],
       forks: [
@@ -373,17 +378,18 @@ module.exports = {
           target: '/select-poisons',
           continueOnEdit: true,
           condition: {
-            field: 'amend-poisons-options',
-            value: 'no'
+            field: 'amend-poisons-option',
+            value: 'yes'
           }
         }
       ],
-      next: '/select-poisons',
+      next: '/countersignatory-details',
       locals: { captionHeading: 'Section 16 of 23' }
     },
     '/select-poisons': {
       fields: ['amend-poison'],
       next: '/poison-details',
+      continueOnEdit: true,
       locals: { captionHeading: 'Section 17 of 23' }
     },
     '/poison-details': {
@@ -398,10 +404,30 @@ module.exports = {
         'store-poison-other-address',
         'poison-use-other-address'
       ],
-      next: '/poisons-summary',
+      continueOnEdit: true,
+      next: '/poison-summary',
       locals: { captionHeading: 'Section 17 of 23' }
     },
-    '/poisons-summary': {
+    '/poison-summary': {
+      behaviours: [
+        AggregateSaveEditPrecursorPoison,
+        ParseSummaryPrecursorsPoisons,
+        EditRouteReturn
+      ],
+      aggregateTo: 'poisons-details-aggregate',
+      aggregateFrom: [
+        'amend-display-poison-title',
+        'amend-why-need-poison',
+        'amend-how-much-poison',
+        'amend-compound-or-salt',
+        'amend-what-concentration-poison',
+        'amend-where-to-store-poison',
+        'amend-where-to-use-poison'
+      ],
+      titleField: ['amend-poison'],
+      addStep: 'select-poisons',
+      addAnotherLinkText: 'poison',
+      continueOnEdit: false,
       next: '/countersignatory-details',
       locals: { captionHeading: 'Section 17 of 23' }
     },

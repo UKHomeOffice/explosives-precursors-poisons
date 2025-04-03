@@ -261,10 +261,10 @@
   "amend-how-much-precursor":{
     "label": "How much do you wish to acquire at any one time within a 6-month period?",
     "hint": "Enter the amount and the unit. For example, 10 litres",
-    "summary-heading": "How much do you wish to acquire at any one time?"
+    "summary-heading": "How much do you wish to acquire at any one time within a 6-month period?"
   },
   "amend-what-concentration-precursor":{
-    "label": "What concentration % w/w do you need?",
+    "label": "What concentration % w/w of the substance do you need",
     "summary-heading": "What concentration % w/w of the substance do you need?"
   },
   "amend-where-to-store-precursor": {
@@ -305,21 +305,26 @@
   },
   "amend-why-need-poison":{
     "label": "{{values.whyNeedPoisonLabel}}",
-    "hint": "Detailed answers mean we can process your application faster"
+    "hint": "Detailed answers mean we can process your application faster",
+    "summary-heading": "{{values.whyNeedPoisonLabel}}"
   },
   "amend-how-much-poison":{
     "label": "How much do you wish to acquire at any one time within a 6-month period?",
-    "hint": "Enter the amount and the unit. For example, 10 litres"
+    "hint": "Enter the amount and the unit. For example, 10 litres",
+    "summary-heading": "How much do you wish to acquire at any one time within a 6-month period?"
   },
   "amend-compound-or-salt": {
-    "label": "Specific compound or salt"
+    "label": "Specific compound or salt",
+    "summary-heading": "Specific compound or salt"
   },
   "amend-what-concentration-poison":{
-    "label": "What concentration % w/w of the substance do you need?"
+    "label": "What concentration % w/w of the substance do you need?",
+    "summary-heading": "What concentration % w/w of the substance do you need?"
   },
   "amend-where-to-store-poison": {
     "legend": "{{values.whereToStorePoisonLegend}}",
     "hint": "This must be in the UK",
+    "summary-heading": "{{values.whereToStorePoisonLegend}}",
     "options": {
       "amend-store-poison-home-address": {
         "label": "{{values.homeAddressInline}}"
@@ -336,6 +341,7 @@
   "amend-where-to-use-poison": {
     "legend": "{{values.whereToUsePoisonLegend}}",
     "hint": "This must be in the UK",
+    "summary-heading": "{{values.whereToUsePoisonLegend}}",
     "options": {
       "amend-use-poison-home-address": {
         "label": "{{values.homeAddressInline}}"

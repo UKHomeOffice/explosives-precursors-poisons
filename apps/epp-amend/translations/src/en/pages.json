@@ -136,7 +136,7 @@
     "header": "{{values.precursor-field}}"
   },
   "precursors-summary": {
-    "header": "Poisons on your licence"
+    "header": "Explosives precursors on your licence"
   },
   "poisons": {
     "header": "Regulated poisons",
@@ -152,6 +152,9 @@
   },
   "poison-details":{
     "header": "{{values.amend-poison}}"
+  },
+  "poison-summary": {
+    "header": "Poisons on your licence"
   },
   "no-poisons-or-precursors": {
     "header": "The explosives precursors and poisons on your licence will not change",
@@ -230,7 +233,7 @@
       "amend-licence-for-poisons": {
         "header": "Licence for poisons"
       },
-      "amend-select-poisons": {
+      "amend-poison-details": {
         "header": " Poisons"
       }
     },
@@ -337,6 +340,30 @@
       "amend-regulated-explosives-precursors": {
         "label": "Does your licence need to cover explosives precursors?"
       },
+      "amend-poison": {
+        "label": "Poison"
+      },
+      "amend-display-poison-title": {
+         "label": "Poison name"
+      },
+      "amend-why-need-poison": {
+        "label": "For what purpose do you need this regulated substance?"
+      },
+      "amend-how-much-poison": {
+        "label": "How much do you wish to acquire?"
+      },
+      "amend-compound-or-salt": {
+        "label": "Specific compound or salt"
+      },
+      "amend-what-concentration-poison": {
+        "label": "What concentration % w/w of the substance do you need for your intended purpose?"
+      },
+      "amend-where-to-store-poison": {
+        "label":"Storage address"
+      },
+      "amend-where-to-use-poison": {
+        "label": "Usage address"
+      },
       "amend-countersignatory-middlename": {
         "label": "Middle name(s) (optional)"
       },
@@ -360,9 +387,6 @@
       },
       "amend-birth-certificate": {
         "label": "Birth certificate attachment"
-      },
-      "amend-poison": {
-        "label": "Poisons"
       },
       "amend-countersignatory-Id-type": {
         "label": "Identification document"
