@@ -72,24 +72,14 @@
         "label": "County, state, province (optional)"
       },
       "replace-new-postcode": {
-        "label": "Postcode (required for UK)",
+        "label": "Postcode (optional)",
         "hint": "Postcode is optional if your address is outside the UK"
       },
       "replace-new-country": {
-        "label": "Country",
+        "label": "Country of address",
+        "hint": "Select a country from the list",
         "options": {
           "none_selected": "Select"
-        }
-      },
-      "replace-change-substances": {
-        "legend": "Do you need to amend the substances on your licence?",
-        "options": {
-          "yes": {
-            "label": "Yes"
-          },
-          "no": {
-            "label": "No"
-          }
         }
       },
       "replace-new-date-moved-to-address": {
