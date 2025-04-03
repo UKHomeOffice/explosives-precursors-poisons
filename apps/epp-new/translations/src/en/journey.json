@@ -3,5 +3,6 @@
   "phase": "beta",
   "serviceNameNew": "Apply for an explosives and precursor chemicals licence",
   "serviceNameRenew": "Renew an explosives and precursor chemicals licence",
-  "error": "Error"
+  "error": "Error",
+  "medical-declarations-text": "I have read and agree to the medical declaration"
 }

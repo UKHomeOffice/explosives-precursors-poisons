@@ -282,12 +282,12 @@
    "replace-new-town-or-city": {
      "required": "Enter town or city",
      "maxlength": "Town or city must be between 2 and 250 characters",
-     "minlength": "Address line 2 must be between 2 and 250 characters",
+     "minlength": "Town or city must be between 2 and 250 characters",
      "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
    },
    "replace-new-county": {
      "maxlength": "County, state or province must be between 2 and 250 characters",
-     "minlength": "Address line 2 must be between 2 and 250 characters",
+     "minlength": "County, state or province must be between 2 and 250 characters",
      "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
    },
    "replace-new-postcode": {
@@ -302,5 +302,8 @@
        "date": "Enter a real date",
        "before": "Date you moved to this address must be in the past",
        "after": "Date you moved to this address must be after {{diff}}, your date of birth"
+   },
+   "replace-change-substances": {
+       "required": "Select if you need to amend the substances on your licence"
    }
 }

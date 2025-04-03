@@ -12,7 +12,9 @@ const {
   getSubstanceShortLabel,
   textAreaDefaultLength,
   isValidConcentrationValue,
-  isLicenceValid
+  isLicenceValid,
+  displayOptionalField,
+  formatAttachments
 } = require('../../../utilities/helpers');
 
 const explosivePrecursorsList = require('../../../utilities/constants/explosive-precursors');
@@ -420,6 +422,92 @@ describe('EPP utilities tests', () => {
       expect(result.isValid).to.be.true;
       expect(result.fieldName).to.equal('replace-licence-number');
       expect(result.errorType).to.equal(undefined);
+    });
+  });
+
+  describe('displayOptionalField', () => {
+    it('should return null if req.sessionModel is not defined', () => {
+      const req = {};
+      const result = displayOptionalField(req, 'step1', 'value1');
+      expect(result).to.be.null;
+    });
+
+    it('should return null if req.sessionModel.get("steps") is not defined', () => {
+      const req = { sessionModel: { get: sinon.stub().returns(undefined) } };
+      const result = displayOptionalField(req, 'step1', 'value1');
+      expect(result).to.be.null;
+    });
+
+    it('should return null if req.sessionModel.get("steps") does not include the step', () => {
+      const req = { sessionModel: { get: sinon.stub().returns(['step2']) } };
+      const result = displayOptionalField(req, 'step1', 'value1');
+      expect(result).to.be.null;
+    });
+
+    it('should return the value if req.sessionModel.get("steps") includes the step and value is provided', () => {
+      const req = { sessionModel: { get: sinon.stub().returns(['step1']) } };
+      const result = displayOptionalField(req, 'step1', 'value1');
+      expect(result).to.equal('value1');
+    });
+
+    it(
+      'should return "Not provided" if req.sessionModel.get("steps") includes the ' +
+        'step and value is not provided',
+      () => {
+        const req = { sessionModel: { get: sinon.stub().returns(['step1']) } };
+        const result = displayOptionalField(req, 'step1');
+        expect(result).to.equal('Not provided');
+      }
+    );
+  });
+
+  describe('formatAttachments', () => {
+    it('should return empty string if req.sessionModel is not defined', () => {
+      const req = {};
+      const result = formatAttachments(['doc1', 'doc2'], req, 'step1');
+      expect(result).to.equal('');
+    });
+
+    it('should return empty string if req.sessionModel.get("steps") is not defined', () => {
+      const req = { sessionModel: { get: sinon.stub().returns(undefined) } };
+      const result = formatAttachments(['doc1', 'doc2'], req, 'step1');
+      expect(result).to.equal('');
+    });
+
+    it('should return empty string if req.sessionModel.get("steps") does not include the step', () => {
+      const req = { sessionModel: { get: sinon.stub().returns(['step2']) } };
+      const result = formatAttachments(['doc1', 'doc2'], req, 'step1');
+      expect(result).to.equal('');
+    });
+
+    it('should return empty string if documents is not an array', () => {
+      const req = { sessionModel: { get: sinon.stub().returns(['step1']) } };
+      const result = formatAttachments('doc1', req, 'step1');
+      expect(result).to.equal('');
+    });
+
+    it('should return empty string if documents is an empty array', () => {
+      const req = { sessionModel: { get: sinon.stub().returns(['step1']) } };
+      const result = formatAttachments([], req, 'step1');
+      expect(result).to.equal('');
+    });
+
+    it(
+      'should return formatted document names if req.sessionModel.get("steps") ' +
+        'includes the step and documents is a non-empty array',
+      () => {
+        const req = { sessionModel: { get: sinon.stub().returns(['step1']) } };
+        const documents = [{ name: 'doc1' }, { name: 'doc2' }];
+        const result = formatAttachments(documents, req, 'step1');
+        expect(result).to.equal('doc1\n\ndoc2');
+      }
+    );
+
+    it('should handle documents with missing names gracefully', () => {
+      const req = { sessionModel: { get: sinon.stub().returns(['step1']) } };
+      const documents = [{ name: 'doc1' }, {}, { name: 'doc2' }];
+      const result = formatAttachments(documents, req, 'step1');
+      expect(result).to.equal('doc1\n\n\n\ndoc2');
     });
   });
 });

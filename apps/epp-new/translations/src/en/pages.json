@@ -407,6 +407,12 @@
       },
       "new-renew-doctor-country": {
         "label": "Country"
+      },
+      "new-renew-middle-name": {
+        "label": "Middle names"
+      },
+      "new-renew-other-names": {
+        "label": "Used any other names?"
       }
     },
     "complete": {

@@ -269,7 +269,7 @@
         "label" :"County, state, province (optional)"
       },
       "amend-postcode": {
-        "label" : "Postcode (required for UK)"
+        "label" : "Postcode (optional)"
       },
       "amend-country": {
         "label" : "Country"
@@ -314,7 +314,7 @@
         "label": "Country"
       },
       "amend-proof-address":{
-         "label": "Proof of address attachment"
+         "label": "Proof of address attachments"
       },
       "precursor-field": {
          "label": "Explosives precursors"
@@ -365,22 +365,28 @@
         "label": "Usage address"
       },
       "amend-countersignatory-middlename": {
-        "label": "Middle names"
+        "label": "Middle name(s) (optional)"
+      },
+      "amend-countersignatory-lastname": {
+        "label": "Surname"
       },
       "amend-countersignatory-years":{
-        "label": "How many years have you known countersignatory?"
+        "label": "How long have you known your countersignatory?"
       },
       "amend-countersignatory-howyouknow":{
-        "label": "How do you know countersignatory?"
+        "label": "In what capacity do you know your countersignatory?"
       },
       "amend-countersignatory-occupation":{
-        "label": "Countersignatory’s occupation"
+        "label": "What is your countersignatory’s occupation?"
       },
       "amend-countersignatory-address-2": {
-        "label": "Address line 2"
+        "label": "Address line 2 (optional)"
+      },
+      "amend-countersignatory-postcode":{
+        "label": "Postcode (required for UK)"
       },
       "amend-countersignatory-phone-number": {
-        "label": "Phone number"
+        "label": "Contact phone number"
       },
       "amend-birth-certificate": {
         "label": "Birth certificate attachment"
@@ -396,6 +402,15 @@
       },
       "amend-countersignatory-Uk-driving-licence-number": {
         "label": "UK driving licence number"
+      },
+      "amend-middlename": {
+        "label": "Middle name(s)"
+      },
+      "amend-lastname": {
+        "label": "Surname"
+      },
+      "amend-new-date-moved-to-address": {
+        "label": "When did you move to this address?"
       }
     }
   }

@@ -8,7 +8,7 @@ const SaveDocument = require('../epp-common/behaviours/save-document');
 const RemoveDocument = require('../epp-common/behaviours/remove-document');
 const DobEditRedirect = require('../epp-common/behaviours/dob-edit-redirect');
 const RenderPrecursorDetails = require('../epp-common/behaviours/render-precursors-detail');
-const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
+const SaveAddress = require('../epp-common/behaviours/save-home-other-address');
 const CheckAndRedirect = require('../epp-common/behaviours/check-answer-redirect');
 const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
 const DobUnder18Redirect = require('../epp-common/behaviours/dob-under18-redirect');
@@ -23,6 +23,8 @@ const ParseSummaryPrecursorsPoisons = require('../epp-common/behaviours/parse-su
 const ModifySummaryChangeLink = require('../epp-common/behaviours/modify-summary-change-links');
 const ResetSectionSummary = require('../epp-common/behaviours/reset-section-summary');
 const SetBackLink = require('../epp-common/behaviours/set-backlink');
+const SaveNewName = require('../epp-common/behaviours/save-new-name');
+const SaveCounterSignatoryAddress = require('../epp-common/behaviours/save-countersignatory-address');
 
 module.exports = {
   name: 'EPP form',
@@ -61,14 +63,17 @@ module.exports = {
     '/home-address': {
       behaviours: [
         PostcodeValidation,
-        SaveHomeAddress([
-          'amend-address-1',
-          'amend-address-2',
-          'amend-town-or-city',
-          'amend-county',
-          'amend-postcode',
-          'amend-country'
-        ])
+        SaveAddress(
+          [
+            'amend-address-1',
+            'amend-address-2',
+            'amend-town-or-city',
+            'amend-county',
+            'amend-postcode',
+            'amend-country'
+          ],
+          'home'
+        )
       ],
       fields: [
         'amend-address-1',
@@ -114,6 +119,16 @@ module.exports = {
       next: '/change-home-address'
     },
     '/new-name': {
+      behaviours: [
+        AfterDateOfBirth('amend-date-of-birth'),
+        SaveNewName([
+          'amend-new-name-title',
+          'amend-new-firstname',
+          'amend-new-middlename',
+          'amend-new-lastname',
+          'amend-new-date-name-changed'
+        ])
+      ],
       fields: [
         'amend-new-name-title',
         'amend-new-firstname',
@@ -122,8 +137,7 @@ module.exports = {
         'amend-new-date-name-changed'
       ],
       next: '/identity-details',
-      locals: { captionHeading: 'Section 7 of 23' },
-      behaviours: [AfterDateOfBirth('amend-date-of-birth')]
+      locals: { captionHeading: 'Section 7 of 23' }
     },
     '/identity-details': {
       fields: [
@@ -211,6 +225,21 @@ module.exports = {
       next: '/change-substances'
     },
     '/new-address': {
+      behaviours: [
+        AfterDateOfBirth('amend-date-of-birth'),
+        PostcodeValidation,
+        SaveAddress(
+          [
+            'amend-new-address-1',
+            'amend-new-address-2',
+            'amend-new-town-or-city',
+            'amend-new-county',
+            'amend-new-postcode',
+            'amend-new-country'
+          ],
+          'other'
+        )
+      ],
       fields: [
         'amend-new-address-1',
         'amend-new-address-2',
@@ -220,7 +249,6 @@ module.exports = {
         'amend-new-country',
         'amend-new-date-moved-to-address'
       ],
-      behaviours: [AfterDateOfBirth('amend-date-of-birth'), PostcodeValidation],
       next: '/upload-proof-address',
       locals: { captionHeading: 'Section 11 of 23' }
     },
@@ -268,8 +296,10 @@ module.exports = {
     '/explosives-precursors': {
       behaviours: [
         ResetSectionSummary(
-          ['precursors-details-aggregate'],
-          'amend-regulated-explosives-precursors'
+          [
+            'precursors-details-aggregate',
+            'amend-regulated-explosives-precursors'
+          ]
         ),
         CheckAndRedirect('amend-regulated-explosives-precursors', [
           'amend-poisons-option',
@@ -432,6 +462,14 @@ module.exports = {
       next: '/countersignatory-address'
     },
     '/countersignatory-address': {
+      behaviours: [
+        SaveCounterSignatoryAddress([
+          'amend-countersignatory-address-1',
+          'amend-countersignatory-address-2',
+          'amend-countersignatory-town-or-city',
+          'amend-countersignatory-postcode'
+        ])
+      ],
       fields: [
         'amend-countersignatory-address-1',
         'amend-countersignatory-address-2',

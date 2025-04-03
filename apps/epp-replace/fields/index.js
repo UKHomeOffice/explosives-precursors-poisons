@@ -526,6 +526,15 @@ module.exports = {
       }
     ].concat(precursorList)
   },
+  'replace-change-substances': {
+    mixin: 'radio-group',
+    legend: {
+      className: 'govuk-fieldset__legend--m'
+    },
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    options: ['yes', 'no'],
+    validate: 'required'
+  },
   'replace-new-address-1': {
     mixin: 'input-text',
     labelClassName: 'govuk-label--m',

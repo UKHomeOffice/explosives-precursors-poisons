@@ -8,7 +8,7 @@ const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-count
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 const DobUnder18Redirect = require('../epp-common/behaviours/dob-under18-redirect');
 const PostcodeValidation = require('../../utilities/helpers/postcode-validation');
-const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
+const SaveAddress = require('../epp-common/behaviours/save-home-other-address');
 const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-payment-request');
 const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
 const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator');
@@ -96,14 +96,14 @@ module.exports = {
     '/home-address': {
       behaviours: [
         PostcodeValidation,
-        SaveHomeAddress([
+        SaveAddress([
           'replace-home-address-1',
           'replace-home-address-2',
           'replace-home-town-or-city',
           'replace-home-county',
           'replace-home-postcode',
           'replace-home-country'
-        ])
+        ], 'home')
       ],
       fields: [
         'replace-home-address-1',
@@ -269,7 +269,24 @@ module.exports = {
     },
     '/change-substances': {
       behaviour: [NavigateNoChanges],
-      next: '/explosives-precursors'
+      fields: ['replace-change-substances'],
+      locals: { captionHeading: 'Section 16 of 26' },
+      forks: [
+        {
+          target: '/explosives-precursors',
+          condition: {
+            field: 'replace-change-substances',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/countersignatory-details',
+          condition: {
+            field: 'replace-change-substances',
+            value: 'no'
+          }
+        }
+      ]
     },
     '/explosives-precursors': {
       next: '/select-precursor'
