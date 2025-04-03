@@ -26,10 +26,11 @@ const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator');
 
-const SaveHomeAddress = require('../epp-common/behaviours/save-home-address');
+const SaveAddress = require('../epp-common/behaviours/save-home-other-address');
 const SaveCounterSignatoryAddress = require('../epp-common/behaviours/save-countersignatory-address');
 
 const NoPrecursorOrPoison = require('../epp-common/behaviours/no-precursor-poison-navigate');
+const NoPrecursorPoisonBackLink = require('./behaviours/no-poison-precursor-back-link');
 
 module.exports = {
   name: 'EPP form',
@@ -164,14 +165,14 @@ module.exports = {
     '/home-address': {
       behaviours: [
         PostcodeValidation,
-        SaveHomeAddress([
+        SaveAddress([
           'new-renew-home-address-line1',
           'new-renew-home-address-line2',
           'new-renew-home-address-town',
           'new-renew-home-address-county',
           'new-renew-home-address-postcode',
           'new-renew-home-address-country'
-        ])
+        ], 'home')
       ],
       fields: [
         'new-renew-home-address-line1',
@@ -557,14 +558,26 @@ module.exports = {
       }
     },
     '/explosives-precursors': {
-      fields: ['new-renew-regulated-explosives-precursors'],
-      next: '/select-precursor',
+      behaviours: [NoPrecursorOrPoison],
+      fields: ['new-renew-regulated-explosives-precursors-options'],
+      forks: [
+        {
+          target: '/poisons',
+          continueOnEdit: false,
+          condition: {
+            field: 'new-renew-regulated-explosives-precursors-options',
+            value: 'no'
+          }
+        }
+      ],
+      continueOnEdit: true,
       locals: {
         sectionNo: {
           new: 12,
           renew: 13
         }
-      }
+      },
+      next: '/select-precursor'
     },
     '/select-precursor': {
       fields: ['precursor-field'],
@@ -617,7 +630,9 @@ module.exports = {
       },
       next: '/select-poison'
     },
-    '/no-poisons-or-precursors': {},
+    '/no-poisons-or-precursors': {
+      behaviours: [NoPrecursorPoisonBackLink]
+    },
     '/select-poison': {
       next: '/poison-details',
       locals: {
@@ -762,7 +777,8 @@ module.exports = {
     '/application-submitted': {
       sections: require('./sections/summary-data-sections'),
       behaviours: [SummaryPageBehaviour, GetPaymentInfo],
-      backLink: false
+      backLink: false,
+      clearSession: true
     },
     '/exit': {}
   }

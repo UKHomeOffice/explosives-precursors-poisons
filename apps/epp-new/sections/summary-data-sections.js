@@ -1,10 +1,11 @@
 'use strict';
 
-// TODO: Use constant for 'Not provided' str
 const config = require('../../../config');
 const {
   getFormattedDate,
-  isDateOlderOrEqualTo
+  isDateOlderOrEqualTo,
+  displayOptionalField,
+  formatAttachments
 } = require('../../../utilities/helpers');
 const dateFormatter = new Intl.DateTimeFormat(
   config.dateLocales,
@@ -24,7 +25,8 @@ module.exports = {
       },
       {
         step: '/your-name',
-        field: 'new-renew-middle-name'
+        field: 'new-renew-middle-name',
+        parse: (value, req) => displayOptionalField(req, '/your-name', value)
       },
       {
         step: '/your-name',
@@ -102,12 +104,12 @@ module.exports = {
       {
         step: '/other-nationalities',
         field: 'new-renew-date-fr',
-        parse: date => date && dateFormatter.format(new Date(date))
+        parse: date => date ? dateFormatter.format(new Date(date)) : 'Not provided'
       },
       {
         step: '/other-nationalities',
         field: 'new-renew-date-to',
-        parse: date => date && dateFormatter.format(new Date(date))
+        parse: date => date ? dateFormatter.format(new Date(date)) : 'Not provided'
       }
     ]
   },
@@ -119,7 +121,8 @@ module.exports = {
       },
       {
         step: '/home-address',
-        field: 'new-renew-home-address-line2'
+        field: 'new-renew-home-address-line2',
+        parse: (value, req) => displayOptionalField(req, '/home-address', value)
       },
       {
         step: '/home-address',
@@ -127,11 +130,13 @@ module.exports = {
       },
       {
         step: '/home-address',
-        field: 'new-renew-home-address-county'
+        field: 'new-renew-home-address-county',
+        parse: (value, req) => displayOptionalField(req, '/home-address', value)
       },
       {
         step: '/home-address',
-        field: 'new-renew-home-address-postcode'
+        field: 'new-renew-home-address-postcode',
+        parse: (value, req) => displayOptionalField(req, '/home-address', value)
       },
       {
         step: '/home-address',
@@ -141,6 +146,11 @@ module.exports = {
         step: '/home-address',
         field: 'new-renew-home-address-moveto-date',
         parse: date => date && dateFormatter.format(new Date(date))
+      },
+      {
+        step: '/upload-proof-address',
+        field: 'new-renew-proof-address',
+        parse: (documents, req) => formatAttachments(documents, req, '/upload-proof-address')
       },
       {
         step: '/previous-addresses',
@@ -156,17 +166,6 @@ module.exports = {
           return addresses.length > 0 ? addresses.map(({ fields }) => fields.map(f =>
             f.field === 'new-renew-previous-home-address-moveto-date'
               ? getFormattedDate(f.parsed) : f.parsed).filter(Boolean).join('\n')).filter(Boolean).join('\n\n') : null;
-        }
-      },
-      {
-        step: '/upload-proof-address',
-        field: 'new-renew-proof-address',
-        parse: (documents, req) => {
-          if (
-            req.sessionModel.get('steps').includes('/upload-proof-address') && documents?.length > 0) {
-            return documents.map(file => file?.name)?.join('\n\n');
-          }
-          return null;
         }
       }
     ]
@@ -204,62 +203,22 @@ module.exports = {
       {
         step: '/upload-british-passport',
         field: 'new-renew-british-passport',
-        parse: (documents, req) => {
-          if (
-            req.sessionModel
-              .get('steps')
-              .includes('/upload-british-passport') &&
-            documents?.length > 0
-          ) {
-            return documents.map(file => file?.name)?.join('\n\n');
-          }
-
-          return null;
-        }
+        parse: (documents, req) => formatAttachments(documents, req, '/upload-british-passport')
       },
       {
         step: '/upload-passport',
         field: 'new-renew-eu-passport',
-        parse: (documents, req) => {
-          if (
-            req.sessionModel.get('steps').includes('/upload-passport') &&
-            documents?.length > 0
-          ) {
-            return documents.map(file => file?.name)?.join('\n\n');
-          }
-
-          return null;
-        }
+        parse: (documents, req) => formatAttachments(documents, req, '/upload-passport')
       },
       {
         step: '/upload-certificate-conduct',
         field: 'new-renew-certificate-conduct',
-        parse: (documents, req) => {
-          if (
-            req.sessionModel
-              .get('steps')
-              .includes('/upload-certificate-conduct') &&
-            documents?.length > 0
-          ) {
-            return documents.map(file => file.name);
-          }
-
-          return null;
-        }
+        parse: (documents, req) => formatAttachments(documents, req, '/upload-certificate-conduct')
       },
       {
         step: '/upload-driving-licence',
         field: 'new-renew-upload-driving-licence',
-        parse: (documents, req) => {
-          if (
-            req.sessionModel.get('steps').includes('/upload-driving-licence') &&
-            documents?.length > 0
-          ) {
-            return documents.map(file => file.name);
-          }
-
-          return null;
-        }
+        parse: (documents, req) => formatAttachments(documents, req, '/upload-driving-licence')
       }
     ]
   },
@@ -326,9 +285,8 @@ module.exports = {
       {
         step: '/medical-declaration',
         field: 'medical-declaration',
-        // TODO: can this be configured in translation?
-        parse: value =>
-          value ? 'I have read and agree to the medical declarations' : ''
+        parse: (value, req) =>
+          value ? req.translate('journey.medical-declarations-text') : ''
       },
       {
         step: '/medical-history',
@@ -341,17 +299,7 @@ module.exports = {
       {
         step: '/medical-form',
         field: 'new-renew-medical-form',
-        parse: (documents, req) => {
-          if (
-            req.sessionModel
-              .get('steps')
-              .includes('/medical-form') &&
-            documents?.length > 0
-          ) {
-            return documents.map(file => file?.name)?.join('\n\n');
-          }
-          return null;
-        }
+        parse: (documents, req) => formatAttachments(documents, req, '/medical-form')
       },
       {
         step: '/doctor-details',
@@ -364,7 +312,7 @@ module.exports = {
       {
         step: '/doctor-details',
         field: 'new-renew-doctor-address-line-2',
-        parse: value => value || 'Not provided'
+        parse: (value, req) => displayOptionalField(req, '/doctor-details', value)
       },
       {
         step: '/doctor-details',
@@ -373,16 +321,32 @@ module.exports = {
       {
         step: '/doctor-details',
         field: 'new-renew-doctor-county',
-        parse: value => value || 'Not provided'
+        parse: (value, req) => displayOptionalField(req, '/doctor-details', value)
       },
       {
         step: '/doctor-details',
         field: 'new-renew-doctor-postcode',
-        parse: value => value || 'Not provided'
+        parse: (value, req) => displayOptionalField(req, '/doctor-details', value)
       },
       {
         step: '/doctor-details',
         field: 'new-renew-doctor-country'
+      }
+    ]
+  },
+  'licence-for-explosives-precursors': {
+    steps: [
+      {
+        step: '/explosives-precursors',
+        field: 'new-renew-regulated-explosives-precursors-options'
+      }
+    ]
+  },
+  'licence-for-poisons': {
+    steps: [
+      {
+        step: '/poisons',
+        field: 'new-renew-poisons-options'
       }
     ]
   },
@@ -399,7 +363,7 @@ module.exports = {
       {
         step: '/countersignatory-details',
         field: 'new-renew-countersignatory-middlename',
-        parse: value => value || 'Not provided'
+        parse: (value, req) => displayOptionalField(req, '/countersignatory-details', value)
       },
       {
         step: '/countersignatory-details',
@@ -424,7 +388,7 @@ module.exports = {
       {
         step: '/countersignatory-address',
         field: 'new-renew-countersignatory-address-2',
-        parse: value => value || 'Not provided'
+        parse: (value, req) => displayOptionalField(req, '/countersignatory-address', value)
       },
       {
         step: '/countersignatory-address',
@@ -463,7 +427,7 @@ module.exports = {
         field: 'new-renew-birth-certificate',
         parse: (documents, req) => {
           if (
-            req.sessionModel.get('steps').includes('/birth-certificate') &&
+            req.sessionModel.get('steps')?.includes('/birth-certificate') &&
             documents?.length > 0 &&
             req.sessionModel.get('new-renew-dob') &&
             !isDateOlderOrEqualTo(req.sessionModel.get('new-renew-dob'), 18)

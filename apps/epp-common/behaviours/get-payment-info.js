@@ -21,6 +21,10 @@ module.exports = superclass =>
   class extends superclass {
     async getValues(req, res, next) {
       const applicationType = req.sessionModel.get(STR_APPLICATION_TYPE);
+      if (!applicationType) {
+        req.log('error', 'no session available, redirecting to home page');
+        return res.redirect('/application-type');
+      }
       const errorTemplateBasePath = getErrorTemplateBasePath(applicationType);
 
       try {
@@ -74,7 +78,10 @@ module.exports = superclass =>
           return next(Error(`Failed to send notification emails: ${error}`));
         }
       } catch (error) {
-        req.log('error', `Error fetching payment status: ${error.message ?? error}`);
+        req.log(
+          'error',
+          `Error fetching payment status: ${error.message ?? error}`
+        );
         return res.redirect(`${errorTemplateBasePath}${PATH_PAYMENT_PROBLEM}`);
       }
 

@@ -58,9 +58,22 @@ const getPdfTitle = req => {
  * fields separated by newlines and sections separated by "\n\n ---\n^".
  */
 const formatSectionSummaryItems = items => {
+  const dateFields = [
+    'new-renew-other-name-start-date',
+    'new-renew-other-name-stop-date'
+  ];
   return items
     ? items.aggregatedValues
-        .map(({ fields }) => fields.map(({ parsed }) => parsed).join('\n'))
+        .map(({ fields }) =>
+          fields
+            .map(({ field, parsed }) => {
+              if (dateFields.includes(field)) {
+                return getFormattedDate(parsed);
+              }
+              return parsed;
+            })
+            .join('\n')
+        )
         .join('\n\n ---\n^')
     : '';
 };
@@ -95,7 +108,7 @@ const parseDocumentList = documents => {
 const getLabel = (fieldKey, fieldValue, translation) => {
   if (Array.isArray(fieldValue)) {
     return fieldValue
-      .map(option => translation[fieldKey].options[option].label)
+      .map(option => translation[fieldKey]?.options[option]?.label)
       .join(', ');
   }
   return translation[fieldKey]?.options[fieldValue]?.label;
@@ -173,6 +186,9 @@ const getUserEmail = applicationType => {
  * or an empty string if no matching document is found.
  */
 const getIdentityAttachment = (req, idFields) => {
+  if (!Array.isArray(idFields) || !req) {
+    return '';
+  }
   const fieldMap = {
     'new-renew-UK-passport-number': 'new-renew-british-passport',
     'new-renew-EU-passport-number': 'new-renew-eu-passport',
@@ -300,7 +316,9 @@ const getReplacePersonalisation = req => {
       req.sessionModel.get('replace-email')
     ),
     has_amended_name: checkYesNo(req.sessionModel.get('TBD')),
-    new_name: '', // TODO format the values
+    new_name: getSessionValueOrDefault(
+      req.sessionModel.get('formattedNewName')
+    ),
     identity_document:
       req.sessionModel.get('TBD') === STR_YES
         ? getSessionValueOrDefault(
@@ -314,6 +332,14 @@ const getReplacePersonalisation = req => {
     ),
     identity_document_attachment: getSessionValueOrDefault(
       getIdentityAttachment(req, ['TBD', 'TBD', 'TBD'])
+    ),
+    has_certificate_conduct:
+      req.sessionModel.get('steps')?.includes('/upload-certificate-conduct') &&
+      parseDocumentList(req.sessionModel.get('replace-certificate-conduct'))
+        ? STR_YES
+        : STR_NO,
+    certificate_conduct_attachment: getSessionValueOrDefault(
+      parseDocumentList(req.sessionModel.get('replace-certificate-conduct'))
     ),
     has_amended_address: checkYesNo(req.sessionModel.get('TBD')),
     new_address: '', // TODO: save and format new address
@@ -373,7 +399,19 @@ const getReplacePersonalisation = req => {
             req.sessionModel.get('TBD') ||
             req.sessionModel.get('TBD')
         )
-      : ''
+      : '',
+    has_birth_certificate:
+      getSessionValueOrDefault(req.sessionModel.get('replace-date-of-birth')) &&
+      req.sessionModel.get('steps')?.includes('/birth-certificate') &&
+      !isDateOlderOrEqualTo(req.sessionModel.get('replace-date-of-birth'), 18)
+        ? STR_YES
+        : STR_NO,
+    birth_certificate_attachment:
+      getSessionValueOrDefault(req.sessionModel.get('replace-date-of-birth')) &&
+      req.sessionModel.get('steps')?.includes('/birth-certificate') &&
+      !isDateOlderOrEqualTo(req.sessionModel.get('replace-date-of-birth'), 18)
+        ? parseDocumentList(req.sessionModel.get('replace-birth-certificate'))
+        : ''
   };
 };
 
@@ -404,7 +442,9 @@ const getAmendPersonalisation = req => {
       req.sessionModel.get('amend-email')
     ),
     has_amended_name: checkYesNo(req.sessionModel.get('amend-name-options')),
-    new_name: '', // TODO format the values
+    new_name: getSessionValueOrDefault(
+      req.sessionModel.get('formattedNewName')
+    ),
     identity_document:
       req.sessionModel.get('amend-name-options') === STR_YES
         ? getSessionValueOrDefault(
@@ -427,10 +467,20 @@ const getAmendPersonalisation = req => {
         'amend-Uk-driving-licence-number'
       ])
     ),
+    has_certificate_conduct:
+      req.sessionModel.get('steps')?.includes('/upload-certificate-conduct') &&
+      parseDocumentList(req.sessionModel.get('amend-certificate-conduct'))
+        ? STR_YES
+        : STR_NO,
+    certificate_conduct_attachment: getSessionValueOrDefault(
+      parseDocumentList(req.sessionModel.get('amend-certificate-conduct'))
+    ),
     has_amended_address: checkYesNo(
       req.sessionModel.get('amend-home-address-options')
     ),
-    new_address: '', // TODO: save and format new address
+    new_address: getSessionValueOrDefault(
+      req.sessionModel.get('otherAddressInline')
+    ),
     date_moved_to:
       req.sessionModel.get('amend-home-address-options') === STR_YES
         ? getSessionValueOrDefault(
@@ -442,10 +492,17 @@ const getAmendPersonalisation = req => {
     address_proof_attachments: getSessionValueOrDefault(
       parseDocumentList(req.sessionModel.get('amend-proof-address'))
     ),
-    has_amended_substances: STR_YES, // TODO: Page to be developed
-    explosive_precursor: '', // TODO: from section summary
-    has_amended_poisons: STR_YES, // TODO: Page to be developed
-    poison_list: '', // TODO: from summary page
+    has_amended_substances: checkYesNo(
+      req.sessionModel.get('amend-change-substances-options')
+    ),
+    has_amended_precursor: checkYesNo(
+      req.sessionModel.get('amend-regulated-explosives-precursors')
+    ),
+    explosive_precursor: '', // TODO: Format and display
+    has_amended_poisons: checkYesNo(
+      req.sessionModel.get('amend-poisons-option')
+    ),
+    poison_list: '', // TODO: Format and display
     has_countersignatory_details: hasValue(
       hasCountersignatoryDetails(req, APP_TYPE_AMEND)
     ),
@@ -476,7 +533,11 @@ const getAmendPersonalisation = req => {
           req.sessionModel.get('amend-countersignatory-lastname')
         )
       : '',
-    countersignatory_address: 'TBD', // TODO: Format inline address
+    countersignatory_address: hasCountersignatoryDetails(req, APP_TYPE_AMEND)
+      ? getSessionValueOrDefault(
+          req.sessionModel.get('counterSignatoryAddress')
+        )
+      : '',
     countersignatory_phone: hasCountersignatoryDetails(req, APP_TYPE_AMEND)
       ? getSessionValueOrDefault(
           req.sessionModel.get('amend-countersignatory-phone-number')
@@ -504,7 +565,19 @@ const getAmendPersonalisation = req => {
               'amend-countersignatory-Uk-driving-licence-number'
             )
         )
-      : ''
+      : '',
+    has_birth_certificate:
+      getSessionValueOrDefault(req.sessionModel.get('amend-date-of-birth')) &&
+      req.sessionModel.get('steps')?.includes('/birth-certificate') &&
+      !isDateOlderOrEqualTo(req.sessionModel.get('amend-date-of-birth'), 18)
+        ? STR_YES
+        : STR_NO,
+    birth_certificate_attachment:
+      getSessionValueOrDefault(req.sessionModel.get('amend-date-of-birth')) &&
+      req.sessionModel.get('steps')?.includes('/birth-certificate') &&
+      !isDateOlderOrEqualTo(req.sessionModel.get('amend-date-of-birth'), 18)
+        ? parseDocumentList(req.sessionModel.get('amend-birth-certificate'))
+        : ''
   };
 };
 
@@ -683,7 +756,29 @@ const getNewRenewPersonalisation = req => {
         req.sessionModel.get(
           'new-renew-countersignatory-Uk-driving-licence-number'
         )
-    )
+    ),
+    has_birth_certificate:
+      getSessionValueOrDefault(req.sessionModel.get('new-renew-dob')) &&
+      req.sessionModel.get('steps')?.includes('/birth-certificate') &&
+      !isDateOlderOrEqualTo(req.sessionModel.get('new-renew-dob'), 18)
+        ? STR_YES
+        : STR_NO,
+    birth_certificate_attachment:
+      getSessionValueOrDefault(req.sessionModel.get('new-renew-dob')) &&
+      req.sessionModel.get('steps')?.includes('/birth-certificate') &&
+      !isDateOlderOrEqualTo(req.sessionModel.get('new-renew-dob'), 18)
+        ? parseDocumentList(req.sessionModel.get('new-renew-birth-certificate'))
+        : '',
+    has_medical_form:
+      req.sessionModel.get('steps')?.includes('/medical-form') &&
+      parseDocumentList(req.sessionModel.get('new-renew-medical-form'))
+        ? STR_YES
+        : STR_NO,
+    medical_form_attachment:
+      req.sessionModel.get('steps')?.includes('/medical-form') &&
+      parseDocumentList(req.sessionModel.get('new-renew-medical-form'))
+        ? parseDocumentList(req.sessionModel.get('new-renew-medical-form'))
+        : ''
   };
 };
 
