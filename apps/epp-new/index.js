@@ -30,6 +30,7 @@ const SaveAddress = require('../epp-common/behaviours/save-home-other-address');
 const SaveCounterSignatoryAddress = require('../epp-common/behaviours/save-countersignatory-address');
 
 const NoPrecursorOrPoison = require('../epp-common/behaviours/no-precursor-poison-navigate');
+const NoPrecursorPoisonBackLink = require('./behaviours/no-poison-precursor-back-link');
 
 module.exports = {
   name: 'EPP form',
@@ -133,6 +134,7 @@ module.exports = {
         {
           target: '/other-nationalities',
           condition: {
+            continueOnEdit: true,
             field: 'new-renew-more-nationalities',
             value: 'yes'
           }
@@ -557,14 +559,26 @@ module.exports = {
       }
     },
     '/explosives-precursors': {
-      fields: ['new-renew-regulated-explosives-precursors'],
-      next: '/select-precursor',
+      behaviours: [NoPrecursorOrPoison],
+      fields: ['new-renew-regulated-explosives-precursors-options'],
+      forks: [
+        {
+          target: '/poisons',
+          continueOnEdit: false,
+          condition: {
+            field: 'new-renew-regulated-explosives-precursors-options',
+            value: 'no'
+          }
+        }
+      ],
+      continueOnEdit: true,
       locals: {
         sectionNo: {
           new: 12,
           renew: 13
         }
-      }
+      },
+      next: '/select-precursor'
     },
     '/select-precursor': {
       fields: ['precursor-field'],
@@ -617,7 +631,9 @@ module.exports = {
       },
       next: '/select-poison'
     },
-    '/no-poisons-or-precursors': {},
+    '/no-poisons-or-precursors': {
+      behaviours: [NoPrecursorPoisonBackLink]
+    },
     '/select-poison': {
       next: '/poison-details',
       locals: {
