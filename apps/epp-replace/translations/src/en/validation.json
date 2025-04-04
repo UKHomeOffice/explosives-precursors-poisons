@@ -268,5 +268,8 @@
    },
    "replace-change-substances": {
        "required": "Select if you need to amend the substances on your licence"
+   },
+   "amend-name-options": {
+    "required": "Select if you need to amend your name on the licence"
    }
 }
