@@ -143,19 +143,19 @@ module.exports = {
       next: '/amend-licence'
     },
     '/amend-licence': {
-      fields: ['amend-name-options'],
+      fields: ['replace-name-options'],
       forks: [
         {
           target: '/new-name',
           condition: {
-            field: 'amend-name-options',
+            field: 'replace-name-options',
             value: 'yes'
           }
         },
         {
           target: '/change-home-address',
           condition: {
-            field: 'amend-name-options',
+            field: 'replace-name-options',
             value: 'no'
           }
         }

@@ -289,7 +289,7 @@
       "none_selected": "Select"
     }
   },
-  "amend-name-options": {
+  "replace-name-options": {
     "legend": "Do you need to amend your name on the licence?",
     "options": {
       "yes": {

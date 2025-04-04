@@ -199,7 +199,7 @@ module.exports = {
     options: ['yes', 'no'],
     className: ['govuk-radios', 'govuk-radios--inline']
   },
-  'amend-name-options': {
+  'replace-name-options': {
     mixin: 'radio-group',
     legend: {
       className: 'govuk-label--m'

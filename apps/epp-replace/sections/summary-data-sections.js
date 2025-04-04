@@ -61,11 +61,11 @@ module.exports = {
       }
     ]
   },
-  'amend-name-options': {
+  'replace-name-options': {
     steps: [
       {
         steps: '/amend-licence',
-        field: 'amend-name-options'
+        field: 'replace-name-options'
       }
     ]
   },
