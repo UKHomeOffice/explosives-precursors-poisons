@@ -157,8 +157,8 @@ describe('Behaviour', () => {
   });
 
   describe('parsePoisonField', () => {
-    it('should parse array field correctly when field is amend-where-to-store-poison', () => {
-      const field = 'amend-where-to-store-poison';
+    it('should parse array field correctly when field is where-to-store-poison', () => {
+      const field = 'where-to-store-poison';
       const value = ['value1', 'value2'];
       req.sessionModel.get.withArgs('homeAddressInline').returns('homeAddress');
       req.sessionModel.get
@@ -170,8 +170,8 @@ describe('Behaviour', () => {
       expect(result).to.equal('homeAddress\n\notherAddress');
     });
 
-    it('should parse array field correctly when field is amend-where-to-use-poison', () => {
-      const field = 'amend-where-to-use-poison';
+    it('should parse array field correctly when field is where-to-use-poison', () => {
+      const field = 'where-to-use-poison';
       const value = ['value1', 'value2'];
       req.sessionModel.get.withArgs('homeAddressInline').returns('homeAddress');
       req.sessionModel.get
@@ -185,11 +185,11 @@ describe('Behaviour', () => {
 
     it(
       'should parse string field correctly when field is ' +
-        'amend-where-to-store-poison and value is ' +
-        'amend-store-poison-home-address',
+        'where-to-store-poison and value is ' +
+        'store-poison-home-address-value',
       () => {
-        const field = 'amend-where-to-store-poison';
-        const value = 'amend-store-poison-home-address';
+        const field = 'where-to-store-poison';
+        const value = 'store-poison-home-address-value';
         req.sessionModel.get
           .withArgs('homeAddressInline')
           .returns('homeAddress');
@@ -202,11 +202,11 @@ describe('Behaviour', () => {
 
     it(
       'should parse string field correctly when field is ' +
-        'amend-where-to-store-poison and value is ' +
-        'amend-store-poison-other-address',
+        'where-to-store-poison and value is ' +
+        'store-poison-other-address-value',
       () => {
-        const field = 'amend-where-to-store-poison';
-        const value = 'amend-store-poison-other-address';
+        const field = 'where-to-store-poison';
+        const value = 'store-poison-other-address-value';
         req.sessionModel.get
           .withArgs('store-poison-other-address')
           .returns('otherAddress');
@@ -219,11 +219,11 @@ describe('Behaviour', () => {
 
     it(
       'should parse string field correctly when field is ' +
-        'amend-where-to-use-poison and ' +
-        'value is amend-use-poison-home-address',
+        'where-to-use-poison and ' +
+        'value is use-poison-home-address',
       () => {
-        const field = 'amend-where-to-use-poison';
-        const value = 'amend-use-poison-home-address';
+        const field = 'where-to-use-poison';
+        const value = 'use-poison-home-address';
         req.sessionModel.get
           .withArgs('homeAddressInline')
           .returns('homeAddress');
@@ -236,11 +236,11 @@ describe('Behaviour', () => {
 
     it(
       'should parse string field correctly when field is ' +
-        'amend-where-to-use-poison and value is ' +
-        'amend-use-poison-other-address',
+        'where-to-use-poison and value is ' +
+        'use-poison-other-address-value',
       () => {
-        const field = 'amend-where-to-use-poison';
-        const value = 'amend-use-poison-other-address';
+        const field = 'where-to-use-poison';
+        const value = 'use-poison-other-address-value';
         req.sessionModel.get
           .withArgs('poison-use-other-address')
           .returns('otherAddress');

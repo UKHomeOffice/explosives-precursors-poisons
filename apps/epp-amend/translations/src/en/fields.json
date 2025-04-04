@@ -178,7 +178,7 @@
       }
     }
   },
-  "amend-poison": {
+  "poison-field": {
     "hint": "Select a poison",
       "options":{
         "none_selected": "Select poison"
@@ -264,7 +264,7 @@
     "summary-heading": "How much do you wish to acquire at any one time within a 6-month period?"
   },
   "amend-what-concentration-precursor":{
-    "label": "What concentration % w/w of the substance do you need",
+    "label": "What concentration % w/w of the substance do you need?",
     "summary-heading": "What concentration % w/w of the substance do you need?"
   },
   "amend-where-to-store-precursor": {
@@ -303,33 +303,33 @@
     "label": "{{values.usePrecursorOtherAddressLabel}}",
     "hint": "Enter a UK address"
   },
-  "amend-why-need-poison":{
+  "why-need-poison":{
     "label": "{{values.whyNeedPoisonLabel}}",
     "hint": "Detailed answers mean we can process your application faster",
     "summary-heading": "{{values.whyNeedPoisonLabel}}"
   },
-  "amend-how-much-poison":{
+  "how-much-poison":{
     "label": "How much do you wish to acquire at any one time within a 6-month period?",
     "hint": "Enter the amount and the unit. For example, 10 litres",
     "summary-heading": "How much do you wish to acquire at any one time within a 6-month period?"
   },
-  "amend-compound-or-salt": {
+  "compound-or-salt": {
     "label": "Specific compound or salt",
     "summary-heading": "Specific compound or salt"
   },
-  "amend-what-concentration-poison":{
+  "what-concentration-poison":{
     "label": "What concentration % w/w of the substance do you need?",
     "summary-heading": "What concentration % w/w of the substance do you need?"
   },
-  "amend-where-to-store-poison": {
+  "where-to-store-poison": {
     "legend": "{{values.whereToStorePoisonLegend}}",
     "hint": "This must be in the UK",
     "summary-heading": "{{values.whereToStorePoisonLegend}}",
     "options": {
-      "amend-store-poison-home-address": {
+      "store-poison-home-address-value": {
         "label": "{{values.homeAddressInline}}"
       },
-      "amend-store-poison-other-address": {
+      "store-poison-other-address-value": {
         "label": "Other address"
       }
     }
@@ -338,15 +338,15 @@
     "label": "{{values.storePoisonOtherAddressLabel}}",
     "hint": "Enter a UK address"
   },
-  "amend-where-to-use-poison": {
+  "where-to-use-poison": {
     "legend": "{{values.whereToUsePoisonLegend}}",
     "hint": "This must be in the UK",
     "summary-heading": "{{values.whereToUsePoisonLegend}}",
     "options": {
-      "amend-use-poison-home-address": {
+      "use-poison-home-address": {
         "label": "{{values.homeAddressInline}}"
       },
-      "amend-use-poison-other-address": {
+      "use-poison-other-address-value": {
         "label": "Other address"
       }
     }

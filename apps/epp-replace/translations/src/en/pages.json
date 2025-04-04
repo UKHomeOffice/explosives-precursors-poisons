@@ -117,6 +117,9 @@
     "header": "You must report the theft to the police",
     "p1": "If you want to apply for a replacement licence, you need to report the theft to the police. They will provide you with a crime reference number, which you must use to complete this form."
   },
+  "poison-details":{
+    "header": "{{values.poison-field}}"
+  },
   "countersignatory-details": {
     "header": "Countersignatory details",
     "description": "Your countersignatory must not be a parent or relative, unless you are under 18. If you are under 18, your countersignatory must be your parent or legal guardian."
@@ -305,7 +308,7 @@
       "replace-countersignatory-phone-number": {
         "label": "Phone number"
       },
-      "replace-poison": {
+      "poison-field": {
         "label": "Poisons"
       },
       "replace-countersignatory-Id-type": {
