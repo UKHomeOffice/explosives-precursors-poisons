@@ -300,12 +300,24 @@ module.exports = {
       fields: ['replace-no-poisons-precursors-options'],
       forks: [
         {
-          target: '/change-substances',
+          target: '/replace/countersignatory-details',
           continueOnEdit: true,
-          condition: {
-            field: 'replace-no-poisons-precursors-options',
-            value: 'no'
-          }
+          condition: req =>
+            req.sessionModel.get('replace-no-poisons-precursors-options') === 'no' &&
+            (
+              req.sessionModel.get('replace-name') === 'yes' ||
+              req.sessionModel.get('replace-home-address-options') === 'yes'
+            )
+        },
+        {
+          target: '/replace/confirm',
+          continueOnEdit: true,
+          condition: req =>
+            req.sessionModel.get('replace-no-poisons-precursors-options') === 'no' &&
+            (
+              req.sessionModel.get('replace-name') !== 'yes' &&
+              req.sessionModel.get('replace-home-address-options') !== 'yes'
+            )
         }
       ],
       next: '/countersignatory-details'
