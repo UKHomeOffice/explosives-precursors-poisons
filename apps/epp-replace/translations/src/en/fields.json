@@ -342,5 +342,16 @@
     "options":{
       "none_selected": "Select"
     }
+  },
+  "replace-name-options": {
+    "legend": "Do you need to amend your name on the licence?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }
