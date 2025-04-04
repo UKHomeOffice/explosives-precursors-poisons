@@ -185,6 +185,10 @@
     "p1": "Tell us which explosives precursors you want to import acquire use or possess.",
     "p2": "If you need multiple explosives precursors, you can add each one separately."
   },
+  "no-precursors-or-poisons": {
+    "header": "The explosives precursors and poisons on your licence will not change",
+    "paragraph1": "You told us you do not need to amend the explosives precursors or poisons on your current licence. This includes the storage or usage address for the substances."
+  },
   "confirm": {
     "header": "Check your answers",
     "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",

@@ -212,6 +212,15 @@ module.exports = {
       value: 'UK-passport'
     }
   },
+  'replace-no-poisons-precursors-options': {
+    mixin: 'radio-group',
+    legend: {
+      className: 'govuk-label--m'
+    },
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    options: ['yes', 'no'],
+    validate: 'required'
+  },
   'replace-countersignatory-EU-passport-number': {
     validate: [
       'required',

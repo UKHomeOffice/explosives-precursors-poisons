@@ -296,6 +296,20 @@ module.exports = {
       locals: { captionHeading: 'Section 18 of 26' },
       next: '/precursor-details'
     },
+    '/no-precursors-or-poisons': {
+      fields: ['replace-no-poisons-precursors-options'],
+      forks: [
+        {
+          target: '/change-substances',
+          continueOnEdit: true,
+          condition: {
+            field: 'replace-no-poisons-precursors-options',
+            value: 'no'
+          }
+        }
+      ],
+      next: '/countersignatory-details'
+    },
     '/precursor-details': {
       fields: [],
       next: '/select-poisons'

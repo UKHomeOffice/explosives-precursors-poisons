@@ -288,5 +288,16 @@
     "options":{
       "none_selected": "Select"
     }
+  },
+  "replace-no-poisons-precursors-options": {
+    "legend":"Do you want to continue the form without changing the explosives precursors or poisons?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }
