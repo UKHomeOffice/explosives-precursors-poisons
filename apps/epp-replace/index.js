@@ -313,6 +313,32 @@ module.exports = {
       locals: { captionHeading: 'Section 18 of 26' },
       next: '/precursor-details'
     },
+    '/no-precursors-or-poisons': {
+      fields: ['replace-no-poisons-precursors-options'],
+      forks: [
+        {
+          target: '/countersignatory-details',
+          continueOnEdit: true,
+          condition: req =>
+            req.sessionModel.get('replace-no-poisons-precursors-options') === 'no' &&
+            (
+              req.sessionModel.get('replace-name') === 'yes' ||
+              req.sessionModel.get('replace-home-address-options') === 'yes'
+            )
+        },
+        {
+          target: '/confirm',
+          continueOnEdit: true,
+          condition: req =>
+            req.sessionModel.get('replace-no-poisons-precursors-options') === 'no' &&
+            (
+              req.sessionModel.get('replace-name') !== 'yes' &&
+              req.sessionModel.get('replace-home-address-options') !== 'yes'
+            )
+        }
+      ],
+      next: '/countersignatory-details'
+    },
     '/precursor-details': {
       fields: [],
       next: '/select-poisons'

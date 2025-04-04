@@ -1,0 +1,10 @@
+{{<partials-page}}
+  {{$page-content}}
+    <p class="govuk-body">{{#t}}pages.no-precursors-or-poisons.paragraph1{{/t}}</p>
+
+  {{#fields}}
+    {{#renderField}}replace-no-poisons-precursors-options{{/renderField}}
+  {{/fields}}
+  {{#input-submit}}continue{{/input-submit}} 
+  {{/page-content}}
+{{/partials-page}}
