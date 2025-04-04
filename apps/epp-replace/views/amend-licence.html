@@ -1,0 +1,22 @@
+{{<partials-page}}
+  {{$page-content}}
+  <div>
+    <p class="govuk-body">{{#t}}pages.amend-licence.p1{{/t}}</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{#t}}pages.amend-licence.listElement1{{/t}}</li>
+        <li>{{#t}}pages.amend-licence.listElement2{{/t}}</li>
+        <li>{{#t}}pages.amend-licence.listElement3{{/t}}</li>
+    </ul>
+  </div>
+
+    <p> {{#t}}pages.amend-licence.p2{{/t}} <a class="govuk-link" href="mailto:epp@homeoffice.pnn.police.uk">epp@homeoffice.pnn.police.uk</a>.</p>
+
+  
+
+  {{#fields}}
+    {{#renderField}}{{/renderField}}
+  {{/fields}}
+  {{#input-submit}}continue{{/input-submit}} 
+  {{/page-content}}
+{{/partials-page}}

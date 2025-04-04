@@ -96,6 +96,15 @@
     "p1": "You must change your address if you have moved home since your current licence was issued.",
     "p2": "Storage or usage address can be amended later under the substances section."
   },
+  "amend-licence": {
+    "header": "Amend licence details",
+    "p1": "You can only use this form to amend these details on your licence:",
+    "p2": "If you need to make any other changes to your licence, email the Explosives Precursors and Poisons Licensing Unit at",
+    "listElement1": "name",
+    "listElement2": "address",
+    "listElement3": "substances - including if your storage or usage address has changed"
+
+  },
   "select-poisons": {
     "header": "Poisons",
     "p1": "Tell us which poisons you want to import acquire use or possess.",
@@ -195,6 +204,9 @@
     "sections": {
       "replace-police-report": {
         "header": "Authorities"
+      },
+      "replace-name-options": {
+        "header": "Amend name"
       },
       "replace-home-address-options": {
         "header": "Amend address"

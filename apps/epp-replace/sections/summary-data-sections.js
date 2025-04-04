@@ -61,6 +61,14 @@ module.exports = {
       }
     ]
   },
+  'replace-name-options': {
+    steps: [
+      {
+        steps: '/amend-licence',
+        field: 'replace-name-options'
+      }
+    ]
+  },
   'replace-new-name': {
     steps: [
       {
