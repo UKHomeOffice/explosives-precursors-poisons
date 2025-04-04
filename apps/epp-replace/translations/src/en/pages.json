@@ -99,12 +99,10 @@
   "amend-licence": {
     "header": "Amend licence details",
     "p1": "You can only use this form to amend these details on your licence:",
-    "p2": "If you need to make any other changes to your licence, email the Explosives Precursors and Poisons Licensing Unit at ",
+    "p2": "If you need to make any other changes to your licence, email the Explosives Precursors and Poisons Licensing Unit at",
     "listElement1": "name",
     "listElement2": "address",
-    "listElement3": "substances - including if your storage or usage address has changed",
-    "link": "epp@homeoffice.pnn.police.uk.",
-    "link-text": "epp@homeoffice.pnn.police.uk. "
+    "listElement3": "substances - including if your storage or usage address has changed"
 
   },
   "select-poisons": {
