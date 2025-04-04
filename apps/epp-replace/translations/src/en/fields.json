@@ -290,7 +290,15 @@
     }
   },
   "replace-no-poisons-precursors-options": {
-    "legend": "Do you want to continue the form without changing the explosives precursors or poisons?"
+    "legend": "Do you want to continue the form without changing the explosives precursors or poisons?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   },
   "replace-name-options": {
     "legend": "Do you need to amend your name on the licence?",

@@ -317,7 +317,7 @@ module.exports = {
       fields: ['replace-no-poisons-precursors-options'],
       forks: [
         {
-          target: '/replace/countersignatory-details',
+          target: '/countersignatory-details',
           continueOnEdit: true,
           condition: req =>
             req.sessionModel.get('replace-no-poisons-precursors-options') === 'no' &&
@@ -327,7 +327,7 @@ module.exports = {
             )
         },
         {
-          target: '/replace/confirm',
+          target: '/confirm',
           continueOnEdit: true,
           condition: req =>
             req.sessionModel.get('replace-no-poisons-precursors-options') === 'no' &&
