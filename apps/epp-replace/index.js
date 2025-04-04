@@ -139,11 +139,28 @@ module.exports = {
           }
         }
       ],
-      locals: { captionHeading: 'Section 2 of 26' },
+      locals: { captionHeading: 'Section 8 of 26' },
       next: '/amend-licence'
     },
     '/amend-licence': {
-      fields: ['replace-replace-type'],
+      fields: ['amend-name-options'],
+      forks: [
+        {
+          target: '/new-name',
+          condition: {
+            field: 'amend-name-options',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/change-home-address',
+          condition: {
+            field: 'amend-name-options',
+            value: 'no'
+          }
+        }
+      ],
+      locals: {captionHeading: 'Section 9 of 26'},
       next: '/new-name'
     },
     '/new-name': {

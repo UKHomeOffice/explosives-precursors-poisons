@@ -1,0 +1,26 @@
+{{<partials-page}}
+  {{$page-content}}
+  <div>
+    <p class="govuk-body">{{#t}}pages.amend-licence.p1{{/t}}</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+        <li>{{#t}}pages.amend-licence.listElement1{{/t}}</li>
+        <li>{{#t}}pages.amend-licence.listElement2{{/t}}</li>
+        <li>{{#t}}pages.amend-licence.listElement3{{/t}}</li>
+    </ul>
+  </div>
+  
+  <p class="govuk-body">
+    {{#t}}pages.amend-licence.p2{{/t}}
+    <a class="govuk-link" href="{{t "pages.amend-licence.link"}}" target="_blank" rel="noreferrer noopener">
+      {{#t}}pages.amend-licence.link-text{{/t}}
+    </a>
+  </p>
+  
+
+  {{#fields}}
+    {{#renderField}}{{/renderField}}
+  {{/fields}}
+  {{#input-submit}}continue{{/input-submit}} 
+  {{/page-content}}
+{{/partials-page}}

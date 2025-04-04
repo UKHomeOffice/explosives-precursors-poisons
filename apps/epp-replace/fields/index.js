@@ -199,6 +199,15 @@ module.exports = {
     options: ['yes', 'no'],
     className: ['govuk-radios', 'govuk-radios--inline']
   },
+  'amend-name-options': {
+    mixin: 'radio-group',
+    legend: {
+      className: 'govuk-label--m'
+    },
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    options: ['yes', 'no'],
+    validate: 'required'
+  },
   'replace-countersignatory-UK-passport-number': {
     validate: [
       'required',
