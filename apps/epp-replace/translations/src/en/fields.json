@@ -9,36 +9,36 @@
       "none_selected": "Select"
     }
   },
-  "replace-new-name-title": {
-    "label": "Title",
-    "options": {
-      "none_selected": "Select"
-    }
-  },
-  "replace-home-address-options": {
-    "legend": "Do you need to amend your home address on the licence?",
-    "options": {
-      "yes": {
-        "label": "Yes"
+      "replace-new-name-title": {
+        "label": "Title",
+        "options": {
+          "none_selected": "Select"
+        }
       },
-      "no": {
-        "label": "No"
-      }
-    }
-  },
-  "replace-new-firstname": {
-    "label": "First name"
-  },
-  "replace-new-middlename": {
-    "label": "Middle names (optional)"
-  },
-  "replace-new-lastname": {
-    "label": "Last name"
-  },
-  "replace-date-new-name-changed": {
-    "legend": "What date did you change your name?",
-    "hint": "For example, 30 09 2014"
-  },
+      "replace-home-address-options": {
+        "legend": "Do you need to amend your home address on the licence?",
+        "options": {
+          "yes": {
+            "label": "Yes"
+          },
+          "no": {
+            "label": "No"
+          }
+        }
+      },
+      "replace-new-firstname": {
+        "label": "First name"
+      },
+      "replace-new-middlename": {
+        "label": "Middle names (optional)"
+      },
+      "replace-new-lastname": {
+        "label": "Last name"
+      },
+      "replace-date-new-name-changed": {
+        "legend": "What date did you change your name?",
+        "hint": "For example, 30 09 2014"
+      },
   "replace-first-name": {
     "label": "First name"
   },
@@ -59,44 +59,44 @@
       }
     }
   },
-  "replace-new-address-1": {
-    "label": "Address line 1"
-  },
-  "replace-new-address-2": {
-    "label": "Address line 2 (optional)"
-  },
-  "replace-new-town-or-city": {
-    "label": "Town or city"
-  },
-  "replace-new-county": {
-    "label": "County, state, province (optional)"
-  },
-  "replace-new-postcode": {
-    "label": "Postcode (optional)",
-    "hint": "Postcode is optional if your address is outside the UK"
-  },
-  "replace-new-country": {
-    "label": "Country of address",
-    "hint": "Select a country from the list",
-    "options": {
-      "none_selected": "Select"
-    }
-  },
-  "replace-change-substances": {
-    "legend": "Do you need to amend the substances on your licence?",
-    "options": {
-      "yes": {
-        "label": "Yes"
+      "replace-new-address-1": {
+        "label": "Address line 1"
       },
-      "no": {
-        "label": "No"
-      }
-    }
-  },
-  "replace-new-date-moved-to-address": {
-    "legend": "When did you move to this address?",
-    "hint": " For example, 30 09 1969"
-  },
+      "replace-new-address-2": {
+        "label": "Address line 2 (optional)"
+      },
+      "replace-new-town-or-city": {
+        "label": "Town or city"
+      },
+      "replace-new-county": {
+        "label": "County, state, province (optional)"
+      },
+      "replace-new-postcode": {
+        "label": "Postcode (optional)",
+        "hint": "Postcode is optional if your address is outside the UK"
+      },
+      "replace-new-country": {
+        "label": "Country of address",
+        "hint": "Select a country from the list",
+        "options": {
+          "none_selected": "Select"
+        }
+      },
+      "replace-change-substances": {
+        "legend": "Do you need to amend the substances on your licence?",
+        "options": {
+          "yes": {
+            "label": "Yes"
+          },
+          "no": {
+            "label": "No"
+          }
+        }
+      },
+      "replace-new-date-moved-to-address": {
+          "legend": "When did you move to this address?",
+          "hint": " For example, 30 09 1969"
+      },
   "replace-licence": {
     "legend": "Why do you need a replacement licence?",
     "options": {
@@ -125,6 +125,66 @@
         "label": "No"
       }
     }
+  },
+  "poison-field": {
+    "hint": "Select a poison",
+    "options": {
+      "none_selected": "Select poison"
+    }
+  },
+  "why-need-poison": {
+    "label": "{{values.whyNeedPoisonLabel}}",
+    "hint": "Detailed answers mean we can process your application faster",
+    "summary-heading": "{{values.whyNeedPoisonLabel}}"
+  },
+  "how-much-poison": {
+    "label": "How much do you wish to acquire at any one time within a 6-month period?",
+    "hint": "Enter the amount and the unit. For example, 10 litres",
+     "summary-heading": "How much do you wish to acquire at any one time within a 6-month period?"
+  },
+  "compound-or-salt": {
+    "label": "Specific compound or salt",
+    "summary-heading": "Specific compound or salt"
+  },
+  "what-concentration-poison": {
+    "label": "What concentration % w/w of the substance do you need?",
+     "summary-heading": "What concentration % w/w of the substance do you need?"
+  },
+  "where-to-store-poison": {
+    "legend": "{{values.whereToStorePoisonLegend}}",
+    "summary-heading": "{{values.whereToStorePoisonLegend}}",
+    "hint": "This must be in the UK",
+    "options": {
+      "store-poison-home-address-value": {
+        "label": "{{values.homeAddressInline}}"
+      },
+      "store-poison-other-address-value": {
+        "label": "Other address"
+      }
+    }
+  },
+  "store-poison-other-address": {
+    "label": "{{values.storePoisonOtherAddressLabel}}",
+    "hint": "Enter a UK address",
+    "summary-heading": "{{values.storePoisonOtherAddressLabel}}"
+  },
+  "where-to-use-poison": {
+    "legend": "{{values.whereToUsePoisonLegend}}",
+    "hint": "This must be in the UK",
+    "summary-heading": "{{values.whereToUsePoisonLegend}}",
+    "options": {
+      "use-poison-home-address": {
+        "label": "{{values.homeAddressInline}}"
+      },
+      "use-poison-other-address-value": {
+        "label": "Other address"
+      }
+    }
+  },
+  "poison-use-other-address": {
+    "label": "{{values.usePoisonOtherAddressLabel}}",
+    "hint": "Enter a UK address",
+    "summary-heading": "{{values.usePoisonOtherAddressLabel}}"
   },
   "replace-countersignatory-title": {
     "label": "Title",
@@ -172,12 +232,6 @@
   },
   "replace-countersignatory-email": {
     "label": "Email address"
-  },
-  "replace-poison": {
-    "hint": "Select a poison",
-    "options": {
-      "none_selected": "Select poison"
-    }
   },
   "replace-countersignatory-Id-type": {
     "legend": "What is your countersignatory’s identity document?",
@@ -285,19 +339,8 @@
   },
   "precursor-field": {
     "hint": "Select an explosives precursor",
-    "options": {
+    "options":{
       "none_selected": "Select"
-    }
-  },
-  "replace-no-poisons-precursors-options": {
-    "legend": "Do you want to continue the form without changing the explosives precursors or poisons?",
-    "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
     }
   },
   "replace-name-options": {
