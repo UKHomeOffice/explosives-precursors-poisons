@@ -13,6 +13,7 @@ const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-paymen
 const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
 const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator');
 const NavigateNoChanges = require('./behaviours/navigate-no-changes');
+const PrecursorRoutingBehaviour = require('./behaviours/precursor-routing-behaviour');
 
 
 // TODO: Use DeleteRedundantDocuments behaviour similar to amend flow to
@@ -314,30 +315,9 @@ module.exports = {
       next: '/precursor-details'
     },
     '/no-precursors-or-poisons': {
+      behaviour: [PrecursorRoutingBehaviour],
       fields: ['replace-no-poisons-precursors-options'],
-      forks: [
-        {
-          target: '/countersignatory-details',
-          continueOnEdit: true,
-          condition: req =>
-            req.sessionModel.get('replace-no-poisons-precursors-options') === 'no' &&
-            (
-              req.sessionModel.get('replace-name') === 'yes' ||
-              req.sessionModel.get('replace-home-address-options') === 'yes'
-            )
-        },
-        {
-          target: '/confirm',
-          continueOnEdit: true,
-          condition: req =>
-            req.sessionModel.get('replace-no-poisons-precursors-options') === 'no' &&
-            (
-              req.sessionModel.get('replace-name') !== 'yes' &&
-              req.sessionModel.get('replace-home-address-options') !== 'yes'
-            )
-        }
-      ],
-      next: '/countersignatory-details'
+      next: '/change-substances'
     },
     '/precursor-details': {
       fields: [],
