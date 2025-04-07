@@ -248,6 +248,9 @@
       },
       "replace-is-details-changed": {
         "header": "Changes to licence"
+      },
+      "replace-poison-details": {
+        "header": " Poisons"
       }
     },
     "fields": {
@@ -334,6 +337,27 @@
       },
       "replace-Uk-driving-licence-number": {
         "label": "UK driving licence number"
+      },
+      "display-poison-title": {
+         "label": "Poison name"
+      },
+      "why-need-poison": {
+        "label": "For what purpose do you need this regulated substance?"
+      },
+      "how-much-poison": {
+        "label": "How much do you wish to acquire?"
+      },
+      "compound-or-salt": {
+        "label": "Specific compound or salt"
+      },
+      "what-concentration-poison": {
+        "label": "What concentration % w/w of the substance do you need for your intended purpose?"
+      },
+      "where-to-store-poison": {
+        "label":"Storage address"
+      },
+      "where-to-use-poison": {
+        "label": "Usage address"
       }
     }
   }
