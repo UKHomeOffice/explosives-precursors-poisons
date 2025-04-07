@@ -15,6 +15,7 @@ const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator'
 const NavigateNoChanges = require('./behaviours/navigate-no-changes');
 const PrecursorRoutingBehaviour = require('./behaviours/precursor-routing-behaviour');
 
+const RenderPoisonDetails = require('../epp-common/behaviours/render-poison-detail');
 
 // TODO: Use DeleteRedundantDocuments behaviour similar to amend flow to
 // remove the uploaded files when dependent option changes
@@ -324,16 +325,28 @@ module.exports = {
       next: '/select-poisons'
     },
     '/select-poisons': {
-      fields: ['replace-poison'],
-      locals: { captionHeading: 'Section 20 of 26' },
-      next: '/section-seventeen-poison'
+      fields: ['poison-field'],
+      next: '/poison-details',
+      locals: { captionHeading: 'Section 20 of 26' }
     },
-    '/section-seventeen-poison': {
-      fields: ['replace-poison-details'],
-      next: '/section-seventeen-summary'
+    '/poison-details': {
+      behaviours: [RenderPoisonDetails('poison-field')],
+      fields: [
+        'why-need-poison',
+        'how-much-poison',
+        'compound-or-salt',
+        'what-concentration-poison',
+        'where-to-store-poison',
+        'where-to-use-poison',
+        'store-poison-other-address',
+        'poison-use-other-address'
+      ],
+      next: '/poisons-summary',
+      locals: { captionHeading: 'Section 20 of 26' }
     },
-    '/section-seventeen-summary': {
-      next: '/countersignatory-details'
+    '/poisons-summary': {
+      next: '/countersignatory-details',
+      locals: { captionHeading: 'Section 20 of 26' }
     },
     '/countersignatory-details': {
       fields: [

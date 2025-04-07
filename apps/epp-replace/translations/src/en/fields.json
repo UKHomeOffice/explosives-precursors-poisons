@@ -15,62 +15,31 @@
       "none_selected": "Select"
     }
   },
-  "replace-home-address-options": {
-    "legend": "Do you need to amend your home address on the licence?",
+  "replace-name-options": {
+    "legend": "Do you need to amend your name on the licence?",
     "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
+      "yes": { "label": "Yes" },
+      "no": { "label": "No" }
     }
   },
-  "replace-new-firstname": {
-    "label": "First name"
-  },
-  "replace-new-middlename": {
-    "label": "Middle names (optional)"
-  },
-  "replace-new-lastname": {
-    "label": "Last name"
-  },
+  "replace-new-firstname": { "label": "First name" },
+  "replace-new-middlename": { "label": "Middle names (optional)" },
+  "replace-new-lastname": { "label": "Last name" },
   "replace-date-new-name-changed": {
     "legend": "What date did you change your name?",
     "hint": "For example, 30 09 2014"
   },
-  "replace-first-name": {
-    "label": "First name"
-  },
-  "replace-middle-name": {
-    "label": "Middle names (optional)"
-  },
-  "replace-last-name": {
-    "label": "Last name"
-  },
-  "replace-police-report": {
-    "legend": "Have you reported the theft to the police?",
+  "replace-home-address-options": {
+    "legend": "Do you need to amend your home address on the licence?",
     "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
+      "yes": { "label": "Yes" },
+      "no": { "label": "No" }
     }
   },
-  "replace-new-address-1": {
-    "label": "Address line 1"
-  },
-  "replace-new-address-2": {
-    "label": "Address line 2 (optional)"
-  },
-  "replace-new-town-or-city": {
-    "label": "Town or city"
-  },
-  "replace-new-county": {
-    "label": "County, state, province (optional)"
-  },
+  "replace-new-address-1": { "label": "Address line 1" },
+  "replace-new-address-2": { "label": "Address line 2 (optional)" },
+  "replace-new-town-or-city": { "label": "Town or city" },
+  "replace-new-county": { "label": "County, state, province (optional)" },
   "replace-new-postcode": {
     "label": "Postcode (optional)",
     "hint": "Postcode is optional if your address is outside the UK"
@@ -82,145 +51,59 @@
       "none_selected": "Select"
     }
   },
+  "replace-new-date-moved-to-address": {
+    "legend": "When did you move to this address?",
+    "hint": "For example, 30 09 1969"
+  },
   "replace-change-substances": {
     "legend": "Do you need to amend the substances on your licence?",
     "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
+      "yes": { "label": "Yes" },
+      "no": { "label": "No" }
     }
-  },
-  "replace-new-date-moved-to-address": {
-    "legend": "When did you move to this address?",
-    "hint": " For example, 30 09 1969"
   },
   "replace-licence": {
     "legend": "Why do you need a replacement licence?",
     "options": {
-      "replace-licence-stolen": {
-        "label": "Licence was stolen"
-      },
-      "replace-licence-lost": {
-        "label": "Licence is lost"
-      },
-      "replace-licence-damaged": {
-        "label": "Licence is damaged"
-      },
-      "replace-licence-destroyed": {
-        "label": "Licence is destroyed"
-      }
+      "replace-licence-stolen": { "label": "Licence was stolen" },
+      "replace-licence-lost": { "label": "Licence is lost" },
+      "replace-licence-damaged": { "label": "Licence is damaged" },
+      "replace-licence-destroyed": { "label": "Licence is destroyed" }
     }
   },
   "replace-is-details-changed": {
     "legend": "Have any of your details changed since the licence was issued?",
     "hint": "Includes the name, address and substances recorded on the licence",
     "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
+      "yes": { "label": "Yes" },
+      "no": { "label": "No" }
     }
   },
-  "replace-countersignatory-title": {
-    "label": "Title",
+  "replace-police-report": {
+    "legend": "Have you reported the theft to the police?",
+    "options": {
+      "yes": { "label": "Yes" },
+      "no": { "label": "No" }
+    }
+  },
+  "replace-police-force": {
+    "label": "Which police force did you report this to?",
+    "hint": "Select a police force from the list",
     "options": {
       "none_selected": "Select"
     }
   },
-  "replace-countersignatory-firstname": {
-    "label": "First name"
-  },
-  "replace-countersignatory-middlename": {
-    "label": "Middle names (optional)"
-  },
-  "replace-countersignatory-lastname": {
-    "label": "Last name"
-  },
-  "replace-countersignatory-years": {
-    "label": "How many years have you known your countersignatory?",
-    "hint": "They must have known you for at least 2 years",
-    "options": {
-      "none_selected": "Select"
-    }
-  },
-  "replace-countersignatory-howyouknow": {
-    "label": "How do you know your countersignatory?"
-  },
-  "replace-countersignatory-occupation": {
-    "label": "What is your countersignatory’s occupation?"
-  },
-  "replace-countersignatory-address-1": {
-    "label": "Address line 1"
-  },
-  "replace-countersignatory-address-2": {
-    "label": "Address line 2 (optional)"
-  },
-  "replace-countersignatory-town-or-city": {
-    "label": "Town or city"
-  },
-  "replace-countersignatory-postcode": {
-    "label": "Postcode"
-  },
-  "replace-countersignatory-phone-number": {
-    "label": "Contact phone number",
-    "hint": "For international numbers, include the country code"
-  },
-  "replace-countersignatory-email": {
-    "label": "Email address"
-  },
-  "replace-poison": {
-    "hint": "Select a poison",
-    "options": {
-      "none_selected": "Select poison"
-    }
-  },
-  "replace-countersignatory-Id-type": {
-    "legend": "What is your countersignatory’s identity document?",
-    "hint": "You only need to provide a document number.",
-    "options": {
-      "UK-passport": {
-        "label": "British passport"
-      },
-      "EU-passport": {
-        "label": "Passport from the EU, Switzerland, Norway, Iceland or Liechtenstein"
-      },
-      "Uk-driving-licence": {
-        "label": "UK driving licence",
-        "hint": "Must be a photocard licence."
-      }
-    }
-  },
-  "replace-countersignatory-UK-passport-number": {
-    "label": "What is your passport number?",
-    "hint": "For example, 120897A"
-  },
-  "replace-countersignatory-EU-passport-number": {
-    "label": "What is your passport number?",
-    "hint": "For example, 120897A"
-  },
-  "replace-countersignatory-Uk-driving-licence-number": {
-    "label": "What is your driving licence number?",
-    "hint": "On section 5 of your licence, for example MORGA657054SM9IJ"
-  },
+  "replace-crime-number": { "label": "Crime number" },
   "replace-date-of-birth": {
-    "hint": " For example, 30 09 1969",
-    "label": "Date of birth"
+    "label": "Date of birth",
+    "hint": "For example, 30 09 1969"
   },
   "replace-which-document-type": {
     "legend": "Which identity document do you want to use?",
     "hint": "If your licence is granted, you will need to show this document when buying the substances",
     "options": {
-      "UK-passport": {
-        "label": "British passport"
-      },
-      "EU-passport": {
-        "label": "Passport from the EU, Switzerland, Norway, Iceland or Liechtenstein"
-      },
+      "UK-passport": { "label": "British passport" },
+      "EU-passport": { "label": "Passport from the EU, Switzerland, Norway, Iceland or Liechtenstein" },
       "Uk-driving-licence": {
         "label": "UK driving licence",
         "hint": "Must be a photocard licence."
@@ -247,28 +130,65 @@
     "label": "Email address",
     "hint": "Where we will contact you about the outcome of your application"
   },
-  "replace-police-force": {
-    "label": "Which police force did you report this to?",
-    "hint": "Select a police force from the list",
+  "replace-countersignatory-title": {
+    "label": "Title",
     "options": {
       "none_selected": "Select"
     }
   },
-  "replace-crime-number": {
-    "label": "Crime number"
+  "replace-countersignatory-firstname": { "label": "First name" },
+  "replace-countersignatory-middlename": { "label": "Middle names (optional)" },
+  "replace-countersignatory-lastname": { "label": "Last name" },
+  "replace-countersignatory-years": {
+    "label": "How many years have you known your countersignatory?",
+    "hint": "They must have known you for at least 2 years",
+    "options": {
+      "none_selected": "Select"
+    }
   },
-  "replace-home-address-1": {
-    "label": "Address line 1"
+  "replace-countersignatory-howyouknow": {
+    "label": "How do you know your countersignatory?"
   },
-  "replace-home-address-2": {
-    "label": "Address line 2 (optional)"
+  "replace-countersignatory-occupation": {
+    "label": "What is your countersignatory’s occupation?"
   },
-  "replace-home-town-or-city": {
-    "label": "Town or city"
+  "replace-countersignatory-address-1": { "label": "Address line 1" },
+  "replace-countersignatory-address-2": { "label": "Address line 2 (optional)" },
+  "replace-countersignatory-town-or-city": { "label": "Town or city" },
+  "replace-countersignatory-postcode": { "label": "Postcode" },
+  "replace-countersignatory-phone-number": {
+    "label": "Contact phone number",
+    "hint": "For international numbers, include the country code"
   },
-  "replace-home-county": {
-    "label": "County, state, province (optional)"
+  "replace-countersignatory-email": { "label": "Email address" },
+  "replace-countersignatory-Id-type": {
+    "legend": "What is your countersignatory’s identity document?",
+    "hint": "You only need to provide a document number.",
+    "options": {
+      "UK-passport": { "label": "British passport" },
+      "EU-passport": { "label": "Passport from the EU, Switzerland, Norway, Iceland or Liechtenstein" },
+      "Uk-driving-licence": {
+        "label": "UK driving licence",
+        "hint": "Must be a photocard licence."
+      }
+    }
   },
+  "replace-countersignatory-UK-passport-number": {
+    "label": "What is your passport number?",
+    "hint": "For example, 120897A"
+  },
+  "replace-countersignatory-EU-passport-number": {
+    "label": "What is your passport number?",
+    "hint": "For example, 120897A"
+  },
+  "replace-countersignatory-Uk-driving-licence-number": {
+    "label": "What is your driving licence number?",
+    "hint": "On section 5 of your licence, for example MORGA657054SM9IJ"
+  },
+  "replace-home-address-1": { "label": "Address line 1" },
+  "replace-home-address-2": { "label": "Address line 2 (optional)" },
+  "replace-home-town-or-city": { "label": "Town or city" },
+  "replace-home-county": { "label": "County, state, province (optional)" },
   "replace-home-postcode": {
     "label": "Postcode (optional)",
     "hint": "Postcode is optional if your address is outside the UK"
@@ -280,8 +200,24 @@
       "none_selected": "Select"
     }
   },
-  "amend-declaration": {
-    "label": "I have read and agree to this declaration"
+  "replace-no-poisons-precursors-options": {
+    "legend": "Do you want to continue the form without changing the explosives precursors or poisons?",
+    "options": {
+      "yes": { "label": "Yes" },
+      "no": { "label": "No" }
+    }
+  },
+  "replace-poison": {
+    "hint": "Select a poison",
+    "options": {
+      "none_selected": "Select poison"
+    }
+  },
+  "poison-field": {
+    "hint": "Select a poison",
+    "options": {
+      "none_selected": "Select poison"
+    }
   },
   "precursor-field": {
     "hint": "Select an explosives precursor",
@@ -289,26 +225,53 @@
       "none_selected": "Select"
     }
   },
-  "replace-no-poisons-precursors-options": {
-    "legend": "Do you want to continue the form without changing the explosives precursors or poisons?",
+  "why-need-poison": {
+    "label": "{{values.whyNeedPoisonLabel}}",
+    "hint": "Detailed answers mean we can process your application faster",
+    "summary-heading": "{{values.whyNeedPoisonLabel}}"
+  },
+  "how-much-poison": {
+    "label": "How much do you wish to acquire at any one time within a 6-month period?",
+    "hint": "Enter the amount and the unit. For example, 10 litres",
+    "summary-heading": "How much do you wish to acquire at any one time within a 6-month period?"
+  },
+  "compound-or-salt": {
+    "label": "Specific compound or salt",
+    "summary-heading": "Specific compound or salt"
+  },
+  "what-concentration-poison": {
+    "label": "What concentration % w/w of the substance do you need?",
+    "summary-heading": "What concentration % w/w of the substance do you need?"
+  },
+  "where-to-store-poison": {
+    "legend": "{{values.whereToStorePoisonLegend}}",
+    "hint": "This must be in the UK",
+    "summary-heading": "{{values.whereToStorePoisonLegend}}",
     "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
+      "store-poison-home-address-value": { "label": "{{values.homeAddressInline}}" },
+      "store-poison-other-address-value": { "label": "Other address" }
     }
   },
-  "replace-name-options": {
-    "legend": "Do you need to amend your name on the licence?",
+  "store-poison-other-address": {
+    "label": "{{values.storePoisonOtherAddressLabel}}",
+    "hint": "Enter a UK address",
+    "summary-heading": "{{values.storePoisonOtherAddressLabel}}"
+  },
+  "where-to-use-poison": {
+    "legend": "{{values.whereToUsePoisonLegend}}",
+    "hint": "This must be in the UK",
+    "summary-heading": "{{values.whereToUsePoisonLegend}}",
     "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
+      "use-poison-home-address": { "label": "{{values.homeAddressInline}}" },
+      "use-poison-other-address-value": { "label": "Other address" }
     }
+  },
+  "poison-use-other-address": {
+    "label": "{{values.usePoisonOtherAddressLabel}}",
+    "hint": "Enter a UK address",
+    "summary-heading": "{{values.usePoisonOtherAddressLabel}}"
+  },
+  "amend-declaration": {
+    "label": "I have read and agree to this declaration"
   }
 }

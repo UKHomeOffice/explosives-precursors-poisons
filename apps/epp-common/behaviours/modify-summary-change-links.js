@@ -18,6 +18,7 @@ const remapChangeLinks = (fields, mappings) => {
 };
 
 const precursorsSummaryStep = '/precursors-summary';
+const poisonsSummaryStep = '/poison-summary';
 
 const getChangeLinkUrl = (req, path) => {
   const application = req.sessionModel.get('applicationType');
@@ -41,6 +42,10 @@ module.exports = superclass =>
             {
               field: 'amend-display-precursor-title',
               changeLink: getChangeLinkUrl(req, precursorsSummaryStep)
+            },
+            {
+              field: 'display-poison-title',
+              changeLink: getChangeLinkUrl(req, poisonsSummaryStep)
             }
           ];
           section.fields = remapChangeLinks(section.fields, summaryMappings);

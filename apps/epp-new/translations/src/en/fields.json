@@ -443,5 +443,16 @@
         "label": "No"
       }
     }
+  },
+  "new-renew-regulated-explosives-precursors-options": {
+    "legend":"Does your licence need to cover explosives precursors?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }

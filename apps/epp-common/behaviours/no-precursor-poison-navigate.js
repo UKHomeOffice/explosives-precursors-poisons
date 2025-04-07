@@ -7,7 +7,7 @@ module.exports = superclass =>
     successHandler(req, res, next) {
       const noPrecursorOrPoison =
         req.sessionModel.get('new-renew-poisons-options') === 'no' &&
-        req.sessionModel.get('new-renew-regulated-explosives-precursors') ===
+        req.sessionModel.get('new-renew-regulated-explosives-precursors-options') ===
           'no';
       if (noPrecursorOrPoison) {
         req.sessionModel.set('noPrecursorOrPoisonBackLink', req.originalUrl);
