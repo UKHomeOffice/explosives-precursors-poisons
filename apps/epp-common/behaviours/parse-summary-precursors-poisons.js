@@ -17,7 +17,7 @@ module.exports = superclass =>
         'amend-display-precursor-title',
         'poison-use-other-address',
         'store-poison-other-address',
-        'amend-display-poison-title'
+        'display-poison-title'
       ];
       const locals = super.locals(req, res);
       locals.items = locals.items.map(item => {

@@ -751,5 +751,14 @@ module.exports = {
     className: ['govuk-radios', 'govuk-radios--inline'],
     options: ['yes', 'no'],
     validate: 'required'
+  },
+  'new-renew-regulated-explosives-precursors-options': {
+    mixin: 'radio-group',
+    legend: {
+      className: 'govuk-fieldset__legend--m'
+    },
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    options: ['yes', 'no'],
+    validate: 'required'
   }
 };

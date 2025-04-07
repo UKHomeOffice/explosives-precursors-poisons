@@ -238,6 +238,21 @@
     "link-text" : "list of regulated chemicals (opens in a new tab)",
     "p2": "You do not need a licence for reportable poisons."
   },
+  "explosives-precursors": {
+    "header": "Regulated explosives precursors",
+    "p1": "Check what your licence needs to cover using the",
+    "link": "https://www.gov.uk/government/publications/supplying-explosives-precursors/list-of-chemicals#regulated-explosives-precursors",
+    "link-text": "list of regulated chemicals (opens in a new tab)",
+    "p2": "You do not need a licence for reportable explosives precursors."
+  },
+  "no-poisons-or-precursors": {
+    "header": "You do not need to apply for a licence",
+    "p1": "You told us you do not need your licence to cover explosives precursors or poisons. Therefore, you do not need to apply for a licence.",
+    "p2": "You can check which substances your licence needs to cover on the",
+    "link-text": "list of regulated chemicals (opens in a new tab)",
+    "link-url": "https://www.gov.uk/government/publications/supplying-explosives-precursors/list-of-chemicals",
+    "p3": "You do not need a licence for reportable explosives precursors or poisons."
+  },
   "confirm": {
     "header": "Check your answers",
     "title": "Check your answers – Apply for an explosives precursors and poisons licence",
@@ -267,6 +282,12 @@
       },
       "other-names-summary": {
         "header": "Other names summary"
+      },
+      "licence-for-explosives-precursors": {
+        "header": "Licence for explosives precursors"
+      },
+      "licence-for-poisons": {
+        "header": "Licence for poisons"
       }
     },
     "fields": {

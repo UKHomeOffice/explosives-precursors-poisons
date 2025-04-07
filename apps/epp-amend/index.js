@@ -389,20 +389,20 @@ module.exports = {
       locals: { captionHeading: 'Section 16 of 23' }
     },
     '/select-poisons': {
-      fields: ['amend-poison'],
+      fields: ['poison-field'],
       next: '/poison-details',
       continueOnEdit: true,
       locals: { captionHeading: 'Section 17 of 23' }
     },
     '/poison-details': {
-      behaviours: [RenderPoisonDetails('amend-poison')],
+      behaviours: [RenderPoisonDetails('poison-field')],
       fields: [
-        'amend-why-need-poison',
-        'amend-how-much-poison',
-        'amend-compound-or-salt',
-        'amend-what-concentration-poison',
-        'amend-where-to-store-poison',
-        'amend-where-to-use-poison',
+        'why-need-poison',
+        'how-much-poison',
+        'compound-or-salt',
+        'what-concentration-poison',
+        'where-to-store-poison',
+        'where-to-use-poison',
         'store-poison-other-address',
         'poison-use-other-address'
       ],
@@ -418,15 +418,15 @@ module.exports = {
       ],
       aggregateTo: 'poisons-details-aggregate',
       aggregateFrom: [
-        'amend-display-poison-title',
-        'amend-why-need-poison',
-        'amend-how-much-poison',
-        'amend-compound-or-salt',
-        'amend-what-concentration-poison',
-        'amend-where-to-store-poison',
-        'amend-where-to-use-poison'
+        'display-poison-title',
+        'why-need-poison',
+        'how-much-poison',
+        'compound-or-salt',
+        'what-concentration-poison',
+        'where-to-store-poison',
+        'where-to-use-poison'
       ],
-      titleField: ['amend-poison'],
+      titleField: ['poison-field'],
       addStep: 'select-poisons',
       addAnotherLinkText: 'poison',
       continueOnEdit: false,
