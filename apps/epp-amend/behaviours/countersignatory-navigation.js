@@ -23,7 +23,11 @@ module.exports = currentRoute => superclass =>
         if (amendNameOrAddress) {
           return redirectToCountersignatory();
         }
-        if (noAmendNameOrAddress) {
+        if (
+          noAmendNameOrAddress &&
+          req.sessionModel.get('amend-regulated-explosives-precursors') !==
+            'yes'
+        ) {
           return redirectNoPoisonsOrPrecursors();
         }
       }
