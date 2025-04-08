@@ -319,7 +319,7 @@
       "precursor-field": {
          "label": "Explosives precursors"
       },
-      "amend-display-precursor-title": {
+      "display-precursor-title": {
          "label": "Explosives precursor name"
       },
       "why-need-precursor": {

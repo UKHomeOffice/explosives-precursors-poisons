@@ -350,7 +350,7 @@ module.exports = {
       ],
       aggregateTo: 'precursors-details-aggregate',
       aggregateFrom: [
-        'amend-display-precursor-title',
+        'display-precursor-title',
         'why-need-precursor',
         'how-much-precursor',
         'what-concentration-precursor',
