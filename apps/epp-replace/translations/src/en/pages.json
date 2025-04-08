@@ -197,6 +197,9 @@
     "p1": "Tell us which explosives precursors you want to import acquire use or possess.",
     "p2": "If you need multiple explosives precursors, you can add each one separately."
   },
+  "poison-summary": {
+    "header": "Poisons on your licence"
+  },
   "confirm": {
     "header": "Check your answers",
     "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",
@@ -248,6 +251,9 @@
       },
       "replace-is-details-changed": {
         "header": "Changes to licence"
+      },
+      "replace-poison-details": {
+        "header": " Poisons"
       }
     },
     "fields": {
@@ -334,6 +340,27 @@
       },
       "replace-Uk-driving-licence-number": {
         "label": "UK driving licence number"
+      },
+      "display-poison-title": {
+         "label": "Poison name"
+      },
+      "why-need-poison": {
+        "label": "For what purpose do you need this regulated substance?"
+      },
+      "how-much-poison": {
+        "label": "How much do you wish to acquire?"
+      },
+      "compound-or-salt": {
+        "label": "Specific compound or salt"
+      },
+      "what-concentration-poison": {
+        "label": "What concentration % w/w of the substance do you need for your intended purpose?"
+      },
+      "where-to-store-poison": {
+        "label":"Storage address"
+      },
+      "where-to-use-poison": {
+        "label": "Usage address"
       }
     }
   }

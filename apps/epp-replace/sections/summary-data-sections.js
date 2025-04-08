@@ -302,11 +302,25 @@ module.exports = {
       }
     ]
   },
-  'replace-licence-for-poisons': {
+  'replace-poison-details': {
     steps: [
       {
-        step: '/select-poisons',
-        field: 'poison-field'
+        step: '/poison-summary',
+        field: 'poisons-details-aggregate',
+        parse: (list, req) => {
+          if (!list?.aggregatedValues || req.sessionModel.get('replace-change-substances') === 'no') { return null; }
+          for(const item of list.aggregatedValues) {
+            item.fields.map(element => {
+              if(element.field === 'display-poison-title') {
+                element.parsed = item.joinTitle;
+              }else{
+                element.field;
+                element.omitChangeLink = true;
+              }
+            });
+          }
+          return list;
+        }
       }
     ]
   },
