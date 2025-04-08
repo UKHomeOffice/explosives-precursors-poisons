@@ -27,6 +27,7 @@ const SaveAddress = require('../epp-common/behaviours/save-home-other-address');
 const SaveCounterSignatoryAddress = require('../epp-common/behaviours/save-countersignatory-address');
 const NoPrecursorOrPoison = require('../epp-common/behaviours/no-precursor-poison-navigate');
 const NoPrecursorPoisonBackLink = require('./behaviours/no-poison-precursor-back-link');
+const RenderPoisonDetails = require('../epp-common/behaviours/render-poison-detail');
 
 module.exports = {
   name: 'EPP form',
@@ -642,7 +643,18 @@ module.exports = {
       }
     },
     '/poison-details': {
-      fields: [],
+      behaviours: [RenderPoisonDetails('poison-field')],
+      fields: [
+        'why-need-poison',
+        'how-much-poison',
+        'compound-or-salt',
+        'what-concentration-poison',
+        'where-to-store-poison',
+        'where-to-use-poison',
+        'store-poison-other-address',
+        'poison-use-other-address'
+      ],
+      continueOnEdit: true,
       next: '/poison-summary',
       locals: {
         sectionNo: {
