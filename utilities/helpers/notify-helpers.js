@@ -281,6 +281,21 @@ const hasPreviousAddress = req => {
  */
 const getSessionValueOrDefault = value => value || '';
 
+/**
+ * Formats the specified fields from the request object, joining their values with a newline character.
+ *
+ * @param {Object} req - The request object containing the session model.
+ * @param {Array<string>} fields - An array of field names to retrieve values for.
+ * @returns {string} A newline-separated string of the field values, or an empty string if no valid values are found.
+ */
+const formatFieldsNewLine = (req, fields) => {
+  if (req && Array.isArray(fields) && fields.length > 0) {
+    const values = fields.map(field => req.sessionModel.get(field));
+    return values.filter(Boolean)?.join('\n');
+  }
+  return '';
+};
+
 // TODO: Validate all fields when pages are built
 const getReplacePersonalisation = req => {
   return {
@@ -709,14 +724,54 @@ const getNewRenewPersonalisation = req => {
         newRenewTranslation
       )
     ),
-    has_criminal_record: req.sessionModel
-      .get('steps')
-      .includes('/criminal-record')
-      ? STR_YES
-      : STR_NO,
+    has_criminal_record:
+      req.sessionModel.get('steps').includes('/criminal-record') &&
+      req.sessionModel.get('new-renew-have-criminal-record') === STR_YES
+        ? STR_YES
+        : STR_NO,
+    criminal_record: getSessionValueOrDefault(
+      getLabel(
+        'new-renew-have-criminal-record',
+        req.sessionModel.get('new-renew-have-criminal-record'),
+        newRenewTranslation
+      )
+    ),
     criminal_offences: getSessionValueOrDefault(
       formatSectionSummaryItems(req.sessionModel.get('criminalrecordsummary'))
     ),
+    treatment_health_problem: getSessionValueOrDefault(
+      getLabel(
+        'new-renew-has-seen-doctor',
+        req.sessionModel.get('new-renew-has-seen-doctor'),
+        newRenewTranslation
+      )
+    ),
+    treatment_drug_alcohol: getSessionValueOrDefault(
+      getLabel(
+        'new-renew-received-treatment',
+        req.sessionModel.get('new-renew-received-treatment'),
+        newRenewTranslation
+      )
+    ),
+    doctor_details: formatFieldsNewLine(req, [
+      'new-renew-doctor-name',
+      'new-renew-doctor-address-line-1',
+      'new-renew-doctor-address-line-2',
+      'new-renew-doctor-town-city',
+      'new-renew-doctor-county',
+      'new-renew-doctor-postcode',
+      'new-renew-doctor-country'
+    ]),
+    has_medical_form:
+      req.sessionModel.get('steps')?.includes('/medical-form') &&
+      parseDocumentList(req.sessionModel.get('new-renew-medical-form'))
+        ? STR_YES
+        : STR_NO,
+    medical_form_attachment:
+      req.sessionModel.get('steps')?.includes('/medical-form') &&
+      parseDocumentList(req.sessionModel.get('new-renew-medical-form'))
+        ? parseDocumentList(req.sessionModel.get('new-renew-medical-form'))
+        : '',
     explosive_precursor: 'TBD', // TODO: fetch and format
     poisons: 'TBD', // TODO: fetch and format
     countersignatory_title: getSessionValueOrDefault(
@@ -768,16 +823,6 @@ const getNewRenewPersonalisation = req => {
       req.sessionModel.get('steps')?.includes('/birth-certificate') &&
       !isDateOlderOrEqualTo(req.sessionModel.get('new-renew-dob'), 18)
         ? parseDocumentList(req.sessionModel.get('new-renew-birth-certificate'))
-        : '',
-    has_medical_form:
-      req.sessionModel.get('steps')?.includes('/medical-form') &&
-      parseDocumentList(req.sessionModel.get('new-renew-medical-form'))
-        ? STR_YES
-        : STR_NO,
-    medical_form_attachment:
-      req.sessionModel.get('steps')?.includes('/medical-form') &&
-      parseDocumentList(req.sessionModel.get('new-renew-medical-form'))
-        ? parseDocumentList(req.sessionModel.get('new-renew-medical-form'))
         : ''
   };
 };
@@ -801,5 +846,6 @@ module.exports = {
   STR_YES: STR_YES,
   STR_NO: STR_NO,
   USER: USER,
-  BUSINESS: BUSINESS
+  BUSINESS: BUSINESS,
+  formatFieldsNewLine: formatFieldsNewLine
 };

@@ -16,6 +16,13 @@ const NavigateNoChanges = require('./behaviours/navigate-no-changes');
 const PrecursorRoutingBehaviour = require('./behaviours/precursor-routing-behaviour');
 
 const RenderPoisonDetails = require('../epp-common/behaviours/render-poison-detail');
+const AggregateSaveEditPrecursorPoison = require('../epp-common/behaviours/aggregator-save-update-precursors-poisons');
+const ParseSummaryPrecursorsPoisons = require('../epp-common/behaviours/parse-summary-precursors-poisons');
+const EditRouteStart = require('../epp-common/behaviours/edit-route-start');
+const EditRouteReturn = require('../epp-common/behaviours/edit-route-return');
+
+const CounterSignatoryNavigation = require('../epp-common/behaviours/counter-signatory-navigation');
+const ResetSectionSummary = require('../epp-common/behaviours/reset-section-summary');
 
 // TODO: Use DeleteRedundantDocuments behaviour similar to amend flow to
 // remove the uploaded files when dependent option changes
@@ -25,6 +32,7 @@ module.exports = {
   views: 'apps/epp-replace/views',
   translations: 'apps/epp-replace/translations',
   baseUrl: '/replace',
+  params: '/:action?/:id?/:edit?',
   behaviours: [JourneyValidator],
   steps: {
     '/replace-licence': {
@@ -42,7 +50,8 @@ module.exports = {
           condition: req => req.sessionModel.get('replace-licence') !== 'replace-licence-stolen',
           continueOnEdit: true
         }
-      ]
+      ],
+      locals: { captionHeading: 'Section 1 of 26' }
     },
     '/police-report': {
       fields: ['replace-police-report'],
@@ -286,7 +295,13 @@ module.exports = {
       next: '/change-substances'
     },
     '/change-substances': {
-      behaviour: [NavigateNoChanges],
+      behaviour: [
+        NavigateNoChanges,
+        ResetSectionSummary(
+          ['poisons-details-aggregate'],
+          'replace-change-substances'
+        )
+      ],
       fields: ['replace-change-substances'],
       locals: { captionHeading: 'Section 16 of 26' },
       forks: [
@@ -341,11 +356,30 @@ module.exports = {
         'store-poison-other-address',
         'poison-use-other-address'
       ],
-      next: '/poisons-summary',
+      next: '/poison-summary',
       locals: { captionHeading: 'Section 20 of 26' }
     },
-    '/poisons-summary': {
-      next: '/countersignatory-details',
+    '/poison-summary': {
+      behaviours: [
+        CounterSignatoryNavigation('/poison-summary'),
+        AggregateSaveEditPrecursorPoison,
+        ParseSummaryPrecursorsPoisons,
+        EditRouteReturn
+      ],
+      aggregateTo: 'poisons-details-aggregate',
+      aggregateFrom: [
+        'display-poison-title',
+        'why-need-poison',
+        'how-much-poison',
+        'compound-or-salt',
+        'what-concentration-poison',
+        'where-to-store-poison',
+        'where-to-use-poison'
+      ],
+      titleField: ['poison-field'],
+      addStep: 'select-poisons',
+      addAnotherLinkText: 'poison',
+      next: '/confirm',
       locals: { captionHeading: 'Section 20 of 26' }
     },
     '/countersignatory-details': {
@@ -405,7 +439,7 @@ module.exports = {
     },
     '/confirm': {
       sections: require('./sections/summary-data-sections'),
-      behaviours: [SummaryPageBehaviour],
+      behaviours: [SummaryPageBehaviour, EditRouteStart],
       next: '/declaration'
     },
     '/declaration': {

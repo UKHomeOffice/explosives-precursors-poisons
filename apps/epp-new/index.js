@@ -18,17 +18,13 @@ const RemoveDocument = require('../epp-common/behaviours/remove-document');
 const DobEditRedirect = require('../epp-common/behaviours/dob-edit-redirect');
 const DobUnder18Redirect = require('../epp-common/behaviours/dob-under18-redirect');
 const UploadFileCounter = require('../epp-common/behaviours/uploaded-files-counter');
-
 const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redundant-documents');
-
 const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-payment-request');
 const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
 const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator');
-
 const SaveAddress = require('../epp-common/behaviours/save-home-other-address');
 const SaveCounterSignatoryAddress = require('../epp-common/behaviours/save-countersignatory-address');
-
 const NoPrecursorOrPoison = require('../epp-common/behaviours/no-precursor-poison-navigate');
 const NoPrecursorPoisonBackLink = require('./behaviours/no-poison-precursor-back-link');
 
@@ -635,6 +631,8 @@ module.exports = {
       behaviours: [NoPrecursorPoisonBackLink]
     },
     '/select-poison': {
+      fields: ['poison-field'],
+      continueOnEdit: true,
       next: '/poison-details',
       locals: {
         sectionNo: {

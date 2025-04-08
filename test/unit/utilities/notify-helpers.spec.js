@@ -11,7 +11,8 @@ const {
   hasCountersignatoryDetails,
   STR_YES,
   STR_NO,
-  getSessionValueOrDefault
+  getSessionValueOrDefault,
+  formatFieldsNewLine
 } = require('../../../utilities/helpers/notify-helpers');
 
 const {
@@ -670,6 +671,41 @@ describe('notify-helpers tests', () => {
     it('should return an empty string if the value is a boolean false', () => {
       const value = false;
       const result = getSessionValueOrDefault(value);
+      expect(result).to.equal('');
+    });
+  });
+
+  describe('formatFieldsNewLine tests', () => {
+    it('should return joined values with new lines for valid fields', () => {
+      req.sessionModel.get.withArgs('field1').returns('value1');
+      req.sessionModel.get.withArgs('field2').returns('value2');
+      req.sessionModel.get.withArgs('field3').returns('value3');
+
+      const result = formatFieldsNewLine(req, ['field1', 'field2', 'field3']);
+      expect(result).to.equal('value1\nvalue2\nvalue3');
+    });
+
+    it('should ignore fields with no value', () => {
+      req.sessionModel.get.withArgs('field1').returns('value1');
+      req.sessionModel.get.withArgs('field2').returns(null);
+      req.sessionModel.get.withArgs('field3').returns('value3');
+
+      const result = formatFieldsNewLine(req, ['field1', 'field2', 'field3']);
+      expect(result).to.equal('value1\nvalue3');
+    });
+
+    it('should return an empty string if req is null', () => {
+      const result = formatFieldsNewLine(null, ['field1', 'field2', 'field3']);
+      expect(result).to.equal('');
+    });
+
+    it('should return an empty string if fields is not an array', () => {
+      const result = formatFieldsNewLine(req, 'notAnArray');
+      expect(result).to.equal('');
+    });
+
+    it('should return an empty string if fields is an empty array', () => {
+      const result = formatFieldsNewLine(req, []);
       expect(result).to.equal('');
     });
   });

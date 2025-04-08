@@ -10,11 +10,11 @@
         "hint": "For example, to change the name, address or substances on the licence"
       },
       "renew": {
-        "label": "Renew my application",
+        "label": "Renew a licence",
         "hint": "If your licence expires soon"
       },
       "replace": {
-        "label": "Replace my application",
+        "label": "Replace a licence",
         "hint": "If your licence is lost, stolen or damaged"
       }
     }
