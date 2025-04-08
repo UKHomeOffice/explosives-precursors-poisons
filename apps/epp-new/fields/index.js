@@ -9,6 +9,7 @@ const {
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years');
 const { textAreaDefaultLength } = require('../../../utilities/helpers');
 const precursorList = require('../../../utilities/constants/explosive-precursors');
+const poisonsList = require('../../../utilities/constants/poisons.js');
 
 module.exports = {
   'new-renew-title': {
@@ -751,6 +752,18 @@ module.exports = {
     className: ['govuk-radios', 'govuk-radios--inline'],
     options: ['yes', 'no'],
     validate: 'required'
+  },
+  'poison-field': {
+    mixin: 'select',
+    validate: ['required'],
+    labelClassName: 'visuallyhidden',
+    className: ['govuk-select', 'govuk-input--width-2'],
+    options: [
+      {
+        value: '',
+        label: 'fields.poison-field.options.none_selected'
+      }
+    ].concat(poisonsList)
   },
   'new-renew-regulated-explosives-precursors-options': {
     mixin: 'radio-group',
