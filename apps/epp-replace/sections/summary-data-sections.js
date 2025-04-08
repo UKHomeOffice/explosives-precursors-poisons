@@ -307,8 +307,8 @@ module.exports = {
       {
         step: '/poison-summary',
         field: 'poisons-details-aggregate',
-        parse: list => {
-          if (!list?.aggregatedValues) { return null; }
+        parse: (list, req) => {
+          if (!list?.aggregatedValues || req.sessionModel.get('replace-change-substances') === 'no') { return null; }
           for(const item of list.aggregatedValues) {
             item.fields.map(element => {
               if(element.field === 'display-poison-title') {
