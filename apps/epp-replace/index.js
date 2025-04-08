@@ -21,6 +21,7 @@ const EditRouteStart = require('../epp-common/behaviours/edit-route-start');
 const EditRouteReturn = require('../epp-common/behaviours/edit-route-return');
 
 const CounterSignatoryNavigation = require('../epp-common/behaviours/counter-signatory-navigation');
+const ResetSectionSummary = require('../epp-common/behaviours/reset-section-summary');
 
 // TODO: Use DeleteRedundantDocuments behaviour similar to amend flow to
 // remove the uploaded files when dependent option changes
@@ -293,7 +294,13 @@ module.exports = {
       next: '/change-substances'
     },
     '/change-substances': {
-      behaviour: [NavigateNoChanges],
+      behaviour: [
+        NavigateNoChanges,
+        ResetSectionSummary(
+          ['poisons-details-aggregate'],
+          'replace-change-substances'
+        )
+      ],
       fields: ['replace-change-substances'],
       locals: { captionHeading: 'Section 16 of 26' },
       forks: [

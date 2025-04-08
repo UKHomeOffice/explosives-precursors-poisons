@@ -297,9 +297,9 @@ module.exports = {
       behaviours: [
         ResetSectionSummary(
           [
-            'precursors-details-aggregate',
-            'amend-regulated-explosives-precursors'
-          ]
+            'precursors-details-aggregate'
+          ],
+          'amend-regulated-explosives-precursors'
         ),
         CheckAndRedirect('amend-regulated-explosives-precursors', [
           'amend-poisons-option',
