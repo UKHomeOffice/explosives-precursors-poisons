@@ -48,7 +48,8 @@ module.exports = {
           condition: req => req.sessionModel.get('replace-licence') !== 'replace-licence-stolen',
           continueOnEdit: true
         }
-      ]
+      ],
+      locals: { captionHeading: 'Section 1 of 26' }
     },
     '/police-report': {
       fields: ['replace-police-report'],

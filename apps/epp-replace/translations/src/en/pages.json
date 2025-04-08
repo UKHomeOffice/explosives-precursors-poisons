@@ -197,6 +197,9 @@
     "p1": "Tell us which explosives precursors you want to import acquire use or possess.",
     "p2": "If you need multiple explosives precursors, you can add each one separately."
   },
+  "poison-summary": {
+    "header": "Poisons on your licence"
+  },
   "confirm": {
     "header": "Check your answers",
     "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",
