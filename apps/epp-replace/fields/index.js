@@ -11,6 +11,7 @@ const {
 const countries = require('../../../utilities/constants/countries');
 const policeForces = require('../../../utilities/constants/police-forces.js');
 const precursorList = require('../../../utilities/constants/explosive-precursors');
+const helpers = require('../../../utilities/helpers');
 
 module.exports = {
   'replace-licence-number': {
@@ -607,5 +608,81 @@ module.exports = {
       legend: { className: 'govuk-fieldset__legend--m' },
       validate: ['required', 'date', 'before']
     }
-  )
+  ),
+  'why-need-precursor': {
+    mixin: 'textarea',
+    validate: ['required', 'notUrl', helpers.textAreaDefaultLength],
+    attributes: [{ attribute: 'rows', value: 5 }],
+    labelClassName: 'govuk-label--s'
+  },
+  'how-much-precursor': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
+    className: ['govuk-input', 'govuk-input--width-10'],
+    labelClassName: 'govuk-label--s'
+  },
+  'what-concentration-precursor': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      helpers.isValidConcentrationValue,
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ],
+    className: ['govuk-input', 'govuk-input--width-5'],
+    labelClassName: 'govuk-label--s',
+    attributes: [{ suffix: '%' }]
+  },
+  'where-to-store-precursor': {
+    mixin: 'checkbox-group',
+    validate: ['required'],
+    legend: {
+      className: 'govuk-label--s'
+    },
+    options: [
+      {
+        value: 'store-precursors-home-address-value'
+      },
+      {
+        value: 'store-precursors-other-address-value',
+        toggle: 'store-precursors-other-address',
+        child: 'textarea'
+      }
+    ]
+  },
+  'store-precursors-other-address': {
+    mixin: 'textarea',
+    validate: ['required', helpers.textAreaDefaultLength, 'notUrl'],
+    dependent: {
+      field: 'where-to-store-precursor',
+      value: 'store-precursors-other-address-value'
+    },
+    attributes: [{ attribute: 'rows', value: 5 }]
+  },
+  'where-to-use-precursor': {
+    mixin: 'checkbox-group',
+    validate: ['required'],
+    legend: {
+      className: 'govuk-label--s'
+    },
+    options: [
+      {
+        value: 'use-precursors-home-address-value'
+      },
+      {
+        value: 'use-precursors-other-address-value',
+        toggle: 'precursors-use-other-address',
+        child: 'textarea'
+      }
+    ]
+  },
+  'precursors-use-other-address': {
+    mixin: 'textarea',
+    validate: ['required', helpers.textAreaDefaultLength, 'notUrl'],
+    dependent: {
+      field: 'where-to-use-precursor',
+      value: 'use-precursors-other-address-value'
+    },
+    attributes: [{ attribute: 'rows', value: 5 }]
+  }
 };
