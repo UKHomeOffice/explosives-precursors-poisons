@@ -444,6 +444,12 @@
       }
     }
   },
+  "poison-field": {
+    "hint": "Select a poison",
+      "options":{
+        "none_selected": "Select poison"
+    }
+  },
   "new-renew-regulated-explosives-precursors-options": {
     "legend":"Does your licence need to cover explosives precursors?",
     "options": {

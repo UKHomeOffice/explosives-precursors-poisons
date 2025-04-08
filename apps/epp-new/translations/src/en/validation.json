@@ -28,6 +28,9 @@
         "required": "Enter a contact email address",
         "email": "Enter a real email address"
     },
+    "poison-field": {
+    "required": "Select a poison"
+    },
     "new-renew-applicant-Id-type": {
       "required": "Select which identity document you want to use"
     },
