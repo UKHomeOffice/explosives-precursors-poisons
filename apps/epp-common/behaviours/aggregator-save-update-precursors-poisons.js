@@ -172,25 +172,25 @@ module.exports = superclass => class extends superclass {
     const storePrecursorsOtherAddress = req.sessionModel.get('store-precursors-other-address');
     const precursorsUseOtherAddress = req.sessionModel.get('precursors-use-other-address');
     if (Array.isArray(value)) {
-      if (fieldName === 'amend-where-to-store-precursor') {
+      if (fieldName === 'where-to-store-precursor') {
         newValue = homeAddress?.concat('\n\n', storePrecursorsOtherAddress);
       }
-      if (fieldName === 'amend-where-to-use-precursor') {
+      if (fieldName === 'where-to-use-precursor') {
         newValue = homeAddress?.concat('\n\n', precursorsUseOtherAddress);
       }
     } else {
       switch (fieldName) {
-        case 'amend-where-to-store-precursor':
-          if (valueVar === 'amend-store-precursors-home-address') {
+        case 'where-to-store-precursor':
+          if (valueVar === 'store-precursors-home-address-value') {
             newValue = homeAddress;
-          } else if (valueVar === 'amend-store-precursors-other-address') {
+          } else if (valueVar === 'store-precursors-other-address-value') {
             newValue = storePrecursorsOtherAddress;
           }
           break;
-        case 'amend-where-to-use-precursor':
-          if (valueVar === 'amend-use-precursors-home-address') {
+        case 'where-to-use-precursor':
+          if (valueVar === 'use-precursors-home-address-value') {
             newValue = homeAddress;
-          } else if (valueVar === 'amend-use-precursors-other-address') {
+          } else if (valueVar === 'use-precursors-other-address-value') {
             newValue = precursorsUseOtherAddress;
           }
           break;

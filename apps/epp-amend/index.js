@@ -330,11 +330,11 @@ module.exports = {
     '/precursor-details': {
       behaviours: [RenderPrecursorDetails('precursor-field')],
       fields: [
-        'amend-why-need-precursor',
-        'amend-how-much-precursor',
-        'amend-what-concentration-precursor',
-        'amend-where-to-store-precursor',
-        'amend-where-to-use-precursor',
+        'why-need-precursor',
+        'how-much-precursor',
+        'what-concentration-precursor',
+        'where-to-store-precursor',
+        'where-to-use-precursor',
         'store-precursors-other-address',
         'precursors-use-other-address'
       ],
@@ -351,11 +351,11 @@ module.exports = {
       aggregateTo: 'precursors-details-aggregate',
       aggregateFrom: [
         'amend-display-precursor-title',
-        'amend-why-need-precursor',
-        'amend-how-much-precursor',
-        'amend-what-concentration-precursor',
-        'amend-where-to-store-precursor',
-        'amend-where-to-use-precursor'
+        'why-need-precursor',
+        'how-much-precursor',
+        'what-concentration-precursor',
+        'where-to-store-precursor',
+        'where-to-use-precursor'
       ],
       titleField: ['precursor-field'],
       addStep: 'select-precursor',

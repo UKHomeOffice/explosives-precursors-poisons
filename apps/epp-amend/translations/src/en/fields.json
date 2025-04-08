@@ -253,30 +253,30 @@
       }
     }
   },
-  "amend-why-need-precursor":{
+  "why-need-precursor":{
     "label": "{{values.whyNeedPrecursorLabel}}",
     "hint": "Detailed answers mean we can process your application faster",
     "summary-heading": "{{values.whyNeedPrecursorLabel}}"
   },
-  "amend-how-much-precursor":{
+  "how-much-precursor":{
     "label": "How much do you wish to acquire at any one time within a 6-month period?",
     "hint": "Enter the amount and the unit. For example, 10 litres",
     "summary-heading": "How much do you wish to acquire at any one time within a 6-month period?"
   },
-  "amend-what-concentration-precursor":{
+  "what-concentration-precursor":{
     "label": "What concentration % w/w of the substance do you need?",
     "summary-heading": "What concentration % w/w of the substance do you need?"
   },
-  "amend-where-to-store-precursor": {
+  "where-to-store-precursor": {
     "legend": "{{values.whereToStorePrecursorLegend}}",
     "summary-heading": "{{values.whereToStorePrecursorLegend}}",
     "hint": "This must be in the UK",
     "options": {
-      "amend-store-precursors-home-address": {
+      "store-precursors-home-address-value": {
         "label": "{{values.homeAddressInline}}",
         "summary-heading": "{{values.homeAddressInline}}"
       },
-      "amend-store-precursors-other-address": {
+      "store-precursors-other-address-value": {
         "label": "Other address"
       }
     }
@@ -285,16 +285,16 @@
     "label": "{{values.storePrecursorOtherAddressLabel}}",
     "hint": "Enter a UK address"
   },
-  "amend-where-to-use-precursor": {
+  "where-to-use-precursor": {
     "legend": "{{values.whereToUsePrecursorLegend}}",
     "hint": "This must be in the UK",
     "summary-heading": "{{values.whereToUsePrecursorLegend}}",
     "options": {
-      "amend-use-precursors-home-address": {
+      "use-precursors-home-address-value": {
         "label": "{{values.homeAddressInline}}",
         "summary-heading": "{{values.homeAddressInline}}"
       },
-      "amend-use-precursors-other-address": {
+      "use-precursors-other-address-value": {
         "label": "Other address"
       }
     }
