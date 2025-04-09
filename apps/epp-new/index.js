@@ -28,6 +28,7 @@ const SaveCounterSignatoryAddress = require('../epp-common/behaviours/save-count
 const NoPrecursorOrPoison = require('../epp-common/behaviours/no-precursor-poison-navigate');
 const NoPrecursorPoisonBackLink = require('./behaviours/no-poison-precursor-back-link');
 const RenderPoisonDetails = require('../epp-common/behaviours/render-poison-detail');
+const RenderPrecursorDetails = require('../epp-common/behaviours/render-precursors-detail');
 
 module.exports = {
   name: 'EPP form',
@@ -588,6 +589,17 @@ module.exports = {
       }
     },
     '/precursor-details': {
+      behaviours: [RenderPrecursorDetails('precursor-field')],
+      fields: [
+        'why-need-precursor',
+        'how-much-precursor',
+        'what-concentration-precursor',
+        'where-to-store-precursor',
+        'where-to-use-precursor',
+        'store-precursors-other-address',
+        'precursors-use-other-address'
+      ],
+      continueOnEdit: true,
       next: '/precursors-summary',
       locals: {
         sectionNo: {
