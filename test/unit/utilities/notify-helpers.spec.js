@@ -12,7 +12,10 @@ const {
   STR_YES,
   STR_NO,
   getSessionValueOrDefault,
-  formatFieldsNewLine
+  formatFieldsNewLine,
+  getReplacePersonalisation,
+  getAmendPersonalisation,
+  getNewRenewPersonalisation
 } = require('../../../utilities/helpers/notify-helpers');
 
 const {
@@ -21,6 +24,149 @@ const {
 } = require('../../../utilities/constants/string-constants');
 
 const { govukNotify } = require('../../../config');
+
+const replaceExpectedKeys = [
+  'why_need_replacement',
+  'has_licence_stolen',
+  'reported_to_police',
+  'police_force',
+  'crime_number',
+  'name_on_licence',
+  'date_of_birth',
+  'current_address',
+  'phone_number',
+  'email_address',
+  'has_amended_name',
+  'new_name',
+  'identity_document',
+  'identity_document_number',
+  'identity_document_attachment',
+  'has_certificate_conduct',
+  'certificate_conduct_attachment',
+  'has_amended_address',
+  'new_address',
+  'date_moved_to',
+  'address_proof_attachments',
+  'has_amended_substances',
+  'has_amended_precursor',
+  'explosive_precursor',
+  'has_amended_poisons',
+  'poison_list',
+  'has_countersignatory_details',
+  'countersignatory_title',
+  'countersignatory_first_name',
+  'has_countersignatory_middle_name',
+  'countersignatory_middle_name',
+  'countersignatory_last_name',
+  'countersignatory_address',
+  'countersignatory_phone',
+  'countersignatory_email',
+  'countersignatory_id_type',
+  'countersignatory_id',
+  'has_birth_certificate',
+  'birth_certificate_attachment'
+];
+
+const amendExpectedKeys = [
+  'licence_number',
+  'title',
+  'first_name',
+  'has_middle_name',
+  'middle_name',
+  'last_name',
+  'date_of_birth',
+  'current_address',
+  'phone_number',
+  'email_address',
+  'has_amended_name',
+  'new_name',
+  'identity_document',
+  'identity_document_number',
+  'identity_document_attachment',
+  'has_certificate_conduct',
+  'certificate_conduct_attachment',
+  'has_amended_address',
+  'new_address',
+  'date_moved_to',
+  'address_proof_attachments',
+  'has_amended_substances',
+  'has_amended_precursor',
+  'explosive_precursor',
+  'has_amended_poisons',
+  'poison_list',
+  'has_countersignatory_details',
+  'countersignatory_title',
+  'countersignatory_first_name',
+  'has_countersignatory_middle_name',
+  'countersignatory_middle_name',
+  'countersignatory_last_name',
+  'countersignatory_address',
+  'countersignatory_phone',
+  'countersignatory_email',
+  'countersignatory_id_type',
+  'countersignatory_id',
+  'has_birth_certificate',
+  'birth_certificate_attachment'
+];
+
+const newRenewExpectedKeys = [
+  'licence_number',
+  'title',
+  'first_name',
+  'has_middle_name',
+  'middle_name',
+  'last_name',
+  'has_other_names',
+  'other_names',
+  'date_of_birth',
+  'place_of_birth',
+  'country_of_birth',
+  'country_of_nationality',
+  'has_other_nationality',
+  'sex',
+  'height',
+  'occupation',
+  'other_nationality',
+  'current_address',
+  'moved_date',
+  'proof_of_address',
+  'has_previous_address',
+  'previous_addresses',
+  'phone_number',
+  'email_address',
+  'identity_document',
+  'identity_document_number',
+  'identity_document_attachment',
+  'has_certificate_conduct',
+  'certificate_conduct_attachment',
+  'firearms_licence',
+  'shotgun_licence',
+  'licence_refused',
+  'has_criminal_record',
+  'criminal_record',
+  'criminal_offences',
+  'treatment_health_problem',
+  'treatment_drug_alcohol',
+  'doctor_details',
+  'has_medical_form',
+  'medical_form_attachment',
+  'has_explosive_precursor',
+  'explosive_precursor',
+  'has_poisons',
+  'poisons',
+  'countersignatory_title',
+  'countersignatory_first_name',
+  'has_countersignatory_middle_name',
+  'countersignatory_middle_name',
+  'countersignatory_last_name',
+  'countersignatory_address',
+  'countersignatory_phone',
+  'countersignatory_email',
+  'countersignatory_id_type',
+  'countersignatory_id',
+  'has_birth_certificate',
+  'birth_certificate_attachment'
+];
 
 describe('notify-helpers tests', () => {
   let req;
@@ -707,6 +853,38 @@ describe('notify-helpers tests', () => {
     it('should return an empty string if fields is an empty array', () => {
       const result = formatFieldsNewLine(req, []);
       expect(result).to.equal('');
+    });
+  });
+  describe('getReplacePersonalisation', () => {
+    it('should return expected personalisation object', () => {
+      const result = getReplacePersonalisation({
+        sessionModel: {
+          get: () => {}
+        }
+      });
+      expect(Object.keys(result)).to.deep.equal(replaceExpectedKeys);
+    });
+  });
+
+  describe('getAmendPersonalisation', () => {
+    it('should return expected personalisation object', () => {
+      const result = getAmendPersonalisation({
+        sessionModel: {
+          get: () => {}
+        }
+      });
+      expect(Object.keys(result)).to.deep.equal(amendExpectedKeys);
+    });
+  });
+
+  describe('getNewRenewPersonalisation', () => {
+    it('should return expected personalisation object', () => {
+      const result = getNewRenewPersonalisation({
+        sessionModel: {
+          get: () => {}
+        }
+      });
+      expect(Object.keys(result)).to.deep.equal(newRenewExpectedKeys);
     });
   });
 });
