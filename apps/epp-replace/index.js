@@ -13,17 +13,14 @@ const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-paymen
 const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
 const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator');
 const NavigateNoChanges = require('./behaviours/navigate-no-changes');
-const PrecursorRoutingBehaviour = require('./behaviours/precursor-routing-behaviour');
-
+// const PrecursorRoutingBehaviour = require('./behaviours/precursor-routing-behaviour');
 const RenderPoisonDetails = require('../epp-common/behaviours/render-poison-detail');
 const AggregateSaveEditPrecursorPoison = require('../epp-common/behaviours/aggregator-save-update-precursors-poisons');
 const ParseSummaryPrecursorsPoisons = require('../epp-common/behaviours/parse-summary-precursors-poisons');
 const EditRouteStart = require('../epp-common/behaviours/edit-route-start');
 const EditRouteReturn = require('../epp-common/behaviours/edit-route-return');
-
 const CounterSignatoryNavigation = require('../epp-common/behaviours/counter-signatory-navigation');
 const ResetSectionSummary = require('../epp-common/behaviours/reset-section-summary');
-
 // TODO: Use DeleteRedundantDocuments behaviour similar to amend flow to
 // remove the uploaded files when dependent option changes
 module.exports = {
@@ -132,24 +129,8 @@ module.exports = {
       next: '/changed-details'
     },
     '/changed-details': {
-      behaviour: [NavigateNoChanges],
+      behaviour: [NavigateNoChanges('replace-is-details-changed')],
       fields: ['replace-is-details-changed'],
-      forks: [
-        {
-          target: '/amend-licence',
-          condition: {
-            field: 'replace-is-details-changed',
-            value: 'yes'
-          }
-        },
-        {
-          target: '/confirm',
-          condition: {
-            field: 'replace-is-details-changed',
-            value: 'no'
-          }
-        }
-      ],
       locals: { captionHeading: 'Section 8 of 26' },
       next: '/amend-licence'
     },
@@ -249,7 +230,7 @@ module.exports = {
       next: '/change-home-address'
     },
     '/change-home-address': {
-      behaviour: [NavigateNoChanges],
+      behaviour: [NavigateNoChanges('replace-home-address-options')],
       fields: ['replace-home-address-options'],
       forks: [
         {
@@ -296,7 +277,7 @@ module.exports = {
     },
     '/change-substances': {
       behaviour: [
-        NavigateNoChanges,
+        NavigateNoChanges('replace-change-substances'),
         ResetSectionSummary(
           ['poisons-details-aggregate'],
           'replace-change-substances'
@@ -313,7 +294,7 @@ module.exports = {
           }
         },
         {
-          target: '/countersignatory-details',
+          target: '/confirm',
           condition: {
             field: 'replace-change-substances',
             value: 'no'
@@ -322,6 +303,7 @@ module.exports = {
       ]
     },
     '/explosives-precursors': {
+      field: ['replace-regulated-explosives-precursors'],
       next: '/select-precursor'
     },
     '/select-precursor': {
@@ -331,12 +313,21 @@ module.exports = {
       next: '/precursor-details'
     },
     '/no-precursors-or-poisons': {
-      behaviour: [PrecursorRoutingBehaviour],
+      behaviour: [NavigateNoChanges('replace-no-poisons-precursors-options')],
       fields: ['replace-no-poisons-precursors-options'],
+      forks: [
+        {
+          target: '/countersignatory-details',
+          condition: {
+            field: 'replace-no-poisons-precursors-options',
+            value: 'yes'
+          }
+        }
+      ],
       next: '/change-substances'
     },
     '/precursor-details': {
-      fields: [],
+      fields: ['replace-poisons-option'],
       next: '/select-poisons'
     },
     '/select-poisons': {

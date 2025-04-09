@@ -1,4 +1,4 @@
-module.exports = superclass =>
+module.exports = currentField => superclass =>
   class extends superclass {
     successHandler(req, res, next) {
       const fields = [
@@ -9,8 +9,10 @@ module.exports = superclass =>
 
       const allFieldsNo = fields.every(field => req.sessionModel.get(field) === 'no');
 
-
       if (allFieldsNo) {
+        if(currentField === 'replace-poisons-option' || currentField === 'replace-regulated-explosives-precursors') {
+          return res.redirect(`${req.baseUrl}/no-precursors-or-poisons`);
+        }
         return res.redirect(`${req.baseUrl}/confirm`);
       }
 
