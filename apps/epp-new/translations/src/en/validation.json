@@ -413,5 +413,37 @@
   },
   "new-renew-regulated-explosives-precursors-options": {
     "required": "Select if your licence needs to cover explosives precursors"
+  },
+  "why-need-precursor": {
+    "required": "Explain why you need this explosive precursor",
+    "textAreaDefaultLength": "Reason why you need this explosive precursor must be less than 2,000 characters",
+    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
+  },
+  "how-much-precursor": {
+    "required": "Enter how much of the explosive precursor you wish to acquire at any one time",
+    "maxlength": "Quantity of the explosive precursor you wish to acquire must be 250 characters or less",
+    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
+  },
+  "where-to-store-precursor": {
+    "required": "Select where you will store the explosive precursor"
+  },
+  "what-concentration-precursor": {
+    "required": "Enter what concentration % w/w you need",
+    "isValidConcentrationValue" : "Concentration % w/w must only include numbers or special characters",
+    "maxlength": "Concentration % w/w must be 250 characters or less",
+    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
+  },
+  "where-to-use-precursor": {
+    "required": "Select where you will use the explosive precursor"
+  },
+  "store-precursors-other-address": {
+    "required": "Enter the address where you will store the explosive precursor",
+    "textAreaDefaultLength": "Storage address must be 2,000 characters or less",
+    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
+  },
+  "precursors-use-other-address": {
+    "required": "Enter the address where you will use the explosive precursor",
+    "textAreaDefaultLength": "Usage address must be 2,000 characters or less",
+    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   }
 }

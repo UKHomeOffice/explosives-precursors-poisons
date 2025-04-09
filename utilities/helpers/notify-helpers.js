@@ -825,7 +825,9 @@ const getNewRenewPersonalisation = req => {
       parseDocumentList(req.sessionModel.get('new-renew-medical-form'))
         ? parseDocumentList(req.sessionModel.get('new-renew-medical-form'))
         : '',
+    has_explosive_precursor: checkYesNo(req.sessionModel.get('new-renew-regulated-explosives-precursors-options')),
     explosive_precursor: 'TBD', // TODO: fetch and format
+    has_poisons: checkYesNo(req.sessionModel.get('new-renew-poisons-options')),
     poisons: 'TBD', // TODO: fetch and format
     countersignatory_title: getSessionValueOrDefault(
       req.sessionModel.get('new-renew-countersignatory-title')

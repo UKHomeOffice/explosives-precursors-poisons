@@ -261,6 +261,9 @@
     "link-url": "https://www.gov.uk/government/publications/supplying-explosives-precursors/list-of-chemicals",
     "p3": "You do not need a licence for reportable explosives precursors or poisons."
   },
+  "precursor-details":{
+    "header": "{{values.precursor-field}}"
+  },
   "confirm": {
     "header": "Check your answers",
     "title": "Check your answers – Apply for an explosives precursors and poisons licence",
