@@ -29,6 +29,9 @@ const NoPrecursorOrPoison = require('../epp-common/behaviours/no-precursor-poiso
 const NoPrecursorPoisonBackLink = require('./behaviours/no-poison-precursor-back-link');
 const RenderPoisonDetails = require('../epp-common/behaviours/render-poison-detail');
 const RenderPrecursorDetails = require('../epp-common/behaviours/render-precursors-detail');
+const AggregateSaveEditPrecursorPoison = require('../epp-common/behaviours/aggregator-save-update-precursors-poisons');
+const ParseSummaryPrecursorsPoisons = require('../epp-common/behaviours/parse-summary-precursors-poisons');
+const ModifySummaryChangeLink = require('../epp-common/behaviours/modify-summary-change-links');
 
 module.exports = {
   name: 'EPP form',
@@ -619,7 +622,9 @@ module.exports = {
       }
     },
     '/poisons': {
-      behaviours: [NoPrecursorOrPoison],
+      behaviours: [NoPrecursorOrPoison, ResetSectionSummary(
+        ['poisons-details-aggregate'],
+        'new-renew-poisons-options')],
       fields: ['new-renew-poisons-options'],
       forks: [
         {
@@ -638,12 +643,12 @@ module.exports = {
           renew: 15
         }
       },
-      next: '/select-poison'
+      next: '/select-poisons'
     },
     '/no-poisons-or-precursors': {
       behaviours: [NoPrecursorPoisonBackLink]
     },
-    '/select-poison': {
+    '/select-poisons': {
       fields: ['poison-field'],
       continueOnEdit: true,
       next: '/poison-details',
@@ -676,7 +681,25 @@ module.exports = {
       }
     },
     '/poison-summary': {
-      fields: [],
+      behaviours: [
+        AggregateSaveEditPrecursorPoison,
+        ParseSummaryPrecursorsPoisons,
+        EditRouteReturn
+      ],
+      aggregateTo: 'poisons-details-aggregate',
+      aggregateFrom: [
+        'display-poison-title',
+        'why-need-poison',
+        'how-much-poison',
+        'compound-or-salt',
+        'what-concentration-poison',
+        'where-to-store-poison',
+        'where-to-use-poison'
+      ],
+      titleField: ['poison-field'],
+      addStep: 'select-poisons',
+      addAnotherLinkText: 'poison',
+      continueOnEdit: false,
       next: '/countersignatory-details',
       locals: {
         sectionNo: {
@@ -770,7 +793,7 @@ module.exports = {
       }
     },
     '/confirm': {
-      behaviours: [SummaryPageBehaviour, ConfirmationDisplay, EditRouteStart],
+      behaviours: [SummaryPageBehaviour, ConfirmationDisplay, EditRouteStart, ModifySummaryChangeLink],
       sections: require('./sections/summary-data-sections'),
       next: '/declaration',
       locals: {
