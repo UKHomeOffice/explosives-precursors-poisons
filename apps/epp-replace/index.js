@@ -13,13 +13,12 @@ const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-paymen
 const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
 const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator');
 const NavigateNoChanges = require('./behaviours/navigate-no-changes');
-
+const ModifySummaryChangeLink = require('../epp-common/behaviours/modify-summary-change-links');
 const RenderPoisonDetails = require('../epp-common/behaviours/render-poison-detail');
 const AggregateSaveEditPrecursorPoison = require('../epp-common/behaviours/aggregator-save-update-precursors-poisons');
 const ParseSummaryPrecursorsPoisons = require('../epp-common/behaviours/parse-summary-precursors-poisons');
 const EditRouteStart = require('../epp-common/behaviours/edit-route-start');
 const EditRouteReturn = require('../epp-common/behaviours/edit-route-return');
-
 const CounterSignatoryNavigation = require('../epp-common/behaviours/counter-signatory-navigation');
 const ResetSectionSummary = require('../epp-common/behaviours/reset-section-summary');
 const RenderPrecursorDetails = require('../epp-common/behaviours/render-precursors-detail');
@@ -469,7 +468,8 @@ module.exports = {
     },
     '/confirm': {
       sections: require('./sections/summary-data-sections'),
-      behaviours: [SummaryPageBehaviour, EditRouteStart],
+      behaviours: [SummaryPageBehaviour, EditRouteStart, ModifySummaryChangeLink],
+      locals: { captionHeading: 'Section 25 of 26' },
       next: '/declaration'
     },
     '/declaration': {
