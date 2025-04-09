@@ -296,7 +296,6 @@ const formatFieldsNewLine = (req, fields) => {
   return '';
 };
 
-// TODO: Validate all fields when pages are built
 const getReplacePersonalisation = req => {
   return {
     why_need_replacement: getSessionValueOrDefault(
@@ -317,36 +316,55 @@ const getReplacePersonalisation = req => {
       )
     ),
 
-    police_force: getSessionValueOrDefault(req.sessionModel.get('TBD')),
-    crime_number: getSessionValueOrDefault(req.sessionModel.get('TBD')),
-    name_on_licence: getSessionValueOrDefault(req.sessionModel.get('TBD')),
+    police_force: getSessionValueOrDefault(
+      req.sessionModel.get('replace-police-force')
+    ),
+    crime_number: getSessionValueOrDefault(
+      req.sessionModel.get('replace-crime-number')
+    ),
+    name_on_licence: formatFieldsNewLine(req, [
+      'replace-title',
+      'replace-first-name',
+      'replace-middle-name',
+      'replace-last-name'
+    ]),
     date_of_birth: getSessionValueOrDefault(
       getFormattedDate(req.sessionModel.get('replace-date-of-birth'))
     ),
-    current_address: getSessionValueOrDefault(req.sessionModel.get('TBD')),
+    current_address: getSessionValueOrDefault(
+      req.sessionModel.get('homeAddressInline')
+    ),
     phone_number: getSessionValueOrDefault(
       req.sessionModel.get('replace-phone-number')
     ),
     email_address: getSessionValueOrDefault(
       req.sessionModel.get('replace-email')
     ),
-    has_amended_name: checkYesNo(req.sessionModel.get('TBD')),
+    has_amended_name: checkYesNo(req.sessionModel.get('replace-name-options')),
     new_name: getSessionValueOrDefault(
       req.sessionModel.get('formattedNewName')
     ),
     identity_document:
-      req.sessionModel.get('TBD') === STR_YES
+      req.sessionModel.get('replace-name-options') === STR_YES
         ? getSessionValueOrDefault(
-            getLabel('TBD', req.sessionModel.get('TBD'), replaceTranslation)
+            getLabel(
+              'replace-which-document-type',
+              req.sessionModel.get('replace-which-document-type'),
+              replaceTranslation
+            )
           )
         : '',
     identity_document_number: getSessionValueOrDefault(
-      req.sessionModel.get('TBD') ||
-        req.sessionModel.get('TBD') ||
-        req.sessionModel.get('TBD')
+      req.sessionModel.get('replace-UK-passport-number') ||
+        req.sessionModel.get('replace-EU-passport-number') ||
+        req.sessionModel.get('replace-Uk-driving-licence-number')
     ),
     identity_document_attachment: getSessionValueOrDefault(
-      getIdentityAttachment(req, ['TBD', 'TBD', 'TBD'])
+      getIdentityAttachment(req, [
+        'replace-UK-passport-number',
+        'replace-EU-passport-number',
+        'replace-Uk-driving-licence-number'
+      ])
     ),
     has_certificate_conduct:
       req.sessionModel.get('steps')?.includes('/upload-certificate-conduct') &&
@@ -356,16 +374,27 @@ const getReplacePersonalisation = req => {
     certificate_conduct_attachment: getSessionValueOrDefault(
       parseDocumentList(req.sessionModel.get('replace-certificate-conduct'))
     ),
-    has_amended_address: checkYesNo(req.sessionModel.get('TBD')),
-    new_address: '', // TODO: save and format new address
+    has_amended_address: checkYesNo(
+      req.sessionModel.get('replace-home-address-options')
+    ),
+    new_address: getSessionValueOrDefault(
+      req.sessionModel.get('otherAddressInline')
+    ),
     date_moved_to:
-      req.sessionModel.get('TBD') === STR_YES
-        ? getSessionValueOrDefault(req.sessionModel.get('TBD'))
+      req.sessionModel.get('replace-home-address-options') === STR_YES
+        ? getSessionValueOrDefault(
+            getFormattedDate(
+              req.sessionModel.get('replace-new-date-moved-to-address')
+            )
+          )
         : '',
     address_proof_attachments: getSessionValueOrDefault(
-      parseDocumentList(req.sessionModel.get('TBD'))
+      parseDocumentList(req.sessionModel.get('replace-proof-address'))
     ),
-    has_amended_substances: STR_YES, // TODO: Page to be developed
+    has_amended_substances: checkYesNo(
+      req.sessionModel.get('replace-change-substances')
+    ),
+    has_amended_precursor: checkYesNo(req.sessionModel.get('TBD')),
     explosive_precursor: '', // TODO: from section summary
     has_amended_poisons: STR_YES, // TODO: Page to be developed
     poison_list: '', // TODO: from summary page
@@ -373,46 +402,70 @@ const getReplacePersonalisation = req => {
       hasCountersignatoryDetails(req, APP_TYPE_REPLACE)
     ),
     countersignatory_title: hasCountersignatoryDetails(req, APP_TYPE_REPLACE)
-      ? getSessionValueOrDefault(req.sessionModel.get('TBD'))
+      ? getSessionValueOrDefault(
+          req.sessionModel.get('replace-countersignatory-title')
+        )
       : '',
     countersignatory_first_name: hasCountersignatoryDetails(
       req,
       APP_TYPE_REPLACE
     )
-      ? getSessionValueOrDefault(req.sessionModel.get('TBD'))
+      ? getSessionValueOrDefault(
+          req.sessionModel.get('replace-countersignatory-firstname')
+        )
       : '',
     has_countersignatory_middle_name:
       hasCountersignatoryDetails(req, APP_TYPE_REPLACE) &&
-      hasValue(req.sessionModel.get('TBD')),
+      hasValue(req.sessionModel.get('replace-countersignatory-middlename')),
     countersignatory_middle_name: hasCountersignatoryDetails(
       req,
       APP_TYPE_REPLACE
     )
-      ? getSessionValueOrDefault(req.sessionModel.get('TBD'))
+      ? getSessionValueOrDefault(
+          req.sessionModel.get('replace-countersignatory-middlename')
+        )
       : '',
     countersignatory_last_name: hasCountersignatoryDetails(
       req,
       APP_TYPE_REPLACE
     )
-      ? getSessionValueOrDefault(req.sessionModel.get('TBD'))
+      ? getSessionValueOrDefault(
+          req.sessionModel.get('replace-countersignatory-lastname')
+        )
       : '',
-    countersignatory_address: 'TBD', // TODO: Format inline address
+    countersignatory_address: hasCountersignatoryDetails(req, APP_TYPE_REPLACE)
+      ? getSessionValueOrDefault(
+          req.sessionModel.get('counterSignatoryAddress')
+        )
+      : '',
     countersignatory_phone: hasCountersignatoryDetails(req, APP_TYPE_REPLACE)
-      ? getSessionValueOrDefault(req.sessionModel.get('TBD'))
+      ? getSessionValueOrDefault(
+          req.sessionModel.get('replace-countersignatory-phone-number')
+        )
       : '',
     countersignatory_email: hasCountersignatoryDetails(req, APP_TYPE_REPLACE)
-      ? getSessionValueOrDefault(req.sessionModel.get('TBD'))
+      ? getSessionValueOrDefault(
+          req.sessionModel.get('replace-countersignatory-email')
+        )
       : '',
     countersignatory_id_type: hasCountersignatoryDetails(req, APP_TYPE_REPLACE)
       ? getSessionValueOrDefault(
-          getLabel('TBD', req.sessionModel.get('TBD'), replaceTranslation)
+          getLabel(
+            'replace-countersignatory-Id-type',
+            req.sessionModel.get('replace-countersignatory-Id-type'),
+            replaceTranslation
+          )
         )
       : '',
     countersignatory_id: hasCountersignatoryDetails(req, APP_TYPE_REPLACE)
       ? getSessionValueOrDefault(
-          req.sessionModel.get('TBD') ||
-            req.sessionModel.get('TBD') ||
-            req.sessionModel.get('TBD')
+          req.sessionModel.get('replace-countersignatory-UK-passport-number') ||
+            req.sessionModel.get(
+              'replace-countersignatory-EU-passport-number'
+            ) ||
+            req.sessionModel.get(
+              'replace-countersignatory-Uk-driving-licence-number'
+            )
         )
       : '',
     has_birth_certificate:
