@@ -36,8 +36,8 @@ describe('Behaviour', () => {
   });
 
   describe('parsePrecursorField', () => {
-    it('should parse array field correctly when field is amend-where-to-store-precursor', () => {
-      const field = 'amend-where-to-store-precursor';
+    it('should parse array field correctly when field is where-to-store-precursor', () => {
+      const field = 'where-to-store-precursor';
       const value = ['value1', 'value2'];
       req.sessionModel.get.withArgs('homeAddressInline').returns('homeAddress');
       req.sessionModel.get
@@ -49,8 +49,8 @@ describe('Behaviour', () => {
       expect(result).to.equal('homeAddress\n\notherAddress');
     });
 
-    it('should parse array field correctly when field is amend-where-to-use-precursor', () => {
-      const field = 'amend-where-to-use-precursor';
+    it('should parse array field correctly when field is where-to-use-precursor', () => {
+      const field = 'where-to-use-precursor';
       const value = ['value1', 'value2'];
       req.sessionModel.get.withArgs('homeAddressInline').returns('homeAddress');
       req.sessionModel.get
@@ -64,11 +64,11 @@ describe('Behaviour', () => {
 
     it(
       'should parse string field correctly when field is ' +
-        'amend-where-to-store-precursor and value is ' +
-        'amend-store-precursors-home-address',
+        'where-to-store-precursor and value is ' +
+        'store-precursors-home-address-value',
       () => {
-        const field = 'amend-where-to-store-precursor';
-        const value = 'amend-store-precursors-home-address';
+        const field = 'where-to-store-precursor';
+        const value = 'store-precursors-home-address-value';
         req.sessionModel.get
           .withArgs('homeAddressInline')
           .returns('homeAddress');
@@ -81,11 +81,11 @@ describe('Behaviour', () => {
 
     it(
       'should parse string field correctly when field is ' +
-        'amend-where-to-store-precursor and value is ' +
-        'amend-store-precursors-other-address',
+        'where-to-store-precursor and value is ' +
+        'store-precursors-other-address-value',
       () => {
-        const field = 'amend-where-to-store-precursor';
-        const value = 'amend-store-precursors-other-address';
+        const field = 'where-to-store-precursor';
+        const value = 'store-precursors-other-address-value';
         req.sessionModel.get
           .withArgs('store-precursors-other-address')
           .returns('otherAddress');
@@ -98,11 +98,11 @@ describe('Behaviour', () => {
 
     it(
       'should parse string field correctly when field is ' +
-        'amend-where-to-use-precursor and ' +
-        'value is amend-use-precursors-home-address',
+        'where-to-use-precursor and ' +
+        'value is use-precursors-home-address-value',
       () => {
-        const field = 'amend-where-to-use-precursor';
-        const value = 'amend-use-precursors-home-address';
+        const field = 'where-to-use-precursor';
+        const value = 'use-precursors-home-address-value';
         req.sessionModel.get
           .withArgs('homeAddressInline')
           .returns('homeAddress');
@@ -115,11 +115,11 @@ describe('Behaviour', () => {
 
     it(
       'should parse string field correctly when field is ' +
-        'amend-where-to-use-precursor and value is ' +
-        'amend-use-precursors-other-address',
+        'where-to-use-precursor and value is ' +
+        'use-precursors-other-address-value',
       () => {
-        const field = 'amend-where-to-use-precursor';
-        const value = 'amend-use-precursors-other-address';
+        const field = 'where-to-use-precursor';
+        const value = 'use-precursors-other-address-value';
         req.sessionModel.get
           .withArgs('precursors-use-other-address')
           .returns('otherAddress');

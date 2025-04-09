@@ -244,7 +244,7 @@ module.exports = {
           }
           for (const item of list.aggregatedValues) {
             item.fields.map(element => {
-              if (element.field === 'amend-display-precursor-title') {
+              if (element.field === 'display-precursor-title') {
                 element.parsed = item.joinTitle;
               } else {
                 element.field;

@@ -22,6 +22,7 @@ const EditRouteReturn = require('../epp-common/behaviours/edit-route-return');
 
 const CounterSignatoryNavigation = require('../epp-common/behaviours/counter-signatory-navigation');
 const ResetSectionSummary = require('../epp-common/behaviours/reset-section-summary');
+const RenderPrecursorDetails = require('../epp-common/behaviours/render-precursors-detail');
 
 // TODO: Use DeleteRedundantDocuments behaviour similar to amend flow to
 // remove the uploaded files when dependent option changes
@@ -330,7 +331,42 @@ module.exports = {
       next: '/precursor-details'
     },
     '/precursor-details': {
-      fields: [],
+      behaviours: [RenderPrecursorDetails('precursor-field')],
+      fields: [
+        'why-need-precursor',
+        'how-much-precursor',
+        'what-concentration-precursor',
+        'where-to-store-precursor',
+        'where-to-use-precursor',
+        'store-precursors-other-address',
+        'precursors-use-other-address'
+      ],
+      continueOnEdit: true,
+      locals: { captionHeading: 'Section 18 of 26' },
+      next: '/precursors-summary'
+    },
+    '/precursors-summary': {
+      behaviours: [
+        AggregateSaveEditPrecursorPoison,
+        ParseSummaryPrecursorsPoisons,
+        EditRouteReturn
+      ],
+      aggregateTo: 'precursors-details-aggregate',
+      aggregateFrom: [
+        'display-precursor-title',
+        'why-need-precursor',
+        'how-much-precursor',
+        'what-concentration-precursor',
+        'where-to-store-precursor',
+        'where-to-use-precursor'
+      ],
+      titleField: ['precursor-field'],
+      addStep: 'select-precursor',
+      addAnotherLinkText: 'explosives precursors',
+      next: '/poisons',
+      locals: { captionHeading: 'Section 18 of 26' }
+    },
+    '/poisons': {
       next: '/select-poisons'
     },
     '/select-poisons': {
