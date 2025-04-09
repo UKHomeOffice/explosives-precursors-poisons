@@ -519,6 +519,7 @@ module.exports = {
         EditRouteStart,
         ModifySummaryChangeLink
       ],
+      locals: { captionHeading: 'Section 22 of 23' },
       next: '/declaration'
     },
     '/declaration': {
