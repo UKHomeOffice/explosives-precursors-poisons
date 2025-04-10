@@ -132,7 +132,7 @@ module.exports = {
       next: '/changed-details'
     },
     '/changed-details': {
-      behaviour: [NavigateNoChanges],
+      behaviours: [NavigateNoChanges],
       fields: ['replace-is-details-changed'],
       forks: [
         {
@@ -249,7 +249,7 @@ module.exports = {
       next: '/change-home-address'
     },
     '/change-home-address': {
-      behaviour: [NavigateNoChanges],
+      behaviours: [NavigateNoChanges],
       fields: ['replace-home-address-options'],
       forks: [
         {
@@ -295,7 +295,7 @@ module.exports = {
       next: '/change-substances'
     },
     '/change-substances': {
-      behaviour: [
+      behaviours: [
         NavigateNoChanges,
         ResetSectionSummary(
           ['poisons-details-aggregate'],
