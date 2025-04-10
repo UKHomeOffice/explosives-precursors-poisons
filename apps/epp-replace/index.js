@@ -22,6 +22,8 @@ const EditRouteReturn = require('../epp-common/behaviours/edit-route-return');
 const CounterSignatoryNavigation = require('../epp-common/behaviours/counter-signatory-navigation');
 const ResetSectionSummary = require('../epp-common/behaviours/reset-section-summary');
 const RenderPrecursorDetails = require('../epp-common/behaviours/render-precursors-detail');
+const SaveNewName = require('../epp-common/behaviours/save-new-name');
+const SaveCounterSignatoryAddress = require('../epp-common/behaviours/save-countersignatory-address');
 const NoPrecursorsPoisonsNavigation = require('./behaviours/no-precursors-poisons-navigation');
 
 // TODO: Use DeleteRedundantDocuments behaviour similar to amend flow to
@@ -183,7 +185,13 @@ module.exports = {
         'replace-date-new-name-changed'
       ],
       locals: { captionHeading: 'Section 10 of 26' },
-      behaviours: [AfterDateOfBirth('replace-date-of-birth')],
+      behaviours: [AfterDateOfBirth('replace-date-of-birth'), SaveNewName([
+        'replace-new-name-title',
+        'replace-new-firstname',
+        'replace-new-middlename',
+        'replace-new-lastname',
+        'replace-date-new-name-changed'
+      ])],
       next: '/identity-details'
     },
     '/identity-details': {
@@ -280,7 +288,21 @@ module.exports = {
         'replace-new-country',
         'replace-new-date-moved-to-address'
       ],
-      behaviours: [AfterDateOfBirth('replace-date-of-birth'), PostcodeValidation],
+      behaviours: [
+        AfterDateOfBirth('replace-date-of-birth'),
+        PostcodeValidation,
+        SaveAddress(
+          [
+            'replace-new-address-1',
+            'replace-new-address-2',
+            'replace-new-town-or-city',
+            'replace-new-county',
+            'replace-new-postcode',
+            'replace-new-country'
+          ],
+          'other'
+        )
+      ],
       locals: { captionHeading: 'Section 14 of 26' },
       next: '/upload-proof-address'
     },
@@ -431,6 +453,14 @@ module.exports = {
       next: '/countersignatory-address'
     },
     '/countersignatory-address': {
+      behaviours: [
+        SaveCounterSignatoryAddress([
+          'replace-countersignatory-address-1',
+          'replace-countersignatory-address-2',
+          'replace-countersignatory-town-or-city',
+          'replace-countersignatory-postcode'
+        ])
+      ],
       fields: [
         'replace-countersignatory-address-1',
         'replace-countersignatory-address-2',
@@ -446,10 +476,6 @@ module.exports = {
         'replace-countersignatory-email'
       ],
       locals: { captionHeading: 'Section 23 of 26' },
-      next: '/section-twenty-one'
-    },
-    '/section-twenty-one': {
-      fields: ['replace-countersignatory-document-type'],
       next: '/countersignatory-id'
     },
     '/countersignatory-id': {
