@@ -40,7 +40,7 @@ module.exports = superclass =>
         _.forEach(locals.rows, section => {
           const summaryMappings = [
             {
-              field: 'amend-display-precursor-title',
+              field: 'display-precursor-title',
               changeLink: getChangeLinkUrl(req, precursorsSummaryStep)
             },
             {

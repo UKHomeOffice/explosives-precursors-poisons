@@ -204,6 +204,12 @@
   "poison-summary": {
     "header": "Poisons on your licence"
   },
+  "precursor-details":{
+    "header": "{{values.precursor-field}}"
+  },
+  "precursors-summary": {
+    "header": "Explosives precursors on your licence"
+  },
   "confirm": {
     "header": "Check your answers",
     "subheader": "Review your answers below and amend if required before proceeding to declaration and payment.",
@@ -258,6 +264,9 @@
       },
       "replace-poison-details": {
         "header": " Poisons"
+      },
+      "replace-explosives-precursor-details": {
+        "header": "Explosives precursors"
       }
     },
     "fields": {
@@ -364,6 +373,24 @@
         "label":"Storage address"
       },
       "where-to-use-poison": {
+        "label": "Usage address"
+      },
+      "display-precursor-title": {
+        "label": "Explosives precursor name"
+      },
+      "why-need-precursor": {
+        "label": "For what purpose do you need this regulated substance?"
+      },
+      "how-much-precursor": {
+        "label": "How much do you wish to acquire?"
+      },
+      "what-concentration-precursor": {
+        "label": "What concentration % w/w of the substance do you need for your intended purpose?"
+      },
+      "where-to-store-precursor": {
+        "label":"Storage address"
+      },
+      "where-to-use-precursor": {
         "label": "Usage address"
       }
     }

@@ -77,10 +77,16 @@
     "files-uploaded": "Files uploaded",
     "uploading-document": "Uploading your document..."
   },
-  "select-poison": {
+  "select-poisons": {
     "header": "Poisons",
     "p1": "Tell us which poisons you want to import, acquire, use or possess.",
     "p2": "If you need multiple poisons, you can add each one separately."
+  },
+  "poison-details":{
+    "header": "{{values.poison-field}}"
+  },
+  "poison-summary": {
+    "header": "Poisons on your licence"
   },
   "countersignatory-details": {
     "header": "Countersignatory details",
@@ -258,6 +264,9 @@
     "link-url": "https://www.gov.uk/government/publications/supplying-explosives-precursors/list-of-chemicals",
     "p3": "You do not need a licence for reportable explosives precursors or poisons."
   },
+  "precursor-details":{
+    "header": "{{values.precursor-field}}"
+  },
   "confirm": {
     "header": "Check your answers",
     "title": "Check your answers – Apply for an explosives precursors and poisons licence",
@@ -293,6 +302,9 @@
       },
       "licence-for-poisons": {
         "header": "Licence for poisons"
+      },
+      "new-renew-poison-details": {
+        "header": "Poisons"
       }
     },
     "fields": {
@@ -357,7 +369,28 @@
         "label": "Previous addresses"
       },
       "poison-field": {
-        "label": "Poisons"
+        "label": "Poison"
+      },
+      "display-poison-title": {
+         "label": "Poison name"
+      },
+      "why-need-poison": {
+        "label": "For what purpose do you need this regulated substance?"
+      },
+      "how-much-poison": {
+        "label": "How much do you wish to acquire?"
+      },
+      "compound-or-salt": {
+        "label": "Specific compound or salt"
+      },
+      "what-concentration-poison": {
+        "label": "What concentration % w/w of the substance do you need for your intended purpose?"
+      },
+      "where-to-store-poison": {
+        "label":"Storage address"
+      },
+      "where-to-use-poison": {
+        "label": "Usage address"
       },
       "new-renew-countersignatory-middlename": {
         "label": "Middle names"

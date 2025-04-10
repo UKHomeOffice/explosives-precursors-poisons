@@ -25,6 +25,7 @@ const ResetSectionSummary = require('../epp-common/behaviours/reset-section-summ
 const SetBackLink = require('../epp-common/behaviours/set-backlink');
 const SaveNewName = require('../epp-common/behaviours/save-new-name');
 const SaveCounterSignatoryAddress = require('../epp-common/behaviours/save-countersignatory-address');
+const CounterSignatoryNavigation = require('../epp-amend/behaviours/countersignatory-navigation');
 
 module.exports = {
   name: 'EPP form',
@@ -329,11 +330,11 @@ module.exports = {
     '/precursor-details': {
       behaviours: [RenderPrecursorDetails('precursor-field')],
       fields: [
-        'amend-why-need-precursor',
-        'amend-how-much-precursor',
-        'amend-what-concentration-precursor',
-        'amend-where-to-store-precursor',
-        'amend-where-to-use-precursor',
+        'why-need-precursor',
+        'how-much-precursor',
+        'what-concentration-precursor',
+        'where-to-store-precursor',
+        'where-to-use-precursor',
         'store-precursors-other-address',
         'precursors-use-other-address'
       ],
@@ -349,12 +350,12 @@ module.exports = {
       ],
       aggregateTo: 'precursors-details-aggregate',
       aggregateFrom: [
-        'amend-display-precursor-title',
-        'amend-why-need-precursor',
-        'amend-how-much-precursor',
-        'amend-what-concentration-precursor',
-        'amend-where-to-store-precursor',
-        'amend-where-to-use-precursor'
+        'display-precursor-title',
+        'why-need-precursor',
+        'how-much-precursor',
+        'what-concentration-precursor',
+        'where-to-store-precursor',
+        'where-to-use-precursor'
       ],
       titleField: ['precursor-field'],
       addStep: 'select-precursor',
@@ -372,7 +373,8 @@ module.exports = {
         ResetSectionSummary(
           ['poisons-details-aggregate'],
           'amend-poisons-option'
-        )
+        ),
+        CounterSignatoryNavigation('/poisons')
       ],
       fields: ['amend-poisons-option'],
       forks: [
@@ -385,7 +387,7 @@ module.exports = {
           }
         }
       ],
-      next: '/countersignatory-details',
+      next: '/confirm',
       locals: { captionHeading: 'Section 16 of 23' }
     },
     '/select-poisons': {
@@ -414,7 +416,8 @@ module.exports = {
       behaviours: [
         AggregateSaveEditPrecursorPoison,
         ParseSummaryPrecursorsPoisons,
-        EditRouteReturn
+        EditRouteReturn,
+        CounterSignatoryNavigation('/poison-summary')
       ],
       aggregateTo: 'poisons-details-aggregate',
       aggregateFrom: [
@@ -430,11 +433,11 @@ module.exports = {
       addStep: 'select-poisons',
       addAnotherLinkText: 'poison',
       continueOnEdit: false,
-      next: '/countersignatory-details',
+      next: '/confirm',
       locals: { captionHeading: 'Section 17 of 23' }
     },
     '/no-poisons-or-precursors': {
-      behaviours: [SetBackLink],
+      behaviours: [SetBackLink, CounterSignatoryNavigation('/no-poisons-or-precursors')],
       fields: ['amend-no-poisons-precursors-options'],
       forks: [
         {
@@ -446,7 +449,7 @@ module.exports = {
           }
         }
       ],
-      next: '/countersignatory-details'
+      next: '/confirm'
     },
     '/countersignatory-details': {
       fields: [
@@ -516,6 +519,7 @@ module.exports = {
         EditRouteStart,
         ModifySummaryChangeLink
       ],
+      locals: { captionHeading: 'Section 22 of 23' },
       next: '/declaration'
     },
     '/declaration': {

@@ -314,19 +314,19 @@ module.exports = {
     options: ['yes', 'no'],
     validate: 'required'
   },
-  'amend-why-need-precursor': {
+  'why-need-precursor': {
     mixin: 'textarea',
     validate: ['required', 'notUrl', helpers.textAreaDefaultLength],
     attributes: [{ attribute: 'rows', value: 5 }],
     labelClassName: 'govuk-label--s'
   },
-  'amend-how-much-precursor': {
+  'how-much-precursor': {
     mixin: 'input-text',
     validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
     className: ['govuk-input', 'govuk-input--width-10'],
     labelClassName: 'govuk-label--s'
   },
-  'amend-what-concentration-precursor': {
+  'what-concentration-precursor': {
     mixin: 'input-text',
     validate: [
       'required',
@@ -338,7 +338,7 @@ module.exports = {
     labelClassName: 'govuk-label--s',
     attributes: [{ suffix: '%' }]
   },
-  'amend-where-to-store-precursor': {
+  'where-to-store-precursor': {
     mixin: 'checkbox-group',
     validate: ['required'],
     legend: {
@@ -346,10 +346,10 @@ module.exports = {
     },
     options: [
       {
-        value: 'amend-store-precursors-home-address'
+        value: 'store-precursors-home-address-value'
       },
       {
-        value: 'amend-store-precursors-other-address',
+        value: 'store-precursors-other-address-value',
         toggle: 'store-precursors-other-address',
         child: 'textarea'
       }
@@ -359,12 +359,12 @@ module.exports = {
     mixin: 'textarea',
     validate: ['required', helpers.textAreaDefaultLength, 'notUrl'],
     dependent: {
-      field: 'amend-where-to-store-precursor',
-      value: 'amend-store-precursors-other-address'
+      field: 'where-to-store-precursor',
+      value: 'store-precursors-other-address-value'
     },
     attributes: [{ attribute: 'rows', value: 5 }]
   },
-  'amend-where-to-use-precursor': {
+  'where-to-use-precursor': {
     mixin: 'checkbox-group',
     validate: ['required'],
     legend: {
@@ -372,10 +372,10 @@ module.exports = {
     },
     options: [
       {
-        value: 'amend-use-precursors-home-address'
+        value: 'use-precursors-home-address-value'
       },
       {
-        value: 'amend-use-precursors-other-address',
+        value: 'use-precursors-other-address-value',
         toggle: 'precursors-use-other-address',
         child: 'textarea'
       }
@@ -385,8 +385,8 @@ module.exports = {
     mixin: 'textarea',
     validate: ['required', helpers.textAreaDefaultLength, 'notUrl'],
     dependent: {
-      field: 'amend-where-to-use-precursor',
-      value: 'amend-use-precursors-other-address'
+      field: 'where-to-use-precursor',
+      value: 'use-precursors-other-address-value'
     },
     attributes: [{ attribute: 'rows', value: 5 }]
   },

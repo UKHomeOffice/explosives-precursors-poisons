@@ -12,6 +12,8 @@ const SaveAddress = require('../epp-common/behaviours/save-home-other-address');
 const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-payment-request');
 const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
 const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator');
+const NavigateNoChanges = require('./behaviours/navigate-no-changes');
+const ModifySummaryChangeLink = require('../epp-common/behaviours/modify-summary-change-links');
 const RenderPoisonDetails = require('../epp-common/behaviours/render-poison-detail');
 const AggregateSaveEditPrecursorPoison = require('../epp-common/behaviours/aggregator-save-update-precursors-poisons');
 const ParseSummaryPrecursorsPoisons = require('../epp-common/behaviours/parse-summary-precursors-poisons');
@@ -19,6 +21,8 @@ const EditRouteStart = require('../epp-common/behaviours/edit-route-start');
 const EditRouteReturn = require('../epp-common/behaviours/edit-route-return');
 const CounterSignatoryNavigation = require('../epp-common/behaviours/counter-signatory-navigation');
 const ResetSectionSummary = require('../epp-common/behaviours/reset-section-summary');
+const RenderPrecursorDetails = require('../epp-common/behaviours/render-precursors-detail');
+
 // TODO: Use DeleteRedundantDocuments behaviour similar to amend flow to
 // remove the uploaded files when dependent option changes
 module.exports = {
@@ -127,7 +131,24 @@ module.exports = {
       next: '/changed-details'
     },
     '/changed-details': {
+      behaviour: [NavigateNoChanges],
       fields: ['replace-is-details-changed'],
+      forks: [
+        {
+          target: '/amend-licence',
+          condition: {
+            field: 'replace-is-details-changed',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/confirm',
+          condition: {
+            field: 'replace-is-details-changed',
+            value: 'no'
+          }
+        }
+      ],
       locals: { captionHeading: 'Section 8 of 26' },
       next: '/amend-licence'
     },
@@ -227,11 +248,15 @@ module.exports = {
       next: '/change-home-address'
     },
     '/change-home-address': {
+      behaviour: [NavigateNoChanges],
       fields: ['replace-home-address-options'],
       forks: [
         {
           target: '/new-address',
-          condition: req => req.sessionModel.get('replace-which-document-type') === 'UK-passport'
+          condition: {
+            field: 'replace-home-address-options',
+            value: 'yes'
+          }
         },
         {
           target: '/change-substances',
@@ -270,6 +295,7 @@ module.exports = {
     },
     '/change-substances': {
       behaviour: [
+        NavigateNoChanges,
         ResetSectionSummary(
           ['poisons-details-aggregate'],
           'replace-change-substances'
@@ -286,7 +312,7 @@ module.exports = {
           }
         },
         {
-          target: '/confirm',
+          target: '/countersignatory-details',
           condition: {
             field: 'replace-change-substances',
             value: 'no'
@@ -295,7 +321,6 @@ module.exports = {
       ]
     },
     '/explosives-precursors': {
-      field: ['replace-regulated-explosives-precursors'],
       next: '/select-precursor'
     },
     '/select-precursor': {
@@ -304,13 +329,43 @@ module.exports = {
       locals: { captionHeading: 'Section 18 of 26' },
       next: '/precursor-details'
     },
-    '/no-precursors-or-poisons': {
-      behaviours: [CounterSignatoryNavigation('/no-precursors-or-poisons')],
-      fields: ['replace-no-poisons-precursors-options'],
-      next: '/change-substances'
-    },
     '/precursor-details': {
-      fields: ['replace-poisons-option'],
+      behaviours: [RenderPrecursorDetails('precursor-field')],
+      fields: [
+        'why-need-precursor',
+        'how-much-precursor',
+        'what-concentration-precursor',
+        'where-to-store-precursor',
+        'where-to-use-precursor',
+        'store-precursors-other-address',
+        'precursors-use-other-address'
+      ],
+      continueOnEdit: true,
+      locals: { captionHeading: 'Section 18 of 26' },
+      next: '/precursors-summary'
+    },
+    '/precursors-summary': {
+      behaviours: [
+        AggregateSaveEditPrecursorPoison,
+        ParseSummaryPrecursorsPoisons,
+        EditRouteReturn
+      ],
+      aggregateTo: 'precursors-details-aggregate',
+      aggregateFrom: [
+        'display-precursor-title',
+        'why-need-precursor',
+        'how-much-precursor',
+        'what-concentration-precursor',
+        'where-to-store-precursor',
+        'where-to-use-precursor'
+      ],
+      titleField: ['precursor-field'],
+      addStep: 'select-precursor',
+      addAnotherLinkText: 'explosives precursors',
+      next: '/poisons',
+      locals: { captionHeading: 'Section 18 of 26' }
+    },
+    '/poisons': {
       next: '/select-poisons'
     },
     '/select-poisons': {
@@ -353,8 +408,8 @@ module.exports = {
       titleField: ['poison-field'],
       addStep: 'select-poisons',
       addAnotherLinkText: 'poison',
-      locals: { captionHeading: 'Section 20 of 26' },
-      next: '/confirm'
+      next: '/confirm',
+      locals: { captionHeading: 'Section 20 of 26' }
     },
     '/countersignatory-details': {
       fields: [
@@ -413,7 +468,8 @@ module.exports = {
     },
     '/confirm': {
       sections: require('./sections/summary-data-sections'),
-      behaviours: [SummaryPageBehaviour, EditRouteStart],
+      behaviours: [SummaryPageBehaviour, EditRouteStart, ModifySummaryChangeLink],
+      locals: { captionHeading: 'Section 25 of 26' },
       next: '/declaration'
     },
     '/declaration': {

@@ -4,10 +4,11 @@ const countries = require('../../../utilities/constants/countries');
 const {
   isWithoutFullStop,
   validInternationalPhoneNumber,
-  isValidUkDrivingLicenceNumber
+  isValidUkDrivingLicenceNumber,
+  isValidConcentrationValue,
+  textAreaDefaultLength
 } = require('../../../utilities/helpers');
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years');
-const { textAreaDefaultLength } = require('../../../utilities/helpers');
 const precursorList = require('../../../utilities/constants/explosive-precursors');
 const poisonsList = require('../../../utilities/constants/poisons.js');
 
@@ -765,6 +766,88 @@ module.exports = {
       }
     ].concat(poisonsList)
   },
+  'why-need-poison': {
+    mixin: 'textarea',
+    validate: ['required', 'notUrl', textAreaDefaultLength],
+    attributes: [{ attribute: 'rows', value: 5 }],
+    labelClassName: 'govuk-label--s'
+  },
+  'how-much-poison': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
+    className: ['govuk-input', 'govuk-input--width-10'],
+    labelClassName: 'govuk-label--s'
+  },
+  'compound-or-salt': {
+    mixin: 'textarea',
+    validate: ['required', 'notUrl', textAreaDefaultLength],
+    attributes: [{ attribute: 'rows', value: 5 }],
+    labelClassName: 'govuk-label--s'
+  },
+  'what-concentration-poison': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      isValidConcentrationValue,
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ],
+    className: ['govuk-input', 'govuk-input--width-5'],
+    labelClassName: 'govuk-label--s',
+    attributes: [{ suffix: '%' }]
+  },
+  'where-to-store-poison': {
+    mixin: 'checkbox-group',
+    validate: ['required'],
+    legend: {
+      className: 'govuk-label--s'
+    },
+    options: [
+      {
+        value: 'store-poison-home-address-value'
+      },
+      {
+        value: 'store-poison-other-address-value',
+        toggle: 'store-poison-other-address',
+        child: 'textarea'
+      }
+    ]
+  },
+  'store-poison-other-address': {
+    mixin: 'textarea',
+    validate: ['required', textAreaDefaultLength, 'notUrl'],
+    dependent: {
+      field: 'where-to-store-poison',
+      value: 'store-poison-other-address-value'
+    },
+    attributes: [{ attribute: 'rows', value: 5 }]
+  },
+  'where-to-use-poison': {
+    mixin: 'checkbox-group',
+    validate: ['required'],
+    legend: {
+      className: 'govuk-label--s'
+    },
+    options: [
+      {
+        value: 'use-poison-home-address'
+      },
+      {
+        value: 'use-poison-other-address-value',
+        toggle: 'poison-use-other-address',
+        child: 'textarea'
+      }
+    ]
+  },
+  'poison-use-other-address': {
+    mixin: 'textarea',
+    validate: ['required', textAreaDefaultLength, 'notUrl'],
+    dependent: {
+      field: 'where-to-use-poison',
+      value: 'use-poison-other-address-value'
+    },
+    attributes: [{ attribute: 'rows', value: 5 }]
+  },
   'new-renew-regulated-explosives-precursors-options': {
     mixin: 'radio-group',
     legend: {
@@ -773,5 +856,81 @@ module.exports = {
     className: ['govuk-radios', 'govuk-radios--inline'],
     options: ['yes', 'no'],
     validate: 'required'
+  },
+  'why-need-precursor': {
+    mixin: 'textarea',
+    validate: ['required', 'notUrl', textAreaDefaultLength],
+    attributes: [{ attribute: 'rows', value: 5 }],
+    labelClassName: 'govuk-label--s'
+  },
+  'how-much-precursor': {
+    mixin: 'input-text',
+    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
+    className: ['govuk-input', 'govuk-input--width-10'],
+    labelClassName: 'govuk-label--s'
+  },
+  'what-concentration-precursor': {
+    mixin: 'input-text',
+    validate: [
+      'required',
+      isValidConcentrationValue,
+      { type: 'maxlength', arguments: 250 },
+      'notUrl'
+    ],
+    className: ['govuk-input', 'govuk-input--width-5'],
+    labelClassName: 'govuk-label--s',
+    attributes: [{ suffix: '%' }]
+  },
+  'where-to-store-precursor': {
+    mixin: 'checkbox-group',
+    validate: ['required'],
+    legend: {
+      className: 'govuk-label--s'
+    },
+    options: [
+      {
+        value: 'store-precursors-home-address-value'
+      },
+      {
+        value: 'store-precursors-other-address-value',
+        toggle: 'store-precursors-other-address',
+        child: 'textarea'
+      }
+    ]
+  },
+  'store-precursors-other-address': {
+    mixin: 'textarea',
+    validate: ['required', textAreaDefaultLength, 'notUrl'],
+    dependent: {
+      field: 'where-to-store-precursor',
+      value: 'store-precursors-other-address-value'
+    },
+    attributes: [{ attribute: 'rows', value: 5 }]
+  },
+  'where-to-use-precursor': {
+    mixin: 'checkbox-group',
+    validate: ['required'],
+    legend: {
+      className: 'govuk-label--s'
+    },
+    options: [
+      {
+        value: 'use-precursors-home-address-value'
+      },
+      {
+        value: 'use-precursors-other-address-value',
+        toggle: 'precursors-use-other-address',
+        child: 'textarea'
+      }
+    ]
+  },
+  'precursors-use-other-address': {
+    mixin: 'textarea',
+    validate: ['required', textAreaDefaultLength, 'notUrl'],
+    dependent: {
+      field: 'where-to-use-precursor',
+      value: 'use-precursors-other-address-value'
+    },
+    attributes: [{ attribute: 'rows', value: 5 }]
   }
 };

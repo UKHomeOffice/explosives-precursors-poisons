@@ -360,5 +360,55 @@
         "label": "No"
       }
     }
+  },
+  "why-need-precursor":{
+    "label": "{{values.whyNeedPrecursorLabel}}",
+    "hint": "Detailed answers mean we can process your application faster",
+    "summary-heading": "{{values.whyNeedPrecursorLabel}}"
+  },
+  "how-much-precursor":{
+    "label": "How much do you wish to acquire at any one time within a 6-month period?",
+    "hint": "Enter the amount and the unit. For example, 10 litres",
+    "summary-heading": "How much do you wish to acquire at any one time within a 6-month period?"
+  },
+  "what-concentration-precursor":{
+    "label": "What concentration % w/w of the substance do you need?",
+    "summary-heading": "What concentration % w/w of the substance do you need?"
+  },
+  "where-to-store-precursor": {
+    "legend": "{{values.whereToStorePrecursorLegend}}",
+    "summary-heading": "{{values.whereToStorePrecursorLegend}}",
+    "hint": "This must be in the UK",
+    "options": {
+      "store-precursors-home-address-value": {
+        "label": "{{values.homeAddressInline}}",
+        "summary-heading": "{{values.homeAddressInline}}"
+      },
+      "store-precursors-other-address-value": {
+        "label": "Other address"
+      }
+    }
+  },
+  "store-precursors-other-address": {
+    "label": "{{values.storePrecursorOtherAddressLabel}}",
+    "hint": "Enter a UK address"
+  },
+  "where-to-use-precursor": {
+    "legend": "{{values.whereToUsePrecursorLegend}}",
+    "hint": "This must be in the UK",
+    "summary-heading": "{{values.whereToUsePrecursorLegend}}",
+    "options": {
+      "use-precursors-home-address-value": {
+        "label": "{{values.homeAddressInline}}",
+        "summary-heading": "{{values.homeAddressInline}}"
+      },
+      "use-precursors-other-address-value": {
+        "label": "Other address"
+      }
+    }
+  },
+  "precursors-use-other-address": {
+    "label": "{{values.usePrecursorOtherAddressLabel}}",
+    "hint": "Enter a UK address"
   }
 }

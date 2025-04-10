@@ -14,7 +14,7 @@ module.exports = superclass =>
       const fieldsToHide = [
         'precursors-use-other-address',
         'store-precursors-other-address',
-        'amend-display-precursor-title',
+        'display-precursor-title',
         'poison-use-other-address',
         'store-poison-other-address',
         'display-poison-title'
