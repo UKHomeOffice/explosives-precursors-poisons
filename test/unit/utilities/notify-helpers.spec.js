@@ -32,6 +32,8 @@ const replaceExpectedKeys = [
   'police_force',
   'crime_number',
   'name_on_licence',
+  'has_licence_number',
+  'licence_number',
   'date_of_birth',
   'current_address',
   'phone_number',

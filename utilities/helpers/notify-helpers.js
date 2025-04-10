@@ -328,6 +328,8 @@ const getReplacePersonalisation = req => {
       'replace-middle-name',
       'replace-last-name'
     ]),
+    has_licence_number: hasValue(req.sessionModel.get('replace-licence-number')),
+    licence_number: getSessionValueOrDefault(req.sessionModel.get('replace-licence-number')),
     date_of_birth: getSessionValueOrDefault(
       getFormattedDate(req.sessionModel.get('replace-date-of-birth'))
     ),
