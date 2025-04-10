@@ -8,6 +8,14 @@ const { getSubstanceShortLabel } = require('../../../utilities/helpers');
  */
 module.exports = fieldName => superclass =>
   class extends superclass {
+    locals(req, res) {
+      const locals = super.locals(req, res);
+      const selectedPoisonValue = req.sessionModel.get('poison-field') ?? '';
+      locals.header = selectedPoisonValue;
+      locals.title = selectedPoisonValue;
+      return locals;
+    }
+
     getValues(req, res, next) {
       const selectedPoison = req.sessionModel.get(fieldName);
       const whyNeedPoisonLabel = getSubstanceShortLabel(

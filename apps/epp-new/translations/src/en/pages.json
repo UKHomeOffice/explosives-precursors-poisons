@@ -82,9 +82,6 @@
     "p1": "Tell us which poisons you want to import, acquire, use or possess.",
     "p2": "If you need multiple poisons, you can add each one separately."
   },
-  "poison-details":{
-    "header": "{{values.poison-field}}"
-  },
   "poison-summary": {
     "header": "Poisons on your licence"
   },
