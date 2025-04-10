@@ -17,18 +17,6 @@ module.exports = {
       }
     ]
   },
-  'replace-contact-details': {
-    steps: [
-      {
-        steps: '/contact-details',
-        field: 'replace-phone-number'
-      },
-      {
-        steps: '/contact-details',
-        field: 'replace-email'
-      }
-    ]
-  },
   'replace-police-report': {
     steps: [
       {
@@ -45,19 +33,92 @@ module.exports = {
       }
     ]
   },
+  'licence-details': {
+    steps: [
+      {
+        step: '/licence-number',
+        field: 'replace-licence-number'
+      }
+    ]
+  },
+  'applicant-name': {
+    steps: [
+      {
+        step: '/your-name',
+        field: 'replace-title'
+      },
+      {
+        step: '/your-name',
+        field: 'replace-first-name'
+      },
+      {
+        step: '/your-name',
+        field: 'replace-middle-name'
+      },
+      {
+        step: '/your-name',
+        field: 'replace-last-name'
+      },
+      {
+        step: '/your-name',
+        field: 'replace-other-names'
+      }
+    ]
+  },
+  'replace-date-of-birth': {
+    steps: [
+      {
+        step: '/date-of-birth',
+        field: 'replace-date-of-birth',
+        parse: date => date && dateFormatter.format(new Date(date))
+      }
+    ]
+  },
+  'home-address-details': {
+    steps: [
+      {
+        step: '/home-address',
+        field: 'replace-home-address-1'
+      },
+      {
+        step: '/home-address',
+        field: 'replace-home-address-2'
+      },
+      {
+        step: '/home-address',
+        field: 'replace-home-town-or-city'
+      },
+      {
+        step: '/home-address',
+        field: 'replace-home-county'
+      },
+      {
+        step: '/home-address',
+        field: 'replace-home-postcode'
+      },
+      {
+        step: '/home-address',
+        field: 'replace-home-country'
+      }
+    ]
+  },
+  'replace-contact-details': {
+    steps: [
+      {
+        steps: '/contact-details',
+        field: 'replace-phone-number'
+      },
+      {
+        steps: '/contact-details',
+        field: 'replace-email'
+      }
+    ]
+  },
   'replace-is-details-changed': {
     steps: [
       {
         step: '/changed-details',
         field: 'replace-is-details-changed'
-      }
-    ]
-  },
-  'replace-home-address-options': {
-    steps: [
-      {
-        step: '/change-home-address',
-        field: 'replace-home-address-options'
       }
     ]
   },
@@ -152,20 +213,6 @@ module.exports = {
         }
       },
       {
-        step: '/upload-proof-address',
-        field: 'replace-proof-address',
-        parse: (documents, req) => {
-          if (
-            req.sessionModel.get('steps').includes('/upload-proof-address') &&
-            documents?.length > 0
-          ) {
-            return documents.map(file => file?.name)?.join('\n\n');
-          }
-
-          return null;
-        }
-      },
-      {
         step: '/upload-certificate-conduct',
         field: 'replace-certificate-conduct',
         parse: (documents, req) => {
@@ -179,6 +226,14 @@ module.exports = {
           }
           return null;
         }
+      }
+    ]
+  },
+  'replace-home-address-options': {
+    steps: [
+      {
+        step: '/change-home-address',
+        field: 'replace-home-address-options'
       }
     ]
   },
@@ -231,75 +286,6 @@ module.exports = {
 
           return null;
         }
-      }
-    ]
-  },
-  'applicant-name': {
-    steps: [
-      {
-        step: '/your-name',
-        field: 'replace-title'
-      },
-      {
-        step: '/your-name',
-        field: 'replace-first-name'
-      },
-      {
-        step: '/your-name',
-        field: 'replace-middle-name'
-      },
-      {
-        step: '/your-name',
-        field: 'replace-last-name'
-      },
-      {
-        step: '/your-name',
-        field: 'replace-other-names'
-      }
-    ]
-  },
-  'home-address-details': {
-    steps: [
-      {
-        step: '/home-address',
-        field: 'replace-home-address-1'
-      },
-      {
-        step: '/home-address',
-        field: 'replace-home-address-2'
-      },
-      {
-        step: '/home-address',
-        field: 'replace-home-town-or-city'
-      },
-      {
-        step: '/home-address',
-        field: 'replace-home-county'
-      },
-      {
-        step: '/home-address',
-        field: 'replace-home-postcode'
-      },
-      {
-        step: '/home-address',
-        field: 'replace-home-country'
-      }
-    ]
-  },
-  'licence-details': {
-    steps: [
-      {
-        step: '/licence-number',
-        field: 'replace-licence-number'
-      }
-    ]
-  },
-  'replace-date-of-birth': {
-    steps: [
-      {
-        step: '/date-of-birth',
-        field: 'replace-date-of-birth',
-        parse: date => date && dateFormatter.format(new Date(date))
       }
     ]
   },
