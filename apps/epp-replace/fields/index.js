@@ -693,5 +693,14 @@ module.exports = {
       value: 'use-precursors-other-address-value'
     },
     attributes: [{ attribute: 'rows', value: 5 }]
+  },
+  'replace-poisons-option': {
+    mixin: 'radio-group',
+    legend: {
+      className: 'govuk-fieldset__legend--m'
+    },
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    options: ['yes', 'no'],
+    validate: 'required'
   }
 };

@@ -234,38 +234,6 @@ module.exports = {
       }
     ]
   },
-  'replace-change-substances': {
-    steps: [
-      {
-        step: '/change-substances',
-        field: 'replace-change-substances'
-      }
-    ]
-  },
-  'replace-explosives-precursor-details': {
-    steps: [
-      {
-        step: '/precursors-summary',
-        field: 'precursors-details-aggregate',
-        parse: list => {
-          if (!list?.aggregatedValues) {
-            return null;
-          }
-          for (const item of list.aggregatedValues) {
-            item.fields.map(element => {
-              if (element.field === 'display-precursor-title') {
-                element.parsed = item.joinTitle;
-              } else {
-                element.field;
-                element.omitChangeLink = true;
-              }
-            });
-          }
-          return list;
-        }
-      }
-    ]
-  },
   'applicant-name': {
     steps: [
       {
@@ -326,6 +294,63 @@ module.exports = {
       }
     ]
   },
+  'replace-date-of-birth': {
+    steps: [
+      {
+        step: '/date-of-birth',
+        field: 'replace-date-of-birth',
+        parse: date => date && dateFormatter.format(new Date(date))
+      }
+    ]
+  },
+  'replace-change-substances': {
+    steps: [
+      {
+        step: '/change-substances',
+        field: 'replace-change-substances'
+      }
+    ]
+  },
+  'replace-licence-for-explosives-precursors': {
+    steps: [
+      {
+        steps: '/explosives-precursors',
+        field: 'replace-regulated-explosives-precursors'
+      }
+    ]
+  },
+  'replace-explosives-precursor-details': {
+    steps: [
+      {
+        step: '/precursors-summary',
+        field: 'precursors-details-aggregate',
+        parse: list => {
+          if (!list?.aggregatedValues) {
+            return null;
+          }
+          for (const item of list.aggregatedValues) {
+            item.fields.map(element => {
+              if (element.field === 'display-precursor-title') {
+                element.parsed = item.joinTitle;
+              } else {
+                element.field;
+                element.omitChangeLink = true;
+              }
+            });
+          }
+          return list;
+        }
+      }
+    ]
+  },
+  'replace-licence-for-poisons': {
+    steps: [
+      {
+        step: '/poisons',
+        field: 'replace-poisons-option'
+      }
+    ]
+  },
   'replace-poison-details': {
     steps: [
       {
@@ -345,15 +370,6 @@ module.exports = {
           }
           return list;
         }
-      }
-    ]
-  },
-  'replace-date-of-birth': {
-    steps: [
-      {
-        step: '/date-of-birth',
-        field: 'replace-date-of-birth',
-        parse: date => date && dateFormatter.format(new Date(date))
       }
     ]
   },

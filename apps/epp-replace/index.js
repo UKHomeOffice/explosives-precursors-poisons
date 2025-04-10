@@ -24,6 +24,7 @@ const ResetSectionSummary = require('../epp-common/behaviours/reset-section-summ
 const RenderPrecursorDetails = require('../epp-common/behaviours/render-precursors-detail');
 const SaveNewName = require('../epp-common/behaviours/save-new-name');
 const SaveCounterSignatoryAddress = require('../epp-common/behaviours/save-countersignatory-address');
+const NoSubstanceChangeNavigation = require('./behaviours/no-substance-change-navigation');
 
 // TODO: Use DeleteRedundantDocuments behaviour similar to amend flow to
 // remove the uploaded files when dependent option changes
@@ -413,7 +414,13 @@ module.exports = {
       locals: { captionHeading: 'Section 18 of 26' }
     },
     '/poisons': {
-      next: '/select-poisons'
+      behaviours: [NoSubstanceChangeNavigation('/poisons'), ResetSectionSummary(
+        ['poisons-details-aggregate'],
+        'replace-poisons-option'
+      )],
+      fields: ['replace-poisons-option'],
+      next: '/confirm',
+      locals: { captionHeading: 'Section 19 of 26' }
     },
     '/select-poisons': {
       fields: ['poison-field'],
