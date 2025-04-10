@@ -343,6 +343,12 @@ module.exports = {
       ]
     },
     '/explosives-precursors': {
+      behaviour: [
+        ResetSectionSummary(
+          ['precursors-details-aggregate'],
+          'replace-change-substances'
+        )
+      ],
       fields: ['replace-regulated-explosives-precursors'],
       forks: [
         {
@@ -355,7 +361,6 @@ module.exports = {
         },
         {
           target: '/poisons',
-          continueOnEdit: true,
           condition: {
             field: 'replace-regulated-explosives-precursors',
             value: 'no'
