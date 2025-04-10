@@ -329,6 +329,10 @@ module.exports = {
       locals: { captionHeading: 'Section 18 of 26' },
       next: '/precursor-details'
     },
+    '/no-precursors-or-poisons': {
+      fields: ['replace-no-poisons-precursors-options'],
+      next: '/confirm'
+    },
     '/precursor-details': {
       behaviours: [RenderPrecursorDetails('precursor-field')],
       fields: [
