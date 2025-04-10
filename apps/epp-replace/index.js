@@ -346,7 +346,7 @@ module.exports = {
       behaviour: [
         ResetSectionSummary(
           ['precursors-details-aggregate'],
-          'replace-change-substances'
+          'replace-regulated-explosives-precursors'
         )
       ],
       fields: ['replace-regulated-explosives-precursors'],
