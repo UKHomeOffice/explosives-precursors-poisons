@@ -348,6 +348,30 @@ module.exports = {
       }
     ]
   },
+  'explosives-precursor-details': {
+    steps: [
+      {
+        step: '/precursors-summary',
+        field: 'precursors-details-aggregate',
+        parse: list => {
+          if (!list?.aggregatedValues) {
+            return null;
+          }
+          for (const item of list.aggregatedValues) {
+            item.fields.map(element => {
+              if (element.field === 'display-precursor-title') {
+                element.parsed = item.joinTitle;
+              } else {
+                element.field;
+                element.omitChangeLink = true;
+              }
+            });
+          }
+          return list;
+        }
+      }
+    ]
+  },
   'licence-for-poisons': {
     steps: [
       {

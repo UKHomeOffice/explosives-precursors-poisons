@@ -560,7 +560,9 @@ module.exports = {
       }
     },
     '/explosives-precursors': {
-      behaviours: [NoPrecursorOrPoison],
+      behaviours: [NoPrecursorOrPoison, ResetSectionSummary(
+        ['precursors-details-aggregate'],
+        'new-renew-regulated-explosives-precursors-options')],
       fields: ['new-renew-regulated-explosives-precursors-options'],
       forks: [
         {
@@ -612,7 +614,24 @@ module.exports = {
       }
     },
     '/precursors-summary': {
-      fields: [],
+      behaviours: [
+        AggregateSaveEditPrecursorPoison,
+        ParseSummaryPrecursorsPoisons,
+        EditRouteReturn
+      ],
+      aggregateTo: 'precursors-details-aggregate',
+      aggregateFrom: [
+        'display-precursor-title',
+        'why-need-precursor',
+        'how-much-precursor',
+        'what-concentration-precursor',
+        'where-to-store-precursor',
+        'where-to-use-precursor'
+      ],
+      titleField: ['precursor-field'],
+      addStep: 'select-precursor',
+      addAnotherLinkText: 'explosives precursors',
+      continueOnEdit: false,
       next: '/poisons',
       locals: {
         sectionNo: {
