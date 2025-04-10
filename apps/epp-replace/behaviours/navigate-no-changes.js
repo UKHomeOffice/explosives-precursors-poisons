@@ -3,12 +3,13 @@ module.exports = superclass =>
     successHandler(req, res, next) {
       const fields = [
         'replace-home-address-options',
-        'replace-replace-type',
+        'replace-name-options',
         'replace-change-substances'
       ];
 
-      const allFieldsNo = fields.every(field => req.sessionModel.get(field) === 'no');
-
+      const allFieldsNo = fields.every(
+        field => req.sessionModel.get(field) === 'no'
+      );
 
       if (allFieldsNo) {
         return res.redirect(`${req.baseUrl}/confirm`);

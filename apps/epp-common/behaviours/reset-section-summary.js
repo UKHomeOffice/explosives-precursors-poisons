@@ -5,12 +5,12 @@
 
 module.exports = (aggregateToFields, sectionStartField) => superclass =>
   class extends superclass {
-    successHandler(req, res, next) {
+    saveValues(req, res, next) {
       if (Array.isArray(aggregateToFields) && aggregateToFields.length > 0) {
         aggregateToFields.forEach(aggregateToField => {
           if (req.sessionModel.get(aggregateToField) !== undefined) {
             if (
-              req.sessionModel.get(sectionStartField) === 'no' &&
+              req.form.values[sectionStartField] === 'no' &&
               req.sessionModel.get(aggregateToField).aggregatedValues.length > 0
             ) {
               req.sessionModel.unset(aggregateToField);
@@ -19,6 +19,6 @@ module.exports = (aggregateToFields, sectionStartField) => superclass =>
         });
       }
 
-      return super.successHandler(req, res, next);
+      return super.saveValues(req, res, next);
     }
   };

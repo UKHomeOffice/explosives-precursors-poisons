@@ -343,5 +343,8 @@
   },
   "replace-regulated-explosives-precursors": {
     "required": "Select if you need to amend the substances on your licence"
+  },
+  "replace-no-poisons-precursors-options": {
+    "required": "Select if you want to continue the form without changing the explosives precursors or poisons"
   }
 }

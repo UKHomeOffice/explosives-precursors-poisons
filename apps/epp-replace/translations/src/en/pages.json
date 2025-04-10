@@ -204,6 +204,10 @@
   "replace-licence-for-explosives-precursors": {
     "header": "Licence for explosives precursors"
   },
+  "no-precursors-or-poisons": {
+    "header": "The explosives precursors and poisons on your licence will not change",
+    "paragraph1": "You told us you do not need to amend the explosives precursors or poisons on your current licence. This includes the storage or usage address for the substances."
+  },
   "poison-summary": {
     "header": "Poisons on your licence"
   },

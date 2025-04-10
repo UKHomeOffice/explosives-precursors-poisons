@@ -3,7 +3,7 @@ const proxyquire = require('proxyquire');
 describe('reset-section-summary behaviour tests', () => {
   class Base {
     constructor() {}
-    successHandler(req, res, next) {
+    saveValues(req, res, next) {
       next();
     }
   }
@@ -18,7 +18,8 @@ describe('reset-section-summary behaviour tests', () => {
       sessionModel: {
         get: sinon.stub(),
         unset: sinon.stub()
-      }
+      },
+      form: {}
     };
     res = {};
     next = sinon.spy();
@@ -28,12 +29,12 @@ describe('reset-section-summary behaviour tests', () => {
     );
   });
 
-  describe('successHandler tests', () => {
+  describe('saveValues tests', () => {
     let instance;
 
     beforeEach(() => {
       sinon
-        .stub(Base.prototype, 'successHandler')
+        .stub(Base.prototype, 'saveValues')
         .callsFake((request, response, nextFn) => nextFn());
       instance = new (Behaviour(
         ['aggregateToField'],
@@ -45,17 +46,19 @@ describe('reset-section-summary behaviour tests', () => {
       'should unset aggregateToField if sectionStartField is "no" ' +
         'and aggregatedValues length is greater than 0',
       () => {
-        req.sessionModel.get.withArgs('sectionStartField').returns('no');
+        req.form.values = {
+          sectionStartField: 'no'
+        };
         req.sessionModel.get
           .withArgs('aggregateToField')
           .returns({ aggregatedValues: [1, 2, 3] });
 
-        instance.successHandler(req, res, next);
+        instance.saveValues(req, res, next);
 
         expect(req.sessionModel.unset.calledWith('aggregateToField')).to.be
           .true;
         sinon.assert.calledWithExactly(
-          Base.prototype.successHandler,
+          Base.prototype.saveValues,
           req,
           res,
           next
@@ -64,35 +67,24 @@ describe('reset-section-summary behaviour tests', () => {
     );
 
     it('should not unset aggregateToField if sectionStartField is not "no"', () => {
-      req.sessionModel.get.withArgs('sectionStartField').returns('yes');
-      req.sessionModel.get
-        .withArgs('aggregateToField')
-        .returns({ aggregatedValues: [1, 2, 3] });
+      req.form.values = {
+        sectionStartField: 'yes'
+      };
 
-      instance.successHandler(req, res, next);
+      instance.saveValues(req, res, next);
 
       expect(req.sessionModel.unset.calledWith('aggregateToField')).to.be.false;
-      sinon.assert.calledWithExactly(
-        Base.prototype.successHandler,
-        req,
-        res,
-        next
-      );
+      sinon.assert.calledWithExactly(Base.prototype.saveValues, req, res, next);
     });
 
-    it('should call superclass successHandler', () => {
-      instance.successHandler(req, res, next);
+    it('should call superclass saveValues', () => {
+      instance.saveValues(req, res, next);
 
-      sinon.assert.calledWithExactly(
-        Base.prototype.successHandler,
-        req,
-        res,
-        next
-      );
+      sinon.assert.calledWithExactly(Base.prototype.saveValues, req, res, next);
     });
 
     afterEach(() => {
-      Base.prototype.successHandler.restore();
+      Base.prototype.saveValues.restore();
     });
   });
 });
