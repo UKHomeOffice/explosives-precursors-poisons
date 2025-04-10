@@ -194,6 +194,15 @@ module.exports = {
       }
     ]
   },
+  'replace-regulated-explosives-precursors': {
+    mixin: 'radio-group',
+    legend: {
+      className: 'govuk-label--m'
+    },
+    className: ['govuk-radios', 'govuk-radios--inline'],
+    options: ['yes', 'no'],
+    validate: 'required'
+  },
   'replace-is-details-changed': {
     fields: ['replace-is-details-changed'],
     mixin: 'radio-group',

@@ -340,5 +340,8 @@
     "required": "Enter the address where you will use the explosive precursor",
     "textAreaDefaultLength": "Usage address must be 2,000 characters or less",
     "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
+  },
+  "replace-regulated-explosives-precursors": {
+    "required": "Select if you need to amend the substances on your licence"
   }
 }

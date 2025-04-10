@@ -354,6 +354,17 @@
       }
     }
   },
+  "replace-regulated-explosives-precursors": {
+    "legend": "Do you need to amend the explosives precursors on your licence?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "why-need-precursor":{
     "label": "{{values.whyNeedPrecursorLabel}}",
     "hint": "Detailed answers mean we can process your application faster",

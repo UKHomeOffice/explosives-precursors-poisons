@@ -343,6 +343,31 @@ module.exports = {
       ]
     },
     '/explosives-precursors': {
+      behaviour: [
+        ResetSectionSummary(
+          ['precursors-details-aggregate'],
+          'replace-regulated-explosives-precursors'
+        )
+      ],
+      fields: ['replace-regulated-explosives-precursors'],
+      forks: [
+        {
+          target: '/select-precursor',
+          continueOnEdit: true,
+          condition: {
+            field: 'replace-regulated-explosives-precursors',
+            value: 'yes'
+          }
+        },
+        {
+          target: '/poisons',
+          condition: {
+            field: 'replace-regulated-explosives-precursors',
+            value: 'no'
+          }
+        }
+      ],
+      locals: { captionHeading: 'Section 17 of 26' },
       next: '/select-precursor'
     },
     '/select-precursor': {
