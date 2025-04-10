@@ -1,9 +1,9 @@
 module.exports = route => superclass =>
   class extends superclass {
-    saveValues(req, res, next) {
+    successHandler(req, res, next) {
       if (
         route === '/poisons' &&
-        req.form.values['replace-poisons-option'] === 'no'
+        req.sessionModel.get('replace-poisons-option') === 'no'
       ) {
         if (
           req.sessionModel.get('replace-regulated-explosives-precursors') !==
@@ -29,6 +29,6 @@ module.exports = route => superclass =>
           return res.redirect(`${req.baseUrl}/confirm`);
         }
       }
-      return super.getValues(req, res, next);
+      return super.successHandler(req, res, next);
     }
   };
