@@ -12,8 +12,6 @@ const SaveAddress = require('../epp-common/behaviours/save-home-other-address');
 const InitiatePaymentRequest = require('../epp-common/behaviours/initiate-payment-request');
 const GetPaymentInfo = require('../epp-common/behaviours/get-payment-info');
 const AfterDateOfBirth = require('../epp-common/behaviours/after-date-validator');
-const NavigateNoChanges = require('./behaviours/navigate-no-changes');
-// const PrecursorRoutingBehaviour = require('./behaviours/precursor-routing-behaviour');
 const RenderPoisonDetails = require('../epp-common/behaviours/render-poison-detail');
 const AggregateSaveEditPrecursorPoison = require('../epp-common/behaviours/aggregator-save-update-precursors-poisons');
 const ParseSummaryPrecursorsPoisons = require('../epp-common/behaviours/parse-summary-precursors-poisons');
@@ -129,7 +127,6 @@ module.exports = {
       next: '/changed-details'
     },
     '/changed-details': {
-      behaviour: [NavigateNoChanges('replace-is-details-changed')],
       fields: ['replace-is-details-changed'],
       locals: { captionHeading: 'Section 8 of 26' },
       next: '/amend-licence'
@@ -230,15 +227,11 @@ module.exports = {
       next: '/change-home-address'
     },
     '/change-home-address': {
-      behaviour: [NavigateNoChanges('replace-home-address-options')],
       fields: ['replace-home-address-options'],
       forks: [
         {
           target: '/new-address',
-          condition: {
-            field: 'replace-home-address-options',
-            value: 'yes'
-          }
+          condition: req => req.sessionModel.get('replace-which-document-type') === 'UK-passport'
         },
         {
           target: '/change-substances',
@@ -277,7 +270,6 @@ module.exports = {
     },
     '/change-substances': {
       behaviour: [
-        NavigateNoChanges('replace-change-substances'),
         ResetSectionSummary(
           ['poisons-details-aggregate'],
           'replace-change-substances'
@@ -313,17 +305,8 @@ module.exports = {
       next: '/precursor-details'
     },
     '/no-precursors-or-poisons': {
-      behaviour: [NavigateNoChanges('replace-no-poisons-precursors-options')],
+      behaviours: [CounterSignatoryNavigation('/no-precursors-or-poisons')],
       fields: ['replace-no-poisons-precursors-options'],
-      forks: [
-        {
-          target: '/countersignatory-details',
-          condition: {
-            field: 'replace-no-poisons-precursors-options',
-            value: 'yes'
-          }
-        }
-      ],
       next: '/change-substances'
     },
     '/precursor-details': {
@@ -370,8 +353,8 @@ module.exports = {
       titleField: ['poison-field'],
       addStep: 'select-poisons',
       addAnotherLinkText: 'poison',
-      next: '/confirm',
-      locals: { captionHeading: 'Section 20 of 26' }
+      locals: { captionHeading: 'Section 20 of 26' },
+      next: '/confirm'
     },
     '/countersignatory-details': {
       fields: [
