@@ -22,6 +22,7 @@ const EditRouteReturn = require('../epp-common/behaviours/edit-route-return');
 const CounterSignatoryNavigation = require('../epp-common/behaviours/counter-signatory-navigation');
 const ResetSectionSummary = require('../epp-common/behaviours/reset-section-summary');
 const RenderPrecursorDetails = require('../epp-common/behaviours/render-precursors-detail');
+const NoPrecursorsPoisonsNavigation = require('./behaviours/no-precursors-poisons-navigation');
 
 // TODO: Use DeleteRedundantDocuments behaviour similar to amend flow to
 // remove the uploaded files when dependent option changes
@@ -330,6 +331,7 @@ module.exports = {
       next: '/precursor-details'
     },
     '/no-precursors-or-poisons': {
+      behaviours: [NoPrecursorsPoisonsNavigation],
       fields: ['replace-no-poisons-precursors-options'],
       next: '/confirm'
     },
