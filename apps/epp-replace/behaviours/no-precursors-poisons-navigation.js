@@ -1,5 +1,10 @@
 module.exports = superclass =>
   class extends superclass {
+    locals(req, res) {
+      const locals = super.locals(req, res);
+      locals.backLink = req.sessionModel.get('noPrecursorPoisonsBackLink');
+      return locals;
+    }
     successHandler(req, res, next) {
       if (
         req.sessionModel.get('replace-no-poisons-precursors-options') === 'no'

@@ -1,14 +1,10 @@
 module.exports = route => superclass =>
   class extends superclass {
     saveValues(req, res, next) {
-      if (route === '/poisons') {
-        const regulatedPoisonSelection =
-          req.form.values['replace-poisons-option'];
-
-        if (regulatedPoisonSelection === 'yes') {
-          return res.redirect(`${req.baseUrl}/select-poisons`);
-        }
-
+      if (
+        route === '/poisons' &&
+        req.form.values['replace-poisons-option'] === 'no'
+      ) {
         if (
           req.sessionModel.get('replace-regulated-explosives-precursors') !==
           'yes'
