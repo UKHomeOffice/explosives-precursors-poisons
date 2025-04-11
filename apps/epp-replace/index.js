@@ -26,8 +26,8 @@ const SaveNewName = require('../epp-common/behaviours/save-new-name');
 const SaveCounterSignatoryAddress = require('../epp-common/behaviours/save-countersignatory-address');
 const NoPrecursorsPoisonsNavigation = require('./behaviours/no-precursors-poisons-navigation');
 const NoSubstanceChangeNavigation = require('./behaviours/no-substance-change-navigation');
-// TODO: Use DeleteRedundantDocuments behaviour similar to amend flow to
-// remove the uploaded files when dependent option changes
+const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redundant-documents');
+
 module.exports = {
   name: 'EPP form',
   fields: 'apps/epp-replace/fields',
@@ -141,6 +141,14 @@ module.exports = {
       next: '/changed-details'
     },
     '/changed-details': {
+      behaviours: [
+        DeleteRedundantDocuments('replace-is-details-changed', [
+          'replace-british-passport',
+          'replace-eu-passport',
+          'replace-upload-driving-licence',
+          'replace-certificate-conduct'
+        ])
+      ],
       fields: ['replace-is-details-changed'],
       forks: [
         {
@@ -162,6 +170,14 @@ module.exports = {
       next: '/amend-licence'
     },
     '/amend-licence': {
+      behaviours: [
+        DeleteRedundantDocuments('replace-name-options', [
+          'replace-british-passport',
+          'replace-eu-passport',
+          'replace-upload-driving-licence',
+          'replace-certificate-conduct'
+        ])
+      ],
       fields: ['replace-name-options'],
       forks: [
         {
@@ -273,7 +289,12 @@ module.exports = {
       next: '/change-home-address'
     },
     '/change-home-address': {
-      behaviours: [NavigateNoChanges],
+      behaviours: [
+        NavigateNoChanges,
+        DeleteRedundantDocuments('replace-home-address-options', [
+          'replace-proof-address'
+        ])
+      ],
       fields: ['replace-home-address-options'],
       forks: [
         {
