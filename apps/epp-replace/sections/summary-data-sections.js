@@ -395,7 +395,7 @@ module.exports = {
         field: 'replace-birth-certificate',
         parse: (documents, req) => {
           if (
-            req.sessionModel.get('steps').includes('/birth-certificate') &&
+            req.sessionModel.get('steps')?.includes('/birth-certificate') &&
             documents?.length > 0 &&
             req.sessionModel.get('replace-date-of-birth') &&
             !isDateOlderOrEqualTo(
