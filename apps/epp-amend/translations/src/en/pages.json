@@ -317,7 +317,7 @@
          "label": "Explosives precursors"
       },
       "display-precursor-title": {
-         "label": "Explosives precursor name"
+         "label": "Explosives precursors"
       },
       "why-need-precursor": {
         "label": "For what purpose do you need this regulated substance?"
@@ -341,7 +341,7 @@
         "label": "Poison"
       },
       "display-poison-title": {
-         "label": "Poison name"
+         "label": "Poisons"
       },
       "why-need-poison": {
         "label": "For what purpose do you need this regulated substance?"

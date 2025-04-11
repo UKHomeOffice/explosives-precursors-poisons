@@ -318,7 +318,7 @@
         "label": "Other nationality"
       },
       "new-renew-phone-number": {
-        "label": "Contact phone number"
+        "label": "Phone number"
       },
       "new-renew-email": {
         "label": "Email address"
@@ -396,7 +396,7 @@
         "label": "Poison"
       },
       "display-poison-title": {
-         "label": "Poison name"
+         "label": "Poisons"
       },
       "why-need-poison": {
         "label": "For what purpose do you need this regulated substance?"
