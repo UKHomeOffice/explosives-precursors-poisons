@@ -107,7 +107,7 @@ module.exports = {
     '/date-of-birth': {
       fields: ['replace-date-of-birth'],
       next: '/home-address',
-      locals: { captionHeading: 'Section 5 of 20' }
+      locals: { captionHeading: 'Section 5 of 26' }
     },
     '/home-address': {
       behaviours: [
