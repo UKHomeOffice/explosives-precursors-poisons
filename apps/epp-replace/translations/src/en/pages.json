@@ -327,22 +327,43 @@
         "label": "Birth certificate attachment"
       },
       "replace-countersignatory-middlename": {
-        "label": "Middle names"
+        "label": "Middle name(s) (optional)"
+      },
+      "replace-countersignatory-lastname": {
+        "label": "Surname"
+      },
+      "replace-new-middlename": {
+        "label": "Middle name(s) (optional)"
+      },
+      "replace-new-lastname": {
+        "label": "Surname"
+      },
+      "replace-countersignatory-postcode": {
+        "label": "Postcode (required for UK)"
+      },
+      "replace-licence": {
+        "label": "Why do you need a replacement?"
+      },
+      "replace-middle-name": {
+        "label": "Middle name(s)"
+      },
+      "replace-last-name": {
+        "label": "Surname"
       },
       "replace-countersignatory-years":{
-        "label": "How many years have you known countersignatory?"
+        "label": "How long have you known your countersignatory?"
       },
       "replace-countersignatory-howyouknow":{
-        "label": "How do you know countersignatory?"
+        "label": "In what capacity do you know your countersignatory?"
       },
       "replace-countersignatory-occupation":{
-        "label": "Countersignatory’s occupation"
+        "label": "What is your countersignatory’s occupation?"
       },
       "replace-countersignatory-address-2": {
-        "label": "Address line 2"
+        "label": "Address line 2 (optional)"
       },
       "replace-countersignatory-phone-number": {
-        "label": "Phone number"
+        "label": "Contact phone number"
       },
       "poison-field": {
         "label": "Poisons"
@@ -372,13 +393,19 @@
         "label": "UK driving licence number"
       },
       "display-poison-title": {
-         "label": "Poison name"
+         "label": "Poisons"
       },
       "why-need-poison": {
         "label": "For what purpose do you need this regulated substance?"
       },
       "how-much-poison": {
         "label": "How much do you wish to acquire?"
+      },
+      "replace-new-postcode": {
+        "label": "postcode (required for UK)"
+      },
+      "replace-new-country": {
+        "label": "Country"
       },
       "compound-or-salt": {
         "label": "Specific compound or salt"
@@ -393,7 +420,7 @@
         "label": "Usage address"
       },
       "display-precursor-title": {
-        "label": "Explosives precursor name"
+        "label": "Explosives precursors"
       },
       "why-need-precursor": {
         "label": "For what purpose do you need this regulated substance?"
