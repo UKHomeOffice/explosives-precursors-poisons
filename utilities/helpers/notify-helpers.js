@@ -396,9 +396,9 @@ const getReplacePersonalisation = req => {
     has_amended_substances: checkYesNo(
       req.sessionModel.get('replace-change-substances')
     ),
-    has_amended_precursor: checkYesNo(req.sessionModel.get('TBD')),
+    has_amended_precursor: checkYesNo(req.sessionModel.get('replace-regulated-explosives-precursors')),
     explosive_precursor: '', // TODO: from section summary
-    has_amended_poisons: STR_YES, // TODO: Page to be developed
+    has_amended_poisons: checkYesNo(req.sessionModel.get('replace-poisons-option')),
     poison_list: '', // TODO: from summary page
     has_countersignatory_details: hasValue(
       hasCountersignatoryDetails(req, APP_TYPE_REPLACE)

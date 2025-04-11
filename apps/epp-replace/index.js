@@ -25,7 +25,7 @@ const RenderPrecursorDetails = require('../epp-common/behaviours/render-precurso
 const SaveNewName = require('../epp-common/behaviours/save-new-name');
 const SaveCounterSignatoryAddress = require('../epp-common/behaviours/save-countersignatory-address');
 const NoPrecursorsPoisonsNavigation = require('./behaviours/no-precursors-poisons-navigation');
-
+const NoSubstanceChangeNavigation = require('./behaviours/no-substance-change-navigation');
 // TODO: Use DeleteRedundantDocuments behaviour similar to amend flow to
 // remove the uploaded files when dependent option changes
 module.exports = {
@@ -44,12 +44,16 @@ module.exports = {
       forks: [
         {
           target: '/police-report',
-          condition: req => req.sessionModel.get('replace-licence') === 'replace-licence-stolen',
+          condition: req =>
+            req.sessionModel.get('replace-licence') ===
+            'replace-licence-stolen',
           continueOnEdit: true
         },
         {
           target: '/licence-number',
-          condition: req => req.sessionModel.get('replace-licence') !== 'replace-licence-stolen',
+          condition: req =>
+            req.sessionModel.get('replace-licence') !==
+            'replace-licence-stolen',
           continueOnEdit: true
         }
       ],
@@ -103,19 +107,22 @@ module.exports = {
     '/date-of-birth': {
       fields: ['replace-date-of-birth'],
       next: '/home-address',
-      locals: {captionHeading: 'Section 5 of 20'}
+      locals: { captionHeading: 'Section 5 of 26' }
     },
     '/home-address': {
       behaviours: [
         PostcodeValidation,
-        SaveAddress([
-          'replace-home-address-1',
-          'replace-home-address-2',
-          'replace-home-town-or-city',
-          'replace-home-county',
-          'replace-home-postcode',
-          'replace-home-country'
-        ], 'home')
+        SaveAddress(
+          [
+            'replace-home-address-1',
+            'replace-home-address-2',
+            'replace-home-town-or-city',
+            'replace-home-county',
+            'replace-home-postcode',
+            'replace-home-country'
+          ],
+          'home'
+        )
       ],
       fields: [
         'replace-home-address-1',
@@ -130,11 +137,10 @@ module.exports = {
     },
     '/contact-details': {
       fields: ['replace-phone-number', 'replace-email'],
-      locals: {captionHeading: 'Section 7 of 26'},
+      locals: { captionHeading: 'Section 7 of 26' },
       next: '/changed-details'
     },
     '/changed-details': {
-      behaviours: [NavigateNoChanges],
       fields: ['replace-is-details-changed'],
       forks: [
         {
@@ -173,7 +179,7 @@ module.exports = {
           }
         }
       ],
-      locals: {captionHeading: 'Section 9 of 26'},
+      locals: { captionHeading: 'Section 9 of 26' },
       next: '/new-name'
     },
     '/new-name': {
@@ -185,17 +191,21 @@ module.exports = {
         'replace-date-new-name-changed'
       ],
       locals: { captionHeading: 'Section 10 of 26' },
-      behaviours: [AfterDateOfBirth('replace-date-of-birth'), SaveNewName([
-        'replace-new-name-title',
-        'replace-new-firstname',
-        'replace-new-middlename',
-        'replace-new-lastname',
-        'replace-date-new-name-changed'
-      ])],
+      behaviours: [
+        AfterDateOfBirth('replace-date-of-birth'),
+        SaveNewName([
+          'replace-new-name-title',
+          'replace-new-firstname',
+          'replace-new-middlename',
+          'replace-new-lastname',
+          'replace-date-new-name-changed'
+        ])
+      ],
       next: '/identity-details'
     },
     '/identity-details': {
-      fields: ['replace-which-document-type',
+      fields: [
+        'replace-which-document-type',
         'replace-UK-passport-number',
         'replace-EU-passport-number',
         'replace-Uk-driving-licence-number'
@@ -205,17 +215,23 @@ module.exports = {
       forks: [
         {
           target: '/upload-british-passport',
-          condition: req => req.sessionModel.get('replace-which-document-type') === 'UK-passport',
+          condition: req =>
+            req.sessionModel.get('replace-which-document-type') ===
+            'UK-passport',
           continueOnEdit: true
         },
         {
           target: '/upload-passport',
-          condition: req => req.sessionModel.get('replace-which-document-type') === 'EU-passport',
+          condition: req =>
+            req.sessionModel.get('replace-which-document-type') ===
+            'EU-passport',
           continueOnEdit: true
         },
         {
           target: '/upload-driving-licence',
-          condition: req => req.sessionModel.get('replace-which-document-type') === 'Uk-driving-licence',
+          condition: req =>
+            req.sessionModel.get('replace-which-document-type') ===
+            'Uk-driving-licence',
           continueOnEdit: true
         }
       ]
@@ -419,7 +435,16 @@ module.exports = {
       locals: { captionHeading: 'Section 18 of 26' }
     },
     '/poisons': {
-      next: '/select-poisons'
+      behaviours: [
+        NoSubstanceChangeNavigation('/poisons'),
+        ResetSectionSummary(
+          ['poisons-details-aggregate'],
+          'replace-poisons-option'
+        )
+      ],
+      fields: ['replace-poisons-option'],
+      next: '/select-poisons',
+      locals: { captionHeading: 'Section 19 of 26' }
     },
     '/select-poisons': {
       fields: ['poison-field'],
@@ -504,7 +529,9 @@ module.exports = {
       next: '/countersignatory-id'
     },
     '/countersignatory-id': {
-      behaviours: [DobUnder18Redirect('replace-date-of-birth', '/birth-certificate')],
+      behaviours: [
+        DobUnder18Redirect('replace-date-of-birth', '/birth-certificate')
+      ],
       fields: [
         'replace-countersignatory-Id-type',
         'replace-countersignatory-UK-passport-number',
@@ -525,7 +552,11 @@ module.exports = {
     },
     '/confirm': {
       sections: require('./sections/summary-data-sections'),
-      behaviours: [SummaryPageBehaviour, EditRouteStart, ModifySummaryChangeLink],
+      behaviours: [
+        SummaryPageBehaviour,
+        EditRouteStart,
+        ModifySummaryChangeLink
+      ],
       locals: { captionHeading: 'Section 25 of 26' },
       next: '/declaration'
     },
@@ -544,7 +575,8 @@ module.exports = {
     '/replace-application-submitted': {
       sections: require('./sections/summary-data-sections'),
       behaviours: [SummaryPageBehaviour, GetPaymentInfo],
-      backLink: false
+      backLink: false,
+      clearSession: true
     },
     '/exit': {}
   }

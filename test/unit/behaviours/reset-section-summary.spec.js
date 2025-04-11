@@ -46,9 +46,7 @@ describe('reset-section-summary behaviour tests', () => {
       'should unset aggregateToField if sectionStartField is "no" ' +
         'and aggregatedValues length is greater than 0',
       () => {
-        req.form.values = {
-          sectionStartField: 'no'
-        };
+        req.sessionModel.get.withArgs('sectionStartField').returns('no');
         req.sessionModel.get
           .withArgs('aggregateToField')
           .returns({ aggregatedValues: [1, 2, 3] });

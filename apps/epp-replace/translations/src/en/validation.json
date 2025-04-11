@@ -346,5 +346,8 @@
   },
   "replace-no-poisons-precursors-options": {
     "required": "Select if you want to continue the form without changing the explosives precursors or poisons"
+  },
+  "replace-poisons-option": {
+    "required": "Select if your licence needs to cover poisons"
   }
 }

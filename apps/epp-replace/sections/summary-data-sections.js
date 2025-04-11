@@ -1,7 +1,9 @@
 'use strict';
 const config = require('../../../config');
 const {
-  isDateOlderOrEqualTo
+  isDateOlderOrEqualTo,
+  displayOptionalField,
+  formatAttachments
 } = require('../../../utilities/helpers');
 const dateFormatter = new Intl.DateTimeFormat(
   config.dateLocales,
@@ -14,18 +16,6 @@ module.exports = {
       {
         step: '/replace-licence',
         field: 'replace-licence'
-      }
-    ]
-  },
-  'replace-contact-details': {
-    steps: [
-      {
-        steps: '/contact-details',
-        field: 'replace-phone-number'
-      },
-      {
-        steps: '/contact-details',
-        field: 'replace-email'
       }
     ]
   },
@@ -45,19 +35,97 @@ module.exports = {
       }
     ]
   },
+  'licence-details': {
+    steps: [
+      {
+        step: '/licence-number',
+        field: 'replace-licence-number',
+        parse: (value, req) => displayOptionalField(req, '/licence-number', value)
+      }
+    ]
+  },
+  'applicant-name': {
+    steps: [
+      {
+        step: '/your-name',
+        field: 'replace-title'
+      },
+      {
+        step: '/your-name',
+        field: 'replace-first-name'
+      },
+      {
+        step: '/your-name',
+        field: 'replace-middle-name',
+        parse: (value, req) => displayOptionalField(req, '/your-name', value)
+      },
+      {
+        step: '/your-name',
+        field: 'replace-last-name'
+      },
+      {
+        step: '/your-name',
+        field: 'replace-other-names'
+      }
+    ]
+  },
+  'replace-date-of-birth': {
+    steps: [
+      {
+        step: '/date-of-birth',
+        field: 'replace-date-of-birth',
+        parse: date => date && dateFormatter.format(new Date(date))
+      }
+    ]
+  },
+  'home-address-details': {
+    steps: [
+      {
+        step: '/home-address',
+        field: 'replace-home-address-1'
+      },
+      {
+        step: '/home-address',
+        field: 'replace-home-address-2',
+        parse: (value, req) => displayOptionalField(req, '/home-address', value)
+      },
+      {
+        step: '/home-address',
+        field: 'replace-home-town-or-city'
+      },
+      {
+        step: '/home-address',
+        field: 'replace-home-county',
+        parse: (value, req) => displayOptionalField(req, '/home-address', value)
+      },
+      {
+        step: '/home-address',
+        field: 'replace-home-postcode',
+        parse: (value, req) => displayOptionalField(req, '/home-address', value)
+      },
+      {
+        step: '/home-address',
+        field: 'replace-home-country'
+      }
+    ]
+  },
+  'replace-contact-details': {
+    steps: [
+      {
+        steps: '/contact-details',
+        field: 'replace-phone-number'
+      },
+      {
+        steps: '/contact-details',
+        field: 'replace-email'
+      }
+    ]
+  },
   'replace-is-details-changed': {
     steps: [
       {
         step: '/changed-details',
         field: 'replace-is-details-changed'
-      }
-    ]
-  },
-  'replace-home-address-options': {
-    steps: [
-      {
-        step: '/change-home-address',
-        field: 'replace-home-address-options'
       }
     ]
   },
@@ -82,7 +150,7 @@ module.exports = {
       {
         step: '/new-name',
         field: 'replace-new-middlename',
-        parse: value => value || 'Not provided'
+        parse: (value, req) => displayOptionalField(req, '/new-name', value)
       },
       {
         step: '/new-name',
@@ -112,73 +180,30 @@ module.exports = {
       {
         step: '/upload-british-passport',
         field: 'replace-british-passport',
-        parse: (documents, req) => {
-          if (
-            req.sessionModel
-              .get('steps')
-              .includes('/upload-british-passport') &&
-            documents?.length > 0
-          ) {
-            return documents.map(file => file.name);
-          }
-          return null;
-        }
+        parse: (documents, req) => formatAttachments(documents, req, '/upload-british-passport')
       },
       {
         step: '/upload-passport',
         field: 'replace-eu-passport',
-        parse: (documents, req) => {
-          if (
-            req.sessionModel.get('steps').includes('/upload-passport') &&
-            documents?.length > 0
-          ) {
-            return documents.map(file => file?.name)?.join('\n\n');
-          }
-          return null;
-        }
+        parse: (documents, req) => formatAttachments(documents, req, '/upload-passport')
       },
       {
         step: '/upload-driving-licence',
         field: 'replace-upload-driving-licence',
-        parse: (documents, req) => {
-          if (
-            req.sessionModel.get('steps').includes('/upload-driving-licence') &&
-            documents?.length > 0
-          ) {
-            return documents.map(file => file.name);
-          }
-
-          return null;
-        }
-      },
-      {
-        step: '/upload-proof-address',
-        field: 'replace-proof-address',
-        parse: (documents, req) => {
-          if (
-            req.sessionModel.get('steps').includes('/upload-proof-address') &&
-            documents?.length > 0
-          ) {
-            return documents.map(file => file?.name)?.join('\n\n');
-          }
-
-          return null;
-        }
+        parse: (documents, req) => formatAttachments(documents, req, '/upload-driving-licence')
       },
       {
         step: '/upload-certificate-conduct',
         field: 'replace-certificate-conduct',
-        parse: (documents, req) => {
-          if (
-            req.sessionModel
-              .get('steps')
-              .includes('/upload-certificate-conduct') &&
-            documents?.length > 0
-          ) {
-            return documents.map(file => file.name);
-          }
-          return null;
-        }
+        parse: (documents, req) => formatAttachments(documents, req, '/upload-certificate-conduct')
+      }
+    ]
+  },
+  'replace-home-address-options': {
+    steps: [
+      {
+        step: '/change-home-address',
+        field: 'replace-home-address-options'
       }
     ]
   },
@@ -191,7 +216,7 @@ module.exports = {
       {
         step: '/new-address',
         field: 'replace-new-address-2',
-        parse: value => value || 'Not provided'
+        parse: (value, req) => displayOptionalField(req, '/new-address', value)
       },
       {
         step: '/new-address',
@@ -200,12 +225,12 @@ module.exports = {
       {
         step: '/new-address',
         field: 'replace-new-county',
-        parse: value => value || 'Not provided'
+        parse: (value, req) => displayOptionalField(req, '/new-address', value)
       },
       {
         step: '/new-address',
         field: 'replace-new-postcode',
-        parse: value => value || 'Not provided'
+        parse: (value, req) => displayOptionalField(req, '/new-address', value)
       },
       {
         step: '/new-address',
@@ -219,18 +244,7 @@ module.exports = {
       {
         step: '/upload-proof-address',
         field: 'replace-proof-address',
-        parse: (documents, req) => {
-          if (
-            req.sessionModel
-              .get('steps')
-              .includes('/upload-proof-address') &&
-            documents?.length > 0
-          ) {
-            return documents.map(file => file?.name)?.join('\n\n');
-          }
-
-          return null;
-        }
+        parse: (documents, req) => formatAttachments(documents, req, '/upload-proof-address')
       }
     ]
   },
@@ -239,6 +253,14 @@ module.exports = {
       {
         step: '/change-substances',
         field: 'replace-change-substances'
+      }
+    ]
+  },
+  'replace-licence-for-explosives-precursors': {
+    steps: [
+      {
+        steps: '/explosives-precursors',
+        field: 'replace-regulated-explosives-precursors'
       }
     ]
   },
@@ -266,63 +288,11 @@ module.exports = {
       }
     ]
   },
-  'applicant-name': {
+  'replace-licence-for-poisons': {
     steps: [
       {
-        step: '/your-name',
-        field: 'replace-title'
-      },
-      {
-        step: '/your-name',
-        field: 'replace-first-name'
-      },
-      {
-        step: '/your-name',
-        field: 'replace-middle-name'
-      },
-      {
-        step: '/your-name',
-        field: 'replace-last-name'
-      },
-      {
-        step: '/your-name',
-        field: 'replace-other-names'
-      }
-    ]
-  },
-  'home-address-details': {
-    steps: [
-      {
-        step: '/home-address',
-        field: 'replace-home-address-1'
-      },
-      {
-        step: '/home-address',
-        field: 'replace-home-address-2'
-      },
-      {
-        step: '/home-address',
-        field: 'replace-home-town-or-city'
-      },
-      {
-        step: '/home-address',
-        field: 'replace-home-county'
-      },
-      {
-        step: '/home-address',
-        field: 'replace-home-postcode'
-      },
-      {
-        step: '/home-address',
-        field: 'replace-home-country'
-      }
-    ]
-  },
-  'licence-details': {
-    steps: [
-      {
-        step: '/licence-number',
-        field: 'replace-licence-number'
+        step: '/poisons',
+        field: 'replace-poisons-option'
       }
     ]
   },
@@ -348,15 +318,6 @@ module.exports = {
       }
     ]
   },
-  'replace-date-of-birth': {
-    steps: [
-      {
-        step: '/date-of-birth',
-        field: 'replace-date-of-birth',
-        parse: date => date && dateFormatter.format(new Date(date))
-      }
-    ]
-  },
   'countersignatory-details': {
     steps: [
       {
@@ -370,7 +331,7 @@ module.exports = {
       {
         step: '/countersignatory-details',
         field: 'replace-countersignatory-middlename',
-        parse: value => value || 'Not provided'
+        parse: (value, req) => displayOptionalField(req, '/countersignatory-details', value)
       },
       {
         step: '/countersignatory-details',
@@ -395,7 +356,7 @@ module.exports = {
       {
         step: '/countersignatory-address',
         field: 'replace-countersignatory-address-2',
-        parse: value => value || 'Not provided'
+        parse: (value, req) => displayOptionalField(req, '/countersignatory-address', value)
       },
       {
         step: '/countersignatory-address',
@@ -434,7 +395,7 @@ module.exports = {
         field: 'replace-birth-certificate',
         parse: (documents, req) => {
           if (
-            req.sessionModel.get('steps').includes('/birth-certificate') &&
+            req.sessionModel.get('steps')?.includes('/birth-certificate') &&
             documents?.length > 0 &&
             req.sessionModel.get('replace-date-of-birth') &&
             !isDateOlderOrEqualTo(

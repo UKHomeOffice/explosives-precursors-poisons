@@ -421,5 +421,16 @@
   "precursors-use-other-address": {
     "label": "{{values.usePrecursorOtherAddressLabel}}",
     "hint": "Enter a UK address"
+  },
+  "replace-poisons-option": {
+    "legend":"Does your licence need to cover poisons?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
   }
 }
