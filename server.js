@@ -18,9 +18,8 @@ app.use((req, res, next) => {
   res.locals.htmlLang = 'en';
 
   // TODO destructure *form*, *returnUrl* & *mac* to generate the complete URL
-  const { url } = config.feedback;
 
-  res.locals.feedbackUrl = url;
+  res.locals.feedbackUrl = config.feedback;
 
   if (req.is('multipart/form-data')) {
     try {

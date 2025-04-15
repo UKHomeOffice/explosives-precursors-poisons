@@ -26,13 +26,7 @@ module.exports = {
     replaceDamagedApplicationUserTemplateId: process.env.REPLACE_DAMAGED_APPLICATION_USER_TEMPLATE_ID,
     replaceApplicationBusinessTemplateId: process.env.REPLACE_APPLICATION_BUSINESS_TEMPLATE_ID
   },
-  // TODO: set return URL and mac in env variables
-  feedback: {
-    url: 'https://www.hof-feedback.homeoffice.gov.uk',
-    form: Buffer.from('EPP', 'utf8').toString('hex'),
-    returnUrl: Buffer.from('', 'utf8').toString('hex'),
-    mac: ''
-  },
+  feedback: process.env.FEEDBACK_URL,
   hosts: {
     acceptanceTests:
       process.env.ACCEPTANCE_HOST_NAME ||
