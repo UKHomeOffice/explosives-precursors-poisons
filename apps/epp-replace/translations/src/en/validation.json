@@ -342,7 +342,7 @@
     "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
   "replace-regulated-explosives-precursors": {
-    "required": "Select if you need to amend the substances on your licence"
+    "required": "Select if your licence needs to cover explosives precursors"
   },
   "replace-no-poisons-precursors-options": {
     "required": "Select if you want to continue the form without changing the explosives precursors or poisons"
