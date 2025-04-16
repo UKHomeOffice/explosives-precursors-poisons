@@ -292,6 +292,199 @@
     "hint": "For example, 30 10 2014",
     "summary-heading": "When did you move to this address?"
   },
+  "new-renew-licence-type": {
+    "legend": "Licence type",
+    "summary-heading": "Licence type"
+  },
+  "new-renew-why-licence-refused": {
+    "label": "Why was the licence refused or revoked?",
+    "summary-heading": "Why the licence was refused or revoked"
+  },
+  "new-renew-licence-refused-date": {
+    "legend": "Date the licence was refused or revoked",
+    "hint": "Enter an approximate date if you are unsure",
+    "summary-heading": "Date the licence was refused or revoked"
+  },
+  "new-renew-offence-name": {
+    "label": "Name of offence",
+    "summary-heading": "Name of offence"
+  },
+  "new-renew-offence-country": {
+    "label": "Which country was the offence committed in?",
+    "hint": "Select a country from the list",
+    "options": {
+      "none_selected": "Select"
+    },
+    "summary-heading": "Country"
+  },
+  "new-renew-offence-date": {
+    "legend": "When did the offence happen?",
+    "hint": "If you do not know, enter an approximate date. For example, 21 3 2017",
+    "summary-heading": "When offence happened"
+  },
+  "new-renew-doctor-name": {
+    "label": "Your doctor’s name",
+    "hint": "If you do not have a specific doctor, enter the name of the medical practice"
+  },
+  "new-renew-doctor-address-line-1": {
+    "label": "Address line 1"
+  },
+  "new-renew-doctor-address-line-2": {
+    "label": "Address line 2 (optional)"
+  },
+  "new-renew-doctor-town-city": {
+    "label": "Town or city"
+  },
+  "new-renew-doctor-county": {
+    "label": "County, state, province (optional)"
+  },
+  "new-renew-doctor-postcode": {
+    "label": "Postcode (optional)",
+    "hint": "Postcode is optional if the address is outside the UK"
+  },
+  "new-renew-doctor-country": {
+    "label": "Country of address",
+    "hint": "Select a country from the list",
+    "options": {
+      "none_selected": "Select"
+    }
+  },
+  "new-renew-regulated-explosives-precursors-options": {
+    "legend":"Does your licence need to cover explosives precursors?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "precursor-field": {
+    "hint": "Select an explosives precursor",
+    "options":{
+      "none_selected": "Select"
+    }
+  },
+  "why-need-precursor":{
+    "label": "{{values.whyNeedPrecursorLabel}}",
+    "hint": "Detailed answers mean we can process your application faster",
+    "summary-heading": "Why do you need it?"
+  },
+  "how-much-precursor":{
+    "label": "How much do you wish to acquire at any one time within a 6-month period?",
+    "hint": "Enter the amount and the unit. For example, 10 litres",
+    "summary-heading": "How much do you wish to acquire at any one time within a 6-month period?"
+  },
+  "what-concentration-precursor":{
+    "label": "What concentration % w/w of the substance do you need?",
+    "summary-heading": "What concentration % w/w of the substance do you need?"
+  },
+  "where-to-store-precursor": {
+    "legend": "{{values.whereToStorePrecursorLegend}}",
+    "summary-heading": "Where it will be stored?",
+    "hint": "This must be in the UK",
+    "options": {
+      "store-precursors-home-address-value": {
+        "label": "{{values.homeAddressInline}}",
+        "summary-heading": "{{values.homeAddressInline}}"
+      },
+      "store-precursors-other-address-value": {
+        "label": "Other address"
+      }
+    }
+  },
+  "store-precursors-other-address": {
+    "label": "{{values.storePrecursorOtherAddressLabel}}",
+    "hint": "Enter a UK address"
+  },
+  "where-to-use-precursor": {
+    "legend": "{{values.whereToUsePrecursorLegend}}",
+    "hint": "This must be in the UK",
+    "summary-heading": "Where it will be used?",
+    "options": {
+      "use-precursors-home-address-value": {
+        "label": "{{values.homeAddressInline}}",
+        "summary-heading": "{{values.homeAddressInline}}"
+      },
+      "use-precursors-other-address-value": {
+        "label": "Other address"
+      }
+    }
+  },
+  "precursors-use-other-address": {
+    "label": "{{values.usePrecursorOtherAddressLabel}}",
+    "hint": "Enter a UK address"
+  },
+  "new-renew-poisons-options": {
+    "legend":"Does your licence need to cover poisons?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
+  "poison-field": {
+    "hint": "Select a poison",
+      "options":{
+        "none_selected": "Select poison"
+    }
+  },
+  "why-need-poison":{
+    "label": "{{values.whyNeedPoisonLabel}}",
+    "hint": "Detailed answers mean we can process your application faster",
+    "summary-heading": "Why do you need it?"
+  },
+  "how-much-poison":{
+    "label": "How much do you wish to acquire at any one time within a 6-month period?",
+    "hint": "Enter the amount and the unit. For example, 10 litres",
+    "summary-heading": "How much do you wish to acquire at any one time within a 6-month period?"
+  },
+  "compound-or-salt": {
+    "label": "Specific compound or salt",
+    "summary-heading": "Specific compound or salt"
+  },
+  "what-concentration-poison":{
+    "label": "What concentration % w/w of the substance do you need?",
+    "summary-heading": "What concentration % w/w of the substance do you need?"
+  },
+  "where-to-store-poison": {
+    "legend": "{{values.whereToStorePoisonLegend}}",
+    "hint": "This must be in the UK",
+    "summary-heading": "Where it will be stored?",
+    "options": {
+      "store-poison-home-address-value": {
+        "label": "{{values.homeAddressInline}}"
+      },
+      "store-poison-other-address-value": {
+        "label": "Other address"
+      }
+    }
+  },
+  "store-poison-other-address": {
+    "label": "{{values.storePoisonOtherAddressLabel}}",
+    "hint": "Enter a UK address"
+  },
+  "where-to-use-poison": {
+    "legend": "{{values.whereToUsePoisonLegend}}",
+    "hint": "This must be in the UK",
+    "summary-heading": "Where it will be used?",
+    "options": {
+      "use-poison-home-address": {
+        "label": "{{values.homeAddressInline}}"
+      },
+      "use-poison-other-address-value": {
+        "label": "Other address"
+      }
+    }
+  },
+  "poison-use-other-address": {
+    "label": "{{values.usePoisonOtherAddressLabel}}",
+    "hint": "Enter a UK address"
+  },
   "new-renew-countersignatory-title":{
     "label": "Title",
     "options": {
@@ -339,39 +532,6 @@
   "new-renew-countersignatory-email": {
     "label": "Email address"
   },
-  "new-renew-declaration": {
-    "label": "I have read and agree to this declaration"
-  },
-  "new-renew-licence-type": {
-    "legend": "Licence type",
-    "summary-heading": "Licence type"
-  },
-  "new-renew-why-licence-refused": {
-    "label": "Why was the licence refused or revoked?",
-    "summary-heading": "Why the licence was refused or revoked"
-  },
-  "new-renew-licence-refused-date": {
-    "legend": "Date the licence was refused or revoked",
-    "hint": "Enter an approximate date if you are unsure",
-    "summary-heading": "Date the licence was refused or revoked"
-  },
-  "new-renew-offence-name": {
-    "label": "Name of offence",
-    "summary-heading": "Name of offence"
-  },
-  "new-renew-offence-country": {
-    "label": "Which country was the offence committed in?",
-    "hint": "Select a country from the list",
-    "options": {
-      "none_selected": "Select"
-    },
-    "summary-heading": "Country"
-  },
-  "new-renew-offence-date": {
-    "legend": "When did the offence happen?",
-    "hint": "If you do not know, enter an approximate date. For example, 21 3 2017",
-    "summary-heading": "When offence happened"
-  },
   "new-renew-countersignatory-Id-type": {
     "legend": "What is your countersignatory's identity document?",
     "hint": "If your licence is granted, you will need to show this document when buying the substances",
@@ -400,167 +560,7 @@
     "label": "What is your driving licence number?",
     "hint" : "On section 5 of your licence, for example MORGA657054SM9IJ"
   },
-  "new-renew-doctor-name": {
-    "label": "Your doctor’s name",
-    "hint": "If you do not have a specific doctor, enter the name of the medical practice"
-  },
-  "new-renew-doctor-address-line-1": {
-    "label": "Address line 1"
-  },
-  "new-renew-doctor-address-line-2": {
-    "label": "Address line 2 (optional)"
-  },
-  "new-renew-doctor-town-city": {
-    "label": "Town or city"
-  },
-  "new-renew-doctor-county": {
-    "label": "County, state, province (optional)"
-  },
-  "new-renew-doctor-postcode": {
-    "label": "Postcode (optional)",
-    "hint": "Postcode is optional if the address is outside the UK"
-  },
-  "new-renew-doctor-country": {
-    "label": "Country of address",
-    "hint": "Select a country from the list",
-    "options": {
-      "none_selected": "Select"
-    }
-  },
-  "precursor-field": {
-    "hint": "Select an explosives precursor",
-    "options":{
-      "none_selected": "Select"
-    }
-  },
-  "new-renew-poisons-options": {
-    "legend":"Does your licence need to cover poisons?",
-    "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
-    }
-  },
-  "poison-field": {
-    "hint": "Select a poison",
-      "options":{
-        "none_selected": "Select poison"
-    }
-  },
-  "why-need-precursor":{
-    "label": "{{values.whyNeedPrecursorLabel}}",
-    "hint": "Detailed answers mean we can process your application faster",
-    "summary-heading": "{{values.whyNeedPrecursorLabel}}"
-  },
-  "how-much-precursor":{
-    "label": "How much do you wish to acquire at any one time within a 6-month period?",
-    "hint": "Enter the amount and the unit. For example, 10 litres",
-    "summary-heading": "How much do you wish to acquire at any one time within a 6-month period?"
-  },
-  "what-concentration-precursor":{
-    "label": "What concentration % w/w of the substance do you need?",
-    "summary-heading": "What concentration % w/w of the substance do you need?"
-  },
-  "where-to-store-precursor": {
-    "legend": "{{values.whereToStorePrecursorLegend}}",
-    "summary-heading": "{{values.whereToStorePrecursorLegend}}",
-    "hint": "This must be in the UK",
-    "options": {
-      "store-precursors-home-address-value": {
-        "label": "{{values.homeAddressInline}}",
-        "summary-heading": "{{values.homeAddressInline}}"
-      },
-      "store-precursors-other-address-value": {
-        "label": "Other address"
-      }
-    }
-  },
-  "store-precursors-other-address": {
-    "label": "{{values.storePrecursorOtherAddressLabel}}",
-    "hint": "Enter a UK address"
-  },
-  "where-to-use-precursor": {
-    "legend": "{{values.whereToUsePrecursorLegend}}",
-    "hint": "This must be in the UK",
-    "summary-heading": "{{values.whereToUsePrecursorLegend}}",
-    "options": {
-      "use-precursors-home-address-value": {
-        "label": "{{values.homeAddressInline}}",
-        "summary-heading": "{{values.homeAddressInline}}"
-      },
-      "use-precursors-other-address-value": {
-        "label": "Other address"
-      }
-    }
-  },
-  "precursors-use-other-address": {
-    "label": "{{values.usePrecursorOtherAddressLabel}}",
-    "hint": "Enter a UK address"
-  },
-  "why-need-poison":{
-    "label": "{{values.whyNeedPoisonLabel}}",
-    "hint": "Detailed answers mean we can process your application faster",
-    "summary-heading": "{{values.whyNeedPoisonLabel}}"
-  },
-  "how-much-poison":{
-    "label": "How much do you wish to acquire at any one time within a 6-month period?",
-    "hint": "Enter the amount and the unit. For example, 10 litres",
-    "summary-heading": "How much do you wish to acquire at any one time within a 6-month period?"
-  },
-  "compound-or-salt": {
-    "label": "Specific compound or salt",
-    "summary-heading": "Specific compound or salt"
-  },
-  "what-concentration-poison":{
-    "label": "What concentration % w/w of the substance do you need?",
-    "summary-heading": "What concentration % w/w of the substance do you need?"
-  },
-  "where-to-store-poison": {
-    "legend": "{{values.whereToStorePoisonLegend}}",
-    "hint": "This must be in the UK",
-    "summary-heading": "{{values.whereToStorePoisonLegend}}",
-    "options": {
-      "store-poison-home-address-value": {
-        "label": "{{values.homeAddressInline}}"
-      },
-      "store-poison-other-address-value": {
-        "label": "Other address"
-      }
-    }
-  },
-  "store-poison-other-address": {
-    "label": "{{values.storePoisonOtherAddressLabel}}",
-    "hint": "Enter a UK address"
-  },
-  "where-to-use-poison": {
-    "legend": "{{values.whereToUsePoisonLegend}}",
-    "hint": "This must be in the UK",
-    "summary-heading": "{{values.whereToUsePoisonLegend}}",
-    "options": {
-      "use-poison-home-address": {
-        "label": "{{values.homeAddressInline}}"
-      },
-      "use-poison-other-address-value": {
-        "label": "Other address"
-      }
-    }
-  },
-  "poison-use-other-address": {
-    "label": "{{values.usePoisonOtherAddressLabel}}",
-    "hint": "Enter a UK address"
-  },
-  "new-renew-regulated-explosives-precursors-options": {
-    "legend":"Does your licence need to cover explosives precursors?",
-    "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
-    }
+  "new-renew-declaration": {
+    "label": "I have read and agree to this declaration"
   }
 }
