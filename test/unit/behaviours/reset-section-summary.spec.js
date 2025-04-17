@@ -42,27 +42,27 @@ describe('reset-section-summary behaviour tests', () => {
       )(Base))();
     });
 
-    it(
-      'should unset aggregateToField if sectionStartField is "no" ' +
+    it('should unset aggregateToField if sectionStartField is "no" ' +
         'and aggregatedValues length is greater than 0',
-      () => {
-        req.sessionModel.get.withArgs('sectionStartField').returns('no');
-        req.sessionModel.get
-          .withArgs('aggregateToField')
-          .returns({ aggregatedValues: [1, 2, 3] });
+    () => {
+      req.form.values = {
+        sectionStartField: 'no'
+      };
+      req.sessionModel.get
+        .withArgs('aggregateToField')
+        .returns({ aggregatedValues: [1, 2, 3] });
 
-        instance.saveValues(req, res, next);
+      instance.saveValues(req, res, next);
 
-        expect(req.sessionModel.unset.calledWith('aggregateToField')).to.be
-          .true;
-        sinon.assert.calledWithExactly(
-          Base.prototype.saveValues,
-          req,
-          res,
-          next
-        );
-      }
-    );
+      expect(req.sessionModel.unset.calledWith('aggregateToField')).to.be
+        .true;
+      sinon.assert.calledWithExactly(
+        Base.prototype.saveValues,
+        req,
+        res,
+        next
+      );
+    });
 
     it('should not unset aggregateToField if sectionStartField is not "no"', () => {
       req.form.values = {
