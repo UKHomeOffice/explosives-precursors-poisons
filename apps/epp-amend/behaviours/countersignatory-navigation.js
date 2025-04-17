@@ -18,15 +18,14 @@ module.exports = currentRoute => superclass =>
 
       if (
         currentRoute === '/poisons' &&
-        req.form.values['amend-poisons-option'] === 'no'
-      ) {
+        req.form.values['amend-poisons-option'] === 'no') {
         if (amendNameOrAddress) {
           return redirectToCountersignatory();
         }
         if (
           noAmendNameOrAddress &&
           req.sessionModel.get('amend-regulated-explosives-precursors') !==
-            'yes'
+          'yes'
         ) {
           return redirectNoPoisonsOrPrecursors();
         }
@@ -47,7 +46,6 @@ module.exports = currentRoute => superclass =>
           return redirectNoDetailsAmend();
         }
       }
-
       return super.saveValues(req, res, next);
     }
   };

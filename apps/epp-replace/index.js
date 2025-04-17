@@ -357,7 +357,7 @@ module.exports = {
       behaviours: [
         NavigateNoChanges,
         ResetSectionSummary(
-          ['poisons-details-aggregate'],
+          ['poisons-details-aggregate', 'precursors-details-aggregate'],
           'replace-change-substances'
         )
       ],
@@ -381,11 +381,12 @@ module.exports = {
       ]
     },
     '/explosives-precursors': {
-      behaviour: [
+      behaviours: [
         ResetSectionSummary(
           ['precursors-details-aggregate'],
           'replace-regulated-explosives-precursors'
-        )
+        ),
+        NoSubstanceChangeNavigation('/explosives-precursors')
       ],
       fields: ['replace-regulated-explosives-precursors'],
       forks: [
