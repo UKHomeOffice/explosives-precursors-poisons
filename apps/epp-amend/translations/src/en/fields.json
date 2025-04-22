@@ -158,6 +158,17 @@
       }
     }
   },
+  "amend-regulated-explosives-precursors": {
+    "legend": "Do you need to amend the explosives precursors on your licence?",
+    "options": {
+      "yes": {
+        "label": "Yes"
+      },
+      "no": {
+        "label": "No"
+      }
+    }
+  },
   "precursor-field": {
     "hint": "Select an explosives precursor",
     "options":{
@@ -166,6 +177,56 @@
   },
   "selected-precursor-title":{
     "joinTitle" : "{{values.selectedPrecursorShortTitle}}"
+  },
+  "why-need-precursor":{
+    "label": "{{values.whyNeedPrecursorLabel}}",
+    "hint": "Detailed answers mean we can process your application faster",
+    "summary-heading": "Why do you need it?"
+  },
+  "how-much-precursor":{
+    "label": "How much do you wish to acquire at any one time within a 6-month period?",
+    "hint": "Enter the amount and the unit. For example, 10 litres",
+    "summary-heading": "How much do you wish to acquire at any one time within a 6-month period?"
+  },
+  "what-concentration-precursor":{
+    "label": "What concentration % w/w of the substance do you need?",
+    "summary-heading": "What concentration % w/w of the substance do you need?"
+  },
+  "where-to-store-precursor": {
+    "legend": "{{values.whereToStorePrecursorLegend}}",
+    "summary-heading": "Where it will be stored?",
+    "hint": "This must be in the UK",
+    "options": {
+      "store-precursors-home-address-value": {
+        "label": "{{values.homeAddressInline}}",
+        "summary-heading": "{{values.homeAddressInline}}"
+      },
+      "store-precursors-other-address-value": {
+        "label": "Other address"
+      }
+    }
+  },
+  "store-precursors-other-address": {
+    "label": "{{values.storePrecursorOtherAddressLabel}}",
+    "hint": "Enter a UK address"
+  },
+  "where-to-use-precursor": {
+    "legend": "{{values.whereToUsePrecursorLegend}}",
+    "hint": "This must be in the UK",
+    "summary-heading": "Where it will be used?",
+    "options": {
+      "use-precursors-home-address-value": {
+        "label": "{{values.homeAddressInline}}",
+        "summary-heading": "{{values.homeAddressInline}}"
+      },
+      "use-precursors-other-address-value": {
+        "label": "Other address"
+      }
+    }
+  },
+  "precursors-use-other-address": {
+    "label": "{{values.usePrecursorOtherAddressLabel}}",
+    "hint": "Enter a UK address"
   },
   "amend-poisons-option": {
     "legend":"Does your licence need to cover poisons?",
@@ -184,6 +245,61 @@
         "none_selected": "Select poison"
     }
   },
+  "selected-poison-title":{
+    "joinTitle" : "{{values.selectedPoisonShortTitle}}"
+  },
+  "why-need-poison":{
+    "label": "{{values.whyNeedPoisonLabel}}",
+    "hint": "Detailed answers mean we can process your application faster",
+    "summary-heading": "Why do you need it?"
+  },
+  "how-much-poison":{
+    "label": "How much do you wish to acquire at any one time within a 6-month period?",
+    "hint": "Enter the amount and the unit. For example, 10 litres",
+    "summary-heading": "How much do you wish to acquire at any one time within a 6-month period?"
+  },
+  "compound-or-salt": {
+    "label": "Specific compound or salt",
+    "summary-heading": "Specific compound or salt"
+  },
+  "what-concentration-poison":{
+    "label": "What concentration % w/w of the substance do you need?",
+    "summary-heading": "What concentration % w/w of the substance do you need?"
+  },
+  "where-to-store-poison": {
+    "legend": "{{values.whereToStorePoisonLegend}}",
+    "hint": "This must be in the UK",
+    "summary-heading": "Where it will be stored?",
+    "options": {
+      "store-poison-home-address-value": {
+        "label": "{{values.homeAddressInline}}"
+      },
+      "store-poison-other-address-value": {
+        "label": "Other address"
+      }
+    }
+  },
+  "store-poison-other-address": {
+    "label": "{{values.storePoisonOtherAddressLabel}}",
+    "hint": "Enter a UK address"
+  },
+  "where-to-use-poison": {
+    "legend": "{{values.whereToUsePoisonLegend}}",
+    "hint": "This must be in the UK",
+    "summary-heading": "Where it will be used?",
+    "options": {
+      "use-poison-home-address": {
+        "label": "{{values.homeAddressInline}}"
+      },
+      "use-poison-other-address-value": {
+        "label": "Other address"
+      }
+    }
+  },
+  "poison-use-other-address": {
+    "label": "{{values.usePoisonOtherAddressLabel}}",
+    "hint": "Enter a UK address"
+  },
   "amend-no-poisons-precursors-options": {
     "legend":"Do you want to continue the form without changing the explosives precursors or poisons?",
     "options": {
@@ -192,6 +308,22 @@
       },
       "no": {
         "label": "No"
+      }
+    }
+  },
+  "amend-countersignatory-Id-type": {
+    "legend": "What is your countersignatory’s identity document?",
+    "hint": "You only need to provide a document number.",
+    "options": {
+      "UK-passport": {
+        "label": "British passport"
+      },
+      "EU-passport": {
+        "label": "Passport from the EU, Switzerland, Norway, Iceland or Liechtenstein"
+      },
+      "Uk-driving-licence": {
+        "label": "UK driving licence",
+        "hint": "Must be a photocard licence."
       }
     }
   },
@@ -241,135 +373,6 @@
   },
   "amend-countersignatory-email": {
     "label": "Email address"
-  },
-  "amend-regulated-explosives-precursors": {
-    "legend": "Do you need to amend the explosives precursors on your licence?",
-    "options": {
-      "yes": {
-        "label": "Yes"
-      },
-      "no": {
-        "label": "No"
-      }
-    }
-  },
-  "why-need-precursor":{
-    "label": "{{values.whyNeedPrecursorLabel}}",
-    "hint": "Detailed answers mean we can process your application faster",
-    "summary-heading": "{{values.whyNeedPrecursorLabel}}"
-  },
-  "how-much-precursor":{
-    "label": "How much do you wish to acquire at any one time within a 6-month period?",
-    "hint": "Enter the amount and the unit. For example, 10 litres",
-    "summary-heading": "How much do you wish to acquire at any one time within a 6-month period?"
-  },
-  "what-concentration-precursor":{
-    "label": "What concentration % w/w of the substance do you need?",
-    "summary-heading": "What concentration % w/w of the substance do you need?"
-  },
-  "where-to-store-precursor": {
-    "legend": "{{values.whereToStorePrecursorLegend}}",
-    "summary-heading": "{{values.whereToStorePrecursorLegend}}",
-    "hint": "This must be in the UK",
-    "options": {
-      "store-precursors-home-address-value": {
-        "label": "{{values.homeAddressInline}}",
-        "summary-heading": "{{values.homeAddressInline}}"
-      },
-      "store-precursors-other-address-value": {
-        "label": "Other address"
-      }
-    }
-  },
-  "store-precursors-other-address": {
-    "label": "{{values.storePrecursorOtherAddressLabel}}",
-    "hint": "Enter a UK address"
-  },
-  "where-to-use-precursor": {
-    "legend": "{{values.whereToUsePrecursorLegend}}",
-    "hint": "This must be in the UK",
-    "summary-heading": "{{values.whereToUsePrecursorLegend}}",
-    "options": {
-      "use-precursors-home-address-value": {
-        "label": "{{values.homeAddressInline}}",
-        "summary-heading": "{{values.homeAddressInline}}"
-      },
-      "use-precursors-other-address-value": {
-        "label": "Other address"
-      }
-    }
-  },
-  "precursors-use-other-address": {
-    "label": "{{values.usePrecursorOtherAddressLabel}}",
-    "hint": "Enter a UK address"
-  },
-  "why-need-poison":{
-    "label": "{{values.whyNeedPoisonLabel}}",
-    "hint": "Detailed answers mean we can process your application faster",
-    "summary-heading": "{{values.whyNeedPoisonLabel}}"
-  },
-  "how-much-poison":{
-    "label": "How much do you wish to acquire at any one time within a 6-month period?",
-    "hint": "Enter the amount and the unit. For example, 10 litres",
-    "summary-heading": "How much do you wish to acquire at any one time within a 6-month period?"
-  },
-  "compound-or-salt": {
-    "label": "Specific compound or salt",
-    "summary-heading": "Specific compound or salt"
-  },
-  "what-concentration-poison":{
-    "label": "What concentration % w/w of the substance do you need?",
-    "summary-heading": "What concentration % w/w of the substance do you need?"
-  },
-  "where-to-store-poison": {
-    "legend": "{{values.whereToStorePoisonLegend}}",
-    "hint": "This must be in the UK",
-    "summary-heading": "{{values.whereToStorePoisonLegend}}",
-    "options": {
-      "store-poison-home-address-value": {
-        "label": "{{values.homeAddressInline}}"
-      },
-      "store-poison-other-address-value": {
-        "label": "Other address"
-      }
-    }
-  },
-  "store-poison-other-address": {
-    "label": "{{values.storePoisonOtherAddressLabel}}",
-    "hint": "Enter a UK address"
-  },
-  "where-to-use-poison": {
-    "legend": "{{values.whereToUsePoisonLegend}}",
-    "hint": "This must be in the UK",
-    "summary-heading": "{{values.whereToUsePoisonLegend}}",
-    "options": {
-      "use-poison-home-address": {
-        "label": "{{values.homeAddressInline}}"
-      },
-      "use-poison-other-address-value": {
-        "label": "Other address"
-      }
-    }
-  },
-  "poison-use-other-address": {
-    "label": "{{values.usePoisonOtherAddressLabel}}",
-    "hint": "Enter a UK address"
-  },
-  "amend-countersignatory-Id-type": {
-    "legend": "What is your countersignatory’s identity document?",
-    "hint": "You only need to provide a document number.",
-    "options": {
-      "UK-passport": {
-        "label": "British passport"
-      },
-      "EU-passport": {
-        "label": "Passport from the EU, Switzerland, Norway, Iceland or Liechtenstein"
-      },
-      "Uk-driving-licence": {
-        "label": "UK driving licence",
-        "hint": "Must be a photocard licence."
-      }
-    }
   },
   "amend-countersignatory-UK-passport-number": {
     "label": "What is your passport number?",
