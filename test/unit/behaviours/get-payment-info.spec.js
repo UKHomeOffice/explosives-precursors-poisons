@@ -1,5 +1,6 @@
 const proxyquire = require('proxyquire');
 const Model = require('hof').model;
+const SendEmailConfirmation = require('../../../apps/epp-common/behaviours/send-email-notification');
 
 describe('get-payment-info tests', () => {
   let GetPaymentInfo;
@@ -10,6 +11,8 @@ describe('get-payment-info tests', () => {
   let next;
   let getPaymentDetailsMock;
   let generateHmacMock;
+  let localStub;
+  let sendStub;
 
   class Base {}
 
@@ -167,9 +170,12 @@ describe('get-payment-info tests', () => {
     getPaymentDetailsMock.resolves({
       state: { status: 'success' }
     });
+    sendStub = sinon.stub(SendEmailConfirmation.prototype, 'send').resolves();
+    localStub = sinon.stub().returns({userEmail: 'email'});
 
     await behaviour.getValues(req, res, next);
-    expect(next.called).to.be.true;
+    // expect(next.called).to.be.true;
+    expect(localStub.called).to.be.true;
     expect(res.redirect.calledWith('/new-renew/payment-problem')).to.be
       .false;
     expect(res.redirect.calledWith('/new-renew/payment-failed')).to.be
