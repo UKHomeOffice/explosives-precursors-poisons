@@ -75,7 +75,8 @@ module.exports = superclass =>
           await notifyEmail.send(req, res, super.locals(req, res));
         } catch (error) {
           req.log('error', 'Failed to send notification emails:', error);
-          return next(Error(`Failed to send notification emails: ${error}`));
+          // return next(Error(`Failed to send notification emails: ${error}`));
+          return res.redirect(`${req.baseUrl}/service-problem`);
         }
       } catch (error) {
         req.log(
