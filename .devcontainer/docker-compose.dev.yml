@@ -1,0 +1,96 @@
+version: '3.8'
+services:
+  # Update this to the name of the service you want to work with in your docker-compose.yml file
+  hof-epp-app:
+    env_file: devcontainer.env
+    # Uncomment if you want to override the service's Dockerfile to one in the .devcontainer 
+    # folder. Note that the path of the Dockerfile and context is relative to the *primary* 
+    # docker-compose.yml file (the first in the devcontainer.json "dockerComposeFile"
+    # array). The sample below assumes your primary file is in the root of your project.
+    #
+    build:
+      context: .
+      dockerfile: Dockerfile
+    
+    networks:
+      - epp-shared-network
+    ports:
+      - "8080:8080"
+    hostname: hof-app
+    depends_on:
+      - redis
+      #- file-vault
+
+    volumes:
+      # Update this to wherever you want VS Code to mount the folder of your project
+      - ..:/app:cached
+
+    # Overrides default command so things don't shut down after the process ends.
+    # command: /bin/sh -c "while sleep 1000; do :; done"
+    command: sleep infinity
+
+  redis:
+    image: "redis:alpine"
+    networks:
+      - epp-shared-network
+    hostname: hof-redis
+    ports:
+      - "6379:6379"
+
+  file-vault:
+    env_file: devcontainer.env
+    image: quay.io/ukhomeofficedigital/file-vault:f4cd1ece1caddc3bfbc8f5db761c593fda79ef12
+    networks:
+      - epp-shared-network
+    hostname: hof-file-vault
+    environment:
+      - DEBUG=*
+    ports:
+      - "3000:3000"
+
+  rds-api:
+    image: quay.io/ukhomeofficedigital/hof-rds-api:a27f07f7865a0a5c38032fb55c114b1673c41796
+    networks:
+      - epp-shared-network
+    hostname: hof-rds-api
+    environment:
+      - SERVICE_NAME=epp
+      - PORT=5000
+      - NODE_ENV=development
+      - DB_HOST=hof-postgres
+      - DB_USER=postgres
+      - DB_PASS=postgres
+      - DB_NAME=epp
+    ports:
+      - "5000:5000"
+    healthcheck:
+      disable: true
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:14@sha256:8396ed98bfbeb08ff9c83a4de368957af98085f55d2c93e7e83828595d6f6663
+    networks:
+      - epp-shared-network
+    hostname: hof-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: epp
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+
+networks:
+  epp-shared-network:
+    driver: bridge
+
+volumes:
+  pgdata:
