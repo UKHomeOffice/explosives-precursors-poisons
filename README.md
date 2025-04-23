@@ -26,7 +26,7 @@ have a valid Explosives Precursors and Poisons (EPP) licence issued by the Home 
 
 ### Setup
 
-1. Create a `.env` file in the root directory and populate it with all the required environment variables for the project.
+1. Create a `.env` file in the root directory and populate it with all the required environment variables for the project. A Copy of the .env file can be obtained through Keybase.
 2. Install dependencies using the command `yarn`.
 3. Start the service in development mode using `yarn run start:dev`.
 
