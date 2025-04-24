@@ -10,7 +10,7 @@ describe('get-payment-info tests', () => {
   let next;
   let getPaymentDetailsMock;
   let generateHmacMock;
-  let sendStub;
+  let sendEmailMock;
 
   class Base {
     locals() {}
