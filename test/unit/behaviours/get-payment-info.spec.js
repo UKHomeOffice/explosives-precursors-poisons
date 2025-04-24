@@ -10,8 +10,11 @@ describe('get-payment-info tests', () => {
   let next;
   let getPaymentDetailsMock;
   let generateHmacMock;
+  let sendEmailMock;
 
-  class Base {}
+  class Base {
+    locals() {}
+  }
 
   beforeEach(() => {
     req = reqres.req();
@@ -22,9 +25,12 @@ describe('get-payment-info tests', () => {
     getPaymentDetailsMock = sinon.stub();
     generateHmacMock = sinon.stub();
 
+    sendEmailMock = {
+      send: sinon.stub().resolves()
+    };
+
     req.sessionModel = new Model({});
     req.query = {};
-
     Base.prototype.getValues = next;
 
     GetPaymentInfo = proxyquire(
@@ -33,7 +39,8 @@ describe('get-payment-info tests', () => {
         '../../../utilities/helpers/api': {
           getPaymentDetails: getPaymentDetailsMock,
           generateHmac: generateHmacMock
-        }
+        },
+        './send-email-notification': sinon.stub().returns(sendEmailMock)
       }
     );
 
@@ -169,12 +176,31 @@ describe('get-payment-info tests', () => {
     });
 
     await behaviour.getValues(req, res, next);
-    // expect(next.called).to.be.true;
+    expect(next.called).to.be.true;
     expect(res.redirect.calledWith('/new-renew/payment-problem')).to.be
       .false;
     expect(res.redirect.calledWith('/new-renew/payment-failed')).to.be
       .false;
     expect(res.redirect.calledWith('/new-renew/payment-cancelled')).to.be
       .false;
+  });
+
+  it('should redirect to service-problem - error from SendEmailConfirmation', async () => {
+    req.sessionModel.get = sinon.stub();
+    req.sessionModel.get.withArgs('random-id').returns('random-id');
+    req.sessionModel.get.withArgs('payment-id').returns('payment-id');
+    req.sessionModel.get.withArgs('applicationType').returns('new');
+    req.query.token = 'ABCD1234';
+    generateHmacMock.returns('ABCD1234');
+    getPaymentDetailsMock.resolves({
+      state: { status: 'success' }
+    });
+
+    sendEmailMock.send.rejects(new Error('Failed to send email'));
+
+    await behaviour.getValues(req, res, next);
+
+    expect(res.redirect.calledWith('/new-renew/service-problem')).to.be.true;
+    expect(next.called).to.be.false;
   });
 });

@@ -7,6 +7,7 @@ const PATH_PAYMENT_CANCELLED = '/payment-cancelled';
 const PATH_APPLICATION_SUBMITTED = '/application-submitted';
 const PATH_REPLACE_APPLICATION_SUBMITTED = '/replace-application-submitted';
 const PATH_APPLICATION_TYPE = '/application-type';
+const PATH_SERVICE_PROBLEM = '/service-problem';
 
 const APP_TYPE_NEW = 'new';
 const APP_TYPE_RENEW = 'renew';
@@ -49,5 +50,6 @@ module.exports = {
   GOV_PAY_STATUS_SUCCESS,
   API_METHODS,
   SUBSTANCES,
-  PATH_APPLICATION_TYPE
+  PATH_APPLICATION_TYPE,
+  PATH_SERVICE_PROBLEM
 };
