@@ -441,14 +441,13 @@
   },
   "service-problem": {
       "header": "Sorry, there is a problem with the service",
-      "p1": "Your payment was successful. But because of an error, we cannot send you a payment confirmation email.",
+      "p1": "Your payment was successful. But because of an error, we cannot complete your application.",
       "h2-title": "What you need to do",
       "p2": "Send an email to",
       "link-text": "epp@homeoffice.pnn.police.uk",
       "p3": "with the information:",
       "p3-li1": "that you have paid",
-      "p3-li2": "that you have not received payment confirmation",
-      "p3-li3": "about whether you want to renew, amend, replace or apply for a new licence",
+      "p3-li2": "about whether you want to renew, amend, replace or apply for a new licence",
       "p4": "To prove your identity, send the email from the same email address that you used to pay."
     }
 }
