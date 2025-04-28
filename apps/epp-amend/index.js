@@ -26,6 +26,12 @@ const SetBackLink = require('../epp-common/behaviours/set-backlink');
 const SaveNewName = require('../epp-common/behaviours/save-new-name');
 const SaveCounterSignatoryAddress = require('../epp-common/behaviours/save-countersignatory-address');
 const CounterSignatoryNavigation = require('../epp-amend/behaviours/countersignatory-navigation');
+const { disallowIndexing } = require('../../config');
+
+const pages = {};
+if (disallowIndexing) {
+  pages['/robots.txt'] = 'static/robots';
+}
 
 module.exports = {
   name: 'EPP form',
@@ -35,6 +41,7 @@ module.exports = {
   baseUrl: '/amend',
   params: '/:action?/:id?/:edit?',
   behaviours: [JourneyValidator],
+  pages: pages,
   steps: {
     '/licence-number': {
       behaviours: [validateAndRedirect, RemoveEditMode, ValidateLicenceNumber],

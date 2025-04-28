@@ -32,6 +32,12 @@ const RenderPrecursorDetails = require('../epp-common/behaviours/render-precurso
 const AggregateSaveEditPrecursorPoison = require('../epp-common/behaviours/aggregator-save-update-precursors-poisons');
 const ParseSummaryPrecursorsPoisons = require('../epp-common/behaviours/parse-summary-precursors-poisons');
 const ModifySummaryChangeLink = require('../epp-common/behaviours/modify-summary-change-links');
+const { disallowIndexing } = require('../../config');
+
+const pages = {};
+if (disallowIndexing) {
+  pages['/robots.txt'] = 'static/robots';
+}
 
 module.exports = {
   name: 'EPP form',
@@ -41,6 +47,7 @@ module.exports = {
   baseUrl: '/new-renew',
   params: '/:action?/:id?/:edit?',
   behaviours: [sectionCounter, JourneyValidator],
+  pages: pages,
   steps: {
     '/your-name': {
       behaviours: [
