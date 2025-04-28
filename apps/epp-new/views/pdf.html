@@ -14,24 +14,26 @@
     <main id="content" class="main" role="main">
       <img class="ho-logo" src="{{ho-logo}}" alt="Home Office logo"/>
       <h1>{{title}}</h1>
-      <h2>Time and date: {{dateTime}}</h2>
+      <h2 class="govuk-heading-m pdfMarginTop20px">Time and date: {{dateTime}}</h2>
       {{#rows}}
         {{^omitFromPdf}}
         <h2>{{section}}</h2>
-          <table data-section="{{section}}" class="table-details">
+          <table data-section="{{section}}" class="table-details govuk-table__body">
             <caption class="visuallyhidden">{{section}}</caption>
             <tbody{{#name}} data-group="{{name}}"{{/name}}>
             {{#fields}}
             {{^omitFromPdf}}
               {{#isSeparator}}
-                <tr class="spacer">
-                  <td colspan="2"></td>
+                <tr class="spacer govuk-table__row">
+                  <th scope="col" class="govuk-table__header govuk-!-width-one-quarter"></th>
+                  <th scope="col" class="govuk-table__header govuk-!-width-three-quarters"></th>
+                  <td scope="row" class="govuk-table__cell" colspan="2"></td>
                 </tr>
               {{/isSeparator}}
               {{^isSeparator}}
-                <tr data-id="{{field}}"{{#className}} class="{{className}}"{{/className}}>
-                  <td data-label="{{label}}">{{label}}</td>
-                  <td data-value="{{value}}">{{#parsed}}{{parsed}}{{/parsed}}{{^parsed}}{{value}}{{/parsed}}</td>
+                <tr data-id="{{field}}"{{#className}} class="{{className}} govuk-table__row"{{/className}}>
+                  <th scope="row" class="govuk-table__cell" data-label="{{label}}">{{label}}</th>
+                  <td scope="row" class="govuk-table__cell" data-value="{{value}}">{{#parsed}}{{parsed}}{{/parsed}}{{^parsed}}{{value}}{{/parsed}}</td>
                 </tr>
               {{/isSeparator}}
             {{/omitFromPdf}}
