@@ -10,11 +10,10 @@ module.exports = route => superclass =>
 
       if (
         route === '/poisons' &&
-        req.sessionModel.get('replace-poisons-option') === 'no'
-      ) {
+        req.sessionModel.get('replace-poisons-option') === 'no') {
         if (
-          req.sessionModel.get('replace-regulated-explosives-precursors') !==
-          'yes'
+          req.sessionModel.get('replace-regulated-explosives-precursors') ===
+          'no'
         ) {
           req.sessionModel.set('noPrecursorPoisonsBackLink', req.originalUrl);
           return res.redirect(`${req.baseUrl}/no-precursors-or-poisons`);
@@ -25,14 +24,12 @@ module.exports = route => superclass =>
         if (noChangeNameOrAddress) {
           return res.redirect(`${req.baseUrl}/confirm`);
         }
-      }
-      if (
+      } else if (
         route === '/explosives-precursors' &&
         req.sessionModel.get('replace-regulated-explosives-precursors') === 'no'
       ) {
         if (
-          req.sessionModel.get('replace-poisons-option') !==
-          'yes'
+          req.sessionModel.get('replace-poisons-option') === 'no'
         ) {
           req.sessionModel.set('noPrecursorPoisonsBackLink', req.originalUrl);
           return res.redirect(`${req.baseUrl}/no-precursors-or-poisons`);
