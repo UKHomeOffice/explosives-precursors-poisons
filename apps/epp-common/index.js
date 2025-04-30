@@ -1,4 +1,10 @@
 const saveApplicationSelection = require('./behaviours/save-application-selection');
+const { disallowIndexing } = require('../../config');
+
+const pages = {};
+if (disallowIndexing) {
+  pages['/robots.txt'] = 'static/robots';
+}
 
 
 module.exports = {
@@ -6,6 +12,7 @@ module.exports = {
   fields: 'apps/epp-common/fields',
   views: 'apps/epp-common/views',
   translations: 'apps/epp-common/translations',
+  pages: pages,
   baseUrl: '/',
   steps: {
     '/application-type': {

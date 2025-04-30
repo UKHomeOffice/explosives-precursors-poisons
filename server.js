@@ -16,8 +16,7 @@ const app = hof(settings);
 
 app.use((req, res, next) => {
   res.locals.htmlLang = 'en';
-
-  // TODO destructure *form*, *returnUrl* & *mac* to generate the complete URL
+  res.locals.disallowIndexing = config.disallowIndexing;
 
   res.locals.feedbackUrl = config.feedback;
 

@@ -27,6 +27,12 @@ const SaveCounterSignatoryAddress = require('../epp-common/behaviours/save-count
 const NoPrecursorsPoisonsNavigation = require('./behaviours/no-precursors-poisons-navigation');
 const NoSubstanceChangeNavigation = require('./behaviours/no-substance-change-navigation');
 const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redundant-documents');
+const { disallowIndexing } = require('../../config');
+
+const pages = {};
+if (disallowIndexing) {
+  pages['/robots.txt'] = 'static/robots';
+}
 
 module.exports = {
   name: 'EPP form',
@@ -36,6 +42,7 @@ module.exports = {
   baseUrl: '/replace',
   params: '/:action?/:id?/:edit?',
   behaviours: [JourneyValidator],
+  pages: pages,
   steps: {
     '/replace-licence': {
       behaviours: [validateAndRedirect, RemoveEditMode],
@@ -357,7 +364,7 @@ module.exports = {
       behaviours: [
         NavigateNoChanges,
         ResetSectionSummary(
-          ['poisons-details-aggregate'],
+          ['poisons-details-aggregate', 'precursors-details-aggregate'],
           'replace-change-substances'
         )
       ],
@@ -381,11 +388,12 @@ module.exports = {
       ]
     },
     '/explosives-precursors': {
-      behaviour: [
+      behaviours: [
         ResetSectionSummary(
           ['precursors-details-aggregate'],
           'replace-regulated-explosives-precursors'
-        )
+        ),
+        NoSubstanceChangeNavigation('/explosives-precursors')
       ],
       fields: ['replace-regulated-explosives-precursors'],
       forks: [
@@ -464,11 +472,22 @@ module.exports = {
         )
       ],
       fields: ['replace-poisons-option'],
-      next: '/select-poisons',
+      forks: [
+        {
+          target: '/select-poisons',
+          continueOnEdit: true,
+          condition: {
+            field: 'replace-poisons-option',
+            value: 'yes'
+          }
+        }
+      ],
+      next: '/countersignatory-details',
       locals: { captionHeading: 'Section 19 of 26' }
     },
     '/select-poisons': {
       fields: ['poison-field'],
+      continueOnEdit: true,
       next: '/poison-details',
       locals: { captionHeading: 'Section 20 of 26' }
     },

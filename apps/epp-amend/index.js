@@ -26,6 +26,12 @@ const SetBackLink = require('../epp-common/behaviours/set-backlink');
 const SaveNewName = require('../epp-common/behaviours/save-new-name');
 const SaveCounterSignatoryAddress = require('../epp-common/behaviours/save-countersignatory-address');
 const CounterSignatoryNavigation = require('../epp-amend/behaviours/countersignatory-navigation');
+const { disallowIndexing } = require('../../config');
+
+const pages = {};
+if (disallowIndexing) {
+  pages['/robots.txt'] = 'static/robots';
+}
 
 module.exports = {
   name: 'EPP form',
@@ -35,6 +41,7 @@ module.exports = {
   baseUrl: '/amend',
   params: '/:action?/:id?/:edit?',
   behaviours: [JourneyValidator],
+  pages: pages,
   steps: {
     '/licence-number': {
       behaviours: [validateAndRedirect, RemoveEditMode, ValidateLicenceNumber],
@@ -297,9 +304,7 @@ module.exports = {
     '/explosives-precursors': {
       behaviours: [
         ResetSectionSummary(
-          [
-            'precursors-details-aggregate'
-          ],
+          ['precursors-details-aggregate'],
           'amend-regulated-explosives-precursors'
         ),
         CheckAndRedirect('amend-regulated-explosives-precursors', [
@@ -366,14 +371,14 @@ module.exports = {
     },
     '/poisons': {
       behaviours: [
-        CheckAndRedirect('amend-poisons-option', [
-          'amend-poisons-option',
-          'amend-regulated-explosives-precursors'
-        ]),
         ResetSectionSummary(
           ['poisons-details-aggregate'],
           'amend-poisons-option'
         ),
+        CheckAndRedirect('amend-poisons-option', [
+          'amend-poisons-option',
+          'amend-regulated-explosives-precursors'
+        ]),
         CounterSignatoryNavigation('/poisons')
       ],
       fields: ['amend-poisons-option'],

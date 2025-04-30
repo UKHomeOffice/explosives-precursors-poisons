@@ -15,4 +15,6 @@ apps/**/translations/**/*
 !apps/**/translations/src/
 !apps/**/translations/src/**/*
 test/_accessibility/tmp/*
-.nyc_output
+.devcontainer/*.env
+.cache
+*.env

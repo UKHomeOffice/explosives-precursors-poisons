@@ -32,6 +32,12 @@ const RenderPrecursorDetails = require('../epp-common/behaviours/render-precurso
 const AggregateSaveEditPrecursorPoison = require('../epp-common/behaviours/aggregator-save-update-precursors-poisons');
 const ParseSummaryPrecursorsPoisons = require('../epp-common/behaviours/parse-summary-precursors-poisons');
 const ModifySummaryChangeLink = require('../epp-common/behaviours/modify-summary-change-links');
+const { disallowIndexing } = require('../../config');
+
+const pages = {};
+if (disallowIndexing) {
+  pages['/robots.txt'] = 'static/robots';
+}
 
 module.exports = {
   name: 'EPP form',
@@ -41,6 +47,7 @@ module.exports = {
   baseUrl: '/new-renew',
   params: '/:action?/:id?/:edit?',
   behaviours: [sectionCounter, JourneyValidator],
+  pages: pages,
   steps: {
     '/your-name': {
       behaviours: [
@@ -560,28 +567,28 @@ module.exports = {
       }
     },
     '/explosives-precursors': {
-      behaviours: [NoPrecursorOrPoison, ResetSectionSummary(
-        ['precursors-details-aggregate'],
-        'new-renew-regulated-explosives-precursors-options')],
+      behaviours: [NoPrecursorOrPoison,
+        ResetSectionSummary(
+          ['precursors-details-aggregate'],
+          'new-renew-regulated-explosives-precursors-options')],
       fields: ['new-renew-regulated-explosives-precursors-options'],
       forks: [
         {
-          target: '/poisons',
-          continueOnEdit: false,
+          target: '/select-precursor',
+          continueOnEdit: true,
           condition: {
             field: 'new-renew-regulated-explosives-precursors-options',
-            value: 'no'
+            value: 'yes'
           }
         }
       ],
-      continueOnEdit: true,
+      next: '/poisons',
       locals: {
         sectionNo: {
           new: 12,
           renew: 13
         }
-      },
-      next: '/select-precursor'
+      }
     },
     '/select-precursor': {
       fields: ['precursor-field'],
@@ -647,22 +654,21 @@ module.exports = {
       fields: ['new-renew-poisons-options'],
       forks: [
         {
-          target: '/countersignatory-details',
-          continueOnEdit: false,
+          target: '/select-poisons',
+          continueOnEdit: true,
           condition: {
             field: 'new-renew-poisons-options',
-            value: 'no'
+            value: 'yes'
           }
         }
       ],
-      continueOnEdit: true,
       locals: {
         sectionNo: {
           new: 14,
           renew: 15
         }
       },
-      next: '/select-poisons'
+      next: '/countersignatory-details'
     },
     '/no-poisons-or-precursors': {
       behaviours: [NoPrecursorPoisonBackLink]
