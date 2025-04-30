@@ -16,6 +16,7 @@ const app = hof(settings);
 
 app.use((req, res, next) => {
   res.locals.htmlLang = 'en';
+  res.locals.disallowIndexing = config.disallowIndexing;
 
   res.locals.feedbackUrl = config.feedback;
 

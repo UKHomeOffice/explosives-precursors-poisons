@@ -27,6 +27,12 @@ const SaveCounterSignatoryAddress = require('../epp-common/behaviours/save-count
 const NoPrecursorsPoisonsNavigation = require('./behaviours/no-precursors-poisons-navigation');
 const NoSubstanceChangeNavigation = require('./behaviours/no-substance-change-navigation');
 const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redundant-documents');
+const { disallowIndexing } = require('../../config');
+
+const pages = {};
+if (disallowIndexing) {
+  pages['/robots.txt'] = 'static/robots';
+}
 
 module.exports = {
   name: 'EPP form',
@@ -36,6 +42,7 @@ module.exports = {
   baseUrl: '/replace',
   params: '/:action?/:id?/:edit?',
   behaviours: [JourneyValidator],
+  pages: pages,
   steps: {
     '/replace-licence': {
       behaviours: [validateAndRedirect, RemoveEditMode],

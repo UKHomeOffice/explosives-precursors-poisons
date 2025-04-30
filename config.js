@@ -164,5 +164,6 @@ module.exports = {
     AMOUNT_RENEW: 3950,
     AMOUNT_REPLACE: 2500,
     govUkApiKey: process.env.GOV_PAY_KEY
-  }
+  },
+  disallowIndexing: process.env.DISALLOW_INDEXING === 'true'
 };
