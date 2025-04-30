@@ -297,9 +297,7 @@ module.exports = {
     '/explosives-precursors': {
       behaviours: [
         ResetSectionSummary(
-          [
-            'precursors-details-aggregate'
-          ],
+          ['precursors-details-aggregate'],
           'amend-regulated-explosives-precursors'
         ),
         CheckAndRedirect('amend-regulated-explosives-precursors', [
@@ -366,14 +364,14 @@ module.exports = {
     },
     '/poisons': {
       behaviours: [
-        CheckAndRedirect('amend-poisons-option', [
-          'amend-poisons-option',
-          'amend-regulated-explosives-precursors'
-        ]),
         ResetSectionSummary(
           ['poisons-details-aggregate'],
           'amend-poisons-option'
         ),
+        CheckAndRedirect('amend-poisons-option', [
+          'amend-poisons-option',
+          'amend-regulated-explosives-precursors'
+        ]),
         CounterSignatoryNavigation('/poisons')
       ],
       fields: ['amend-poisons-option'],

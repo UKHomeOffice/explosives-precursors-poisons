@@ -357,7 +357,7 @@ module.exports = {
       behaviours: [
         NavigateNoChanges,
         ResetSectionSummary(
-          ['poisons-details-aggregate'],
+          ['poisons-details-aggregate', 'precursors-details-aggregate'],
           'replace-change-substances'
         )
       ],
@@ -381,11 +381,12 @@ module.exports = {
       ]
     },
     '/explosives-precursors': {
-      behaviour: [
+      behaviours: [
         ResetSectionSummary(
           ['precursors-details-aggregate'],
           'replace-regulated-explosives-precursors'
-        )
+        ),
+        NoSubstanceChangeNavigation('/explosives-precursors')
       ],
       fields: ['replace-regulated-explosives-precursors'],
       forks: [
@@ -464,11 +465,22 @@ module.exports = {
         )
       ],
       fields: ['replace-poisons-option'],
-      next: '/select-poisons',
+      forks: [
+        {
+          target: '/select-poisons',
+          continueOnEdit: true,
+          condition: {
+            field: 'replace-poisons-option',
+            value: 'yes'
+          }
+        }
+      ],
+      next: '/countersignatory-details',
       locals: { captionHeading: 'Section 19 of 26' }
     },
     '/select-poisons': {
       fields: ['poison-field'],
+      continueOnEdit: true,
       next: '/poison-details',
       locals: { captionHeading: 'Section 20 of 26' }
     },

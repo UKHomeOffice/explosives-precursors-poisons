@@ -10,7 +10,7 @@ module.exports = (aggregateToFields, sectionStartField) => superclass =>
         aggregateToFields.forEach(aggregateToField => {
           if (req.sessionModel.get(aggregateToField) !== undefined) {
             if (
-              req.sessionModel.get(sectionStartField) === 'no' &&
+              req.form.values[sectionStartField] === 'no' &&
               req.sessionModel.get(aggregateToField).aggregatedValues.length > 0
             ) {
               req.sessionModel.unset(aggregateToField);
