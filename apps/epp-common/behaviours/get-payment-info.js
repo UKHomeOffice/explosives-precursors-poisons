@@ -14,7 +14,8 @@ const {
   PATH_PAYMENT_FAILED,
   GOV_PAY_ERROR_CODE_P0030,
   GOV_PAY_ERROR_CODE_P0010,
-  GOV_PAY_STATUS_SUCCESS
+  GOV_PAY_STATUS_SUCCESS,
+  PATH_SERVICE_PROBLEM
 } = require('../../../utilities/constants/string-constants');
 
 module.exports = superclass =>
@@ -70,12 +71,18 @@ module.exports = superclass =>
         }
 
         // Notify
-        const notifyEmail = new SendEmailConfirmation();
         try {
+          const notifyEmail = new SendEmailConfirmation();
           await notifyEmail.send(req, res, super.locals(req, res));
         } catch (error) {
-          req.log('error', 'Failed to send notification emails:', error);
-          return next(Error(`Failed to send notification emails: ${error}`));
+          req.log(
+            'error',
+            `Failed to send notification emails: redirecting to ${PATH_SERVICE_PROBLEM}`,
+            error
+          );
+          return res.redirect(
+            `${errorTemplateBasePath}${PATH_SERVICE_PROBLEM}`
+          );
         }
       } catch (error) {
         req.log(
