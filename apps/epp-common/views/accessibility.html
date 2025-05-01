@@ -1,8 +1,16 @@
-{{<partials-page}}
-{{$pageTitle}}{{#t}}accessibility.page-title{{/t}}{{/pageTitle}}
-  {{$page-content}}
+{{<layout}}
 
-    
+  {{$propositionHeader}}
+    {{> partials-navigation}}
+  {{/propositionHeader}}
+
+  {{$header}}
+    {{header}}
+  {{/header}}
+
+  {{$pageTitle}}{{#t}}accessibility.page-title{{/t}}{{/pageTitle}}
+
+  {{$content}}
     <p class="govuk-body">{{#t}}accessibility.intro{{/t}}</p>
     <ul class="govuk-list govuk-list--bullet">
         <li>{{#t}}accessibility.intro-p2-li1{{/t}}</li>
@@ -22,10 +30,10 @@
     <p class="govuk-body">{{#t}}accessibility.technical-info-p1{{/t}}</p>
     <h2 class="govuk-heading-m">{{#t}}accessibility.compliance-header{{/t}}</h2>
     <p class="govuk-body">{{#t}}accessibility.compliance-link-p1{{/t}} <a href="https://www.w3.org/TR/WCAG22/">Web Content Accessibility Guidelines version 2.2</a> {{#t}}accessibility.compliance-link-p2{{/t}}</p>
-      </p>
     <h2 class="govuk-heading-m">{{#t}}accessibility.preparation-header{{/t}}</h2>
     <p class="govuk-body">{{#t}}accessibility.preparation-p1{{/t}}</p>
     <p class="govuk-body">{{#t}}accessibility.preparation-p2{{/t}}</p>
     <p class="govuk-body">{{#t}}accessibility.preparation-p3{{/t}}</p>
-    {{/page-content}}
-    {{/partials-page}}
+  {{/content}}
+
+{{/layout}}
