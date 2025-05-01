@@ -19,6 +19,5 @@
   "session": {
     "name": "epp.hof.sid"
   },
-  "getAccessibility": true,
   "emailerFallback": true
 }
