@@ -616,6 +616,7 @@ module.exports = {
       behaviours: [InitiatePaymentRequest]
     },
     '/payment-cancelled': {},
+    '/service-problem': {},
     '/replace-application-submitted': {
       sections: require('./sections/summary-data-sections'),
       behaviours: [SummaryPageBehaviour, GetPaymentInfo],

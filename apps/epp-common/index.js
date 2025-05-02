@@ -43,6 +43,9 @@ module.exports = {
       ],
       next: '/replace/replace-licence'
     },
+    '/accessibility': {
+
+    },
     '/exit': {},
     '/session-timeout': {}
   }

@@ -851,6 +851,7 @@ module.exports = {
       backLink: false,
       clearSession: true
     },
+    '/service-problem': {},
     '/exit': {}
   }
 };
