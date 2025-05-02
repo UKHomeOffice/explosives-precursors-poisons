@@ -252,7 +252,8 @@ module.exports = {
     steps: [
       {
         step: '/change-substances',
-        field: 'replace-change-substances'
+        field: 'replace-change-substances',
+        dependsOn: 'replace-is-details-changed'
       }
     ]
   },
@@ -260,7 +261,8 @@ module.exports = {
     steps: [
       {
         steps: '/explosives-precursors',
-        field: 'replace-regulated-explosives-precursors'
+        field: 'replace-regulated-explosives-precursors',
+        dependsOn: 'replace-change-substances'
       }
     ]
   },
@@ -292,7 +294,8 @@ module.exports = {
     steps: [
       {
         step: '/poisons',
-        field: 'replace-poisons-option'
+        field: 'replace-poisons-option',
+        dependsOn: 'replace-change-substances'
       }
     ]
   },
