@@ -3,7 +3,7 @@ const config = require('../../../config');
 const {
   isDateOlderOrEqualTo,
   displayOptionalField,
-  formatAttachments
+  formatAttachments, showCounterSignatoryDetails
 } = require('../../../utilities/helpers');
 const dateFormatter = new Intl.DateTimeFormat(
   config.dateLocales,
@@ -325,73 +325,92 @@ module.exports = {
     steps: [
       {
         step: '/countersignatory-details',
-        field: 'replace-countersignatory-title'
+        field: 'replace-countersignatory-title',
+        parse: (value, req) => showCounterSignatoryDetails(value, req)
       },
       {
         step: '/countersignatory-details',
-        field: 'replace-countersignatory-firstname'
+        field: 'replace-countersignatory-firstname',
+        parse: (value, req) => showCounterSignatoryDetails(value, req)
       },
       {
         step: '/countersignatory-details',
         field: 'replace-countersignatory-middlename',
-        parse: (value, req) => displayOptionalField(req, '/countersignatory-details', value)
+        parse: (value, req) =>
+          showCounterSignatoryDetails(value, req) &&
+          displayOptionalField(req, '/countersignatory-details', value)
       },
       {
         step: '/countersignatory-details',
-        field: 'replace-countersignatory-lastname'
+        field: 'replace-countersignatory-lastname',
+        parse: (value, req) => showCounterSignatoryDetails(value, req)
       },
       {
         step: '/countersignatory-details',
-        field: 'replace-countersignatory-years'
+        field: 'replace-countersignatory-years',
+        parse: (value, req) => showCounterSignatoryDetails(value, req)
       },
       {
         step: '/countersignatory-details',
-        field: 'replace-countersignatory-howyouknow'
+        field: 'replace-countersignatory-howyouknow',
+        parse: (value, req) => showCounterSignatoryDetails(value, req)
       },
       {
         step: '/countersignatory-details',
-        field: 'replace-countersignatory-occupation'
+        field: 'replace-countersignatory-occupation',
+        parse: (value, req) => showCounterSignatoryDetails(value, req)
       },
       {
         step: '/countersignatory-address',
-        field: 'replace-countersignatory-address-1'
+        field: 'replace-countersignatory-address-1',
+        parse: (value, req) => showCounterSignatoryDetails(value, req)
       },
       {
         step: '/countersignatory-address',
         field: 'replace-countersignatory-address-2',
-        parse: (value, req) => displayOptionalField(req, '/countersignatory-address', value)
+        parse: (value, req) =>
+          showCounterSignatoryDetails(value, req) &&
+          displayOptionalField(req, '/countersignatory-address', value)
       },
       {
         step: '/countersignatory-address',
-        field: 'replace-countersignatory-town-or-city'
+        field: 'replace-countersignatory-town-or-city',
+        parse: (value, req) => showCounterSignatoryDetails(value, req)
       },
       {
         step: '/countersignatory-address',
-        field: 'replace-countersignatory-postcode'
+        field: 'replace-countersignatory-postcode',
+        parse: (value, req) => showCounterSignatoryDetails(value, req)
       },
       {
         step: '/countersignatory-contact',
-        field: 'replace-countersignatory-phone-number'
+        field: 'replace-countersignatory-phone-number',
+        parse: (value, req) => showCounterSignatoryDetails(value, req)
       },
       {
         step: '/countersignatory-contact',
-        field: 'replace-countersignatory-email'
+        field: 'replace-countersignatory-email',
+        parse: (value, req) => showCounterSignatoryDetails(value, req)
       },
       {
         step: '/countersignatory-id',
-        field: 'replace-countersignatory-Id-type'
+        field: 'replace-countersignatory-Id-type',
+        parse: (value, req) => showCounterSignatoryDetails(value, req)
       },
       {
         step: '/countersignatory-id',
-        field: 'replace-countersignatory-UK-passport-number'
+        field: 'replace-countersignatory-UK-passport-number',
+        parse: (value, req) => showCounterSignatoryDetails(value, req)
       },
       {
         step: '/countersignatory-id',
-        field: 'replace-countersignatory-EU-passport-number'
+        field: 'replace-countersignatory-EU-passport-number',
+        parse: (value, req) => showCounterSignatoryDetails(value, req)
       },
       {
         step: '/countersignatory-id',
-        field: 'replace-countersignatory-Uk-driving-licence-number'
+        field: 'replace-countersignatory-Uk-driving-licence-number',
+        parse: (value, req) => showCounterSignatoryDetails(value, req)
       },
       {
         step: '/birth-certificate',
