@@ -428,7 +428,8 @@ module.exports = {
             return documents.map(file => file?.name)?.join('\n\n');
           }
           return null;
-        }
+        },
+        dependsOn: 'replace-is-details-changed'
       }
     ]
   }
