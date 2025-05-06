@@ -308,7 +308,7 @@ const formatAttachments = (documents, req, step) => {
 const showCounterSignatoryDetails = (value, req) => {
   return req.sessionModel.get('replace-is-details-changed') === 'yes' &&
     (req.sessionModel.get('replace-name-options') === 'yes' ||
-      req.sessionModel.get('replace-address-options') === 'yes')
+      req.sessionModel.get('replace-home-address-options') === 'yes')
     ? value
     : null;
 };

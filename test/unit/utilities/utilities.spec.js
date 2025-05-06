@@ -517,7 +517,7 @@ describe('EPP utilities tests', () => {
       const req = { sessionModel: { get: sinon.stub() } };
       req.sessionModel.get.withArgs('replace-is-details-changed').returns('no');
       req.sessionModel.get.withArgs('replace-name-options').returns('yes');
-      req.sessionModel.get.withArgs('replace-address-options').returns('yes');
+      req.sessionModel.get.withArgs('replace-home-address-options').returns('yes');
 
       expect(showCounterSignatoryDetails('test-value', req)).to.be.null;
     });
@@ -527,7 +527,7 @@ describe('EPP utilities tests', () => {
         .withArgs('replace-is-details-changed')
         .returns('yes');
       req.sessionModel.get.withArgs('replace-name-options').returns('no');
-      req.sessionModel.get.withArgs('replace-address-options').returns('no');
+      req.sessionModel.get.withArgs('replace-home-address-options').returns('no');
 
       expect(showCounterSignatoryDetails('test-value', req)).to.be.null;
     });
@@ -537,7 +537,7 @@ describe('EPP utilities tests', () => {
         .withArgs('replace-is-details-changed')
         .returns('yes');
       req.sessionModel.get.withArgs('replace-name-options').returns('yes');
-      req.sessionModel.get.withArgs('replace-address-options').returns('no');
+      req.sessionModel.get.withArgs('replace-home-address-options').returns('no');
 
       expect(showCounterSignatoryDetails('test-value', req)).to.equal(
         'test-value'
@@ -549,7 +549,7 @@ describe('EPP utilities tests', () => {
         .withArgs('replace-is-details-changed')
         .returns('yes');
       req.sessionModel.get.withArgs('replace-name-options').returns('no');
-      req.sessionModel.get.withArgs('replace-address-options').returns('yes');
+      req.sessionModel.get.withArgs('replace-home-address-options').returns('yes');
 
       expect(showCounterSignatoryDetails('test-value', req)).to.equal(
         'test-value'
@@ -561,7 +561,7 @@ describe('EPP utilities tests', () => {
         .withArgs('replace-is-details-changed')
         .returns('yes');
       req.sessionModel.get.withArgs('replace-name-options').returns('yes');
-      req.sessionModel.get.withArgs('replace-address-options').returns('yes');
+      req.sessionModel.get.withArgs('replace-home-address-options').returns('yes');
 
       expect(showCounterSignatoryDetails('test-value', req)).to.equal(
         'test-value'
