@@ -154,7 +154,11 @@ module.exports = {
           'replace-eu-passport',
           'replace-upload-driving-licence',
           'replace-certificate-conduct'
-        ])
+        ]),
+        ResetSectionSummary(
+          ['precursors-details-aggregate', 'poisons-details-aggregate'],
+          'replace-is-details-changed'
+        )
       ],
       fields: ['replace-is-details-changed'],
       forks: [

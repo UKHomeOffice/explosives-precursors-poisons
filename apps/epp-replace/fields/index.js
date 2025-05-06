@@ -204,7 +204,6 @@ module.exports = {
     validate: 'required'
   },
   'replace-is-details-changed': {
-    fields: ['replace-is-details-changed'],
     mixin: 'radio-group',
     isPageHeading: true,
     validate: 'required',

@@ -14,7 +14,8 @@ const {
   isValidConcentrationValue,
   isLicenceValid,
   displayOptionalField,
-  formatAttachments
+  formatAttachments,
+  showCounterSignatoryDetails
 } = require('../../../utilities/helpers');
 
 const explosivePrecursorsList = require('../../../utilities/constants/explosive-precursors');
@@ -508,6 +509,63 @@ describe('EPP utilities tests', () => {
       const documents = [{ name: 'doc1' }, {}, { name: 'doc2' }];
       const result = formatAttachments(documents, req, 'step1');
       expect(result).to.equal('doc1\n\n\n\ndoc2');
+    });
+  });
+
+  describe('showCounterSignatoryDetails', () => {
+    it('should return null - no changes to details', () => {
+      const req = { sessionModel: { get: sinon.stub() } };
+      req.sessionModel.get.withArgs('replace-is-details-changed').returns('no');
+      req.sessionModel.get.withArgs('replace-name-options').returns('yes');
+      req.sessionModel.get.withArgs('replace-home-address-options').returns('yes');
+
+      expect(showCounterSignatoryDetails('test-value', req)).to.be.null;
+    });
+    it('should return null - no changes to name or address', () => {
+      const req = { sessionModel: { get: sinon.stub() } };
+      req.sessionModel.get
+        .withArgs('replace-is-details-changed')
+        .returns('yes');
+      req.sessionModel.get.withArgs('replace-name-options').returns('no');
+      req.sessionModel.get.withArgs('replace-home-address-options').returns('no');
+
+      expect(showCounterSignatoryDetails('test-value', req)).to.be.null;
+    });
+    it('should return the value - changes to name', () => {
+      const req = { sessionModel: { get: sinon.stub() } };
+      req.sessionModel.get
+        .withArgs('replace-is-details-changed')
+        .returns('yes');
+      req.sessionModel.get.withArgs('replace-name-options').returns('yes');
+      req.sessionModel.get.withArgs('replace-home-address-options').returns('no');
+
+      expect(showCounterSignatoryDetails('test-value', req)).to.equal(
+        'test-value'
+      );
+    });
+    it('should return the value - changes to address', () => {
+      const req = { sessionModel: { get: sinon.stub() } };
+      req.sessionModel.get
+        .withArgs('replace-is-details-changed')
+        .returns('yes');
+      req.sessionModel.get.withArgs('replace-name-options').returns('no');
+      req.sessionModel.get.withArgs('replace-home-address-options').returns('yes');
+
+      expect(showCounterSignatoryDetails('test-value', req)).to.equal(
+        'test-value'
+      );
+    });
+    it('should return the value - changes to name and address', () => {
+      const req = { sessionModel: { get: sinon.stub() } };
+      req.sessionModel.get
+        .withArgs('replace-is-details-changed')
+        .returns('yes');
+      req.sessionModel.get.withArgs('replace-name-options').returns('yes');
+      req.sessionModel.get.withArgs('replace-home-address-options').returns('yes');
+
+      expect(showCounterSignatoryDetails('test-value', req)).to.equal(
+        'test-value'
+      );
     });
   });
 });

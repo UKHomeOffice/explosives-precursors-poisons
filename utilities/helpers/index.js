@@ -295,6 +295,24 @@ const formatAttachments = (documents, req, step) => {
   return '';
 };
 
+/**
+ * Determines whether to show counter-signatory details based on session data.
+ *
+ * @param {*} value - The value to return if conditions are met.
+ * @param {Object} req - The request object, containing session model data.
+ * @param {Object} req.sessionModel - The session model object.
+ * @param {Function} req.sessionModel.get - Function to retrieve session data by key.
+ * @returns {*} - The input value if conditions are met; otherwise, null.
+ */
+
+const showCounterSignatoryDetails = (value, req) => {
+  return req.sessionModel.get('replace-is-details-changed') === 'yes' &&
+    (req.sessionModel.get('replace-name-options') === 'yes' ||
+      req.sessionModel.get('replace-home-address-options') === 'yes')
+    ? value
+    : null;
+};
+
 module.exports = {
   isLicenceValid,
   isApplicationType,
@@ -315,6 +333,7 @@ module.exports = {
   isValidConcentrationValue,
   displayOptionalField,
   formatAttachments,
+  showCounterSignatoryDetails,
   NotifyClient:
     config.govukNotify.notifyApiKey === 'USE_MOCK'
       ? NotifyMock
