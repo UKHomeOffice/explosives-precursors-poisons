@@ -15,11 +15,10 @@
     "enforcement-p1": "Enforcement procedure",
     "enforcement-p2": "The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the ‘accessibility regulations’). If you’re not happy with how we respond to your complaint, contact the Equality Advisory and Support Service (EASS).",
     "enforcement-p3": "If you are in Northern Ireland and are not happy with how we respond to your complaint you can contact the Equalities Commission for Northern Ireland who are responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the ‘accessibility regulations’) in Northern Ireland.",
-    "non-accessible-header": "Non-accessible content",
-    "compliance-link-p1": "This website is partially compliant with the",
-    "compliance-link-p2": "AA standard, due to the non-compliances listed below.",
-    "outside-scope-p1": "At this time, this service does not contain any content that is exempt from the regulations.",
-    "preparation-p1": "This statement was prepared on 02 December 2024. It was last reviewed on 02 December 2024.",
-    "preparation-p2": "This website was last tested on 01 December 2024. The test was carried out internally by the Home Office.",
+    "compliance-link-p1": "This website is fully compliant with the",
+    "compliance-link-p2": "AA standard.",
+    "preparation-header": "Preparation of this accessibility statement",
+    "preparation-p1": "This statement was prepared on 28 April 2025. It was last reviewed on 28 April 2025.",
+    "preparation-p2": "This website was last tested on 28 April 2025. The test was carried out internally by the Home Office.",
     "preparation-p3": "We tested the service based on a user’s ability to complete key journeys. All parts of the chosen journeys were tested, including documents. Journeys were chosen on a number of factors including usage statistics, risk assessments and subject matter."
 }
