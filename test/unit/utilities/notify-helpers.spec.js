@@ -15,7 +15,8 @@ const {
   formatFieldsNewLine,
   getReplacePersonalisation,
   getAmendPersonalisation,
-  getNewRenewPersonalisation
+  getNewRenewPersonalisation,
+  formatPoisonPrecursorSummary
 } = require('../../../utilities/helpers/notify-helpers');
 
 const {
@@ -887,6 +888,129 @@ describe('notify-helpers tests', () => {
         }
       });
       expect(Object.keys(result)).to.deep.equal(newRenewExpectedKeys);
+    });
+  });
+
+  describe('formatPoisonPrecursorSummary', () => {
+    const reqMock = {
+      sessionModel: {
+        get: key => {
+          const mockSessionData = {
+            whyNeedPoisonLabel: 'Why do you need poison?',
+            whereToStorePoisonLegend: 'Where will you store the poison?',
+            whereToUsePoisonLegend: 'Where will you use the poison?',
+            whyNeedPrecursorLabel: 'Why do you need precursor?',
+            whereToStorePrecursorLegend: 'Where will you store the precursor?'
+          };
+          return mockSessionData[key];
+        }
+      }
+    };
+    it('should return an empty string - aggregatedValues is missing', () => {
+      const result1 = formatPoisonPrecursorSummary(
+        reqMock,
+        'poisons-details-aggregate',
+        null
+      );
+      const result2 = formatPoisonPrecursorSummary(
+        reqMock,
+        'poisons-details-aggregate',
+        {}
+      );
+
+      expect(result1).to.equal('');
+      expect(result2).to.equal('');
+    });
+
+    it('should format poisons details', () => {
+      const listMock = {
+        aggregatedValues: [
+          {
+            joinTitle: 'Poison 1',
+            fields: [
+              { field: 'why-need-poison', parsed: 'For research' },
+              { field: 'where-to-store-poison', parsed: 'In a cool place' }
+            ]
+          }
+        ]
+      };
+
+      const result = formatPoisonPrecursorSummary(
+        reqMock,
+        'poisons-details-aggregate',
+        listMock
+      );
+      expect(result).to.equal(
+        'Poison 1\n' +
+          'Why do you need poison?: For research\n' +
+          'Where will you store the poison?: In a cool place'
+      );
+    });
+
+    it('should format precursors details', () => {
+      const listMock = {
+        aggregatedValues: [
+          {
+            joinTitle: 'Precursor 1',
+            fields: [
+              { field: 'why-need-precursor', parsed: 'For experiments' },
+              { field: 'where-to-store-precursor', parsed: 'In a dry place' }
+            ]
+          }
+        ]
+      };
+
+      const result = formatPoisonPrecursorSummary(
+        reqMock,
+        'precursors-details-aggregate',
+        listMock
+      );
+      expect(result).to.equal(
+        'Precursor 1\n' +
+          'Why do you need precursor?: For experiments\n' +
+          'Where will you store the precursor?: In a dry place'
+      );
+    });
+
+    it('should handle unknown fields', () => {
+      const listMock = {
+        aggregatedValues: [
+          {
+            joinTitle: 'Item 1',
+            fields: [{ field: 'unknown-field', parsed: 'Unknown value' }]
+          }
+        ]
+      };
+
+      const result = formatPoisonPrecursorSummary(
+        reqMock,
+        'poisons-details-aggregate',
+        listMock
+      );
+      expect(result).to.equal('Item 1\n: Unknown value');
+    });
+
+    it('should skip fields with "display-precursor-title" or "display-poison-title" fields', () => {
+      const listMock = {
+        aggregatedValues: [
+          {
+            joinTitle: 'Item 1',
+            fields: [
+              { field: 'display-precursor-title', parsed: 'Some title' },
+              { field: 'why-need-poison', parsed: 'For research' }
+            ]
+          }
+        ]
+      };
+
+      const result = formatPoisonPrecursorSummary(
+        reqMock,
+        'poisons-details-aggregate',
+        listMock
+      );
+      expect(result).to.equal(
+        'Item 1\n\nWhy do you need poison?: For research'
+      );
     });
   });
 });

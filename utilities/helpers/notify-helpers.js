@@ -98,33 +98,33 @@ const precursorsLabels = {
 };
 const formatPoisonPrecursorSummary = (req, aggregateType, list) => {
   if (!list?.aggregatedValues) {
-    return null;
+    return '';
   }
-  let currentLabel;
+  let currentLabel = '';
   let labelKey;
   return list.aggregatedValues.map(item => {
-    const fieldLines = item.fields.map(element => {
+    const fieldLines = item?.fields?.map(element => {
       if (element.field === 'display-precursor-title' || element.field === 'display-poison-title') {
         return null;
       }
       if (element.field !== 'display-precursor-title') {
         if (aggregateType === 'poisons-details-aggregate') {
-          if (Object.keys(poisonsLabels).includes(element.field)) {
+          if (Object.keys(poisonsLabels)?.includes(element.field)) {
             labelKey = poisonsLabels[element.field];
-            currentLabel = labelKey.includes(' ') ? poisonsLabels[element.field]
+            currentLabel = labelKey?.includes(' ') ? poisonsLabels[element.field]
               : req.sessionModel.get(poisonsLabels[element.field]);
           }
         } else if (aggregateType === 'precursors-details-aggregate') {
-          if (Object.keys(precursorsLabels).includes(element.field)) {
+          if (Object.keys(precursorsLabels)?.includes(element.field)) {
             labelKey = precursorsLabels[element.field];
-            currentLabel = labelKey.includes(' ') ? precursorsLabels[element.field]
+            currentLabel = labelKey?.includes(' ') ? precursorsLabels[element.field]
               : req.sessionModel.get(precursorsLabels[element.field]);
           }
         }
       }
       return `${currentLabel}: ${element.parsed}`;
     });
-    return `${item.joinTitle}\n${fieldLines.join('\n')}`;
+    return `${item.joinTitle}\n${fieldLines?.join('\n')}`;
   }).join('\n\n');
 };
 /**
@@ -967,5 +967,6 @@ module.exports = {
   STR_NO: STR_NO,
   USER: USER,
   BUSINESS: BUSINESS,
-  formatFieldsNewLine: formatFieldsNewLine
+  formatFieldsNewLine: formatFieldsNewLine,
+  formatPoisonPrecursorSummary
 };
