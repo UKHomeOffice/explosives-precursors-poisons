@@ -447,8 +447,8 @@ describe('notify-helpers tests', () => {
       const applicationType = APP_TYPE_REPLACE;
       const recipientType = USER;
       req.sessionModel.get
-        .withArgs('replace-replacement-reason')
-        .returns('lost');
+        .withArgs('replace-licence')
+        .returns('replace-licence-lost');
       const expectedTemplateId = govukNotify.replaceApplicationUserTemplateId;
       const result = getTemplateId(req, applicationType, recipientType);
       expect(result).to.equal(expectedTemplateId);
@@ -458,8 +458,8 @@ describe('notify-helpers tests', () => {
       const applicationType = APP_TYPE_REPLACE;
       const recipientType = USER;
       req.sessionModel.get
-        .withArgs('replace-replacement-reason')
-        .returns('damaged');
+        .withArgs('replace-licence')
+        .returns('replace-licence-damaged');
       const expectedTemplateId =
         govukNotify.replaceDamagedApplicationUserTemplateId;
       const result = getTemplateId(req, applicationType, recipientType);

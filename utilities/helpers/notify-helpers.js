@@ -192,7 +192,7 @@ const getTemplateId = (req, applicationType, recipientType) => {
   if (recipientType === USER) {
     if (
       applicationType === APP_TYPE_REPLACE &&
-      req.sessionModel.get('replace-replacement-reason') === 'damaged'
+      req.sessionModel.get('replace-licence') === 'replace-licence-damaged'
     ) {
       return govukNotify.replaceDamagedApplicationUserTemplateId;
     }
