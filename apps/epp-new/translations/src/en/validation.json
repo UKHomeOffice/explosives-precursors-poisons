@@ -87,7 +87,8 @@
     "required": "Enter your driving licence number",
     "isValidUkDrivingLicenceNumber": "Enter a real UK driving licence number",
     "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer",
-    "minlength": "Driving licence number must be 16 characters"
+    "minlength": "Driving licence number must be 16 characters",
+    "maxlength": "Driving licence number must be 16 characters"
   },
   "medical-declaration": {
     "required": "Confirm you have read and agree to this medical declaration"
@@ -378,7 +379,8 @@
     "required": "Enter your driving licence number",
     "isValidUkDrivingLicenceNumber": "Enter a real UK driving licence number",
     "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer",
-    "minlength": "Driving licence number must be 16 characters"
+    "minlength": "Driving licence number must be 16 characters",
+    "maxlength": "Driving licence number must be 16 characters"
   },
   "new-renew-doctor-name": {
     "required": "Enter the name of your doctor or medical practice",

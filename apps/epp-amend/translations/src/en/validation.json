@@ -88,7 +88,8 @@
         "required": "Enter your driving licence number",
         "isValidUkDrivingLicenceNumber": "Enter a real UK driving licence number",
         "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer",
-        "minlength": "Driving licence number must be 16 characters"
+        "minlength": "Driving licence number must be 16 characters",
+        "maxlength": "Driving licence number must be 16 characters"
       }, 
       "file-upload": {
         "required": "Select a file to upload",
@@ -330,7 +331,8 @@
     "required": "Enter your driving licence number",
     "isValidUkDrivingLicenceNumber": "Enter a real UK driving licence number",
     "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer",
-    "minlength": "Driving licence number must be 16 characters"
+    "minlength": "Driving licence number must be 16 characters",
+    "maxlength": "Driving licence number must be 16 characters"
   }, 
   "amend-declaration": {
     "required": "Confirm you have read and agree to this declaration"

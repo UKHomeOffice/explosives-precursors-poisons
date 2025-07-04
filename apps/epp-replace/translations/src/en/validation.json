@@ -155,7 +155,8 @@
   "required": "Enter your driving licence number",
   "isValidUkDrivingLicenceNumber": "Enter a real UK driving licence number",
   "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer",
-  "minlength": "Driving licence number must be 16 characters"
+  "minlength": "Driving licence number must be 16 characters",
+  "maxlength": "Driving licence number must be 16 characters"
 },
 "replace-police-report": {
   "required": "Select if you have reported the theft to the police"
@@ -188,7 +189,8 @@
     "required": "Enter your driving licence number",
     "isValidUkDrivingLicenceNumber": "Enter a real UK driving licence number",
     "notUrl": "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer",
-    "minlength": "Driving licence number must be 16 characters"
+    "minlength": "Driving licence number must be 16 characters",
+    "maxlength": "Driving licence number must be 16 characters"
   },
   "replace-phone-number": {
     "required": "Enter your telephone number",
