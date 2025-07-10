@@ -264,6 +264,7 @@ module.exports = {
       'required',
       'notUrl',
       { type: 'minlength', arguments: 16 },
+      { type: 'maxlength', arguments: 16 },
       isValidUkDrivingLicenceNumber
     ],
     className: ['govuk-input', 'govuk-!-width-one-thirds'],
@@ -325,6 +326,7 @@ module.exports = {
       'required',
       'notUrl',
       { type: 'minlength', arguments: 16 },
+      { type: 'maxlength', arguments: 16 },
       isValidUkDrivingLicenceNumber
     ],
     className: ['govuk-input', 'govuk-!-width-one-thirds'],
