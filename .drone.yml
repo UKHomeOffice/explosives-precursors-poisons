@@ -63,6 +63,7 @@ steps:
         from_secret: drone_git_token
     commands:
       - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
+      - find hof-services-config/* | grep -v $HOF_CONFIG | grep -v 'infrastructure' | xargs rm -rf
     when:
       branch:
         <<: *include_default_and_feature_branches
@@ -128,11 +129,12 @@ steps:
         <<: *include_default_and_feature_branches
       event: [push, pull_request]
 
-  - name: build_image
+  - name: build_image_for_trivy
     pull: if-not-exists
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
     commands:
-      - n=0; while [ "$n" -lt 60 ] && ! docker stats --no-stream >/dev/null 2>&1; do n=$(( n + 1 )); sleep 1; done
+      # wait for docker service to be up before running docker build
+      - /usr/local/bin/wait
       - docker build --no-cache -t $${IMAGE_REPO}:$${DRONE_COMMIT_SHA} .
     volumes:
       - name: dockersock
@@ -143,8 +145,9 @@ steps:
       event: [push, pull_request]
     depends_on:
       - linting
+      - unit_tests
 
-  - name: image_to_ecr
+  - name: build_image_and_push_to_ecr
     pull: if-not-exists
     image: plugins/ecr
     settings:
@@ -163,6 +166,8 @@ steps:
       event: [push, pull_request]
     depends_on:
       - linting
+      - unit_tests
+      - build_image_for_trivy
 
   # Trivy Security Scannner for scanning nodejs packages in Yarn
   - name: scan_node_packages
@@ -185,7 +190,8 @@ steps:
     when:
       event: [push, pull_request]
     depends_on:
-      - build_image
+      - build_image_for_trivy
+
 
   - name: deploy_to_branch
     pull: if-not-exists
@@ -203,7 +209,7 @@ steps:
       event: pull_request
     depends_on:
       - clone_repos
-      - image_to_ecr
+      - build_image_and_push_to_ecr
 
   - name: deploy_to_uat
     pull: if-not-exists
@@ -217,12 +223,11 @@ steps:
       - sh bin/deploy.sh $${UAT_ENV}
     when:
       branch:
-      branch:
         <<: *include_default_branch
       event: push
     depends_on:
       - clone_repos
-      - image_to_ecr
+      - build_image_and_push_to_ecr
 
   # Get pull request branch so correct PR UAT environment is torn down in the tear_down_branch step that follows
   - name: get_pr_branch
@@ -282,7 +287,7 @@ steps:
       event: push
     depends_on:
       - clone_repos
-      - image_to_ecr
+      - build_image_and_push_to_ecr
 
   ## Checks a build being promoted has passed, is on master which effectively means a healthy build on Staging
   - name: sanity_check_build_prod
@@ -309,6 +314,7 @@ steps:
         from_secret: drone_git_token
     commands:
       - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
+      - find hof-services-config/* | grep -v $HOF_CONFIG | grep -v 'infrastructure' | xargs rm -rf
     when:
       target: PROD
       event: promote
@@ -349,6 +355,7 @@ steps:
   
   # CRON job steps that runs security scans using Trivy
   - name: cron_clone_repos
+    pull: if-not-exists
     image: alpine/git
     environment:
       DRONE_GIT_USERNAME:
@@ -357,13 +364,17 @@ steps:
         from_secret: drone_git_token
     commands:
       - git clone https://$${DRONE_GIT_USERNAME}:$${DRONE_GIT_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
+      - find hof-services-config/* | grep -v $HOF_CONFIG | grep -v 'infrastructure' | xargs rm -rf
     when:
       cron: security_scans
       event: cron
 
   - name: cron_build_image
+    pull: if-not-exists
     image: 340268328991.dkr.ecr.eu-west-2.amazonaws.com/acp/dind
     commands:
+      # wait for docker service to be up before running docker build
+      - /usr/local/bin/wait
       - docker build --no-cache -t $${IMAGE_REPO}:$${DRONE_COMMIT_SHA} .
     volumes:
       - name: dockersock
@@ -412,7 +423,7 @@ steps:
   # Slack notification upon a CRON job fail
   - name: cron_notify_slack_tear_down_pr_envs
     pull: if-not-exists
-    image: plugins/slack
+    image: plugins/slack:1.4.1
     settings:
       channel: sas-hof-build-notify
       failure: ignore
@@ -436,7 +447,7 @@ steps:
   
   - name: cron_notify_slack_security_scans
     pull: if-not-exists
-    image: plugins/slack
+    image: plugins/slack:1.4.1
     settings:
       channel: sas-hof-security
       failure: ignore
