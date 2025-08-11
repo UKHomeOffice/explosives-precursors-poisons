@@ -120,12 +120,12 @@ const formatPoisonPrecursorSummary = (req, aggregateType, list) => {
             currentLabel = labelKey?.includes(' ') ? precursorsLabels[element.field]
               : req.sessionModel.get(precursorsLabels[element.field]);
           }
-          return `${item.longTitle}: ${element.parsed}`; // Return item.longTitle for precursors
         }
       }
       return `${currentLabel}: ${element.parsed}`;
     });
-    return `${item.joinTitle}\n${fieldLines?.join('\n')}`;
+    const elementTitle = aggregateType === 'precursors-details-aggregate' ? item.longTitle : item.joinTitle;
+    return `${elementTitle}\n${fieldLines?.join('\n')}`;
   }).join('\n\n');
 };
 /**
