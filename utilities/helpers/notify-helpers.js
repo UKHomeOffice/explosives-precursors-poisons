@@ -97,7 +97,6 @@ const precursorsLabels = {
   'where-to-use-precursor': 'whereToUsePrecursorLegend'
 };
 const formatPoisonPrecursorSummary = (req, aggregateType, list) => {
-  console.log('HEREEREREREREREREREREREERHEHUEHFRHFHU', aggregateType, list);
   if (!list?.aggregatedValues) {
     return '';
   }
