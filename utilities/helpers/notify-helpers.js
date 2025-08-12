@@ -97,6 +97,7 @@ const precursorsLabels = {
   'where-to-use-precursor': 'whereToUsePrecursorLegend'
 };
 const formatPoisonPrecursorSummary = (req, aggregateType, list) => {
+  console.log('HEREEREREREREREREREREREERHEHUEHFRHFHU', aggregateType, list);
   if (!list?.aggregatedValues) {
     return '';
   }
@@ -124,8 +125,11 @@ const formatPoisonPrecursorSummary = (req, aggregateType, list) => {
       }
       return `${currentLabel}: ${element.parsed}`;
     });
-    const elementTitle = aggregateType === 'precursors-details-aggregate' ? item.longTitle : item.joinTitle;
-    return `${elementTitle}\n${fieldLines?.join('\n')}`;
+    const title = aggregateType === 'precursors-details-aggregate'
+      ? item.longTitle
+      : item.joinTitle;
+
+    return `${title}\n${fieldLines?.join('\n')}`;
   }).join('\n\n');
 };
 /**
