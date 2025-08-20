@@ -124,7 +124,11 @@ const formatPoisonPrecursorSummary = (req, aggregateType, list) => {
       }
       return `${currentLabel}: ${element.parsed}`;
     });
-    return `${item.joinTitle}\n${fieldLines?.join('\n')}`;
+    const title = aggregateType === 'precursors-details-aggregate'
+      ? item.longTitle
+      : item.joinTitle;
+
+    return `${title}\n${fieldLines?.join('\n')}`;
   }).join('\n\n');
 };
 /**

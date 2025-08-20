@@ -360,7 +360,7 @@ module.exports = {
           for (const item of list.aggregatedValues) {
             item.fields.map(element => {
               if (element.field === 'display-precursor-title') {
-                element.parsed = item.joinTitle;
+                element.parsed = item.longTitle;
               } else {
                 element.field;
                 element.omitChangeLink = true;

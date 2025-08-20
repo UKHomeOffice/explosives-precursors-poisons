@@ -952,6 +952,7 @@ describe('notify-helpers tests', () => {
         aggregatedValues: [
           {
             joinTitle: 'Precursor 1',
+            longTitle: 'Precursor 1 long title',
             fields: [
               { field: 'why-need-precursor', parsed: 'For experiments' },
               { field: 'where-to-store-precursor', parsed: 'In a dry place' }
@@ -966,7 +967,7 @@ describe('notify-helpers tests', () => {
         listMock
       );
       expect(result).to.equal(
-        'Precursor 1\n' +
+        'Precursor 1 long title\n' +
           'Why do you need precursor?: For experiments\n' +
           'Where will you store the precursor?: In a dry place'
       );

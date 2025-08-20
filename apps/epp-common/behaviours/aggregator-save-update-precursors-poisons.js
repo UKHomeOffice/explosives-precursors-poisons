@@ -44,10 +44,12 @@ module.exports = superclass => class extends superclass {
     return this.redirectToAddStep(req, res);
   }
 
+  // joinTitle refers to the short title of explosives/precursors
   addItem(req, res) {
+    let joinTitle = '';
+    let longTitle = '';
     const items = this.getAggregateArray(req);
     const fields = [];
-    const itemTitle = [];
     const aggregateLimit = req.form.options.aggregateLimit || DEFAULT_AGGREGATOR_LIMIT;
 
     req.form.options.aggregateFrom.forEach(aggregateFromElement => {
@@ -56,11 +58,12 @@ module.exports = superclass => class extends superclass {
       const value = req.sessionModel.get(aggregateFromField);
 
 
-      if(!isTitleField && itemTitle.length === 0 && req.originalUrl.includes('/precursors-summary')) {
-        itemTitle.push(getSubstanceShortLabel(req.sessionModel.get('precursor-field'), SUBSTANCES.PRECURSOR));
+      if(!isTitleField && joinTitle.length === 0 && req.originalUrl.includes('/precursors-summary')) {
+        longTitle = req.sessionModel.get('precursor-field');
+        joinTitle = getSubstanceShortLabel(req.sessionModel.get('precursor-field'), SUBSTANCES.PRECURSOR);
       }
-      if(!isTitleField && itemTitle.length === 0 && req.originalUrl.includes('/poison-summary')) {
-        itemTitle.push(getSubstanceShortLabel(req.sessionModel.get('poison-field'), SUBSTANCES.POISON));
+      if(!isTitleField && joinTitle.length === 0 && req.originalUrl.includes('/poison-summary')) {
+        joinTitle = getSubstanceShortLabel(req.sessionModel.get('poison-field'), SUBSTANCES.POISON);
       }
 
       fields.push({
@@ -77,8 +80,7 @@ module.exports = superclass => class extends superclass {
       req.sessionModel.unset(aggregateFromField);
     });
 
-    const joinTitle = itemTitle.join(' ');
-    const newItem = { joinTitle, fields };
+    const newItem = { joinTitle, fields, longTitle };
     const isUpdate = req.sessionModel.get('isUpdate');
     const updatingIndex = req.sessionModel.get('updatingIndex');
 
