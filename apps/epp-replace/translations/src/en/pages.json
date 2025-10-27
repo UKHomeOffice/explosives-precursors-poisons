@@ -113,7 +113,7 @@
   "repeat-precursor": {
     "header": "Explosive precursor already added",
     "p1": "You have already added {{values.alreadySelectedSubstance}}. Only tell us about each explosives precursor once.",
-    "p2": "You can either check <a href=\"/new-renew/precursors-summary\">which explosives precursor you have already added</a> or <a href=\"/new-renew/select-precursor\">add a different explosives precursor</a>."
+    "p2": "You can either check <a href=\"/replace/precursors-summary\">which explosives precursor you have already added</a> or <a href=\"/replace/select-precursor\">add a different explosives precursor</a>."
   },
   "your-name": {
     "header": "What is your name on the licence?"

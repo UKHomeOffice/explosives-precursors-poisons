@@ -42,6 +42,7 @@ describe('preventDuplicateSelection behaviour', () => {
     behaviour.saveValues(req, res, next);
 
     expect(res.redirect.calledOnceWith('/error')).to.be.true;
+    expect(next.called).to.be.false;
   });
 
   it('calls next() when no duplicates exist', () => {
