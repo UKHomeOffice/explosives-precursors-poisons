@@ -145,6 +145,11 @@
     "link-text" : "list of regulated chemicals (opens in a new tab)",
     "p2": "You do not need a licence for reportable poisons."
   },
+  "repeat-precursor": {
+    "header": "Explosive precursor already added",
+    "p1": "You have already added {{values.alreadySelectedSubstance}}. Only tell us about each explosives precursor once.",
+    "p2": "You can either check <a href=\"/new-renew/precursors-summary\">which explosives precursor you have already added</a> or <a href=\"/new-renew/select-precursor\">add a different explosives precursor</a>."
+  },
   "select-poisons": {
     "header": "Poisons",
     "p1": "Tell us which poisons you want to import acquire use or possess.",

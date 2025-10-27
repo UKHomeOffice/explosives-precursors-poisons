@@ -99,7 +99,7 @@ module.exports = (documentName, fieldName) => superclass =>
         const model = new Model(document);
 
         try {
-          await model.save();
+          // await model.save();
           const documentCategoryConfig =
             config.upload.documentCategories[documentName] || {};
 

@@ -27,6 +27,7 @@ const SaveCounterSignatoryAddress = require('../epp-common/behaviours/save-count
 const NoPrecursorsPoisonsNavigation = require('./behaviours/no-precursors-poisons-navigation');
 const NoSubstanceChangeNavigation = require('./behaviours/no-substance-change-navigation');
 const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redundant-documents');
+const preventDuplicateSelection = require('../epp-common/behaviours/prevent-duplicate-selection');
 const { disallowIndexing } = require('../../config');
 
 const pages = {};
@@ -421,10 +422,16 @@ module.exports = {
       next: '/select-precursor'
     },
     '/select-precursor': {
+      behaviours: [
+        preventDuplicateSelection('precursor-field', 'precursors-details-aggregate', 'repeat-precursor')
+      ],
       fields: ['precursor-field'],
       continueOnEdit: true,
       locals: { captionHeading: 'Section 18 of 26' },
       next: '/precursor-details'
+    },
+    '/repeat-precursor': {
+      backLink: '/replace/select-precursor'
     },
     '/no-precursors-or-poisons': {
       behaviours: [NoPrecursorsPoisonsNavigation],

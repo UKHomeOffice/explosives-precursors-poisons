@@ -26,6 +26,7 @@ const SetBackLink = require('../epp-common/behaviours/set-backlink');
 const SaveNewName = require('../epp-common/behaviours/save-new-name');
 const SaveCounterSignatoryAddress = require('../epp-common/behaviours/save-countersignatory-address');
 const CounterSignatoryNavigation = require('../epp-amend/behaviours/countersignatory-navigation');
+const preventDuplicateSelection = require('../epp-common/behaviours/prevent-duplicate-selection');
 const { disallowIndexing } = require('../../config');
 
 const pages = {};
@@ -327,10 +328,16 @@ module.exports = {
       locals: { captionHeading: 'Section 14 of 23' }
     },
     '/select-precursor': {
+      behaviours: [
+        preventDuplicateSelection('precursor-field', 'precursors-details-aggregate', 'repeat-precursor')
+      ],
       fields: ['precursor-field'],
       continueOnEdit: true,
       locals: { captionHeading: 'Section 15 of 23' },
       next: '/precursor-details'
+    },
+    '/repeat-precursor': {
+      backLink: '/amend/select-precursor'
     },
     '/precursor-details': {
       behaviours: [RenderPrecursorDetails('precursor-field')],
