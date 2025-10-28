@@ -32,6 +32,7 @@ const RenderPrecursorDetails = require('../epp-common/behaviours/render-precurso
 const AggregateSaveEditPrecursorPoison = require('../epp-common/behaviours/aggregator-save-update-precursors-poisons');
 const ParseSummaryPrecursorsPoisons = require('../epp-common/behaviours/parse-summary-precursors-poisons');
 const ModifySummaryChangeLink = require('../epp-common/behaviours/modify-summary-change-links');
+const preventDuplicateSelection = require('../epp-common/behaviours/prevent-duplicate-selection');
 const { disallowIndexing } = require('../../config');
 
 const pages = {};
@@ -591,14 +592,17 @@ module.exports = {
       }
     },
     '/select-precursor': {
+      behaviours: [
+        preventDuplicateSelection('precursor-field', 'precursors-details-aggregate', 'repeat-precursor')
+      ],
       fields: ['precursor-field'],
       next: '/precursor-details',
       locals: {
-        sectionNo: {
-          new: 13,
-          renew: 14
-        }
+        sectionNo: { new: 13, renew: 14 }
       }
+    },
+    '/repeat-precursor': {
+      backLink: '/new-renew/select-precursor'
     },
     '/precursor-details': {
       behaviours: [RenderPrecursorDetails('precursor-field')],
