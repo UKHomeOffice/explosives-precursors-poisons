@@ -63,6 +63,7 @@ module.exports = superclass => class extends superclass {
         joinTitle = getSubstanceShortLabel(req.sessionModel.get('precursor-field'), SUBSTANCES.PRECURSOR);
       }
       if(!isTitleField && joinTitle.length === 0 && req.originalUrl.includes('/poison-summary')) {
+        longTitle = req.sessionModel.get('poison-field');
         joinTitle = getSubstanceShortLabel(req.sessionModel.get('poison-field'), SUBSTANCES.POISON);
       }
 

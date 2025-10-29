@@ -678,6 +678,9 @@ module.exports = {
       behaviours: [NoPrecursorPoisonBackLink]
     },
     '/select-poisons': {
+      behaviours: [
+        preventDuplicateSelection('poison-field', 'poisons-details-aggregate', 'repeat-poison')
+      ],
       fields: ['poison-field'],
       continueOnEdit: true,
       next: '/poison-details',
@@ -687,6 +690,9 @@ module.exports = {
           renew: 16
         }
       }
+    },
+    '/repeat-poison': {
+      backLink: '/new-renew/select-poisons'
     },
     '/poison-details': {
       behaviours: [RenderPoisonDetails('poison-field')],
