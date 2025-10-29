@@ -153,7 +153,7 @@
   "repeat-poison": {
     "header": "Explosive poison already added",
     "p1": "You have already added {{values.alreadySelectedSubstance}}. Only tell us about each explosives poison once.",
-    "p2": "You can either check <a href=\"/amend/poison-summary\">which explosives poison you have already added</a> or <a href=\"/amend/select-poisons\">add a different explosives precursor</a>."
+    "p2": "You can either check <a href=\"/amend/poison-summary\">which explosives poison you have already added</a> or <a href=\"/amend/select-poisons\">add a different explosives poison</a>."
   },
   "select-poisons": {
     "header": "Poisons",
