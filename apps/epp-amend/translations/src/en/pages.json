@@ -148,7 +148,13 @@
   "repeat-precursor": {
     "header": "Explosive precursor already added",
     "p1": "You have already added {{values.alreadySelectedSubstance}}. Only tell us about each explosives precursor once.",
-    "p2": "You can either check <a href=\"/amend/precursors-summary\">which explosives precursor you have already added</a> or <a href=\"/amend/select-precursor\">add a different explosives precursor</a>."  },
+    "p2": "You can either check <a href=\"/amend/precursors-summary\">which explosives precursor you have already added</a> or <a href=\"/amend/select-precursor\">add a different explosives precursor</a>."
+  },
+  "repeat-poison": {
+    "header": "Poison already added",
+    "p1": "You have already added {{values.alreadySelectedSubstance}}. Only tell us about each poison once.",
+    "p2": "You can either check <a href=\"/amend/poison-summary\">which poisons you have already added</a> or <a href=\"/amend/select-poisons\">add a different poison</a>."
+  },
   "select-poisons": {
     "header": "Poisons",
     "p1": "Tell us which poisons you want to import acquire use or possess.",

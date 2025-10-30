@@ -403,10 +403,16 @@ module.exports = {
       locals: { captionHeading: 'Section 16 of 23' }
     },
     '/select-poisons': {
+      behaviours: [
+        preventDuplicateSelection('poison-field', 'poisons-details-aggregate', 'repeat-poison')
+      ],
       fields: ['poison-field'],
       next: '/poison-details',
       continueOnEdit: true,
       locals: { captionHeading: 'Section 17 of 23' }
+    },
+    '/repeat-poison': {
+      backLink: '/amend/select-poisons'
     },
     '/poison-details': {
       behaviours: [RenderPoisonDetails('poison-field')],
