@@ -46,7 +46,6 @@ module.exports = {
     '/accessibility': {
 
     },
-    '/exit': {},
-    '/session-timeout': {}
+    '/exit': {}
   }
 };
