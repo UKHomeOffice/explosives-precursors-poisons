@@ -32,7 +32,7 @@ trigger:
     <<: *include_default_and_feature_branches
 
 node_image: &node_image
-  pull: if-not-exists
+#  pull: if-not-exists
   image: node:20.19.0-alpine3.20@sha256:d504f23acdda979406cf3bdbff0dff7933e5c4ec183dda404ed24286c6125e60
 
 linting: &linting
@@ -102,7 +102,7 @@ steps:
     when:
       branch:
         <<: *include_default_and_feature_branches
-      event: [push]
+      event: [pull_request, push]
 
   - name: linting
     <<: *linting
