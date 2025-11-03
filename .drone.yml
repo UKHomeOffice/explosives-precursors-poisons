@@ -93,12 +93,13 @@ steps:
       - clone_repos
 
   - name: setup
-    pull: if-not-exists
+    pull: always
     image: node:20.19.0-alpine3.20@sha256:d504f23acdda979406cf3bdbff0dff7933e5c4ec183dda404ed24286c6125e60
     #<<: *node_image
     environment:
       NOTIFY_STUB: true
     commands:
+      - node -v
       - yarn install --frozen-lockfile
       - yarn run postinstall
     when:
