@@ -92,7 +92,7 @@ steps:
     depends_on:
       - clone_repos
 
-  - name: setup
+  - name: yarn_setup
     pull: always
     image: node:20.19.0-alpine3.20@sha256:d504f23acdda979406cf3bdbff0dff7933e5c4ec183dda404ed24286c6125e60
     #<<: *node_image
@@ -114,7 +114,7 @@ steps:
         <<: *include_default_and_feature_branches
       event: [push, pull_request]
     depends_on:
-      - setup
+      - yarn_setup
 
   - name: unit_tests
     <<: *unit_tests
@@ -123,7 +123,7 @@ steps:
         <<: *include_default_and_feature_branches
       event: [push, pull_request]
     depends_on:
-      - setup
+      - yarn_setup
 
   - name: sonar_scanner
     <<: *sonar_scanner
