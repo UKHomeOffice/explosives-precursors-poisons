@@ -102,7 +102,7 @@ steps:
     when:
       branch:
         <<: *include_default_and_feature_branches
-      event: [push, pull_request]
+      event: [push]
 
   - name: linting
     <<: *linting
