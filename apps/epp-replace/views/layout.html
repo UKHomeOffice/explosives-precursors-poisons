@@ -36,15 +36,9 @@
 	  </div>
   {{/main}}
   {{$cookieMessage}}
-    {{#gaTagId}}
-      {{> partials-cookie-banner}}
-    {{/gaTagId}}
-    {{^gaTagId}}
-      <p class="no-ga-tag">
-        {{#t}}cookies.banner.message{{/t}}
-        <a href="/cookies">{{#t}}cookies.banner.link{{/t}}</a>
-      </p>
-    {{/gaTagId}}
+    {{#showCookiesBanner}}
+        {{> partials-cookie-banner}}
+    {{/showCookiesBanner}}
   {{/cookieMessage}}
   {{$footerSupportLinks}}
     <ul class="govuk-footer__inline-list">
