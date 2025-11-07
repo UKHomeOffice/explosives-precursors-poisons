@@ -8,7 +8,7 @@
     "hof/components/clear-session",
     "hof/components/session-timeout-warning"
   ],
-  "translations": "./apps/epp-new-renew/translations",
+  "translations": "./apps/epp-common/translations",
   "routes": [
     "./apps/epp-common",
     "./apps/epp-new",
