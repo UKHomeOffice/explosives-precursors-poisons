@@ -20,6 +20,7 @@ const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 const RenderPoisonDetails = require('../epp-common/behaviours/render-poison-detail');
 const SendNotification = require('../epp-common/behaviours/submit-notify');
 const ParseSummaryPrecursorsPoisons = require('../epp-common/behaviours/parse-summary-precursors-poisons');
+const ExecuteFieldCustomParse = require('../epp-common/behaviours/execute-field-custom-parse');
 const ModifySummaryChangeLink = require('../epp-common/behaviours/modify-summary-change-links');
 const ResetSectionSummary = require('../epp-common/behaviours/reset-section-summary');
 const SetBackLink = require('../epp-common/behaviours/set-backlink');
@@ -357,6 +358,7 @@ module.exports = {
     '/precursors-summary': {
       behaviours: [
         AggregateSaveEditPrecursorPoison,
+        ExecuteFieldCustomParse,
         ParseSummaryPrecursorsPoisons,
         EditRouteReturn
       ],
@@ -433,6 +435,7 @@ module.exports = {
     '/poison-summary': {
       behaviours: [
         AggregateSaveEditPrecursorPoison,
+        ExecuteFieldCustomParse,
         ParseSummaryPrecursorsPoisons,
         EditRouteReturn,
         CounterSignatoryNavigation('/poison-summary')

@@ -183,11 +183,6 @@
     "hint": "Detailed answers mean we can process your application faster",
     "summary-heading": "Why do you need it?"
   },
-  "how-much-precursor":{
-    "label": "How much do you wish to acquire at any one time within a 6-month period?",
-    "hint": "Enter the amount and the unit. For example, 10 litres",
-    "summary-heading": "How much do you wish to acquire at any one time within a 6-month period?"
-  },
   "what-concentration-precursor":{
     "label": "What concentration % w/w of the substance do you need?",
     "summary-heading": "What concentration % w/w of the substance do you need?"
@@ -252,11 +247,6 @@
     "label": "{{values.whyNeedPoisonLabel}}",
     "hint": "Detailed answers mean we can process your application faster",
     "summary-heading": "Why do you need it?"
-  },
-  "how-much-poison":{
-    "label": "How much do you wish to acquire at any one time within a 6-month period?",
-    "hint": "Enter the amount and the unit. For example, 10 litres",
-    "summary-heading": "How much do you wish to acquire at any one time within a 6-month period?"
   },
   "compound-or-salt": {
     "label": "Specific compound or salt",
@@ -388,5 +378,29 @@
   },
   "amend-declaration": {
     "label": "I have read and agree to this declaration"
+  },
+  "how-much-precursor": {
+    "legend": "How much do you wish to acquire at any one time within a 6-month period?", 
+    "hint": "Enter an amount and select the relevant unit",
+    "summary-heading": "How much",
+    "options": [
+      { "null": "Select a unit" },
+      { "label": "Grams", "value": "grams" },
+      { "label": "Kilograms", "value": "kilograms" }, 
+      { "label": "Litres", "value": "litres" }, 
+      { "label": "Millilitres", "value": "millilitres" }
+    ]
+  },
+  "how-much-poison": {
+    "legend": "How much do you wish to acquire at any one time within a 6-month period?", 
+    "hint": "Enter an amount and select the relevant unit",
+    "summary-heading": "How much",
+    "options": [
+      { "null": "Select a unit" },
+      { "label": "Grams", "value": "grams" },
+      { "label": "Kilograms", "value": "kilograms" }, 
+      { "label": "Litres", "value": "litres" }, 
+      { "label": "Millilitres", "value": "millilitres" }
+    ]
   }
 }
