@@ -250,6 +250,10 @@ module.exports = {
                 element.field;
                 element.omitChangeLink = true;
               }
+              // Remove fields that are created by amount-with-unit-select component
+              if (element.field === 'how-much-precursor-unit' || element.field === 'how-much-precursor-amount') {
+                element.omitFromSummary = true;
+              }
             });
           }
           return list;
@@ -279,6 +283,10 @@ module.exports = {
               }else{
                 element.field;
                 element.omitChangeLink = true;
+              }
+              // Remove fields that are created by amount-with-unit-select component
+              if (element.field === 'how-much-poison-unit' || element.field === 'how-much-poison-amount') {
+                element.omitFromSummary = true;
               }
             });
           }
