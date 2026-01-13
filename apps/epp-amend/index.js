@@ -367,6 +367,8 @@ module.exports = {
         'display-precursor-title',
         'why-need-precursor',
         'how-much-precursor',
+        'how-much-precursor-amount',
+        'how-much-precursor-unit',
         'what-concentration-precursor',
         'where-to-store-precursor',
         'where-to-use-precursor'
@@ -445,6 +447,8 @@ module.exports = {
         'display-poison-title',
         'why-need-poison',
         'how-much-poison',
+        'how-much-poison-amount',
+        'how-much-poison-unit',
         'compound-or-salt',
         'what-concentration-poison',
         'where-to-store-poison',
