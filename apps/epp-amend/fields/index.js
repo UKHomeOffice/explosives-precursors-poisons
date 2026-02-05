@@ -1,4 +1,5 @@
 const dateComponent = require('hof').components.date;
+const amountWithUnitSelectComponent = require('hof').components.amountWithUnitSelect;
 const titles = require('../../../utilities/constants/titles.js');
 const precursorList = require('../../../utilities/constants/explosive-precursors.js');
 const poisonsList = require('../../../utilities/constants/poisons.js');
@@ -321,12 +322,6 @@ module.exports = {
     attributes: [{ attribute: 'rows', value: 5 }],
     labelClassName: 'govuk-label--s'
   },
-  'how-much-precursor': {
-    mixin: 'input-text',
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
-    className: ['govuk-input', 'govuk-input--width-10'],
-    labelClassName: 'govuk-label--s'
-  },
   'what-concentration-precursor': {
     mixin: 'input-text',
     validate: [
@@ -416,12 +411,6 @@ module.exports = {
     mixin: 'textarea',
     validate: ['required', 'notUrl', helpers.textAreaDefaultLength],
     attributes: [{ attribute: 'rows', value: 5 }],
-    labelClassName: 'govuk-label--s'
-  },
-  'how-much-poison': {
-    mixin: 'input-text',
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
-    className: ['govuk-input', 'govuk-input--width-10'],
     labelClassName: 'govuk-label--s'
   },
   'compound-or-salt': {
@@ -665,5 +654,29 @@ module.exports = {
   'amend-declaration': {
     mixin: 'checkbox',
     validate: ['required']
-  }
+  },
+  'how-much-precursor': amountWithUnitSelectComponent('how-much-precursor', {
+    legend: { className: 'govuk-fieldset__legend--s' },
+    mixin: 'input-amount-with-unit-select',
+    amountOptional: 'false',
+    validate: ['required',
+      { type: 'regex', arguments: /^[\d]*\.?\d+$/ },
+      { type: 'max', arguments: 999999 },
+      { type: 'min', arguments: 0.01 }
+    ],
+    parse: val => val ?
+      (val.substring(0, val.lastIndexOf('-')) || '0') + ' ' +  val.substring(val.lastIndexOf('-') + 1) : ''
+  }),
+  'how-much-poison': amountWithUnitSelectComponent('how-much-poison', {
+    legend: { className: 'govuk-fieldset__legend--s' },
+    mixin: 'input-amount-with-unit-select',
+    amountOptional: 'false',
+    validate: ['required',
+      { type: 'regex', arguments: /^[\d]*\.?\d+$/ },
+      { type: 'max', arguments: 999999 },
+      { type: 'min', arguments: 0.01 }
+    ],
+    parse: val => val ?
+      (val.substring(0, val.lastIndexOf('-')) || '0') + ' ' +  val.substring(val.lastIndexOf('-') + 1) : ''
+  })
 };
