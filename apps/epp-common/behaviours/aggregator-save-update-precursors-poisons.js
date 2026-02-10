@@ -79,6 +79,13 @@ module.exports = superclass => class extends superclass {
 
       this.setAggregateArray(req, items);
       req.sessionModel.unset(aggregateFromField);
+
+      // Clear any additional fields specified in options
+      if (req.form.options.additionalFieldsToClear) {
+        req.form.options.additionalFieldsToClear.forEach(fieldToClear => {
+          req.sessionModel.unset(fieldToClear);
+        });
+      }
     });
 
     const newItem = { joinTitle, fields, longTitle };

@@ -178,10 +178,18 @@
     "textAreaDefaultLength": "Reason why you need this explosive precursor must be less than 2,000 characters",
     "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
-  "how-much-precursor": {
-    "required": "Enter how much of the explosive precursor you wish to acquire at any one time",
-    "maxlength": "Quantity of the explosive precursor you wish to acquire must be 250 characters or less",
-    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
+  "how-much-precursor": { 
+    "default": "Enter a valid amount and unit",
+    "required": "Enter how much of the explosive precursor you wish to acquire at any one time"
+  },
+  "how-much-precursor-amount": { 
+    "required": "Enter the amount of explosive precursor you wish to buy",
+    "regex": "Amount you wish to buy must only include numbers",
+    "max": "Amount you wish to buy must be 999,999 or less",
+    "min": "Amount you wish to buy must be 0.01 or more"
+  },
+  "how-much-precursor-unit": { 
+    "required": "Select the unit you wish to buy the explosive precursor in"
   },
   "where-to-store-precursor": {
     "required": "Select where you will store the explosive precursor"
@@ -216,10 +224,18 @@
     "textAreaDefaultLength": "Reason why you need this poison must be less than 2,000 characters",
     "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
   },
-  "how-much-poison": {
-    "required": "Enter how much of poison you wish to acquire at any one time",
-    "maxlength": "Quantity of the explosive precursor you wish to acquire must be 250 characters or less",
-    "notUrl" : "Answer must not contain a URL. Remove any links, URLs or special characters like /@:%_+~#=\\ from your answer"
+  "how-much-poison": { 
+    "default": "Enter a valid amount and unit",
+    "required": "Enter the amount of poison you wish to buy"
+  },
+  "how-much-poison-amount": { 
+    "required": "Enter the amount of poison you wish to buy",
+    "regex": "Amount you wish to buy must only include numbers",
+    "max": "Amount you wish to buy must be 999,999 or less",
+    "min": "Amount you wish to buy must be 0.01 or more"
+  },
+  "how-much-poison-unit": { 
+    "required": "Select the unit you wish to buy the poison in"
   },
   "compound-or-salt": {
      "required": "Enter the specific compound or salt",

@@ -20,6 +20,7 @@ const JourneyValidator = require('../epp-common/behaviours/journey-validator');
 const RenderPoisonDetails = require('../epp-common/behaviours/render-poison-detail');
 const SendNotification = require('../epp-common/behaviours/submit-notify');
 const ParseSummaryPrecursorsPoisons = require('../epp-common/behaviours/parse-summary-precursors-poisons');
+const ExecuteFieldCustomParse = require('../epp-common/behaviours/execute-field-custom-parse');
 const ModifySummaryChangeLink = require('../epp-common/behaviours/modify-summary-change-links');
 const ResetSectionSummary = require('../epp-common/behaviours/reset-section-summary');
 const SetBackLink = require('../epp-common/behaviours/set-backlink');
@@ -357,6 +358,7 @@ module.exports = {
     '/precursors-summary': {
       behaviours: [
         AggregateSaveEditPrecursorPoison,
+        ExecuteFieldCustomParse,
         ParseSummaryPrecursorsPoisons,
         EditRouteReturn
       ],
@@ -368,6 +370,10 @@ module.exports = {
         'what-concentration-precursor',
         'where-to-store-precursor',
         'where-to-use-precursor'
+      ],
+      additionalFieldsToClear: [
+        'how-much-precursor-amount',
+        'how-much-precursor-unit'
       ],
       titleField: ['precursor-field'],
       addStep: 'select-precursor',
@@ -433,6 +439,7 @@ module.exports = {
     '/poison-summary': {
       behaviours: [
         AggregateSaveEditPrecursorPoison,
+        ExecuteFieldCustomParse,
         ParseSummaryPrecursorsPoisons,
         EditRouteReturn,
         CounterSignatoryNavigation('/poison-summary')
@@ -446,6 +453,10 @@ module.exports = {
         'what-concentration-poison',
         'where-to-store-poison',
         'where-to-use-poison'
+      ],
+      additionalFieldsToClear: [
+        'how-much-poison-amount',
+        'how-much-poison-unit'
       ],
       titleField: ['poison-field'],
       addStep: 'select-poisons',
