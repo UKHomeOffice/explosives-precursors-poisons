@@ -15,7 +15,8 @@ const {
   isLicenceValid,
   displayOptionalField,
   formatAttachments,
-  showCounterSignatoryDetails
+  showCounterSignatoryDetails,
+  parseUnitValues
 } = require('../../../utilities/helpers');
 
 const explosivePrecursorsList = require('../../../utilities/constants/explosive-precursors');
@@ -517,7 +518,9 @@ describe('EPP utilities tests', () => {
       const req = { sessionModel: { get: sinon.stub() } };
       req.sessionModel.get.withArgs('replace-is-details-changed').returns('no');
       req.sessionModel.get.withArgs('replace-name-options').returns('yes');
-      req.sessionModel.get.withArgs('replace-home-address-options').returns('yes');
+      req.sessionModel.get
+        .withArgs('replace-home-address-options')
+        .returns('yes');
 
       expect(showCounterSignatoryDetails('test-value', req)).to.be.null;
     });
@@ -527,7 +530,9 @@ describe('EPP utilities tests', () => {
         .withArgs('replace-is-details-changed')
         .returns('yes');
       req.sessionModel.get.withArgs('replace-name-options').returns('no');
-      req.sessionModel.get.withArgs('replace-home-address-options').returns('no');
+      req.sessionModel.get
+        .withArgs('replace-home-address-options')
+        .returns('no');
 
       expect(showCounterSignatoryDetails('test-value', req)).to.be.null;
     });
@@ -537,7 +542,9 @@ describe('EPP utilities tests', () => {
         .withArgs('replace-is-details-changed')
         .returns('yes');
       req.sessionModel.get.withArgs('replace-name-options').returns('yes');
-      req.sessionModel.get.withArgs('replace-home-address-options').returns('no');
+      req.sessionModel.get
+        .withArgs('replace-home-address-options')
+        .returns('no');
 
       expect(showCounterSignatoryDetails('test-value', req)).to.equal(
         'test-value'
@@ -549,7 +556,9 @@ describe('EPP utilities tests', () => {
         .withArgs('replace-is-details-changed')
         .returns('yes');
       req.sessionModel.get.withArgs('replace-name-options').returns('no');
-      req.sessionModel.get.withArgs('replace-home-address-options').returns('yes');
+      req.sessionModel.get
+        .withArgs('replace-home-address-options')
+        .returns('yes');
 
       expect(showCounterSignatoryDetails('test-value', req)).to.equal(
         'test-value'
@@ -561,11 +570,37 @@ describe('EPP utilities tests', () => {
         .withArgs('replace-is-details-changed')
         .returns('yes');
       req.sessionModel.get.withArgs('replace-name-options').returns('yes');
-      req.sessionModel.get.withArgs('replace-home-address-options').returns('yes');
+      req.sessionModel.get
+        .withArgs('replace-home-address-options')
+        .returns('yes');
 
       expect(showCounterSignatoryDetails('test-value', req)).to.equal(
         'test-value'
       );
+    });
+  });
+
+  describe('parseUnitValues tests', () => {
+    it('should return empty string for falsy inputs', () => {
+      const inputs = [null, undefined, ''];
+      inputs.forEach(input => expect(parseUnitValues(input)).to.equal(''));
+    });
+
+    it('should format value-unit when hyphen present', () => {
+      expect(parseUnitValues('100-g')).to.equal('100 g');
+      expect(parseUnitValues('250-ml')).to.equal('250 ml');
+    });
+
+    it('should default value to 0 when missing before last hyphen', () => {
+      expect(parseUnitValues('-ml')).to.equal('0 ml');
+    });
+
+    it('should treat input without hyphen as unit (value becomes 0)', () => {
+      expect(parseUnitValues('100ml')).to.equal('0 100ml');
+    });
+
+    it('should handle trailing hyphen (empty unit)', () => {
+      expect(parseUnitValues('g-')).to.equal('g ');
     });
   });
 });

@@ -322,6 +322,13 @@ module.exports = {
     attributes: [{ attribute: 'rows', value: 5 }],
     labelClassName: 'govuk-label--s'
   },
+  'how-much-precursor': amountWithUnitSelectComponent('how-much-precursor', {
+    legend: { className: 'govuk-fieldset__legend--s' },
+    mixin: 'input-amount-with-unit-select',
+    amountOptional: 'false',
+    validate: helpers.amountWithUnitSelectComponentValidators,
+    parse: val => helpers.parseUnitValues(val)
+  }),
   'what-concentration-precursor': {
     mixin: 'input-text',
     validate: [
@@ -413,6 +420,13 @@ module.exports = {
     attributes: [{ attribute: 'rows', value: 5 }],
     labelClassName: 'govuk-label--s'
   },
+  'how-much-poison': amountWithUnitSelectComponent('how-much-poison', {
+    legend: { className: 'govuk-fieldset__legend--s' },
+    mixin: 'input-amount-with-unit-select',
+    amountOptional: 'false',
+    validate: helpers.amountWithUnitSelectComponentValidators,
+    parse: val => helpers.parseUnitValues(val)
+  }),
   'compound-or-salt': {
     mixin: 'textarea',
     validate: ['required', 'notUrl', helpers.textAreaDefaultLength],
@@ -654,29 +668,5 @@ module.exports = {
   'amend-declaration': {
     mixin: 'checkbox',
     validate: ['required']
-  },
-  'how-much-precursor': amountWithUnitSelectComponent('how-much-precursor', {
-    legend: { className: 'govuk-fieldset__legend--s' },
-    mixin: 'input-amount-with-unit-select',
-    amountOptional: 'false',
-    validate: ['required',
-      { type: 'regex', arguments: /^[\d]*\.?\d+$/ },
-      { type: 'max', arguments: 999999 },
-      { type: 'min', arguments: 0.01 }
-    ],
-    parse: val => val ?
-      (val.substring(0, val.lastIndexOf('-')) || '0') + ' ' +  val.substring(val.lastIndexOf('-') + 1) : ''
-  }),
-  'how-much-poison': amountWithUnitSelectComponent('how-much-poison', {
-    legend: { className: 'govuk-fieldset__legend--s' },
-    mixin: 'input-amount-with-unit-select',
-    amountOptional: 'false',
-    validate: ['required',
-      { type: 'regex', arguments: /^[\d]*\.?\d+$/ },
-      { type: 'max', arguments: 999999 },
-      { type: 'min', arguments: 0.01 }
-    ],
-    parse: val => val ?
-      (val.substring(0, val.lastIndexOf('-')) || '0') + ' ' +  val.substring(val.lastIndexOf('-') + 1) : ''
-  })
+  }
 };
