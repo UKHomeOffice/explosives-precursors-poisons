@@ -8,8 +8,8 @@ const {
   isValidUkDrivingLicenceNumber,
   isValidConcentrationValue,
   textAreaDefaultLength,
-  parseUnitValues,
-  amountWithUnitSelectComponentValidators
+  parseHyphenatedPairValue,
+  precursorAndPoisonQuantityValidators
 } = require('../../../utilities/helpers');
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years');
 const precursorList = require('../../../utilities/constants/explosive-precursors');
@@ -781,9 +781,8 @@ module.exports = {
   'how-much-precursor': amountWithUnitSelectComponent('how-much-precursor', {
     legend: { className: 'govuk-fieldset__legend--s' },
     mixin: 'input-amount-with-unit-select',
-    amountOptional: 'false',
-    validate: amountWithUnitSelectComponentValidators,
-    parse: val => parseUnitValues(val)
+    validate: precursorAndPoisonQuantityValidators,
+    parse: val => parseHyphenatedPairValue(val)
   }),
   'compound-or-salt': {
     mixin: 'textarea',
@@ -873,9 +872,8 @@ module.exports = {
   'how-much-poison': amountWithUnitSelectComponent('how-much-poison', {
     legend: { className: 'govuk-fieldset__legend--s' },
     mixin: 'input-amount-with-unit-select',
-    amountOptional: 'false',
-    validate: amountWithUnitSelectComponentValidators,
-    parse: val => parseUnitValues(val)
+    validate: precursorAndPoisonQuantityValidators,
+    parse: val => parseHyphenatedPairValue(val)
   }),
   'what-concentration-precursor': {
     mixin: 'input-text',

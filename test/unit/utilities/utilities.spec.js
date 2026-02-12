@@ -16,7 +16,7 @@ const {
   displayOptionalField,
   formatAttachments,
   showCounterSignatoryDetails,
-  parseUnitValues
+  parseHyphenatedPairValue
 } = require('../../../utilities/helpers');
 
 const explosivePrecursorsList = require('../../../utilities/constants/explosive-precursors');
@@ -580,27 +580,27 @@ describe('EPP utilities tests', () => {
     });
   });
 
-  describe('parseUnitValues tests', () => {
+  describe('parseHyphenatedPairValue tests', () => {
     it('should return empty string for falsy inputs', () => {
       const inputs = [null, undefined, ''];
-      inputs.forEach(input => expect(parseUnitValues(input)).to.equal(''));
+      inputs.forEach(input => expect(parseHyphenatedPairValue(input)).to.equal(''));
     });
 
     it('should format value-unit when hyphen present', () => {
-      expect(parseUnitValues('100-g')).to.equal('100 g');
-      expect(parseUnitValues('250-ml')).to.equal('250 ml');
+      expect(parseHyphenatedPairValue('100-g')).to.equal('100 g');
+      expect(parseHyphenatedPairValue('250-ml')).to.equal('250 ml');
     });
 
     it('should default value to 0 when missing before last hyphen', () => {
-      expect(parseUnitValues('-ml')).to.equal('0 ml');
+      expect(parseHyphenatedPairValue('-ml')).to.equal('0 ml');
     });
 
     it('should treat input without hyphen as unit (value becomes 0)', () => {
-      expect(parseUnitValues('100ml')).to.equal('0 100ml');
+      expect(parseHyphenatedPairValue('100ml')).to.equal('0 100ml');
     });
 
     it('should handle trailing hyphen (empty unit)', () => {
-      expect(parseUnitValues('g-')).to.equal('g ');
+      expect(parseHyphenatedPairValue('g-')).to.equal('g ');
     });
   });
 });

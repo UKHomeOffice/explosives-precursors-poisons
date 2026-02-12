@@ -325,9 +325,8 @@ module.exports = {
   'how-much-precursor': amountWithUnitSelectComponent('how-much-precursor', {
     legend: { className: 'govuk-fieldset__legend--s' },
     mixin: 'input-amount-with-unit-select',
-    amountOptional: 'false',
-    validate: helpers.amountWithUnitSelectComponentValidators,
-    parse: val => helpers.parseUnitValues(val)
+    validate: helpers.precursorAndPoisonQuantityValidators,
+    parse: val => helpers.parseHyphenatedPairValue(val)
   }),
   'what-concentration-precursor': {
     mixin: 'input-text',
@@ -423,9 +422,8 @@ module.exports = {
   'how-much-poison': amountWithUnitSelectComponent('how-much-poison', {
     legend: { className: 'govuk-fieldset__legend--s' },
     mixin: 'input-amount-with-unit-select',
-    amountOptional: 'false',
-    validate: helpers.amountWithUnitSelectComponentValidators,
-    parse: val => helpers.parseUnitValues(val)
+    validate: helpers.precursorAndPoisonQuantityValidators,
+    parse: val => helpers.parseHyphenatedPairValue(val)
   }),
   'compound-or-salt': {
     mixin: 'textarea',

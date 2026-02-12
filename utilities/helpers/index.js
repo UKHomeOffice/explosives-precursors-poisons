@@ -9,7 +9,7 @@ const DEFAULT_AGGREGATOR_LIMIT = 100;
 const TEXT_NOT_PROVIDED = 'Not provided';
 const DATE_FORMAT_YYYY_MM_DD = 'YYYY-MM-DD';
 
-const amountWithUnitSelectComponentValidators = [
+const precursorAndPoisonQuantityValidators = [
   'required',
   { type: 'regex', arguments: AMOUNT_DECIMAL_REGEX },
   { type: 'max', arguments: 999999 },
@@ -320,7 +320,7 @@ const showCounterSignatoryDetails = (value, req) => {
     : null;
 };
 
-const parseUnitValues = val => {
+const parseHyphenatedPairValue = val => {
   return val
     ? (val.substring(0, val.lastIndexOf('-')) || '0') +
         ' ' +
@@ -349,8 +349,8 @@ module.exports = {
   displayOptionalField,
   formatAttachments,
   showCounterSignatoryDetails,
-  parseUnitValues,
-  amountWithUnitSelectComponentValidators,
+  parseHyphenatedPairValue,
+  precursorAndPoisonQuantityValidators,
   NotifyClient:
     config.govukNotify.notifyApiKey === 'USE_MOCK'
       ? NotifyMock
