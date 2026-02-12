@@ -1,12 +1,15 @@
 const titles = require('../../../utilities/constants/titles');
 const dateComponent = require('hof').components.date;
+const amountWithUnitSelectComponent = require('hof').components.amountWithUnitSelect;
 const poisonsList = require('../../../utilities/constants/poisons.js');
 const countersignatoryYears = require('../../../utilities/constants/countersignatory-years.js');
 const {
   isValidUkDrivingLicenceNumber,
   validInternationalPhoneNumber,
   textAreaDefaultLength,
-  isValidConcentrationValue
+  isValidConcentrationValue,
+  parseHyphenatedPairValue,
+  precursorAndPoisonQuantityValidators
 } = require('../../../utilities/helpers');
 const countries = require('../../../utilities/constants/countries');
 const policeForces = require('../../../utilities/constants/police-forces.js');
@@ -427,12 +430,12 @@ module.exports = {
     attributes: [{ attribute: 'rows', value: 5 }],
     labelClassName: 'govuk-label--s'
   },
-  'how-much-poison': {
-    mixin: 'input-text',
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
-    className: ['govuk-input', 'govuk-input--width-10'],
-    labelClassName: 'govuk-label--s'
-  },
+  'how-much-poison': amountWithUnitSelectComponent('how-much-poison', {
+    legend: { className: 'govuk-fieldset__legend--s' },
+    mixin: 'input-amount-with-unit-select',
+    validate: precursorAndPoisonQuantityValidators,
+    parse: val => parseHyphenatedPairValue(val)
+  }),
   'compound-or-salt': {
     mixin: 'textarea',
     validate: ['required', 'notUrl', textAreaDefaultLength],
@@ -634,12 +637,12 @@ module.exports = {
     attributes: [{ attribute: 'rows', value: 5 }],
     labelClassName: 'govuk-label--s'
   },
-  'how-much-precursor': {
-    mixin: 'input-text',
-    validate: ['required', 'notUrl', { type: 'maxlength', arguments: 250 }],
-    className: ['govuk-input', 'govuk-input--width-10'],
-    labelClassName: 'govuk-label--s'
-  },
+  'how-much-precursor': amountWithUnitSelectComponent('how-much-precursor', {
+    legend: { className: 'govuk-fieldset__legend--s' },
+    mixin: 'input-amount-with-unit-select',
+    validate: precursorAndPoisonQuantityValidators,
+    parse: val => parseHyphenatedPairValue(val)
+  }),
   'what-concentration-precursor': {
     mixin: 'input-text',
     validate: [

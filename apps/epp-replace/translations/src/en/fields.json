@@ -233,9 +233,16 @@
   "summary-heading": "Why do you need it?"
 },
 "how-much-precursor": {
-  "label": "How much do you wish to acquire at any one time within a 6-month period?",
-  "hint": "Enter the amount and the unit. For example, 10 litres",
-  "summary-heading": "How much do you wish to acquire at any one time within a 6-month period?"
+  "legend": "How much do you wish to acquire at any one time within a 6-month period?",
+  "hint": "Enter an amount and select the relevant unit",
+  "summary-heading": "How much",
+  "options": [
+    { "null": "Select a unit" },
+    { "label": "Grams", "value": "grams" },
+    { "label": "Kilograms", "value": "kilograms" },
+    { "label": "Litres", "value": "litres" },
+    { "label": "Millilitres", "value": "millilitres" }
+  ]
 },
 "what-concentration-precursor": {
   "label": "What concentration % w/w of the substance do you need?",
@@ -300,9 +307,16 @@
     "summary-heading": "Why do you need it?"
   },
   "how-much-poison": {
-    "label": "How much do you wish to acquire at any one time within a 6-month period?",
-    "hint": "Enter the amount and the unit. For example, 10 litres",
-    "summary-heading": "How much do you wish to acquire at any one time within a 6-month period?"
+    "legend": "How much do you wish to acquire at any one time within a 6-month period?",
+    "hint": "Enter an amount and select the relevant unit",
+    "summary-heading": "How much",
+    "options": [
+      { "null": "Select a unit" },
+      { "label": "Grams", "value": "grams" },
+      { "label": "Kilograms", "value": "kilograms" },
+      { "label": "Litres", "value": "litres" },
+      { "label": "Millilitres", "value": "millilitres" }
+    ]
   },
   "compound-or-salt": {
     "label": "Specific compound or salt",
