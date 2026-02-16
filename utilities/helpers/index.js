@@ -3,11 +3,18 @@ const validators = require('hof/controller/validation/validators');
 const explosivePrecursorsList = require('../constants/explosive-precursors');
 const poisonList = require('../constants/poisons');
 const config = require('../../config');
-const { SUBSTANCES } = require('../constants/string-constants');
+const { SUBSTANCES, AMOUNT_DECIMAL_REGEX } = require('../constants/string-constants');
 
 const DEFAULT_AGGREGATOR_LIMIT = 100;
 const TEXT_NOT_PROVIDED = 'Not provided';
 const DATE_FORMAT_YYYY_MM_DD = 'YYYY-MM-DD';
+
+const precursorAndPoisonQuantityValidators = [
+  'required',
+  { type: 'regex', arguments: AMOUNT_DECIMAL_REGEX },
+  { type: 'max', arguments: 999999 },
+  { type: 'min', arguments: 0.01 }
+];
 
 class NotifyMock {
   sendEmail() {
@@ -313,6 +320,14 @@ const showCounterSignatoryDetails = (value, req) => {
     : null;
 };
 
+const parseHyphenatedPairValue = val => {
+  return val
+    ? (val.substring(0, val.lastIndexOf('-')) || '0') +
+        ' ' +
+        val.substring(val.lastIndexOf('-') + 1)
+    : '';
+};
+
 module.exports = {
   isLicenceValid,
   isApplicationType,
@@ -334,6 +349,8 @@ module.exports = {
   displayOptionalField,
   formatAttachments,
   showCounterSignatoryDetails,
+  parseHyphenatedPairValue,
+  precursorAndPoisonQuantityValidators,
   NotifyClient:
     config.govukNotify.notifyApiKey === 'USE_MOCK'
       ? NotifyMock

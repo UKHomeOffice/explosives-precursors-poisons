@@ -30,6 +30,8 @@ const SUBSTANCES = {
   POISON: 'poison'
 };
 
+const AMOUNT_DECIMAL_REGEX = /^[\d]*\.?\d+$/;
+
 module.exports = {
   PATH_NEW_RENEW,
   PATH_AMEND,
@@ -51,5 +53,6 @@ module.exports = {
   API_METHODS,
   SUBSTANCES,
   PATH_APPLICATION_TYPE,
-  PATH_SERVICE_PROBLEM
+  PATH_SERVICE_PROBLEM,
+  AMOUNT_DECIMAL_REGEX
 };
