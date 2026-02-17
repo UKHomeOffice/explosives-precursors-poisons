@@ -341,8 +341,6 @@ module.exports = {
   DEFAULT_AGGREGATOR_LIMIT,
   TEXT_NOT_PROVIDED,
   DATE_FORMAT_YYYY_MM_DD,
-  parseHyphenatedPairValue,
-  precursorAndPoisonQuantityValidators,
   getFormattedDate,
   isEditMode,
   getSubstanceShortLabel,
