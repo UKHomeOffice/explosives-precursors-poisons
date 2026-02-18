@@ -28,6 +28,8 @@ const NoPrecursorsPoisonsNavigation = require('./behaviours/no-precursors-poison
 const NoSubstanceChangeNavigation = require('./behaviours/no-substance-change-navigation');
 const DeleteRedundantDocuments = require('../epp-common/behaviours/delete-redundant-documents');
 const preventDuplicateSelection = require('../epp-common/behaviours/prevent-duplicate-selection');
+const ExecuteFieldCustomParse = require('../epp-common/behaviours/execute-field-custom-parse');
+
 const { disallowIndexing } = require('../../config');
 
 const pages = {};
@@ -456,6 +458,7 @@ module.exports = {
     '/precursors-summary': {
       behaviours: [
         AggregateSaveEditPrecursorPoison,
+        ExecuteFieldCustomParse,
         ParseSummaryPrecursorsPoisons,
         EditRouteReturn
       ],
@@ -467,6 +470,10 @@ module.exports = {
         'what-concentration-precursor',
         'where-to-store-precursor',
         'where-to-use-precursor'
+      ],
+      additionalFieldsToClear: [
+        'how-much-precursor-amount',
+        'how-much-precursor-unit'
       ],
       titleField: ['precursor-field'],
       addStep: 'select-precursor',
@@ -527,6 +534,7 @@ module.exports = {
       behaviours: [
         CounterSignatoryNavigation('/poison-summary'),
         AggregateSaveEditPrecursorPoison,
+        ExecuteFieldCustomParse,
         ParseSummaryPrecursorsPoisons,
         EditRouteReturn
       ],
@@ -539,6 +547,10 @@ module.exports = {
         'what-concentration-poison',
         'where-to-store-poison',
         'where-to-use-poison'
+      ],
+      additionalFieldsToClear: [
+        'how-much-poison-amount',
+        'how-much-poison-unit'
       ],
       titleField: ['poison-field'],
       addStep: 'select-poisons',
