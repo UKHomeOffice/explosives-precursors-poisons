@@ -4,7 +4,7 @@
   "description": "Explosives Precursors and Poisons form",
   "main": "index.js",
   "engines": {
-    "node": ">=20.16.0 <21.0.0"
+    "node": ">=20.19.0 <21.0.0"
   },
   "scripts": {
     "start": "node server.js",
@@ -36,7 +36,7 @@
     "bl": "^6.1.3",
     "busboy": "^1.6.0",
     "crypto-random-string": "^5.0.0",
-    "hof": "^22.14.0",
+    "hof": "23.0.4-session-timeout-beta-2",
     "jquery": "^3.6.3",
     "jsdom": "^26.0.1",
     "lodash": "^4.17.23",
