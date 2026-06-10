@@ -280,6 +280,7 @@ steps:
       KUBE_TOKEN:
         from_secret: kube_token_prod
       REDIS_PERSISTENCE_ENABLED: "true"
+      REDIS_PERSISTENCE_STORAGE_CLASS: gp2-encrypted
       REDIS_PERSISTENCE_SIZE: "1Gi"
     commands:
       - bin/deploy.sh $${STG_ENV}
@@ -334,6 +335,7 @@ steps:
       KUBE_TOKEN:
         from_secret: kube_token_prod
       REDIS_PERSISTENCE_ENABLED: "true"
+      REDIS_PERSISTENCE_STORAGE_CLASS: gp2-encrypted
       REDIS_PERSISTENCE_SIZE: "10Gi"
     commands:
       - bin/deploy.sh $${PROD_ENV}
