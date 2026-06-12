@@ -5,6 +5,7 @@ have a valid Explosives Precursors and Poisons (EPP) licence issued by the Home 
 
 ## Getting Started
 
+
 - [Install & run locally](#install--run-the-application-locally)
 - [Install & run locally with Docker Compose](#install--run-the-application-locally-with-docker-compose)
 - [Install & run locally with VS Code Devcontainers](#install--run-the-application-locally-with-vs-code-dev-containers)
