@@ -201,6 +201,7 @@ steps:
         from_secret: kube_server_dev
       KUBE_TOKEN:
         from_secret: kube_token_dev
+      REDIS_PERSISTENCE_ENABLED: "false"
     commands:
       - bin/deploy.sh $${BRANCH_ENV}
     when:
@@ -279,6 +280,7 @@ steps:
         from_secret: kube_server_prod
       KUBE_TOKEN:
         from_secret: kube_token_prod
+      REDIS_PERSISTENCE_ENABLED: "false"
     commands:
       - bin/deploy.sh $${STG_ENV}
     when:
