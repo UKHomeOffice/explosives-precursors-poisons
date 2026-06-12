@@ -287,7 +287,7 @@ steps:
     when:
       branch:
         <<: *include_default_branch
-      event: [push, pull_request]
+      event: push
     depends_on:
       - clone_repos
       - build_image_and_push_to_ecr
