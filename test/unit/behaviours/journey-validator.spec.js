@@ -1,4 +1,4 @@
-const proxyquire = require('proxyquire');
+const JourneyValidatorBehaviour = require('../../../apps/epp-common/behaviours/journey-validator');
 
 describe('journey-validator tests', () => {
   let JourneyValidator;
@@ -15,27 +15,24 @@ describe('journey-validator tests', () => {
   beforeEach(() => {
     req = {
       sessionModel: {
-        get: sinon.stub()
+        get: mockFn()
       },
       baseUrl: ''
     };
     res = {};
-    next = sinon.stub();
+    next = mockFn();
 
-    JourneyValidator = proxyquire(
-      '../../../apps/epp-common/behaviours/journey-validator',
-      {}
-    )(Base);
+    JourneyValidator = JourneyValidatorBehaviour(Base);
   });
 
   it(
     'should throw an error if application type does not not match with the URL - ' +
       'application type new',
     () => {
-      req.sessionModel.get.withArgs('applicationType').returns('new');
+      req.sessionModel.get.withArgs('applicationType').mockReturnValue('new');
       req.baseUrl = '/replace';
       const instance = new JourneyValidator();
-      expect(() => instance.getValues(req, res, next)).to.throw(
+      expect(() => instance.getValues(req, res, next)).toThrow(
         'Selected application type does not match with the URL'
       );
     }
@@ -45,10 +42,10 @@ describe('journey-validator tests', () => {
     'should throw an error if application type does not not match with the URL - ' +
       'application type amend',
     () => {
-      req.sessionModel.get.withArgs('applicationType').returns('amend');
+      req.sessionModel.get.withArgs('applicationType').mockReturnValue('amend');
       req.baseUrl = '/new-renew';
       const instance = new JourneyValidator();
-      expect(() => instance.getValues(req, res, next)).to.throw(
+      expect(() => instance.getValues(req, res, next)).toThrow(
         'Selected application type does not match with the URL'
       );
     }
@@ -58,10 +55,10 @@ describe('journey-validator tests', () => {
     'should throw an error if application type does not not match with the URL - ' +
       'application type renew',
     () => {
-      req.sessionModel.get.withArgs('applicationType').returns('renew');
+      req.sessionModel.get.withArgs('applicationType').mockReturnValue('renew');
       req.baseUrl = '/amend';
       const instance = new JourneyValidator();
-      expect(() => instance.getValues(req, res, next)).to.throw(
+      expect(() => instance.getValues(req, res, next)).toThrow(
         'Selected application type does not match with the URL'
       );
     }
@@ -71,10 +68,12 @@ describe('journey-validator tests', () => {
     'should throw an error if application type does not not match with the URL - ' +
       'application type replace',
     () => {
-      req.sessionModel.get.withArgs('applicationType').returns('replace');
+      req.sessionModel.get
+        .withArgs('applicationType')
+        .mockReturnValue('replace');
       req.baseUrl = '/new-renew';
       const instance = new JourneyValidator();
-      expect(() => instance.getValues(req, res, next)).to.throw(
+      expect(() => instance.getValues(req, res, next)).toThrow(
         'Selected application type does not match with the URL'
       );
     }
@@ -84,12 +83,12 @@ describe('journey-validator tests', () => {
     'should successfully call super.getValues when application type matches with URL - ' +
       'application type new',
     () => {
-      req.sessionModel.get.withArgs('applicationType').returns('new');
+      req.sessionModel.get.withArgs('applicationType').mockReturnValue('new');
       req.baseUrl = '/new-renew';
       const instance = new JourneyValidator();
       instance.getValues(req, res, next);
-      expect(next.called).to.be.true;
-      expect(() => instance.getValues(req, res, next)).to.not.throw();
+      expect(next.called).toBe(true);
+      expect(() => instance.getValues(req, res, next)).not.toThrow();
     }
   );
 
@@ -97,12 +96,12 @@ describe('journey-validator tests', () => {
     'should successfully call super.getValues when application type matches with URL - ' +
       'application type amend',
     () => {
-      req.sessionModel.get.withArgs('applicationType').returns('amend');
+      req.sessionModel.get.withArgs('applicationType').mockReturnValue('amend');
       req.baseUrl = '/amend';
       const instance = new JourneyValidator();
       instance.getValues(req, res, next);
-      expect(next.called).to.be.true;
-      expect(() => instance.getValues(req, res, next)).to.not.throw();
+      expect(next.called).toBe(true);
+      expect(() => instance.getValues(req, res, next)).not.toThrow();
     }
   );
 
@@ -110,12 +109,12 @@ describe('journey-validator tests', () => {
     'should successfully call super.getValues when application type matches with URL - ' +
       'application type renew',
     () => {
-      req.sessionModel.get.withArgs('applicationType').returns('renew');
+      req.sessionModel.get.withArgs('applicationType').mockReturnValue('renew');
       req.baseUrl = '/new-renew';
       const instance = new JourneyValidator();
       instance.getValues(req, res, next);
-      expect(next.called).to.be.true;
-      expect(() => instance.getValues(req, res, next)).to.not.throw();
+      expect(next.called).toBe(true);
+      expect(() => instance.getValues(req, res, next)).not.toThrow();
     }
   );
 
@@ -123,12 +122,14 @@ describe('journey-validator tests', () => {
     'should successfully call super.getValues when application type matches with URL - ' +
       'application type replace',
     () => {
-      req.sessionModel.get.withArgs('applicationType').returns('replace');
+      req.sessionModel.get
+        .withArgs('applicationType')
+        .mockReturnValue('replace');
       req.baseUrl = '/replace';
       const instance = new JourneyValidator();
       instance.getValues(req, res, next);
-      expect(next.called).to.be.true;
-      expect(() => instance.getValues(req, res, next)).to.not.throw();
+      expect(next.called).toBe(true);
+      expect(() => instance.getValues(req, res, next)).not.toThrow();
     }
   );
 });

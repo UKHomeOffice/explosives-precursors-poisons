@@ -4,8 +4,7 @@ require('hof/frontend/themes/gov-uk/client-js');
 const govuk = require('govuk-frontend');
 
 const accessibleAutocomplete = require('accessible-autocomplete');
-
-const config = require('../../config.js');
+const uploadConfig = require('../../utilities/constants/upload-config.json');
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -78,11 +77,11 @@ document.addEventListener('DOMContentLoaded', () => {
       fileUploadStatusHandler('ready');
       const fileInfo = fileUpload.files && fileUpload.files.length > 0 ? fileUpload.files[0] : null;
       if (fileInfo) {
-        if (fileInfo.size > config.upload.maxFileSizeInBytes) {
+        if (fileInfo.size > uploadConfig.maxFileSizeInBytes) {
           fileUploadStatusHandler('error', 'maxFileSize');
           return;
         }
-        if (!config.upload.allowedMimeTypes.includes(fileInfo.type) ) {
+        if (!uploadConfig.allowedMimeTypes.includes(fileInfo.type) ) {
           fileUploadStatusHandler('error', 'fileType');
           return;
         }

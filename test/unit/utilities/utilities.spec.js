@@ -34,7 +34,7 @@ describe('EPP utilities tests', () => {
       '12a1234562015'
     ];
     licenceNumbers.forEach(licenceNumber =>
-      expect(validLicenceNumber(licenceNumber)).to.not.equal(null)
+      expect(validLicenceNumber(licenceNumber)).not.toBeNull()
     );
   });
 
@@ -48,18 +48,18 @@ describe('EPP utilities tests', () => {
       '12a1234562015285'
     ];
     licenceNumbers.forEach(licenceNumber =>
-      expect(validLicenceNumber(licenceNumber)).to.equal(null)
+      expect(validLicenceNumber(licenceNumber)).toBe(null)
     );
   });
 
   it('.isWithoutFullStop - should return false for string with a full stop', () => {
     const input = ['122.5', '.', '0.67', '52.2.5', '..', '00.00'];
-    input.forEach(item => expect(isWithoutFullStop(item)).to.be.false);
+    input.forEach(item => expect(isWithoutFullStop(item)).toBe(false));
   });
 
   it('.isWithoutFullStop - should return true for string without a full stop', () => {
     const input = ['1225', 'UNIT_TEST', 'HELLOWORLD', 'A', '', '0000'];
-    input.forEach(item => expect(isWithoutFullStop(item)).to.be.true);
+    input.forEach(item => expect(isWithoutFullStop(item)).toBe(true));
   });
 
   it('.getKeyByValue - should return key name for the given value', () => {
@@ -70,7 +70,7 @@ describe('EPP utilities tests', () => {
     };
 
     for (const [key, value] of Object.entries(obj)) {
-      expect(getKeyByValue(obj, value)).to.equal(key);
+      expect(getKeyByValue(obj, value)).toBe(key);
     }
   });
 
@@ -80,8 +80,8 @@ describe('EPP utilities tests', () => {
       key2: 'value2',
       key3: 'value3'
     };
-    expect(getKeyByValue(obj, 'value4')).to.be.undefined;
-    expect(getKeyByValue({}, 'value1')).to.be.undefined;
+    expect(getKeyByValue(obj, 'value4')).toBeUndefined();
+    expect(getKeyByValue({}, 'value1')).toBeUndefined();
   });
 
   it('.isDateOlderOrEqualTo - should return false for dates less than 5 years', () => {
@@ -95,7 +95,7 @@ describe('EPP utilities tests', () => {
       ''
     ];
     for (const date of dates) {
-      expect(isDateOlderOrEqualTo(`${date}`, 5)).to.be.false;
+      expect(isDateOlderOrEqualTo(`${date}`, 5)).toBe(false);
     }
   });
 
@@ -107,7 +107,7 @@ describe('EPP utilities tests', () => {
       moment().subtract('80', 'years').format('YYYY-MM-DD')
     ];
     for (const date of dates) {
-      expect(isDateOlderOrEqualTo(`${date}`, 5)).to.be.true;
+      expect(isDateOlderOrEqualTo(`${date}`, 5)).toBe(true);
     }
   });
 
@@ -120,7 +120,7 @@ describe('EPP utilities tests', () => {
       'Smith816305DF5Ew'
     ];
     input.forEach(item =>
-      expect(isValidUkDrivingLicenceNumber(item)).to.not.equal(null)
+      expect(isValidUkDrivingLicenceNumber(item)).not.toBeNull()
     );
   });
 
@@ -132,7 +132,7 @@ describe('EPP utilities tests', () => {
       '1VEET382940AZ9AZ'
     ];
     input.forEach(item =>
-      expect(isValidUkDrivingLicenceNumber(item)).to.equal(null)
+      expect(isValidUkDrivingLicenceNumber(item)).toBe(null)
     );
   });
   it('.validInternationalPhoneNumber - should return false for invalid formats', () => {
@@ -146,9 +146,8 @@ describe('EPP utilities tests', () => {
       '0109758351',
       'HelloWorld07777777777'
     ];
-    phoneNumbers.forEach(
-      phoneNumber =>
-        expect(validInternationalPhoneNumber(phoneNumber)).to.be.false
+    phoneNumbers.forEach(phoneNumber =>
+      expect(validInternationalPhoneNumber(phoneNumber)).toBe(false)
     );
   });
 
@@ -162,20 +161,19 @@ describe('EPP utilities tests', () => {
       '+44020 79460000',
       '07 7 77 77 77 77'
     ];
-    phoneNumbers.forEach(
-      phoneNumber =>
-        expect(validInternationalPhoneNumber(phoneNumber)).to.be.true
+    phoneNumbers.forEach(phoneNumber =>
+      expect(validInternationalPhoneNumber(phoneNumber)).toBe(true)
     );
   });
 
   it('.removeWhiteSpace - should remove the whitespace', () => {
-    expect(removeWhiteSpace('Hello World')).to.equal('HelloWorld');
-    expect(removeWhiteSpace('1 2 3 4 5 ')).to.equal('12345');
+    expect(removeWhiteSpace('Hello World')).toBe('HelloWorld');
+    expect(removeWhiteSpace('1 2 3 4 5 ')).toBe('12345');
   });
 
   it('.getFormattedDate - should return the formatted date for valid dates', () => {
-    expect(getFormattedDate('2000-01-01')).to.equal('01 January 2000');
-    expect(getFormattedDate('2000-01-28')).to.equal('28 January 2000');
+    expect(getFormattedDate('2000-01-01')).toBe('01 January 2000');
+    expect(getFormattedDate('2000-01-28')).toBe('28 January 2000');
   });
 
   it('.getFormattedDate - should return empty string for non date inputs', () => {
@@ -188,7 +186,7 @@ describe('EPP utilities tests', () => {
       ''
     ];
     for (const invalidDate of invalidDates) {
-      expect(getFormattedDate(invalidDate)).to.equal('');
+      expect(getFormattedDate(invalidDate)).toBe('');
     }
   });
 
@@ -203,7 +201,7 @@ describe('EPP utilities tests', () => {
     for (const url of urls) {
       const { pathname, search } = new URL(url);
       const originalUrl = pathname + search;
-      expect(isEditMode({ originalUrl })).to.be.true;
+      expect(isEditMode({ originalUrl })).toBe(true);
     }
   });
 
@@ -218,7 +216,7 @@ describe('EPP utilities tests', () => {
     for (const url of urls) {
       const { pathname, search } = new URL(url);
       const originalUrl = pathname + search;
-      expect(isEditMode({ originalUrl })).to.be.false;
+      expect(isEditMode({ originalUrl })).toBe(false);
     }
   });
 
@@ -226,15 +224,15 @@ describe('EPP utilities tests', () => {
     for (const explosivePrecursors of explosivePrecursorsList) {
       expect(
         getSubstanceShortLabel(explosivePrecursors.label, SUBSTANCES.PRECURSOR)
-      ).to.be.equal(explosivePrecursors.shortLabel);
+      ).toBe(explosivePrecursors.shortLabel);
     }
   });
 
   it('.getSubstanceShortLabel - should return the shortLabel for the given poison label', () => {
     for (const poison of poisonsList) {
-      expect(
-        getSubstanceShortLabel(poison.label, SUBSTANCES.POISON)
-      ).to.be.equal(poison.shortLabel);
+      expect(getSubstanceShortLabel(poison.label, SUBSTANCES.POISON)).toBe(
+        poison.shortLabel
+      );
     }
   });
 
@@ -245,75 +243,67 @@ describe('EPP utilities tests', () => {
           `Why do you need ${explosivePrecursors.label}`,
           SUBSTANCES.PRECURSOR
         )
-      ).to.be.equal(`Why do you need ${explosivePrecursors.shortLabel}`);
+      ).toBe(`Why do you need ${explosivePrecursors.shortLabel}`);
 
       expect(
         getSubstanceShortLabel(
           `Where will you store the ${explosivePrecursors.label}`,
           SUBSTANCES.PRECURSOR
         )
-      ).to.be.equal(
-        `Where will you store the ${explosivePrecursors.shortLabel}`
-      );
+      ).toBe(`Where will you store the ${explosivePrecursors.shortLabel}`);
 
       expect(
         getSubstanceShortLabel(
           `Where will you use the ${explosivePrecursors.label}`,
           SUBSTANCES.PRECURSOR
         )
-      ).to.be.equal(`Where will you use the ${explosivePrecursors.shortLabel}`);
+      ).toBe(`Where will you use the ${explosivePrecursors.shortLabel}`);
 
       expect(
         getSubstanceShortLabel(
           `Storage address for the ${explosivePrecursors.label}`,
           SUBSTANCES.PRECURSOR
         )
-      ).to.be.equal(
-        `Storage address for the ${explosivePrecursors.shortLabel}`
-      );
+      ).toBe(`Storage address for the ${explosivePrecursors.shortLabel}`);
 
       expect(
         getSubstanceShortLabel(
           `Usage address for the ${explosivePrecursors.label}`,
           SUBSTANCES.PRECURSOR
         )
-      ).to.be.equal(`Usage address for the ${explosivePrecursors.shortLabel}`);
+      ).toBe(`Usage address for the ${explosivePrecursors.shortLabel}`);
     }
   });
 
   it('.getSubstanceShortLabel - should return original result for falsy or non string inputs', () => {
     const inputs = [null, undefined, '', 1, true, {}];
     for (const input of inputs) {
-      expect(getSubstanceShortLabel(input, SUBSTANCES.PRECURSOR)).to.be.equal(
-        input
-      );
+      expect(getSubstanceShortLabel(input, SUBSTANCES.PRECURSOR)).toBe(input);
     }
   });
 
   it('.getSubstanceShortLabel - should return original result for unknown strings', () => {
     const inputs = ['Hello World', 'Unit test', 'random-text'];
     for (const input of inputs) {
-      expect(getSubstanceShortLabel(input, SUBSTANCES.PRECURSOR)).to.be.equal(
-        input
-      );
+      expect(getSubstanceShortLabel(input, SUBSTANCES.PRECURSOR)).toBe(input);
     }
   });
 
   it('.textAreaDefaultLength - should return false when the input is greater than 2000', () => {
     const str = 'E'.repeat(2001);
-    expect(textAreaDefaultLength(str)).to.be.false;
+    expect(textAreaDefaultLength(str)).toBe(false);
   });
 
   it('.textAreaDefaultLength - should return true when the input is less than or equal to 2000', () => {
-    expect(textAreaDefaultLength('E'.repeat(1999))).to.be.true;
-    expect(textAreaDefaultLength('E'.repeat(1000))).to.be.true;
-    expect(textAreaDefaultLength('E'.repeat(2000))).to.be.true;
+    expect(textAreaDefaultLength('E'.repeat(1999))).toBe(true);
+    expect(textAreaDefaultLength('E'.repeat(1000))).toBe(true);
+    expect(textAreaDefaultLength('E'.repeat(2000))).toBe(true);
   });
 
   it('.isValidConcentrationValue - should return null for invalid formats', () => {
     const inputs = ['TEST', '1.024.', '.0.0', 'undefined'];
     inputs.forEach(input =>
-      expect(isValidConcentrationValue(input)).to.equal(null)
+      expect(isValidConcentrationValue(input)).toBe(null)
     );
   });
 
@@ -330,7 +320,7 @@ describe('EPP utilities tests', () => {
       '100%'
     ];
     inputs.forEach(input =>
-      expect(isValidConcentrationValue(input)).to.not.equal(null)
+      expect(isValidConcentrationValue(input)).not.toBeNull()
     );
   });
 
@@ -349,8 +339,8 @@ describe('EPP utilities tests', () => {
       };
       const result = isLicenceValid(req);
 
-      expect(result.isValid).to.be.true;
-      expect(result.fieldName).to.equal('new-renew-licence-number');
+      expect(result.isValid).toBe(true);
+      expect(result.fieldName).toBe('new-renew-licence-number');
     });
 
     it('should be invalid for length less than 13', () => {
@@ -367,9 +357,9 @@ describe('EPP utilities tests', () => {
       };
       const result = isLicenceValid(req);
 
-      expect(result.isValid).to.be.false;
-      expect(result.errorType).to.equal('licence-length-restriction');
-      expect(result.fieldName).to.equal('new-renew-licence-number');
+      expect(result.isValid).toBe(false);
+      expect(result.errorType).toBe('licence-length-restriction');
+      expect(result.fieldName).toBe('new-renew-licence-number');
     });
 
     it('should be invalid for length greater than 16', () => {
@@ -386,9 +376,9 @@ describe('EPP utilities tests', () => {
       };
       const result = isLicenceValid(req);
 
-      expect(result.isValid).to.be.false;
-      expect(result.errorType).to.equal('licence-length-restriction');
-      expect(result.fieldName).to.equal('new-renew-licence-number');
+      expect(result.isValid).toBe(false);
+      expect(result.errorType).toBe('licence-length-restriction');
+      expect(result.fieldName).toBe('new-renew-licence-number');
     });
 
     it('should throw an error for unsupported application type', () => {
@@ -404,7 +394,7 @@ describe('EPP utilities tests', () => {
         log: () => {}
       };
 
-      expect(() => isLicenceValid(req)).to.throw('Unknown application type');
+      expect(() => isLicenceValid(req)).toThrow('Unknown application type');
     });
 
     it('should be valid for correct format licence number', () => {
@@ -421,9 +411,9 @@ describe('EPP utilities tests', () => {
       };
 
       const result = isLicenceValid(req);
-      expect(result.isValid).to.be.true;
-      expect(result.fieldName).to.equal('replace-licence-number');
-      expect(result.errorType).to.equal(undefined);
+      expect(result.isValid).toBe(true);
+      expect(result.fieldName).toBe('replace-licence-number');
+      expect(result.errorType).toBe(undefined);
     });
   });
 
@@ -431,34 +421,42 @@ describe('EPP utilities tests', () => {
     it('should return null if req.sessionModel is not defined', () => {
       const req = {};
       const result = displayOptionalField(req, 'step1', 'value1');
-      expect(result).to.be.null;
+      expect(result).toBeNull();
     });
 
     it('should return null if req.sessionModel.get("steps") is not defined', () => {
-      const req = { sessionModel: { get: sinon.stub().returns(undefined) } };
+      const req = {
+        sessionModel: { get: mockFn().mockReturnValue(undefined) }
+      };
       const result = displayOptionalField(req, 'step1', 'value1');
-      expect(result).to.be.null;
+      expect(result).toBeNull();
     });
 
     it('should return null if req.sessionModel.get("steps") does not include the step', () => {
-      const req = { sessionModel: { get: sinon.stub().returns(['step2']) } };
+      const req = {
+        sessionModel: { get: mockFn().mockReturnValue(['step2']) }
+      };
       const result = displayOptionalField(req, 'step1', 'value1');
-      expect(result).to.be.null;
+      expect(result).toBeNull();
     });
 
     it('should return the value if req.sessionModel.get("steps") includes the step and value is provided', () => {
-      const req = { sessionModel: { get: sinon.stub().returns(['step1']) } };
+      const req = {
+        sessionModel: { get: mockFn().mockReturnValue(['step1']) }
+      };
       const result = displayOptionalField(req, 'step1', 'value1');
-      expect(result).to.equal('value1');
+      expect(result).toBe('value1');
     });
 
     it(
       'should return "Not provided" if req.sessionModel.get("steps") includes the ' +
         'step and value is not provided',
       () => {
-        const req = { sessionModel: { get: sinon.stub().returns(['step1']) } };
+        const req = {
+          sessionModel: { get: mockFn().mockReturnValue(['step1']) }
+        };
         const result = displayOptionalField(req, 'step1');
-        expect(result).to.equal('Not provided');
+        expect(result).toBe('Not provided');
       }
     );
   });
@@ -467,140 +465,158 @@ describe('EPP utilities tests', () => {
     it('should return empty string if req.sessionModel is not defined', () => {
       const req = {};
       const result = formatAttachments(['doc1', 'doc2'], req, 'step1');
-      expect(result).to.equal('');
+      expect(result).toBe('');
     });
 
     it('should return empty string if req.sessionModel.get("steps") is not defined', () => {
-      const req = { sessionModel: { get: sinon.stub().returns(undefined) } };
+      const req = {
+        sessionModel: { get: mockFn().mockReturnValue(undefined) }
+      };
       const result = formatAttachments(['doc1', 'doc2'], req, 'step1');
-      expect(result).to.equal('');
+      expect(result).toBe('');
     });
 
     it('should return empty string if req.sessionModel.get("steps") does not include the step', () => {
-      const req = { sessionModel: { get: sinon.stub().returns(['step2']) } };
+      const req = {
+        sessionModel: { get: mockFn().mockReturnValue(['step2']) }
+      };
       const result = formatAttachments(['doc1', 'doc2'], req, 'step1');
-      expect(result).to.equal('');
+      expect(result).toBe('');
     });
 
     it('should return empty string if documents is not an array', () => {
-      const req = { sessionModel: { get: sinon.stub().returns(['step1']) } };
+      const req = {
+        sessionModel: { get: mockFn().mockReturnValue(['step1']) }
+      };
       const result = formatAttachments('doc1', req, 'step1');
-      expect(result).to.equal('');
+      expect(result).toBe('');
     });
 
     it('should return empty string if documents is an empty array', () => {
-      const req = { sessionModel: { get: sinon.stub().returns(['step1']) } };
+      const req = {
+        sessionModel: { get: mockFn().mockReturnValue(['step1']) }
+      };
       const result = formatAttachments([], req, 'step1');
-      expect(result).to.equal('');
+      expect(result).toBe('');
     });
 
     it(
       'should return formatted document names if req.sessionModel.get("steps") ' +
         'includes the step and documents is a non-empty array',
       () => {
-        const req = { sessionModel: { get: sinon.stub().returns(['step1']) } };
+        const req = {
+          sessionModel: { get: mockFn().mockReturnValue(['step1']) }
+        };
         const documents = [{ name: 'doc1' }, { name: 'doc2' }];
         const result = formatAttachments(documents, req, 'step1');
-        expect(result).to.equal('doc1\n\ndoc2');
+        expect(result).toBe('doc1\n\ndoc2');
       }
     );
 
     it('should handle documents with missing names gracefully', () => {
-      const req = { sessionModel: { get: sinon.stub().returns(['step1']) } };
+      const req = {
+        sessionModel: { get: mockFn().mockReturnValue(['step1']) }
+      };
       const documents = [{ name: 'doc1' }, {}, { name: 'doc2' }];
       const result = formatAttachments(documents, req, 'step1');
-      expect(result).to.equal('doc1\n\n\n\ndoc2');
+      expect(result).toBe('doc1\n\n\n\ndoc2');
     });
   });
 
   describe('showCounterSignatoryDetails', () => {
     it('should return null - no changes to details', () => {
-      const req = { sessionModel: { get: sinon.stub() } };
-      req.sessionModel.get.withArgs('replace-is-details-changed').returns('no');
-      req.sessionModel.get.withArgs('replace-name-options').returns('yes');
+      const req = { sessionModel: { get: mockFn() } };
+      req.sessionModel.get
+        .withArgs('replace-is-details-changed')
+        .mockReturnValue('no');
+      req.sessionModel.get
+        .withArgs('replace-name-options')
+        .mockReturnValue('yes');
       req.sessionModel.get
         .withArgs('replace-home-address-options')
-        .returns('yes');
+        .mockReturnValue('yes');
 
-      expect(showCounterSignatoryDetails('test-value', req)).to.be.null;
+      expect(showCounterSignatoryDetails('test-value', req)).toBeNull();
     });
     it('should return null - no changes to name or address', () => {
-      const req = { sessionModel: { get: sinon.stub() } };
+      const req = { sessionModel: { get: mockFn() } };
       req.sessionModel.get
         .withArgs('replace-is-details-changed')
-        .returns('yes');
-      req.sessionModel.get.withArgs('replace-name-options').returns('no');
+        .mockReturnValue('yes');
+      req.sessionModel.get
+        .withArgs('replace-name-options')
+        .mockReturnValue('no');
       req.sessionModel.get
         .withArgs('replace-home-address-options')
-        .returns('no');
+        .mockReturnValue('no');
 
-      expect(showCounterSignatoryDetails('test-value', req)).to.be.null;
+      expect(showCounterSignatoryDetails('test-value', req)).toBeNull();
     });
     it('should return the value - changes to name', () => {
-      const req = { sessionModel: { get: sinon.stub() } };
+      const req = { sessionModel: { get: mockFn() } };
       req.sessionModel.get
         .withArgs('replace-is-details-changed')
-        .returns('yes');
-      req.sessionModel.get.withArgs('replace-name-options').returns('yes');
+        .mockReturnValue('yes');
+      req.sessionModel.get
+        .withArgs('replace-name-options')
+        .mockReturnValue('yes');
       req.sessionModel.get
         .withArgs('replace-home-address-options')
-        .returns('no');
+        .mockReturnValue('no');
 
-      expect(showCounterSignatoryDetails('test-value', req)).to.equal(
-        'test-value'
-      );
+      expect(showCounterSignatoryDetails('test-value', req)).toBe('test-value');
     });
     it('should return the value - changes to address', () => {
-      const req = { sessionModel: { get: sinon.stub() } };
+      const req = { sessionModel: { get: mockFn() } };
       req.sessionModel.get
         .withArgs('replace-is-details-changed')
-        .returns('yes');
-      req.sessionModel.get.withArgs('replace-name-options').returns('no');
+        .mockReturnValue('yes');
+      req.sessionModel.get
+        .withArgs('replace-name-options')
+        .mockReturnValue('no');
       req.sessionModel.get
         .withArgs('replace-home-address-options')
-        .returns('yes');
+        .mockReturnValue('yes');
 
-      expect(showCounterSignatoryDetails('test-value', req)).to.equal(
-        'test-value'
-      );
+      expect(showCounterSignatoryDetails('test-value', req)).toBe('test-value');
     });
     it('should return the value - changes to name and address', () => {
-      const req = { sessionModel: { get: sinon.stub() } };
+      const req = { sessionModel: { get: mockFn() } };
       req.sessionModel.get
         .withArgs('replace-is-details-changed')
-        .returns('yes');
-      req.sessionModel.get.withArgs('replace-name-options').returns('yes');
+        .mockReturnValue('yes');
+      req.sessionModel.get
+        .withArgs('replace-name-options')
+        .mockReturnValue('yes');
       req.sessionModel.get
         .withArgs('replace-home-address-options')
-        .returns('yes');
+        .mockReturnValue('yes');
 
-      expect(showCounterSignatoryDetails('test-value', req)).to.equal(
-        'test-value'
-      );
+      expect(showCounterSignatoryDetails('test-value', req)).toBe('test-value');
     });
   });
 
   describe('parseHyphenatedPairValue tests', () => {
     it('should return empty string for falsy inputs', () => {
       const inputs = [null, undefined, ''];
-      inputs.forEach(input => expect(parseHyphenatedPairValue(input)).to.equal(''));
+      inputs.forEach(input => expect(parseHyphenatedPairValue(input)).toBe(''));
     });
 
     it('should format value-unit when hyphen present', () => {
-      expect(parseHyphenatedPairValue('100-g')).to.equal('100 g');
-      expect(parseHyphenatedPairValue('250-ml')).to.equal('250 ml');
+      expect(parseHyphenatedPairValue('100-g')).toBe('100 g');
+      expect(parseHyphenatedPairValue('250-ml')).toBe('250 ml');
     });
 
     it('should default value to 0 when missing before last hyphen', () => {
-      expect(parseHyphenatedPairValue('-ml')).to.equal('0 ml');
+      expect(parseHyphenatedPairValue('-ml')).toBe('0 ml');
     });
 
     it('should treat input without hyphen as unit (value becomes 0)', () => {
-      expect(parseHyphenatedPairValue('100ml')).to.equal('0 100ml');
+      expect(parseHyphenatedPairValue('100ml')).toBe('0 100ml');
     });
 
     it('should handle trailing hyphen (empty unit)', () => {
-      expect(parseHyphenatedPairValue('g-')).to.equal('g ');
+      expect(parseHyphenatedPairValue('g-')).toBe('g ');
     });
   });
 });

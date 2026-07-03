@@ -1,4 +1,5 @@
 const SaveAddress = require('../../../apps/epp-common/behaviours/save-home-other-address');
+const reqres = require('hof').utils.reqres;
 
 describe('Tests for save home address behaviour', () => {
   class Base {
@@ -17,21 +18,21 @@ describe('Tests for save home address behaviour', () => {
   });
   describe('saveValues tests', () => {
     beforeEach(() => {
-      sinon.stub(Base.prototype, 'saveValues').returns(req, res, next);
+      mockSpyOn(Base.prototype, 'saveValues').mockReturnValue(req, res, next);
       const addressFields = ['address-field-1', 'address-field-2'];
       instance = new (SaveAddress(addressFields, 'home')(Base))();
     });
 
     it('init - saveValues', () => {
       instance.saveValues(req, res, next);
-      expect(Base.prototype.saveValues).to.have.been.called;
+      expect(Base.prototype.saveValues).toHaveBeenCalled();
     });
 
     it('Should set the address in session', () => {
       req = {
         sessionModel: {
-          set: sinon.spy(),
-          get: sinon.spy()
+          set: mockFn(),
+          get: mockFn()
         },
         form: {
           values: {
@@ -41,17 +42,17 @@ describe('Tests for save home address behaviour', () => {
         }
       };
       instance.saveValues(req, res, next);
-      expect(req.sessionModel.set.calledOnce).to.be.true;
+      expect(req.sessionModel.set.calledOnce).toBe(true);
       expect(
         req.sessionModel.set.calledWith(
           'homeAddressInline',
           'Address Line 1, Address Line 2'
         )
-      ).to.be.true;
+      ).toBe(true);
     });
 
     afterEach(() => {
-      Base.prototype.saveValues.restore();
+      Base.prototype.saveValues.mockRestore();
     });
   });
 });

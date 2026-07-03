@@ -1,4 +1,5 @@
 const CounterSignatoryNavigation = require('../../../apps/epp-common/behaviours/counter-signatory-navigation');
+const reqres = require('hof').utils.reqres;
 
 describe('Tests for counter-signatory-navigation behaviour', () => {
   class Base {
@@ -14,44 +15,50 @@ describe('Tests for counter-signatory-navigation behaviour', () => {
   beforeEach(() => {
     req = {
       sessionModel: {
-        get: sinon.stub()
+        get: mockFn()
       }
     };
     res = reqres.res();
   });
   describe('saveValues tests', () => {
     beforeEach(() => {
-      sinon.stub(Base.prototype, 'saveValues').returns(req, res, next);
+      mockSpyOn(Base.prototype, 'saveValues').mockReturnValue(req, res, next);
       instance = new (CounterSignatoryNavigation('/poison-summary')(Base))();
     });
 
     it('init - saveValues', () => {
       instance.saveValues(req, res, next);
-      expect(Base.prototype.saveValues).to.have.been.called;
+      expect(Base.prototype.saveValues).toHaveBeenCalled();
     });
 
     it('Should navigate to countersignatory-details', () => {
-      req.sessionModel.get.withArgs('replace-name-options').returns('yes');
+      req.sessionModel.get
+        .withArgs('replace-name-options')
+        .mockReturnValue('yes');
       req.sessionModel.get
         .withArgs('replace-home-address-options')
-        .returns('yes');
+        .mockReturnValue('yes');
       instance.saveValues(req, res, next);
-      expect(res.redirect.calledWith('/replace/countersignatory-details')).to.be
-        .true;
+      expect(res.redirect.calledWith('/replace/countersignatory-details')).toBe(
+        true
+      );
     });
 
     it('Should not navigate to countersignatory-details', () => {
-      req.sessionModel.get.withArgs('replace-name-options').returns('no');
+      req.sessionModel.get
+        .withArgs('replace-name-options')
+        .mockReturnValue('no');
       req.sessionModel.get
         .withArgs('replace-home-address-options')
-        .returns('no');
+        .mockReturnValue('no');
       instance.saveValues(req, res, next);
-      expect(res.redirect.calledWith('/replace/countersignatory-details')).to.be
-        .false;
+      expect(res.redirect.calledWith('/replace/countersignatory-details')).toBe(
+        false
+      );
     });
 
     afterEach(() => {
-      Base.prototype.saveValues.restore();
+      Base.prototype.saveValues.mockRestore();
     });
   });
 });
