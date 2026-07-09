@@ -11,7 +11,8 @@
     "!apps/**/index.js",
     "!apps/**/sections/summary-data-sections.js",
     "!test/**/*.js",
-    "!server.js"
+    "!server.js",
+    "!utilities/constants/**/*.js"
   ],
   "setupFiles": ["<rootDir>/jest.env.js"],
   "setupFilesAfterEnv": ["<rootDir>/test/jest.setup.js"]

@@ -1,12 +1,18 @@
 'use strict';
 
+process.env.NODE_ENV = 'test';
+process.env.NOTIFY_KEY = 'UNIT_TEST';
+process.env.NOTIFY_STUB = 'true';
+
+process.setMaxListeners(0);
+process.stdout.setMaxListeners(0);
+
 const hof = require('hof');
 const { jest: jestFromGlobals } = require('@jest/globals');
 
-const isSameArgs = (actualArgs, expectedArgs) => (
-  actualArgs.length === expectedArgs.length
-  && actualArgs.every((arg, idx) => Object.is(arg, expectedArgs[idx]))
-);
+const isSameArgs = (actualArgs, expectedArgs) =>
+  actualArgs.length === expectedArgs.length &&
+  actualArgs.every((arg, idx) => Object.is(arg, expectedArgs[idx]));
 
 const COMPAT_STATE = Symbol('jestCompatState');
 
@@ -90,7 +96,11 @@ const enhanceMock = mockFn => {
 };
 
 const patchJestTarget = target => {
-  if (!target || typeof target.fn !== 'function' || typeof target.spyOn !== 'function') {
+  if (
+    !target ||
+    typeof target.fn !== 'function' ||
+    typeof target.spyOn !== 'function'
+  ) {
     return;
   }
 

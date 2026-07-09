@@ -6,14 +6,15 @@ const govuk = require('govuk-frontend');
 const accessibleAutocomplete = require('accessible-autocomplete');
 const uploadConfig = require('../../utilities/constants/upload-config.json');
 
-
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.typeahead').forEach(function applyTypeahead(element) {
-    accessibleAutocomplete.enhanceSelectElement({
-      defaultValue: '',
-      selectElement: element
+  document
+    .querySelectorAll('.typeahead')
+    .forEach(function applyTypeahead(element) {
+      accessibleAutocomplete.enhanceSelectElement({
+        defaultValue: '',
+        selectElement: element
+      });
     });
-  });
 });
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,21 +22,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const reportSubmitButton = document.querySelector('#report-submit');
 
   const fileUpload = document.getElementById('file-upload');
-  const uploadPageLoaderContainer = document.getElementById('upload-page-loading-spinner');
+  const uploadPageLoaderContainer = document.getElementById(
+    'upload-page-loading-spinner'
+  );
   const requireFileUpload = document.getElementsByName('requireFileUpload');
   const optionalFileUpload = document.getElementsByName('optionalFileUpload');
-  const removeLinks = document.querySelectorAll('#uploaded-documents > div > div > a');
+  const removeLinks = document.querySelectorAll(
+    '#uploaded-documents > div > div > a'
+  );
 
   if (loaderContainer) {
-    document.querySelector('#report-submit .govuk-button').addEventListener('click', () => {
-      loaderContainer.classList.add('spinner-loader');
-      reportSubmitButton.classList.add('visuallyhidden');
-    });
+    document
+      .querySelector('#report-submit .govuk-button')
+      .addEventListener('click', () => {
+        loaderContainer.classList.add('spinner-loader');
+        reportSubmitButton.classList.add('visuallyhidden');
+      });
   }
 
   const fileUploadStatusHandler = (status, errorType) => {
     const fileUploadComponent = document.getElementById('hofFileUpload');
-    const fileUploadErrorMsg = fileUploadComponent.querySelector('.govuk-error-message');
+    const fileUploadErrorMsg = fileUploadComponent.querySelector(
+      '.govuk-error-message'
+    );
     switch (status) {
       case 'ready':
         if (fileUploadComponent) {
@@ -48,7 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
       case 'error':
         if (fileUploadComponent) {
           fileUploadComponent.classList.add('govuk-form-group--error');
-          document.getElementById(`file-upload-error-${errorType}`).classList.remove('govuk-!-display-none');
+          document
+            .getElementById(`file-upload-error-${errorType}`)
+            .classList.remove('govuk-!-display-none');
         }
         break;
       case 'uploading':
@@ -75,13 +86,16 @@ document.addEventListener('DOMContentLoaded', () => {
   if (fileUpload) {
     fileUpload.addEventListener('change', () => {
       fileUploadStatusHandler('ready');
-      const fileInfo = fileUpload.files && fileUpload.files.length > 0 ? fileUpload.files[0] : null;
+      const fileInfo =
+        fileUpload.files && fileUpload.files.length > 0
+          ? fileUpload.files[0]
+          : null;
       if (fileInfo) {
         if (fileInfo.size > uploadConfig.maxFileSizeInBytes) {
           fileUploadStatusHandler('error', 'maxFileSize');
           return;
         }
-        if (!uploadConfig.allowedMimeTypes.includes(fileInfo.type) ) {
+        if (!uploadConfig.allowedMimeTypes.includes(fileInfo.type)) {
           fileUploadStatusHandler('error', 'fileType');
           return;
         }

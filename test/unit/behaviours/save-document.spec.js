@@ -1,5 +1,5 @@
+'use strict';
 const SaveDocumentBehaviour = require('../../../apps/epp-common/behaviours/save-document');
-('use strict');
 const reqres = require('hof').utils.reqres;
 
 describe('Test for Save Document Behaviour', () => {
