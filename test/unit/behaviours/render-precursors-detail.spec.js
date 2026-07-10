@@ -1,4 +1,5 @@
 const RenderPrecursorsDetail = require('../../../apps/epp-common/behaviours/render-precursors-detail');
+const reqres = require('hof').utils.reqres;
 
 describe('Tests for render precursors detail behaviour', () => {
   class Base {
@@ -17,28 +18,28 @@ describe('Tests for render precursors detail behaviour', () => {
   });
   describe('getValues tests', () => {
     beforeEach(() => {
-      sinon.stub(Base.prototype, 'getValues').returns(req, res, next);
+      mockSpyOn(Base.prototype, 'getValues').mockReturnValue(req, res, next);
       instance = new (RenderPrecursorsDetail('test-field-name')(Base))();
     });
 
     it('init - getValues', () => {
       instance.getValues(req, res, next);
-      expect(Base.prototype.getValues).to.have.been.called;
+      expect(Base.prototype.getValues).toHaveBeenCalled();
     });
 
     it('Should set the items in session', () => {
       req = {
         sessionModel: {
-          set: sinon.spy(),
+          set: mockFn(),
           get: () => 'precursor-value'
         }
       };
       instance.getValues(req, res, next);
-      expect(req.sessionModel.set.callCount).to.equal(5);
+      expect(req.sessionModel.set.mock.calls.length).toBe(5);
     });
 
     afterEach(() => {
-      Base.prototype.getValues.restore();
+      Base.prototype.getValues.mockRestore();
     });
   });
 });

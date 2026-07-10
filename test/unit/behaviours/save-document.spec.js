@@ -1,6 +1,6 @@
 'use strict';
-
 const SaveDocumentBehaviour = require('../../../apps/epp-common/behaviours/save-document');
+const reqres = require('hof').utils.reqres;
 
 describe('Test for Save Document Behaviour', () => {
   class Base {
@@ -32,8 +32,8 @@ describe('Test for Save Document Behaviour', () => {
   });
 
   describe('Process file tests', () => {
-    before(() => {
-      sinon.stub(Base.prototype, 'process');
+    beforeAll(() => {
+      mockSpyOn(Base.prototype, 'process');
       instance = new (SaveDocumentBehaviour(
         'documentName',
         'file-upload'
@@ -42,23 +42,23 @@ describe('Test for Save Document Behaviour', () => {
 
     it('should be called ', () => {
       instance.process(req);
-      expect(Base.prototype.process).to.have.been.called;
+      expect(Base.prototype.process).toHaveBeenCalled();
     });
 
     it('Should attach the given file', () => {
       req.files = doc;
       instance.process(req);
-      expect(req.files).to.eql(doc);
+      expect(req.files).toEqual(doc);
     });
 
-    after(() => {
-      Base.prototype.process.restore();
+    afterAll(() => {
+      Base.prototype.process.mockRestore();
     });
   });
 
   describe('Save file locals tests', () => {
-    before(() => {
-      sinon.stub(Base.prototype, 'locals').returns(req, res, next);
+    beforeAll(() => {
+      mockSpyOn(Base.prototype, 'locals').mockReturnValue(req, res, next);
       instance = new (SaveDocumentBehaviour(
         'documentName',
         'file-upload'
@@ -68,13 +68,13 @@ describe('Test for Save Document Behaviour', () => {
     it('init - locals', () => {
       req.form.errors = {};
       instance.locals(req, res, next);
-      expect(Base.prototype.locals).to.have.been.called;
+      expect(Base.prototype.locals).toHaveBeenCalled();
     });
   });
 
   describe('Save values tests', () => {
-    before(() => {
-      sinon.stub(Base.prototype, 'saveValues').returns(req, res, next);
+    beforeAll(() => {
+      mockSpyOn(Base.prototype, 'saveValues').mockReturnValue(req, res, next);
       instance = new (SaveDocumentBehaviour(
         'documentName',
         'file-upload'
@@ -83,25 +83,25 @@ describe('Test for Save Document Behaviour', () => {
 
     it('init - saveValues', () => {
       instance.saveValues(req, res, next);
-      expect(Base.prototype.saveValues).to.have.been.calledOnce;
+      expect(Base.prototype.saveValues).toHaveBeenCalledTimes(1);
     });
 
     it('Should save the file in the session model', () => {
       req.sessionModel.set('documentName', doc);
       instance.saveValues(req, res, next);
       const sessionModel = req.sessionModel.get('documentName');
-      expect(sessionModel.document.name).to.eql('test.pdf');
+      expect(sessionModel.document.name).toEqual('test.pdf');
     });
 
     it('should redirect to current route after upload', () => {
       req.form.options.route = '/test-route';
       req.sessionModel.set('documentName', doc);
       instance.saveValues(req, res, next);
-      expect(req.form.options.route).to.eql('/test-route');
+      expect(req.form.options.route).toEqual('/test-route');
     });
 
-    after(() => {
-      Base.prototype.saveValues.restore();
+    afterAll(() => {
+      Base.prototype.saveValues.mockRestore();
     });
   });
 });

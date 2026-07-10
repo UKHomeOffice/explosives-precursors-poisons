@@ -1,5 +1,6 @@
-const SaveApplicationSelection = require('../../../apps/epp-common/behaviours/save-application-selection');
 const Model = require('hof').model;
+const SaveApplicationSelection = require('../../../apps/epp-common/behaviours/save-application-selection');
+const reqres = require('hof').utils.reqres;
 
 describe('save-application-selection behaviour tests', () => {
   let behaviour;
@@ -14,10 +15,10 @@ describe('save-application-selection behaviour tests', () => {
   beforeEach(() => {
     req = reqres.req();
     res = {
-      redirect: sinon.spy()
+      redirect: mockFn()
     };
-    next = sinon.stub();
-    superSaveValuesStub = sinon.stub();
+    next = mockFn();
+    superSaveValuesStub = mockFn();
 
     req.sessionModel = new Model({});
 
@@ -28,12 +29,12 @@ describe('save-application-selection behaviour tests', () => {
   });
 
   it('should be an instance', () => {
-    expect(behaviour).to.be.an.instanceOf(Base);
+    expect(behaviour).toBeInstanceOf(Base);
   });
 
   it('should call super.saveValues', () => {
     behaviour.saveValues(req, res, next);
-    superSaveValuesStub.should.be.calledOnce;
+    expect(superSaveValuesStub).toHaveBeenCalledTimes(1);
   });
 
   it('Application type changed - clear the session data but keep the csrf-secret', () => {
@@ -53,10 +54,10 @@ describe('save-application-selection behaviour tests', () => {
     const expectedPartialSessionData = {
       'csrf-secret': 'UT_csrf-secret'
     };
-    expect(
-      req.sessionModel.options.session['hof-wizard-EPP form']
-    ).to.deep.equal(expectedPartialSessionData);
-    superSaveValuesStub.should.be.calledOnce;
+    expect(req.sessionModel.options.session['hof-wizard-EPP form']).toEqual(
+      expectedPartialSessionData
+    );
+    expect(superSaveValuesStub).toHaveBeenCalledTimes(1);
   });
 
   it('Application type not changed - should not clear the session', () => {
@@ -78,9 +79,9 @@ describe('save-application-selection behaviour tests', () => {
       'other-data1': 'UT_other-data1',
       'other-data2': 'UT_other-data2'
     };
-    expect(
-      req.sessionModel.options.session['hof-wizard-EPP form']
-    ).to.deep.equal(expectedCompleteSessionData);
-    superSaveValuesStub.should.be.calledOnce;
+    expect(req.sessionModel.options.session['hof-wizard-EPP form']).toEqual(
+      expectedCompleteSessionData
+    );
+    expect(superSaveValuesStub).toHaveBeenCalledTimes(1);
   });
 });

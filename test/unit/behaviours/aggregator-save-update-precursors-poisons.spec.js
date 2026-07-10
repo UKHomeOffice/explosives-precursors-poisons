@@ -1,15 +1,11 @@
-const proxyquire = require('proxyquire');
-const helpersStub = {
+const mockHelpersStub = {
   DEFAULT_AGGREGATOR_LIMIT: 5,
-  getSubstanceShortLabel: sinon.stub().returns('short-label')
+  getSubstanceShortLabel: mockFn().mockReturnValue('short-label')
 };
 
-const Behaviour = proxyquire(
-  '../../../apps/epp-common/behaviours/aggregator-save-update-precursors-poisons',
-  {
-    '../../../utilities/helpers': helpersStub
-  }
-);
+jest.mock('../../../utilities/helpers', () => mockHelpersStub);
+
+const Behaviour = require('../../../apps/epp-common/behaviours/aggregator-save-update-precursors-poisons');
 
 describe('Behaviour', () => {
   let instance;
@@ -18,9 +14,9 @@ describe('Behaviour', () => {
   beforeEach(() => {
     req = {
       sessionModel: {
-        get: sinon.stub(),
-        set: sinon.stub(),
-        unset: sinon.stub()
+        get: mockFn(),
+        set: mockFn(),
+        unset: mockFn()
       },
       form: {
         options: {
@@ -39,27 +35,31 @@ describe('Behaviour', () => {
     it('should parse array field correctly when field is where-to-store-precursor', () => {
       const field = 'where-to-store-precursor';
       const value = ['value1', 'value2'];
-      req.sessionModel.get.withArgs('homeAddressInline').returns('homeAddress');
+      req.sessionModel.get
+        .withArgs('homeAddressInline')
+        .mockReturnValue('homeAddress');
       req.sessionModel.get
         .withArgs('store-precursors-other-address')
-        .returns('otherAddress');
+        .mockReturnValue('otherAddress');
 
       const result = instance.parsePrecursorField(field, value, req);
 
-      expect(result).to.equal('homeAddress\n\notherAddress');
+      expect(result).toBe('homeAddress\n\notherAddress');
     });
 
     it('should parse array field correctly when field is where-to-use-precursor', () => {
       const field = 'where-to-use-precursor';
       const value = ['value1', 'value2'];
-      req.sessionModel.get.withArgs('homeAddressInline').returns('homeAddress');
+      req.sessionModel.get
+        .withArgs('homeAddressInline')
+        .mockReturnValue('homeAddress');
       req.sessionModel.get
         .withArgs('precursors-use-other-address')
-        .returns('otherAddress');
+        .mockReturnValue('otherAddress');
 
       const result = instance.parsePrecursorField(field, value, req);
 
-      expect(result).to.equal('homeAddress\n\notherAddress');
+      expect(result).toBe('homeAddress\n\notherAddress');
     });
 
     it(
@@ -71,11 +71,11 @@ describe('Behaviour', () => {
         const value = 'store-precursors-home-address-value';
         req.sessionModel.get
           .withArgs('homeAddressInline')
-          .returns('homeAddress');
+          .mockReturnValue('homeAddress');
 
         const result = instance.parsePrecursorField(field, value, req);
 
-        expect(result).to.equal('homeAddress');
+        expect(result).toBe('homeAddress');
       }
     );
 
@@ -88,11 +88,11 @@ describe('Behaviour', () => {
         const value = 'store-precursors-other-address-value';
         req.sessionModel.get
           .withArgs('store-precursors-other-address')
-          .returns('otherAddress');
+          .mockReturnValue('otherAddress');
 
         const result = instance.parsePrecursorField(field, value, req);
 
-        expect(result).to.equal('otherAddress');
+        expect(result).toBe('otherAddress');
       }
     );
 
@@ -105,11 +105,11 @@ describe('Behaviour', () => {
         const value = 'use-precursors-home-address-value';
         req.sessionModel.get
           .withArgs('homeAddressInline')
-          .returns('homeAddress');
+          .mockReturnValue('homeAddress');
 
         const result = instance.parsePrecursorField(field, value, req);
 
-        expect(result).to.equal('homeAddress');
+        expect(result).toBe('homeAddress');
       }
     );
 
@@ -122,28 +122,29 @@ describe('Behaviour', () => {
         const value = 'use-precursors-other-address-value';
         req.sessionModel.get
           .withArgs('precursors-use-other-address')
-          .returns('otherAddress');
+          .mockReturnValue('otherAddress');
 
         const result = instance.parsePrecursorField(field, value, req);
 
-        expect(result).to.equal('otherAddress');
+        expect(result).toBe('otherAddress');
       }
     );
 
     it('should parse field using custom parser if provided', () => {
       const field = { field: 'customField', value: 'customValue' };
       req.form.options.fieldsConfig.customField = {
-        parse: sinon.stub().returns('parsedValue')
+        parse: mockFn().mockReturnValue('parsedValue')
       };
 
       const result = instance.parsePrecursorField(field, field.value, req);
 
-      expect(result).to.equal('parsedValue');
+      expect(result).toBe('parsedValue');
       expect(
-        req.form.options.fieldsConfig.customField.parse.calledOnceWith(
-          'customValue'
-        )
-      ).to.be.true;
+        req.form.options.fieldsConfig.customField.parse
+      ).toHaveBeenCalledTimes(1);
+      expect(
+        req.form.options.fieldsConfig.customField.parse
+      ).toHaveBeenCalledWith('customValue');
     });
 
     it('should return original value if no specific parsing is needed', () => {
@@ -152,7 +153,7 @@ describe('Behaviour', () => {
 
       const result = instance.parsePrecursorField(field, value, req);
 
-      expect(result).to.equal('someValue');
+      expect(result).toBe('someValue');
     });
   });
 
@@ -160,27 +161,31 @@ describe('Behaviour', () => {
     it('should parse array field correctly when field is where-to-store-poison', () => {
       const field = 'where-to-store-poison';
       const value = ['value1', 'value2'];
-      req.sessionModel.get.withArgs('homeAddressInline').returns('homeAddress');
+      req.sessionModel.get
+        .withArgs('homeAddressInline')
+        .mockReturnValue('homeAddress');
       req.sessionModel.get
         .withArgs('store-poison-other-address')
-        .returns('otherAddress');
+        .mockReturnValue('otherAddress');
 
       const result = instance.parsePoisonField(field, value, req);
 
-      expect(result).to.equal('homeAddress\n\notherAddress');
+      expect(result).toBe('homeAddress\n\notherAddress');
     });
 
     it('should parse array field correctly when field is where-to-use-poison', () => {
       const field = 'where-to-use-poison';
       const value = ['value1', 'value2'];
-      req.sessionModel.get.withArgs('homeAddressInline').returns('homeAddress');
+      req.sessionModel.get
+        .withArgs('homeAddressInline')
+        .mockReturnValue('homeAddress');
       req.sessionModel.get
         .withArgs('poison-use-other-address')
-        .returns('otherAddress');
+        .mockReturnValue('otherAddress');
 
       const result = instance.parsePoisonField(field, value, req);
 
-      expect(result).to.equal('homeAddress\n\notherAddress');
+      expect(result).toBe('homeAddress\n\notherAddress');
     });
 
     it(
@@ -192,11 +197,11 @@ describe('Behaviour', () => {
         const value = 'store-poison-home-address-value';
         req.sessionModel.get
           .withArgs('homeAddressInline')
-          .returns('homeAddress');
+          .mockReturnValue('homeAddress');
 
         const result = instance.parsePoisonField(field, value, req);
 
-        expect(result).to.equal('homeAddress');
+        expect(result).toBe('homeAddress');
       }
     );
 
@@ -209,11 +214,11 @@ describe('Behaviour', () => {
         const value = 'store-poison-other-address-value';
         req.sessionModel.get
           .withArgs('store-poison-other-address')
-          .returns('otherAddress');
+          .mockReturnValue('otherAddress');
 
         const result = instance.parsePoisonField(field, value, req);
 
-        expect(result).to.equal('otherAddress');
+        expect(result).toBe('otherAddress');
       }
     );
 
@@ -226,11 +231,11 @@ describe('Behaviour', () => {
         const value = 'use-poison-home-address';
         req.sessionModel.get
           .withArgs('homeAddressInline')
-          .returns('homeAddress');
+          .mockReturnValue('homeAddress');
 
         const result = instance.parsePoisonField(field, value, req);
 
-        expect(result).to.equal('homeAddress');
+        expect(result).toBe('homeAddress');
       }
     );
 
@@ -243,28 +248,29 @@ describe('Behaviour', () => {
         const value = 'use-poison-other-address-value';
         req.sessionModel.get
           .withArgs('poison-use-other-address')
-          .returns('otherAddress');
+          .mockReturnValue('otherAddress');
 
         const result = instance.parsePoisonField(field, value, req);
 
-        expect(result).to.equal('otherAddress');
+        expect(result).toBe('otherAddress');
       }
     );
 
     it('should parse field using custom parser if provided', () => {
       const field = { field: 'customField', value: 'customValue' };
       req.form.options.fieldsConfig.customField = {
-        parse: sinon.stub().returns('parsedValue')
+        parse: mockFn().mockReturnValue('parsedValue')
       };
 
       const result = instance.parsePoisonField(field, field.value, req);
 
-      expect(result).to.equal('parsedValue');
+      expect(result).toBe('parsedValue');
       expect(
-        req.form.options.fieldsConfig.customField.parse.calledOnceWith(
-          'customValue'
-        )
-      ).to.be.true;
+        req.form.options.fieldsConfig.customField.parse
+      ).toHaveBeenCalledTimes(1);
+      expect(
+        req.form.options.fieldsConfig.customField.parse
+      ).toHaveBeenCalledWith('customValue');
     });
 
     it('should return original value if no specific parsing is needed', () => {
@@ -273,7 +279,7 @@ describe('Behaviour', () => {
 
       const result = instance.parsePoisonField(field, value, req);
 
-      expect(result).to.equal('someValue');
+      expect(result).toBe('someValue');
     });
   });
 });

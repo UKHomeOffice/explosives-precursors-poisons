@@ -1,6 +1,7 @@
 'use strict';
 
 const env = process.env.NODE_ENV || 'production';
+const uploadConfig = require('./utilities/constants/upload-config.json');
 
 module.exports = {
   PRETTY_DATE_FORMAT: 'DD MMMM YYYY',
@@ -44,14 +45,9 @@ module.exports = {
     secret: process.env.KEYCLOAK_SECRET
   },
   upload: {
-    maxFileSizeInBytes: 25 * 1000 * 1000, // 25MB in bytes
+    maxFileSizeInBytes: uploadConfig.maxFileSizeInBytes,
     hostname: process.env.FILE_VAULT_URL,
-    allowedMimeTypes: [
-      'image/png',
-      'image/jpg',
-      'image/jpeg',
-      'application/pdf'
-    ],
+    allowedMimeTypes: uploadConfig.allowedMimeTypes,
     documentCategories: {
       'new-renew-british-passport': {
         allowMultipleUploads: false,

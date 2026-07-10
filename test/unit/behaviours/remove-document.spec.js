@@ -1,6 +1,6 @@
 'use strict';
-
 const RemoveDocumentBehaviour = require('../../../apps/epp-common/behaviours/remove-document');
+const reqres = require('hof').utils.reqres;
 
 describe('Tests for Remove Document Behaviour', () => {
   class Base {
@@ -28,13 +28,13 @@ describe('Tests for Remove Document Behaviour', () => {
   });
   describe('Configure tests', () => {
     beforeEach(() => {
-      sinon.stub(Base.prototype, 'configure').returns(req, res, next);
+      mockSpyOn(Base.prototype, 'configure').mockReturnValue(req, res, next);
       instance = new (RemoveDocumentBehaviour('passport')(Base))();
     });
 
     it('init - configure', () => {
       instance.configure(req, res, next);
-      expect(Base.prototype.configure).to.have.been.called;
+      expect(Base.prototype.configure).toHaveBeenCalled();
       expect(req.sessionModel.get('passport'));
     });
 
@@ -44,7 +44,7 @@ describe('Tests for Remove Document Behaviour', () => {
       instance.configure(req, res, next);
       const remainingDocs = req.sessionModel.get('passport');
       remainingDocs.map(image => {
-        expect(image.id).to.not.equal(documents[0].id);
+        expect(image.id).not.toBe(documents[0].id);
       });
     });
 
@@ -52,10 +52,10 @@ describe('Tests for Remove Document Behaviour', () => {
       req.sessionModel.set('passport', documents);
       req.query.delete = documents[0].id;
       instance.configure(req, res, next);
-      expect(res.redirect).to.be.called;
+      expect(res.redirect.called).toBe(true);
     });
     afterEach(() => {
-      Base.prototype.configure.restore();
+      Base.prototype.configure.mockRestore();
     });
   });
 });

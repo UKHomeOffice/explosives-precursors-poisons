@@ -1,10 +1,4 @@
-const proxyquire = require('proxyquire');
 const crypto = require('crypto');
-const {
-  generateRequestPayload,
-  getErrorTemplateBasePath,
-  generateHmac
-} = require('../../../utilities/helpers/api');
 
 describe('apis.js tests', () => {
   const expectedRequestPayload = {
@@ -25,42 +19,51 @@ describe('apis.js tests', () => {
   let modelMock;
   let getPaymentDetails;
   let initiatePayment;
+  let generateRequestPayload;
+  let getErrorTemplateBasePath;
+  let generateHmac;
 
   beforeEach(() => {
     modelMock = {
-      _request: sinon.stub()
+      _request: mockFn()
     };
-    const apis = proxyquire('../../../utilities/helpers/api', {
-      hof: { model: sinon.stub().returns(modelMock) }
-    });
+    jest.resetModules();
+    jest.doMock('hof', () => ({ model: mockFn().mockReturnValue(modelMock) }));
+    jest.doMock('../../../utilities/helpers/crypto-random-string', () => ({
+      getCryptoRandomString: mockFn().mockResolvedValue('UT-REF-001')
+    }));
+    const apis = require('../../../utilities/helpers/api');
 
     getPaymentDetails = apis.getPaymentDetails;
     initiatePayment = apis.initiatePayment;
+    generateRequestPayload = apis.generateRequestPayload;
+    getErrorTemplateBasePath = apis.getErrorTemplateBasePath;
+    generateHmac = apis.generateHmac;
   });
 
   describe('generateHmac tests', () => {
     let cryptoStub;
 
     beforeEach(() => {
-      cryptoStub = sinon.stub(crypto, 'createHmac');
+      cryptoStub = mockSpyOn(crypto, 'createHmac');
     });
 
     afterEach(() => {
-      sinon.restore();
+      jest.restoreAllMocks();
     });
 
     it('should return a valid HMAC', () => {
       const mockHmac = {
-        update: sinon.stub().returnsThis(),
-        digest: sinon.stub().returns('mock-hmac')
+        update: mockFn().mockReturnThis(),
+        digest: mockFn().mockReturnValue('mock-hmac')
       };
 
-      cryptoStub.returns(mockHmac);
+      cryptoStub.mockReturnValue(mockHmac);
       const randomId = 'test-random-id';
       const result = generateHmac(randomId);
-      expect(result).to.equal('mock-hmac');
-      expect(mockHmac.update.calledWith(randomId)).to.be.true;
-      expect(mockHmac.digest.calledWith('hex')).to.be.true;
+      expect(result).toBe('mock-hmac');
+      expect(mockHmac.update.calledWith(randomId)).toBe(true);
+      expect(mockHmac.digest.calledWith('hex')).toBe(true);
     });
   });
 
@@ -69,24 +72,24 @@ describe('apis.js tests', () => {
     it('unsupported applicationType - should throw an error for amend flow', async () => {
       try {
         await generateRequestPayload(
-          { protocol: '', get: sinon.stub() },
+          { protocol: '', get: mockFn() },
           'amend',
           'ABCD1234'
         );
       } catch (err) {
-        expect(err).to.deep.equal(mockError);
+        expect(err).toEqual(mockError);
       }
     });
 
     it('unsupported applicationType - should throw an error for unknown value', async () => {
       try {
         await generateRequestPayload(
-          { protocol: '', get: sinon.stub() },
+          { protocol: '', get: mockFn() },
           'hello-world',
           'ABCD1234'
         );
       } catch (err) {
-        expect(err).to.deep.equal(mockError);
+        expect(err).toEqual(mockError);
       }
     });
 
@@ -103,7 +106,7 @@ describe('apis.js tests', () => {
         'ABCD1234'
       );
       delete result.reference;
-      expect(result).to.deep.equal(expectedRequestPayload);
+      expect(result).toEqual(expectedRequestPayload);
     });
 
     it('should return the payload for renew application type', async () => {
@@ -124,7 +127,7 @@ describe('apis.js tests', () => {
         'ABCD1234'
       );
       delete result.reference;
-      expect(result).to.deep.equal(updatedPayload);
+      expect(result).toEqual(updatedPayload);
     });
 
     it('should return the payload for replace application type', async () => {
@@ -132,7 +135,8 @@ describe('apis.js tests', () => {
         ...expectedRequestPayload,
         amount: 2500,
         description: 'Replace Explosives Precursors and Poisons Licence',
-        return_url: 'http://localhost:8080/replace/replace-application-submitted'
+        return_url:
+          'http://localhost:8080/replace/replace-application-submitted'
       };
       delete updatedPayload.billing_address;
 
@@ -148,84 +152,84 @@ describe('apis.js tests', () => {
         'ABCD1234'
       );
       delete result.reference;
-      expect(result).to.deep.equal(updatedPayload);
+      expect(result).toEqual(updatedPayload);
     });
   });
 
   describe('getErrorTemplateBasePath tests', () => {
     it('unsupported applicationType - should throw an error for amend flow', () => {
-      expect(() => getErrorTemplateBasePath('amend')).to.throw(
+      expect(() => getErrorTemplateBasePath('amend')).toThrow(
         'Unknown application type'
       );
     });
 
     it('unsupported applicationType - should throw an error for unknown value', () => {
-      expect(() => getErrorTemplateBasePath('hello-world')).to.throw(
+      expect(() => getErrorTemplateBasePath('hello-world')).toThrow(
         'Unknown application type'
       );
     });
 
     it('supported applicationType - should return the path for new flow', () => {
-      expect(getErrorTemplateBasePath('new')).to.equal('/new-renew');
+      expect(getErrorTemplateBasePath('new')).toBe('/new-renew');
     });
 
     it('supported applicationType - should return the path for renew flow', () => {
-      expect(getErrorTemplateBasePath('renew')).to.equal('/new-renew');
+      expect(getErrorTemplateBasePath('renew')).toBe('/new-renew');
     });
 
     it('supported applicationType - should return the path for replace flow', () => {
-      expect(getErrorTemplateBasePath('replace')).to.equal('/replace');
+      expect(getErrorTemplateBasePath('replace')).toBe('/replace');
     });
   });
 
   describe('initiatePayment tests', () => {
     afterEach(() => {
-      sinon.restore();
+      jest.restoreAllMocks();
     });
     it('should return successful response', async () => {
       const mockResponse = {
         data: { amount: 100, state: { status: 'created', finished: false } }
       };
-      modelMock._request.resolves(mockResponse);
+      modelMock._request.mockResolvedValue(mockResponse);
       const result = await initiatePayment({});
-      expect(result).to.deep.equal(mockResponse.data);
-      expect(modelMock._request.calledOnce).to.be.true;
+      expect(result).toEqual(mockResponse.data);
+      expect(modelMock._request.calledOnce).toBe(true);
     });
 
     it('should throw and error', async () => {
       const mockError = new Error('Error creating a payment request');
-      modelMock._request.rejects(mockError);
+      modelMock._request.mockRejectedValue(mockError);
       try {
         await initiatePayment({});
         throw new Error('Test should not throw an error');
       } catch (err) {
-        expect(err).to.deep.equal(mockError);
-        expect(modelMock._request.calledOnce).to.be.true;
+        expect(err).toEqual(mockError);
+        expect(modelMock._request.calledOnce).toBe(true);
       }
     });
   });
 
   describe('getPaymentDetails tests', () => {
     afterEach(() => {
-      sinon.restore();
+      jest.restoreAllMocks();
     });
     it('should return payment details on success', async () => {
       const mockResponse = { data: { amount: 100, status: 'paid' } };
-      modelMock._request.resolves(mockResponse);
+      modelMock._request.mockResolvedValue(mockResponse);
       const result = await getPaymentDetails('1234');
-      expect(modelMock._request.calledOnce).to.be.true;
-      expect(result).to.deep.equal(mockResponse.data);
+      expect(modelMock._request.calledOnce).toBe(true);
+      expect(result).toEqual(mockResponse.data);
     });
 
     it('should throw and error', async () => {
       const mockError = new Error('Error getting the payment details');
-      modelMock._request.rejects(mockError);
+      modelMock._request.mockRejectedValue(mockError);
       try {
         await getPaymentDetails('12345');
         throw new Error('Test should not throw an error');
       } catch (err) {
-        expect(modelMock._request.calledOnce).to.be.true;
-        expect(err).to.deep.equal(mockError);
+        expect(modelMock._request.calledOnce).toBe(true);
+        expect(err).toEqual(mockError);
       }
     });
   });

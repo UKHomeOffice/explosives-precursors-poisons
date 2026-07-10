@@ -26,14 +26,14 @@ describe('behaviours/execute-field-custom-parse tests', () => {
     });
 
     const result = controller.locals({}, {});
-    expect(result.items).to.have.length(1);
+    expect(result.items).toHaveLength(1);
     const fields = result.items[0].fields;
-    expect(fields[0].parsed).to.equal('Already');
-    expect(fields[1].parsed).to.equal('B');
+    expect(fields[0].parsed).toBe('Already');
+    expect(fields[1].parsed).toBe('B');
   });
 
   it('should use exact field parse when available', () => {
-    const parseStub = sinon.stub().callsFake(v => `parsed-${v}`);
+    const parseStub = mockFn().mockImplementation(v => `parsed-${v}`);
     const controller = makeController({
       items: [{ fields: [{ field: 'exact.field', value: 'X' }] }]
     });
@@ -50,12 +50,12 @@ describe('behaviours/execute-field-custom-parse tests', () => {
 
     const result = controller.locals(req, {});
     const field = result.items[0].fields[0];
-    expect(parseStub).to.have.been.calledOnceWith('X');
-    expect(field.parsed).to.equal('parsed-X');
+    expect(parseStub).toHaveBeenCalledWith('X');
+    expect(field.parsed).toBe('parsed-X');
   });
 
   it('should fall back to parent path parse when exact is missing', () => {
-    const parentParse = sinon.stub().callsFake(v => `parent-${v}`);
+    const parentParse = mockFn().mockImplementation(v => `parent-${v}`);
     const controller = makeController({
       items: [{ fields: [{ field: 'person.name.first', value: 'UT_test' }] }]
     });
@@ -72,13 +72,13 @@ describe('behaviours/execute-field-custom-parse tests', () => {
 
     const result = controller.locals(req, {});
     const field = result.items[0].fields[0];
-    expect(parentParse).to.have.been.calledOnceWith('UT_test');
-    expect(field.parsed).to.equal('parent-UT_test');
+    expect(parentParse).toHaveBeenCalledWith('UT_test');
+    expect(field.parsed).toBe('parent-UT_test');
   });
 
   it('should prefer exact parse over parent when both exist', () => {
-    const exactParse = sinon.stub().returns('EXACT');
-    const parentParse = sinon.stub().returns('PARENT');
+    const exactParse = mockFn().mockReturnValue('EXACT');
+    const parentParse = mockFn().mockReturnValue('PARENT');
     const controller = makeController({
       items: [{ fields: [{ field: 'a.b.c', value: 'val' }] }]
     });
@@ -96,13 +96,13 @@ describe('behaviours/execute-field-custom-parse tests', () => {
 
     const result = controller.locals(req, {});
     const field = result.items[0].fields[0];
-    expect(exactParse).to.have.been.calledOnceWith('val');
-    expect(parentParse).not.to.have.been.called;
-    expect(field.parsed).to.equal('EXACT');
+    expect(exactParse).toHaveBeenCalledWith('val');
+    expect(parentParse).not.toHaveBeenCalled();
+    expect(field.parsed).toBe('EXACT');
   });
 
   it('should use falsy but non-nullish parsed values (e.g., empty string)', () => {
-    const exactParse = sinon.stub().returns('');
+    const exactParse = mockFn().mockReturnValue('');
     const controller = makeController({
       items: [{ fields: [{ field: 'foo.bar', value: 'something' }] }]
     });
@@ -119,12 +119,12 @@ describe('behaviours/execute-field-custom-parse tests', () => {
 
     const result = controller.locals(req, {});
     const field = result.items[0].fields[0];
-    expect(exactParse).to.have.been.calledOnceWith('something');
-    expect(field.parsed).to.equal('');
+    expect(exactParse).toHaveBeenCalledWith('something');
+    expect(field.parsed).toBe('');
   });
 
   it('should not attempt parse when value is falsy (null/undefined)', () => {
-    const parseSpy = sinon.spy();
+    const parseSpy = mockFn();
     const controller = makeController({
       items: [
         {
@@ -149,9 +149,9 @@ describe('behaviours/execute-field-custom-parse tests', () => {
 
     const result = controller.locals(req, {});
     const fields = result.items[0].fields;
-    expect(parseSpy).not.to.have.been.called;
-    expect(fields[0].parsed).to.equal(null);
-    expect(fields[1].parsed).to.equal(undefined);
+    expect(parseSpy).not.toHaveBeenCalled();
+    expect(fields[0].parsed).toBe(null);
+    expect(fields[1].parsed).toBe(undefined);
   });
 
   it('should handle multiple items and preserve non-field locals', () => {
@@ -175,8 +175,8 @@ describe('behaviours/execute-field-custom-parse tests', () => {
     };
 
     const result = controller.locals(req, {});
-    expect(result.other).to.equal('keep-me');
-    expect(result.items[0].fields[0].parsed).to.equal('A-1');
-    expect(result.items[1].fields[0].parsed).to.equal('B-2');
+    expect(result.other).toBe('keep-me');
+    expect(result.items[0].fields[0].parsed).toBe('A-1');
+    expect(result.items[1].fields[0].parsed).toBe('B-2');
   });
 });

@@ -1,0 +1,9 @@
+{
+  "maxFileSizeInBytes": 25000000,
+  "allowedMimeTypes": [
+    "image/png",
+    "image/jpg",
+    "image/jpeg",
+    "application/pdf"
+  ]
+}

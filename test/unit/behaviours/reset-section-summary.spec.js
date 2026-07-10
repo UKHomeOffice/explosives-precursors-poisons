@@ -1,4 +1,4 @@
-const proxyquire = require('proxyquire');
+const Behaviour = require('../../../apps/epp-common/behaviours/reset-section-summary');
 
 describe('reset-section-summary behaviour tests', () => {
   class Base {
@@ -11,58 +11,50 @@ describe('reset-section-summary behaviour tests', () => {
   let req;
   let res;
   let next;
-  let Behaviour;
-
   beforeEach(() => {
     req = {
       sessionModel: {
-        get: sinon.stub(),
-        unset: sinon.stub()
+        get: mockFn(),
+        unset: mockFn()
       },
       form: {}
     };
     res = {};
-    next = sinon.spy();
-    Behaviour = proxyquire(
-      '../../../apps/epp-common/behaviours/reset-section-summary',
-      {}
-    );
+    next = mockFn();
   });
 
   describe('saveValues tests', () => {
     let instance;
 
     beforeEach(() => {
-      sinon
-        .stub(Base.prototype, 'saveValues')
-        .callsFake((request, response, nextFn) => nextFn());
+      jest
+        .spyOn(Base.prototype, 'saveValues')
+        .mockImplementation((request, response, nextFn) => nextFn());
       instance = new (Behaviour(
         ['aggregateToField'],
         'sectionStartField'
       )(Base))();
     });
 
-    it('should unset aggregateToField if sectionStartField is "no" ' +
+    it(
+      'should unset aggregateToField if sectionStartField is "no" ' +
         'and aggregatedValues length is greater than 0',
-    () => {
-      req.form.values = {
-        sectionStartField: 'no'
-      };
-      req.sessionModel.get
-        .withArgs('aggregateToField')
-        .returns({ aggregatedValues: [1, 2, 3] });
+      () => {
+        req.form.values = {
+          sectionStartField: 'no'
+        };
+        req.sessionModel.get
+          .withArgs('aggregateToField')
+          .mockReturnValue({ aggregatedValues: [1, 2, 3] });
 
-      instance.saveValues(req, res, next);
+        instance.saveValues(req, res, next);
 
-      expect(req.sessionModel.unset.calledWith('aggregateToField')).to.be
-        .true;
-      sinon.assert.calledWithExactly(
-        Base.prototype.saveValues,
-        req,
-        res,
-        next
-      );
-    });
+        expect(req.sessionModel.unset.calledWith('aggregateToField')).toBe(
+          true
+        );
+        expect(Base.prototype.saveValues).toHaveBeenCalledWith(req, res, next);
+      }
+    );
 
     it('should not unset aggregateToField if sectionStartField is not "no"', () => {
       req.form.values = {
@@ -71,18 +63,18 @@ describe('reset-section-summary behaviour tests', () => {
 
       instance.saveValues(req, res, next);
 
-      expect(req.sessionModel.unset.calledWith('aggregateToField')).to.be.false;
-      sinon.assert.calledWithExactly(Base.prototype.saveValues, req, res, next);
+      expect(req.sessionModel.unset.calledWith('aggregateToField')).toBe(false);
+      expect(Base.prototype.saveValues).toHaveBeenCalledWith(req, res, next);
     });
 
     it('should call superclass saveValues', () => {
       instance.saveValues(req, res, next);
 
-      sinon.assert.calledWithExactly(Base.prototype.saveValues, req, res, next);
+      expect(Base.prototype.saveValues).toHaveBeenCalledWith(req, res, next);
     });
 
     afterEach(() => {
-      Base.prototype.saveValues.restore();
+      Base.prototype.saveValues.mockRestore();
     });
   });
 });

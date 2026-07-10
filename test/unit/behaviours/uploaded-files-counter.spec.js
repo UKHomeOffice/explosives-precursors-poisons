@@ -1,5 +1,3 @@
-const proxyquire = require('proxyquire');
-
 describe('uploaded-files-counter tests', () => {
   let req;
   let res;
@@ -10,8 +8,8 @@ describe('uploaded-files-counter tests', () => {
   beforeEach(() => {
     req = {
       sessionModel: {
-        get: sinon.stub(),
-        set: sinon.stub()
+        get: mockFn(),
+        set: mockFn()
       },
       form: {
         values: {}
@@ -36,14 +34,12 @@ describe('uploaded-files-counter tests', () => {
       }
     };
 
-    uploadFilesCounter = proxyquire(
-      '../../../apps/epp-common/behaviours/uploaded-files-counter',
-      {
-        '../../../config': {
-          upload: req.app.config.upload
-        }
-      }
-    );
+    jest.resetModules();
+    jest.doMock('../../../config', () => ({
+      upload: req.app.config.upload
+    }));
+
+    uploadFilesCounter = require('../../../apps/epp-common/behaviours/uploaded-files-counter');
 
     instance = new (uploadFilesCounter('testUploadDoc')(superclass))();
   });
@@ -51,12 +47,12 @@ describe('uploaded-files-counter tests', () => {
   it('should set the counter if the limit is more than 1', () => {
     req.app.config.upload.documentCategories.testUploadDoc.limit = 2;
     const locals = instance.locals(req, res);
-    expect(locals.requiredDocsCount).to.equal(2);
+    expect(locals.requiredDocsCount).toBe(2);
   });
 
   it('should not set the counter if the limit is less than 2', () => {
     req.app.config.upload.documentCategories.testUploadDoc.limit = 1;
     const locals = instance.locals(req, res);
-    expect(locals.requiredDocsCount).to.be.undefined;
+    expect(locals.requiredDocsCount).toBeUndefined();
   });
 });

@@ -1,4 +1,5 @@
 const CountersignatoryBehaviour = require('../../../apps/epp-amend/behaviours/countersignatory-navigation');
+const reqres = require('hof').utils.reqres;
 
 describe('Tests for countersignatory-navigation behaviour', () => {
   class Base {
@@ -14,11 +15,11 @@ describe('Tests for countersignatory-navigation behaviour', () => {
   beforeEach(() => {
     req = reqres.req();
     res = reqres.res();
-    sinon.stub(Base.prototype, 'saveValues').returns(req, res, next);
+    mockSpyOn(Base.prototype, 'saveValues').mockReturnValue(req, res, next);
   });
 
   afterEach(() => {
-    Base.prototype.saveValues.restore();
+    Base.prototype.saveValues.mockRestore();
   });
 
   const scenarios = [
@@ -73,20 +74,20 @@ describe('Tests for countersignatory-navigation behaviour', () => {
     ({ currentRoute, formValues, sessionModelGetStub, expectedRedirect }) => {
       it(`Should redirect to ${expectedRedirect} for route ${currentRoute}`, () => {
         req.form.values = formValues;
-        req.sessionModel.get = sinon.stub();
+        req.sessionModel.get = mockFn();
         req.sessionModel.get
           .withArgs('amend-name-options')
-          .returns(sessionModelGetStub['amend-name-options']);
+          .mockReturnValue(sessionModelGetStub['amend-name-options']);
         req.sessionModel.get
           .withArgs('amend-home-address-options')
-          .returns(sessionModelGetStub['amend-home-address-options']);
-        res.redirect = sinon.spy();
+          .mockReturnValue(sessionModelGetStub['amend-home-address-options']);
+        res.redirect = mockFn();
 
         instance = new (CountersignatoryBehaviour(currentRoute)(Base))();
         instance.saveValues(req, res, next);
 
-        expect(res.redirect.calledOnce).to.be.true;
-        expect(res.redirect.calledWith(expectedRedirect)).to.be.true;
+        expect(res.redirect.calledOnce).toBe(true);
+        expect(res.redirect.calledWith(expectedRedirect)).toBe(true);
       });
     }
   );

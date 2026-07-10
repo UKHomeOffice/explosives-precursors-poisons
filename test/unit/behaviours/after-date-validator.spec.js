@@ -7,7 +7,7 @@ describe('after-date-validator', () => {
   let mockReq;
 
   beforeEach(() => {
-    ValidationError = sinon.stub();
+    ValidationError = mockFn();
     MockSuperclass = class {
       /* eslint-disable-next-line no-unused-vars */
       validateField(key, req) {
@@ -24,16 +24,15 @@ describe('after-date-validator', () => {
       )(MockSuperclass);
 
     mockReq = {
-      log: sinon.stub(),
+      log: mockFn(),
       sessionModel: {
-        get: sinon.stub()
+        get: mockFn()
       }
     };
   });
   it('should return ValidationError if date is after dob', () => {
-    sinon
-      .stub(CheckChangedDate, 'checkIfDateAfterDob')
-      .returns({ error: 'Date is after dob' });
+    mockSpyOn(CheckChangedDate, 'checkIfDateAfterDob')
+      .mockReturnValue({ error: 'Date is after dob' });
 
     const instance = new AfterDateValidator();
     const result = instance.validateField(
@@ -41,20 +40,18 @@ describe('after-date-validator', () => {
       mockReq
     );
 
-    expect(result).to.be.instanceOf(ValidationError);
-    expect(
-      CheckChangedDate.checkIfDateAfterDob.calledWith(
-        'amend-new-date-name-changed',
-        mockReq,
-        'dobFieldName'
-      )
-    ).to.be.true;
+    expect(result).toBeInstanceOf(ValidationError);
+    expect(CheckChangedDate.checkIfDateAfterDob).toHaveBeenCalledWith(
+      'amend-new-date-name-changed',
+      mockReq,
+      'dobFieldName'
+    );
 
-    CheckChangedDate.checkIfDateAfterDob.restore();
+    CheckChangedDate.checkIfDateAfterDob.mockRestore();
   });
 
   it('should not return ValidationError if date is not after dob', () => {
-    sinon.stub(CheckChangedDate, 'checkIfDateAfterDob').returns({});
+    mockSpyOn(CheckChangedDate, 'checkIfDateAfterDob').mockReturnValue({});
 
     const instance = new AfterDateValidator();
     const result = instance.validateField(
@@ -62,9 +59,9 @@ describe('after-date-validator', () => {
       mockReq
     );
 
-    expect(result).to.be.true;
-    expect(mockReq.log.calledWith('info', 'No validation error')).to.be.true;
+    expect(result).toBe(true);
+    expect(mockReq.log).toHaveBeenCalledWith('info', 'No validation error');
 
-    CheckChangedDate.checkIfDateAfterDob.restore();
+    CheckChangedDate.checkIfDateAfterDob.mockRestore();
   });
 });
