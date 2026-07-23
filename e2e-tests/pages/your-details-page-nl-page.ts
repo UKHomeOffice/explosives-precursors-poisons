@@ -70,7 +70,3 @@ export class yourDetailsPageNLPage extends basePage {
       : 'Your details';
   }
 }
-
-
-
-
