@@ -2,15 +2,16 @@ import { Page } from '@playwright/test';
 import { basePage } from './base-page';
 
 export class uploadProofOfAddressAmendLicencePage extends basePage {
+  private readonly uploadInput;
+
   constructor(page: Page) {
     super(page);
+    this.uploadInput = this.page.locator('#file-upload').first();
   }
 
   async answerEPPAddressProofUpload(filePath: string): Promise<void> {
-    const upload = this.page.locator('#file-upload').first();
-
-    await upload.setInputFiles(filePath);
-    await upload.setInputFiles(filePath);
+    await this.uploadInput.setInputFiles(filePath);
+    await this.uploadInput.setInputFiles(filePath);
 
     await this.clickContinueButton();
   }

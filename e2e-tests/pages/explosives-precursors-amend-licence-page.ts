@@ -2,12 +2,15 @@ import { Page } from '@playwright/test';
 import { basePage } from './base-page';
 
 export class explosivesPrecursorsAmendLicencePage extends basePage {
+  private readonly precursorSelect;
+
   constructor(page: Page) {
     super(page);
+    this.precursorSelect = this.page.locator('#precursor-field').first();
   }
 
   private async choose(label: string) {
-    await this.page.locator('#precursor-field').first().selectOption({ label });
+    await this.precursorSelect.selectOption({ label });
     await this.clickContinueButton();
   }
 

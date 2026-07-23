@@ -2,8 +2,13 @@ import { Page } from '@playwright/test';
 import { basePage } from './base-page';
 
 export class otherNamesPageNLPage extends basePage {
+  private readonly titleSelect;
+  private readonly middleNameInput;
+
   constructor(page: Page) {
     super(page);
+    this.titleSelect = this.page.locator('#new-renew-other-name-title').first();
+    this.middleNameInput = this.page.getByLabel('Middle names (optional)', { exact: true }).first();
   }
 
   async answerOtherNameDetails(
@@ -15,16 +20,14 @@ export class otherNamesPageNLPage extends basePage {
     startMonth: string,
     startYear: string,
   ): Promise<void> {
-    const titleSelect = this.page.locator('#new-renew-other-name-title').first();
-    if (await titleSelect.isVisible().catch(() => false)) {
-      await titleSelect.selectOption({ label: title });
+    if (await this.titleSelect.isVisible().catch(() => false)) {
+      await this.titleSelect.selectOption({ label: title });
     }
 
     await this.fillByLabel('First name', firstName);
 
-    const middleNameInput = this.page.getByLabel('Middle names (optional)', { exact: true }).first();
-    if (await middleNameInput.isVisible().catch(() => false)) {
-      await middleNameInput.fill(middleName);
+    if (await this.middleNameInput.isVisible().catch(() => false)) {
+      await this.fillField(this.middleNameInput, middleName);
     }
 
     await this.fillByLabel('Last name', lastName);

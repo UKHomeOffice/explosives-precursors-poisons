@@ -4,14 +4,32 @@ import { ConstantsLib as c } from '../utility-helper/constants-lib';
 export class basePage {
   readonly page: Page;
   readonly continueButton: Locator;
+  private readonly pageTitle;
+  private readonly visibleContinueButton;
+  private readonly inputContinueButton;
+  private readonly fallbackContinueButton;
+  private readonly firstFileInput;
+  private readonly yesRadio;
+  private readonly noRadio;
+  private readonly firstRadioInput;
+  private readonly firstCheckboxInput;
 
   constructor(page: Page) {
     this.page = page;
+    this.pageTitle = page.locator('h1');
+    this.visibleContinueButton = page.locator('button:visible').filter({ hasText: /^Continue$/ }).first();
+    this.inputContinueButton = page.locator("input[value='Continue']").first();
+    this.fallbackContinueButton = page.getByRole('button', { name: /continue/i }).first();
+    this.firstFileInput = page.locator('input[type="file"]').first();
+    this.yesRadio = page.getByRole('radio', { name: /^yes$/i }).first();
+    this.noRadio = page.getByRole('radio', { name: /^no$/i }).first();
+    this.firstRadioInput = page.locator('input[type="radio"]').first();
+    this.firstCheckboxInput = page.locator('input[type="checkbox"]').first();
     this.continueButton = page.getByRole('button', { name: 'Continue' }).or(page.locator("input[value='Continue']"));
   }
 
   async assertPageTitleContains(titleText: string) {
-    await expect(this.page.locator('h1')).toContainText(titleText);
+    await expect(this.pageTitle).toContainText(titleText);
   }
 
   async assertPageTitle(page: Page, title: string) {
@@ -19,19 +37,17 @@ export class basePage {
   }
 
   async clickContinueButton() {
-    const button = this.page.locator('button:visible').filter({ hasText: /^Continue$/ }).first();
-    if (await button.isVisible().catch(() => false)) {
-      await button.click();
+    if (await this.visibleContinueButton.isVisible().catch(() => false)) {
+      await this.visibleContinueButton.click();
       return;
     }
 
-    const inputContinue = this.page.locator("input[value='Continue']").first();
-    if (await inputContinue.isVisible().catch(() => false)) {
-      await inputContinue.click();
+    if (await this.inputContinueButton.isVisible().catch(() => false)) {
+      await this.inputContinueButton.click();
       return;
     }
 
-    await this.page.getByRole('button', { name: /continue/i }).first().click();
+    await this.fallbackContinueButton.click();
   }
 
   async selectRadio(optionText: string) {
@@ -39,10 +55,10 @@ export class basePage {
   }
 
   async fillField(locator: Locator, value: string) {
-    await locator.fill(value);
+    await locator.clear();
+    await locator.type(value);
     await this.page.keyboard.press('Tab');
   }
-
 
   async fillByLabel(label: string, value: string) {
     const input = this.page.getByLabel(label, { exact: true }).first();
@@ -50,7 +66,7 @@ export class basePage {
   }
 
   async uploadFirstInput(filePath: string) {
-    const input = this.page.locator('input[type="file"]').first(); await input.setInputFiles(filePath);
+    await this.firstFileInput.setInputFiles(filePath);
   }
 
   async clickLinkByText(text: string) {
@@ -60,10 +76,10 @@ export class basePage {
   protected async chooseYesNo(value: string) {
     const normalized = (value || '').toLowerCase();
     if (normalized === c.YES.toLowerCase()) {
-      await this.page.getByRole('radio', { name: /^yes$/i }).first().check();
+      await this.yesRadio.check();
       return;
     }
-    await this.page.getByRole('radio', { name: /^no$/i }).first().check();
+    await this.noRadio.check();
   }
 
   protected async pickRadioByText(text: string) {
@@ -85,7 +101,7 @@ export class basePage {
       return;
     }
 
-    await this.page.locator('input[type="radio"]').first().check();
+    await this.firstRadioInput.check();
   }
 
   protected async pickCheckboxByText(text: string) {
@@ -107,15 +123,13 @@ export class basePage {
       return;
     }
 
-    const firstCheckbox = this.page.locator('input[type="checkbox"]').first();
-    if (await firstCheckbox.isVisible().catch(() => false)) {
-      await firstCheckbox.check();
+    if (await this.firstCheckboxInput.isVisible().catch(() => false)) {
+      await this.firstCheckboxInput.check();
       return;
     }
 
-    const firstRadio = this.page.locator('input[type="radio"]').first();
-    if (await firstRadio.isVisible().catch(() => false)) {
-      await firstRadio.check();
+    if (await this.firstRadioInput.isVisible().catch(() => false)) {
+      await this.firstRadioInput.check();
     }
   }
 

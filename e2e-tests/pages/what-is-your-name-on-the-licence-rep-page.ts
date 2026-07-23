@@ -2,21 +2,24 @@ import { Page } from '@playwright/test';
 import { basePage } from './base-page';
 
 export class whatIsYourNameOnTheLicenceRepPage extends basePage {
+  private readonly titleSelect;
+  private readonly middleNameInput;
+
   constructor(page: Page) {
     super(page);
+    this.titleSelect = this.page.locator('#replace-title').first();
+    this.middleNameInput = this.page.getByLabel('Middle names (optional)', { exact: true }).first();
   }
 
   async answerNameOnLicence(title: string, firstName: string, middleName: string, lastName: string): Promise<void> {
-    const titleSelect = this.page.locator('#replace-title').first();
-    if (await titleSelect.isVisible().catch(() => false)) {
-      await titleSelect.selectOption({ label: title });
+    if (await this.titleSelect.isVisible().catch(() => false)) {
+      await this.titleSelect.selectOption({ label: title });
     }
 
     await this.fillByLabel('First name', firstName);
 
-    const middle = this.page.getByLabel('Middle names (optional)', { exact: true }).first();
-    if (await middle.isVisible().catch(() => false)) {
-      await middle.fill(middleName);
+    if (await this.middleNameInput.isVisible().catch(() => false)) {
+      await this.fillField(this.middleNameInput, middleName);
     }
 
     await this.fillByLabel('Last name', lastName);

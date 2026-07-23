@@ -2,24 +2,27 @@ import { Page } from '@playwright/test';
 import { basePage } from './base-page';
 
 export class addRefusedRevokedLicenceEppNLPage extends basePage {
+  private readonly reasonInput;
+  private readonly firearmsOption;
+  private readonly shotgunOption;
+
   constructor(page: Page) {
     super(page);
+    this.reasonInput = this.page.locator('#new-renew-why-licence-refused').first();
+    this.firearmsOption = this.page.locator('#new-renew-licence-type-Firearms').first();
+    this.shotgunOption = this.page.locator('#new-renew-licence-type-Shotgun').first();
   }
 
   async reasonAndDateFirearmRefused(reason: string, day: string, month: string, year: string): Promise<void> {
-    const reasonInput = this.page.locator('#new-renew-why-licence-refused').first();
-
-    await this.page.locator('#new-renew-licence-type-Firearms').first().check();
-    await this.fillField(reasonInput, reason);
+    await this.firearmsOption.check();
+    await this.fillField(this.reasonInput, reason);
     await this.fillDate(day, month, year);
     await this.clickContinueButton();
   }
 
   async reasonAndDateShotGunRefused(reason: string, day: string, month: string, year: string): Promise<void> {
-    const reasonInput = this.page.locator('#new-renew-why-licence-refused').first();
-
-    await this.page.locator('#new-renew-licence-type-Shotgun').first().check();
-    await this.fillField(reasonInput, reason);
+    await this.shotgunOption.check();
+    await this.fillField(this.reasonInput, reason);
     await this.fillDate(day, month, year);
     await this.clickContinueButton();
   }

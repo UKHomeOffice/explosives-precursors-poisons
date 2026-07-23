@@ -2,15 +2,17 @@ import { Page } from '@playwright/test';
 import { basePage } from './base-page';
 
 export class otherNationalitiesEppNLPage extends basePage {
+  private readonly nationalityInput;
+
   constructor(page: Page) {
     super(page);
+    this.nationalityInput = this.page.locator('#new-renew-other-country-nationality').first();
   }
 
   async answerOtherNationalitiesQuestions(nationality: string): Promise<void> {
-    const nationalityInput = this.page.locator('#new-renew-other-country-nationality').first();
-    if (await nationalityInput.isVisible().catch(() => false)) {
-      await nationalityInput.fill(nationality);
-      await nationalityInput.press('Tab');
+    if (await this.nationalityInput.isVisible().catch(() => false)) {
+      await this.fillField(this.nationalityInput, nationality);
+      await this.nationalityInput.press('Tab');
     }
 
     await this.clickContinueButton();

@@ -2,59 +2,74 @@ import { Page } from '@playwright/test';
 import { basePage } from './base-page';
 
 export class poisonDetailsRepPage extends basePage {
+  private readonly reasonInput;
+  private readonly amountInput;
+  private readonly unitSelect;
+  private readonly compoundInput;
+  private readonly concentrationInput;
+  private readonly storeHomeOption;
+  private readonly storeOtherOption;
+  private readonly storageAddressInput;
+  private readonly useHomeOption;
+  private readonly useOtherOption;
+  private readonly usageAddressInput;
+
   constructor(page: Page) {
     super(page);
+    this.reasonInput = this.page.locator('#why-need-poison').first();
+    this.amountInput = this.page.locator('#how-much-poison-amount').first();
+    this.unitSelect = this.page.locator('#how-much-poison-unit').first();
+    this.compoundInput = this.page.locator('#compound-or-salt').first();
+    this.concentrationInput = this.page.locator('#what-concentration-poison').first();
+    this.storeHomeOption = this.page.locator('#where-to-store-poison-store-poison-home-address-value').first();
+    this.storeOtherOption = this.page.locator('#where-to-store-poison-store-poison-other-address-value').first();
+    this.storageAddressInput = this.page.locator('#poison-store-other-address').first();
+    this.useHomeOption = this.page.locator('#where-to-use-poison-use-poison-home-address').first();
+    this.useOtherOption = this.page.locator('#where-to-use-poison-use-poison-other-address').first();
+    this.usageAddressInput = this.page.locator('#poison-use-other-address').first();
   }
 
   async answerDNP(reason: string, amount: string, amountUnit: string, compoundOrSalt: string, concentration: string): Promise<void> {
-    const reasonInput = this.page.locator('#why-need-poison').first();
-    if (await reasonInput.isVisible().catch(() => false)) {
-      await reasonInput.fill(reason);
+    if (await this.reasonInput.isVisible().catch(() => false)) {
+      await this.fillField(this.reasonInput, reason);
     }
 
-    const amountInput = this.page.locator('#how-much-poison-amount').first();
-    if (await amountInput.isVisible().catch(() => false)) {
-      await amountInput.fill(amount);
+    if (await this.amountInput.isVisible().catch(() => false)) {
+      await this.fillField(this.amountInput, amount);
     }
 
-    const unitSelect = this.page.locator('#how-much-poison-unit').first();
-    if (await unitSelect.isVisible().catch(() => false)) {
-      const optionTexts = await unitSelect.locator('option').allTextContents();
+    if (await this.unitSelect.isVisible().catch(() => false)) {
+      const optionTexts = await this.unitSelect.locator('option').allTextContents();
       const matched = optionTexts.find((o) => o.trim().toLowerCase() === amountUnit.trim().toLowerCase()) || amountUnit;
-      await unitSelect.selectOption({ label: matched });
+      await this.unitSelect.selectOption({ label: matched });
     }
 
-    const compoundInput = this.page.locator('#compound-or-salt').first();
-    if (await compoundInput.isVisible().catch(() => false)) {
-      await compoundInput.fill(compoundOrSalt);
+    if (await this.compoundInput.isVisible().catch(() => false)) {
+      await this.fillField(this.compoundInput, compoundOrSalt);
     }
 
-    const concentrationInput = this.page.locator('#what-concentration-poison').first();
-    if (await concentrationInput.isVisible().catch(() => false)) {
-      await concentrationInput.fill(concentration);
+    if (await this.concentrationInput.isVisible().catch(() => false)) {
+      await this.fillField(this.concentrationInput, concentration);
     }
   }
 
   async storeInUkAddress(): Promise<void> {
-    const home = this.page.locator('#where-to-store-poison-store-poison-home-address-value').first();
-    if (await home.isVisible().catch(() => false)) {
-      await home.check();
+    if (await this.storeHomeOption.isVisible().catch(() => false)) {
+      await this.storeHomeOption.check();
       return;
     }
     await this.page.getByRole('checkbox').first().check();
   }
 
   async storeInOtherAddress(address: string): Promise<void> {
-    const other = this.page.locator('#where-to-store-poison-store-poison-other-address-value').first();
-    if (await other.isVisible().catch(() => false)) {
-      await other.check();
+    if (await this.storeOtherOption.isVisible().catch(() => false)) {
+      await this.storeOtherOption.check();
     } else {
       await this.page.getByRole('checkbox', { name: /other address/i }).first().check();
     }
 
-    const storageAddress = this.page.locator('#poison-store-other-address').first();
-    if (await storageAddress.isVisible().catch(() => false)) {
-      await storageAddress.fill(address);
+    if (await this.storageAddressInput.isVisible().catch(() => false)) {
+      await this.fillField(this.storageAddressInput, address);
     } else {
       await this.fillAny([
         'Storage address for the Thallium',
@@ -65,25 +80,22 @@ export class poisonDetailsRepPage extends basePage {
   }
 
   async useUkAddress(): Promise<void> {
-    const home = this.page.locator('#where-to-use-poison-use-poison-home-address').first();
-    if (await home.isVisible().catch(() => false)) {
-      await home.check();
+    if (await this.useHomeOption.isVisible().catch(() => false)) {
+      await this.useHomeOption.check();
       return;
     }
     await this.page.getByRole('checkbox').nth(2).check();
   }
 
   async useOtherAddress(address: string): Promise<void> {
-    const other = this.page.locator('#where-to-use-poison-use-poison-other-address').first();
-    if (await other.isVisible().catch(() => false)) {
-      await other.check();
+    if (await this.useOtherOption.isVisible().catch(() => false)) {
+      await this.useOtherOption.check();
     } else {
       await this.page.getByRole('checkbox', { name: /other address/i }).last().check();
     }
 
-    const usageAddress = this.page.locator('#poison-use-other-address').first();
-    if (await usageAddress.isVisible().catch(() => false)) {
-      await usageAddress.fill(address);
+    if (await this.usageAddressInput.isVisible().catch(() => false)) {
+      await this.fillField(this.usageAddressInput, address);
     } else {
       await this.fillAny([
         'Usage address for the Thallium',

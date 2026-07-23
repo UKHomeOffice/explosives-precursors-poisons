@@ -1,14 +1,15 @@
 export const ConstantsLib = {
-  UPLOAD_EVIDENCE_FILE: 'assets/images/ho-logo.png',
+  UPLOAD_EVIDENCE_FILE: 'e2e-tests/test-data/ho-logo.png',
+  
   YES: 'Yes',
   NO: 'No',
 
   TITLE_MR: 'Mr',
   OTHER_NAME_TITLE: 'Mr',
-  APPLICANT_FIRST_NAME: 'EPP',
+  APPLICANT_FIRST_NAME: 'HOF',
   APPLICANT_MIDDLE_NAME: 'Test',
   APPLICANT_LAST_NAME: 'User',
-  OTHER_NAME_FIRST_NAME: 'Patrick',
+  OTHER_NAME_FIRST_NAME: 'HOF OTHER',
   OTHER_NAME_MIDDLE_NAME: 'Automation',
   OTHER_NAME_LAST_NAME: 'Selenium',
   LICENCE_NUMBER: '95/W/000000/2014',
@@ -27,7 +28,7 @@ export const ConstantsLib = {
   IDENTITY_PASSPORT_EU_NUMBER: '120897B',
   IDENTITY_UK_DRIVING_LICENCE_NUMBER: 'MORGA657054SM9IJ',
 
-  OFFENCE_NAME: 'Felony',
+  OFFENCE_NAME: 'HOF Felony',
   CRIME_POLICE_FORCE: 'City of London',
   CRIME_NUMBER: '12345',
   REFUSED_REASON: 'The firearms licence was refused as a result of licence expiry',
@@ -91,7 +92,7 @@ export const ConstantsLib = {
   PREVIOUS_ADDRESS_COUNTY: 'West Yorkshire',
   PREVIOUS_ADDRESS_POSTCODE: 'LS1 1AA',
 
-  COUNTERSIGNATORY_FIRST_NAME: 'Counter',
+  COUNTERSIGNATORY_FIRST_NAME: 'HOF Counter',
   COUNTERSIGNATORY_MIDDLE_NAME: 'Test',
   COUNTERSIGNATORY_LAST_NAME: 'Signer',
   COUNTERSIGNATORY_KNOWN_FOR: '3 years',
@@ -102,7 +103,7 @@ export const ConstantsLib = {
   COUNTERSIGNATORY_CITY: 'London',
   COUNTERSIGNATORY_POSTCODE: 'SW1A 3AA',
 
-  DOCTOR_NAME: 'Mr Khan',
+  DOCTOR_NAME: 'Mr HOF Doctor',
   DOCTOR_ADDRESS_LINE_1: '6kt',
   DOCTOR_ADDRESS_LINE_2: 'Berk road',
   DOCTOR_CITY: 'East Croydon',

@@ -2,13 +2,15 @@ import { Page } from '@playwright/test';
 import { basePage } from './base-page';
 
 export class summaryPreviousAddressLast5YearsEppNLPage extends basePage {
+  private readonly heading;
+
   constructor(page: Page) {
     super(page);
+    this.heading = this.page.locator('h1').first();
   }
 
   async answerSummaryForPreviousAddress(): Promise<void> {
-    const heading = this.page.locator('h1').first();
-    const text = (await heading.textContent().catch(() => '')) || '';
+    const text = (await this.heading.textContent().catch(() => '')) || '';
     if (!text.toLowerCase().includes('previous address')) {
       return;
     }

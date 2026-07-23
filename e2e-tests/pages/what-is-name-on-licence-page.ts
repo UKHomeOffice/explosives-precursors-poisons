@@ -2,22 +2,29 @@ import { Page } from '@playwright/test';
 import { basePage } from './base-page';
 
 export class whatIsNameOnLicencePage extends basePage {
+  private readonly titleSelect;
+  private readonly firstNameInput;
+  private readonly middleNameInput;
+  private readonly lastNameInput;
+
   constructor(page: Page) {
     super(page);
+    this.titleSelect = this.page.locator('#amend-name-title').first();
+    this.firstNameInput = this.page.locator('#amend-firstname').first();
+    this.middleNameInput = this.page.locator('#amend-middlename').first();
+    this.lastNameInput = this.page.locator('#amend-lastname').first();
   }
 
   async answerNameOnLicence(titleValue: string, firstName: string, middleName: string, lastName: string): Promise<void> {
-    const title = this.page.locator('#amend-name-title').first();
-    if (await title.isVisible().catch(() => false)) {
-      await title.selectOption(titleValue);
+    if (await this.titleSelect.isVisible().catch(() => false)) {
+      await this.titleSelect.selectOption(titleValue);
     }
 
-    await this.page.locator('#amend-firstname').first().fill(firstName);
-    const middle = this.page.locator('#amend-middlename').first();
-    if (await middle.isVisible().catch(() => false)) {
-      await middle.fill(middleName);
+    await this.fillField(this.firstNameInput, firstName);
+    if (await this.middleNameInput.isVisible().catch(() => false)) {
+      await this.fillField(this.middleNameInput, middleName);
     }
-    await this.page.locator('#amend-lastname').first().fill(lastName);
+    await this.fillField(this.lastNameInput, lastName);
     await this.clickContinueButton();
   }
   async expectedPageTitle(): Promise<string> {

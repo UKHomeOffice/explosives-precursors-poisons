@@ -2,8 +2,21 @@ import { Page } from '@playwright/test';
 import { basePage } from './base-page';
 
 export class previousAddressPageNLPage extends basePage {
+  private readonly line1Input;
+  private readonly line2Input;
+  private readonly cityInput;
+  private readonly countyInput;
+  private readonly postcodeInput;
+  private readonly countryInput;
+
   constructor(page: Page) {
     super(page);
+    this.line1Input = this.page.locator('input[name="new-renew-previous-home-address-line1"]').first();
+    this.line2Input = this.page.locator('input[name="new-renew-previous-home-address-line2"]').first();
+    this.cityInput = this.page.locator('input[name="new-renew-previous-home-address-town"]').first();
+    this.countyInput = this.page.locator('input[name="new-renew-previous-home-address-county"]').first();
+    this.postcodeInput = this.page.locator('input[name="new-renew-previous-home-address-postcode"]').first();
+    this.countryInput = this.page.locator('#new-renew-previous-home-address-country').first();
   }
 
   async answerPreviousHomeAddress(
@@ -17,21 +30,19 @@ export class previousAddressPageNLPage extends basePage {
     month: string,
     year: string,
   ): Promise<void> {
-    const line1 = this.page.locator('input[name="new-renew-previous-home-address-line1"]').first();
-    if (!(await line1.isVisible().catch(() => false))) {
+    if (!(await this.line1Input.isVisible().catch(() => false))) {
       return;
     }
 
-    await line1.fill(addressLine1);
-    await this.page.locator('input[name="new-renew-previous-home-address-line2"]').first().fill(addressLine2);
-    await this.page.locator('input[name="new-renew-previous-home-address-town"]').first().fill(city);
-    await this.page.locator('input[name="new-renew-previous-home-address-county"]').first().fill(county);
-    await this.page.locator('input[name="new-renew-previous-home-address-postcode"]').first().fill(postcode);
+    await this.fillField(this.line1Input, addressLine1);
+    await this.fillField(this.line2Input, addressLine2);
+    await this.fillField(this.cityInput, city);
+    await this.fillField(this.countyInput, county);
+    await this.fillField(this.postcodeInput, postcode);
 
-    const country = this.page.locator('#new-renew-previous-home-address-country').first();
-    if (await country.isVisible().catch(() => false)) {
-      await country.fill(countryValue);
-      await country.press('Tab');
+    if (await this.countryInput.isVisible().catch(() => false)) {
+      await this.fillField(this.countryInput, countryValue);
+      await this.countryInput.press('Tab');
     }
 
     await this.fillDate(day, month, year);

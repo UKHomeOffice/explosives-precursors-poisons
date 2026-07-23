@@ -3,8 +3,13 @@ import { basePage } from './base-page';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
 export class otherLicencesEppNLPage extends basePage {
+  private readonly yesChoice;
+  private readonly noChoice;
+
   constructor(page: Page) {
     super(page);
+    this.yesChoice = this.page.getByRole('radio', { name: /^yes$/i }).first();
+    this.noChoice = this.page.getByRole('radio', { name: /^no$/i }).first();
   }
 
   async selectOtherLicences(licenceType: string, response: string): Promise<void> {
@@ -19,11 +24,11 @@ export class otherLicencesEppNLPage extends basePage {
     }
 
     if (normalized === c.YES.toLowerCase()) {
-      await this.page.getByRole('radio', { name: /^yes$/i }).first().check();
+      await this.yesChoice.check();
       return;
     }
 
-    await this.page.getByRole('radio', { name: /^no$/i }).first().check();
+    await this.noChoice.check();
   }
 
   async expectedPageTitle(): Promise<string> {

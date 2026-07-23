@@ -2,13 +2,18 @@ import { Page } from '@playwright/test';
 import { basePage } from './base-page';
 
 export class counterSignatoryContactDetailsEppNLPage extends basePage {
+  private readonly phoneInput;
+  private readonly emailInput;
+
   constructor(page: Page) {
     super(page);
+    this.phoneInput = this.page.locator('#new-renew-countersignatory-phone-number').first();
+    this.emailInput = this.page.locator('#new-renew-countersignatory-email').first();
   }
 
   async answerCounterSignatoryContactDetails(phone: string, email: string): Promise<void> {
-    await this.page.locator('#new-renew-countersignatory-phone-number').first().fill(phone);
-    await this.page.locator('#new-renew-countersignatory-email').first().fill(email);
+    await this.fillField(this.phoneInput, phone);
+    await this.fillField(this.emailInput, email);
     await this.clickContinueButton();
   }
 

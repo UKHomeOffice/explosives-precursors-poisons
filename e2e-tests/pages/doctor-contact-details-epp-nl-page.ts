@@ -2,8 +2,23 @@ import { Page } from '@playwright/test';
 import { basePage } from './base-page';
 
 export class doctorContactDetailsEppNLPage extends basePage {
+  private readonly doctorNameInput;
+  private readonly addressLine1Input;
+  private readonly addressLine2Input;
+  private readonly cityInput;
+  private readonly countyInput;
+  private readonly postcodeInput;
+  private readonly countryInput;
+
   constructor(page: Page) {
     super(page);
+    this.doctorNameInput = this.page.locator('#new-renew-doctor-name').first();
+    this.addressLine1Input = this.page.locator('#new-renew-doctor-address-line-1').first();
+    this.addressLine2Input = this.page.locator('#new-renew-doctor-address-line-2').first();
+    this.cityInput = this.page.locator('#new-renew-doctor-town-city').first();
+    this.countyInput = this.page.locator('#new-renew-doctor-county-state-province').first();
+    this.postcodeInput = this.page.locator('#new-renew-doctor-postcode').first();
+    this.countryInput = this.page.getByLabel('Country of address', { exact: true }).first();
   }
 
   async answerDoctorContactDetails(
@@ -15,26 +30,23 @@ export class doctorContactDetailsEppNLPage extends basePage {
     postcode: string,
     countryValue: string,
   ): Promise<void> {
-    await this.page.locator('#new-renew-doctor-name').first().fill(doctorName);
-    await this.page.locator('#new-renew-doctor-address-line-1').first().fill(addressLine1);
+    await this.fillField(this.doctorNameInput, doctorName);
+    await this.fillField(this.addressLine1Input, addressLine1);
 
-    const line2 = this.page.locator('#new-renew-doctor-address-line-2').first();
-    if (await line2.isVisible().catch(() => false)) {
-      await line2.fill(addressLine2);
+    if (await this.addressLine2Input.isVisible().catch(() => false)) {
+      await this.fillField(this.addressLine2Input, addressLine2);
     }
 
-    await this.page.locator('#new-renew-doctor-town-city').first().fill(city);
+    await this.fillField(this.cityInput, city);
 
-    const county = this.page.locator('#new-renew-doctor-county-state-province').first();
-    if (await county.isVisible().catch(() => false)) {
-      await county.fill(countyValue);
+    if (await this.countyInput.isVisible().catch(() => false)) {
+      await this.fillField(this.countyInput, countyValue);
     }
 
-    await this.page.locator('#new-renew-doctor-postcode').first().fill(postcode);
+    await this.fillField(this.postcodeInput, postcode);
 
-    const country = this.page.getByLabel('Country of address', { exact: true }).first();
-    await country.fill(countryValue);
-    await country.press('Tab');
+    await this.fillField(this.countryInput, countryValue);
+    await this.countryInput.press('Tab');
 
     await this.clickContinueButton();
   }

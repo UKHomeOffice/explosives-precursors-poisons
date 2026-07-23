@@ -2,8 +2,17 @@ import { Page } from '@playwright/test';
 import { basePage } from './base-page';
 
 export class counterSignatoryAddressNLPage extends basePage {
+  private readonly line1Input;
+  private readonly line2Input;
+  private readonly cityInput;
+  private readonly postcodeInput;
+
   constructor(page: Page) {
     super(page);
+    this.line1Input = this.page.locator('#new-renew-countersignatory-address-1').first();
+    this.line2Input = this.page.locator('#new-renew-countersignatory-address-2').first();
+    this.cityInput = this.page.locator('#new-renew-countersignatory-town-or-city').first();
+    this.postcodeInput = this.page.locator('#new-renew-countersignatory-postcode').first();
   }
 
   async answerCounterSignatoryAddress(
@@ -12,15 +21,10 @@ export class counterSignatoryAddressNLPage extends basePage {
     city: string,
     postcode: string,
   ): Promise<void> {
-    await this.page.locator('#new-renew-countersignatory-address-1').first().fill(addressLine1);
-
-    const line2 = this.page.locator('#new-renew-countersignatory-address-2').first();
-    if (await line2.isVisible().catch(() => false)) {
-      await line2.fill(addressLine2);
-    }
-
-    await this.page.locator('#new-renew-countersignatory-town-or-city').first().fill(city);
-    await this.page.locator('#new-renew-countersignatory-postcode').first().fill(postcode);
+    await this.fillField(this.line1Input, addressLine1);
+    await this.fillField(this.line2Input, addressLine2);
+    await this.fillField(this.cityInput, city);
+    await this.fillField(this.postcodeInput, postcode);
     await this.clickContinueButton();
   }
 

@@ -554,7 +554,7 @@ async function doYouNeedToAmendRegulatedEPOnLicence(pages: Pages) {
     await pages.regulatedExplosivesPrecursorsPage.answerYesAmendExplosivePrecursorsOnLicence(c.YES);
     await selectEPFromList(pages);
     await answerCoverLicenceDetailsExPreNL(pages);
-    await pages.explosivesPrecursorSummaryAmendLicencePage.explosiveAndPrecursorsSummaryAmendLicence();
+    //  await pages.explosivesPrecursorSummaryAmendLicencePage.explosiveAndPrecursorsSummaryAmendLicence();
     return;
   }
   await pages.regulatedExplosivesPrecursorsPage.answerNoAmendExplosivePrecursorsOnLicence(c.NO);

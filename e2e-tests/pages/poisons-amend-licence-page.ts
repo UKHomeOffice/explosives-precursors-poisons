@@ -2,16 +2,18 @@ import { Page } from '@playwright/test';
 import { basePage } from './base-page';
 
 export class poisonsAmendLicencePage extends basePage {
+  private readonly poisonSelect;
+
   constructor(page: Page) {
     super(page);
+    this.poisonSelect = this.page.locator('#poison-field').first();
   }
 
   private async choose(label: string) {
-    const select = this.page.locator('#poison-field').first();
-    if (await select.isVisible().catch(() => false)) {
-      await select.selectOption({ label });
+    if (await this.poisonSelect.isVisible().catch(() => false)) {
+      await this.poisonSelect.selectOption({ label });
     } else {
-      await select.selectOption({ label }, { force: true });
+      await this.poisonSelect.selectOption({ label }, { force: true });
     }
     await this.clickContinueButton();
   }
