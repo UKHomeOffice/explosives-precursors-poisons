@@ -10,8 +10,6 @@ export class otherNationalitiesEppNLPage extends basePage {
     const nationalityInput = this.page.locator('#new-renew-other-country-nationality').first();
     if (await nationalityInput.isVisible().catch(() => false)) {
       await nationalityInput.fill(nationality);
-      await nationalityInput.press('ArrowDown');
-      await nationalityInput.press('Enter');
       await nationalityInput.press('Tab');
     }
 

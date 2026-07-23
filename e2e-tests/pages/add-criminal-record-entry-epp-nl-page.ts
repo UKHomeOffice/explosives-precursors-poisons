@@ -7,13 +7,11 @@ export class addCriminalRecordEntryEppNLPage extends basePage {
   }
 
   async answerCriminalRecordEntry(offenceName: string, country: string, day: string, month: string, year: string): Promise<void> {
-    await this.page.getByLabel('Name of offence', { exact: true }).first().fill(offenceName);
+    const offenceNameInput = this.page.getByLabel('Name of offence', { exact: true }).first();
+    await this.fillField(offenceNameInput, offenceName);
 
     const countryInput = this.page.getByLabel('Which country was the offence committed in?', { exact: true }).first();
-    await countryInput.fill(country);
-    await countryInput.press('ArrowDown');
-    await countryInput.press('Enter');
-    await countryInput.press('Tab');
+    await this.fillField(countryInput, country);
 
     await this.fillDate(day, month, year);
     await this.clickContinueButton();
@@ -27,7 +25,3 @@ export class addCriminalRecordEntryEppNLPage extends basePage {
       : 'Add criminal record entry';
   }
 }
-
-
-
-

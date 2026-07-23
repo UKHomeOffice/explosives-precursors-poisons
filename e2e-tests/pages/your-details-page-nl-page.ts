@@ -10,8 +10,6 @@ export class yourDetailsPageNLPage extends basePage {
     const input = this.page.locator(`#${fieldId}`).first();
     if (await input.isVisible().catch(() => false)) {
       await input.fill(value);
-      await input.press('ArrowDown');
-      await input.press('Enter');
       await input.press('Tab');
       return;
     }

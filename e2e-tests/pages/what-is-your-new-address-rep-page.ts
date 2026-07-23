@@ -39,8 +39,6 @@ export class whatIsYourNewAddressRepPage extends basePage {
     const countryInput = this.page.getByLabel('Country of address', { exact: true }).first();
     if (await countryInput.isVisible().catch(() => false)) {
       await countryInput.fill(country);
-      await countryInput.press('ArrowDown');
-      await countryInput.press('Enter');
       await countryInput.press('Tab');
     }
 

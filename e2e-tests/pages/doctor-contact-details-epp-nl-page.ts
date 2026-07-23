@@ -34,8 +34,6 @@ export class doctorContactDetailsEppNLPage extends basePage {
 
     const country = this.page.getByLabel('Country of address', { exact: true }).first();
     await country.fill(countryValue);
-    await country.press('ArrowDown');
-    await country.press('Enter');
     await country.press('Tab');
 
     await this.clickContinueButton();

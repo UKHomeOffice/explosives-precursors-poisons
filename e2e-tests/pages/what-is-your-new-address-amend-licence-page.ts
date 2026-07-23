@@ -31,15 +31,11 @@ export class whatIsYourNewAddressAmendLicencePage extends basePage {
     const countryTypeahead = this.page.locator('#amend-country').first();
     if (await countryTypeahead.isVisible().catch(() => false)) {
       await countryTypeahead.fill(countryValue);
-      await countryTypeahead.press('ArrowDown');
-      await countryTypeahead.press('Enter');
       await countryTypeahead.press('Tab');
     } else {
       const countryByLabel = this.page.getByLabel(/Country of address|Country/i).first();
       if (await countryByLabel.isVisible().catch(() => false)) {
         await countryByLabel.fill(countryValue);
-        await countryByLabel.press('ArrowDown');
-        await countryByLabel.press('Enter');
         await countryByLabel.press('Tab');
       }
     }

@@ -38,13 +38,19 @@ export class basePage {
     await this.page.getByRole('radio', { name: optionText, exact: true }).check();
   }
 
+  async fillField(locator: Locator, value: string) {
+    await locator.fill(value);
+    await this.page.keyboard.press('Tab');
+  }
+
+
   async fillByLabel(label: string, value: string) {
-    await this.page.getByLabel(label, { exact: true }).fill(value);
+    const input = this.page.getByLabel(label, { exact: true }).first();
+    await this.fillField(input, value);
   }
 
   async uploadFirstInput(filePath: string) {
-    const input = this.page.locator('input[type="file"]').first();
-    await input.setInputFiles(filePath);
+    const input = this.page.locator('input[type="file"]').first(); await input.setInputFiles(filePath);
   }
 
   async clickLinkByText(text: string) {
@@ -117,7 +123,7 @@ export class basePage {
     for (const label of labels) {
       const control = this.page.getByLabel(label, { exact: true }).first();
       if (await control.isVisible().catch(() => false)) {
-        await control.fill(value);
+        await this.fillField(control, value);
         return;
       }
     }
@@ -128,6 +134,4 @@ export class basePage {
     await this.fillAny(['Month', 'month'], month);
     await this.fillAny(['Year', 'year'], year);
   }
-
 }
-

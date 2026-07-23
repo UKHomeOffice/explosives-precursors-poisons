@@ -31,8 +31,6 @@ export class previousAddressPageNLPage extends basePage {
     const country = this.page.locator('#new-renew-previous-home-address-country').first();
     if (await country.isVisible().catch(() => false)) {
       await country.fill(countryValue);
-      await country.press('ArrowDown');
-      await country.press('Enter');
       await country.press('Tab');
     }
 

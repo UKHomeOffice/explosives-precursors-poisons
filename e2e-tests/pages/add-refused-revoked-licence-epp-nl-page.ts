@@ -7,15 +7,19 @@ export class addRefusedRevokedLicenceEppNLPage extends basePage {
   }
 
   async reasonAndDateFirearmRefused(reason: string, day: string, month: string, year: string): Promise<void> {
+    const reasonInput = this.page.locator('#new-renew-why-licence-refused').first();
+
     await this.page.locator('#new-renew-licence-type-Firearms').first().check();
-    await this.page.locator('#new-renew-why-licence-refused').first().fill(reason);
+    await this.fillField(reasonInput, reason);
     await this.fillDate(day, month, year);
     await this.clickContinueButton();
   }
 
   async reasonAndDateShotGunRefused(reason: string, day: string, month: string, year: string): Promise<void> {
+    const reasonInput = this.page.locator('#new-renew-why-licence-refused').first();
+
     await this.page.locator('#new-renew-licence-type-Shotgun').first().check();
-    await this.page.locator('#new-renew-why-licence-refused').first().fill(reason);
+    await this.fillField(reasonInput, reason);
     await this.fillDate(day, month, year);
     await this.clickContinueButton();
   }
