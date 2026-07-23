@@ -1,0 +1,35 @@
+import { Page } from '@playwright/test';
+import { basePage } from './base-page';
+
+export class whatAreYourContactDetailsAmendLicencePage extends basePage {
+  constructor(page: Page) {
+    super(page);
+  }
+
+  async whatAreYourContactDetailsAmend(phoneValue: string, emailValue: string): Promise<void> {
+    const phone = this.page.getByLabel('Contact phone number', { exact: true }).first();
+    if (await phone.isVisible().catch(() => false)) {
+      await phone.fill(phoneValue);
+    }
+
+    const email = this.page.getByLabel('Email address', { exact: true }).first();
+    if (await email.isVisible().catch(() => false)) {
+      await email.fill(emailValue);
+    }
+
+    await this.clickContinueButton();
+  }
+
+  async expectedPageTitle(): Promise<string> {
+    const title = await this.page.title();
+
+    return title.startsWith('Error')
+      ? 'Error: What are your contact details?'
+      : 'What are your contact details?';
+  }
+}
+
+
+
+
+

@@ -1,305 +1,307 @@
 import { test as base } from 'playwright-bdd';
-import { AddCriminalRecordEntryEppNLPage } from '../pages/add-criminal-record-entry-epp-nl';
-import { AddRefusedRevokedLicenceEppNLPage } from '../pages/add-refused-revoked-licence-epp-nl';
-import { AmendEPOnLicenceRepPage } from '../pages/amend-epon-licence-rep';
-import { AmendLicenceDetailsPage } from '../pages/amend-licence-details';
-import { AmendLicenceDetailsRepPage } from '../pages/amend-licence-details-rep';
-import { AmendmentSubmittedPage } from '../pages/amendment-submitted';
-import { AmmoniumNitrateOrAbove16NitrogenNLPage } from '../pages/ammonium-nitrate-or-above16-nitrogen-nl';
-import { ApplicationSubmittedNewAppEppNLPage } from '../pages/application-submitted-new-app-epp-nl';
-import { ChangeInHomeAddressAmendLicencePage } from '../pages/change-in-home-address-amend-licence';
-import { ChangeInHomeAddressRepPage } from '../pages/change-in-home-address-rep';
-import { ChangeInSubstanceAmendLicencePage } from '../pages/change-in-substance-amend-licence';
-import { ChangeInSubstancesRepPage } from '../pages/change-in-substances-rep';
-import { CheckYourAnswerAmendLicencePage } from '../pages/check-your-answer-amend-licence';
-import { CheckYourAnswerNewAppEppNLPage } from '../pages/check-your-answer-new-app-epp-nl';
-import { CheckYourAnswersRepPage } from '../pages/check-your-answers-rep';
-import { CounterDetailsAmendLicencePage } from '../pages/counter-details-amend-licence';
-import { CounterDetailsEppNLPage } from '../pages/counter-details-epp-nl';
-import { CounterSignatoryAddressAmendLicencePage } from '../pages/counter-signatory-address-amend-licence';
-import { CounterSignatoryAddressNLPage } from '../pages/counter-signatory-address-nl';
-import { CounterSignatoryAddressRepPage } from '../pages/counter-signatory-address-rep';
-import { CounterSignatoryContactDetailsAmendLicencePage } from '../pages/counter-signatory-contact-details-amend-licence';
-import { CounterSignatoryContactDetailsEppNLPage } from '../pages/counter-signatory-contact-details-epp-nl';
-import { CounterSignatoryContactDetailsRepPage } from '../pages/counter-signatory-contact-details-rep';
-import { CounterSignatoryDetailsRepPage } from '../pages/counter-signatory-details-rep';
-import { CounterSignatoryIdentityDocumentRepPage } from '../pages/counter-signatory-identity-document-rep';
-import { CounterSignatoryIdentityDocumentsAmendLicencePage } from '../pages/counter-signatory-identity-documents-amend-licence';
-import { CounterSignatoryIdentityDocumentsEppNLPage } from '../pages/counter-signatory-identity-documents-epp-nl';
-import { CrimeReportDetailsRepPage } from '../pages/crime-report-details-rep';
-import { CriminalRecordSummaryEppNLPage } from '../pages/criminal-record-summary-epp-nl';
-import { CriminalRecordWarningsEppNLPage } from '../pages/criminal-record-warnings-epp-nl';
-import { DateOfBirthForLicencePage } from '../pages/date-of-birth-for-licence';
-import { DeclarationAmendLicencePage } from '../pages/declaration-amend-licence';
-import { DeclarationRepPage } from '../pages/declaration-rep';
-import { DNPPoisonEppNLPage } from '../pages/dnppoison-epp-nl';
-import { DoctorContactDetailsEppNLPage } from '../pages/doctor-contact-details-epp-nl';
-import { EnterYourLicenceNumberRepPage } from '../pages/enter-your-licence-number-rep';
-import { EnterYourLicenceNumberRLPage } from '../pages/enter-your-licence-number-rl';
-import { EPDetailsRepPage } from '../pages/epdetails-rep';
-import { ExplosivesPrecursorsAmendLicencePage } from '../pages/explosives-precursors-amend-licence';
-import { ExplosivesPrecursorsSummaryRepPage } from '../pages/explosives-precursors-summary-rep';
-import { ExplosivesPrecursorSummaryAmendLicencePage } from '../pages/explosives-precursor-summary-amend-licence';
-import { ExplosivesPrecursorSummaryNLPage } from '../pages/explosives-precursor-summary-nl';
-import { HaveAnyOfYourDetailsChangedRepPage } from '../pages/have-any-of-your-details-changed-rep';
-import { HaveYouReportedTheTheftRepPage } from '../pages/have-you-reported-the-theft-rep';
-import { HomePageEppPage } from '../pages/home-page-epp';
-import { LicenceNumberPage } from '../pages/licence-number';
-import { MedicalDeclarationEppNLPage } from '../pages/medical-declaration-epp-nl';
-import { NamePageNLPage } from '../pages/name-page-nl';
-import { NewAppDeclarationEppNLPage } from '../pages/new-app-declaration-epp-nl';
-import { OtherLicencesEppNLPage } from '../pages/other-licences-epp-nl';
-import { OtherNamesPageNLPage } from '../pages/other-names-page-nl';
-import { OtherNamesSummaryPageNLPage } from '../pages/other-names-summary-page-nl';
-import { OtherNationalitiesEppNLPage } from '../pages/other-nationalities-epp-nl';
-import { PoisonDetailsRepPage } from '../pages/poison-details-rep';
-import { PoisonLicenceSummaryRepPage } from '../pages/poison-licence-summary-rep';
-import { PoisonsAmendLicencePage } from '../pages/poisons-amend-licence';
-import { PoisonsOnLicenceSummaryNLPage } from '../pages/poisons-on-licence-summary-nl';
-import { PreviousAddressPageNLPage } from '../pages/previous-address-page-nl';
-import { RefusedLicenceHistoryEppNLPage } from '../pages/refused-licence-history-epp-nl';
-import { RegulatedEpNLPage } from '../pages/regulated-ep-nl';
-import { RegulatedExplosivesPrecursorsPage } from '../pages/regulated-explosives-precursors';
-import { RegulatedPoisonsAmendLicencePage } from '../pages/regulated-poisons-amend-licence';
-import { RegulatedPoisonsEppNLPage } from '../pages/regulated-poisons-epp-nl';
-import { RegulatedPoisonsRepPage } from '../pages/regulated-poisons-rep';
-import { SummaryPreviousAddressLast5YearsEppNLPage } from '../pages/summary-previous-address-last5-years-epp-nl';
-import { UploadBritishPassportEppNLPage } from '../pages/upload-british-passport-epp-nl';
-import { UploadBritishPassportRepPage } from '../pages/upload-british-passport-rep';
-import { UploadCertificateOfConductEppNLPage } from '../pages/upload-certificate-of-conduct-epp-nl';
-import { UploadCertificateOfGoodConductRepPage } from '../pages/upload-certificate-of-good-conduct-rep';
-import { UploadEUPassportEvidenceEppNLPage } from '../pages/upload-eupassport-evidence-epp-nl';
-import { UploadMedicalFormEppNLPage } from '../pages/upload-medical-form-epp-nl';
-import { UploadPassportRepPage } from '../pages/upload-passport-rep';
-import { UploadProofOfAddressAmendLicencePage } from '../pages/upload-proof-of-address-amend-licence';
-import { UploadProofOfAddressEppNLPage } from '../pages/upload-proof-of-address-epp-nl';
-import { UploadProofOfAddressRepPage } from '../pages/upload-proof-of-address-rep';
-import { UploadUKDrivingLicenceEvidenceEppNLPage } from '../pages/upload-ukdriving-licence-evidence-epp-nl';
-import { UploadUKDrivingLicenceRepPage } from '../pages/upload-ukdriving-licence-rep';
-import { WhatAreYourContactDetailsAmendLicencePage } from '../pages/what-are-your-contact-details-amend-licence';
-import { WhatAreYourContactDetailsNLPage } from '../pages/what-are-your-contact-details-nl';
-import { WhatAreYourContactDetailsRepPage } from '../pages/what-are-your-contact-details-rep';
-import { WhatIsHomeAddressPageNLPage } from '../pages/what-is-home-address-page-nl';
-import { WhatIsNameOnLicencePage } from '../pages/what-is-name-on-licence';
-import { WhatIsYourDOBRepPage } from '../pages/what-is-your-dobrep';
-import { WhatIsYourHomeAddressAmendLicencePage } from '../pages/what-is-your-home-address-amend-licence';
-import { WhatIsYourHomeAddressRepPage } from '../pages/what-is-your-home-address-rep';
-import { WhatIsYourNameOnTheLicenceRepPage } from '../pages/what-is-your-name-on-the-licence-rep';
-import { WhatIsYourNewAddressAmendLicencePage } from '../pages/what-is-your-new-address-amend-licence';
-import { WhatIsYourNewAddressRepPage } from '../pages/what-is-your-new-address-rep';
-import { WhatIsYourNewNameAmendLicencePage } from '../pages/what-is-your-new-name-amend-licence';
-import { WhatIsYourNewNameRepPage } from '../pages/what-is-your-new-name-rep';
-import { WhatTypeOfApplicationPage } from '../pages/what-type-of-application';
-import { WhichIdentityDocumentDoYouUseRepPage } from '../pages/which-identity-document-do-you-use-rep';
-import { WhichIdentityDocUseEppNLPage } from '../pages/which-identity-doc-use-epp-nl';
-import { WhyDoYouNeedReplacementLicenceRepPage } from '../pages/why-do-you-need-replacement-licence-rep';
-import { YouDoNotNeedToApplyForLicencePage } from '../pages/you-do-not-need-to-apply-for-licence';
-import { YourDetailsPageNLPage } from '../pages/your-details-page-nl';
-import { YourMedicalHistoryEppNLPage } from '../pages/your-medical-history-epp-nl';
+import { addCriminalRecordEntryEppNLPage } from '../pages/add-criminal-record-entry-epp-nl-page';
+import { addRefusedRevokedLicenceEppNLPage } from '../pages/add-refused-revoked-licence-epp-nl-page';
+import { amendEPOnLicenceRepPage } from '../pages/amend-epon-licence-rep-page';
+import { amendLicenceDetailsPage } from '../pages/amend-licence-details-page';
+import { amendLicenceDetailsRepPage } from '../pages/amend-licence-details-rep-page';
+import { amendmentSubmittedPage } from '../pages/amendment-submitted-page';
+import { ammoniumNitrateOrAbove16NitrogenNLPage } from '../pages/ammonium-nitrate-or-above16-nitrogen-nl-page';
+import { applicationSubmittedNewAppEppNLPage } from '../pages/application-submitted-new-app-epp-nl-page';
+import { changeInHomeAddressAmendLicencePage } from '../pages/change-in-home-address-amend-licence-page';
+import { changeInHomeAddressRepPage } from '../pages/change-in-home-address-rep-page';
+import { changeInSubstanceAmendLicencePage } from '../pages/change-in-substance-amend-licence-page';
+import { changeInSubstancesRepPage } from '../pages/change-in-substances-rep-page';
+import { checkYourAnswerAmendLicencePage } from '../pages/check-your-answer-amend-licence-page';
+import { checkYourAnswerNewAppEppNLPage } from '../pages/check-your-answer-new-app-epp-nl-page';
+import { checkYourAnswersRepPage } from '../pages/check-your-answers-rep-page';
+import { counterDetailsAmendLicencePage } from '../pages/counter-details-amend-licence-page';
+import { counterDetailsEppNLPage } from '../pages/counter-details-epp-nl-page';
+import { counterSignatoryAddressAmendLicencePage } from '../pages/counter-signatory-address-amend-licence-page';
+import { counterSignatoryAddressNLPage } from '../pages/counter-signatory-address-nl-page';
+import { counterSignatoryAddressRepPage } from '../pages/counter-signatory-address-rep-page';
+import { counterSignatoryContactDetailsAmendLicencePage } from '../pages/counter-signatory-contact-details-amend-licence-page';
+import { counterSignatoryContactDetailsEppNLPage } from '../pages/counter-signatory-contact-details-epp-nl-page';
+import { counterSignatoryContactDetailsRepPage } from '../pages/counter-signatory-contact-details-rep-page';
+import { counterSignatoryDetailsRepPage } from '../pages/counter-signatory-details-rep-page';
+import { counterSignatoryIdentityDocumentRepPage } from '../pages/counter-signatory-identity-document-rep-page';
+import { counterSignatoryIdentityDocumentsAmendLicencePage } from '../pages/counter-signatory-identity-documents-amend-licence-page';
+import { counterSignatoryIdentityDocumentsEppNLPage } from '../pages/counter-signatory-identity-documents-epp-nl-page';
+import { crimeReportDetailsRepPage } from '../pages/crime-report-details-rep-page';
+import { criminalRecordSummaryEppNLPage } from '../pages/criminal-record-summary-epp-nl-page';
+import { criminalRecordWarningsEppNLPage } from '../pages/criminal-record-warnings-epp-nl-page';
+import { dateOfBirthForLicencePage } from '../pages/date-of-birth-for-licence-page';
+import { declarationAmendLicencePage } from '../pages/declaration-amend-licence-page';
+import { declarationRepPage } from '../pages/declaration-rep-page';
+import { dNPPoisonEppNLPage } from '../pages/dnppoison-epp-nl-page';
+import { doctorContactDetailsEppNLPage } from '../pages/doctor-contact-details-epp-nl-page';
+import { enterYourLicenceNumberRepPage } from '../pages/enter-your-licence-number-rep-page';
+import { enterYourLicenceNumberRLPage } from '../pages/enter-your-licence-number-rl-page';
+import { ePDetailsRepPage } from '../pages/epdetails-rep-page';
+import { explosivesPrecursorsAmendLicencePage } from '../pages/explosives-precursors-amend-licence-page';
+import { explosivesPrecursorsSummaryRepPage } from '../pages/explosives-precursors-summary-rep-page';
+import { explosivesPrecursorSummaryAmendLicencePage } from '../pages/explosives-precursor-summary-amend-licence-page';
+import { explosivesPrecursorSummaryNLPage } from '../pages/explosives-precursor-summary-nl-page';
+import { haveAnyOfYourDetailsChangedRepPage } from '../pages/have-any-of-your-details-changed-rep-page';
+import { haveYouReportedTheTheftRepPage } from '../pages/have-you-reported-the-theft-rep-page';
+import { homePageEppPage } from '../pages/home-page-epp-page';
+import { licenceNumberPage } from '../pages/licence-number-page';
+import { medicalDeclarationEppNLPage } from '../pages/medical-declaration-epp-nl-page';
+import { namePageNLPage } from '../pages/name-page-nl-page';
+import { newAppDeclarationEppNLPage } from '../pages/new-app-declaration-epp-nl-page';
+import { otherLicencesEppNLPage } from '../pages/other-licences-epp-nl-page';
+import { otherNamesPageNLPage } from '../pages/other-names-page-nl-page';
+import { otherNamesSummaryPageNLPage } from '../pages/other-names-summary-page-nl-page';
+import { otherNationalitiesEppNLPage } from '../pages/other-nationalities-epp-nl-page';
+import { poisonDetailsRepPage } from '../pages/poison-details-rep-page';
+import { poisonLicenceSummaryRepPage } from '../pages/poison-licence-summary-rep-page';
+import { poisonsAmendLicencePage } from '../pages/poisons-amend-licence-page';
+import { poisonsOnLicenceSummaryNLPage } from '../pages/poisons-on-licence-summary-nl-page';
+import { previousAddressPageNLPage } from '../pages/previous-address-page-nl-page';
+import { refusedLicenceHistoryEppNLPage } from '../pages/refused-licence-history-epp-nl-page';
+import { regulatedEpNLPage } from '../pages/regulated-ep-nl-page';
+import { regulatedExplosivesPrecursorsPage } from '../pages/regulated-explosives-precursors-page';
+import { regulatedPoisonsAmendLicencePage } from '../pages/regulated-poisons-amend-licence-page';
+import { regulatedPoisonsEppNLPage } from '../pages/regulated-poisons-epp-nl-page';
+import { regulatedPoisonsRepPage } from '../pages/regulated-poisons-rep-page';
+import { summaryPreviousAddressLast5YearsEppNLPage } from '../pages/summary-previous-address-last5-years-epp-nl-page';
+import { uploadBritishPassportEppNLPage } from '../pages/upload-british-passport-epp-nl-page';
+import { uploadBritishPassportRepPage } from '../pages/upload-british-passport-rep-page';
+import { uploadCertificateOfConductEppNLPage } from '../pages/upload-certificate-of-conduct-epp-nl-page';
+import { uploadCertificateOfGoodConductRepPage } from '../pages/upload-certificate-of-good-conduct-rep-page';
+import { uploadEUPassportEvidenceEppNLPage } from '../pages/upload-eupassport-evidence-epp-nl-page';
+import { uploadMedicalFormEppNLPage } from '../pages/upload-medical-form-epp-nl-page';
+import { uploadPassportRepPage } from '../pages/upload-passport-rep-page';
+import { uploadProofOfAddressAmendLicencePage } from '../pages/upload-proof-of-address-amend-licence-page';
+import { uploadProofOfAddressEppNLPage } from '../pages/upload-proof-of-address-epp-nl-page';
+import { uploadProofOfAddressRepPage } from '../pages/upload-proof-of-address-rep-page';
+import { uploadUKDrivingLicenceEvidenceEppNLPage } from '../pages/upload-ukdriving-licence-evidence-epp-nl-page';
+import { uploadUKDrivingLicenceRepPage } from '../pages/upload-ukdriving-licence-rep-page';
+import { whatAreYourContactDetailsAmendLicencePage } from '../pages/what-are-your-contact-details-amend-licence-page';
+import { whatAreYourContactDetailsNLPage } from '../pages/what-are-your-contact-details-nl-page';
+import { whatAreYourContactDetailsRepPage } from '../pages/what-are-your-contact-details-rep-page';
+import { whatIsHomeAddressPageNLPage } from '../pages/what-is-home-address-page-nl-page';
+import { whatIsNameOnLicencePage } from '../pages/what-is-name-on-licence-page';
+import { whatIsYourDOBRepPage } from '../pages/what-is-your-dobrep-page';
+import { whatIsYourHomeAddressAmendLicencePage } from '../pages/what-is-your-home-address-amend-licence-page';
+import { whatIsYourHomeAddressRepPage } from '../pages/what-is-your-home-address-rep-page';
+import { whatIsYourNameOnTheLicenceRepPage } from '../pages/what-is-your-name-on-the-licence-rep-page';
+import { whatIsYourNewAddressAmendLicencePage } from '../pages/what-is-your-new-address-amend-licence-page';
+import { whatIsYourNewAddressRepPage } from '../pages/what-is-your-new-address-rep-page';
+import { whatIsYourNewNameAmendLicencePage } from '../pages/what-is-your-new-name-amend-licence-page';
+import { whatIsYourNewNameRepPage } from '../pages/what-is-your-new-name-rep-page';
+import { whatTypeOfApplicationPage } from '../pages/what-type-of-application-page';
+import { whichIdentityDocumentDoYouUseRepPage } from '../pages/which-identity-document-do-you-use-rep-page';
+import { whichIdentityDocUseEppNLPage } from '../pages/which-identity-doc-use-epp-nl-page';
+import { whyDoYouNeedReplacementLicenceRepPage } from '../pages/why-do-you-need-replacement-licence-rep-page';
+import { youDoNotNeedToApplyForLicencePage } from '../pages/you-do-not-need-to-apply-for-licence-page';
+import { yourDetailsPageNLPage } from '../pages/your-details-page-nl-page';
+import { yourMedicalHistoryEppNLPage } from '../pages/your-medical-history-epp-nl-page';
 
 export type Pages = {
-  addCriminalRecordEntryEppNLPage: AddCriminalRecordEntryEppNLPage;
-  addRefusedRevokedLicenceEppNLPage: AddRefusedRevokedLicenceEppNLPage;
-  amendEPOnLicenceRepPage: AmendEPOnLicenceRepPage;
-  amendLicenceDetailsPage: AmendLicenceDetailsPage;
-  amendLicenceDetailsRepPage: AmendLicenceDetailsRepPage;
-  amendmentSubmittedPage: AmendmentSubmittedPage;
-  ammoniumNitrateOrAbove16NitrogenNLPage: AmmoniumNitrateOrAbove16NitrogenNLPage;
-  applicationSubmittedNewAppEppNLPage: ApplicationSubmittedNewAppEppNLPage;
-  changeInHomeAddressAmendLicencePage: ChangeInHomeAddressAmendLicencePage;
-  changeInHomeAddressRepPage: ChangeInHomeAddressRepPage;
-  changeInSubstanceAmendLicencePage: ChangeInSubstanceAmendLicencePage;
-  changeInSubstancesRepPage: ChangeInSubstancesRepPage;
-  checkYourAnswerAmendLicencePage: CheckYourAnswerAmendLicencePage;
-  checkYourAnswerNewAppEppNLPage: CheckYourAnswerNewAppEppNLPage;
-  checkYourAnswersRepPage: CheckYourAnswersRepPage;
-  counterDetailsAmendLicencePage: CounterDetailsAmendLicencePage;
-  counterDetailsEppNLPage: CounterDetailsEppNLPage;
-  counterSignatoryAddressAmendLicencePage: CounterSignatoryAddressAmendLicencePage;
-  counterSignatoryAddressNLPage: CounterSignatoryAddressNLPage;
-  counterSignatoryAddressRepPage: CounterSignatoryAddressRepPage;
-  counterSignatoryContactDetailsAmendLicencePage: CounterSignatoryContactDetailsAmendLicencePage;
-  counterSignatoryContactDetailsEppNLPage: CounterSignatoryContactDetailsEppNLPage;
-  counterSignatoryContactDetailsRepPage: CounterSignatoryContactDetailsRepPage;
-  counterSignatoryDetailsRepPage: CounterSignatoryDetailsRepPage;
-  counterSignatoryIdentityDocumentRepPage: CounterSignatoryIdentityDocumentRepPage;
-  counterSignatoryIdentityDocumentsAmendLicencePage: CounterSignatoryIdentityDocumentsAmendLicencePage;
-  counterSignatoryIdentityDocumentsEppNLPage: CounterSignatoryIdentityDocumentsEppNLPage;
-  crimeReportDetailsRepPage: CrimeReportDetailsRepPage;
-  criminalRecordSummaryEppNLPage: CriminalRecordSummaryEppNLPage;
-  criminalRecordWarningsEppNLPage: CriminalRecordWarningsEppNLPage;
-  dateOfBirthForLicencePage: DateOfBirthForLicencePage;
-  declarationAmendLicencePage: DeclarationAmendLicencePage;
-  declarationRepPage: DeclarationRepPage;
-  dNPPoisonEppNLPage: DNPPoisonEppNLPage;
-  doctorContactDetailsEppNLPage: DoctorContactDetailsEppNLPage;
-  enterYourLicenceNumberRepPage: EnterYourLicenceNumberRepPage;
-  enterYourLicenceNumberRLPage: EnterYourLicenceNumberRLPage;
-  ePDetailsRepPage: EPDetailsRepPage;
-  explosivesPrecursorsAmendLicencePage: ExplosivesPrecursorsAmendLicencePage;
-  explosivesPrecursorsSummaryRepPage: ExplosivesPrecursorsSummaryRepPage;
-  explosivesPrecursorSummaryAmendLicencePage: ExplosivesPrecursorSummaryAmendLicencePage;
-  explosivesPrecursorSummaryNLPage: ExplosivesPrecursorSummaryNLPage;
-  haveAnyOfYourDetailsChangedRepPage: HaveAnyOfYourDetailsChangedRepPage;
-  haveYouReportedTheTheftRepPage: HaveYouReportedTheTheftRepPage;
-  homePageEppPage: HomePageEppPage;
-  licenceNumberPage: LicenceNumberPage;
-  medicalDeclarationEppNLPage: MedicalDeclarationEppNLPage;
-  namePageNLPage: NamePageNLPage;
-  newAppDeclarationEppNLPage: NewAppDeclarationEppNLPage;
-  otherLicencesEppNLPage: OtherLicencesEppNLPage;
-  otherNamesPageNLPage: OtherNamesPageNLPage;
-  otherNamesSummaryPageNLPage: OtherNamesSummaryPageNLPage;
-  otherNationalitiesEppNLPage: OtherNationalitiesEppNLPage;
-  poisonDetailsRepPage: PoisonDetailsRepPage;
-  poisonLicenceSummaryRepPage: PoisonLicenceSummaryRepPage;
-  poisonsAmendLicencePage: PoisonsAmendLicencePage;
-  poisonsOnLicenceSummaryNLPage: PoisonsOnLicenceSummaryNLPage;
-  previousAddressPageNLPage: PreviousAddressPageNLPage;
-  refusedLicenceHistoryEppNLPage: RefusedLicenceHistoryEppNLPage;
-  regulatedEpNLPage: RegulatedEpNLPage;
-  regulatedExplosivesPrecursorsPage: RegulatedExplosivesPrecursorsPage;
-  regulatedPoisonsAmendLicencePage: RegulatedPoisonsAmendLicencePage;
-  regulatedPoisonsEppNLPage: RegulatedPoisonsEppNLPage;
-  regulatedPoisonsRepPage: RegulatedPoisonsRepPage;
-  summaryPreviousAddressLast5YearsEppNLPage: SummaryPreviousAddressLast5YearsEppNLPage;
-  uploadBritishPassportEppNLPage: UploadBritishPassportEppNLPage;
-  uploadBritishPassportRepPage: UploadBritishPassportRepPage;
-  uploadCertificateOfConductEppNLPage: UploadCertificateOfConductEppNLPage;
-  uploadCertificateOfGoodConductRepPage: UploadCertificateOfGoodConductRepPage;
-  uploadEUPassportEvidenceEppNLPage: UploadEUPassportEvidenceEppNLPage;
-  uploadMedicalFormEppNLPage: UploadMedicalFormEppNLPage;
-  uploadPassportRepPage: UploadPassportRepPage;
-  uploadProofOfAddressAmendLicencePage: UploadProofOfAddressAmendLicencePage;
-  uploadProofOfAddressEppNLPage: UploadProofOfAddressEppNLPage;
-  uploadProofOfAddressRepPage: UploadProofOfAddressRepPage;
-  uploadUKDrivingLicenceEvidenceEppNLPage: UploadUKDrivingLicenceEvidenceEppNLPage;
-  uploadUKDrivingLicenceRepPage: UploadUKDrivingLicenceRepPage;
-  whatAreYourContactDetailsAmendLicencePage: WhatAreYourContactDetailsAmendLicencePage;
-  whatAreYourContactDetailsNLPage: WhatAreYourContactDetailsNLPage;
-  whatAreYourContactDetailsRepPage: WhatAreYourContactDetailsRepPage;
-  whatIsHomeAddressPageNLPage: WhatIsHomeAddressPageNLPage;
-  whatIsNameOnLicencePage: WhatIsNameOnLicencePage;
-  whatIsYourDOBRepPage: WhatIsYourDOBRepPage;
-  whatIsYourHomeAddressAmendLicencePage: WhatIsYourHomeAddressAmendLicencePage;
-  whatIsYourHomeAddressRepPage: WhatIsYourHomeAddressRepPage;
-  whatIsYourNameOnTheLicenceRepPage: WhatIsYourNameOnTheLicenceRepPage;
-  whatIsYourNewAddressAmendLicencePage: WhatIsYourNewAddressAmendLicencePage;
-  whatIsYourNewAddressRepPage: WhatIsYourNewAddressRepPage;
-  whatIsYourNewNameAmendLicencePage: WhatIsYourNewNameAmendLicencePage;
-  whatIsYourNewNameRepPage: WhatIsYourNewNameRepPage;
-  whatTypeOfApplicationPage: WhatTypeOfApplicationPage;
-  whichIdentityDocumentDoYouUseRepPage: WhichIdentityDocumentDoYouUseRepPage;
-  whichIdentityDocUseEppNLPage: WhichIdentityDocUseEppNLPage;
-  whyDoYouNeedReplacementLicenceRepPage: WhyDoYouNeedReplacementLicenceRepPage;
-  youDoNotNeedToApplyForLicencePage: YouDoNotNeedToApplyForLicencePage;
-  yourDetailsPageNLPage: YourDetailsPageNLPage;
-  yourMedicalHistoryEppNLPage: YourMedicalHistoryEppNLPage;
+  addCriminalRecordEntryEppNLPage: addCriminalRecordEntryEppNLPage;
+  addRefusedRevokedLicenceEppNLPage: addRefusedRevokedLicenceEppNLPage;
+  amendEPOnLicenceRepPage: amendEPOnLicenceRepPage;
+  amendLicenceDetailsPage: amendLicenceDetailsPage;
+  amendLicenceDetailsRepPage: amendLicenceDetailsRepPage;
+  amendmentSubmittedPage: amendmentSubmittedPage;
+  ammoniumNitrateOrAbove16NitrogenNLPage: ammoniumNitrateOrAbove16NitrogenNLPage;
+  applicationSubmittedNewAppEppNLPage: applicationSubmittedNewAppEppNLPage;
+  changeInHomeAddressAmendLicencePage: changeInHomeAddressAmendLicencePage;
+  changeInHomeAddressRepPage: changeInHomeAddressRepPage;
+  changeInSubstanceAmendLicencePage: changeInSubstanceAmendLicencePage;
+  changeInSubstancesRepPage: changeInSubstancesRepPage;
+  checkYourAnswerAmendLicencePage: checkYourAnswerAmendLicencePage;
+  checkYourAnswerNewAppEppNLPage: checkYourAnswerNewAppEppNLPage;
+  checkYourAnswersRepPage: checkYourAnswersRepPage;
+  counterDetailsAmendLicencePage: counterDetailsAmendLicencePage;
+  counterDetailsEppNLPage: counterDetailsEppNLPage;
+  counterSignatoryAddressAmendLicencePage: counterSignatoryAddressAmendLicencePage;
+  counterSignatoryAddressNLPage: counterSignatoryAddressNLPage;
+  counterSignatoryAddressRepPage: counterSignatoryAddressRepPage;
+  counterSignatoryContactDetailsAmendLicencePage: counterSignatoryContactDetailsAmendLicencePage;
+  counterSignatoryContactDetailsEppNLPage: counterSignatoryContactDetailsEppNLPage;
+  counterSignatoryContactDetailsRepPage: counterSignatoryContactDetailsRepPage;
+  counterSignatoryDetailsRepPage: counterSignatoryDetailsRepPage;
+  counterSignatoryIdentityDocumentRepPage: counterSignatoryIdentityDocumentRepPage;
+  counterSignatoryIdentityDocumentsAmendLicencePage: counterSignatoryIdentityDocumentsAmendLicencePage;
+  counterSignatoryIdentityDocumentsEppNLPage: counterSignatoryIdentityDocumentsEppNLPage;
+  crimeReportDetailsRepPage: crimeReportDetailsRepPage;
+  criminalRecordSummaryEppNLPage: criminalRecordSummaryEppNLPage;
+  criminalRecordWarningsEppNLPage: criminalRecordWarningsEppNLPage;
+  dateOfBirthForLicencePage: dateOfBirthForLicencePage;
+  declarationAmendLicencePage: declarationAmendLicencePage;
+  declarationRepPage: declarationRepPage;
+  dNPPoisonEppNLPage: dNPPoisonEppNLPage;
+  doctorContactDetailsEppNLPage: doctorContactDetailsEppNLPage;
+  enterYourLicenceNumberRepPage: enterYourLicenceNumberRepPage;
+  enterYourLicenceNumberRLPage: enterYourLicenceNumberRLPage;
+  ePDetailsRepPage: ePDetailsRepPage;
+  explosivesPrecursorsAmendLicencePage: explosivesPrecursorsAmendLicencePage;
+  explosivesPrecursorsSummaryRepPage: explosivesPrecursorsSummaryRepPage;
+  explosivesPrecursorSummaryAmendLicencePage: explosivesPrecursorSummaryAmendLicencePage;
+  explosivesPrecursorSummaryNLPage: explosivesPrecursorSummaryNLPage;
+  haveAnyOfYourDetailsChangedRepPage: haveAnyOfYourDetailsChangedRepPage;
+  haveYouReportedTheTheftRepPage: haveYouReportedTheTheftRepPage;
+  homePageEppPage: homePageEppPage;
+  licenceNumberPage: licenceNumberPage;
+  medicalDeclarationEppNLPage: medicalDeclarationEppNLPage;
+  namePageNLPage: namePageNLPage;
+  newAppDeclarationEppNLPage: newAppDeclarationEppNLPage;
+  otherLicencesEppNLPage: otherLicencesEppNLPage;
+  otherNamesPageNLPage: otherNamesPageNLPage;
+  otherNamesSummaryPageNLPage: otherNamesSummaryPageNLPage;
+  otherNationalitiesEppNLPage: otherNationalitiesEppNLPage;
+  poisonDetailsRepPage: poisonDetailsRepPage;
+  poisonLicenceSummaryRepPage: poisonLicenceSummaryRepPage;
+  poisonsAmendLicencePage: poisonsAmendLicencePage;
+  poisonsOnLicenceSummaryNLPage: poisonsOnLicenceSummaryNLPage;
+  previousAddressPageNLPage: previousAddressPageNLPage;
+  refusedLicenceHistoryEppNLPage: refusedLicenceHistoryEppNLPage;
+  regulatedEpNLPage: regulatedEpNLPage;
+  regulatedExplosivesPrecursorsPage: regulatedExplosivesPrecursorsPage;
+  regulatedPoisonsAmendLicencePage: regulatedPoisonsAmendLicencePage;
+  regulatedPoisonsEppNLPage: regulatedPoisonsEppNLPage;
+  regulatedPoisonsRepPage: regulatedPoisonsRepPage;
+  summaryPreviousAddressLast5YearsEppNLPage: summaryPreviousAddressLast5YearsEppNLPage;
+  uploadBritishPassportEppNLPage: uploadBritishPassportEppNLPage;
+  uploadBritishPassportRepPage: uploadBritishPassportRepPage;
+  uploadCertificateOfConductEppNLPage: uploadCertificateOfConductEppNLPage;
+  uploadCertificateOfGoodConductRepPage: uploadCertificateOfGoodConductRepPage;
+  uploadEUPassportEvidenceEppNLPage: uploadEUPassportEvidenceEppNLPage;
+  uploadMedicalFormEppNLPage: uploadMedicalFormEppNLPage;
+  uploadPassportRepPage: uploadPassportRepPage;
+  uploadProofOfAddressAmendLicencePage: uploadProofOfAddressAmendLicencePage;
+  uploadProofOfAddressEppNLPage: uploadProofOfAddressEppNLPage;
+  uploadProofOfAddressRepPage: uploadProofOfAddressRepPage;
+  uploadUKDrivingLicenceEvidenceEppNLPage: uploadUKDrivingLicenceEvidenceEppNLPage;
+  uploadUKDrivingLicenceRepPage: uploadUKDrivingLicenceRepPage;
+  whatAreYourContactDetailsAmendLicencePage: whatAreYourContactDetailsAmendLicencePage;
+  whatAreYourContactDetailsNLPage: whatAreYourContactDetailsNLPage;
+  whatAreYourContactDetailsRepPage: whatAreYourContactDetailsRepPage;
+  whatIsHomeAddressPageNLPage: whatIsHomeAddressPageNLPage;
+  whatIsNameOnLicencePage: whatIsNameOnLicencePage;
+  whatIsYourDOBRepPage: whatIsYourDOBRepPage;
+  whatIsYourHomeAddressAmendLicencePage: whatIsYourHomeAddressAmendLicencePage;
+  whatIsYourHomeAddressRepPage: whatIsYourHomeAddressRepPage;
+  whatIsYourNameOnTheLicenceRepPage: whatIsYourNameOnTheLicenceRepPage;
+  whatIsYourNewAddressAmendLicencePage: whatIsYourNewAddressAmendLicencePage;
+  whatIsYourNewAddressRepPage: whatIsYourNewAddressRepPage;
+  whatIsYourNewNameAmendLicencePage: whatIsYourNewNameAmendLicencePage;
+  whatIsYourNewNameRepPage: whatIsYourNewNameRepPage;
+  whatTypeOfApplicationPage: whatTypeOfApplicationPage;
+  whichIdentityDocumentDoYouUseRepPage: whichIdentityDocumentDoYouUseRepPage;
+  whichIdentityDocUseEppNLPage: whichIdentityDocUseEppNLPage;
+  whyDoYouNeedReplacementLicenceRepPage: whyDoYouNeedReplacementLicenceRepPage;
+  youDoNotNeedToApplyForLicencePage: youDoNotNeedToApplyForLicencePage;
+  yourDetailsPageNLPage: yourDetailsPageNLPage;
+  yourMedicalHistoryEppNLPage: yourMedicalHistoryEppNLPage;
 };
 
 export const test = base.extend<{ pages: Pages }>({
   pages: async ({ page }, use) => {
     await use({
-      addCriminalRecordEntryEppNLPage: new AddCriminalRecordEntryEppNLPage(page),
-      addRefusedRevokedLicenceEppNLPage: new AddRefusedRevokedLicenceEppNLPage(page),
-      amendEPOnLicenceRepPage: new AmendEPOnLicenceRepPage(page),
-      amendLicenceDetailsPage: new AmendLicenceDetailsPage(page),
-      amendLicenceDetailsRepPage: new AmendLicenceDetailsRepPage(page),
-      amendmentSubmittedPage: new AmendmentSubmittedPage(page),
-      ammoniumNitrateOrAbove16NitrogenNLPage: new AmmoniumNitrateOrAbove16NitrogenNLPage(page),
-      applicationSubmittedNewAppEppNLPage: new ApplicationSubmittedNewAppEppNLPage(page),
-      changeInHomeAddressAmendLicencePage: new ChangeInHomeAddressAmendLicencePage(page),
-      changeInHomeAddressRepPage: new ChangeInHomeAddressRepPage(page),
-      changeInSubstanceAmendLicencePage: new ChangeInSubstanceAmendLicencePage(page),
-      changeInSubstancesRepPage: new ChangeInSubstancesRepPage(page),
-      checkYourAnswerAmendLicencePage: new CheckYourAnswerAmendLicencePage(page),
-      checkYourAnswerNewAppEppNLPage: new CheckYourAnswerNewAppEppNLPage(page),
-      checkYourAnswersRepPage: new CheckYourAnswersRepPage(page),
-      counterDetailsAmendLicencePage: new CounterDetailsAmendLicencePage(page),
-      counterDetailsEppNLPage: new CounterDetailsEppNLPage(page),
-      counterSignatoryAddressAmendLicencePage: new CounterSignatoryAddressAmendLicencePage(page),
-      counterSignatoryAddressNLPage: new CounterSignatoryAddressNLPage(page),
-      counterSignatoryAddressRepPage: new CounterSignatoryAddressRepPage(page),
-      counterSignatoryContactDetailsAmendLicencePage: new CounterSignatoryContactDetailsAmendLicencePage(page),
-      counterSignatoryContactDetailsEppNLPage: new CounterSignatoryContactDetailsEppNLPage(page),
-      counterSignatoryContactDetailsRepPage: new CounterSignatoryContactDetailsRepPage(page),
-      counterSignatoryDetailsRepPage: new CounterSignatoryDetailsRepPage(page),
-      counterSignatoryIdentityDocumentRepPage: new CounterSignatoryIdentityDocumentRepPage(page),
-      counterSignatoryIdentityDocumentsAmendLicencePage: new CounterSignatoryIdentityDocumentsAmendLicencePage(page),
-      counterSignatoryIdentityDocumentsEppNLPage: new CounterSignatoryIdentityDocumentsEppNLPage(page),
-      crimeReportDetailsRepPage: new CrimeReportDetailsRepPage(page),
-      criminalRecordSummaryEppNLPage: new CriminalRecordSummaryEppNLPage(page),
-      criminalRecordWarningsEppNLPage: new CriminalRecordWarningsEppNLPage(page),
-      dateOfBirthForLicencePage: new DateOfBirthForLicencePage(page),
-      declarationAmendLicencePage: new DeclarationAmendLicencePage(page),
-      declarationRepPage: new DeclarationRepPage(page),
-      dNPPoisonEppNLPage: new DNPPoisonEppNLPage(page),
-      doctorContactDetailsEppNLPage: new DoctorContactDetailsEppNLPage(page),
-      enterYourLicenceNumberRepPage: new EnterYourLicenceNumberRepPage(page),
-      enterYourLicenceNumberRLPage: new EnterYourLicenceNumberRLPage(page),
-      ePDetailsRepPage: new EPDetailsRepPage(page),
-      explosivesPrecursorsAmendLicencePage: new ExplosivesPrecursorsAmendLicencePage(page),
-      explosivesPrecursorsSummaryRepPage: new ExplosivesPrecursorsSummaryRepPage(page),
-      explosivesPrecursorSummaryAmendLicencePage: new ExplosivesPrecursorSummaryAmendLicencePage(page),
-      explosivesPrecursorSummaryNLPage: new ExplosivesPrecursorSummaryNLPage(page),
-      haveAnyOfYourDetailsChangedRepPage: new HaveAnyOfYourDetailsChangedRepPage(page),
-      haveYouReportedTheTheftRepPage: new HaveYouReportedTheTheftRepPage(page),
-      homePageEppPage: new HomePageEppPage(page),
-      licenceNumberPage: new LicenceNumberPage(page),
-      medicalDeclarationEppNLPage: new MedicalDeclarationEppNLPage(page),
-      namePageNLPage: new NamePageNLPage(page),
-      newAppDeclarationEppNLPage: new NewAppDeclarationEppNLPage(page),
-      otherLicencesEppNLPage: new OtherLicencesEppNLPage(page),
-      otherNamesPageNLPage: new OtherNamesPageNLPage(page),
-      otherNamesSummaryPageNLPage: new OtherNamesSummaryPageNLPage(page),
-      otherNationalitiesEppNLPage: new OtherNationalitiesEppNLPage(page),
-      poisonDetailsRepPage: new PoisonDetailsRepPage(page),
-      poisonLicenceSummaryRepPage: new PoisonLicenceSummaryRepPage(page),
-      poisonsAmendLicencePage: new PoisonsAmendLicencePage(page),
-      poisonsOnLicenceSummaryNLPage: new PoisonsOnLicenceSummaryNLPage(page),
-      previousAddressPageNLPage: new PreviousAddressPageNLPage(page),
-      refusedLicenceHistoryEppNLPage: new RefusedLicenceHistoryEppNLPage(page),
-      regulatedEpNLPage: new RegulatedEpNLPage(page),
-      regulatedExplosivesPrecursorsPage: new RegulatedExplosivesPrecursorsPage(page),
-      regulatedPoisonsAmendLicencePage: new RegulatedPoisonsAmendLicencePage(page),
-      regulatedPoisonsEppNLPage: new RegulatedPoisonsEppNLPage(page),
-      regulatedPoisonsRepPage: new RegulatedPoisonsRepPage(page),
-      summaryPreviousAddressLast5YearsEppNLPage: new SummaryPreviousAddressLast5YearsEppNLPage(page),
-      uploadBritishPassportEppNLPage: new UploadBritishPassportEppNLPage(page),
-      uploadBritishPassportRepPage: new UploadBritishPassportRepPage(page),
-      uploadCertificateOfConductEppNLPage: new UploadCertificateOfConductEppNLPage(page),
-      uploadCertificateOfGoodConductRepPage: new UploadCertificateOfGoodConductRepPage(page),
-      uploadEUPassportEvidenceEppNLPage: new UploadEUPassportEvidenceEppNLPage(page),
-      uploadMedicalFormEppNLPage: new UploadMedicalFormEppNLPage(page),
-      uploadPassportRepPage: new UploadPassportRepPage(page),
-      uploadProofOfAddressAmendLicencePage: new UploadProofOfAddressAmendLicencePage(page),
-      uploadProofOfAddressEppNLPage: new UploadProofOfAddressEppNLPage(page),
-      uploadProofOfAddressRepPage: new UploadProofOfAddressRepPage(page),
-      uploadUKDrivingLicenceEvidenceEppNLPage: new UploadUKDrivingLicenceEvidenceEppNLPage(page),
-      uploadUKDrivingLicenceRepPage: new UploadUKDrivingLicenceRepPage(page),
-      whatAreYourContactDetailsAmendLicencePage: new WhatAreYourContactDetailsAmendLicencePage(page),
-      whatAreYourContactDetailsNLPage: new WhatAreYourContactDetailsNLPage(page),
-      whatAreYourContactDetailsRepPage: new WhatAreYourContactDetailsRepPage(page),
-      whatIsHomeAddressPageNLPage: new WhatIsHomeAddressPageNLPage(page),
-      whatIsNameOnLicencePage: new WhatIsNameOnLicencePage(page),
-      whatIsYourDOBRepPage: new WhatIsYourDOBRepPage(page),
-      whatIsYourHomeAddressAmendLicencePage: new WhatIsYourHomeAddressAmendLicencePage(page),
-      whatIsYourHomeAddressRepPage: new WhatIsYourHomeAddressRepPage(page),
-      whatIsYourNameOnTheLicenceRepPage: new WhatIsYourNameOnTheLicenceRepPage(page),
-      whatIsYourNewAddressAmendLicencePage: new WhatIsYourNewAddressAmendLicencePage(page),
-      whatIsYourNewAddressRepPage: new WhatIsYourNewAddressRepPage(page),
-      whatIsYourNewNameAmendLicencePage: new WhatIsYourNewNameAmendLicencePage(page),
-      whatIsYourNewNameRepPage: new WhatIsYourNewNameRepPage(page),
-      whatTypeOfApplicationPage: new WhatTypeOfApplicationPage(page),
-      whichIdentityDocumentDoYouUseRepPage: new WhichIdentityDocumentDoYouUseRepPage(page),
-      whichIdentityDocUseEppNLPage: new WhichIdentityDocUseEppNLPage(page),
-      whyDoYouNeedReplacementLicenceRepPage: new WhyDoYouNeedReplacementLicenceRepPage(page),
-      youDoNotNeedToApplyForLicencePage: new YouDoNotNeedToApplyForLicencePage(page),
-      yourDetailsPageNLPage: new YourDetailsPageNLPage(page),
-      yourMedicalHistoryEppNLPage: new YourMedicalHistoryEppNLPage(page),
+      addCriminalRecordEntryEppNLPage: new addCriminalRecordEntryEppNLPage(page),
+      addRefusedRevokedLicenceEppNLPage: new addRefusedRevokedLicenceEppNLPage(page),
+      amendEPOnLicenceRepPage: new amendEPOnLicenceRepPage(page),
+      amendLicenceDetailsPage: new amendLicenceDetailsPage(page),
+      amendLicenceDetailsRepPage: new amendLicenceDetailsRepPage(page),
+      amendmentSubmittedPage: new amendmentSubmittedPage(page),
+      ammoniumNitrateOrAbove16NitrogenNLPage: new ammoniumNitrateOrAbove16NitrogenNLPage(page),
+      applicationSubmittedNewAppEppNLPage: new applicationSubmittedNewAppEppNLPage(page),
+      changeInHomeAddressAmendLicencePage: new changeInHomeAddressAmendLicencePage(page),
+      changeInHomeAddressRepPage: new changeInHomeAddressRepPage(page),
+      changeInSubstanceAmendLicencePage: new changeInSubstanceAmendLicencePage(page),
+      changeInSubstancesRepPage: new changeInSubstancesRepPage(page),
+      checkYourAnswerAmendLicencePage: new checkYourAnswerAmendLicencePage(page),
+      checkYourAnswerNewAppEppNLPage: new checkYourAnswerNewAppEppNLPage(page),
+      checkYourAnswersRepPage: new checkYourAnswersRepPage(page),
+      counterDetailsAmendLicencePage: new counterDetailsAmendLicencePage(page),
+      counterDetailsEppNLPage: new counterDetailsEppNLPage(page),
+      counterSignatoryAddressAmendLicencePage: new counterSignatoryAddressAmendLicencePage(page),
+      counterSignatoryAddressNLPage: new counterSignatoryAddressNLPage(page),
+      counterSignatoryAddressRepPage: new counterSignatoryAddressRepPage(page),
+      counterSignatoryContactDetailsAmendLicencePage: new counterSignatoryContactDetailsAmendLicencePage(page),
+      counterSignatoryContactDetailsEppNLPage: new counterSignatoryContactDetailsEppNLPage(page),
+      counterSignatoryContactDetailsRepPage: new counterSignatoryContactDetailsRepPage(page),
+      counterSignatoryDetailsRepPage: new counterSignatoryDetailsRepPage(page),
+      counterSignatoryIdentityDocumentRepPage: new counterSignatoryIdentityDocumentRepPage(page),
+      counterSignatoryIdentityDocumentsAmendLicencePage: new counterSignatoryIdentityDocumentsAmendLicencePage(page),
+      counterSignatoryIdentityDocumentsEppNLPage: new counterSignatoryIdentityDocumentsEppNLPage(page),
+      crimeReportDetailsRepPage: new crimeReportDetailsRepPage(page),
+      criminalRecordSummaryEppNLPage: new criminalRecordSummaryEppNLPage(page),
+      criminalRecordWarningsEppNLPage: new criminalRecordWarningsEppNLPage(page),
+      dateOfBirthForLicencePage: new dateOfBirthForLicencePage(page),
+      declarationAmendLicencePage: new declarationAmendLicencePage(page),
+      declarationRepPage: new declarationRepPage(page),
+      dNPPoisonEppNLPage: new dNPPoisonEppNLPage(page),
+      doctorContactDetailsEppNLPage: new doctorContactDetailsEppNLPage(page),
+      enterYourLicenceNumberRepPage: new enterYourLicenceNumberRepPage(page),
+      enterYourLicenceNumberRLPage: new enterYourLicenceNumberRLPage(page),
+      ePDetailsRepPage: new ePDetailsRepPage(page),
+      explosivesPrecursorsAmendLicencePage: new explosivesPrecursorsAmendLicencePage(page),
+      explosivesPrecursorsSummaryRepPage: new explosivesPrecursorsSummaryRepPage(page),
+      explosivesPrecursorSummaryAmendLicencePage: new explosivesPrecursorSummaryAmendLicencePage(page),
+      explosivesPrecursorSummaryNLPage: new explosivesPrecursorSummaryNLPage(page),
+      haveAnyOfYourDetailsChangedRepPage: new haveAnyOfYourDetailsChangedRepPage(page),
+      haveYouReportedTheTheftRepPage: new haveYouReportedTheTheftRepPage(page),
+      homePageEppPage: new homePageEppPage(page),
+      licenceNumberPage: new licenceNumberPage(page),
+      medicalDeclarationEppNLPage: new medicalDeclarationEppNLPage(page),
+      namePageNLPage: new namePageNLPage(page),
+      newAppDeclarationEppNLPage: new newAppDeclarationEppNLPage(page),
+      otherLicencesEppNLPage: new otherLicencesEppNLPage(page),
+      otherNamesPageNLPage: new otherNamesPageNLPage(page),
+      otherNamesSummaryPageNLPage: new otherNamesSummaryPageNLPage(page),
+      otherNationalitiesEppNLPage: new otherNationalitiesEppNLPage(page),
+      poisonDetailsRepPage: new poisonDetailsRepPage(page),
+      poisonLicenceSummaryRepPage: new poisonLicenceSummaryRepPage(page),
+      poisonsAmendLicencePage: new poisonsAmendLicencePage(page),
+      poisonsOnLicenceSummaryNLPage: new poisonsOnLicenceSummaryNLPage(page),
+      previousAddressPageNLPage: new previousAddressPageNLPage(page),
+      refusedLicenceHistoryEppNLPage: new refusedLicenceHistoryEppNLPage(page),
+      regulatedEpNLPage: new regulatedEpNLPage(page),
+      regulatedExplosivesPrecursorsPage: new regulatedExplosivesPrecursorsPage(page),
+      regulatedPoisonsAmendLicencePage: new regulatedPoisonsAmendLicencePage(page),
+      regulatedPoisonsEppNLPage: new regulatedPoisonsEppNLPage(page),
+      regulatedPoisonsRepPage: new regulatedPoisonsRepPage(page),
+      summaryPreviousAddressLast5YearsEppNLPage: new summaryPreviousAddressLast5YearsEppNLPage(page),
+      uploadBritishPassportEppNLPage: new uploadBritishPassportEppNLPage(page),
+      uploadBritishPassportRepPage: new uploadBritishPassportRepPage(page),
+      uploadCertificateOfConductEppNLPage: new uploadCertificateOfConductEppNLPage(page),
+      uploadCertificateOfGoodConductRepPage: new uploadCertificateOfGoodConductRepPage(page),
+      uploadEUPassportEvidenceEppNLPage: new uploadEUPassportEvidenceEppNLPage(page),
+      uploadMedicalFormEppNLPage: new uploadMedicalFormEppNLPage(page),
+      uploadPassportRepPage: new uploadPassportRepPage(page),
+      uploadProofOfAddressAmendLicencePage: new uploadProofOfAddressAmendLicencePage(page),
+      uploadProofOfAddressEppNLPage: new uploadProofOfAddressEppNLPage(page),
+      uploadProofOfAddressRepPage: new uploadProofOfAddressRepPage(page),
+      uploadUKDrivingLicenceEvidenceEppNLPage: new uploadUKDrivingLicenceEvidenceEppNLPage(page),
+      uploadUKDrivingLicenceRepPage: new uploadUKDrivingLicenceRepPage(page),
+      whatAreYourContactDetailsAmendLicencePage: new whatAreYourContactDetailsAmendLicencePage(page),
+      whatAreYourContactDetailsNLPage: new whatAreYourContactDetailsNLPage(page),
+      whatAreYourContactDetailsRepPage: new whatAreYourContactDetailsRepPage(page),
+      whatIsHomeAddressPageNLPage: new whatIsHomeAddressPageNLPage(page),
+      whatIsNameOnLicencePage: new whatIsNameOnLicencePage(page),
+      whatIsYourDOBRepPage: new whatIsYourDOBRepPage(page),
+      whatIsYourHomeAddressAmendLicencePage: new whatIsYourHomeAddressAmendLicencePage(page),
+      whatIsYourHomeAddressRepPage: new whatIsYourHomeAddressRepPage(page),
+      whatIsYourNameOnTheLicenceRepPage: new whatIsYourNameOnTheLicenceRepPage(page),
+      whatIsYourNewAddressAmendLicencePage: new whatIsYourNewAddressAmendLicencePage(page),
+      whatIsYourNewAddressRepPage: new whatIsYourNewAddressRepPage(page),
+      whatIsYourNewNameAmendLicencePage: new whatIsYourNewNameAmendLicencePage(page),
+      whatIsYourNewNameRepPage: new whatIsYourNewNameRepPage(page),
+      whatTypeOfApplicationPage: new whatTypeOfApplicationPage(page),
+      whichIdentityDocumentDoYouUseRepPage: new whichIdentityDocumentDoYouUseRepPage(page),
+      whichIdentityDocUseEppNLPage: new whichIdentityDocUseEppNLPage(page),
+      whyDoYouNeedReplacementLicenceRepPage: new whyDoYouNeedReplacementLicenceRepPage(page),
+      youDoNotNeedToApplyForLicencePage: new youDoNotNeedToApplyForLicencePage(page),
+      yourDetailsPageNLPage: new yourDetailsPageNLPage(page),
+      yourMedicalHistoryEppNLPage: new yourMedicalHistoryEppNLPage(page),
     });
   },
 });
 
 export const expect = test.expect;
+
+
 
