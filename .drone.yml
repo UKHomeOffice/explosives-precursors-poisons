@@ -273,7 +273,6 @@ steps:
       - name: dockersock
         path: /root/.dockersock
     commands:
-      - yarn install --frozen-lockfile
       - yarn playwright install --with-deps
       - test -s /root/.dockersock/branch_url.txt || (echo "Missing deployed branch URL at /root/.dockersock/branch_url.txt" && exit 1)
       - echo "Running Playwright e2e against https://$(cat /root/.dockersock/branch_url.txt)"
@@ -510,6 +509,17 @@ steps:
     depends_on:
       - cron_clone_repos
 
+  - name: cron_setup_nightly_e2e
+    <<: *node_image
+    environment:
+      NOTIFY_STUB: true
+    commands:
+      - yarn install --frozen-lockfile
+      - yarn run postinstall
+    when:
+      cron: nightly_e2e_playwright
+      event: cron
+
   - name: cron_nightly_e2e_tests
     pull: if-not-exists
     image: mcr.microsoft.com/playwright:v1.61.1-noble
@@ -517,7 +527,6 @@ steps:
       - name: dockersock
         path: /root/.dockersock
     commands:
-      - yarn install --frozen-lockfile
       - yarn playwright install --with-deps
       - |
         test -n "$NIGHTLY_E2E_BASE_URL" || (echo "Missing NIGHTLY_E2E_BASE_URL environment value." && exit 1)
@@ -546,6 +555,8 @@ steps:
     when:
       cron: nightly_e2e_playwright
       event: cron
+    depends_on:
+      - cron_setup_nightly_e2e
 
   - name: cron_notify_slack_nightly_e2e
     pull: if-not-exists
