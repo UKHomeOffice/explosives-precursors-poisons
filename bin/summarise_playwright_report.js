@@ -22,7 +22,7 @@ function buildSummaryFromText(outputText) {
     return [
       'Playwright Nightly Summary',
       'Unable to execute Playwright command.',
-      `Error: ${commandFailure[0]}`,
+      `Error: ${commandFailure[0]}`
     ].join('\n');
   }
 
@@ -40,7 +40,7 @@ function buildSummaryFromText(outputText) {
     `Failed: ${failed}`,
     `Flaky: ${flaky}`,
     `Skipped: ${skipped}`,
-    `Duration: ${duration}`,
+    `Duration: ${duration}`
   ].join('\n');
 }
 
