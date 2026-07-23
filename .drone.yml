@@ -273,6 +273,11 @@ steps:
       - name: dockersock
         path: /root/.dockersock
     commands:
+      - npm install -g n
+      - n 24.18.0
+      - hash -r
+      - node --version
+      - yarn install --frozen-lockfile    
       - yarn playwright install --with-deps
       - test -s /root/.dockersock/branch_url.txt || (echo "Missing deployed branch URL at /root/.dockersock/branch_url.txt" && exit 1)
       - echo "Running Playwright e2e against https://$(cat /root/.dockersock/branch_url.txt)"
@@ -527,6 +532,11 @@ steps:
       - name: dockersock
         path: /root/.dockersock
     commands:
+      - npm install -g n
+      - n 24.18.0
+      - hash -r
+      - node --version
+      - yarn install --frozen-lockfile
       - yarn playwright install --with-deps
       - |
         test -n "$NIGHTLY_E2E_BASE_URL" || (echo "Missing NIGHTLY_E2E_BASE_URL environment value." && exit 1)
