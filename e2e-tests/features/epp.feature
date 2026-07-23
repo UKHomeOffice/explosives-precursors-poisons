@@ -97,7 +97,6 @@ Feature: EPP- Explosives precursors and poisons licensing
       | 11          | Licence is Damaged |
 
 
-
   # # Note: This is commented out because payment page cannot be react in jenkins due to whitelisting issue
   # Scenario Outline: EPP Test E2E New application
   #   Given I selected the data for scenario "<Scenario ID>" - "<Description>"
