@@ -8,13 +8,13 @@ export const { Given, When, Then } = createBdd(test);
 
 let scenarioData: EppScenarioData;
 
-Given('Test data has been created for {string} scenarios', async ({}, product: string) => {
+Given('Test data has been created for {string} scenarios', async ({ }, product: string) => {
   if (product !== 'EPP') {
     throw new Error(`Unsupported product data setup: ${product}`);
   }
 });
 
-Given('I selected the data for scenario {string} - {string}', async ({}, scenarioId: string, _description: string) => {
+Given('I selected the data for scenario {string} - {string}', async ({ }, scenarioId: string, _description: string) => {
   scenarioData = getEppScenarioData(scenarioId);
 });
 
@@ -179,28 +179,31 @@ async function answerSexAndHeightQuestionNL(pages: Pages) {
 }
 
 async function answerAddressDetailsNL(pages: Pages) {
-  await pages.whatIsHomeAddressPageNLPage.answerHomeAddress(
-    c.HOME_ADDRESS_LINE_1,
-    c.HOME_ADDRESS_LINE_2,
-    c.HOME_ADDRESS_CITY,
-    c.HOME_ADDRESS_COUNTY,
-    c.HOME_ADDRESS_POSTCODE,
-    c.COUNTRY_UK,
-    c.HOME_ADDRESS_DATE_DAY,
-    c.HOME_ADDRESS_DATE_MONTH,
-    c.HOME_ADDRESS_DATE_YEAR,
-  );
-  await pages.previousAddressPageNLPage.answerPreviousHomeAddress(
-    c.PREVIOUS_ADDRESS_LINE_1,
-    c.PREVIOUS_ADDRESS_LINE_2,
-    c.PREVIOUS_ADDRESS_CITY,
-    c.PREVIOUS_ADDRESS_COUNTY,
-    c.PREVIOUS_ADDRESS_POSTCODE,
-    c.COUNTRY_UK,
-    c.PREVIOUS_ADDRESS_DATE_DAY,
-    c.PREVIOUS_ADDRESS_DATE_MONTH,
-    c.PREVIOUS_ADDRESS_DATE_YEAR,
-  );
+  if (await pages.whatIsHomeAddressPageNLPage.line1Input.isVisible().catch(() => true)) {
+    await pages.whatIsHomeAddressPageNLPage.answerHomeAddress(
+      c.HOME_ADDRESS_LINE_1,
+      c.HOME_ADDRESS_LINE_2,
+      c.HOME_ADDRESS_CITY,
+      c.HOME_ADDRESS_COUNTY,
+      c.HOME_ADDRESS_POSTCODE,
+      c.COUNTRY_UK,
+      c.HOME_ADDRESS_DATE_DAY,
+      c.HOME_ADDRESS_DATE_MONTH,
+      c.HOME_ADDRESS_DATE_YEAR,
+    );
+  } else {
+    await pages.previousAddressPageNLPage.answerPreviousHomeAddress(
+      c.PREVIOUS_ADDRESS_LINE_1,
+      c.PREVIOUS_ADDRESS_LINE_2,
+      c.PREVIOUS_ADDRESS_CITY,
+      c.PREVIOUS_ADDRESS_COUNTY,
+      c.PREVIOUS_ADDRESS_POSTCODE,
+      c.COUNTRY_UK,
+      c.PREVIOUS_ADDRESS_DATE_DAY,
+      c.PREVIOUS_ADDRESS_DATE_MONTH,
+      c.PREVIOUS_ADDRESS_DATE_YEAR,
+    );
+  }
   await pages.summaryPreviousAddressLast5YearsEppNLPage.answerSummaryForPreviousAddress();
   await pages.uploadProofOfAddressEppNLPage.answerEPPAddressProofUpload(c.UPLOAD_EVIDENCE_FILE);
 }

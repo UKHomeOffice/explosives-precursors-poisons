@@ -16,10 +16,7 @@ export class whatIsYourNewNameAmendLicencePage extends basePage {
     year: string,
   ): Promise<void> {
     const title = this.page.getByLabel('Title', { exact: true }).first();
-    if (await title.isVisible().catch(() => false)) {
-      await title.selectOption({ label: titleValue });
-    }
-
+    await title.selectOption({ label: titleValue });
     await this.fillAny(['First name'], firstName);
     await this.fillAny(['Middle names (optional)', 'Middle name'], middleName);
     await this.fillAny(['Last name'], lastName);

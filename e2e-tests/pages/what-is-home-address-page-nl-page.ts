@@ -2,7 +2,7 @@ import { Page } from '@playwright/test';
 import { basePage } from './base-page';
 
 export class whatIsHomeAddressPageNLPage extends basePage {
-  private readonly line1Input;
+  public readonly line1Input;
   private readonly line2Input;
   private readonly cityInput;
   private readonly countyInput;
@@ -35,13 +35,9 @@ export class whatIsHomeAddressPageNLPage extends basePage {
     await this.fillField(this.cityInput, city);
     await this.fillField(this.countyInput, county);
     await this.fillField(this.postcodeInput, postcode);
-
-    if (await this.countryInput.isVisible().catch(() => false)) {
-      await this.fillField(this.countryInput, countryValue);
-      await this.countryInput.press('Tab');
-    }
-
+    await this.fillField(this.countryInput, countryValue);
     await this.fillDate(day, month, year);
+
     await this.clickContinueButton();
   }
 

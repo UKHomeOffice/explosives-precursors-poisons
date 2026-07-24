@@ -8,15 +8,10 @@ export class whatAreYourContactDetailsNLPage extends basePage {
 
   async whatAreYourContactDetailsEPP(phoneValue: string, emailValue: string): Promise<void> {
     const phone = this.page.getByLabel('Contact phone number', { exact: true }).first();
-    if (await phone.isVisible().catch(() => false)) {
-      await this.fillField(phone, phoneValue);
-    }
-
     const email = this.page.getByLabel('Email address', { exact: true }).first();
-    if (await email.isVisible().catch(() => false)) {
-      await this.fillField(email, emailValue);
-    }
 
+    await this.fillField(phone, phoneValue);
+    await this.fillField(email, emailValue);
     await this.clickContinueButton();
   }
 

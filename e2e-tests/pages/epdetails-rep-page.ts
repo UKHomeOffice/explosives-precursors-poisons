@@ -24,23 +24,12 @@ export class ePDetailsRepPage extends basePage {
   }
 
   async answerAmmoniumNitrate(reason: string, amount: string, amountUnit: string, concentration: string): Promise<void> {
-    if (await this.reasonInput.isVisible().catch(() => false)) {
       await this.fillField(this.reasonInput, reason);
-    }
-
-    if (await this.amountInput.isVisible().catch(() => false)) {
       await this.fillField(this.amountInput, amount);
-    }
-
-    if (await this.unitSelect.isVisible().catch(() => false)) {
       const optionTexts = await this.unitSelect.locator('option').allTextContents();
       const matched = optionTexts.find((o) => o.trim().toLowerCase() === amountUnit.trim().toLowerCase()) || amountUnit;
       await this.unitSelect.selectOption({ label: matched });
-    }
-
-    if (await this.concentrationInput.isVisible().catch(() => false)) {
       await this.fillField(this.concentrationInput, concentration);
-    }
   }
 
   async storeInUkAddress(): Promise<void> {

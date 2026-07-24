@@ -30,21 +30,12 @@ export class previousAddressPageNLPage extends basePage {
     month: string,
     year: string,
   ): Promise<void> {
-    if (!(await this.line1Input.isVisible().catch(() => false))) {
-      return;
-    }
-
     await this.fillField(this.line1Input, addressLine1);
     await this.fillField(this.line2Input, addressLine2);
     await this.fillField(this.cityInput, city);
     await this.fillField(this.countyInput, county);
     await this.fillField(this.postcodeInput, postcode);
-
-    if (await this.countryInput.isVisible().catch(() => false)) {
-      await this.fillField(this.countryInput, countryValue);
-      await this.countryInput.press('Tab');
-    }
-
+    await this.fillField(this.countryInput, countryValue);
     await this.fillDate(day, month, year);
     await this.clickContinueButton();
   }

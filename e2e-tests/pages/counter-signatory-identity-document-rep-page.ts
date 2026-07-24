@@ -15,25 +15,19 @@ export class counterSignatoryIdentityDocumentRepPage extends basePage {
 
   async answerCounterSignatoryDocBritishPassport(passportNumber: string): Promise<void> {
     await this.pickRadioByText('British passport');
-    if (await this.britishPassportInput.isVisible().catch(() => false)) {
-      await this.fillField(this.britishPassportInput, passportNumber);
-    }
+    await this.fillField(this.britishPassportInput, passportNumber);
     await this.clickContinueButton();
   }
 
   async answerCounterSignatoryDocEU(passportNumber: string): Promise<void> {
     await this.pickRadioByText('Passport from the EU, Switzerland, Norway, Iceland or Liechtenstein');
-    if (await this.euPassportInput.isVisible().catch(() => false)) {
-      await this.fillField(this.euPassportInput, passportNumber);
-    }
+    await this.fillField(this.euPassportInput, passportNumber);
     await this.clickContinueButton();
   }
 
   async answerCounterSignatoryDocUKDrivingLicence(drivingLicenceNumber: string): Promise<void> {
     await this.pickRadioByText('UK driving licence');
-    if (await this.drivingLicenceInput.isVisible().catch(() => false)) {
-      await this.fillField(this.drivingLicenceInput, drivingLicenceNumber);
-    }
+    await this.fillField(this.drivingLicenceInput, drivingLicenceNumber);
     await this.clickContinueButton();
   }
   async expectedPageTitle(): Promise<string> {

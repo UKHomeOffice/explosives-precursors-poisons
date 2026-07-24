@@ -33,10 +33,7 @@ export class counterDetailsEppNLPage extends basePage {
     await this.titleDropdown.selectOption({ label: title });
     await this.fillField(this.firstNameInput, firstName);
 
-    if (await this.middleNameInput.isVisible().catch(() => false)) {
-      await this.fillField(this.middleNameInput, middleName);
-    }
-
+    await this.fillField(this.middleNameInput, middleName);
     await this.fillField(this.lastNameInput, lastName);
     await this.yearsDropdown.selectOption({ label: knownFor });
     await this.fillField(this.howYouKnowInput, knownHow);

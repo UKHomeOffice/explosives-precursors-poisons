@@ -20,16 +20,9 @@ export class whatIsYourNewNameRepPage extends basePage {
     month: string,
     year: string,
   ): Promise<void> {
-    if (await this.titleSelect.isVisible().catch(() => false)) {
-      await this.titleSelect.selectOption({ label: title });
-    }
-
+    await this.titleSelect.selectOption({ label: title });
     await this.fillByLabel('First name', firstName);
-
-    if (await this.middleNameInput.isVisible().catch(() => false)) {
-      await this.fillField(this.middleNameInput, middleName);
-    }
-
+    await this.fillField(this.middleNameInput, middleName);
     await this.fillByLabel('Last name', lastName);
     await this.fillDate(day, month, year);
     await this.clickContinueButton();

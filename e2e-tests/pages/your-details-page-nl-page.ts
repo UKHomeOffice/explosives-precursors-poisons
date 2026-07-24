@@ -56,14 +56,8 @@ export class yourDetailsPageNLPage extends basePage {
   }
 
   async answerHeightAndOccupation(heightValue: string, occupationValue: string): Promise<void> {
-    if (await this.heightInput.isVisible().catch(() => false)) {
-      await this.fillField(this.heightInput, heightValue);
-    }
-
-    if (await this.occupationInput.isVisible().catch(() => false)) {
-      await this.fillField(this.occupationInput, occupationValue);
-    }
-
+    await this.fillField(this.heightInput, heightValue);
+    await this.fillField(this.occupationInput, occupationValue);
     await this.clickContinueButton();
   }
 

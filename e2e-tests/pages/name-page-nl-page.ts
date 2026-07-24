@@ -8,9 +8,7 @@ export class namePageNLPage extends basePage {
 
   async answerNameDetails(titleText: string, firstName: string, middleName: string, lastName: string): Promise<void> {
     const title = this.page.getByLabel('Title', { exact: true }).first();
-    if (await title.isVisible().catch(() => false)) {
-      await title.selectOption({ label: titleText });
-    }
+    await title.selectOption({ label: titleText });
     await this.fillAny(['First name', 'new-renew-first-name'], firstName);
     await this.fillAny(['Middle name', 'new-renew-middle-name'], middleName);
     await this.fillAny(['Last name', 'new-renew-last-name'], lastName);

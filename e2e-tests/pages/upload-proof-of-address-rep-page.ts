@@ -9,6 +9,7 @@ export class uploadProofOfAddressRepPage extends basePage {
   async answerProofOfAddress(filePath: string): Promise<void> {
     await this.uploadFirstInput(filePath);
     await this.uploadFirstInput(filePath);
+    
     await this.clickContinueButton();
   }
   async expectedPageTitle(): Promise<string> {

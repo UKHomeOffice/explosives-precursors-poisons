@@ -16,17 +16,13 @@ export class whatIsNameOnLicencePage extends basePage {
   }
 
   async answerNameOnLicence(titleValue: string, firstName: string, middleName: string, lastName: string): Promise<void> {
-    if (await this.titleSelect.isVisible().catch(() => false)) {
-      await this.titleSelect.selectOption(titleValue);
-    }
-
+    await this.titleSelect.selectOption(titleValue);
     await this.fillField(this.firstNameInput, firstName);
-    if (await this.middleNameInput.isVisible().catch(() => false)) {
-      await this.fillField(this.middleNameInput, middleName);
-    }
+    await this.fillField(this.middleNameInput, middleName);
     await this.fillField(this.lastNameInput, lastName);
     await this.clickContinueButton();
   }
+  
   async expectedPageTitle(): Promise<string> {
     return (await this.page.title()) || '';
   }

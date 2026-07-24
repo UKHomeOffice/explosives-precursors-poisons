@@ -14,30 +14,17 @@ export class whatIsYourHomeAddressRepPage extends basePage {
     postcode: string,
     country: string,
   ): Promise<void> {
-    await this.fillByLabel('Address line 1', line1);
-
     const line2Input = this.page.getByLabel('Address line 2 (optional)', { exact: true }).first();
-    if (await line2Input.isVisible().catch(() => false)) {
-      await this.fillField(line2Input, line2);
-    }
-
-    await this.fillByLabel('Town or city', city);
-
     const countyInput = this.page.getByLabel('County, state, province (optional)', { exact: true }).first();
-    if (await countyInput.isVisible().catch(() => false)) {
-      await this.fillField(countyInput, county);
-    }
-
     const postcodeInput = this.page.getByLabel('Postcode (optional)', { exact: true }).first();
-    if (await postcodeInput.isVisible().catch(() => false)) {
-      await this.fillField(postcodeInput, postcode);
-    }
-
     const countryInput = this.page.getByLabel('Country of address', { exact: true }).first();
-    if (await countryInput.isVisible().catch(() => false)) {
-      await this.fillField(countryInput, country);
-      await countryInput.press('Tab');
-    }
+
+    await this.fillByLabel('Address line 1', line1);
+    await this.fillField(line2Input, line2);
+    await this.fillByLabel('Town or city', city);
+    await this.fillField(countyInput, county);
+    await this.fillField(postcodeInput, postcode);
+    await this.fillField(countryInput, country);
 
     await this.clickContinueButton();
   }

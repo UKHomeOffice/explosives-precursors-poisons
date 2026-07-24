@@ -56,7 +56,7 @@ export class basePage {
 
   async fillField(locator: Locator, value: string) {
     await locator.clear();
-    await locator.type(value);
+    await locator.fill(value);
     await this.page.keyboard.press('Tab');
   }
 

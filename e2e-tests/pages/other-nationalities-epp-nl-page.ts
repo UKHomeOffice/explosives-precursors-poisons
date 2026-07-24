@@ -10,11 +10,7 @@ export class otherNationalitiesEppNLPage extends basePage {
   }
 
   async answerOtherNationalitiesQuestions(nationality: string): Promise<void> {
-    if (await this.nationalityInput.isVisible().catch(() => false)) {
-      await this.fillField(this.nationalityInput, nationality);
-      await this.nationalityInput.press('Tab');
-    }
-
+    await this.fillField(this.nationalityInput, nationality);
     await this.clickContinueButton();
   }
 

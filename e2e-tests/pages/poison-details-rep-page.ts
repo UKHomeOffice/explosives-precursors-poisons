@@ -30,34 +30,17 @@ export class poisonDetailsRepPage extends basePage {
   }
 
   async answerDNP(reason: string, amount: string, amountUnit: string, compoundOrSalt: string, concentration: string): Promise<void> {
-    if (await this.reasonInput.isVisible().catch(() => false)) {
-      await this.fillField(this.reasonInput, reason);
-    }
-
-    if (await this.amountInput.isVisible().catch(() => false)) {
-      await this.fillField(this.amountInput, amount);
-    }
-
-    if (await this.unitSelect.isVisible().catch(() => false)) {
-      const optionTexts = await this.unitSelect.locator('option').allTextContents();
-      const matched = optionTexts.find((o) => o.trim().toLowerCase() === amountUnit.trim().toLowerCase()) || amountUnit;
-      await this.unitSelect.selectOption({ label: matched });
-    }
-
-    if (await this.compoundInput.isVisible().catch(() => false)) {
-      await this.fillField(this.compoundInput, compoundOrSalt);
-    }
-
-    if (await this.concentrationInput.isVisible().catch(() => false)) {
-      await this.fillField(this.concentrationInput, concentration);
-    }
+    await this.fillField(this.reasonInput, reason);
+    await this.fillField(this.amountInput, amount);
+    const optionTexts = await this.unitSelect.locator('option').allTextContents();
+    const matched = optionTexts.find((o) => o.trim().toLowerCase() === amountUnit.trim().toLowerCase()) || amountUnit;
+    await this.unitSelect.selectOption({ label: matched });
+    await this.fillField(this.compoundInput, compoundOrSalt);
+    await this.fillField(this.concentrationInput, concentration);
   }
 
   async storeInUkAddress(): Promise<void> {
-    if (await this.storeHomeOption.isVisible().catch(() => false)) {
-      await this.storeHomeOption.check();
-      return;
-    }
+    await this.storeHomeOption.check();
     await this.page.getByRole('checkbox').first().check();
   }
 
