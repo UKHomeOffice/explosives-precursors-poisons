@@ -95,6 +95,7 @@ clone_repos_step: &clone_repos_step
     - git clone https://x-access-token:$${GITHUB_TOKEN}@github.com/UKHomeOfficeForms/hof-services-config.git
     - if [ "${CLONE_REPOS_PRUNE:-false}" = "true" ]; then find hof-services-config/* | grep -v $HOF_CONFIG | grep -v 'infrastructure' | xargs rm -rf; fi
     - rm -f "$CLONE_TOKEN_FILE"
+    
 steps:
   - name: generate_github_app_token_for_clone
     <<: *github_app_token_step
