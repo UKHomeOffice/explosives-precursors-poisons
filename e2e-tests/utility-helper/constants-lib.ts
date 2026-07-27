@@ -1,0 +1,17 @@
+export const ConstantsLib = {
+  FULL_NAME: 'HOF TEST',
+  MIDDLE_NAME: 'MIDDLE',
+  ADDRESS_LINE_1: '49 Sydenham road',
+  ADDRESS_LINE_2: 'Croydon',
+  TOWN_OR_CITY: 'Surrey',
+  COUNTY: 'Surrey',
+  POSTCODE: 'CR0 2EU',
+  COUNTRY_UK: 'United Kingdom',
+  PHONE: '01616699548',
+  EMAIL: 'sas-hof-test@digital.homeoffice.gov.uk',
+  LICENCE_NUMBER: '1234567890',
+  DOB_1978: '01/01/1978',
+  DUMMY_FILE: 'e2e-tests/test-data/files/test-upload.pdf',
+  YES: 'Yes',
+  NO: 'No',
+} as const;
