@@ -30,6 +30,26 @@ export class counterSignatoryIdentityDocumentRepPage extends basePage {
     await this.fillField(this.drivingLicenceInput, drivingLicenceNumber);
     await this.clickContinueButton();
   }
+
+  async selectCounterSignatoryIdentityDocument(
+    documentType: string,
+    britishPassportNumber: string,
+    euPassportNumber: string,
+    drivingLicenceNumber: string,
+  ): Promise<void> {
+    if (documentType === 'British passport') {
+      await this.answerCounterSignatoryDocBritishPassport(britishPassportNumber);
+      return;
+    }
+
+    if (documentType.includes('Passport from the EU')) {
+      await this.answerCounterSignatoryDocEU(euPassportNumber);
+      return;
+    }
+
+    await this.answerCounterSignatoryDocUKDrivingLicence(drivingLicenceNumber);
+  }
+
   async expectedPageTitle(): Promise<string> {
     return (await this.page.title()) || '';
   }

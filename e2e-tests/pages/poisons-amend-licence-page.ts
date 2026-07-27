@@ -106,6 +106,40 @@ export class poisonsAmendLicencePage extends basePage {
     await this.choose('Zinc phosphide');
   }
 
+  async selectPoisonFromList(poison: string): Promise<void> {
+    const map: Record<string, () => Promise<void>> = {
+      '2,4- Dinitrophenol and derivatives including sodium dinitrophenolate': () => this.select24Dinitrophenol(),
+      '2,4-dinitrophenol and its compounds including dinitrophenolate': () => this.select24Dinitrophenol(),
+      'Aluminium phosphide': () => this.selectAluminiumPhosphide(),
+      'Aluminium sulfide': () => this.selectAluminiumSulfide(),
+      'Arsenic and its compounds': () => this.selectArsenicCompounds(),
+      'Barium salts': () => this.selectBariumSalts(),
+      'Bromomethane': () => this.selectBromomethane(),
+      'Calcium sulfide': () => this.selectCalciumSulfide(),
+      'Calcium phosphide': () => this.selectCalciumPhosphide(),
+      'Chloropicrin': () => this.selectChloropicrin(),
+      'Fluoroacetic acid and its salts; fluoracetamide': () => this.selectFluoroaceticAcid(),
+      'Hydrogen cyanide and metal cyanides': () => this.selectHydrogenCyanide(),
+      'Lead acetates; compound of lead with acids from fixed oils': () => this.selectLeadAcetates(),
+      'Magnesium phosphide': () => this.selectMagnesiumPhosphide(),
+      'Magnesium sulfide': () => this.selectMagnesiumSulfide(),
+      'Mercury and its compounds': () => this.selectMercuryCompounds(),
+      'Oxalic acid above 10% (weight by weight)': () => this.selectOxalicAcid(),
+      'Phenols above 60% w/w and their compounds': () => this.selectPhenols(),
+      'Phosphorus yellow': () => this.selectPhosphorusYellow(),
+      'Sodium sulfide': () => this.selectSodiumSulfide(),
+      'Strychnine, its salts and quaternary compounds': () => this.selectStrychnine(),
+      'Thallium and its salts': () => this.selectThalliumSalts(),
+      'Zinc phosphide': () => this.selectZincPhosphide(),
+    };
+
+    if (!map[poison]) {
+      throw new Error(`Unsupported poison: ${poison}`);
+    }
+
+    await map[poison]();
+  }
+
   async expectedPageTitle(): Promise<string> {
     const title = await this.page.title();
 

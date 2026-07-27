@@ -16,6 +16,12 @@ export class changeInSubstanceAmendLicencePage extends basePage {
     await this.clickContinueButton();
   }
 
+  async answerNeedToAmendSubstance(value: string): Promise<boolean> {
+    await this.chooseYesNo(value);
+    await this.clickContinueButton();
+    return (value || '').toLowerCase() === 'yes';
+  }
+
   async expectedPageTitle(): Promise<string> {
     const title = await this.page.title();
 

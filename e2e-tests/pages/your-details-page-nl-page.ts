@@ -55,6 +55,18 @@ export class yourDetailsPageNLPage extends basePage {
     await this.pickRadioByText('X or other');
   }
 
+  async answerSexAndHeightQuestion(sex: string, heightValue: string, occupationValue: string): Promise<void> {
+    if (sex === 'Male') {
+      await this.answerSexMale();
+    } else if (sex === 'Female') {
+      await this.answerSexFemale();
+    } else {
+      await this.answerSexOther();
+    }
+
+    await this.answerHeightAndOccupation(heightValue, occupationValue);
+  }
+
   async answerHeightAndOccupation(heightValue: string, occupationValue: string): Promise<void> {
     await this.fillField(this.heightInput, heightValue);
     await this.fillField(this.occupationInput, occupationValue);

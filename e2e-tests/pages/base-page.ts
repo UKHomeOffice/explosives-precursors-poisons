@@ -50,6 +50,41 @@ export class basePage {
     await this.fallbackContinueButton.click();
   }
 
+  static async clickContinueOn(page: Page) {
+    const visibleContinueButton = page.locator('button:visible').filter({ hasText: /^Continue$/ }).first();
+    if (await visibleContinueButton.isVisible().catch(() => false)) {
+      await visibleContinueButton.click();
+      return;
+    }
+
+    const inputContinueButton = page.locator("input[value='Continue']").first();
+    if (await inputContinueButton.isVisible().catch(() => false)) {
+      await inputContinueButton.click();
+      return;
+    }
+
+    await page.getByRole('button', { name: /continue/i }).first().click();
+  }
+
+  static async chooseYesNoForNameFragment(page: Page, nameFragment: string, value: string) {
+    const yesNo = (value || '').toLowerCase() === c.YES.toLowerCase() ? c.YES.toLowerCase() : c.NO.toLowerCase();
+    const radio = page.locator(`input[type="radio"][name*="${nameFragment}"][value="${yesNo}"]`).first();
+    if (await radio.isVisible().catch(() => false)) {
+      const alreadyChecked = await radio.isChecked().catch(() => false);
+      if (!alreadyChecked) {
+        await radio.click({ force: true });
+      }
+      return;
+    }
+
+    if (yesNo === c.YES.toLowerCase()) {
+      await page.getByRole('radio', { name: /^yes$/i }).first().check();
+      return;
+    }
+
+    await page.getByRole('radio', { name: /^no$/i }).first().check();
+  }
+
   async selectRadio(optionText: string) {
     await this.page.getByRole('radio', { name: optionText, exact: true }).check();
   }

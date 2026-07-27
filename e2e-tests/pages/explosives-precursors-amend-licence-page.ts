@@ -62,6 +62,29 @@ export class explosivesPrecursorsAmendLicencePage extends basePage {
     await this.choose('Sulfuric acid above 15% (weight by weight)');
   }
 
+  async selectPrecursorFromList(precursor: string): Promise<void> {
+    const map: Record<string, () => Promise<void>> = {
+      'Ammonium nitrate at or above 16% nitrogen': () => this.selectAmmonium(),
+      'Hexamine': () => this.selectHexamine(),
+      'Hydrochloric acid above 10% (weight by weight)': () => this.selectHydrochloricAcid(),
+      'Hydrogen peroxide above 12% (weight by weight)': () => this.selectHydrogenPeroxide(),
+      'Nitric acid above 3% (weight by weight)': () => this.selectNitricAcid(),
+      'Nitromethane above 30% (weight by weight)': () => this.selectNitromethane(),
+      'Phosphoric acid above 30% (weight by weight)': () => this.selectPhosphoricAcid(),
+      'Potassium chlorate above 40% (weight by weight)': () => this.selectPotassiumChlorate(),
+      'Potassium perchlorate above 40% (weight by weight)': () => this.selectPotassiumPerchlorate(),
+      'Sodium chlorate above 40% (weight by weight)': () => this.selectSodiumChlorate(),
+      'Sodium perchlorate above 40% (weight by weight)': () => this.selectSodiumPerchlorate(),
+      'Sulfuric acid above 15% (weight by weight)': () => this.selectSulfuricAcid(),
+    };
+
+    if (!map[precursor]) {
+      throw new Error(`Unsupported explosive precursor: ${precursor}`);
+    }
+
+    await map[precursor]();
+  }
+
   async expectedPageTitle(): Promise<string> {
     const title = await this.page.title();
 

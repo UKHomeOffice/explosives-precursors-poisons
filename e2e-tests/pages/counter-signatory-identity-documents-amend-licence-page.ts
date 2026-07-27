@@ -31,6 +31,25 @@ export class counterSignatoryIdentityDocumentsAmendLicencePage extends basePage 
     await this.clickContinueButton();
   }
 
+  async selectCounterSignatoryIdentityDocument(
+    documentType: string,
+    britishPassportNumber: string,
+    euPassportNumber: string,
+    drivingLicenceNumber: string,
+  ): Promise<void> {
+    if (documentType === 'British passport') {
+      await this.britishPassportCounterSignatoryIdentityDocumentsAmendLicence(britishPassportNumber);
+      return;
+    }
+
+    if (documentType.includes('Passport from the EU')) {
+      await this.EEAPassportCounterSignatoryIdentityDocumentsAmendLicence(euPassportNumber);
+      return;
+    }
+
+    await this.UKDrivingLicenceCounterSignatoryIdentityDocumentsAmendLicence(drivingLicenceNumber);
+  }
+
   async expectedPageTitle(): Promise<string> {
     const title = await this.page.title();
 

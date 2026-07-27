@@ -16,6 +16,12 @@ export class regulatedExplosivesPrecursorsPage extends basePage {
     await this.clickContinueButton();
   }
 
+  async answerNeedToAmendExplosivePrecursors(value: string): Promise<boolean> {
+    await this.chooseYesNo(value);
+    await this.clickContinueButton();
+    return (value || '').toLowerCase() === 'yes';
+  }
+
   async expectedPageTitle(): Promise<string> {
     const title = await this.page.title();
 

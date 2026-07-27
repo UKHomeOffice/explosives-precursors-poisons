@@ -1,12 +1,17 @@
-import { expect, type Page } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { createBdd } from 'playwright-bdd';
 import { test, type Pages } from '../fixture/fixtures';
-import { EppScenarioData, getEppScenarioData } from '../utility-helper/epp-scenario-data';
+import { basePage } from '../pages/base-page';
 import { ConstantsLib as c } from '../utility-helper/constants-lib';
+import { EppScenarioData, getEppScenarioData } from '../utility-helper/epp-scenario-data';
 
 export const { Given, When, Then } = createBdd(test);
 
 let scenarioData: EppScenarioData;
+
+//**************************************************************************************************************************************************************************//
+//********************************************************************  Journey Test start from here ***********************************************************************//
+//**************************************************************************************************************************************************************************//
 
 Given('Test data has been created for {string} scenarios', async ({ }, product: string) => {
   if (product !== 'EPP') {
@@ -23,42 +28,198 @@ When('I visit the EPP page and access application link', async ({ pages }) => {
   const title = await pages.whatTypeOfApplicationPage.expectedPageTitle();
   await expect(pages.whatTypeOfApplicationPage.page).toHaveTitle(title + ' – GOV.UK');
 
-  if (scenarioData.applicationType === 'Apply for a new licence') {
-    await pages.whatTypeOfApplicationPage.clickApplyNewLicence();
-    return;
+  switch (scenarioData.applicationType) {
+    case 'Apply for a new licence':
+      await pages.whatTypeOfApplicationPage.clickApplyNewLicence();
+      break;
+    case 'Amend a licence':
+      await pages.whatTypeOfApplicationPage.clickAmendLicence();
+      break;
+    case 'Renew a licence':
+      await pages.whatTypeOfApplicationPage.clickRenewApplication();
+      break;
+    default:
+      await pages.whatTypeOfApplicationPage.clickReplaceApplication();
+      await answerWhyDoYouNeedRepLicence(pages);
+      await replaceCommonQuestions(pages);
+      break;
   }
-
-  if (scenarioData.applicationType === 'Amend a licence') {
-    await pages.whatTypeOfApplicationPage.clickAmendLicence();
-    return;
-  }
-
-  if (scenarioData.applicationType === 'Renew a licence') {
-    await pages.whatTypeOfApplicationPage.clickRenewApplication();
-    return;
-  }
-
-  await pages.whatTypeOfApplicationPage.clickReplaceApplication();
-  await answerWhyDoYouNeedRepLicence(pages);
-  await replaceCommonQuestions(pages);
 });
 
 When('I fill out my answers for new application form', async ({ pages }) => {
-  await applyForNewLicenceRouteAnswer(pages);
+  switch (scenarioData.applicationType) {
+    case 'Apply for a new licence':
+      await pages.namePageNLPage.answerNameDetails(c.TITLE_MR, c.APPLICANT_FIRST_NAME, c.APPLICANT_MIDDLE_NAME, c.APPLICANT_LAST_NAME);
+      await answerAnyOtherNamesNL(pages);
+      await answerYourDetailsSectionNL(pages);
+      await answerAddressDetailsNL(pages);
+      await pages.whatAreYourContactDetailsNLPage.whatAreYourContactDetailsEPP(c.CONTACT_PHONE_PRIMARY, c.CONTACT_EMAIL_PRIMARY);
+      await chooseIdentityDocumentAndUploadEvidenceNL(pages);
+      await answerOtherLicenceNL(pages);
+      await answerCriminalRecordNL(pages);
+      await answerMedicalQuestions(pages);
+      await doesYourLicenceNeedCoverEPNL(pages);
+      await doesYourLicenceNeedCoverRegulatedPoisonsNL(pages);
+      await counterSignatoryDetailsNL(pages);
+      await pages.checkYourAnswerNewAppEppNLPage.newAppSummaryPage();
+      break;
+    default:
+      throw new Error(`Invalid journey for this step: ${scenarioData.applicationType}`);
+  }
 });
 
 When('I fill out my answers for new application form e2e', async ({ pages }) => {
-  await applyForNewLicenceRouteAnswer(pages);
-  await pages.newAppDeclarationEppNLPage.clickCheckBoxNewApp();
+  switch (scenarioData.applicationType) {
+    case 'Apply for a new licence':
+      await pages.namePageNLPage.answerNameDetails(c.TITLE_MR, c.APPLICANT_FIRST_NAME, c.APPLICANT_MIDDLE_NAME, c.APPLICANT_LAST_NAME);
+      await answerAnyOtherNamesNL(pages);
+      await answerYourDetailsSectionNL(pages);
+      await answerAddressDetailsNL(pages);
+      await pages.whatAreYourContactDetailsNLPage.whatAreYourContactDetailsEPP(c.CONTACT_PHONE_PRIMARY, c.CONTACT_EMAIL_PRIMARY);
+      await chooseIdentityDocumentAndUploadEvidenceNL(pages);
+      await answerOtherLicenceNL(pages);
+      await answerCriminalRecordNL(pages);
+      await answerMedicalQuestions(pages);
+      await doesYourLicenceNeedCoverEPNL(pages);
+      await doesYourLicenceNeedCoverRegulatedPoisonsNL(pages);
+      await counterSignatoryDetailsNL(pages);
+      await pages.checkYourAnswerNewAppEppNLPage.newAppSummaryPage();
+      await pages.newAppDeclarationEppNLPage.clickCheckBoxNewApp();
+      break;
+    default:
+      throw new Error(`Invalid journey for this step: ${scenarioData.applicationType}`);
+  }
 });
 
 When('I complete new application form with all answers set to no and submit the form', async ({ pages }) => {
-  await applyForNewLicenceRouteNoToAllQuestions(pages);
+  switch (scenarioData.applicationType) {
+    case 'Apply for a new licence':
+      await pages.namePageNLPage.answerNameDetails(c.TITLE_MR, c.APPLICANT_FIRST_NAME, c.APPLICANT_MIDDLE_NAME, c.APPLICANT_LAST_NAME);
+      await answerAnyOtherNamesNL(pages);
+      await answerYourDetailsSectionNL(pages);
+      await answerAddressDetailsNL(pages);
+      await pages.whatAreYourContactDetailsNLPage.whatAreYourContactDetailsEPP(c.CONTACT_PHONE_PRIMARY, c.CONTACT_EMAIL_PRIMARY);
+      await chooseIdentityDocumentAndUploadEvidenceNL(pages);
+      await answerOtherLicenceNL(pages);
+      await answerCriminalRecordNL(pages);
+      await answerMedicalQuestions(pages);
+      await doesYourLicenceNeedCoverEPNL(pages);
+      await doesYourLicenceNeedCoverRegulatedPoisonsNL(pages);
+      break;
+    default:
+      throw new Error(`Invalid journey for this step: ${scenarioData.applicationType}`);
+  }
 });
 
 When('I complete renew application form with all answers set to no and submit the form', async ({ pages }) => {
-  await renewMyApplicationAnswerNoToAllQuestionsRoute(pages);
+  switch (scenarioData.applicationType) {
+    case 'Renew a licence':
+      await pages.enterYourLicenceNumberRLPage.enterLicenceNumber(c.LICENCE_NUMBER);
+      await pages.namePageNLPage.answerNameDetails(c.TITLE_MR, c.APPLICANT_FIRST_NAME, c.APPLICANT_MIDDLE_NAME, c.APPLICANT_LAST_NAME);
+      await answerAnyOtherNamesNL(pages);
+      await answerYourDetailsSectionNL(pages);
+      await answerAddressDetailsNL(pages);
+      await pages.whatAreYourContactDetailsNLPage.whatAreYourContactDetailsEPP(c.CONTACT_PHONE_PRIMARY, c.CONTACT_EMAIL_PRIMARY);
+      await chooseIdentityDocumentAndUploadEvidenceNL(pages);
+      await answerOtherLicenceNL(pages);
+      await answerCriminalRecordNL(pages);
+      await answerMedicalQuestions(pages);
+      await doesYourLicenceNeedCoverEPNL(pages);
+      await doesYourLicenceNeedCoverRegulatedPoisonsNL(pages);
+      break;
+    default:
+      throw new Error(`Invalid journey for this step: ${scenarioData.applicationType}`);
+  }
 });
+
+When('I fill out my answers for renew application form', async ({ pages }) => {
+  switch (scenarioData.applicationType) {
+    case 'Renew a licence':
+      await pages.enterYourLicenceNumberRLPage.enterLicenceNumber(c.LICENCE_NUMBER);
+      await pages.namePageNLPage.answerNameDetails(c.TITLE_MR, c.APPLICANT_FIRST_NAME, c.APPLICANT_MIDDLE_NAME, c.APPLICANT_LAST_NAME);
+      await answerAnyOtherNamesNL(pages);
+      await answerYourDetailsSectionNL(pages);
+      await answerAddressDetailsNL(pages);
+      await pages.whatAreYourContactDetailsNLPage.whatAreYourContactDetailsEPP(c.CONTACT_PHONE_PRIMARY, c.CONTACT_EMAIL_PRIMARY);
+      await chooseIdentityDocumentAndUploadEvidenceNL(pages);
+      await answerOtherLicenceNL(pages);
+      await answerCriminalRecordNL(pages);
+      await answerMedicalQuestions(pages);
+      await doesYourLicenceNeedCoverEPNL(pages);
+      await doesYourLicenceNeedCoverRegulatedPoisonsNL(pages);
+      await counterSignatoryDetailsNL(pages);
+      await pages.checkYourAnswerNewAppEppNLPage.newAppSummaryPage();
+      break;
+    default:
+      throw new Error(`Invalid journey for this step: ${scenarioData.applicationType}`);
+  }
+});
+
+When('I fill out my answers for amend application form', async ({ pages }) => {
+  switch (scenarioData.applicationType) {
+    case 'Amend a licence':
+      await pages.licenceNumberPage.enterLicenceNumberToAmend(c.LICENCE_NUMBER);
+      await pages.whatIsNameOnLicencePage.answerNameOnLicence(c.TITLE_MR, c.APPLICANT_FIRST_NAME, c.APPLICANT_MIDDLE_NAME, c.APPLICANT_LAST_NAME);
+      await pages.dateOfBirthForLicencePage.answerDobLicence(c.DOB_DAY, c.DOB_MONTH, c.DOB_YEAR);
+      await pages.whatIsYourHomeAddressAmendLicencePage.homeAddressAmendLicence(
+        c.HOME_ADDRESS_LINE_1,
+        c.HOME_ADDRESS_LINE_2,
+        c.HOME_ADDRESS_CITY,
+        c.HOME_ADDRESS_COUNTY,
+        c.HOME_ADDRESS_POSTCODE,
+        c.COUNTRY_UK,
+      );
+      await pages.whatAreYourContactDetailsAmendLicencePage.whatAreYourContactDetailsAmend(c.CONTACT_PHONE_SECONDARY, c.CONTACT_EMAIL_SECONDARY);
+      await doYouNeedToAmendNameOnLicence(pages);
+      await doYouNeedToAmendHomeAddressOnLicence(pages);
+      await highLevelChangeInSubstanceAmendLicence(pages);
+      await counterSignatoryDetailsAmendLicence(pages);
+      await pages.checkYourAnswerAmendLicencePage.checkYourAnswers();
+      await pages.declarationAmendLicencePage.answerDeclarationAmendLicence();
+      break;
+    default:
+      throw new Error(`Invalid journey for this step: ${scenarioData.applicationType}`);
+  }
+});
+
+When('I fill out my answers for licence was stolen on replace application form', async ({ pages }) => {
+  switch (scenarioData.replacementReason) {
+    case 'Licence was stolen':
+      await answerChangeInHomeAddress(pages);
+      await answerChangeInSubstances(pages);
+      await answerRegulatedEP(pages);
+      await answerRegulatedPoison(pages);
+      await replaceCounterSignatoryDetails(pages);
+      await pages.checkYourAnswersRepPage.replaceCheckYouAnswers();
+      break;
+    default:
+      throw new Error(`Invalid replace journey for this step: ${scenarioData.replacementReason}`);
+  }
+});
+
+When('I fill out the answer for licence is lost on replace application form', async ({ pages }) => {
+  switch (scenarioData.replacementReason) {
+    case 'Licence is lost':
+      await pages.checkYourAnswersRepPage.replaceCheckYouAnswers();
+      break;
+    default:
+      throw new Error(`Invalid replace journey for this step: ${scenarioData.replacementReason}`);
+  }
+});
+
+When('I fill out the answer for licence is damaged on replace application form', async ({ pages }) => {
+  switch (scenarioData.replacementReason) {
+    case 'Licence is damaged':
+      await answerChangeInHomeAddress(pages);
+      await answerChangeInSubstances(pages);
+      await replaceCounterSignatoryDetails(pages);
+      await pages.checkYourAnswersRepPage.replaceCheckYouAnswers();
+      break;
+    default:
+      throw new Error(`Invalid replace journey for this step: ${scenarioData.replacementReason}`);
+  }
+});
+
 
 Then('I see page that says you don\'t need to apply for new licence', async ({ pages }) => {
   const title = await pages.applicationSubmittedNewAppEppNLPage.expectedPageTitle();
@@ -70,29 +231,9 @@ Then('I see page that says you don\'t need to apply for renew licence', async ({
   await expect(pages.youDoNotNeedToApplyForLicencePage.page).toHaveTitle(title + ' – GOV.UK');
 });
 
-When('I fill out my answers for renew application form', async ({ pages }) => {
-  await renewMyApplicationRoute(pages);
-});
-
-When('I fill out my answers for amend application form', async ({ pages }) => {
-  await amendLicenceRoute(pages);
-});
-
 Then('I am able to see Amendment form submitted page', async ({ pages }) => {
   const title = await pages.amendmentSubmittedPage.expectedPageTitle();
   await expect(pages.amendmentSubmittedPage.page).toHaveTitle(title + ' – GOV.UK');
-});
-
-When('I fill out my answers for licence was stolen on replace application form', async ({ pages }) => {
-  await licenceStolenReplaceRoute(pages);
-});
-
-When('I fill out the answer for licence is lost on replace application form', async ({ pages }) => {
-  await licenceIsLostReplaceRoute(pages);
-});
-
-When('I fill out the answer for licence is damaged on replace application form', async ({ pages }) => {
-  await licenceIsDamagedReplaceRoute(pages);
 });
 
 Then('I am navigated to {string} page', async ({ page }, pageName: string) => {
@@ -103,35 +244,9 @@ Then('I should see {string} page', async ({ page }, pageName: string) => {
   await expect(page.locator('h1').first()).toContainText(pageName);
 });
 
-async function applyForNewLicenceRouteNoToAllQuestions(pages: Pages) {
-  await pages.namePageNLPage.answerNameDetails(c.TITLE_MR, c.APPLICANT_FIRST_NAME, c.APPLICANT_MIDDLE_NAME, c.APPLICANT_LAST_NAME);
-  await answerAnyOtherNamesNL(pages);
-  await answerYourDetailsSectionNL(pages);
-  await answerAddressDetailsNL(pages);
-  await pages.whatAreYourContactDetailsNLPage.whatAreYourContactDetailsEPP(c.CONTACT_PHONE_PRIMARY, c.CONTACT_EMAIL_PRIMARY);
-  await chooseIdentityDocumentAndUploadEvidenceNL(pages);
-  await answerOtherLicenceNL(pages);
-  await answerCriminalRecordNL(pages);
-  await answerMedicalQuestions(pages);
-  await doesYourLicenceNeedCoverEPNL(pages);
-  await doesYourLicenceNeedCoverRegulatedPoisonsNL(pages);
-}
-
-async function applyForNewLicenceRouteAnswer(pages: Pages) {
-  await pages.namePageNLPage.answerNameDetails(c.TITLE_MR, c.APPLICANT_FIRST_NAME, c.APPLICANT_MIDDLE_NAME, c.APPLICANT_LAST_NAME);
-  await answerAnyOtherNamesNL(pages);
-  await answerYourDetailsSectionNL(pages);
-  await answerAddressDetailsNL(pages);
-  await pages.whatAreYourContactDetailsNLPage.whatAreYourContactDetailsEPP(c.CONTACT_PHONE_PRIMARY, c.CONTACT_EMAIL_PRIMARY);
-  await chooseIdentityDocumentAndUploadEvidenceNL(pages);
-  await answerOtherLicenceNL(pages);
-  await answerCriminalRecordNL(pages);
-  await answerMedicalQuestions(pages);
-  await doesYourLicenceNeedCoverEPNL(pages);
-  await doesYourLicenceNeedCoverRegulatedPoisonsNL(pages);
-  await counterSignatoryDetailsNL(pages);
-  await pages.checkYourAnswerNewAppEppNLPage.newAppSummaryPage();
-}
+//**************************************************************************************************************************************************************************//
+//********************************************************************  Helper functions start from here *****************************************************************//
+//**************************************************************************************************************************************************************************//
 
 async function answerAnyOtherNamesNL(pages: Pages) {
   if (scenarioData.otherNames === c.YES) {
@@ -160,22 +275,15 @@ async function answerYourDetailsSectionNL(pages: Pages) {
     c.COUNTRY_UK,
     c.COUNTRY_UK,
   );
-  await chooseYesNoForNameFragment(pages.yourDetailsPageNLPage.page, 'more-nationalities', scenarioData.moreNationalities);
-  await answerSexAndHeightQuestionNL(pages);
+  await basePage.chooseYesNoForNameFragment(pages.yourDetailsPageNLPage.page, 'more-nationalities', scenarioData.moreNationalities);
+  await pages.yourDetailsPageNLPage.answerSexAndHeightQuestion(
+    scenarioData.sex,
+    c.APPLICANT_HEIGHT_CM,
+    c.APPLICANT_OCCUPATION,
+  );
   if (scenarioData.moreNationalities === c.YES) {
     await pages.otherNationalitiesEppNLPage.answerOtherNationalitiesQuestions(c.NATIONALITY_FRANCE);
   }
-}
-
-async function answerSexAndHeightQuestionNL(pages: Pages) {
-  if (scenarioData.sex === 'Male') {
-    await pages.yourDetailsPageNLPage.answerSexMale();
-  } else if (scenarioData.sex === 'Female') {
-    await pages.yourDetailsPageNLPage.answerSexFemale();
-  } else {
-    await pages.yourDetailsPageNLPage.answerSexOther();
-  }
-  await pages.yourDetailsPageNLPage.answerHeightAndOccupation(c.APPLICANT_HEIGHT_CM, c.APPLICANT_OCCUPATION);
 }
 
 async function answerAddressDetailsNL(pages: Pages) {
@@ -230,7 +338,7 @@ async function answerOtherLicenceNL(pages: Pages) {
   await pages.otherLicencesEppNLPage.selectOtherLicences('firearms', scenarioData.firearmsLicence);
   await pages.otherLicencesEppNLPage.selectOtherLicences('shotgun', scenarioData.shotgunLicence);
   await pages.otherLicencesEppNLPage.selectOtherLicences('refused', scenarioData.refusedRevoked);
-  await clickContinueFromPage(pages.otherLicencesEppNLPage.page);
+  await basePage.clickContinueOn(pages.otherLicencesEppNLPage.page);
 
   if (scenarioData.refusedRevoked === c.YES) {
     await pages.addRefusedRevokedLicenceEppNLPage.reasonAndDateFirearmRefused(
@@ -285,7 +393,7 @@ async function answerMedicalQuestions(pages: Pages) {
     'received-treatment',
     scenarioData.treatmentDrugAlcohol,
   );
-  await clickContinueFromPage(pages.yourMedicalHistoryEppNLPage.page);
+  await basePage.clickContinueOn(pages.yourMedicalHistoryEppNLPage.page);
   if (scenarioData.treatmentDrugAlcohol === c.YES) {
     await pages.uploadMedicalFormEppNLPage.uploadMedicalFormEpp(c.UPLOAD_EVIDENCE_FILE);
   }
@@ -300,38 +408,10 @@ async function answerMedicalQuestions(pages: Pages) {
   );
 }
 
-async function clickContinueFromPage(page: Page) {
-  const button = page.getByRole('button', { name: 'Continue' }).first();
-  if (await button.isVisible().catch(() => false)) {
-    await button.click();
-    return;
-  }
-  await page.locator("input[value='Continue']").first().click();
-}
-
-async function chooseYesNoForNameFragment(page: Page, nameFragment: string, value: string) {
-  const yesNo = (value || '').toLowerCase() === c.YES.toLowerCase() ? c.YES.toLowerCase() : c.NO.toLowerCase();
-  const radio = page.locator(`input[type="radio"][name*="${nameFragment}"][value="${yesNo}"]`).first();
-  if (await radio.isVisible().catch(() => false)) {
-    const alreadyChecked = await radio.isChecked().catch(() => false);
-    if (!alreadyChecked) {
-      await radio.click({ force: true });
-    }
-    return;
-  }
-
-  if (yesNo === c.YES.toLowerCase()) {
-    await page.getByRole('radio', { name: /^yes$/i }).first().check();
-    return;
-  }
-
-  await page.getByRole('radio', { name: /^no$/i }).first().check();
-}
-
 async function doesYourLicenceNeedCoverEPNL(pages: Pages) {
   await pages.regulatedEpNLPage.selectRegulatedEPRadioButton(scenarioData.coverExplosivesPrecursors);
   if (scenarioData.coverExplosivesPrecursors === c.YES) {
-    await selectEPFromList(pages);
+    await pages.explosivesPrecursorsAmendLicencePage.selectPrecursorFromList(scenarioData.explosivePrecursor);
     await answerCoverLicenceDetailsExPreNL(pages);
   }
 }
@@ -362,7 +442,7 @@ async function answerCoverLicenceDetailsExPreNL(pages: Pages) {
 async function doesYourLicenceNeedCoverRegulatedPoisonsNL(pages: Pages) {
   await pages.regulatedPoisonsEppNLPage.selectRegulatedPoisonRadioButton(scenarioData.coverPoisons);
   if (scenarioData.coverPoisons === c.YES) {
-    await selectPoisonFromList(pages);
+    await pages.poisonsAmendLicencePage.selectPoisonFromList(scenarioData.poison);
     await answerCoverLicenceDetailsForPoisonNL(pages);
   }
 }
@@ -413,43 +493,32 @@ async function counterSignatoryDetailsNL(pages: Pages) {
     c.CONTACT_EMAIL_COUNTERSIGNATORY,
   );
 
-  if (scenarioData.countersignatoryIdentityDocument === 'British passport') {
-    await pages.counterSignatoryIdentityDocumentsEppNLPage.britishPassportCounterSignatoryIdentityDocuments(c.IDENTITY_PASSPORT_UK_NUMBER);
-  } else if (scenarioData.countersignatoryIdentityDocument.includes('Passport from the EU')) {
-    await pages.counterSignatoryIdentityDocumentsEppNLPage.EEAPassportCounterSignatoryIdentityDocuments(c.IDENTITY_PASSPORT_EU_NUMBER);
-  } else {
-    await pages.counterSignatoryIdentityDocumentsEppNLPage.UKDrivingLicenceCounterSignatoryIdentityDocuments(c.IDENTITY_UK_DRIVING_LICENCE_NUMBER);
-  }
-}
-
-async function amendLicenceRoute(pages: Pages) {
-  await pages.licenceNumberPage.enterLicenceNumberToAmend(c.LICENCE_NUMBER);
-  await pages.whatIsNameOnLicencePage.answerNameOnLicence(c.TITLE_MR, c.APPLICANT_FIRST_NAME, c.APPLICANT_MIDDLE_NAME, c.APPLICANT_LAST_NAME);
-  await pages.dateOfBirthForLicencePage.answerDobLicence(c.DOB_DAY, c.DOB_MONTH, c.DOB_YEAR);
-  await pages.whatIsYourHomeAddressAmendLicencePage.homeAddressAmendLicence(
-    c.HOME_ADDRESS_LINE_1,
-    c.HOME_ADDRESS_LINE_2,
-    c.HOME_ADDRESS_CITY,
-    c.HOME_ADDRESS_COUNTY,
-    c.HOME_ADDRESS_POSTCODE,
-    c.COUNTRY_UK,
+  await pages.counterSignatoryIdentityDocumentsEppNLPage.selectCounterSignatoryIdentityDocument(
+    scenarioData.countersignatoryIdentityDocument,
+    c.IDENTITY_PASSPORT_UK_NUMBER,
+    c.IDENTITY_PASSPORT_EU_NUMBER,
+    c.IDENTITY_UK_DRIVING_LICENCE_NUMBER,
   );
-  await pages.whatAreYourContactDetailsAmendLicencePage.whatAreYourContactDetailsAmend(c.CONTACT_PHONE_SECONDARY, c.CONTACT_EMAIL_SECONDARY);
-  await doYouNeedToAmendNameOnLicence(pages);
-  await doYouNeedToAmendHomeAddressOnLicence(pages);
-  await highLevelChangeInSubstanceAmendLicence(pages);
-  await counterSignatoryDetailsAmendLicence(pages);
-  await pages.checkYourAnswerAmendLicencePage.checkYourAnswers();
-  await pages.declarationAmendLicencePage.answerDeclarationAmendLicence();
 }
 
 async function highLevelChangeInSubstanceAmendLicence(pages: Pages) {
-  if (scenarioData.amendSubstance === c.YES) {
-    await doYouNeedToAmendSubstanceOnLicence(pages);
-    await doYouNeedToAmendRegulatedEPOnLicence(pages);
-    await doYouNeedToAmendPoisonsOnLicence(pages);
-  } else {
-    await pages.changeInSubstanceAmendLicencePage.answerNoAmendSubstance(c.NO);
+  const amendSubstance = await pages.changeInSubstanceAmendLicencePage.answerNeedToAmendSubstance(scenarioData.amendSubstance);
+  if (!amendSubstance) {
+    return;
+  }
+
+  const amendExplosivePrecursors = await pages.regulatedExplosivesPrecursorsPage.answerNeedToAmendExplosivePrecursors(
+    scenarioData.amendExplosivesPrecursors,
+  );
+  if (amendExplosivePrecursors) {
+    await pages.explosivesPrecursorsAmendLicencePage.selectPrecursorFromList(scenarioData.explosivePrecursor);
+    await answerCoverLicenceDetailsExPreNL(pages);
+  }
+
+  const amendPoisons = await pages.regulatedPoisonsAmendLicencePage.answerNeedToAmendPoison(scenarioData.amendPoisons);
+  if (amendPoisons) {
+    await pages.poisonsAmendLicencePage.selectPoisonFromList(scenarioData.poison);
+    await answerCoverLicenceDetailsForPoisonNL(pages);
   }
 }
 
@@ -491,19 +560,12 @@ async function counterSignatoryDetailsAmendLicence(pages: Pages) {
     c.CONTACT_PHONE_SECONDARY,
     c.CONTACT_EMAIL_COUNTERSIGNATORY,
   );
-  if (scenarioData.countersignatoryIdentityDocument === 'British passport') {
-    await pages.counterSignatoryIdentityDocumentsAmendLicencePage.britishPassportCounterSignatoryIdentityDocumentsAmendLicence(
-      c.IDENTITY_PASSPORT_UK_NUMBER,
-    );
-  } else if (scenarioData.countersignatoryIdentityDocument.includes('Passport from the EU')) {
-    await pages.counterSignatoryIdentityDocumentsAmendLicencePage.EEAPassportCounterSignatoryIdentityDocumentsAmendLicence(
-      c.IDENTITY_PASSPORT_EU_NUMBER,
-    );
-  } else {
-    await pages.counterSignatoryIdentityDocumentsAmendLicencePage.UKDrivingLicenceCounterSignatoryIdentityDocumentsAmendLicence(
-      c.IDENTITY_UK_DRIVING_LICENCE_NUMBER,
-    );
-  }
+  await pages.counterSignatoryIdentityDocumentsAmendLicencePage.selectCounterSignatoryIdentityDocument(
+    scenarioData.countersignatoryIdentityDocument,
+    c.IDENTITY_PASSPORT_UK_NUMBER,
+    c.IDENTITY_PASSPORT_EU_NUMBER,
+    c.IDENTITY_UK_DRIVING_LICENCE_NUMBER,
+  );
 }
 
 async function doYouNeedToAmendNameOnLicence(pages: Pages) {
@@ -544,97 +606,6 @@ async function doYouNeedToAmendHomeAddressOnLicence(pages: Pages) {
   await pages.changeInHomeAddressAmendLicencePage.answerNoAmendHomeAddressOnLicence(c.NO);
 }
 
-async function doYouNeedToAmendSubstanceOnLicence(pages: Pages) {
-  if (scenarioData.amendSubstance === c.YES) {
-    await pages.changeInSubstanceAmendLicencePage.answerYesAmendSubstance(c.YES);
-  } else {
-    await pages.changeInSubstanceAmendLicencePage.answerNoAmendSubstance(c.NO);
-  }
-}
-
-async function doYouNeedToAmendRegulatedEPOnLicence(pages: Pages) {
-  if (scenarioData.amendExplosivesPrecursors === c.YES) {
-    await pages.regulatedExplosivesPrecursorsPage.answerYesAmendExplosivePrecursorsOnLicence(c.YES);
-    await selectEPFromList(pages);
-    await answerCoverLicenceDetailsExPreNL(pages);
-    //  await pages.explosivesPrecursorSummaryAmendLicencePage.explosiveAndPrecursorsSummaryAmendLicence();
-    return;
-  }
-  await pages.regulatedExplosivesPrecursorsPage.answerNoAmendExplosivePrecursorsOnLicence(c.NO);
-}
-
-async function selectEPFromList(pages: Pages) {
-  const map: Record<string, () => Promise<void>> = {
-    'Ammonium nitrate at or above 16% nitrogen': () => pages.explosivesPrecursorsAmendLicencePage.selectAmmonium(),
-    'Hexamine': () => pages.explosivesPrecursorsAmendLicencePage.selectHexamine(),
-    'Hydrochloric acid above 10% (weight by weight)': () => pages.explosivesPrecursorsAmendLicencePage.selectHydrochloricAcid(),
-    'Hydrogen peroxide above 12% (weight by weight)': () => pages.explosivesPrecursorsAmendLicencePage.selectHydrogenPeroxide(),
-    'Nitric acid above 3% (weight by weight)': () => pages.explosivesPrecursorsAmendLicencePage.selectNitricAcid(),
-    'Nitromethane above 30% (weight by weight)': () => pages.explosivesPrecursorsAmendLicencePage.selectNitromethane(),
-    'Phosphoric acid above 30% (weight by weight)': () => pages.explosivesPrecursorsAmendLicencePage.selectPhosphoricAcid(),
-    'Potassium chlorate above 40% (weight by weight)': () => pages.explosivesPrecursorsAmendLicencePage.selectPotassiumChlorate(),
-    'Potassium perchlorate above 40% (weight by weight)': () => pages.explosivesPrecursorsAmendLicencePage.selectPotassiumPerchlorate(),
-    'Sodium chlorate above 40% (weight by weight)': () => pages.explosivesPrecursorsAmendLicencePage.selectSodiumChlorate(),
-    'Sodium perchlorate above 40% (weight by weight)': () => pages.explosivesPrecursorsAmendLicencePage.selectSodiumPerchlorate(),
-    'Sulfuric acid above 15% (weight by weight)': () => pages.explosivesPrecursorsAmendLicencePage.selectSulfuricAcid(),
-  };
-  const key = scenarioData.explosivePrecursor;
-  if (map[key]) {
-    await map[key]();
-  }
-}
-
-async function selectPoisonFromList(pages: Pages) {
-  const map: Record<string, () => Promise<void>> = {
-    '2,4- Dinitrophenol and derivatives including sodium dinitrophenolate': () => pages.poisonsAmendLicencePage.select24Dinitrophenol(),
-    '2,4-dinitrophenol and its compounds including dinitrophenolate': () => pages.poisonsAmendLicencePage.select24Dinitrophenol(),
-    'Aluminium phosphide': () => pages.poisonsAmendLicencePage.selectAluminiumPhosphide(),
-    'Aluminium sulfide': () => pages.poisonsAmendLicencePage.selectAluminiumSulfide(),
-    'Arsenic and its compounds': () => pages.poisonsAmendLicencePage.selectArsenicCompounds(),
-    'Barium salts': () => pages.poisonsAmendLicencePage.selectBariumSalts(),
-    'Bromomethane': () => pages.poisonsAmendLicencePage.selectBromomethane(),
-    'Calcium sulfide': () => pages.poisonsAmendLicencePage.selectCalciumSulfide(),
-    'Calcium phosphide': () => pages.poisonsAmendLicencePage.selectCalciumPhosphide(),
-    'Chloropicrin': () => pages.poisonsAmendLicencePage.selectChloropicrin(),
-    'Fluoroacetic acid and its salts; fluoracetamide': () => pages.poisonsAmendLicencePage.selectFluoroaceticAcid(),
-    'Hydrogen cyanide and metal cyanides': () => pages.poisonsAmendLicencePage.selectHydrogenCyanide(),
-    'Lead acetates; compound of lead with acids from fixed oils': () => pages.poisonsAmendLicencePage.selectLeadAcetates(),
-    'Magnesium phosphide': () => pages.poisonsAmendLicencePage.selectMagnesiumPhosphide(),
-    'Magnesium sulfide': () => pages.poisonsAmendLicencePage.selectMagnesiumSulfide(),
-    'Mercury and its compounds': () => pages.poisonsAmendLicencePage.selectMercuryCompounds(),
-    'Oxalic acid above 10% (weight by weight)': () => pages.poisonsAmendLicencePage.selectOxalicAcid(),
-    'Phenols above 60% w/w and their compounds': () => pages.poisonsAmendLicencePage.selectPhenols(),
-    'Phosphorus yellow': () => pages.poisonsAmendLicencePage.selectPhosphorusYellow(),
-    'Sodium sulfide': () => pages.poisonsAmendLicencePage.selectSodiumSulfide(),
-    'Strychnine, its salts and quaternary compounds': () => pages.poisonsAmendLicencePage.selectStrychnine(),
-    'Thallium and its salts': () => pages.poisonsAmendLicencePage.selectThalliumSalts(),
-    'Zinc phosphide': () => pages.poisonsAmendLicencePage.selectZincPhosphide(),
-  };
-  if (map[scenarioData.poison]) {
-    await map[scenarioData.poison]();
-  }
-}
-
-async function doYouNeedToAmendPoisonsOnLicence(pages: Pages) {
-  if (scenarioData.amendPoisons === c.YES) {
-    await pages.regulatedPoisonsAmendLicencePage.yesNeedToAmendPoison(c.YES);
-    await selectPoisonFromList(pages);
-    await answerCoverLicenceDetailsForPoisonNL(pages);
-    return;
-  }
-  await pages.regulatedPoisonsAmendLicencePage.noNeedToAmendPoison(c.NO);
-}
-
-async function renewMyApplicationRoute(pages: Pages) {
-  await pages.enterYourLicenceNumberRLPage.enterLicenceNumber(c.LICENCE_NUMBER);
-  await applyForNewLicenceRouteAnswer(pages);
-}
-
-async function renewMyApplicationAnswerNoToAllQuestionsRoute(pages: Pages) {
-  await pages.enterYourLicenceNumberRLPage.enterLicenceNumber(c.LICENCE_NUMBER);
-  await applyForNewLicenceRouteNoToAllQuestions(pages);
-}
-
 async function replaceCommonQuestions(pages: Pages) {
   await pages.enterYourLicenceNumberRepPage.answerLicenceNumber(c.LICENCE_NUMBER);
   await pages.whatIsYourNameOnTheLicenceRepPage.answerNameOnLicence(
@@ -654,26 +625,6 @@ async function replaceCommonQuestions(pages: Pages) {
   );
   await pages.whatAreYourContactDetailsRepPage.answerContactDetails(c.CONTACT_PHONE_PRIMARY, c.CONTACT_EMAIL_PRIMARY);
   await answerDetailsChangedSinceIssued(pages);
-}
-
-async function licenceStolenReplaceRoute(pages: Pages) {
-  await answerChangeInHomeAddress(pages);
-  await answerChangeInSubstances(pages);
-  await answerRegulatedEP(pages);
-  await answerRegulatedPoison(pages);
-  await replaceCounterSignatoryDetails(pages);
-  await checkAndDeclareReplace(pages);
-}
-
-async function licenceIsLostReplaceRoute(pages: Pages) {
-  await checkAndDeclareReplace(pages);
-}
-
-async function licenceIsDamagedReplaceRoute(pages: Pages) {
-  await answerChangeInHomeAddress(pages);
-  await answerChangeInSubstances(pages);
-  await replaceCounterSignatoryDetails(pages);
-  await checkAndDeclareReplace(pages);
 }
 
 async function replaceCounterSignatoryDetails(pages: Pages) {
@@ -696,11 +647,12 @@ async function replaceCounterSignatoryDetails(pages: Pages) {
     c.CONTACT_PHONE_SECONDARY,
     c.CONTACT_EMAIL_COUNTERSIGNATORY,
   );
-  await answerCounterSignatoryIdentityDocument(pages);
-}
-
-async function checkAndDeclareReplace(pages: Pages) {
-  await pages.checkYourAnswersRepPage.replaceCheckYouAnswers();
+  await pages.counterSignatoryIdentityDocumentRepPage.selectCounterSignatoryIdentityDocument(
+    scenarioData.countersignatoryIdentityDocument,
+    c.IDENTITY_PASSPORT_UK_NUMBER,
+    c.IDENTITY_PASSPORT_EU_NUMBER,
+    c.IDENTITY_UK_DRIVING_LICENCE_NUMBER,
+  );
 }
 
 async function answerWhyDoYouNeedRepLicence(pages: Pages) {
@@ -801,7 +753,7 @@ async function answerChangeInSubstances(pages: Pages) {
 async function answerRegulatedEP(pages: Pages) {
   if (scenarioData.amendExplosivesPrecursors === c.YES) {
     await pages.amendEPOnLicenceRepPage.answerYesAmendEPRep(c.YES);
-    await selectEPFromList(pages);
+    await pages.explosivesPrecursorsAmendLicencePage.selectPrecursorFromList(scenarioData.explosivePrecursor);
     await explosivePrecursorDetailsRep(pages);
     return;
   }
@@ -828,13 +780,13 @@ async function explosivePrecursorDetailsRep(pages: Pages) {
   }
 
   await pages.explosivesPrecursorsSummaryRepPage.explosiveAndPrecursorsSummaryRep();
-  await clickContinueFromPage(pages.explosivesPrecursorsSummaryRepPage.page);
+  await basePage.clickContinueOn(pages.explosivesPrecursorsSummaryRepPage.page);
 }
 
 async function answerRegulatedPoison(pages: Pages) {
   if (scenarioData.amendPoisons === c.YES) {
     await pages.regulatedPoisonsRepPage.answerYesRegulatedPoison(c.YES);
-    await selectPoisonFromList(pages);
+    await pages.poisonsAmendLicencePage.selectPoisonFromList(scenarioData.poison);
     await poisonDetailsReplace(pages);
     return;
   }
@@ -863,15 +815,5 @@ async function poisonDetailsReplace(pages: Pages) {
   }
 
   await pages.poisonLicenceSummaryRepPage.PoisonOnLicenceSummaryRep();
-  await clickContinueFromPage(pages.poisonLicenceSummaryRepPage.page);
-}
-
-async function answerCounterSignatoryIdentityDocument(pages: Pages) {
-  if (scenarioData.countersignatoryIdentityDocument === 'British passport') {
-    await pages.counterSignatoryIdentityDocumentRepPage.answerCounterSignatoryDocBritishPassport(c.IDENTITY_PASSPORT_UK_NUMBER);
-  } else if (scenarioData.countersignatoryIdentityDocument.includes('Passport from the EU')) {
-    await pages.counterSignatoryIdentityDocumentRepPage.answerCounterSignatoryDocEU(c.IDENTITY_PASSPORT_EU_NUMBER);
-  } else {
-    await pages.counterSignatoryIdentityDocumentRepPage.answerCounterSignatoryDocUKDrivingLicence(c.IDENTITY_UK_DRIVING_LICENCE_NUMBER);
-  }
+  await basePage.clickContinueOn(pages.poisonLicenceSummaryRepPage.page);
 }
