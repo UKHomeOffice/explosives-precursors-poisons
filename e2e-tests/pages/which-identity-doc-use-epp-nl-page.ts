@@ -1,25 +1,49 @@
+import { Page } from '@playwright/test';
 import { basePage } from './base-page';
 
 export class whichIdentityDocUseEppNLPage extends basePage {
-  expectedPageTitle() {
-    return "Which identity document do you want to use?";
+  private readonly euPassportInput;
+  private readonly passportNumberLabelInput;
+  private readonly drivingLicenceLabelInput;
+
+  constructor(page: Page) {
+    super(page);
+    this.euPassportInput = this.page.locator('#new-renew-EU-passport-number').first();
+    this.passportNumberLabelInput = this.page.getByLabel('What is your passport number?', { exact: true }).first();
+    this.drivingLicenceLabelInput = this.page.getByLabel('What is your driving licence number?', { exact: true }).first();
   }
 
-  async answerIdentityDocBritishPassport() {
-    await this.page.locator('#new-renew-applicant-Id-type-UK-passport').check();
-    await this.page.locator('#new-renew-UK-passport-number').fill('120897A');
+  async answerIdentityDocBritishPassport(passportNumber: string): Promise<void> {
+    await this.pickRadioByText('British passport');
+    await this.fillField(this.passportNumberLabelInput, passportNumber);
     await this.clickContinueButton();
   }
 
-  async answerIdentityDocEU() {
-    await this.page.locator('#new-renew-applicant-Id-type-EU-passport').check();
-    await this.page.locator('#new-renew-EU-passport-number').fill('120897A');
+  async answerIdentityDocEU(passportNumber: string): Promise<void> {
+    await this.pickRadioByText('Passport from the EU, Switzerland, Norway, Iceland or Liechtenstein');
+    if (await this.euPassportInput.count()) {
+      await this.fillField(this.euPassportInput, passportNumber);
+    } else {
+      await this.fillField(this.passportNumberLabelInput, passportNumber);
+    }
     await this.clickContinueButton();
   }
 
-  async answerIdentityUKDrivingLicence() {
-    await this.page.locator('#new-renew-applicant-Id-type-Uk-driving-licence').check();
-    await this.page.locator('#new-renew-Uk-driving-licence-number').fill('MORGA657054SM9IJ');
+  async answerIdentityUKDrivingLicence(drivingLicenceNumber: string): Promise<void> {
+    await this.pickRadioByText('UK driving licence');
+    await this.fillField(this.drivingLicenceLabelInput, drivingLicenceNumber);
     await this.clickContinueButton();
+  }
+
+  async expectedPageTitle(): Promise<string> {
+    const title = await this.page.title();
+
+    return title.startsWith('Error')
+      ? 'Error: Which identity document do you want to use?'
+      : 'Which identity document do you want to use?';
   }
 }
+
+
+
+

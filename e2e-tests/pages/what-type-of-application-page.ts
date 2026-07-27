@@ -1,31 +1,40 @@
+import { Page } from '@playwright/test';
 import { basePage } from './base-page';
 
 export class whatTypeOfApplicationPage extends basePage {
-  expectedPageTitle() {
-    return "What type of application do you need to make? – Explosives precursors and poisons licensing";
+  constructor(page: Page) {
+    super(page);
   }
 
-  async assertPageTitle() {
-    await this.assertHeadingContains('');
-  }
-
-  async clickAmendLicence() {
-    await this.selectRadio('Amend a licence');
+  async clickApplyNewLicence(): Promise<void> {
+    await this.pickRadioByText('Apply for a new licence');
     await this.clickContinueButton();
   }
 
-  async clickApplyNewLicence() {
-    await this.selectRadio('Apply for a new licence');
+  async clickAmendLicence(): Promise<void> {
+    await this.pickRadioByText('Amend a licence');
     await this.clickContinueButton();
   }
 
-  async clickRenewApplication() {
-    await this.selectRadio('Renew a licence');
+  async clickRenewApplication(): Promise<void> {
+    await this.pickRadioByText('Renew a licence');
     await this.clickContinueButton();
   }
 
-  async clickReplaceApplication() {
-    await this.selectRadio('Replace a licence');
+  async clickReplaceApplication(): Promise<void> {
+    await this.pickRadioByText('Replace a licence');
     await this.clickContinueButton();
+  }
+
+  async expectedPageTitle(): Promise<string> {
+    const title = await this.page.title();
+
+    return title.startsWith('Error')
+      ? 'Error: What type of application do you need to make? – Explosives precursors and poisons licensing'
+      : 'What type of application do you need to make? – Explosives precursors and poisons licensing';
   }
 }
+
+
+
+

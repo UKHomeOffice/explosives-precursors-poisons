@@ -14,3 +14,7 @@ export class amendmentSubmittedPage extends basePage {
       : 'Amendment submitted – Amend an explosives and precursor chemicals licence';
   }
 }
+
+
+
+

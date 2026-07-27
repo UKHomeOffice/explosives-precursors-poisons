@@ -1,95 +1,120 @@
+import { Page } from '@playwright/test';
 import { basePage } from './base-page';
 
 export class poisonsAmendLicencePage extends basePage {
-  expectedPageTitle() {
-    return "Poisons";
+  private readonly poisonSelect;
+
+  constructor(page: Page) {
+    super(page);
+    this.poisonSelect = this.page.locator('#poison-field').first();
   }
 
-  async select24Dinitrophenol() {
+  private async choose(label: string) {
+    if (await this.poisonSelect.isVisible().catch(() => false)) {
+      await this.poisonSelect.selectOption({ label });
+    } else {
+      await this.poisonSelect.selectOption({ label }, { force: true });
+    }
     await this.clickContinueButton();
   }
 
-  async selectAluminiumPhosphide() {
-    await this.clickContinueButton();
+  async select24Dinitrophenol(): Promise<void> {
+    await this.choose('2,4- Dinitrophenol and derivatives including sodium dinitrophenolate');
   }
 
-  async selectAluminiumSulfide() {
-    await this.clickContinueButton();
+  async selectAluminiumPhosphide(): Promise<void> {
+    await this.choose('Aluminium phosphide');
   }
 
-  async selectArsenicCompounds() {
-    await this.clickContinueButton();
+  async selectAluminiumSulfide(): Promise<void> {
+    await this.choose('Aluminium sulfide');
   }
 
-  async selectBariumSalts() {
-    await this.clickContinueButton();
+  async selectArsenicCompounds(): Promise<void> {
+    await this.choose('Arsenic and its compounds');
   }
 
-  async selectBromomethane() {
-    await this.clickContinueButton();
+  async selectBariumSalts(): Promise<void> {
+    await this.choose('Barium salts');
   }
 
-  async selectCalciumPhosphide() {
-    await this.clickContinueButton();
+  async selectBromomethane(): Promise<void> {
+    await this.choose('Bromomethane');
   }
 
-  async selectCalciumSulfide() {
-    await this.clickContinueButton();
+  async selectCalciumSulfide(): Promise<void> {
+    await this.choose('Calcium sulfide');
   }
 
-  async selectChloropicrin() {
-    await this.clickContinueButton();
+  async selectCalciumPhosphide(): Promise<void> {
+    await this.choose('Calcium phosphide');
   }
 
-  async selectFluoroaceticAcid() {
-    await this.clickContinueButton();
+  async selectChloropicrin(): Promise<void> {
+    await this.choose('Chloropicrin');
   }
 
-  async selectHydrogenCyanide() {
-    await this.clickContinueButton();
+  async selectFluoroaceticAcid(): Promise<void> {
+    await this.choose('Fluoroacetic acid and its salts; fluoracetamide');
   }
 
-  async selectLeadAcetates() {
-    await this.clickContinueButton();
+  async selectHydrogenCyanide(): Promise<void> {
+    await this.choose('Hydrogen cyanide and metal cyanides');
   }
 
-  async selectMagnesiumPhosphide() {
-    await this.clickContinueButton();
+  async selectLeadAcetates(): Promise<void> {
+    await this.choose('Lead acetates; compound of lead with acids from fixed oils');
   }
 
-  async selectMagnesiumSulfide() {
-    await this.clickContinueButton();
+  async selectMagnesiumPhosphide(): Promise<void> {
+    await this.choose('Magnesium phosphide');
   }
 
-  async selectMercuryCompounds() {
-    await this.clickContinueButton();
+  async selectMagnesiumSulfide(): Promise<void> {
+    await this.choose('Magnesium sulfide');
   }
 
-  async selectOxalicAcid() {
-    await this.clickContinueButton();
+  async selectMercuryCompounds(): Promise<void> {
+    await this.choose('Mercury and its compounds');
   }
 
-  async selectPhenols() {
-    await this.clickContinueButton();
+  async selectOxalicAcid(): Promise<void> {
+    await this.choose('Oxalic acid above 10% (weight by weight)');
   }
 
-  async selectPhosphorusYellow() {
-    await this.clickContinueButton();
+  async selectPhenols(): Promise<void> {
+    await this.choose('Phenols above 60% w/w and their compounds');
   }
 
-  async selectSodiumSulfide() {
-    await this.clickContinueButton();
+  async selectPhosphorusYellow(): Promise<void> {
+    await this.choose('Phosphorus yellow');
   }
 
-  async selectStrychnine() {
-    await this.clickContinueButton();
+  async selectSodiumSulfide(): Promise<void> {
+    await this.choose('Sodium sulfide');
   }
 
-  async selectThalliumSalts() {
-    await this.clickContinueButton();
+  async selectStrychnine(): Promise<void> {
+    await this.choose('Strychnine, its salts and quaternary compounds');
   }
 
-  async selectZincPhosphide() {
-    await this.clickContinueButton();
+  async selectThalliumSalts(): Promise<void> {
+    await this.choose('Thallium and its salts');
+  }
+
+  async selectZincPhosphide(): Promise<void> {
+    await this.choose('Zinc phosphide');
+  }
+
+  async expectedPageTitle(): Promise<string> {
+    const title = await this.page.title();
+
+    return title.startsWith('Error')
+      ? 'Error: Poisons'
+      : 'Poisons';
   }
 }
+
+
+
+

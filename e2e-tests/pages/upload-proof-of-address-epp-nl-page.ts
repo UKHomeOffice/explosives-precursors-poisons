@@ -1,27 +1,26 @@
+import { Page } from '@playwright/test';
 import { basePage } from './base-page';
-import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
 export class uploadProofOfAddressEppNLPage extends basePage {
-  expectedPageTitle() {
-    return "Upload evidence";
+  private readonly uploadInput;
+
+  constructor(page: Page) {
+    super(page);
+    this.uploadInput = this.page.locator('#file-upload').first();
   }
 
-  async answerEPPAddressProofUpload() {
-    for (let i = 0; i < 2; i++) {
-      const stillOnUploadPage = await this.page
-        .getByRole('heading', { name: /Upload proof of address/i })
-        .isVisible({ timeout: 1500 })
-        .catch(() => false);
+  async answerEPPAddressProofUpload(filePath: string): Promise<void> {
+    await this.uploadInput.setInputFiles(filePath);
+    await this.uploadInput.setInputFiles(filePath);
 
-      if (!stillOnUploadPage) {
-        break;
-      }
+    await this.clickContinueButton();
+  }
 
-      const fileInput = this.page.locator('#file-upload').first();
-      if (await fileInput.count()) {
-        await fileInput.setInputFiles(c.DUMMY_FILE);
-      }
-      await this.clickContinueButton();
-    }
+  async expectedPageTitle(): Promise<string> {
+    const title = await this.page.title();
+
+    return title.startsWith('Error')
+      ? 'Error: Upload evidence'
+      : 'Upload evidence';
   }
 }

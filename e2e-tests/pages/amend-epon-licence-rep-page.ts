@@ -19,3 +19,4 @@ export class amendEPOnLicenceRepPage extends basePage {
     return (await this.page.title()) || '';
   }
 }
+

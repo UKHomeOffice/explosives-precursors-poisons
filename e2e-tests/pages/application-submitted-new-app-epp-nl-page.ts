@@ -14,3 +14,4 @@ export class applicationSubmittedNewAppEppNLPage extends basePage {
       : 'You do not need to apply for a licence – Apply for an explosives and precursor chemicals licence';
   }
 }
+

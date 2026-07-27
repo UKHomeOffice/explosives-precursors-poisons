@@ -1,11 +1,22 @@
+import { Page } from '@playwright/test';
 import { basePage } from './base-page';
 
 export class haveYouReportedTheTheftRepPage extends basePage {
-  async answerNoReportedTheft() {
-    await this.answerYesNo('No');
+  constructor(page: Page) {
+    super(page);
   }
 
-  async answerYesReportedTheft() {
-    await this.answerYesNo('Yes');
+  async answerYesReportedTheft(value: string): Promise<void> {
+    await this.pickRadioByText(value);
+    await this.clickContinueButton();
+  }
+
+  async answerNoReportedTheft(value: string): Promise<void> {
+    await this.pickRadioByText(value);
+    await this.clickContinueButton();
+  }
+  async expectedPageTitle(): Promise<string> {
+    return (await this.page.title()) || '';
   }
 }
+

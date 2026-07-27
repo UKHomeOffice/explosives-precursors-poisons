@@ -24,3 +24,8 @@ export class amendLicenceDetailsPage extends basePage {
       : 'Amend your licence';
   }
 }
+
+
+
+
+

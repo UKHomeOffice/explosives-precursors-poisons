@@ -1,13 +1,25 @@
+import { Page } from '@playwright/test';
 import { basePage } from './base-page';
-import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
 export class uploadBritishPassportEppNLPage extends basePage {
-  expectedPageTitle() {
-    return "Upload British passport";
+  constructor(page: Page) {
+    super(page);
   }
 
-  async uploadBritishPassportEpp() {
-    await this.uploadFirstFile(c.DUMMY_FILE);
+  async uploadBritishPassportEpp(filePath: string): Promise<void> {
+    await this.uploadFirstInput(filePath);
     await this.clickContinueButton();
   }
+
+  async expectedPageTitle(): Promise<string> {
+    const title = await this.page.title();
+
+    return title.startsWith('Error')
+      ? 'Error: Upload British passport'
+      : 'Upload British passport';
+  }
 }
+
+
+
+

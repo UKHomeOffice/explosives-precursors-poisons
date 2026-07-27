@@ -19,3 +19,4 @@ export class changeInHomeAddressRepPage extends basePage {
     return (await this.page.title()) || '';
   }
 }
+

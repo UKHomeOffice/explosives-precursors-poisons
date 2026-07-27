@@ -19,3 +19,4 @@ export class changeInHomeAddressAmendLicencePage extends basePage {
     return (await this.page.title()) || '';
   }
 }
+

@@ -1,13 +1,26 @@
+import { Page } from '@playwright/test';
 import { basePage } from './base-page';
-import { ConstantsLib as c } from '../utility-helper/constants-lib';
 
 export class uploadMedicalFormEppNLPage extends basePage {
-  expectedPageTitle() {
-    return "Upload Your medical form(optional)";
+  constructor(page: Page) {
+    super(page);
   }
 
-  async uploadMedicalFormEpp() {
-    await this.uploadFirstFile(c.DUMMY_FILE);
+  async uploadMedicalFormEpp(filePath: string): Promise<void> {
+    await this.uploadFirstInput(filePath);
     await this.clickContinueButton();
   }
+
+  async expectedPageTitle(): Promise<string> {
+    const title = await this.page.title();
+
+    return title.startsWith('Error')
+      ? 'Error: Upload Your medical form(optional)'
+      : 'Upload Your medical form(optional)';
+  }
 }
+
+
+
+
+

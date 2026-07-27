@@ -1,70 +1,71 @@
+import { Page } from '@playwright/test';
 import { basePage } from './base-page';
-import { ConstantsLib as c } from '../utility-helper/constants-lib';
-import { EppScenarioData } from '../utility-helper/epp-scenario-data';
 
 export class yourDetailsPageNLPage extends basePage {
-  expectedPageTitle() {
-    return "Your details";
+  private readonly birthPlaceInput;
+  private readonly birthCountryInput;
+  private readonly nationalityInput;
+  private readonly heightInput;
+  private readonly occupationInput;
+
+  constructor(page: Page) {
+    super(page);
+    this.birthPlaceInput = this.page.locator('#new-renew-birth-place').first();
+    this.birthCountryInput = this.page.locator('#new-renew-birth-country').first();
+    this.nationalityInput = this.page.locator('#new-renew-country-nationality').first();
+    this.heightInput = this.page.locator('input[name="new-renew-your-height"]').first();
+    this.occupationInput = this.page.locator('input[name="new-renew-occupation"]').first();
   }
 
-  async answerHeightAndOccupation() {
-    await this.fillByPartialLabelIfPresent('Height', '180');
-    await this.fillByPartialLabelIfPresent('Occupation', 'Engineer');
-    await this.clickContinueButton();
-  }
-
-  async answerSexFemale() {
-    await this.selectRadio('Female');
-    await this.clickContinueButton();
-  }
-
-  async answerSexMale() {
-    await this.selectRadio('Male');
-    await this.clickContinueButton();
-  }
-
-  async answerSexOther() {
-    await this.selectRadio('X or other');
-    await this.clickContinueButton();
-  }
-
-  async answerYourDetails(data?: EppScenarioData) {
-    const [day, month, year] = c.DOB_1978.split('/');
-    await this.page.locator('#new-renew-dob-day').fill(day);
-    await this.page.locator('#new-renew-dob-month').fill(month);
-    await this.page.locator('#new-renew-dob-year').fill(year);
-    await this.fillByPartialLabelIfPresent('Place of birth', c.TOWN_OR_CITY);
-    await this.fillByPartialLabelIfPresent('Country of birth', c.COUNTRY_UK);
-    await this.fillByPartialLabelIfPresent('Country of nationality', c.COUNTRY_UK);
-    const hasMoreNationality = (data?.doYouHaveMoreThanOneNationality ?? 'No').toLowerCase() === 'yes';
-    const radioId = hasMoreNationality ? '#new-renew-more-nationalities-yes' : '#new-renew-more-nationalities-no';
-    const labelFor = hasMoreNationality ? 'label[for="new-renew-more-nationalities-yes"]' : 'label[for="new-renew-more-nationalities-no"]';
-    const radio = this.page.locator(radioId);
-
-    await radio.click({ force: true }).catch(async () => {
-      await this.page.locator(labelFor).click({ force: true });
-    });
-
-    const checked = await radio.isChecked().catch(() => false);
-    if (!checked) {
-      await this.page.getByRole('radio', { name: hasMoreNationality ? 'Yes' : 'No', exact: true }).click({ force: true });
+  private async fillTypeahead(input: import('@playwright/test').Locator, value: string, fieldId: string) {
+    if (await input.isVisible().catch(() => false)) {
+      await this.fillField(input, value);
+      await input.press('Tab');
+      return;
     }
 
-    const sex = (data?.whatIsYourSex ?? 'Male').toLowerCase();
-    if (sex.includes('female')) {
-      await this.selectRadio('Female');
-    } else if (sex.includes('other') || sex.includes('x')) {
-      await this.selectRadio('X or other');
+    const hiddenSelect = this.page.locator(`select[name="${fieldId}"]`).first();
+    if (await hiddenSelect.count()) {
+      await hiddenSelect.selectOption({ label: value }, { force: true });
+    }
+  }
+
+  async answerYourDetails(day: string, month: string, year: string, birthPlace: string, birthCountry: string, nationality: string): Promise<void> {
+    await this.fillDate(day, month, year);
+
+    if (await this.birthPlaceInput.isVisible().catch(() => false)) {
+      await this.fillField(this.birthPlaceInput, birthPlace);
     } else {
-      await this.selectRadio('Male');
+      await this.fillAny(['Place of birth', 'Birth place'], birthPlace);
     }
 
-    await this.fillByPartialLabelIfPresent('height', '180');
-    await this.fillByPartialLabelIfPresent('Occupation', 'Engineer');
+    await this.fillTypeahead(this.birthCountryInput, birthCountry, 'new-renew-birth-country');
+    await this.fillTypeahead(this.nationalityInput, nationality, 'new-renew-country-nationality');
+  }
+
+  async answerSexMale(): Promise<void> {
+    await this.pickRadioByText('Male');
+  }
+
+  async answerSexFemale(): Promise<void> {
+    await this.pickRadioByText('Female');
+  }
+
+  async answerSexOther(): Promise<void> {
+    await this.pickRadioByText('X or other');
+  }
+
+  async answerHeightAndOccupation(heightValue: string, occupationValue: string): Promise<void> {
+    await this.fillField(this.heightInput, heightValue);
+    await this.fillField(this.occupationInput, occupationValue);
     await this.clickContinueButton();
   }
 
-  async selectYesOrNoRadioOption(value = 'Yes') {
-    await this.selectRadio(value);
+  async expectedPageTitle(): Promise<string> {
+    const title = await this.page.title();
+
+    return title.startsWith('Error')
+      ? 'Error: Your details'
+      : 'Your details';
   }
 }

@@ -1,15 +1,30 @@
+import { Page } from '@playwright/test';
 import { basePage } from './base-page';
 
 export class criminalRecordWarningsEppNLPage extends basePage {
-  expectedPageTitle() {
-    return "Criminal records, warnings and cautions";
+  constructor(page: Page) {
+    super(page);
   }
 
-  async answerNoCriminalQuestions() {
-    await this.answerYesNo('No');
+  async answerYesCriminalQuestions(): Promise<void> {
+    await this.page.getByRole('radio', { name: /^yes$/i }).first().check();
+    await this.clickContinueButton();
   }
 
-  async answerYesCriminalQuestions() {
-    await this.answerYesNo('Yes');
+  async answerNoCriminalQuestions(): Promise<void> {
+    await this.page.getByRole('radio', { name: /^no$/i }).first().check();
+    await this.clickContinueButton();
+  }
+
+  async expectedPageTitle(): Promise<string> {
+    const title = await this.page.title();
+
+    return title.startsWith('Error')
+      ? 'Error: Criminal records, warnings and cautions'
+      : 'Criminal records, warnings and cautions';
   }
 }
+
+
+
+

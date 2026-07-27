@@ -24,3 +24,8 @@ export class changeInSubstanceAmendLicencePage extends basePage {
       : 'Change in substances';
   }
 }
+
+
+
+
+

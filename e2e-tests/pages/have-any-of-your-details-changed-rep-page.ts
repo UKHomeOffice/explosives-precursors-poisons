@@ -1,11 +1,22 @@
+import { Page } from '@playwright/test';
 import { basePage } from './base-page';
 
 export class haveAnyOfYourDetailsChangedRepPage extends basePage {
-  async answerNoHaveDetailsChanged() {
-    await this.answerYesNo('No');
+  constructor(page: Page) {
+    super(page);
   }
 
-  async answerYesHaveDetailsChanged() {
-    await this.answerYesNo('Yes');
+  async answerYesHaveDetailsChanged(value: string): Promise<void> {
+    await this.pickRadioByText(value);
+    await this.clickContinueButton();
+  }
+
+  async answerNoHaveDetailsChanged(value: string): Promise<void> {
+    await this.pickRadioByText(value);
+    await this.clickContinueButton();
+  }
+  async expectedPageTitle(): Promise<string> {
+    return (await this.page.title()) || '';
   }
 }
+

@@ -1,15 +1,31 @@
+import { Page } from '@playwright/test';
 import { basePage } from './base-page';
 
 export class regulatedExplosivesPrecursorsPage extends basePage {
-  expectedPageTitle() {
-    return "Regulated explosives precursors";
+  constructor(page: Page) {
+    super(page);
   }
 
-  async answerNoAmendExplosivePrecursorsOnLicence() {
-    await this.answerYesNo('No');
+  async answerYesAmendExplosivePrecursorsOnLicence(value: string): Promise<void> {
+    await this.chooseYesNo(value);
+    await this.clickContinueButton();
   }
 
-  async answerYesAmendExplosivePrecursorsOnLicence() {
-    await this.answerYesNo('Yes');
+  async answerNoAmendExplosivePrecursorsOnLicence(value: string): Promise<void> {
+    await this.chooseYesNo(value);
+    await this.clickContinueButton();
+  }
+
+  async expectedPageTitle(): Promise<string> {
+    const title = await this.page.title();
+
+    return title.startsWith('Error')
+      ? 'Error: Regulated explosives precursors'
+      : 'Regulated explosives precursors';
   }
 }
+
+
+
+
+
