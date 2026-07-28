@@ -1,7 +1,6 @@
 'use strict';
 
 require('hof/frontend/themes/gov-uk/client-js');
-const govuk = require('govuk-frontend');
 
 const accessibleAutocomplete = require('accessible-autocomplete');
 const uploadConfig = require('../../utilities/constants/upload-config.json');
@@ -106,5 +105,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-
-govuk.initAll();
