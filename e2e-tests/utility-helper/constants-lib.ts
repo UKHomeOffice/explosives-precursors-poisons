@@ -20,8 +20,8 @@ export const ConstantsLib = {
 
   CONTACT_PHONE_PRIMARY: '01234567890',
   CONTACT_PHONE_SECONDARY: '07123456789',
-  CONTACT_EMAIL_PRIMARY: 'sas-hof-test@digital.homeoffice.gov.uk',
-  CONTACT_EMAIL_SECONDARY: 'sas-hof-test@digital.homeoffice.gov.uk',
+  CONTACT_EMAIL_PRIMARY: 'test@example.com',
+  CONTACT_EMAIL_SECONDARY: 'test2@example.com',
   CONTACT_EMAIL_COUNTERSIGNATORY: 'counter@example.com',
 
   IDENTITY_PASSPORT_UK_NUMBER: '120897A',
