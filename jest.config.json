@@ -15,6 +15,5 @@
     "!utilities/constants/**/*.js"
   ],
   "setupFiles": ["<rootDir>/jest.env.js"],
-  "setupFilesAfterEnv": ["<rootDir>/test/jest.setup.js"],
-  "testPathIgnorePatterns": ["<rootDir>/.features-gen/"]
+  "setupFilesAfterEnv": ["<rootDir>/test/jest.setup.js"]
 }
