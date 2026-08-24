@@ -47,8 +47,6 @@ services:
       - DEBUG=*
     ports:
       - "3000:3000"
-
-  rds-api:
     networks:
       - epp-shared-network
     hostname: hof-rds-api
