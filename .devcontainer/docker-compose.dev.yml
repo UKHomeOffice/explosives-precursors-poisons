@@ -48,27 +48,6 @@ services:
     ports:
       - "3000:3000"
 
-  rds-api:
-    image: quay.io/ukhomeofficedigital/hof-rds-api:a27f07f7865a0a5c38032fb55c114b1673c41796
-    networks:
-      - epp-shared-network
-    hostname: hof-rds-api
-    environment:
-      - SERVICE_NAME=epp
-      - PORT=5000
-      - NODE_ENV=development
-      - DB_HOST=hof-postgres
-      - DB_USER=postgres
-      - DB_PASS=postgres
-      - DB_NAME=epp
-    ports:
-      - "5000:5000"
-    healthcheck:
-      disable: true
-    depends_on:
-      postgres:
-        condition: service_healthy
-
   postgres:
     image: postgres:14@sha256:8396ed98bfbeb08ff9c83a4de368957af98085f55d2c93e7e83828595d6f6663
     networks:

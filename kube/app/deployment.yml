@@ -105,6 +105,11 @@ spec:
                 secretKeyRef:
                   name: session-secret
                   key: session-secret
+            - name: SAS_HOF_EMAIL
+              valueFrom:
+                secretKeyRef:
+                  name: sas-hof-email
+                  key: sas-hof-email
             - name: FILE_VAULT_URL
             {{ if eq .KUBE_NAMESPACE .BRANCH_ENV }}
               value: https://fv-{{ .DRONE_SOURCE_BRANCH }}.branch.sas-notprod.homeoffice.gov.uk/file

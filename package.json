@@ -4,7 +4,7 @@
   "description": "Explosives Precursors and Poisons form",
   "main": "index.js",
   "engines": {
-    "node": ">=24.18.0 <25.0.0"
+    "node": ">=24.19.0 <25.0.0"
   },
   "scripts": {
     "start": "node server.js",
@@ -31,11 +31,11 @@
   },
   "homepage": "https://github.com/UKHomeOffice/explosives-precursors-poisons",
   "dependencies": {
-    "@cucumber/cucumber": "^13.0.0",
+    "@cucumber/cucumber": "^13.2.1",
     "accessible-autocomplete": "^3.0.1",
     "bl": "^6.1.6",
     "busboy": "^1.6.0",
-    "crypto-random-string": "^5.0.0",
+    "crypto-random-string": "^6.0.0",
     "form-data": "^4.0.6",
     "hof": "~24.5.0",
     "lodash": "^4.18.1",
