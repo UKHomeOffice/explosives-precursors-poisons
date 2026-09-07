@@ -2,8 +2,8 @@
 'use strict';
 
 const url = require('url');
+const { randomUUID } = require('node:crypto');
 const Model = require('hof').model;
-const uuid = require('uuid').v4;
 const FormData = require('form-data');
 
 const config = require('../../../config');
@@ -12,7 +12,7 @@ const logger = require('hof/lib/logger')({ env: config.env });
 module.exports = class UploadModel extends Model {
   constructor(...args) {
     super(...args);
-    this.set('id', uuid());
+    this.set('id', randomUUID());
   }
 
   save() {
