@@ -2,9 +2,6 @@ FROM quay.io/ukhomeofficedigital/hof-nodejs:24.19.0-alpine3.24-v3@sha256:20887d4
 
 USER root
 
-# Update the package index and upgrade all installed packages to their latest versions
-RUN apk update && apk upgrade
-
 # Setup nodejs group & nodejs user
 RUN addgroup --system nodejs --gid 998 && \
     adduser --system nodejs --uid 999 --home /app/ && \
