@@ -135,6 +135,8 @@ spec:
               value: "no"
             - name: ALLOW_GENERATE_LINK_ROUTE
               value: "yes"
+            - name: FILE_EXTENSION_WHITELIST
+              value: jpg,jpeg,png,pdf
             - name: DEBUG
               value: "*"
           securityContext:
