@@ -36,7 +36,7 @@ spec:
     spec:
       containers:
         - name: file-vault          
-          image: quay.io/ukhomeofficedigital/file-vault:3.2.0@sha256:befc6ba9311e55ea26a858a675ac3a762ad55d99e9a9ffbf9a46a76a9d7ae8aa
+          image: quay.io/ukhomeofficedigital/file-vault:2dfacc1659eef6322937c4512d8e39dded04307d@sha256:bc9cce95bc7918b7badd0a7fd78d3b272f7bb9d8b19f7739b1180d2fbfbe05b9
           imagePullPolicy: Always
           resources:
             limits:
@@ -205,7 +205,6 @@ spec:
               readOnly: true
 
         - name: nginx-proxy
-          # nginx-proxy-govuk:v4
           image: quay.io/ukhomeofficedigital/nginx-proxy-govuk@sha256:4470064d0b1d20ae08c5fd85551576cb687f342a22d6cb456fda9b2c4ce8c8df
           resources:
             limits:
