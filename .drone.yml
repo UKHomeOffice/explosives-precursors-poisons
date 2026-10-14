@@ -27,6 +27,8 @@ include_default_and_feature_branches: &include_default_and_feature_branches
   include:
     - master
     - feature/*
+
+node_image_name: &node_image_name quay.io/ukhomeofficedigital/hof-nodejs:24.21.0-alpine3.24-v8@sha256:a0c438317862e595f45a51e7cb234a0c7e8c67aef2b886844d788dbe21c3b410
     
 trigger:
   branch:
@@ -58,7 +60,7 @@ sonar_scanner: &sonar_scanner
 
 github_app_token_step: &github_app_token_step
   pull: if-not-exists
-  image: alpine:3.21
+  image: *node_image_name
   volumes:
     - name: dockersock
       path: /root/.dockersock
@@ -270,7 +272,7 @@ steps:
 
   - name: e2e_tests
     pull: if-not-exists
-    image: mcr.microsoft.com/playwright:v1.61.1-noble
+    image: mcr.microsoft.com/playwright:v1.64.0-noble
     environment:
       SAS_HOF_EMAIL:
         from_secret: SAS_HOF_EMAIL
@@ -308,7 +310,7 @@ steps:
 
   - name: publish_e2e_report_to_pr
     pull: if-not-exists
-    image: alpine:3.21
+    image: *node_image_name
     volumes:
       - name: dockersock
         path: /root/.dockersock
@@ -532,7 +534,7 @@ steps:
 
   - name: cron_nightly_e2e_tests
     pull: if-not-exists
-    image: mcr.microsoft.com/playwright:v1.61.1-noble
+    image: mcr.microsoft.com/playwright:v1.64.0-noble
     environment:
       SAS_HOF_EMAIL:
         from_secret: SAS_HOF_EMAIL
@@ -578,7 +580,7 @@ steps:
 
   - name: cron_notify_slack_nightly_e2e
     pull: if-not-exists
-    image: alpine:3.21
+    image: *node_image_name
     environment:
       SLACK_WEBHOOK:
         from_secret: slack_sas_hof_e2e_tests_webhook
