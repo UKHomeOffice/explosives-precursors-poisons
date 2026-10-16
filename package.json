@@ -51,6 +51,7 @@
     "playwright-bdd": "^9.2.0"
   },
   "resolutions": {
-    "qs": "^6.16.0"
+    "qs": "^6.16.0",
+    "source-map-js": "^1.2.2"
   }
 }
