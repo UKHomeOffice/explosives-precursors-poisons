@@ -49,7 +49,7 @@ function main() {
   const outputPath = process.argv[3];
 
   if (!inputPath || !outputPath) {
-    console.error('Usage: node bin/summarise_playwright_report.js <input-text> <output-txt>');
+    process.stderr.write('Usage: node bin/summarise_playwright_report.js <input-text> <output-txt>\n');
     process.exit(1);
   }
 
@@ -66,7 +66,7 @@ function main() {
   }
 
   fs.writeFileSync(outputPath, `${summary}\n`, 'utf8');
-  console.log(summary);
+  process.stdout.write(`${summary}\n`);
 }
 
 main();
