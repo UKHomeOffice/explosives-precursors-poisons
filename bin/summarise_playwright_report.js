@@ -1,6 +1,8 @@
 'use strict';
 
 const fs = require('node:fs');
+const config = require('../../../config');
+const logger = require('hof/lib/logger')({ env: config.env });
 
 function readText(path) {
   return fs.readFileSync(path, 'utf8');
@@ -49,8 +51,9 @@ function main() {
   const outputPath = process.argv[3];
 
   if (!inputPath || !outputPath) {
-    process.stderr.write('Usage: node bin/summarise_playwright_report.js <input-text> <output-txt>\n');
-    process.exit(1);
+    logger.error('Usage: node bin/summarise_playwright_report.js <input-text> <output-txt>');
+    process.exitCode = 1;
+    return;
   }
 
   let summary;
@@ -66,7 +69,7 @@ function main() {
   }
 
   fs.writeFileSync(outputPath, `${summary}\n`, 'utf8');
-  process.stdout.write(`${summary}\n`);
+  logger.info(summary);
 }
 
 main();
