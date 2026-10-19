@@ -52,7 +52,7 @@ function main() {
 
   if (!inputPath || !outputPath) {
     logger.error('Usage: node bin/summarise_playwright_report.js <input-text> <output-txt>');
-    process.exitCode = 1;
+    process.exit(1);
     return;
   }
 
