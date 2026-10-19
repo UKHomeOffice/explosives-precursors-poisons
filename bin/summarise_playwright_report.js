@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('node:fs');
-const config = require('../../../config');
+const config = require('../config');
 const logger = require('hof/lib/logger')({ env: config.env });
 
 function readText(path) {
