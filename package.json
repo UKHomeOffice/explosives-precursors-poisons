@@ -4,7 +4,7 @@
   "description": "Explosives Precursors and Poisons form",
   "main": "index.js",
   "engines": {
-    "node": ">=24.21.0 <25.0.0"
+    "node": ">=24.22.1 <25.0.0"
   },
   "scripts": {
     "start": "node server.js",
@@ -51,7 +51,10 @@
     "playwright-bdd": "^9.2.0"
   },
   "resolutions": {
-    "qs": "^6.16.0",
-    "source-map-js": "^1.2.2"
+    "qs": "^6.16.1",
+    "source-map-js": "^1.2.2",
+    "body-parser": "^2.4.0",
+    "follow-redirects": "^1.16.1",
+    "markdown-it": "^15.0.3"
   }
 }
