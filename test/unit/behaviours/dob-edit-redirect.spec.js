@@ -1,6 +1,20 @@
 const Behaviour = require('../../../apps/epp-common/behaviours/dob-edit-redirect');
-const moment = require('moment');
+const day = require('hof').utils.date;
 const reqres = require('hof').utils.reqres;
+
+const dateYearsAgo = years => {
+  const date = new Date();
+  const dayOfMonth = date.getDate();
+  date.setDate(1);
+  date.setFullYear(date.getFullYear() - years);
+  date.setDate(
+    Math.min(
+      dayOfMonth,
+      new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
+    )
+  );
+  return day.formatDate(date, 'YYYY-MM-DD');
+};
 
 describe('Tests for dob edit redirect behaviour', () => {
   class Base {
@@ -29,7 +43,7 @@ describe('Tests for dob edit redirect behaviour', () => {
     });
 
     it('Edit Journey - Age is less than 18 years - should redirect to the given redirect URL - ', () => {
-      const date = moment().subtract('17', 'years').format('YYYY-MM-DD');
+      const date = dateYearsAgo(17);
       req = {
         sessionModel: {
           set: mockFn()
@@ -56,9 +70,7 @@ describe('Tests for dob edit redirect behaviour', () => {
         originalUrl: 'http://domain/path',
         form: {
           values: {
-            'test-field-name': moment()
-              .subtract('17', 'years')
-              .format('YYYY-MM-DD')
+            'test-field-name': dateYearsAgo(17)
           }
         }
       };
@@ -75,9 +87,7 @@ describe('Tests for dob edit redirect behaviour', () => {
         originalUrl: 'http://domain/path/edit',
         form: {
           values: {
-            'test-field-name': moment()
-              .subtract('18', 'years')
-              .format('YYYY-MM-DD')
+            'test-field-name': dateYearsAgo(18)
           }
         }
       };

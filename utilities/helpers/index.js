@@ -1,5 +1,5 @@
-const moment = require('moment');
 const validators = require('hof/controller/validation/validators');
+const day = require('hof').utils.date;
 const explosivePrecursorsList = require('../constants/explosive-precursors');
 const poisonList = require('../constants/poisons');
 const config = require('../../config');
@@ -158,10 +158,9 @@ const getKeyByValue = (obj, value) => {
  * @returns {boolean} `true` if the date is older than or equal to the specified number of years, `false` otherwise.
  */
 const isDateOlderOrEqualTo = (dateStr, yearsThreshold) => {
-  const formattedDate = moment(dateStr, 'YYYY-MM-DD');
   return (
-    formattedDate?.isValid() &&
-    moment().diff(formattedDate, 'years') >= yearsThreshold
+    validators.date(dateStr) &&
+    !validators.after(dateStr, yearsThreshold, 'years')
   );
 };
 
@@ -216,8 +215,8 @@ const isValidConcentrationValue = value => {
  * @returns {string} The formatted date string if the input date is valid, otherwise an empty string.
  */
 const getFormattedDate = date => {
-  if (date && moment(date, DATE_FORMAT_YYYY_MM_DD, true)?.isValid()) {
-    return moment(date).format(config.PRETTY_DATE_FORMAT);
+  if (date && validators.date(date)) {
+    return day.formatDate(date, config.PRETTY_DATE_FORMAT);
   }
   return '';
 };

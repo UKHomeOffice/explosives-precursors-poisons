@@ -7,7 +7,7 @@ const NotifyClient = utils.NotifyClient;
 const notifyKey = govukNotify.notifyApiKey;
 const notifyClient = new NotifyClient(notifyKey);
 const PDFModel = require('hof').apis.pdfConverter;
-const moment = require('moment');
+const day = require('hof').utils.date;
 
 const {
   APP_TYPE_REPLACE,
@@ -73,7 +73,7 @@ module.exports = class SendEmailConfirmation {
   async renderHTML(req, res, locs) {
     const locals = locs;
     locals.title = getPdfTitle(req);
-    locals.dateTime = moment().format(dateTimeFormat);
+    locals.dateTime = day.formatDate(new Date(), dateTimeFormat);
     locals.values = req.sessionModel.toJSON();
     locals.htmlLang = res.locals.htmlLang || 'en';
 
