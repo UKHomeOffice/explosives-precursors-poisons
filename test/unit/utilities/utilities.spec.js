@@ -1,4 +1,4 @@
-const moment = require('moment');
+const day = require('hof').utils.date;
 const {
   validLicenceNumber,
   isWithoutFullStop,
@@ -22,6 +22,20 @@ const {
 const explosivePrecursorsList = require('../../../utilities/constants/explosive-precursors');
 const poisonsList = require('../../../utilities/constants/poisons');
 const { SUBSTANCES } = require('../../../utilities/constants/string-constants');
+
+const dateYearsAgo = years => {
+  const date = new Date();
+  const dayOfMonth = date.getDate();
+  date.setDate(1);
+  date.setFullYear(date.getFullYear() - years);
+  date.setDate(
+    Math.min(
+      dayOfMonth,
+      new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate()
+    )
+  );
+  return day.formatDate(date, 'YYYY-MM-DD');
+};
 
 describe('EPP utilities tests', () => {
   it('.validLicenceNumber - should match for valid formats', () => {
@@ -86,11 +100,11 @@ describe('EPP utilities tests', () => {
 
   it('.isDateOlderOrEqualTo - should return false for dates less than 5 years', () => {
     const dates = [
-      moment().format('YYYY-MM-DD'),
-      moment().subtract('1', 'years').format('YYYY-MM-DD'),
-      moment().subtract('2', 'years').format('YYYY-MM-DD'),
-      moment().subtract('3', 'years').format('YYYY-MM-DD'),
-      moment().subtract('4', 'years').format('YYYY-MM-DD'),
+      dateYearsAgo(0),
+      dateYearsAgo(1),
+      dateYearsAgo(2),
+      dateYearsAgo(3),
+      dateYearsAgo(4),
       'INVALID_DATE',
       ''
     ];
@@ -101,10 +115,10 @@ describe('EPP utilities tests', () => {
 
   it('.isDateOlderOrEqualTo - should return true for dates older than or equal to 5 years', () => {
     const dates = [
-      moment().subtract('5', 'years').format('YYYY-MM-DD'),
-      moment().subtract('6', 'years').format('YYYY-MM-DD'),
-      moment().subtract('7', 'years').format('YYYY-MM-DD'),
-      moment().subtract('80', 'years').format('YYYY-MM-DD')
+      dateYearsAgo(5),
+      dateYearsAgo(6),
+      dateYearsAgo(7),
+      dateYearsAgo(80)
     ];
     for (const date of dates) {
       expect(isDateOlderOrEqualTo(`${date}`, 5)).toBe(true);

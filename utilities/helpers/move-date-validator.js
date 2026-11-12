@@ -1,5 +1,5 @@
 const validators = require('hof/controller/validation/validators');
-const moment = require('moment');
+const day = require('hof').utils.date;
 const config = require('../../config');
 
 const checkIfDateAfterDob = (key, req, birthDateField) => {
@@ -10,7 +10,7 @@ const checkIfDateAfterDob = (key, req, birthDateField) => {
     req.log('error', `Validation error ${dateChanged} should be after ${dateOfBirth}`);
     return {
       type: 'after',
-      arguments: [moment(dateOfBirth).format(config.PRETTY_DATE_FORMAT)]
+      arguments: [day.formatDate(dateOfBirth, config.PRETTY_DATE_FORMAT)]
     };
   }
   req.log('info', 'No Validation error');
